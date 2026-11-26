@@ -1,0 +1,97 @@
+id: number-plus-reciprocal-quadratic
+title: A number plus its reciprocal
+topics:
+- algebra
+- quadratic equations
+- factorising
+- reciprocals
+warmup: true
+answer_source: pdf
+statement: A positive number and its reciprocal add up to $\frac{10}{3}$. Find the two possible values
+  of the number.
+stages:
+- goal: Write the condition as an equation in x and clear the fraction to get a quadratic.
+  expected: x + 1/x = 10/3. Multiplying by 3x gives 3x^2 + 3 = 10x, i.e. 3x^2 - 10x + 3 = 0.
+  solution: 'Let the number be x, with x>0. Then x + 1/x = 10/3. Multiply by 3x: 3x^2 + 3 = 10x, so 3x^2
+    - 10x + 3 = 0.'
+  common_errors:
+  - Multiplying only the x term by 3x, leaving 1/x uncleared.
+  - Sign errors when moving 10x across.
+  - Writing 3x^2 + 3 = 10 instead of 10x.
+  hints:
+    rephrase: The reciprocal has x on the bottom. What should you multiply by to remove both fractions
+      at once?
+    smaller_case: Test the method on x + 1/x = 2 to check the sort of equation that results.
+    key_idea: Multiplying by x clears the reciprocal, and multiplying by 3 clears the 10/3.
+  check: expand(3*x**2-10*x+3-3*x*(x+1/x-Rational(10,3)))
+  check_ok: true
+- goal: Factorise or solve the quadratic and state the two values.
+  expected: (3x-1)(x-3)=0, so x = 1/3 or x = 3.
+  solution: Factorise 3x^2 - 10x + 3 = (3x-1)(x-3). Setting each factor to zero gives x = 1/3 or x = 3.
+    Both are positive.
+  common_errors:
+  - Wrong factor pairs, e.g. (3x+1)(x+3).
+  - Giving the reciprocal of a value as a second answer without checking.
+  - Not verifying the values in the original equation.
+  hints:
+    rephrase: Find two brackets whose product is 3x^2 - 10x + 3.
+    smaller_case: Factorise x^2 - 5x + 6 first, then adapt to the leading coefficient 3.
+    key_idea: For ax^2+bx+c with a≠1, look for a pair of numbers whose product is ac and whose sum is
+      b.
+  check: expand((3*x-1)*(x-3)-(3*x**2-10*x+3))
+  check_ok: true
+- goal: Check both values in the original equation and confirm they satisfy x + 1/x = 10/3.
+  expected: 'x=3: 3+1/3=10/3. x=1/3: 1/3+3=10/3. Both work.'
+  solution: For x=3, 3 + 1/3 = 10/3. For x=1/3, 1/3 + 3 = 10/3. Both values are positive and valid.
+  common_errors:
+  - Skipping the check.
+  - Arithmetic errors when adding a fraction to an integer.
+  - Mistaking the check for a proof of the solution set.
+  hints:
+    rephrase: Substitute each candidate back into the original equation.
+    smaller_case: Substitute x = 2 into x + 1/x to see how the check works.
+    key_idea: A solution to the quadratic must still satisfy the original equation, which has no extra
+      solutions here.
+  check: (3*Integer(3)**2-10*3+3)**2+(3*Rational(1,9)-Rational(10,3)+3)**2
+  check_ok: true
+extensions:
+  '3':
+  - Solve x + 1/x = 5/2 for positive x.
+  '4':
+  - Show that x + 1/x ≥ 2 for every positive x, and explain why x + 1/x = 10/3 is possible.
+  '5':
+  - For which real values of k does x + 1/x = k have real solutions? Justify your answer.
+spoken_vocab:
+- x plus one over x
+- ten over three
+- positive number
+- reciprocal
+- quadratic
+- multiply by three x
+- three x squared minus ten x plus three
+- factorise
+- three x minus one
+- x minus three
+- one third
+- three
+- check
+- substitute
+source: kclms/kclms-specimen-questions-4.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 3
+  minutes: 3
+  flags:
+  - trivial
+  tagline: Routine quadratic from x + 1/x; answers 3 and 1/3 with little depth.
+  priority: 23
+  rank: 660
+  tier: D
+  category: kclms
+  d10: 2.0
+  real: 3.0
+  by: haiku
+tags:
+- algebra_and_functions

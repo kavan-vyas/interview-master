@@ -1,0 +1,92 @@
+id: sum-of-squares-no-real-roots
+title: Roots of a sum of two squares
+topics:
+- quadratics
+- completing the square
+- complex numbers
+- inequalities
+warmup: true
+answer_source: pdf
+statement: For $(x - a)^2 + (x - b)^2 = 0$ with $a \neq b$, how many roots are there?
+stages:
+- goal: How many real roots does the equation have?
+  expected: 'None: zero real roots.'
+  solution: For real $x$, each square is non-negative. A sum of two non-negative terms equals zero only
+    if both are zero, which requires $x=a$ and $x=b$ at once. This is impossible because $a \neq b$, so
+    there are no real roots.
+  common_errors:
+  - Answering $x=a$ or $x=b$ as roots
+  - Forgetting that real squares cannot be negative
+  - Concluding there is one root because the expression is a square
+  hints:
+    rephrase: Can a sum of two real squares ever be zero unless each square is zero?
+    smaller_case: Take $a=0$ and $b=1$. Is there any real $x$ making both squares zero?
+    key_idea: Look at the sign of each term before trying to solve for $x$.
+- goal: Find the minimum value of the left-hand side over real $x$.
+  expected: The minimum is $\frac{(a-b)^2}{2}$, attained at $x=\frac{a+b}{2}$, which is strictly positive
+    because $a \neq b$.
+  solution: Expanding gives $2x^2-2(a+b)x+a^2+b^2 = 2\left(x-\frac{a+b}{2}\right)^2+\frac{(a-b)^2}{2}$.
+    The first term is at least 0, so the minimum is $\frac{(a-b)^2}{2}>0$, which is never zero.
+  common_errors:
+  - Minimising at $x=a$ or $x=b$
+  - Making an algebra error when completing the square
+  - Concluding the minimum is zero
+  hints:
+    rephrase: Where is the sum smallest? Try the value of $x$ halfway between $a$ and $b$.
+    smaller_case: Take $a=0$, $b=2$ and evaluate the left-hand side at $x=0$, $x=1$ and $x=2$.
+    key_idea: Complete the square in $x$.
+  check: ((a+b)/2 - a)**2 + ((a+b)/2 - b)**2 - (a-b)**2/2
+  check_ok: true
+- goal: Find all roots over the complex numbers.
+  expected: 'Two distinct non-real roots: $x=\frac{a+b}{2}+\frac{i(a-b)}{2}$ and $x=\frac{a+b}{2}-\frac{i(a-b)}{2}$.'
+  solution: The quadratic is $2x^2-2(a+b)x+(a^2+b^2)=0$, with discriminant $4(a+b)^2-8(a^2+b^2) = -4(a-b)^2
+    < 0$. The quadratic formula gives $x=\frac{(a+b)\pm i(a-b)}{2}$, which are the two complex roots.
+  common_errors:
+  - Stating there are no roots at all, rather than no real roots
+  - Getting the discriminant sign wrong
+  - Dropping the factor of $\frac12$ in the roots
+  hints:
+    rephrase: Allow complex numbers. What does the quadratic formula say about the discriminant here?
+    smaller_case: Take $a=0$, $b=2$ and solve $(x)^2+(x-2)^2=0$ over the complex numbers.
+    key_idea: Expand the quadratic and apply the quadratic formula, paying close attention to the sign
+      of the discriminant.
+  check: expand(((a+b)/2 + I*(a-b)/2 - a)**2 + ((a+b)/2 + I*(a-b)/2 - b)**2) + expand(((a+b)/2 - I*(a-b)/2
+    - a)**2 + ((a+b)/2 - I*(a-b)/2 - b)**2)
+  check_ok: true
+extensions:
+  '3':
+  - What happens to the number of roots if $a=b$?
+  '4':
+  - How many real roots does $(x-a)^3+(x-b)^3=0$ have when $a \neq b$?
+  '5':
+  - Generalise to $\sum_{i=1}^{n}(x-a_i)^2=0$ with distinct $a_i$, and discuss real and complex roots.
+spoken_vocab:
+- x minus a squared
+- plus
+- x minus b squared
+- a not equal to b
+- real roots
+- complex roots
+- discriminant
+- i
+- complete the square
+- quadratic formula
+source: past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2009.doc
+verified: false
+rating:
+  quality: 3
+  difficulty: 3
+  parts: 3
+  minutes: 6
+  flags: []
+  tagline: Quick complex-roots question that largely duplicates the real-roots item.
+  priority: 41
+  rank: 569
+  tier: C
+  category: past-interviews
+  d10: 2.5
+  real: 4.0
+  by: haiku
+tags:
+- roots_of_polynomials
+- complex_numbers

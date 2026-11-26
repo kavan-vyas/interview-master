@@ -1,0 +1,89 @@
+id: log2-3-irrational
+title: Is log base 2 of 3 rational?
+topics:
+- irrationality
+- proof by contradiction
+- parity
+warmup: true
+answer_source: generated
+statement: Is $\log_2 3$ rational? Prove it.
+stages:
+- goal: Assume $\log_2 3 = p/q$ with positive integers $p,q$, and derive $2^p = 3^q$.
+  expected: $2^{p/q} = 3$, so raising both sides to the power $q$ gives $2^p = 3^q$.
+  solution: Since $\log_2 3 > 0$, if it were rational we could write it as $p/q$ with $p,q$ positive integers.
+    Then $2^{p/q} = 3$. Raising both sides to the power $q$ gives $2^p = 3^q$.
+  common_errors:
+  - Allowing $p$ or $q$ to be zero or negative without justification.
+  - Writing the equation as $2^q = 3^p$, which swaps the exponents.
+  - Taking logs of the wrong side when rewriting.
+  hints:
+    rephrase: Write what it means for $\log_2 3$ to equal a fraction, then convert the logarithm into
+      an exponential equation.
+    smaller_case: What is $\log_2 4$ as a fraction, and what does $2$ raised to that fraction give?
+    key_idea: Turn the logarithm equation into an exponential equation and raise both sides to the power
+      of the denominator.
+  check: null
+- goal: Derive a contradiction from $2^p = 3^q$ using parity.
+  expected: The left side is even because $p \geq 1$. The right side is odd for every $q \geq 1$. This
+    is a contradiction.
+  solution: Since $p \geq 1$, $2^p$ is even. Since $3^q$ is odd for every $q$, the equation $2^p = 3^q$
+    cannot hold. This contradicts the assumption that $\log_2 3 = p/q$.
+  common_errors:
+  - Forgetting that $p \geq 1$ is needed to make $2^p$ even.
+  - Saying $3^q$ might be even for some $q$.
+  - Writing the contradiction without naming the parity mismatch.
+  hints:
+    rephrase: Look at whether each side of $2^p = 3^q$ is even or odd.
+    smaller_case: 'Check small cases: is $2^2$ even? Is $3^2$ even?'
+    key_idea: A power of 2 with positive exponent is even, and a power of 3 is always odd.
+  check: null
+- goal: Conclude that $\log_2 3$ is irrational.
+  expected: No positive integers $p,q$ satisfy $2^p = 3^q$, so $\log_2 3$ is not rational. It is irrational.
+  solution: The assumption that $\log_2 3$ is rational led to a contradiction, so $\log_2 3$ is irrational.
+  common_errors:
+  - Concluding the argument shows only that a particular fraction fails, rather than all fractions.
+  - 'Forgetting to state the final answer: no, $\log_2 3$ is not rational.'
+  hints:
+    rephrase: What does the contradiction tell you about every possible fraction $p/q$?
+    smaller_case: Would the argument still work for $p/q = 3/2$?
+    key_idea: A proof by contradiction shows that no fraction works, so $\log_2 3$ is irrational.
+  check: null
+extensions:
+  '3':
+  - Prove that $\sqrt{2}$ is irrational using a similar parity or contradiction argument.
+  '4':
+  - Prove that $\log_6 2$ is irrational.
+  '5':
+  - Prove that $\log_{10} 2$ is irrational.
+  - For which integers $b\geq 2$ is $\log_b 3$ rational?
+spoken_vocab:
+- log base two of three
+- rational
+- irrational
+- proof
+- assume
+- contradiction
+- p over q
+- two to the p equals three to the q
+- parity
+- even
+- odd
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 3
+  minutes: 10
+  flags: []
+  tagline: A classic parity proof that extends to when log_a b is rational.
+  priority: 81
+  rank: 229
+  tier: B
+  category: tbo
+  d10: 4.0
+  real: 8.5
+  by: haiku
+tags:
+- proof
+- number_theory

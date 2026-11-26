@@ -1,0 +1,92 @@
+id: rectangle-triangle-equal-area
+title: Find x when a rectangle and triangle have equal area
+topics:
+- area
+- algebra
+- linear equations
+- triangles and rectangles
+warmup: true
+answer_source: pdf
+statement: "A rectangle has sides $3x-1$ and $7$. A triangle has base $8$ and height $x+2$. The two shapes\
+  \ have the same area. What is the value of $x$?\n a) $x=\\frac{6}{5}$\n b) $x=2$\n c) $x=\\frac{18}{5}$\n\
+  \ d) $x=3$\n e) $x=\\frac{22}{17}$"
+stages:
+- goal: Write an expression for the area of the rectangle and an expression for the area of the triangle.
+  expected: Rectangle area = 7(3x-1) = 21x - 7. Triangle area = (1/2)(8)(x+2) = 4x + 8.
+  solution: Rectangle area is length times width, 7(3x-1) = 21x - 7. Triangle area is half base times
+    height, (1/2)(8)(x+2) = 4(x+2) = 4x + 8.
+  common_errors:
+  - Forgetting the factor of one half in the triangle area formula.
+  - Expanding 7(3x-1) incorrectly as 21x - 1.
+  hints:
+    rephrase: Write down the standard area formula for each shape, then substitute the given lengths.
+    smaller_case: Try the triangle alone. What is its area if the height is 2 and the base is 8?
+    key_idea: Area of a triangle is half of base times height. Area of a rectangle is the product of its
+      two sides.
+  check: (7*(3*x - 1)) - (21*x - 7)
+  check_ok: true
+- goal: Set the two areas equal, solve for x, and compare with the options.
+  expected: 21x - 7 = 4x + 8, so 17x = 15 and x = 15/17. This is not among the options. The PDF key says
+    18/5, but substituting 18/5 does not make the two areas equal (68.6 is not 22.4). The stated dimensions
+    give x = 15/17, so the diagram or key should be checked.
+  solution: 'Equating the areas: 21x - 7 = 4x + 8, so 17x = 15 and x = 15/17. Substituting x = 18/5 gives
+    a rectangle area of 343/5 and a triangle area of 112/5, which are not equal. The printed answer 18/5
+    is therefore inconsistent with the stated dimensions. The algebra from the stated dimensions gives
+    x = 15/17. Check the diagram for any dimension that differs from the text.'
+  common_errors:
+  - Accepting the printed key 18/5 without substituting it back into both areas.
+  - Dropping the one half in the triangle area, which gives 8(x+2) = 21x - 7 and a different x.
+  - Sign errors when moving the -7 and 4x terms across the equals sign.
+  hints:
+    rephrase: Once both areas are written as expressions in x, set them equal and collect the x terms
+      on one side.
+    smaller_case: Substitute your candidate x back into both area expressions. Do they match?
+    key_idea: Solving a linear equation requires gathering x terms on one side and constants on the other.
+      Always verify the solution in the original equation.
+  check: 17*x - 15
+  check_ok: false
+extensions:
+  '3':
+  - If the rectangle's width is changed to 3x+1, solve for x again, with the triangle unchanged.
+  '4':
+  - Explain why checking the solution by substitution is important when a multiple-choice key may be wrong.
+  '5':
+  - Find the value of x for which the rectangle area is twice the triangle area, using the same dimensions.
+spoken_vocab:
+- rectangle
+- triangle
+- three x minus one
+- seven
+- base eight
+- height x plus two
+- same area
+- find x
+- fraction six over five
+- two
+- fraction eighteen over five
+- three
+- fraction twenty two over seventeen
+- fifteen over seventeen
+- area
+- one half
+source: kclms/kclms-mcq-specimen-questions-answers-included.pdf#0
+verified: false
+rating:
+  quality: 1
+  difficulty: 2
+  parts: 2
+  minutes: 3
+  flags:
+  - trivial
+  - wrong_or_unclear_solution
+  tagline: Algebra is simple; correct answer 15/17 absent from options.
+  priority: -1
+  rank: 713
+  tier: D
+  category: kclms
+  d10: 1.5
+  real: 1.0
+  by: haiku
+tags:
+- geometry
+- algebra_and_functions

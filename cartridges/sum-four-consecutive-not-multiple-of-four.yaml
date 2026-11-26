@@ -1,0 +1,76 @@
+id: sum-four-consecutive-not-multiple-of-four
+title: Sum of four consecutive whole numbers is never a multiple of 4
+topics:
+- algebra
+- divisibility
+- remainders
+- proof
+warmup: true
+answer_source: pdf
+statement: Explain why the sum of any four consecutive whole numbers is never a multiple of 4.
+stages:
+- goal: Write the sum of four consecutive whole numbers in terms of a single variable.
+  expected: n + (n+1) + (n+2) + (n+3) = 4n + 6
+  solution: Let the numbers be n, n+1, n+2, n+3. Their sum is 4n + 6.
+  common_errors:
+  - 'Getting the constant wrong: 0+1+2+3 = 6, so the constant term is 6, not 4 or 0.'
+  - Writing the sum as 4n only, which drops the constant.
+  hints:
+    rephrase: Call the smallest number n and write the other three in terms of n. Then add them up.
+    smaller_case: Add the first four whole numbers 0, 1, 2, 3. What total do you get?
+    key_idea: Consecutive numbers differ by 1, so their sum is four times some base value plus the sum
+      of the offsets.
+  check: n+(n+1)+(n+2)+(n+3)-(4*n+6)
+  check_ok: true
+- goal: Use the expression to show the sum never leaves remainder 0 when divided by 4, and conclude.
+  expected: 4n + 6 = 4(n+1) + 2, so the remainder on division by 4 is 2 for every whole number n. Therefore
+    the sum is never a multiple of 4.
+  solution: Rewrite 4n + 6 as 4(n+1) + 2. The first part is a multiple of 4, so the remainder when dividing
+    by 4 is always 2. A multiple of 4 would need remainder 0, so the sum is never a multiple of 4.
+  common_errors:
+  - Concluding only for small examples, such as 1+2+3+4=10, rather than for all n.
+  - Writing 4n + 6 = 4(n+1) + 2 but not stating why that means the remainder is always 2.
+  hints:
+    rephrase: Try to rewrite 4n + 6 so that one part is an obvious multiple of 4.
+    smaller_case: 'Test n = 1: what is 1+2+3+4 divided by 4? Does the same pattern hold for n = 2?'
+    key_idea: Split off the largest multiple of 4 you can, and see what is left over.
+  check: Mod(4*n + 6, 4) - 2
+  check_ok: false
+extensions:
+  '3':
+  - Show that the sum of any five consecutive whole numbers is a multiple of 5.
+  '4':
+  - Show that the sum of any three consecutive whole numbers is a multiple of 3.
+  '5':
+  - For which values of k is the sum of any k consecutive whole numbers always a multiple of k?
+spoken_vocab:
+- sum
+- four consecutive whole numbers
+- multiple of four
+- never
+- remainder
+- n plus n plus one plus n plus two plus n plus three
+- four n plus six
+- four times n plus one plus two
+- divisible
+- proof
+source: kclms/kclms-specimen-questions-3.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 1
+  parts: 2
+  minutes: 4
+  flags:
+  - trivial
+  tagline: Simple algebra with a neat remainder; too short for discussion.
+  priority: 17
+  rank: 675
+  tier: D
+  category: kclms
+  d10: 1.5
+  real: 5.5
+  by: haiku
+tags:
+- number_theory
+- proof

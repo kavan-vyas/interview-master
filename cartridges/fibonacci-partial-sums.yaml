@@ -1,0 +1,106 @@
+id: fibonacci-partial-sums
+title: Fibonacci numbers and partial sums
+topics:
+- sequences
+- Fibonacci
+- induction
+- summation
+warmup: false
+answer_source: pdf
+statement: Write down the first ten Fibonacci numbers. Write down the first six partial sums of the Fibonacci
+  sequence. Find a formula for the $n$th partial sum $S_n$, and prove your formula for all $n$.
+stages:
+- goal: Write down the first ten Fibonacci numbers, with F_1 = F_2 = 1.
+  expected: 1, 1, 2, 3, 5, 8, 13, 21, 34, 55
+  solution: Use F_1 = 1, F_2 = 1 and F_n = F_(n-1) + F_(n-2). The terms are 1, 1, 2, 3, 5, 8, 13, 21,
+    34, 55. If the sequence is instead started with F_0 = 0, the list becomes 0, 1, 1, 2, ..., so state
+    the convention used.
+  check: '[fibonacci(i) for i in range(1,11)] == [1,1,2,3,5,8,13,21,34,55]'
+  common_errors:
+  - Shifting the list by starting at 0 without saying so
+  - Arithmetic slips such as 5 + 8 = 12
+  hints:
+    rephrase: Each term is the sum of the two terms before it, so you need two starting values.
+    smaller_case: Write down the first five terms.
+    key_idea: Apply the recurrence F_n = F_(n-1) + F_(n-2) from the agreed starting values.
+  check_ok: null
+- goal: Write down the first six partial sums S_1 to S_6, where S_n = F_1 + ... + F_n.
+  expected: 1, 2, 4, 7, 12, 20
+  solution: S_1 = 1, S_2 = 1+1 = 2, S_3 = 2+2 = 4, S_4 = 4+3 = 7, S_5 = 7+5 = 12, S_6 = 12+8 = 20.
+  check: '[sum(fibonacci(i) for i in range(1,k+1)) for k in range(1,7)] == [1,2,4,7,12,20]'
+  common_errors:
+  - Off-by-one error in the index, such as taking S_6 as the sum of the first five terms
+  - Adding a wrong Fibonacci term
+  hints:
+    rephrase: Add the terms cumulatively, starting from the first.
+    smaller_case: Compute S_1 and S_2 only.
+    key_idea: 'Build each partial sum from the previous one: S_n = S_(n-1) + F_n.'
+  check_ok: null
+- goal: Find a formula for the nth partial sum S_n.
+  expected: S_n = F_(n+2) - 1
+  solution: 'Look at S_n + 1 = 2, 3, 5, 8, 13, 21 for n = 1 to 6. These are F_3, F_4, ..., F_8. So S_n
+    + 1 = F_(n+2), giving S_n = F_(n+2) - 1. Check: S_3 = F_5 - 1 = 4 and S_6 = F_8 - 1 = 20.'
+  check: all(sum(fibonacci(i) for i in range(1,k+1)) == fibonacci(k+2)-1 for k in range(1,50))
+  common_errors:
+  - Writing S_n = F_(n+1), which is off by one and off by one in the offset
+  - Forgetting the -1
+  hints:
+    rephrase: Compare S_n + 1 with the Fibonacci list.
+    smaller_case: Look at S_3 and find where S_3 + 1 appears in the Fibonacci list.
+    key_idea: Adding 1 to each partial sum makes the pattern match a shifted Fibonacci sequence.
+  check_ok: null
+- goal: Prove S_n = F_(n+2) - 1 for all n >= 1 by induction.
+  expected: 'Base case: S_1 = 1 = F_3 - 1. Inductive step: assuming S_n = F_(n+2) - 1, S_(n+1) = S_n +
+    F_(n+1) = F_(n+2) + F_(n+1) - 1 = F_(n+3) - 1, using F_(n+3) = F_(n+2) + F_(n+1).'
+  solution: 'Base case: S_1 = F_1 = 1 and F_3 - 1 = 2 - 1 = 1. Inductive hypothesis: S_n = F_(n+2) - 1
+    for some n >= 1. Then S_(n+1) = S_n + F_(n+1) = (F_(n+2) - 1) + F_(n+1). By the recurrence, F_(n+2)
+    + F_(n+1) = F_(n+3), so S_(n+1) = F_(n+3) - 1, which is the formula for n+1. By induction the formula
+    holds for all n >= 1.'
+  check: expand_func(fibonacci(n+3)) - fibonacci(n+2) - fibonacci(n+1)
+  common_errors:
+  - Checking a few cases and calling it a proof
+  - Using the hypothesis for n+1 instead of n in the inductive step
+  - Forgetting to add F_(n+1) when moving from S_n to S_(n+1)
+  hints:
+    rephrase: Assume the formula holds for n and derive it for n+1.
+    smaller_case: Write S_2 as S_1 + F_2 and check the inductive step numerically at that point.
+    key_idea: Use the recurrence in the form F_(n+3) = F_(n+2) + F_(n+1).
+  check_ok: false
+extensions:
+  '3':
+  - Prove that F_1^2 + ... + F_n^2 = F_n F_(n+1).
+  '4':
+  - Prove that F_1 + F_3 + ... + F_(2n-1) = F_(2n).
+  '5':
+  - 'Prove Cassini''s identity: F_(n+1)^2 - F_n F_(n+2) = (-1)^n.'
+spoken_vocab:
+- Fibonacci
+- F sub n
+- partial sum
+- S sub n
+- F sub n plus two minus one
+- induction
+- base case
+- inductive step
+- sum from k equals one to n
+- recurrence
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 6 (anonymous).pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 2
+  parts: 4
+  minutes: 8
+  flags:
+  - trivial
+  tagline: Pleasant warm-up; the sum identity is quick but has little extension.
+  priority: 34
+  rank: 611
+  tier: D
+  category: past-interviews
+  d10: 4.0
+  real: 6.0
+  by: deepseek-v4.1-flash-free
+tags:
+- sequences_and_series
+- proof

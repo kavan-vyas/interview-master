@@ -1,0 +1,100 @@
+id: power-n4-plus-a-composite
+title: Positive integer a with n^4 + a never prime
+topics:
+- number theory
+- factorisation
+- primes
+- difference of squares
+warmup: true
+answer_source: generated
+statement: Find a positive integer $a$ such that $n^4 + a$ isn't prime for all integers $n$.
+stages:
+- goal: Test whether the natural candidate a = 4 works.
+  expected: 'a = 4 fails: for n = 1 the value is 5, which is prime.'
+  solution: Sophie Germain's identity gives n^4 + 4 = (n^2 + 2n + 2)(n^2 - 2n + 2), but for n = 1 the
+    factors are 5 and 1, so n^4 + 4 = 5 is prime. Hence a = 4 is not a valid answer.
+  common_errors:
+  - Assuming the Sophie Germain factorisation settles the question without checking whether a factor equals
+    1
+  - Only testing large values of n
+  - Forgetting that n may be negative or zero
+  hints:
+    rephrase: Before trusting a general identity, try the smallest integer values of n.
+    smaller_case: Substitute n = 1 into n^4 + a for the candidate a = 4.
+    key_idea: A candidate a fails as soon as one integer n makes n^4 + a prime, so a single small counterexample
+      is decisive.
+  check: isprime(1**4 + 4)
+  check_ok: true
+- goal: Find a family of factorisations n^4 + 4b^4 = (n^2 + 2nb + 2b^2)(n^2 - 2nb + 2b^2) and choose b
+    so that both factors are at least 2 for every integer n.
+  expected: b = 2, giving a = 4 * 2^4 = 64.
+  solution: Write n^4 + 4b^4 = (n^2 + 2b^2)^2 - (2nb)^2, which factors as stated. The factors are (n+b)^2
+    + b^2 and (n-b)^2 + b^2, each at least b^2. For b = 1 a factor can equal 1 (at n = 1 or -1), which
+    is why a = 4 failed. For b = 2 each factor is at least 4, so n^4 + 64 is a product of two integers
+    each at least 4 and is composite for every integer n.
+  common_errors:
+  - Choosing a = 4 (b = 1) and not noticing that a factor equals 1
+  - Thinking the factorisation alone proves compositeness without checking the factors' sizes
+  - Mis-expanding the square of n^2 + 2b^2
+  hints:
+    rephrase: Look for a choice of a that makes n^4 + a a difference of two squares, then ask how small
+      each factor can get.
+    smaller_case: Consider b = 1 and find the integer n for which one of the factors equals 1.
+    key_idea: Complete the square in the two factors and see what minimum value each can reach as n varies.
+  check: expand((n**2 + 2*n*b + 2*b**2)*(n**2 - 2*n*b + 2*b**2) - (n**4 + 4*b**4)) == 0
+  check_ok: true
+- goal: Prove that n^4 + 64 is composite for every integer n.
+  expected: n^4 + 64 = (n^2 + 4n + 8)(n^2 - 4n + 8), with both factors at least 4.
+  solution: 'Expanding (n^2 + 8 + 4n)(n^2 + 8 - 4n) = (n^2 + 8)^2 - 16n^2 = n^4 + 64. Each factor is a
+    square plus 4: n^2 + 4n + 8 = (n+2)^2 + 4 >= 4 and n^2 - 4n + 8 = (n-2)^2 + 4 >= 4. So n^4 + 64 is
+    a product of two integers each at least 4, hence not prime for every integer n. Check: n = 0 gives
+    64 and n = 1 gives 65 = 5 * 13.'
+  common_errors:
+  - Forgetting negative values of n
+  - Claiming the factors are at least 2 without checking their minimum
+  - Mistaking the sign of the middle term when expanding
+  hints:
+    rephrase: Show that each factor is bounded below by a fixed integer greater than 1, for all integers
+      n.
+    smaller_case: Check n = 0 and n = 1 directly and see whether the factors behave as you expect.
+    key_idea: Complete the square in each factor.
+  check: expand((n**2 + 4*n + 8)*(n**2 - 4*n + 8) - (n**4 + 64)) == 0
+  check_ok: true
+extensions:
+  '3':
+  - Show that n^4 + 1 is never divisible by 3.
+  '4':
+  - Show that n^4 + 4 is composite for every integer n with n >= 2.
+  '5':
+  - Show that the factors n^2 + 2nb + 2b^2 and n^2 - 2nb + 2b^2 are both at least b^2, and use this to
+    deduce a general family of valid values of a.
+spoken_vocab:
+- n to the fourth plus a
+- positive integer a
+- prime
+- isn't prime
+- integers n
+- Sophie Germain identity
+- difference of squares
+- factorise
+- complete the square
+- composite
+source: screenshots/Screenshot 2026-11-19 at 14.38.02.png
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 3
+  minutes: 10
+  flags: []
+  tagline: Sophie Germain factorisation; a=4 fails at n=1, so the student must find a valid b.
+  priority: 81
+  rank: 223
+  tier: B
+  category: screenshots
+  d10: 4.0
+  real: 6.0
+  by: haiku
+tags:
+- number_theory
+- proof

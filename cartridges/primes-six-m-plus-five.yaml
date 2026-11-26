@@ -1,0 +1,88 @@
+id: primes-six-m-plus-five
+title: Infinitely many primes of the form 6m+5
+topics:
+- number theory
+- modular arithmetic
+- proof by contradiction
+warmup: false
+answer_source: generated
+statement: Now consider prime numbers of the form $6m+5$, where $m\in\mathbb{Z}$. Is this set of primes
+  infinite? Prove that it is.
+stages:
+- goal: Show that every prime p greater than 3 is congruent to 1 or 5 modulo 6.
+  expected: p is not divisible by 2 or 3, so p mod 6 is 1 or 5 (the residues 0, 2, 3, 4 are excluded).
+  solution: Write p mod 6 as r in {0,...,5}. If r is 0, 2 or 4 then 2 divides p. If r is 3 then 3 divides
+    p. Since p > 3 is prime, r must be 1 or 5.
+  common_errors:
+  - Forgetting to exclude p = 2 and p = 3 separately.
+  - Concluding residue 3 is allowed.
+  hints:
+    rephrase: Which remainders mod 6 force a number to be even or divisible by 3?
+    smaller_case: Check which of 0 through 5 leave an even number or a multiple of 3.
+    key_idea: Any integer's residue mod 6 determines its divisibility by 2 and by 3.
+- goal: Show that a product of integers each congruent to 1 mod 6 is congruent to 1 mod 6, so the product
+    cannot be congruent to 5 mod 6.
+  expected: 'Multiplying residues: 1 times 1 is 1 mod 6, so by induction any product of numbers that are
+    1 mod 6 is 1 mod 6, hence never 5 mod 6.'
+  solution: If a_i = 1 (mod 6) for all i, then a_1 a_2 ... a_k = 1 (mod 6) because congruences are preserved
+    under multiplication. Therefore a product of such numbers is never 5 (mod 6).
+  common_errors:
+  - Claiming a product of 1 mod 6 numbers is 5 mod 6 for some examples.
+  - Mixing up 'every factor is 1 mod 6' with 'some factor is 1 mod 6'.
+  hints:
+    rephrase: What happens to the residue mod 6 when you multiply two numbers each leaving remainder 1?
+    smaller_case: Multiply 7 and 13 (both 1 mod 6) and check the remainder mod 6.
+    key_idea: Multiplication respects congruence modulo 6.
+- goal: Prove there are infinitely many primes congruent to 5 mod 6 by assuming a finite list p_1,...,p_n
+    of them (with p_1 = 5) and constructing N = 6 p_1 p_2 ... p_n - 1.
+  expected: N is congruent to 5 mod 6 and not divisible by any p_i. Since N is 5 mod 6, some prime factor
+    q of N is 5 mod 6 by Stage 2, and q is not in the list, a contradiction. So infinitely many primes
+    are 5 mod 6.
+  solution: Assume primes 5 mod 6 are p_1 = 5, ..., p_n. Let N = 6 p_1 ... p_n - 1. Then N = 5 (mod 6)
+    and N is odd and not divisible by 3, so all prime factors of N are 1 or 5 mod 6 (Stage 1). If all
+    were 1 mod 6, N would be 1 mod 6 (Stage 2), contradiction. So some prime factor q of N is 5 mod 6.
+    Each p_i divides 6 p_1...p_n, so N = -1 (mod p_i) and p_i does not divide N, so q is not in the list.
+    Contradiction.
+  common_errors:
+  - Using N = p_1...p_n + 1 instead, which may be 1 mod 6 and gives no information.
+  - Forgetting that N itself may not be prime, so one needs a prime factor argument.
+  - Forgetting to check that q is not one of the p_i.
+  hints:
+    rephrase: Build a number that is 5 mod 6 and leaves remainder -1 when divided by each prime on the
+      list.
+    smaller_case: Take the list {5} and build a number of the form 6 times something minus 1.
+    key_idea: Use a product that is a multiple of 6 and subtract 1 so the number is 5 mod 6.
+  check: Mod(6*5*7*11*13 - 1, 6) - 5
+  check_ok: true
+extensions:
+  '3':
+  - Show that there are infinitely many primes of the form 6m+1 using a similar argument.
+  - Explain why the same method does not directly prove there are infinitely many primes of the form 4m+1.
+  '4':
+  - Use Dirichlet's theorem to state the general result for primes in arithmetic progressions a mod n
+    with gcd(a,n)=1.
+  - Explain why the restriction m in Z could be relaxed to m in N without changing the statement.
+  '5':
+  - Prove there are infinitely many primes of the form 4m+3 and compare the construction with the 6m+5
+    case.
+  - Discuss whether a Euclid-style argument can prove infinitely many primes of the form 2^n+1 and why
+    it fails in general.
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 5 (anonymous).pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 3
+  minutes: 20
+  flags: []
+  tagline: Euclid-style infinitude proof adapted to residues mod 6.
+  priority: 91
+  rank: 111
+  tier: A
+  category: past-interviews
+  d10: 4.0
+  real: 6.5
+  by: haiku
+tags:
+- number_theory
+- proof

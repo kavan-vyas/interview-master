@@ -1,0 +1,98 @@
+id: arcsin-positive-root-sketch
+title: Why the positive square root in arcsin
+topics:
+- inverse trigonometric functions
+- sign of derivatives
+- graph sketching
+warmup: true
+answer_source: generated
+statement: Why did you take the positive square root $\cos y=+\sqrt{1-x^2}$ and not the negative solution?
+  Use a sketch.
+stages:
+- goal: State the range of $y=\arcsin x$ and the value at $x=1$ as a check.
+  expected: The range is $[-\frac{\pi}{2},\frac{\pi}{2}]$, and $\arcsin 1=\frac{\pi}{2}$.
+  solution: Arcsine is the inverse of $\sin$ restricted to $[-\pi/2,\pi/2]$, so its outputs lie in that
+    interval, and $\sin(\pi/2)=1$.
+  common_errors:
+  - Giving the range of $\sin$ on $[0,2\pi]$ or of $\arccos$ instead.
+  - Writing the range as $(0,\pi)$, which is the range of arccos.
+  hints:
+    rephrase: Arcsine must return one unique angle. Which interval of angles does it choose?
+    smaller_case: What angle in $[-\pi/2,\pi/2]$ has sine equal to $\tfrac{1}{2}$?
+    key_idea: Inverse functions are defined by restricting the original function to an interval on which
+      it is one-to-one.
+  check: sp.asin(1) - sp.pi/2
+  check_ok: null
+- goal: Determine the sign of $\cos y$ for $y$ in the range of arcsine.
+  expected: $\cos y\ge 0$, so $\cos y$ is positive on the range.
+  solution: On $[-\pi/2,\pi/2]$, cosine is non-negative (it is zero only at the endpoints). Hence $\cos
+    y=+\sqrt{1-x^2}$, not the negative root.
+  common_errors:
+  - Claiming cosine is negative on part of the range.
+  - Confusing the sign of $\sin y$ with the sign of $\cos y$.
+  hints:
+    rephrase: Think of the unit circle. Where on the circle do the angles in the arcsine range sit, and
+      what is the horizontal coordinate there?
+    smaller_case: Is $\cos\frac{\pi}{4}$ positive or negative?
+    key_idea: The sign of cosine is fixed by the quadrant of the angle; arcsine's range lies in the right
+      half of the circle.
+  check: sp.sqrt(sp.cos(sp.pi/4)**2) - sp.cos(sp.pi/4)
+  check_ok: null
+- goal: Sketch $y=\sin y$ on the interval and read off the slope to show why the positive root gives the
+    correct sign of the derivative.
+  expected: Sketch the sine curve from $(-\pi/2,-1)$ to $(\pi/2,1)$. It rises throughout with slope $\cos
+    y\ge 0$. At the origin the slope is $1$. Arcsine is increasing, so $\frac{dy}{dx}>0$, which requires
+    the positive root.
+  solution: Arcsine's graph is the reflection of this arc in $y=x$, so it also rises. A negative root
+    would give a negative slope, contradicting that arcsine is increasing.
+  common_errors:
+  - Sketching the full sine curve over all of $\mathbb{R}$ and not restricting to the principal interval.
+  - Saying the derivative should be negative because the curve is 'curved'.
+  - Forgetting to reflect the graph in $y=x$ when relating arcsine to sine.
+  hints:
+    rephrase: Sketch the sine graph only between $-\pi/2$ and $\pi/2$. Is it going up or down?
+    smaller_case: Sketch $y=\sin t$ for $t$ in $[0,\pi/2]$ and describe its direction.
+    key_idea: Arcsine is increasing, so its derivative cannot be negative; compare with the slope of the
+      sine curve on its principal arc.
+  check: sp.diff(sp.sin(y), y).subs(y, 0) - 1
+  check_ok: null
+extensions:
+  '3':
+  - Why does $\arccos$ have a negative sign in its derivative, and what does its sketch look like?
+  '4':
+  - Sketch $y=\arctan x$ and explain why its derivative is always positive.
+  '5':
+  - Explain how the branch of $\operatorname{arcsec}$ choice affects the sign of its derivative.
+spoken_vocab:
+- square root
+- positive root
+- negative root
+- arc sine
+- sine y
+- cosine
+- unit circle
+- principal range
+- sketch
+- reflect in y equals x
+- pi over two
+source: past-interviews/Actual Past Interview Questions/G4.jpg
+verified: false
+rating:
+  quality: 4
+  difficulty: 4
+  parts: 3
+  minutes: 8
+  flags:
+  - garbled
+  tagline: Good conceptual check of arcsin's range; stage 3 sketch is garbled.
+  priority: 43
+  rank: 564
+  tier: C
+  category: past-interviews
+  d10: 3.5
+  real: 3.5
+  by: deepseek-v4.1-flash-free
+tags:
+- trigonometry
+- differentiation
+- curve_sketching

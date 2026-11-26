@@ -1,0 +1,129 @@
+id: tiles-sum-nine-guarantee
+title: 'Eight Tiles: Guaranteeing a Pair That Sums to Nine'
+topics:
+- pigeonhole principle
+- combinatorics
+- counting
+warmup: true
+answer_source: pdf
+statement: I have eight tiles numbered $1$ to $8$ inclusive. How many tiles must I select to guarantee
+  that there are two selected tiles whose sum is $9$?
+stages:
+- goal: List every pair of distinct tiles from 1 to 8 whose numbers sum to 9, and count the pairs.
+  expected: The pairs are {1,8}, {2,7}, {3,6}, {4,5}. There are 4 pairs, and every tile from 1 to 8 appears
+    in exactly one pair.
+  solution: 'Pair each x with 9 - x: 1 with 8, 2 with 7, 3 with 6, 4 with 5. Each of the 8 tiles is used
+    once, giving 8/2 = 4 disjoint pairs. Tile 9 does not exist, so no tile pairs with itself (9/2 is not
+    an integer), so there are no leftover tiles.'
+  common_errors:
+  - Counting ordered pairs (1,8) and (8,1) separately, giving 8 instead of 4.
+  - Forgetting that 4 and 5 form a pair and missing one of the four pairs.
+  - Trying to pair a tile with itself (for example 4 with 4 is not allowed because the tiles are distinct
+    and 9 is odd).
+  hints:
+    rephrase: Which two numbers from 1 to 8 add up to 9? Find all such unordered pairs without repeating
+      any tile.
+    smaller_case: Try tiles 1 to 4 and find which tiles pair to make 5. Then extend the same idea to 1
+      to 8 with target 9.
+    key_idea: Each tile has exactly one partner that makes 9, so the tiles split into disjoint groups
+      of two.
+  check: 4 - 4
+  check_ok: true
+- goal: Find the largest number of tiles you can select so that no two selected tiles sum to 9.
+  expected: 4 tiles. For example, {1,2,3,4} or {8,7,6,5}. You can take at most one tile from each pair.
+  solution: 'Since the tiles form 4 disjoint pairs and taking both tiles from any pair gives sum 9, you
+    may take at most one tile per pair. Choosing one from each of the 4 pairs gives 4 tiles with no pair
+    summing to 9, and this is achievable, e.g. {1,2,3,4}: sums of distinct elements are 3,4,5,5,6,7 and
+    none equals 9.'
+  common_errors:
+  - Choosing {1,2,3,4} and claiming it is impossible to add a fifth tile, without checking why.
+  - Thinking the maximum safe set is 3 because 4 looks too large, without checking the sums.
+  - Forgetting that the selection must avoid every pair summing to 9, not just the first few tiles chosen.
+  hints:
+    rephrase: What is the biggest selection you can make if you are not allowed to take both tiles from
+      any one of the pairs you found?
+    smaller_case: With tiles 1 to 4 and target 5, how many tiles can you take with no two summing to 5?
+    key_idea: Think of the pairs as boxes. How many tiles can you put in each box without breaking the
+      rule?
+  check: 4 - 4
+  check_ok: true
+- goal: State the minimum number of tiles you must select to guarantee two selected tiles sum to 9, and
+    justify it.
+  expected: 5 tiles.
+  solution: There are 4 pairs that sum to 9, and any 4 tiles can be chosen with at most one per pair (as
+    in stage 2). Selecting 5 tiles forces at least two of them into the same pair by the pigeonhole principle,
+    so those two sum to 9. Hence the minimum guaranteeing number is 4 + 1 = 5.
+  common_errors:
+  - Answering 4, which is only the largest selection that avoids the pair, not the number that guarantees
+    it.
+  - Answering 8 or 2, confusing the number of tiles with the number of pairs or ignoring the pigeonhole
+    principle.
+  - Giving a justification that does not explain why 5 forces a pair.
+  hints:
+    rephrase: The question asks for the number that guarantees a pair. What is the difference between
+      the largest safe selection and the smallest guaranteed one?
+    smaller_case: Using the result from stage 2, what happens if you add one more tile to a maximal selection
+      of 4?
+    key_idea: 'Pigeonhole principle: if you have more items than boxes, some box holds at least two items.'
+  check: 5 - (4 + 1)
+  check_ok: true
+extensions:
+  '3':
+  - 'Tiles numbered 1 to 10 inclusive: how many must you select to guarantee two sum to 11? (Pairs are
+    {1,10},{2,9},{3,8},{4,7},{5,6}, so the answer is 6.)'
+  - 'Tiles numbered 1 to 12 inclusive: how many must you select to guarantee two sum to 13? (Pairs are
+    {1,12},{2,11},{3,10},{4,9},{5,8},{6,7}, so the answer is 7.)'
+  '4':
+  - 'Tiles numbered 1 to 8 inclusive: how many must you select to guarantee two sum to 10? Note that 5
+    cannot pair with a different tile, and 1 and 9 cannot both be present, so count the groups carefully.
+    (Groups are {2,8},{3,7},{4,6},{1},{5}, so the answer is 6.)'
+  - Why does the pigeonhole argument work even when some groups are single tiles? Explain how this changes
+    the counting in the previous question.
+  '5':
+  - 'Tiles numbered 1 to 100 inclusive: how many must you select to guarantee two sum to 101? (There are
+    50 pairs, so the answer is 51.)'
+  - 'Generalise: for tiles numbered 1 to 2n with target 2n+1, what is the guaranteed number of tiles,
+    and why does the argument depend on the target being odd?'
+spoken_vocab:
+- eight tiles
+- numbered one to eight inclusive
+- select
+- guarantee
+- sum
+- equal nine
+- pair
+- pairs
+- pigeonhole principle
+- one plus eight
+- two plus seven
+- three plus six
+- four plus five
+- at most one per pair
+- minimum
+- maximum
+- four
+- five
+- open bracket
+- close bracket
+- minus
+- plus
+- equals
+- zero
+source: nextstepmaths/NextStepMaths Interview Questions/interview-question-27.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: Classic pigeonhole argument; strong on justifying the lower bound.
+  priority: 61
+  rank: 434
+  tier: C
+  category: nextstepmaths
+  d10: 2.5
+  real: 6.5
+  by: haiku
+tags:
+- combinatorics

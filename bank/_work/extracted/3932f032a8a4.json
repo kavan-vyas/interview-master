@@ -1,0 +1,23 @@
+[
+ {
+  "q": "...you do this for? What about A, B, C, D, E and you know E is one of the normal weights?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/G2.jpg"
+ },
+ {
+  "q": "Let $f(x)=\\sin(\\pi x)$ for $|x|\\leq 1$ and $f(x)=x$ for $|x|>1$. Sketch $f(x)$. Integrate $\\int_{2}^{-2} f(x)\\,dx$. Discussion of even and odd functions, as a result: $t(x)=t(-x)$, $g(x)=g(-x)$, $h(x)=t(x)g(x)$. Odd or even?",
+  "kind": "maths",
+  "answer": "$\\int_{2}^{-2} f(x)\\,dx = 0$",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/G2.jpg"
+ },
+ {
+  "q": "4 cards, each has a number and a letter on either side. The cards show E, m, 7, 12. Claim: every card with an even number has a consonant on the other side. Which cards do I need to turn over to prove or disprove this?",
+  "kind": "other",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/G2.jpg"
+ }
+]

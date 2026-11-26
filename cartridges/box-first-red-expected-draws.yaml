@@ -1,0 +1,97 @@
+id: box-first-red-expected-draws
+title: Expected draws until the first red ball
+topics:
+- expectation
+- linearity of expectation
+- sampling without replacement
+- limits
+warmup: false
+answer_source: generated
+statement: A box contains $n$ red balls and $m$ blue balls. Balls are drawn one at a time, without replacement,
+  until the first red ball is drawn. (a) Find the expected number of draws required. (b) Does your answer
+  still make sense in the limits $n\to 0$ and $m\to 0$?
+stages:
+- goal: Find the expected number of blue balls drawn before the first red ball.
+  expected: $\frac{m}{n+1}$
+  solution: Let $B_j$ be the indicator that blue ball $j$ is drawn before every red ball. Among the $n+1$
+    balls consisting of blue ball $j$ and the $n$ reds, each is equally likely to come first, so $P(B_j=1)=\frac{1}{n+1}$.
+    By linearity, $E[B]=\sum_j P(B_j=1)=\frac{m}{n+1}$.
+  common_errors:
+  - Answering $\frac{m}{n}$ by treating the reds as the reference rather than the $n+1$ balls.
+  - Using independence between draws, which does not hold without replacement.
+  - Forgetting that linearity of expectation works even though the draws are dependent.
+  hints:
+    rephrase: Pick one blue ball and ask which of its relative orders with the reds is possible.
+    smaller_case: Take $n=1$ red and $m=1$ blue. Work out the probability that the blue comes first.
+    key_idea: Only the relative order of a single blue ball and the reds matters. Use linearity over the
+      blue balls.
+- goal: Find the expected total number of draws, including the red ball that stops the process.
+  expected: $\frac{m+n+1}{n+1}$
+  solution: 'Total draws = (blue draws before the first red) + 1. So $E[\text{draws}]=\frac{m}{n+1}+1=\frac{m+n+1}{n+1}$.
+    Check with $n=m=1$: draws are 1 with probability $1/2$ and 2 with probability $1/2$, giving $3/2$,
+    which matches.'
+  common_errors:
+  - Forgetting to add 1 for the red draw itself.
+  - Adding 1 to $E[B]$ but writing the wrong common denominator.
+  - Reporting the number of blue balls instead of the number of draws.
+  hints:
+    rephrase: Does your count include the draw that gets the first red ball?
+    smaller_case: With $n=m=1$, list the two possible orders and count draws in each.
+    key_idea: Add the stopping draw to the count of blue draws before it.
+  check: '(lambda m,n: simplify((m+n+1)/(n+1) - (m/(n+1)+1)))(Symbol(''m''),Symbol(''n''))'
+  check_ok: null
+- goal: Interpret the limits $n\to 0$ and $m\to 0$ and say whether they make sense.
+  expected: As $m\to0$ the value tends to 1, which makes sense because the first draw is red. As $n\to0$
+    the value tends to $m+1$, meaning all blue balls are drawn before the lone red. Note that with exactly
+    zero reds the process never stops, so $n\to0$ is a limit of the formula, not a physical case.
+  solution: With $m\to0$, $\frac{m+n+1}{n+1}\to\frac{n+1}{n+1}=1$, as expected since the first draw is
+    red. With $n\to0$, $\frac{m+n+1}{n+1}\to m+1$, meaning the red ball comes last among all $m+1$ balls.
+    The formula assumes $n\ge1$, so the $n\to0$ value is a continuous extension, and the physical case
+    $n=0$ has infinite expected draws.
+  common_errors:
+  - Saying the $n\to0$ limit must be infinite because there are no reds.
+  - Mistaking the $n\to0$ value for $1$.
+  - Forgetting that the $m\to0$ limit is trivial.
+  hints:
+    rephrase: Ask what happens to the number of blue balls and to the number of reds in each limit.
+    smaller_case: Check the case $m=0$ directly by thinking about the first draw.
+    key_idea: Evaluate each limit in the formula, then compare with what the process physically does.
+  check: '(lambda m,n: limit((m+n+1)/(n+1), n, 0)-(m+1) + limit((m+n+1)/(n+1), m, 0)-1)(Symbol(''m''),Symbol(''n''))'
+  check_ok: null
+extensions:
+  '3':
+  - Find the variance of the number of draws until the first red ball.
+  '4':
+  - Find the expected number of draws until all red balls have been drawn.
+  '5':
+  - Compare with sampling with replacement, where the expected number of draws until the first red is
+    a geometric mean. Explain why the two answers differ.
+spoken_vocab:
+- n red balls
+- m blue balls
+- draws without replacement
+- expected number of draws
+- linearity of expectation
+- m over n plus one
+- m plus n plus one over n plus one
+- limit n tends to zero
+- limit m tends to zero
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 5
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Expected-value calculation whose n→0 limit exposes a discontinuity worth probing.
+  priority: 91
+  rank: 134
+  tier: A
+  category: juan
+  d10: 4.5
+  real: 7.0
+  by: deepseek-v4.1-flash-free
+tags:
+- probability
+- combinatorics

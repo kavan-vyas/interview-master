@@ -1,0 +1,78 @@
+id: rearrange-rational-subject-x
+title: Making x the subject of a rational equation
+topics:
+- algebra
+- rearranging formulae
+- rational expressions
+- factorising
+warmup: true
+answer_source: pdf
+statement: Make $x$ the subject of $y=\frac{2x+1}{x-3}$.
+stages:
+- goal: Clear the denominator and expand to get an equation that is linear in x.
+  expected: y(x-3) = 2x+1, which expands to xy - 3y = 2x + 1.
+  solution: 'Multiply both sides by (x-3), noting x is not 3: y(x-3)=2x+1, so xy-3y=2x+1.'
+  common_errors:
+  - Forgetting to multiply the y term by the bracket, giving y(x-3) as yx-3.
+  - Sign errors when moving terms across.
+  - Dividing by (x-3) instead of multiplying.
+  hints:
+    rephrase: The fraction still has x on the bottom. What operation removes it?
+    smaller_case: Try clearing a fraction in a simpler equation, such as y = 5/(x+1).
+    key_idea: Multiply both sides by the denominator, then expand the brackets.
+  check: expand(y*(x-3)-(2*x+1)-(x*y-3*y-2*x-1))
+  check_ok: true
+- goal: Collect the terms in x on one side, factor out x, and divide to make x the subject.
+  expected: x(y-2) = 3y+1, so x = (3y+1)/(y-2).
+  solution: From xy-2x = 3y+1, factor to get x(y-2)=3y+1. Divide by (y-2), which requires y≠2, giving
+    x=(3y+1)/(y-2).
+  common_errors:
+  - Sign error when moving 2x across, giving x(y+2).
+  - Forgetting to divide the whole right-hand side by (y-2).
+  - Not noticing the restriction y≠2.
+  hints:
+    rephrase: Gather every term containing x on one side. What can you factor out?
+    smaller_case: Solve 3x + 2x = 10 - x by the same steps, then apply the method here.
+    key_idea: Get all x terms on one side, factor x out as a common factor, then divide by the bracket.
+  check: simplify(((3*y+1)/(y-2))*(y-2)-(3*y+1))
+  check_ok: true
+extensions:
+  '3':
+  - Make x the subject of y = (ax+b)/(cx+d), stating the condition needed on a, b, c, d.
+  '4':
+  - Explain why no value of x gives y = 2 for the original function, and show this using your rearranged
+    formula.
+  '5':
+  - Find the inverse function f^(-1)(y) for f(x)=(2x+1)/(x-3), and state its domain.
+spoken_vocab:
+- make x the subject
+- y equals two x plus one over x minus three
+- fraction
+- denominator
+- multiply both sides
+- expand
+- factorise
+- divide
+- y minus two
+- three y plus one
+- not equal to
+- bracket
+- inverse
+source: kclms/kclms-specimen-questions-4.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 3
+  parts: 2
+  minutes: 4
+  flags: []
+  tagline: Routine rearrangement; a clean check of algebraic manipulation.
+  priority: 35
+  rank: 597
+  tier: D
+  category: kclms
+  d10: 1.5
+  real: 2.0
+  by: haiku
+tags:
+- algebra_and_functions

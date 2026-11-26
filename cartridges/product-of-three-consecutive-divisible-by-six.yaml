@@ -1,0 +1,91 @@
+id: product-of-three-consecutive-divisible-by-six
+title: Product of three consecutive numbers is divisible by 6
+topics:
+- divisibility
+- modular arithmetic
+- proof
+- parity
+- coprime divisors
+warmup: true
+answer_source: generated
+statement: Prove that the product of 3 consecutive numbers is divisible by 6.
+stages:
+- goal: Show that the product of three consecutive integers is divisible by 2.
+  expected: Among $n,n+1,n+2$ at least one is even, so $2\mid n(n+1)(n+2)$.
+  solution: Two consecutive integers have opposite parity, and in any three consecutive integers at least
+    one is even. An even factor makes the whole product even.
+  common_errors:
+  - Checking only a few examples and calling that a proof.
+  - Claiming that one specific factor is always even, rather than that one of the three is even.
+  hints:
+    rephrase: Among any three consecutive integers, what remainders can they have when divided by $2$?
+    smaller_case: 'Look at the product for $n=2$: $2\cdot3\cdot4$. Which factor is responsible for the
+      even result?'
+    key_idea: Consider the cases for $n$ modulo $2$.
+  check: And(*[Eq(Mod(k*(k+1)*(k+2), 2), 0) for k in range(-10, 11)])
+  check_ok: null
+- goal: Show that the product of three consecutive integers is divisible by 3.
+  expected: Among $n,n+1,n+2$ one is a multiple of $3$, so $3\mid n(n+1)(n+2)$.
+  solution: Split into cases on $n \bmod 3$. If $n\equiv0$, then $3\mid n$. If $n\equiv1$, then $n+2\equiv0$.
+    If $n\equiv2$, then $n+1\equiv0$. In every case one factor is a multiple of $3$.
+  common_errors:
+  - Assuming a multiple of $3$ must be among the first two numbers only.
+  - Stopping after checking the case $n\equiv0 \pmod 3$.
+  hints:
+    rephrase: Each integer leaves remainder $0$, $1$ or $2$ on division by $3$. Track which of the three
+      numbers hits the remainder $0$ in each case.
+    smaller_case: 'Take $n=4$: which of $4,5,6$ is a multiple of $3$?'
+    key_idea: Case analysis on $n \bmod 3$.
+  check: And(*[Eq(Mod(k*(k+1)*(k+2), 3), 0) for k in range(-10, 11)])
+  check_ok: null
+- goal: Conclude that the product is divisible by 6.
+  expected: $6\mid n(n+1)(n+2)$, because $2$ and $3$ both divide the product and $\gcd(2,3)=1$.
+  solution: Write $P=n(n+1)(n+2)$. We have $2\mid P$ and $3\mid P$, so $P=2m$ and $3\mid 2m$. Since $\gcd(2,3)=1$,
+    $3\mid m$, so $6\mid P$. Equivalently, $\operatorname{lcm}(2,3)=6$ divides $P$.
+  common_errors:
+  - Concluding divisibility by $6$ from divisibility by $2$ and $3$ without using that $\gcd(2,3)=1$.
+  - Claiming that $6$ divides one of the three factors, which is false in general, for example $n=2$ gives
+    $2\cdot3\cdot4$, but also $n=3$ gives $3\cdot4\cdot5$ where $6$ divides $4\cdot 3$ only through the
+    product.
+  hints:
+    rephrase: You have shown divisibility by two numbers. Which property of $2$ and $3$ lets you combine
+      them?
+    smaller_case: Does $4$ divide $2\cdot 2$? What goes wrong with combining divisors that share a factor?
+    key_idea: Divisibility by coprime numbers combines into divisibility by their product.
+  check: And(*[Eq(Mod(k*(k+1)*(k+2), 6), 0) for k in range(-10, 11)])
+  check_ok: null
+extensions:
+  '3':
+  - Prove that $n^5-n$ is divisible by $30$ for every integer $n$.
+  '4':
+  - Prove that the product of four consecutive integers is divisible by $24$.
+  '5':
+  - Prove that the product of $k$ consecutive integers is divisible by $k!$.
+spoken_vocab:
+- consecutive integers
+- divisible by six
+- divisible by two
+- divisible by three
+- modulo three
+- modulo two
+- coprime
+- greatest common divisor
+source: past-interviews/Actual Past Interview Questions/B1.pdf#p1
+verified: false
+rating:
+  quality: 4
+  difficulty: 2
+  parts: 3
+  minutes: 5
+  flags: []
+  tagline: Classic warm-up; extends naturally to n consecutive integers and n!.
+  priority: 51
+  rank: 526
+  tier: C
+  category: past-interviews
+  d10: 2.0
+  real: 6.0
+  by: haiku
+tags:
+- number_theory
+- proof

@@ -1,0 +1,126 @@
+id: sketch-absolute-value-regions
+title: Sketching regions defined by absolute values
+topics:
+- coordinate geometry
+- absolute value
+- inequalities
+- translation
+- hyperbolae
+warmup: false
+answer_source: pdf
+statement: 'Sketch the following subsets of the $x$-$y$ plane: (i) $|x| + |y| \leqslant 1$; (ii) $|x -
+  1| + |y - 1| \leqslant 1$; (iii) $|x - 1| - |y + 1| \leqslant 1$; (iv) $|x|\,|y - 2| \leqslant 1$.'
+stages:
+- goal: Sketch $|x|+|y|\leqslant1$ and describe the region.
+  expected: A diamond (square rotated by 45 degrees) with vertices $(\pm1,0)$ and $(0,\pm1)$, including
+    its boundary and interior.
+  solution: In the first quadrant the inequality is $x+y\leqslant1$, the region below the line $x+y=1$.
+    The inequality is unchanged under $x\to-x$ and $y\to-y$, so the other quadrants follow by symmetry.
+    The region is the diamond bounded by the lines $\pm x\pm y=1$, with vertices at $(\pm1,0)$ and $(0,\pm1)$.
+  common_errors:
+  - Sketching a circle instead of a diamond.
+  - Sketching only the first quadrant and forgetting the symmetry.
+  - Shading the outside of the diamond instead of the inside.
+  hints:
+    rephrase: Consider the signs of $x$ and $y$ and what the inequality becomes in each quadrant.
+    smaller_case: Find where the boundary meets the axes by setting $y=0$.
+    key_idea: Split into quadrants; in each quadrant the absolute values become linear expressions.
+  check: And(Eq(Abs(1)+Abs(0),1), Eq(Abs(-1)+Abs(0),1), Eq(Abs(0)+Abs(1),1), Eq(Abs(0)+Abs(-1),1), Abs(Rational(1,2))+Abs(Rational(1,4))<=1,
+    Abs(1)+Abs(1)>1)
+  check_ok: true
+- goal: Sketch $|x-1|+|y-1|\leqslant1$.
+  expected: The diamond from part (i) translated so that its centre is $(1,1)$, with vertices $(0,1)$,
+    $(2,1)$, $(1,0)$ and $(1,2)$.
+  solution: Substitute $u=x-1$ and $v=y-1$. The inequality becomes $|u|+|v|\leqslant1$, which is the diamond
+    of part (i). Translating back by $(1,1)$ moves the centre to $(1,1)$.
+  common_errors:
+  - Translating in the wrong direction, so the centre ends up at $(-1,-1)$.
+  - Shifting only one of the coordinates.
+  - Confusing the vertices of the translated diamond with those of the original.
+  hints:
+    rephrase: Replace $x$ and $y$ with shifted coordinates so that the expression matches part (i).
+    smaller_case: Find which point makes both absolute values zero.
+    key_idea: Translating the coordinate axes moves the centre of the shape, while its size and orientation
+      stay the same.
+  check: And(Eq(Abs(0-1)+Abs(1-1),1), Eq(Abs(2-1)+Abs(1-1),1), Eq(Abs(1-1)+Abs(0-1),1), Eq(Abs(1-1)+Abs(2-1),1),
+    Abs(1-1)+Abs(1-1)<=1, Abs(3-1)+Abs(1-1)>1)
+  check_ok: true
+- goal: Sketch $|x-1|-|y+1|\leqslant1$.
+  expected: 'The region between two V-shaped curves: $x=-|y+1|$ (vertex $(0,-1)$, opening to the left)
+    and $x=2+|y+1|$ (vertex $(2,-1)$, opening to the right). The boundary curves are included. The region
+    is unbounded above and below.'
+  solution: Let $u=x-1$ and $v=y+1$. The inequality is $|u|\leqslant1+|v|$, i.e. $-(1+|v|)\leqslant u\leqslant1+|v|$.
+    In terms of $x$ and $y$ this gives $-|y+1|\leqslant x\leqslant2+|y+1|$. The region is everything between
+    the two curves, which widens as $|y+1|$ grows.
+  common_errors:
+  - Treating the region as a bounded diamond or a closed shape.
+  - Drawing the boundary as straight lines instead of V shapes.
+  - Reversing the inequality so that the outside of the curves is shaded.
+  hints:
+    rephrase: Split $|x-1|$ and $|y+1|$ by cases and find where equality holds.
+    smaller_case: Consider the line $y=-1$ alone and see what the inequality becomes there.
+    key_idea: Shift coordinates so that the expressions simplify, then solve for $x$ in terms of $y$.
+  check: And(Eq(Abs(0-1)-Abs(-1+1),1), Eq(Abs(2-1)-Abs(-1+1),1), Abs(1-1)-Abs(-1+1)<=1, Abs(-1-1)-Abs(-1+1)>1,
+    Abs(3-1)-Abs(-1+1)>1, Abs(1-1)-Abs(5+1)<=1)
+  check_ok: true
+- goal: Sketch $|x|\,|y-2|\leqslant1$.
+  expected: The whole $y$-axis (all points with $x=0$), together with the region between the hyperbolic
+    curves $y=2\pm\frac{1}{|x|}$, which are the curves $|x||y-2|=1$. The boundary is included. The band
+    narrows towards $y=2$ as $|x|$ grows and widens near the $y$-axis.
+  solution: If $x=0$ the product is 0, so the whole $y$-axis is included. For $x\neq0$ the inequality
+    is $|y-2|\leqslant\frac{1}{|x|}$, which means $2-\frac{1}{|x|}\leqslant y\leqslant2+\frac{1}{|x|}$.
+    The boundary curves are the hyperbola branches $|x||y-2|=1$, and the region lies between them together
+    with the $y$-axis.
+  common_errors:
+  - Forgetting that $x=0$ makes the product zero, so the $y$-axis must be included.
+  - Using $|y-2|\leqslant1$, which gives a horizontal strip, instead of $\frac{1}{|x|}$.
+  - Sketching only one hyperbola branch on each side.
+  hints:
+    rephrase: Consider what happens when $x=0$, then solve the inequality for $|y-2|$ when $x\neq0$.
+    smaller_case: Take $x=1$ and find which values of $y$ satisfy the inequality.
+    key_idea: Divide by $|x|$ for $x\neq0$ and treat $x=0$ as a separate case.
+  check: And(Eq(Abs(0)*Abs(100-2),0), Eq(Abs(1)*Abs(3-2),1), Abs(1)*Abs(4-2)>1, Abs(2)*Abs(2-2)<=1, Eq(Abs(Rational(1,2))*Abs(4-2),1))
+  check_ok: true
+extensions:
+  '3':
+  - Sketch $|x|+|y|+|z|\leqslant1$ in three dimensions and describe the cross-section at $z=0$.
+  '4':
+  - Sketch $|x-a|+|y-b|\leqslant c$ for general constants $a$, $b$, $c>0$, and state the centre and vertices.
+  '5':
+  - Find the area of the part of region (iv) with $1\leqslant x\leqslant2$ and $y\geqslant2$.
+spoken_vocab:
+- absolute value of x
+- absolute value of y
+- less than or equal to
+- x minus one
+- y plus one
+- diamond
+- V shape
+- vertex
+- translate
+- hyperbola
+- x y plane
+- boundary included
+- centre
+- cross section
+- quadrant
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#6
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 4
+  minutes: 15
+  flags:
+  - needs_diagram
+  tagline: Four regions where the case analysis of absolute values gives good shape-building discussion.
+  priority: 64
+  rank: 401
+  tier: C
+  category: siklos
+  d10: 3.5
+  real: 5.0
+  by: haiku
+tags:
+- coordinate_geometry
+- inequalities

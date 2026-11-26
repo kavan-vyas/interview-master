@@ -1,0 +1,37 @@
+[
+ {
+  "q": "I have $k$ different keys on my key ring. When I come home at night I try one key after another until I find the key that fits my front door. What is the probability that I find the correct key, for the first time, on the $n$th attempt in each of the following three cases?\n(i) At each attempt, I choose a key that I have not tried before, each choice being equally likely.\n(ii) At each attempt, I choose a key from all my keys, each of the $k$ choices being equally likely.\n(iii) At the first attempt, I choose from all my keys, each of the $k$ choices being equally likely. At each subsequent attempt, I choose from the keys that I did not try at the previous attempt, each of the $k-1$ choices being equally likely.",
+  "kind": "maths",
+  "answer": "(i) $P=\\frac{1}{k}$ for $1\\le n\\le k$, and $0$ for $n>k$. (ii) $P=\\left(\\frac{k-1}{k}\\right)^{n-1}\\frac{1}{k}$. (iii) $P=\\frac{1}{k}$ for $n=1$, and the source gives $P=\\left(\\frac{k-2}{k-1}\\right)^{n-2}\\frac{1}{k}$ for $n\\ge 2$. Note: that printed formula for (iii) looks wrong. Failing attempt 1 has probability $\\frac{k-1}{k}$, then choosing from the $k-1$ untried keys gives $\\frac{1}{k-1}$, so the product is $\\frac{1}{k}$ for every $n\\le k$. Easy way: lay the keys in a row; the correct key is equally likely to be in any position.",
+  "short": true,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#21"
+ },
+ {
+  "q": "Henry the commuter lives in Cambridge and his working day starts at his office in London at 0900. He catches the 0715 train to King's Cross with probability $p$, or the 0720 to Liverpool Street with probability $1-p$. Measured in minutes, journey times for the first train are $N(55,25)$ and for the second are $N(65,16)$. Journey times from King's Cross and Liverpool Street to his office are $N(30,144)$ and $N(25,9)$, respectively. Show that Henry is more likely to be late for work if he catches the first train.\nHenry makes $M$ journeys, where $M$ is large. Writing $A$ for $1-\\Phi(20/13)$ and $B$ for $1-\\Phi(2)$, find, in terms of $A$, $B$, $M$ and $p$, the expected number, $L$, of times that Henry will be late and show that for all possible values of $p$, $BM\\le L\\le AM$.\nHenry noted that in $3/5$ of the occasions when he was late, he had caught the King's Cross train. Obtain an estimate of $p$ in terms of $A$ and $B$.",
+  "kind": "maths",
+  "answer": "Total times: King's Cross route $T_1\\sim N(85,169)$, so late means $P(T_1>105)=A$. Liverpool Street route $T_2\\sim N(90,25)$, so $P(T_2>100)=B$, and $A>B$ since $\\Phi(20/13)<\\Phi(2)$. Then $L=[pA+(1-p)B]M=[B+(A-B)p]M$, which increases in $p$, so $BM\\le L\\le AM$. Estimate: $\\frac{3}{5}=\\frac{A\\tilde p}{A\\tilde p+B(1-\\tilde p)}$, giving $\\tilde p=\\frac{3B}{2A+3B}$.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#21"
+ },
+ {
+  "q": "A group of biologists attempts to estimate the magnitude, $N$, of an island population of voles (Microtus agrestis). Accordingly, the biologists capture a random sample of 200 voles, mark them and release them. A second random sample of 200 voles is then taken of which 11 are found to be marked. Show that the probability, $p_N$, of this occurrence is given by $p_N=k\\frac{((N-200)!)^2}{N!\\,(N-389)!}$, where $k$ is independent of $N$.\nThe biologists then estimate $N$ by calculating the value of $N$ for which $p_N$ is a maximum. Find this estimate.\nAll unmarked voles in the second sample are marked and then the entire sample is released. Subsequently a third random sample of 200 voles is taken. Using your estimate for $N$, write down the probability that this sample contains exactly $j$ marked voles, leaving your answer in terms of binomial coefficients.\nDeduce that $\\sum_{j=0}^{200}\\binom{389}{j}\\binom{3247}{200-j}=\\binom{3636}{200}$.",
+  "kind": "maths",
+  "answer": "$p_N=\\frac{\\binom{200}{11}\\binom{N-200}{189}}{\\binom{N}{200}}$, so $k=\\frac{(200!)^2}{11!\\,(189!)^2}$. Setting $p_N\\approx p_{N-1}$ gives $\\frac{(N-200)^2}{N(N-389)}\\approx 1$, so $N\\approx\\frac{200^2}{11}\\approx 3636$. Third sample: $P(j \\text{ marked})=\\frac{\\binom{389}{j}\\binom{3247}{200-j}}{\\binom{3636}{200}}$. Since these probabilities sum to 1, the identity follows.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#21"
+ },
+ {
+  "q": "A stick is broken at a point, chosen at random, along its length. Find the probability that the ratio, $R$, of the length of the shorter piece to the length of the longer piece is less than $r$, where $r$ is a given positive number.\nFind the probability density function for $R$, and calculate the mean and variance of $R$.",
+  "kind": "maths",
+  "answer": "$P(R<r)=\\frac{2r}{1+r}$. PDF: $f(r)=\\frac{2}{(1+r)^2}$ for $0<r<1$. $E(R)=2\\ln 2-1$, $E(R^2)=3-4\\ln 2$, so $\\mathrm{Var}(R)=2-4(\\ln 2)^2$.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#21"
+ },
+ {
+  "q": "An experiment produces a random number $T$ uniformly distributed on $[0,1]$. Let $X$ be the larger root of the equation $x^2+2x+",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#21"
+ }
+]

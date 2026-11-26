@@ -1,0 +1,161 @@
+id: fixed-point-ivt-applications
+title: 'Four IVT classics: fixed point, monk, odd degree, runner'
+topics:
+- intermediate value theorem
+- fixed points
+- continuity
+- odd-degree polynomials
+- auxiliary functions
+- sign change arguments
+warmup: false
+answer_source: pdf
+statement: 'You may assume the intermediate value theorem (IVT): if $f$ is continuous on $[a,b]$, then
+  $f$ takes every value between $f(a)$ and $f(b)$.
+
+
+  (i) Show that every continuous function $f:[0,1]\to[0,1]$ has a fixed point, that is, some $x\in[0,1]$
+  with $f(x)=x$.
+
+
+  (ii) A monk climbs a mountain by a path from 8am to 6pm one day. The next day he descends by the same
+  path, also from 8am to 6pm. Show that there is a time of day at which he is at the same place on both
+  days.
+
+
+  (iii) Show that every polynomial of odd degree with real coefficients has a real root.
+
+
+  (iv) A runner covers 10 km in exactly one hour, at varying speed. Show that there is some 5 km stretch
+  of the run that took exactly 30 minutes.'
+stages:
+- goal: Prove that every continuous $f:[0,1]\to[0,1]$ has a fixed point.
+  expected: Define $g(x)=f(x)-x$, which is continuous, with $g(0)\ge 0$ and $g(1)\le 0$. Then the IVT
+    gives a zero of $g$, which is a fixed point of $f$. Endpoint cases are handled.
+  solution: Let $g(x)=f(x)-x$, continuous on $[0,1]$. Since $f(0)\in[0,1]$, $g(0)=f(0)\ge 0$. Since $f(1)\le
+    1$, $g(1)=f(1)-1\le 0$. So $0$ lies between $g(1)$ and $g(0)$, and the IVT (applied on $[0,1]$) gives
+    $x\in[0,1]$ with $g(x)=0$, i.e. $f(x)=x$. (This covers the cases $g(0)=0$ or $g(1)=0$ automatically,
+    since $0$ is then an endpoint value.)
+  common_errors:
+  - Applying the IVT to $f$ itself, which gives values of $f$ rather than a point where $f(x)=x$
+  - Forgetting that $g(0)$ or $g(1)$ may equal $0$, or claiming strict inequalities $g(0)>0>g(1)$
+  - Assuming the fixed point is unique
+  - Not using that $f$ maps into $[0,1]$, which is what fixes the signs of $g$ at the endpoints
+  hints:
+    rephrase: Introduce a function that measures how far $f(x)$ is from $x$, and check its sign at the
+      endpoints.
+    smaller_case: Take $f(x)=\frac{x}{2}$ and find where its graph meets the diagonal $y=x$. Then try
+      $f(x)=1-x$.
+    key_idea: Compare $f(0)$ with $0$ and $f(1)$ with $1$. The condition that $f$ maps into $[0,1]$ forces
+      opposite (weak) signs for $f(x)-x$ at the two ends.
+- goal: Show that the monk is at the same place at the same time of day on the two days.
+  expected: Let $u(t)$ and $d(t)$ be his heights (or distances along the path) on the ascent and descent.
+    Then $u-d$ is continuous, negative at 8am and positive at 6pm, so it vanishes at some time.
+  solution: 'Let $u(t)$ be his distance along the path from the bottom at time $t\in[8,18]$ (hours) on
+    the day he climbs, and $d(t)$ the same on the day he descends. Both are continuous. Let $h(t)=u(t)-d(t)$,
+    also continuous. At $t=8$: $u(8)=0$ (bottom) and $d(8)=L$ (top, $L>0$ the path length), so $h(8)=-L<0$.
+    At $t=18$: $u(18)=L$ and $d(18)=0$, so $h(18)=L>0$. By the IVT there is $t\in(8,18)$ with $h(t)=0$,
+    i.e. $u(t)=d(t)$. (Equivalently: imagine two monks walking on the same day, one up and one down, who
+    must meet.)'
+  common_errors:
+  - Comparing the two heights at one fixed time instead of treating them as functions of time
+  - Getting the signs at the endpoints wrong, or not saying where he is at 8am and 6pm on each day
+  - Requiring the two walks to have the same speed or to be monotone
+  - Assuming he must be at the same place at the same moment on a single day rather than the same clock
+    time on different days
+  hints:
+    rephrase: Turn the two walks into functions of time on the same interval $[8,18]$ and subtract them.
+    smaller_case: What is the difference between the two positions at 8am? And at 6pm?
+    key_idea: Reduce the problem to one continuous function whose sign at the two ends is opposite. Picture
+      the two journeys happening on the same day.
+- goal: Show that every polynomial of odd degree has a real root.
+  expected: For large $|x|$ the leading term dominates, so $p$ takes opposite signs at far-left and far-right
+    points. The IVT then gives a root in between.
+  solution: Let $p(x)=a_nx^n+\dots+a_0$ with $n$ odd and $a_n\ne 0$. Replacing $p$ by $-p$ if necessary
+    (same roots), assume $a_n>0$. Write $p(x)=x^n\left(a_n+\frac{a_{n-1}}{x}+\dots+\frac{a_0}{x^n}\right)$.
+    The bracket tends to $a_n>0$ as $|x|\to\infty$, so for $|x|$ large enough it is positive. Since $n$
+    is odd, $x^n>0$ for $x>0$ and $x^n<0$ for $x<0$. Hence there are $m<0<M$ with $p(m)<0<p(M)$. $p$ is
+    continuous, so by the IVT there is $c\in(m,M)$ with $p(c)=0$.
+  common_errors:
+  - Applying the same argument to even degree, where it fails (for example $x^2+1$ has no real root)
+  - Asserting the signs at infinity without saying why the leading term dominates
+  - Choosing bounds $m$ and $M$ without justifying that they exist
+  - Forgetting that $a_n$ could be negative, or that $x^n$ changes sign only for odd $n$
+  hints:
+    rephrase: Look at the sign of the polynomial when $x$ is very large and positive, and when $x$ is
+      very large and negative.
+    smaller_case: Try $x^3-2$. What are its signs at $x=10$ and $x=-10$? Then compare with $x^2+1$.
+    key_idea: 'Factor out $x^n$: the leading term controls the sign for large $|x|$. For an odd power
+      the sign flips between the two ends.'
+- goal: Show that some 5 km stretch of the run took exactly 30 minutes.
+  expected: With $D(t)$ the distance covered by time $t$ hours, define $g(t)=D(t+\frac12)-D(t)$ on $[0,\frac12]$.
+    Then $g(0)+g(\frac12)=10$, so $5$ lies between $g(0)$ and $g(\frac12)$, and the IVT gives $t$ with
+    $g(t)=5$.
+  solution: 'Let $D(t)$ be the distance covered in the first $t$ hours, so $D$ is continuous with $D(0)=0$,
+    $D(1)=10$. Define $g(t)=D(t+\tfrac12)-D(t)$ for $t\in[0,\tfrac12]$; it is continuous and is the distance
+    covered in the 30-minute window starting at $t$. Then $g(0)+g(\tfrac12)=\left(D(\tfrac12)-D(0)\right)+\left(D(1)-D(\tfrac12)\right)=10$.
+    So one of $g(0),g(\tfrac12)$ is at least $5$ and the other is at most $5$. By the IVT there is $t\in[0,\tfrac12]$
+    with $g(t)=5$: from time $t$ to $t+\tfrac12$ he covers exactly 5 km in exactly 30 minutes.'
+  common_errors:
+  - Assuming the runner has constant speed
+  - Letting the window extend beyond the hour, i.e. using $t$ outside $[0,\frac12]$
+  - Concluding that the 5 km stretch must start at time 0 or at the 5 km mark
+  - Looking only at the two half-hour halves, which could cover unequal distances, without introducing
+    a sliding window
+  hints:
+    rephrase: Let a 30-minute window slide along the hour and track the distance it covers.
+    smaller_case: Consider the two adjacent half-hour windows, the first half and the second half. What
+      do their distances add up to?
+    key_idea: Two complementary windows cover a fixed total of 10 km, so one covers at least 5 and the
+      other at most 5. The sliding distance is continuous, so it must pass through 5.
+extensions:
+  '3':
+  - 'Generalise part (i): show that every continuous $f:[a,b]\to[a,b]$ has a fixed point.'
+  - In part (ii), what changes if the monk is allowed to rest or move backwards on the path?
+  '4':
+  - Give an example of a discontinuous $f:[0,1]\to[0,1]$ with no fixed point, and identify which step
+    of the argument in part (i) fails.
+  - Show that a polynomial of even degree with $p(0)<0$ and positive leading coefficient has at least
+    two real roots.
+  '5':
+  - Prove that for any continuous $f:[0,1]\to\mathbb{R}$ with $f(0)=f(1)$, there exists $t\in[0,\tfrac12]$
+    with $f(t)=f(t+\tfrac12)$.
+  - Show that the runner result in (iv) generalises to windows of length $\frac1n$ for any positive integer
+    $n$, but can fail for a window of length $\frac13\cdot 2=\frac23$ hours, i.e. for lengths not of the
+    form $\frac1n$.
+spoken_vocab:
+- f of x
+- from zero to one
+- fixed point
+- f of x equals x
+- intermediate value theorem
+- g of x equals f of x minus x
+- monk
+- eight am
+- six pm
+- polynomial of odd degree
+- leading coefficient
+- runner
+- ten kilometres
+- five kilometres
+- thirty minutes
+source: jaymin/Jaymin Interview (1).pdf#p49
+verified: false
+rating:
+  quality: 8
+  difficulty: 5
+  parts: 4
+  minutes: 25
+  flags: []
+  tagline: Four IVT classics, from fixed points to a runner's 30-minute stretch.
+  priority: 110
+  rank: 33
+  tier: S
+  category: jaymin
+  d10: 6.0
+  real: 8.5
+  by: deepseek-v4.1-flash-free
+refined: true
+tags:
+- proof
+- limits_and_approximation
+- algebra_and_functions

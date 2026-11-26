@@ -1,0 +1,80 @@
+id: reciprocal-power-sums-x-plus-inverse-three
+title: Fifth reciprocal power sum from x + 1/x = 3
+topics:
+- algebra
+- sequences
+- recurrence relations
+- reciprocal powers
+warmup: true
+answer_source: pdf
+statement: Given that $x+\frac{1}{x}=3$, find $x^5+\frac{1}{x^5}$ without solving for $x$.
+stages:
+- goal: Find $x^2+\frac{1}{x^2}$ using the given condition.
+  expected: $x^2+\frac{1}{x^2}=7$.
+  solution: 'Square the condition: $\left(x+\frac{1}{x}\right)^2=9$, so $x^2+2+\frac{1}{x^2}=9$, giving
+    $x^2+\frac{1}{x^2}=7$.'
+  common_errors:
+  - Forgetting the cross term $2$ when squaring, giving $x^2+\frac{1}{x^2}=9$.
+  - Writing $x^2+\frac{1}{x^2}=3^2=9$ by treating the square of a sum as a sum of squares.
+  hints:
+    rephrase: The quantity $x^2+\frac{1}{x^2}$ is related to the square of $x+\frac{1}{x}$ by a simple
+      constant.
+    smaller_case: Try $x=2$ and $x+\frac{1}{x}=\frac{5}{2}$, and compare $x^2+\frac{1}{x^2}$ with the
+      square of $\frac{5}{2}$.
+    key_idea: Square both sides of the given equation and keep the cross term.
+  check: sp.simplify(((3+sp.sqrt(5))/2)**2 + ((3-sp.sqrt(5))/2)**2 - 7)
+  check_ok: null
+- goal: Find $x^5+\frac{1}{x^5}$ using a recurrence or products of known power sums.
+  expected: $x^5+\frac{1}{x^5}=123$.
+  solution: Let $s_n=x^n+\frac{1}{x^n}$. Then $s_0=2$, $s_1=3$, and $s_n+s_{n-2}=s_{n-1}\cdot 3$ gives
+    $s_{n+1}=3s_n-s_{n-1}$. So $s_2=7$, $s_3=3\cdot7-3=18$, $s_4=3\cdot18-7=47$, $s_5=3\cdot47-18=123$.
+    Alternatively $s_2 s_3 = s_5+s_1$ gives $7\cdot18=s_5+3$, so $s_5=123$.
+  common_errors:
+  - Using $s_{n+1}=s_n+s_{n-1}$ instead of $s_{n+1}=3s_n-s_{n-1}$.
+  - Multiplying $s_2 \cdot s_3$ and forgetting to subtract $s_1$.
+  - Confusing $x^5+\frac{1}{x^5}$ with $\left(x+\frac{1}{x}\right)^5$.
+  hints:
+    rephrase: Each power sum can be built from the two before it, using the given value of $x+\frac{1}{x}$.
+    smaller_case: Write $\left(x+\frac{1}{x}\right)\left(x^n+\frac{1}{x^n}\right)$ and expand it in terms
+      of $x^{n+1}$ and $x^{n-1}$.
+    key_idea: Multiply the power sum $x^n+\frac{1}{x^n}$ by $x+\frac{1}{x}$ and simplify to get a linear
+      recurrence.
+  check: sp.simplify(((3+sp.sqrt(5))/2)**5 + ((3-sp.sqrt(5))/2)**5 - 123)
+  check_ok: null
+extensions:
+  '3':
+  - Find $x^6+\frac{1}{x^6}$ for the same $x$ without solving for $x$.
+  - Given $x+\frac{1}{x}=k$, find $x^3+\frac{1}{x^3}$ in terms of $k$.
+  '4':
+  - Find all positive integers $n$ with $x^n+\frac{1}{x^n}$ a multiple of $7$ when $x+\frac{1}{x}=3$,
+    and justify your answer from the recurrence.
+  - Show that $x^n+\frac{1}{x^n}$ is always an integer when $x+\frac{1}{x}$ is an integer.
+  '5':
+  - Prove that for integer $k$, the sequence $s_n=x^n+x^{-n}$ with $x+x^{-1}=k$ satisfies the same recurrence
+    for every $n$ and determine its closed form.
+spoken_vocab:
+- x plus one over x equals three
+- x to the fifth plus one over x to the fifth
+- x squared plus one over x squared
+- square both sides
+- recurrence
+- s n plus one equals three s n minus s n minus one
+- one hundred and twenty three
+source: jaymin/Jaymin Interview (1).pdf#p9
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 2
+  minutes: 8
+  flags: []
+  tagline: Recurrence via power-sum identities; solve without ever finding x explicitly.
+  priority: 80
+  rank: 255
+  tier: B
+  category: jaymin
+  d10: 3.0
+  real: 5.5
+  by: haiku
+tags:
+- algebra_and_functions

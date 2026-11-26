@@ -1,0 +1,117 @@
+id: seventeenth-roots-of-unity
+title: Roots of x^17 = 1
+topics:
+- complex numbers
+- roots of unity
+- polynomials
+- Vieta's formulas
+warmup: false
+answer_source: generated
+statement: $x^{17}=1$. How many roots are there? How many of them are real? What is the sum of the roots?
+  Suggest a method for finding all the roots.
+stages:
+- goal: Count the roots of $x^{17}=1$ (over the complex numbers).
+  expected: $17$ distinct roots.
+  solution: '$x^{17}-1$ has degree $17$, so by the fundamental theorem of algebra it has $17$ roots counted
+    with multiplicity. They are distinct: a repeated root would also satisfy the derivative $17x^{16}=0$,
+    which forces $x=0$, and $0$ is not a root.'
+  common_errors:
+  - Answering $1$ (only the real root)
+  - Answering $17$ real roots
+  hints:
+    rephrase: Count the roots of a polynomial of degree 17 over the complex numbers, not just the real
+      line.
+    smaller_case: Try $x^2=1$ and $x^3=1$. How many roots does each have over the complex numbers?
+    key_idea: The fundamental theorem of algebra counts complex roots, and you need to check none are
+      repeated.
+  check: Integer(17) - degree(x**17 - 1, x)
+  check_ok: true
+- goal: Count the real roots.
+  expected: $1$ real root, namely $x=1$.
+  solution: For real $x$, the map $x\mapsto x^{17}$ is strictly increasing because $17$ is odd, so $x^{17}=1$
+    has exactly one real solution, $x=1$. The other $16$ roots are non-real.
+  common_errors:
+  - Answering $2$, counting $x=-1$ (it gives $(-1)^{17}=-1$, not $1$)
+  - Answering $17$
+  hints:
+    rephrase: Which real numbers have a 17th power equal to 1? Consider how odd powers behave on negative
+      numbers.
+    smaller_case: Look at $x^3=1$ and $x^3=-1$ on the real line. How many real solutions does each have?
+    key_idea: An odd power is strictly increasing on the reals, so it hits each value at most once.
+  check: Integer(1) - len(solveset(x**17 - 1, x, domain=S.Reals))
+  check_ok: true
+- goal: Find the sum of all $17$ roots.
+  expected: $0$
+  solution: Write $x^{17}-1 = x^{17}+0\cdot x^{16}+\cdots-1$. By Vieta's formulas, the sum of the roots
+    is $-\frac{a_{16}}{a_{17}} = -\frac{0}{1}=0$.
+  common_errors:
+  - Answering $1$ (the product of the roots, or the real root)
+  - Answering $17$ by summing each root as if it were $1$
+  hints:
+    rephrase: Relate the sum of the roots to a particular coefficient of the polynomial.
+    smaller_case: Compare $x^2-1$ with $x^2-2x+1$. What do their $x$-coefficients tell you about the sum
+      of their roots?
+    key_idea: 'Vieta''s formulas: the sum of the roots equals minus the coefficient of $x^{n-1}$ divided
+      by the leading coefficient.'
+  check: Poly(x**17 - 1, x).coeff_monomial(x**16) - 0
+  check_ok: true
+- goal: Suggest a method for finding all $17$ roots explicitly.
+  expected: The roots are $\omega_k = e^{2\pi i k/17}$ for $k=0,1,\dots,16$, equivalently $\cos\frac{2\pi
+    k}{17}+i\sin\frac{2\pi k}{17}$ by de Moivre's theorem.
+  solution: Write $x$ in polar form $x=re^{i\theta}$. Then $x^{17}=1$ forces $r=1$ and $17\theta\in 2\pi\mathbb{Z}$,
+    so $\theta=\frac{2\pi k}{17}$. Taking $k=0,\dots,16$ gives all $17$ distinct roots. Alternatively,
+    factor $x^{17}-1=(x-1)(x^{16}+\cdots+x+1)$ and treat the second factor as the problem of finding the
+    17th roots of unity.
+  common_errors:
+  - Using $\theta=\frac{k}{17}$ instead of $\frac{2\pi k}{17}$
+  - Forgetting that $k$ runs from $0$ to $16$
+  - Listing only the real root
+  hints:
+    rephrase: Think of the complex plane. Where do the solutions of $x^{17}=1$ sit, and how are they spaced?
+    smaller_case: Find all solutions of $x^4=1$ by drawing them on the complex plane.
+    key_idea: 'Use polar form: the modulus of each root must be 1, and the arguments must be equally spaced
+      multiples of a fraction of a full turn.'
+  check: null
+extensions:
+  '3':
+  - Show that the product of all $17$ roots equals $1$.
+  '4':
+  - Explain why the non-real roots come in complex conjugate pairs, and count how many such pairs there
+    are.
+  '5':
+  - Explain how Gauss used the 17th roots of unity to show that a regular $17$-gon can be constructed
+    with ruler and compass.
+spoken_vocab:
+- x to the seventeenth equals one
+- how many roots
+- real roots
+- sum of roots
+- complex plane
+- roots of unity
+- e to the two pi i k over seventeen
+- de Moivre
+- Vieta's formulas
+- fundamental theorem of algebra
+- polar form
+- modulus
+- argument
+- conjugate pairs
+source: past-interviews/Actual Past Interview Questions/H2.jpg
+verified: false
+rating:
+  quality: 5
+  difficulty: 3
+  parts: 4
+  minutes: 12
+  flags: []
+  tagline: Standard roots-of-unity counting with a natural extension to explicit construction methods.
+  priority: 62
+  rank: 424
+  tier: C
+  category: past-interviews
+  d10: 2.5
+  real: 6.0
+  by: haiku
+tags:
+- complex_numbers
+- roots_of_polynomials

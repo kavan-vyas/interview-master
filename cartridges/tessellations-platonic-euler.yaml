@@ -1,0 +1,122 @@
+id: tessellations-platonic-euler
+title: Tessellations and the five Platonic solids
+topics:
+- tessellation
+- regular polygons
+- Euler formula
+- polyhedra
+- algebra
+warmup: false
+answer_source: generated
+statement: How many distinct tessellations of the plane use only one regular polygon? Why are there only
+  five platonic solids? Using Euler's Polyhedron Formula $V-E+F=2$ show that a platonic solid made of
+  triangles must have 4, 8 or 20 faces.
+stages:
+- goal: Count the distinct tessellations of the plane that use only one regular polygon.
+  expected: '3: equilateral triangles, squares and regular hexagons.'
+  solution: Around each vertex the interior angles must sum to exactly 360 degrees. Equilateral triangles
+    give 60 degrees (6 around a vertex), squares give 90 degrees (4 around a vertex) and regular hexagons
+    give 120 degrees (3 around a vertex). A regular pentagon has 108 degrees, which does not divide 360,
+    and larger polygons have even larger angles, so they fail.
+  common_errors:
+  - Including the regular pentagon
+  - Counting shapes that do not tile the plane, such as the regular octagon with a square
+  - Confusing tessellations with polygons
+  hints:
+    rephrase: At each vertex, what must the angles add up to?
+    smaller_case: Which regular polygons have an interior angle that divides 360 exactly?
+    key_idea: Work out the interior angle of a regular n-gon and check whether 360 is a whole multiple
+      of it.
+  check: T - 3
+  check_ok: false
+- goal: Explain how many triangle-faced Platonic solids are possible by listing the allowed vertex degrees.
+  expected: 'Three possible vertex degrees: d = 3, 4 or 5.'
+  solution: Let d be the number of faces meeting at each vertex. Each triangle has a 60 degree angle,
+    so the total angle at a vertex is 60d, which must be less than 360 for the corner to be convex. Also
+    d must be at least 3 to form a corner. So 3 <= d <= 5, which gives three options.
+  common_errors:
+  - Allowing d = 6, which is flat and does not form a polyhedron
+  - Forgetting that d must be at least 3
+  hints:
+    rephrase: Why does a corner need at least three faces meeting?
+    smaller_case: Can six triangles meet at one point to form a solid corner?
+    key_idea: The angles at a vertex must sum to strictly less than 360 degrees.
+  check: N - 3
+  check_ok: null
+- goal: Use Euler's formula V - E + F = 2 to express E in terms of the vertex degree d for a triangle-faced
+    solid.
+  expected: E = 6d/(6-d).
+  solution: Each face is a triangle with 3 edges, and each edge belongs to 2 faces, so 3F = 2E and F =
+    2E/3. Each vertex has degree d and each edge has 2 ends, so dV = 2E and V = 2E/d. Substitute into
+    V - E + F = 2 to get 2E/d - E + 2E/3 = 2. Then E(2/d - 1/3) = 2, and since 2/d - 1/3 = (6-d)/(3d),
+    we get E = 6d/(6-d).
+  common_errors:
+  - Forgetting F = 2E/3 and using a different face-edge relation
+  - Dropping the factor of 2 in dV = 2E
+  - Algebra slips when combining 2/d and 1/3
+  hints:
+    rephrase: 'Count the edges in two ways: once from the faces and once from the vertices.'
+    smaller_case: Set d = 3 and check whether your expression for E gives a sensible whole number.
+    key_idea: Each edge is shared by two faces and joins two vertices.
+  check: simplify(E - 6*d/(6-d))
+  check_ok: false
+- goal: Use the formula for E to find the number of faces for d = 3, 4 and 5.
+  expected: d = 3 gives F = 4 (tetrahedron), d = 4 gives F = 8 (octahedron), d = 5 gives F = 20 (icosahedron).
+  solution: For d = 3, E = 18/3 = 6 and F = 2E/3 = 4. For d = 4, E = 24/2 = 12 and F = 8. For d = 5, E
+    = 30/1 = 30 and F = 20. So a triangle-faced platonic solid must have 4, 8 or 20 faces.
+  common_errors:
+  - Using E = 6d/(6-d) with d = 6, which is undefined
+  - Giving the number of vertices instead of faces
+  - Forgetting to convert E to F using F = 2E/3
+  hints:
+    rephrase: Substitute each allowed vertex degree into your formula for E, then find F.
+    smaller_case: Work through the case d = 3 completely before doing the others.
+    key_idea: Once E is known, F follows from the face-edge relation.
+  check: (F3-4)**2 + (F4-8)**2 + (F5-20)**2
+  check_ok: false
+extensions:
+  '3':
+  - Repeat the argument with square faces. Show that the only possible solid is the cube.
+  '4':
+  - Verify that the octahedron has 6 vertices, 12 edges and 8 faces.
+  '5':
+  - With regular pentagon faces, show that only d = 3 works, giving the dodecahedron.
+spoken_vocab:
+- tessellation
+- regular polygon
+- platonic solid
+- vertices
+- edges
+- faces
+- Euler
+- V minus E plus F equals two
+- equilateral triangle
+- square
+- hexagon
+- pentagon
+- tetrahedron
+- octahedron
+- icosahedron
+- dodecahedron
+- degree
+- interior angle
+- 360 degrees
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 5
+  parts: 4
+  minutes: 25
+  flags: []
+  tagline: 'Classic chain: tessellations to Platonic solids via Euler; rich extension, multi-part.'
+  priority: 92
+  rank: 73
+  tier: A
+  category: tbo
+  d10: 5.0
+  real: 6.5
+  by: haiku
+tags:
+- geometry
+- proof

@@ -1,0 +1,81 @@
+id: married-adults-fraction
+title: Fraction of married adults
+topics:
+- fractions
+- proportion
+- algebra
+- counting
+warmup: true
+answer_source: generated
+statement: In a certain town $\frac{2}{3}$ of the adult men are married to $\frac{3}{5}$ of the adult
+  women. What fraction of the adults in the town are married?
+stages:
+- goal: Relate the number of adult men to the number of adult women.
+  expected: (2/3)M = (3/5)W, so M = 9W/10, where M is the number of adult men and W the number of adult
+    women.
+  solution: 'Each marriage pairs one married man with one married woman, so the married men and married
+    women are equal in number: (2/3)M = (3/5)W. Solving gives M = (9/10)W.'
+  common_errors:
+  - Setting the two fractions equal to each other as fractions rather than as counts
+  - Solving 2M/3 = 3W/5 incorrectly
+  hints:
+    rephrase: Let M and W be the numbers of men and women. How many married men are there, and how many
+      married women?
+    smaller_case: Suppose there are 10 adult women. How many of them are married, and how many married
+      men does that force?
+    key_idea: Marriages pair one man with one woman, so married men and married women are equal in number.
+  check: simplify(Rational(2,3)*Rational(9,10)*W - Rational(3,5)*W)
+  check_ok: true
+- goal: Compute the fraction of all adults who are married.
+  expected: 12/19
+  solution: Married adults = 2 x (3/5)W = (6/5)W. Total adults = M + W = (9/10)W + W = (19/10)W. Fraction
+    = (6/5)W / ((19/10)W) = 12/19.
+  common_errors:
+  - Counting only the married women, or only the married men
+  - Adding the fractions 2/3 and 3/5 directly to get the answer
+  - Arithmetic error when dividing (6/5) by (19/10)
+  hints:
+    rephrase: Count married adults as married men plus married women, then divide by the total number
+      of adults.
+    smaller_case: Using the relation you found, if W = 10, how many adults are there in total?
+    key_idea: The fraction is (married adults) divided by (all adults), so the unknown W cancels.
+  check: simplify(Rational(12,19) - 2*Rational(3,5)*W/(Rational(9,10)*W + W))
+  check_ok: true
+extensions:
+  '3':
+  - If 3/4 of the men are married to 2/3 of the women, what fraction of adults are married?
+  '4':
+  - If a fraction a of men are married to a fraction b of women, find the fraction of adults who are married
+    in terms of a and b.
+  '5':
+  - Suppose some married people are married to someone from outside the town. Explain what extra information
+    would be needed to answer the question.
+spoken_vocab:
+- two thirds
+- three fifths
+- adult men
+- adult women
+- married
+- fraction
+- total adults
+- ratio
+- proportion
+source: past-interviews/Actual Past Interview Questions/H1.jpg
+verified: false
+rating:
+  quality: 3
+  difficulty: 3
+  parts: 2
+  minutes: 4
+  flags:
+  - trivial
+  tagline: One-step proportion warm-up; implicit pairing assumption, little discussion.
+  priority: 27
+  rank: 638
+  tier: D
+  category: past-interviews
+  d10: 2.5
+  real: 3.5
+  by: haiku
+tags:
+- algebra_and_functions

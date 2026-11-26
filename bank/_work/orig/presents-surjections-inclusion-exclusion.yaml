@@ -1,0 +1,122 @@
+id: presents-surjections-inclusion-exclusion
+title: 'Distributing presents: counting and inclusion-exclusion'
+topics:
+- counting
+- inclusion-exclusion
+- injections
+- surjections
+- permutations
+warmup: false
+answer_source: pdf
+statement: There are $m$ different presents and $n$ children. (i) In how many ways can the presents be
+  given out (with no restrictions)? (ii) If $m \leq n$, in how many ways can they be given out so that
+  no child gets more than one? (iii) In how many ways can 4 presents be given to 3 children so that every
+  child gets at least one? Answer this directly, and by inclusion-exclusion. (iv) Show that the number
+  of ways to give out $m$ presents so every child gets at least one is $\sum_{k=0}^{n}(-1)^k\binom{n}{k}(n-k)^m$.
+  (v) Deduce that $\sum_{k=0}^{n}(-1)^k\binom{n}{k}(n-k)^n=n!$, and that the same sum with exponent $m<n$
+  is 0.
+stages:
+- goal: Count the unrestricted distributions and the distributions where no child gets more than one present.
+  expected: (i) $n^m$. (ii) $\frac{n!}{(n-m)!} = n(n-1)\cdots(n-m+1)$.
+  solution: '(i) Each present independently chooses one of $n$ children, giving $n^m$. (ii) Hand out presents
+    one at a time: the first has $n$ choices, the next $n-1$ (no child can already have one), and so on
+    for $m$ presents, giving $n(n-1)\cdots(n-m+1)$.'
+  common_errors:
+  - Writing $m^n$ instead of $n^m$, reversing presents and children.
+  - Using $\binom{n}{m}$ rather than an ordered count of $m$ presents.
+  - Forgetting that the count in (ii) needs $m\leq n$.
+  hints:
+    rephrase: Think about each present choosing a child. How many children can it go to?
+    smaller_case: Take $m=2$ presents and $n=3$ children. Count the ways directly.
+    key_idea: Multiply the number of choices for each present, taking account of which children are already
+      used.
+  check: sympy.factorial(4)/sympy.factorial(4-2) - 12
+  check_ok: null
+- goal: Count the ways to give 4 presents to 3 children with each child getting at least one, directly
+    and by inclusion-exclusion.
+  expected: 36 both ways.
+  solution: 'Directly: choose the child who gets two presents (3 ways), choose their two presents ($\binom42=6$),
+    then give the other two presents to the other two children in $2$ ways. Total $3\cdot 6\cdot 2=36$.
+    By inclusion-exclusion: $3^4-3\cdot 2^4+3\cdot 1^4-0=81-48+3=36$.'
+  common_errors:
+  - Forgetting the $\binom42$ choice of presents for the double-receiver.
+  - Using $3^4-3\cdot 2^4+3\cdot 1^4$ and then mis-adding to get 37 or 35.
+  - 'Signs in inclusion-exclusion: subtracting when the sets overlap.'
+  hints:
+    rephrase: Every child gets at least one, so the only possible pattern is one child gets two and the
+      others get one each. Which child is it?
+    smaller_case: Take 2 presents and 2 children. Count the ways where each child gets one.
+    key_idea: Let $A_i$ be the set where child $i$ gets nothing, then count the complement.
+  check: 3**4 - 3*2**4 + 3*1**4 - 0 - 36
+  check_ok: true
+- goal: Prove the general formula for distributions where every child gets at least one present.
+  expected: $\sum_{k=0}^{n}(-1)^k\binom{n}{k}(n-k)^m$.
+  solution: Let $A_i$ be the set of distributions in which child $i$ gets nothing. For any set of $k$
+    specified children, the distributions where all of them get nothing number $(n-k)^m$, since each present
+    chooses among the other $n-k$ children. Inclusion-exclusion over the $A_i$ gives the number of distributions
+    in which no $A_i$ occurs, which is the formula.
+  common_errors:
+  - Using $(n-k)^m$ with the wrong sign pattern in inclusion-exclusion.
+  - Counting $\binom{n}{k}$ incorrectly as $\binom{n}{n-k}$ in a way that changes the answer (these are
+    equal, so it is fine, but mixing bases is a common slip).
+  - Forgetting that the sum runs over all $k$ from $0$ to $n$.
+  hints:
+    rephrase: Call a distribution bad if some child gets nothing. How many distributions avoid $k$ specified
+      children entirely?
+    smaller_case: Take $n=2$, $m=2$ and check the formula by listing the cases.
+    key_idea: Inclusion-exclusion over which children are empty, with each intersection counted by $(n-k)^m$.
+  check: sum((-1)**k*sympy.binomial(3,k)*(3-k)**4 for k in range(4)) - 36
+  check_ok: null
+- goal: Deduce the values of the sum with exponent $n$ and with exponent $m<n$.
+  expected: $\sum_{k=0}^{n}(-1)^k\binom{n}{k}(n-k)^n=n!$ and the sum with exponent $m<n$ is 0.
+  solution: 'When $m=n$, every child getting at least one present means each child gets exactly one, which
+    is a bijection between presents and children: $n!$ ways. When $m<n$ it is impossible for every child
+    to get at least one, so the count is 0. Applying (iv) gives both results.'
+  common_errors:
+  - Claiming the $m=n$ case gives $n^n$, which counts all distributions rather than the surjective ones.
+  - Thinking $m<n$ gives a non-zero count by splitting presents unevenly.
+  - Forgetting that the bijection argument needs $m=n$.
+  hints:
+    rephrase: When the number of presents equals the number of children, what does 'every child gets at
+      least one' force?
+    smaller_case: Take $n=3$. Check $3^3-3\cdot 2^3+3\cdot 1^3$ against $3!$.
+    key_idea: Each child must receive exactly one present when $m=n$.
+  check: sum((-1)**k*sympy.binomial(3,k)*(3-k)**3 for k in range(4)) - sympy.factorial(3)
+  check_ok: null
+extensions:
+  '3':
+  - Show that $\sum_{k}(-1)^k\binom nk (n-k)^m$ counts surjections from an $m$-set onto an $n$-set, and
+    deduce that this equals $n!\,S(m,n)$ with $S$ the Stirling number of the second kind.
+  '4':
+  - Use the formula to count the ways to give 5 presents to 3 children with every child getting at least
+    one.
+  '5':
+  - Prove $\sum_{k}(-1)^k\binom nk (n-k)^m = n!\,S(m,n)$ using a generating function or a recurrence for
+    $S$.
+spoken_vocab:
+- m presents
+- n children
+- n to the power m
+- n factorial over n minus m factorial
+- inclusion-exclusion
+- sum from k equals zero to n
+- minus one to the power k
+- n choose k
+- n minus k to the power m
+- surjection
+- bijection
+- three children
+- four presents
+- Stirling number
+source: jaymin/Jaymin Interview (1).pdf#p33
+verified: false
+rating:
+  score: 9
+  difficulty: 4
+  parts: 5
+  minutes: 35
+  flags: []
+  tagline: Counting surjections two ways, then deriving n! from inclusion-exclusion.
+  priority: 130
+  rank: 10
+  tier: S

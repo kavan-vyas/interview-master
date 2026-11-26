@@ -1,0 +1,9 @@
+[
+ {
+  "q": "What is the remainder of $1!+2!+3!+4!+\\cdots+100!$ when divided by $7$?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "nextstepmaths/NextStepMaths Interview Questions/interview-question-9.pdf#0"
+ }
+]

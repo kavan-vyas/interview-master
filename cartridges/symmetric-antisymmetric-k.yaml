@@ -1,0 +1,81 @@
+id: symmetric-antisymmetric-k
+title: Possible values of k when f(x,y) = k f(y,x)
+topics:
+- functions of two variables
+- algebra
+- symmetry
+warmup: false
+answer_source: generated
+statement: Let $f(x,y)$ be a function of two real variables which is not identically zero. If $f(x,y)=k\,f(y,x)$
+  for all values of $x$ and $y$, what are the possible values of $k$?
+stages:
+- goal: Use the relation to constrain k, given that f is not identically zero.
+  expected: k^2 = 1, i.e. (k^2 - 1) f(x,y) = 0 for all x, y, and f is nonzero somewhere.
+  solution: 'Apply the relation twice: f(x,y) = k f(y,x) = k (k f(x,y)) = k^2 f(x,y). So (k^2 - 1) f(x,y)
+    = 0 for all x and y. Since f is not identically zero, some f(x0,y0) is nonzero, which forces k^2 =
+    1.'
+  common_errors:
+  - Concluding k = 1 by assuming f must be symmetric.
+  - Not applying the relation a second time.
+  - Dividing by f without checking that f is nonzero somewhere.
+  hints:
+    rephrase: Apply the given identity to the pair (y,x) and substitute back into the original.
+    smaller_case: Would f(x,y) = x satisfy the relation for some k? Compare f(x,y) with k f(y,x) for that
+      f.
+    key_idea: Swapping twice returns the original, which turns the relation into a scalar equation on
+      k.
+  check: sp.Set(*sp.solve(k**2 - 1, k)) == sp.FiniteSet(-1, 1)
+  check_ok: null
+- goal: Determine which values of k actually occur, by exhibiting a nonzero f for each candidate.
+  expected: 'Both k = 1 and k = -1 occur: f(x,y) = x + y gives k = 1, and f(x,y) = x - y gives k = -1.
+    So the possible values are 1 and -1.'
+  solution: 'For f(x,y) = x + y: f(y,x) = y + x = f(x,y), so k = 1. For f(x,y) = x - y: f(y,x) = y - x
+    = -f(x,y), so k = -1. Both functions are not identically zero, so both values are possible.'
+  common_errors:
+  - Claiming k must be 1 because functions are usually symmetric.
+  - Choosing an example that is identically zero, which is not allowed.
+  - Sign error when computing f(y,x) for x - y.
+  hints:
+    rephrase: Try a simple linear combination of x and y and see what swapping does to it.
+    smaller_case: Try f(x,y) = ax + by and compare the coefficients after swapping x and y.
+    key_idea: Test simple examples for each candidate value of k to confirm that it is attainable.
+  check: sp.FiniteSet(-1, 1) == sp.FiniteSet(*sp.solve(k**2 - 1, k))
+  check_ok: null
+extensions:
+  '3':
+  - Show that if k = -1 then f(x,x) = 0 for all x.
+  '4':
+  - Suppose the relation holds for two different functions f and g with the same k. Show that f + g also
+    satisfies it, and state when the set of valid f forms a vector space.
+  '5':
+  - Generalise to f(x,y) = k f(y,x) with f(x,y,z) and a cyclic permutation, and find the possible k.
+spoken_vocab:
+- f of x comma y
+- k
+- k squared
+- equals one
+- minus one
+- not identically zero
+- swap x and y
+- plus or minus one
+- symmetric
+- antisymmetric
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 3
+  parts: 2
+  minutes: 6
+  flags: []
+  tagline: Applying the relation twice gives k²=1; short but clean.
+  priority: 55
+  rank: 471
+  tier: C
+  category: tbo
+  d10: 2.5
+  real: 5.5
+  by: haiku
+tags:
+- functional_equations
+- algebra_and_functions

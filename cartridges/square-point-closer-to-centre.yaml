@@ -1,0 +1,115 @@
+id: square-point-closer-to-centre
+title: Point closer to the centre than to the nearest edge of a square
+topics:
+- geometry
+- probability
+- integration
+- symmetry
+warmup: false
+answer_source: pdf
+statement: A point $P$ is chosen uniformly at random inside a square of side $1$, whose centre is $C$.
+  The distance from $P$ to an edge means the shortest distance from $P$ to any point on that edge. What
+  is the probability that $P$ is closer to $C$ than to the nearest edge of the square?
+stages:
+- goal: Find the boundary curve, in the region 0 <= y <= x <= 1/2, where P is equally far from C and from
+    the nearest edge.
+  expected: x = 1/4 - y^2.
+  solution: Put C at the origin, so the square is [-1/2,1/2]^2. In the region 0 <= y <= x <= 1/2 the nearest
+    edge is x = 1/2, at distance 1/2 - x. The condition sqrt(x^2+y^2) < 1/2 - x, after squaring both positive
+    sides, gives x^2 + y^2 < 1/4 - x + x^2, so x < 1/4 - y^2.
+  common_errors:
+  - Using x as the distance to the right-hand edge instead of 1/2 - x.
+  - Squaring without checking that the right-hand side is positive.
+  - Dropping the y^2 term when expanding.
+  hints:
+    rephrase: Write both distances as functions of x and y, then square the inequality.
+    smaller_case: Restrict to y = 0. For which x is P closer to C than to the edge x = 1/2?
+    key_idea: Squaring makes the x^2 terms cancel, leaving a condition that is linear in x.
+  check: simplify(answer - (Rational(1,4) - y**2))
+  check_ok: false
+- goal: Find where the boundary curve meets the diagonal y = x.
+  expected: y = (sqrt(2) - 1)/2, approximately 0.207.
+  solution: Set x = y in x = 1/4 - y^2 to get y^2 + y - 1/4 = 0, so y = (-1 +/- sqrt(2))/2. The root in
+    [0, 1/2] is (sqrt(2) - 1)/2.
+  common_errors:
+  - Taking the negative root (-1 - sqrt(2))/2.
+  - Making a sign error and solving y^2 - y - 1/4 = 0.
+  - Assuming the intersection is at y = 1/2.
+  hints:
+    rephrase: Substitute the diagonal line into the boundary curve and solve.
+    smaller_case: Where does the curve cut the x-axis (y = 0)?
+    key_idea: The intersection point is a root of a quadratic in y. Keep only the root that lies between
+      0 and 1/2.
+  check: simplify(answer - (sqrt(2)-1)/2)
+  check_ok: false
+- goal: Compute the area of the favourable part of the triangle 0 <= y <= x <= 1/2.
+  expected: (4*sqrt(2) - 5)/24, approximately 0.02737.
+  solution: With alpha = (sqrt(2)-1)/2, the area is the integral from 0 to alpha of (1/4 - y^2 - y) dy.
+    Since alpha^2 = 1/4 - alpha, the integral simplifies to alpha/3 - 1/24 = (4*sqrt(2) - 5)/24.
+  common_errors:
+  - Integrating up to x = 1/2 instead of along the curve.
+  - Forgetting the lower bound x >= y, which gives the integrand 1/4 - y^2 - y.
+  - Arithmetic errors when simplifying powers of alpha.
+  hints:
+    rephrase: For each height y, what range of x is favourable, and what is its length?
+    smaller_case: At height y = 0, what is the length of the favourable range of x?
+    key_idea: The length at height y is (1/4 - y^2) - y. It is positive only up to the intersection value,
+      so integrate over that range.
+  check: simplify(answer - (4*sqrt(2)-5)/24)
+  check_ok: false
+- goal: Find the full probability by using symmetry.
+  expected: (4*sqrt(2) - 5)/3, approximately 0.219.
+  solution: 'The square splits into 8 congruent triangles under its symmetries, and the favourable region
+    is the same in each. The probability is 8 times the triangle''s favourable area: 8*(4*sqrt(2)-5)/24
+    = (4*sqrt(2)-5)/3.'
+  common_errors:
+  - Multiplying by 4 instead of 8.
+  - Forgetting the symmetry factor entirely.
+  - Using the triangle's total area rather than its favourable area.
+  hints:
+    rephrase: How many congruent copies of the triangle tile the square?
+    smaller_case: The full square has area 1. What fraction of it is one such triangle?
+    key_idea: The symmetry group of the square has order 8, so the favourable area is repeated 8 times.
+  check: simplify(answer - (4*sqrt(2)-5)/3)
+  check_ok: false
+extensions:
+  '3':
+  - 'Equilateral triangle: the probability that P is closer to the centre than to the nearest side is
+    5/27.'
+  '4':
+  - 'Regular hexagon: the probability is approximately 0.238.'
+  '5':
+  - 'Disc: show that the probability is exactly 1/4.'
+spoken_vocab:
+- unit square
+- centre
+- nearest edge
+- uniform random point
+- probability
+- parabola
+- focus
+- directrix
+- four sqrt two minus five over three
+- alpha
+- symmetry
+- integral
+source: jzmaths/JZMaths Interview Questions from the website trial.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 4
+  minutes: 20
+  flags: []
+  tagline: Parabolic boundary, symmetry reduction, and a nontrivial area integral.
+  priority: 92
+  rank: 76
+  tier: A
+  category: jzmaths
+  d10: 5.5
+  real: 6.0
+  by: haiku
+tags:
+- probability
+- geometry
+- integration

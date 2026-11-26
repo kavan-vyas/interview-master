@@ -1,0 +1,111 @@
+id: chicken-crossing-cars
+title: Chicken crossing a road with a stream of cars
+topics:
+- trigonometry
+- inequalities
+- optimisation
+- relative motion
+warmup: false
+answer_source: pdf
+statement: A single stream of cars, each of width $a$ and exactly in line, passes along a straight road
+  of breadth $b$ at speed $V$. The distance between successive cars (back of one to front of the next)
+  is $c$. A chicken crosses the road safely at constant speed $u$ in a straight line at angle $\theta$
+  to the direction of traffic. (i) Show that $u\geqslant \dfrac{aV}{c\sin\theta+a\cos\theta}$. (ii) Show
+  that if the chicken chooses $\theta$ and $u$ to cross at the least possible constant speed, the crossing
+  time is $\dfrac{b}{V}\left(\dfrac{c}{a}+\dfrac{a}{c}\right)$.
+stages:
+- goal: Derive the safety condition u(c sin theta + a cos theta) >= aV.
+  expected: u(c sin theta + a cos theta) >= aV
+  solution: 'Let t be the time for the chicken to cross the at-risk width a, so a = u t sin theta. Safety
+    requires u t cos theta >= V t - c (the along-road progress of the chicken must be at least the car
+    stream''s progress minus the gap c). Substitute t = a/(u sin theta) into the safety condition: a cot
+    theta >= aV/(u sin theta) - c. Multiplying by u sin theta > 0 gives a u cos theta >= aV - c u sin
+    theta, i.e. u(c sin theta + a cos theta) >= aV.'
+  common_errors:
+  - Forgetting that sin theta > 0, so the inequality direction is preserved when multiplying through
+  - Mixing up the across-road and along-road components of u
+  - Dropping the c term in the safety condition
+  hints:
+    rephrase: Introduce the time taken for the chicken to cross the at-risk width and set up two relations
+      involving that time.
+    smaller_case: Look at the special case of crossing straight across (theta = 90 degrees). What should
+      the inequality reduce to?
+    key_idea: Eliminate the time between the two relations. Since sin theta > 0 you may multiply through
+      by it.
+  check: sp.simplify(((u*t*sp.cos(th) - (V*t - c))*u*sp.sin(th)).subs(t, a/(u*sp.sin(th))) - (u*(c*sp.sin(th)+a*sp.cos(th))
+    - a*V))
+  check_ok: null
+- goal: Find the least constant speed the chicken can use, and the angle at which it is achieved.
+  expected: u_min = aV / sqrt(a^2 + c^2), attained at tan theta = c/a
+  solution: For fixed theta the least allowed speed is u = aV/(c sin theta + a cos theta). To make u least,
+    maximise the denominator over theta. Its derivative is c cos theta - a sin theta, which vanishes at
+    tan theta = c/a. Then c sin theta + a cos theta = sqrt(a^2 + c^2), so u_min = aV/sqrt(a^2 + c^2).
+  common_errors:
+  - Minimising the denominator instead of maximising it
+  - Giving the optimal angle as arctan(a/c)
+  - Forgetting that theta lies in (0, pi/2) for a valid crossing
+  hints:
+    rephrase: For each theta the smallest allowed u comes from making the denominator as large as possible.
+    smaller_case: Try a = c. Which angle makes sin theta + cos theta largest?
+    key_idea: Use calculus on c sin theta + a cos theta, or rewrite it in the form R sin(theta + phi).
+  check: sp.simplify((c*sp.sin(th)+a*sp.cos(th)).subs(th, sp.atan(c/a)) - sp.sqrt(a**2+c**2))
+  check_ok: null
+- goal: Show that the crossing time at this speed and angle is (b/V)(c/a + a/c).
+  expected: T = (b/V)(c/a + a/c) = b(a^2 + c^2)/(a c V)
+  solution: The crossing time is T = b/(u sin theta), since the across-road speed is u sin theta. With
+    u = aV/sqrt(a^2 + c^2) and sin theta = c/sqrt(a^2 + c^2), we get u sin theta = acV/(a^2 + c^2). So
+    T = b(a^2 + c^2)/(acV) = (b/V)(c/a + a/c).
+  common_errors:
+  - Using u cos theta instead of u sin theta as the across-road speed
+  - Using a/sqrt(a^2 + c^2) for sin theta
+  - Algebra slip when simplifying b(a^2 + c^2)/(acV) into the sum form
+  hints:
+    rephrase: The crossing time is the breadth divided by the speed component across the road.
+    smaller_case: 'Check dimensions: a candidate expression for T must have units of time, as b/V does.'
+    key_idea: Read sin theta off the right-angled triangle with sides a, c and sqrt(a^2 + c^2), then substitute
+      the optimal u.
+  check: sp.simplify(b/((a*V/sp.sqrt(a**2+c**2))*sp.sin(sp.atan(c/a))) - (b/V)*(c/a+a/c))
+  check_ok: null
+extensions:
+  '3':
+  - Show that at the optimal angle the crossing time is always at least 2b/V, for all positive a and c.
+  '4':
+  - Find the optimal angle and the least speed if the gap c is replaced by 2c.
+  '5':
+  - Describe how the crossing time at the optimal choice behaves when c/a is very large and when c/a is
+    very small.
+spoken_vocab:
+- a
+- b
+- c
+- u
+- V
+- theta
+- u sine theta
+- c sine theta plus a cosine theta
+- a V
+- square root of a squared plus c squared
+- tan theta equals c over a
+- b over V
+- c over a plus a over c
+- greater than or equal to
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#16
+verified: false
+rating:
+  quality: 8
+  difficulty: 7
+  parts: 3
+  minutes: 25
+  flags: []
+  tagline: Relative-motion safety condition, then optimisation over angle and speed, rich follow-ups
+  priority: 91
+  rank: 133
+  tier: A
+  category: siklos
+  d10: 6.5
+  real: 5.0
+  by: deepseek-v4.1-flash-free
+tags:
+- mechanics
+- trigonometry
+- differentiation

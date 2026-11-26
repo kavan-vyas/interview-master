@@ -1,0 +1,78 @@
+id: square-number-check
+title: Is a given large number a perfect square?
+topics:
+- number theory
+- squares
+- modular arithmetic
+warmup: true
+answer_source: generated
+statement: Is $1234567891011$ a square number? Is $24681012141618202224$?
+stages:
+- goal: Decide whether 1234567891011 is a perfect square.
+  expected: No. It lies strictly between 1111111^2 = 1234567654321 and 1111112^2 = 1234569876544.
+  solution: 'The last digit 1 is allowed for squares, so estimate the root: it is about 1.1111 x 10^6.
+    1111111^2 = 1234567654321 < 1234567891011 < 1111112^2 = 1234569876544. The number sits between two
+    consecutive squares, so it is not a square.'
+  common_errors:
+  - Checking only the last digit, then concluding it is a square.
+  - Miscalculating 1111111^2 during the comparison.
+  - Estimating the square root and not checking the neighbouring integers.
+  hints:
+    rephrase: Find which two consecutive integers the square root must lie between.
+    smaller_case: Is 1234567 a square? Compare it with 1111^2 and 1112^2 to see how the test works.
+    key_idea: A number is a square only if it equals n^2 for an integer n, so bracket it between consecutive
+      squares.
+  check: sp.Eq(sp.integer_nthroot(1234567891011, 2)[1], False)
+  check_ok: null
+- goal: Decide whether 24681012141618202224 is a perfect square.
+  expected: No. Its digit sum is 57, which is 3 mod 9, and squares mod 9 can only be 0, 1, 4 or 7.
+  solution: The digits are 2,4,6,8,1,0,1,2,1,4,1,6,1,8,2,0,2,2,2,4, with sum 57. Since 57 = 6 x 9 + 3,
+    the number is 3 mod 9. Squares mod 9 are n^2 mod 9 for n = 0..8, giving only 0, 1, 4, 7. So the number
+    is not a square.
+  common_errors:
+  - Adding the digits incorrectly, for example missing the 1 in 10 or 12.
+  - Noting that the last digit 4 is allowed and concluding it is a square.
+  - Listing the wrong residues of squares modulo 9.
+  hints:
+    rephrase: Look for a quick modular test that rules out squares.
+    smaller_case: List the residues n^2 mod 9 for n = 0 to 8.
+    key_idea: Squares can only leave certain remainders on division by 9, so compare the digit sum with
+      those remainders.
+  check: sum(int(d) for d in '24681012141618202224') % 9 not in [0, 1, 4, 7]
+  check_ok: null
+extensions:
+  '3':
+  - 'Show that 1234567891011 is not a square using the mod 4 test: its last two digits 11 give remainder
+    3 mod 4.'
+  '4':
+  - Find the smallest integer n with n^2 greater than 1234567891011.
+  '5':
+  - Explain why a number ending in 1 can still fail to be a square, and find a modulus that rules out
+    1234567891011 without computing its root.
+spoken_vocab:
+- square
+- squared
+- square root
+- one two three four five six seven eight nine zero
+- modulo nine
+- modulo four
+- digit sum
+- is a square number
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 2
+  minutes: 5
+  flags: []
+  tagline: Modular checks (mod 4, mod 9) rule out both numbers quickly.
+  priority: 45
+  rank: 543
+  tier: C
+  category: tbo
+  d10: 2.5
+  real: 5.5
+  by: haiku
+tags:
+- number_theory

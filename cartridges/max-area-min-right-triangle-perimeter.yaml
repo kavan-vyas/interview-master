@@ -1,0 +1,112 @@
+id: max-area-min-right-triangle-perimeter
+title: Maximum area and minimum area for triangles of fixed perimeter
+topics:
+- Heron's formula
+- AM-GM inequality
+- optimisation
+- right-angled triangles
+- infimum and extrema
+warmup: false
+answer_source: generated
+statement: If I have a triangle of fixed perimeter $P$ what will the maximum area be? Does there exist
+  a right-angled triangle of fixed perimeter $P$ of smallest area?
+stages:
+- goal: Find the maximum area of a triangle with perimeter $P$.
+  expected: $\frac{\sqrt{3}P^2}{36}$, attained by the equilateral triangle.
+  solution: Let the sides be $a,b,c$ with $s=\frac P2$. By Heron's formula, $\text{Area}^2=s(s-a)(s-b)(s-c)$.
+    The three numbers $s-a,s-b,s-c$ are positive and sum to $3s-P=s$. By AM-GM, $(s-a)(s-b)(s-c)\le\left(\frac{s}{3}\right)^3$,
+    so $\text{Area}^2\le\frac{s^4}{27}$ and $\text{Area}\le\frac{s^2}{3\sqrt3}=\frac{P^2}{12\sqrt3}=\frac{\sqrt3P^2}{36}$.
+    Equality holds when $a=b=c=\frac P3$.
+  common_errors:
+  - Assuming the maximum is achieved by a right-angled or isosceles non-equilateral triangle without proof
+  - Mixing up $s$ and $P$ in Heron's formula
+  - Using $\frac{\sqrt3}{4}a^2$ and then substituting the wrong side length, such as $a=P/2$
+  hints:
+    rephrase: Write the area using Heron's formula with $s$ the semi-perimeter, then bound the product
+      of the three factors.
+    smaller_case: Take the equilateral triangle with perimeter 12 and compute its area directly, then
+      compare with a 3-4-5 triangle.
+    key_idea: The three factors $s-a$, $s-b$, $s-c$ sum to a constant, so their product is largest when
+      they are equal.
+  check: simplify(sqrt(3)*P**2/36 - sqrt(3)/4*(P/3)**2)
+  check_ok: true
+- goal: Decide whether a right-angled triangle of perimeter $P$ with smallest area exists.
+  expected: No. The area can be made arbitrarily small but never reaches a minimum. The infimum is $0$,
+    approached by degenerate triangles with one leg tending to $0$ and the other leg tending to $\frac
+    P2$.
+  solution: Let the legs be $a,b$ and the hypotenuse $c=\sqrt{a^2+b^2}$, with $a+b+c=P$. Let $p=a+b$.
+    Then $ab=\frac{P(2p-P)}{2}$, so the area is $\frac{ab}{2}=\frac{P(2p-P)}{4}$. Positivity of the legs
+    requires $p>\frac P2$. Taking $p$ just above $\frac P2$ makes the area as small as desired, and the
+    value $0$ is not attained by any non-degenerate triangle. So there is no smallest area.
+  common_errors:
+  - Answering yes because the equilateral or isosceles triangle looks like a natural minimiser
+  - Confusing this with the maximum, which does exist
+  - Claiming the area is $0$ is attained by a genuine triangle
+  hints:
+    rephrase: Parametrise the right triangle by its two legs and use the perimeter constraint to eliminate
+      one of them.
+    smaller_case: Try the right triangles with legs $(1,1)$, $(1,0.1)$ and $(1,0.01)$ scaled to the same
+      perimeter, and look at the trend of the area.
+    key_idea: Ask whether the infimum of a continuous function on an open set of allowed parameters is
+      attained.
+  check: null
+- goal: Find the maximum area among right-angled triangles of perimeter $P$, and where it occurs.
+  expected: $\frac{(3-2\sqrt2)P^2}{4}$, attained by the isosceles right triangle with legs $\frac{(2-\sqrt2)P}{2}$.
+  solution: From the previous stage, the area is $\frac{P(2p-P)}{4}$, which increases in $p$. The allowed
+    range is $\frac P2<p\le(2-\sqrt2)P$, where the upper bound comes from requiring $p^2\ge4ab$, which
+    is equivalent to $p^2-4Pp+2P^2\ge0$. So the maximum occurs at $p=(2-\sqrt2)P$, which gives $ab$ with
+    $a=b$. The legs are $a=b=\frac{(2-\sqrt2)P}{2}$ and the area is $\frac{a^2}{2}=\frac{(3-2\sqrt2)P^2}{4}$.
+  common_errors:
+  - Using the bound $p\le P$ instead of the tighter bound from $p^2\ge4ab$
+  - Forgetting that the maximum occurs at the isosceles right triangle
+  - Algebra slips in simplifying $(2-\sqrt2)^2$
+  hints:
+    rephrase: Use the constraint from the Pythagorean theorem to find an equation linking $a+b$ and $ab$,
+      then ask which values are allowed.
+    smaller_case: Test an isosceles right triangle with perimeter $P=1$ and see whether the area is larger
+      than for a very thin right triangle.
+    key_idea: The area is a monotone function of $p=a+b$, so the extreme value sits at the largest allowed
+      $p$.
+  check: simplify(((2-sqrt(2))*P/2)**2/2 - (3-2*sqrt(2))*P**2/4)
+  check_ok: true
+extensions:
+  '3':
+  - Prove that the maximum-area triangle of perimeter $P$ is equilateral using Lagrange multipliers instead
+    of AM-GM.
+  '4':
+  - Does the maximum-area result still hold if the perimeter is fixed and the triangle is required to
+    be isosceles?
+  - Compare the area of the maximal right triangle with the maximal triangle overall.
+  '5':
+  - Characterise all triangles, not just right ones, of perimeter $P$ whose area tends to $0$, and show
+    why none attains it.
+spoken_vocab:
+- fixed perimeter P
+- maximum area
+- square root of three P squared over thirty six
+- right-angled triangle
+- smallest area
+- Heron's formula
+- semi-perimeter s
+- AM-GM
+- isosceles right triangle
+- three minus two root two
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 2
+  minutes: 15
+  flags: []
+  tagline: Fixed-perimeter max area, then a non-attained infimum for right triangles
+  priority: 71
+  rank: 341
+  tier: B
+  category: tbo
+  d10: 5.5
+  real: 7.0
+  by: haiku
+tags:
+- geometry
+- inequalities

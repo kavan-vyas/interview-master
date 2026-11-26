@@ -1,0 +1,148 @@
+id: mat13-q5-digit-sum-counting
+title: 'Digit sums: counting integers below 1000'
+topics:
+- counting
+- digit sums
+- combinatorics
+- stars and bars
+- complementary counting
+warmup: false
+answer_source: generated
+statement: Question 5 (all applicants). The digit sum of a non-negative integer is the sum of its digits
+  (e.g. the digit sum of 123 is $1+2+3=6$). (i) How many positive integers less than 100 have digit sum
+  equal to 8? Let $n$ be a positive integer with $n < 10$. (ii) How many positive integers less than 100
+  have digit sum equal to $n$? (iii) How many positive integers less than 1000 have digit sum equal to
+  $n$? (iv) How many positive integers between 500 and 999 have digit sum equal to 8? (v) How many positive
+  integers less than 1000 have digit sum equal to 8 and at least one digit at least 5? (vi) What is the
+  total of the digit sums of the integers from 0 to 999 inclusive?
+stages:
+- goal: Count positive integers below 100 with digit sum 8 (part i), then with digit sum n (part ii).
+  expected: (i) 9. (ii) n + 1.
+  solution: 'Write a number below 100 as a two-digit string ab with leading zeros allowed (a, b in 0 to
+    9). The condition is a + b = s. For s = 8: a runs over 0 to 8, b = 8 - a is then in 0 to 8, giving
+    9 solutions. For general s = n with 1 <= n <= 9: a runs over 0 to n, giving n + 1 solutions. Every
+    such string with digit sum at least 1 is a positive integer, so no exclusions are needed.'
+  common_errors:
+  - Counting 10 for part (i) by including the number 80 twice or by forgetting that a = 0 is allowed (it
+    is, since 08 = 8 is valid).
+  - Forgetting that the leading zero represents a one-digit number, so ab with a = 0 is still in range.
+  - 'Writing n instead of n + 1 for part (ii) (off by one: a can be 0 as well as n).'
+  hints:
+    rephrase: Any number below 100 can be written as a pair of digits. How many pairs of digits from 0
+      to 9 have a given sum?
+    smaller_case: How many two-digit strings ab with a + b = 2 are there, with leading zeros allowed?
+    key_idea: Fix the tens digit and let the units digit be forced; see which values of the tens digit
+      keep the units digit between 0 and 9.
+  check: And(Eq(ans_i, 9), Eq(ans_ii, n + 1))
+  check_ok: true
+- goal: Count positive integers below 1000 with digit sum n (part iii), then between 500 and 999 with
+    digit sum 8 (part iv).
+  expected: (iii) (n+1)(n+2)/2. (iv) 10.
+  solution: '(iii) Write the number as a three-digit string abc with leading zeros allowed. Since n <
+    10, every digit is automatically at most 9, so the only condition is a + b + c = n with each digit
+    at least 0. This is the stars and bars count C(n+2, 2) = (n+1)(n+2)/2. Each such string with n >=
+    1 is a positive integer. (iv) Numbers between 500 and 999 have hundreds digit a in 5 to 9. Need b
+    + c = 8 - a. For a = 5, 6, 7, 8 this gives 4, 3, 2, 1 solutions respectively (b + c = 3, 2, 1, 0 have
+    4, 3, 2, 1 solutions). For a = 9 there are none. Total 4 + 3 + 2 + 1 = 10. Check: the same method
+    for all numbers below 1000 gives C(10,2) = 45 total, with 35 below 500, and 35 + 10 = 45.'
+  common_errors:
+  - Using C(n+3, 2) or C(n+1, 2) instead of C(n+2, 2) for three digits.
+  - Forgetting to check that the digit bound 9 is automatic when n < 10, or wrongly subtracting cases
+    with a digit above 9.
+  - In part (iv), counting b + c = 8 - a with the wrong number of solutions (e.g. treating b + c = 3 as
+    having 3 solutions instead of 4).
+  - Including 1000 or excluding 999 from the range in part (iv); 999 has digit sum 27 so it does not count
+    anyway.
+  hints:
+    rephrase: Think of the three digits as three slots that share a fixed total. How many ways are there
+      to share out n units among three slots?
+    smaller_case: How many two-digit strings ab (leading zeros allowed) have digit sum 1?
+    key_idea: For part (iv), fix the hundreds digit first; the remaining two digits form a smaller version
+      of the earlier pair-counting problem.
+  check: And(Eq(ans_iii, (n+1)*(n+2)/2), Eq(ans_iv, 10))
+  check_ok: true
+- goal: Count positive integers below 1000 with digit sum 8 that have at least one digit at least 5 (part
+    v).
+  expected: '30.'
+  solution: 'Count the complement: strings abc with a + b + c = 8 and every digit at most 4. Unrestricted
+    there are C(10, 2) = 45 strings with digit sum 8. Those with a digit at least 5: if a >= 5, substitute
+    a'' = a - 5 to get a'' + b + c = 3, which has C(5, 2) = 10 solutions; the same holds for b and for
+    c. Two digits cannot both be at least 5 since that needs sum at least 10 > 8, so the events are disjoint.
+    Thus 30 strings have some digit at least 5, and the complement has 45 - 30 = 15. Directly: 30 = 3
+    * 10. Every such string with digit sum 8 is positive.'
+  common_errors:
+  - Counting the complement incorrectly by forgetting it is the strings with ALL digits at most 4 and
+    using 45 - 15 = 30 correctly only if the 15 is right.
+  - Overcounting by not noticing the events 'digit at least 5' are disjoint, or double-counting cases
+    where two digits are large (impossible here).
+  - Substituting a - 4 instead of a - 5 for the 'at least 5' shift.
+  hints:
+    rephrase: Counting directly with 'at least one' is awkward. What is it easier to count, and how do
+      you get the answer from it?
+    smaller_case: How many three-digit strings with digit sum 8 have hundreds digit at least 5?
+    key_idea: Use the complement, or shift the variable of a large digit by 5 and then count the resulting
+      stars-and-bars problem. Check whether two large digits can occur together.
+  check: Eq(ans, 30)
+  check_ok: null
+- goal: Find the total of the digit sums of the integers from 0 to 999 inclusive (part vi).
+  expected: '13500.'
+  solution: Write each integer from 0 to 999 as a three-digit string with leading zeros. Each of the three
+    positions takes each digit 0 to 9 exactly 100 times (the other two positions give 100 choices). So
+    the total of the digits in one position is 100 * (0+1+...+9) = 100 * 45 = 4500. Three positions give
+    3 * 4500 = 13500. The digit sum of 0 is 0, so including it changes nothing.
+  common_errors:
+  - Summing only over the 1000 numbers without using symmetry, and making arithmetic slips with 0 + 1
+    + ... + 9 = 45.
+  - Using 1000 * 45 = 45000 (forgetting that each position contributes only 100 times per digit, or taking
+    digit sum per number and multiplying by 1000 wrongly).
+  - Forgetting that the three positions each contribute, giving 4500 instead of 13500.
+  hints:
+    rephrase: The total of all digit sums is the sum of the digits across all numbers. How often does
+      each digit appear in each position?
+    smaller_case: What is the total of the digit sums of the integers from 0 to 9 inclusive?
+    key_idea: Split the total by digit position; in each position every digit from 0 to 9 appears equally
+      often, so the total for one position is a fixed multiple of the sum 0 + 1 + ... + 9.
+  check: Eq(ans, 13500)
+  check_ok: null
+extensions:
+  '3':
+  - How many positive integers less than 10000 have digit sum equal to n, for n < 10?
+  '4':
+  - How many three-digit integers have digit sum 8 and all three digits odd?
+  '5':
+  - What is the total of the digit sums of the integers from 0 to 9999 inclusive?
+spoken_vocab:
+- digit sum
+- positive integers
+- less than one hundred
+- less than one thousand
+- between five hundred and nine hundred and ninety nine
+- at least one digit at least five
+- total of the digit sums
+- zero to nine hundred and ninety nine inclusive
+- n plus one
+- n plus two
+- choose two
+- stars and bars
+- complement
+- tens digit
+- units digit
+- hundreds digit
+source: mat/2013 MAT done again.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 6
+  minutes: 15
+  flags: []
+  tagline: Digit-sum counting with stars-and-bars and inclusion-exclusion; clean totals
+  priority: 64
+  rank: 404
+  tier: C
+  category: mat
+  d10: 4.5
+  real: 7.0
+  by: haiku
+tags:
+- combinatorics

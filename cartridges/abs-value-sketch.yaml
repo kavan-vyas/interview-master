@@ -1,0 +1,89 @@
+id: abs-value-sketch
+title: Sketch y = |x| - |x-2| and solve |x| - |x-2| = 1
+topics:
+- absolute value
+- piecewise functions
+- graph sketching
+warmup: true
+answer_source: generated
+statement: Sketch $y=|x|-|x-2|$ for all real $x$. (a) Use your sketch to solve $|x|-|x-2|=1$.
+stages:
+- goal: Sketch y = |x| - |x-2| by splitting the real line at the points where each absolute value changes
+    sign.
+  expected: Breakpoints at x=0 and x=2. For x<=0, y=-2 (constant). For 0<=x<=2, y=2x-2 (a straight line
+    from (0,-2) to (2,2)). For x>=2, y=2 (constant). Range [-2,2]. The graph is flat at -2, then rises
+    linearly, then is flat at 2.
+  solution: 'For x<=0: |x|=-x and |x-2|=2-x, so y=-x-(2-x)=-2. For 0<=x<=2: |x|=x and |x-2|=2-x, so y=x-(2-x)=2x-2.
+    For x>=2: |x|=x and |x-2|=x-2, so y=x-(x-2)=2. The pieces agree at the breakpoints (both give -2 at
+    x=0 and 2 at x=2), so the graph is continuous. Sketch: horizontal at -2 up to x=0, straight segment
+    up to (2,2), then horizontal at 2.'
+  common_errors:
+  - Dropping a sign in the middle piece (e.g. writing 2x+2 or a constant).
+  - Placing the second breakpoint at x=0 instead of x=2.
+  - Sketching a graph that is discontinuous at the breakpoints.
+  - Describing the graph as V-shaped or unbounded.
+  hints:
+    rephrase: For each absolute value, which values of x make the inside non-negative and which make it
+      negative?
+    smaller_case: Evaluate y at x = -1, 1 and 3, and see what each value tells you about one region.
+    key_idea: Two sign-change points split the real line into three intervals; on each interval remove
+      the bars using the correct sign.
+  check: (sp.Abs(-1)-sp.Abs(-1-2)+2)**2 + (sp.Abs(1)-sp.Abs(1-2)-0)**2 + (sp.Abs(3)-sp.Abs(3-2)-2)**2
+  check_ok: null
+- goal: Use the sketch to solve |x| - |x-2| = 1.
+  expected: x = 3/2 is the only solution.
+  solution: 'The two constant pieces take only the values -2 and 2, so they never equal 1. On the middle
+    piece, 2x-2=1 gives x=3/2, which lies in [0,2], so it is valid. Check: |3/2| - |3/2-2| = 3/2 - 1/2
+    = 1.'
+  common_errors:
+  - Solving 2x-2=1 correctly but not confirming the solution lies in the interval [0,2].
+  - Reporting x=0 or x=2 as solutions.
+  - Concluding there is no solution, or that there are two.
+  - Treating the constant pieces as if they could equal 1.
+  hints:
+    rephrase: Which parts of your sketch can reach height 1?
+    smaller_case: Substitute x=0 and x=2 into the expression and see what height you get.
+    key_idea: Only one piece of the sketch is non-constant. Solve the equation on that piece and check
+      the answer lies in that piece's interval.
+  check: sp.Abs(sp.Rational(3,2)) - sp.Abs(sp.Rational(3,2)-2) - 1
+  check_ok: null
+extensions:
+  '3':
+  - Using your sketch, for which real x is |x| - |x-2| < 1?
+  - Repeat the sketch for |x-1| - |x+1| and state its range.
+  '4':
+  - Sketch y = |x| + |x-2|. State its minimum value and the set of x where it is attained.
+  '5':
+  - Sketch y = ||x|-1|. For each real k, how many real solutions does ||x|-1| = k have?
+spoken_vocab:
+- absolute value
+- modulus
+- piecewise
+- breakpoints
+- y equals absolute value of x minus absolute value of x minus two
+- two x minus two
+- x equals three over two
+- three halves
+- minus two
+- range
+- continuous
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 2
+  minutes: 5
+  flags:
+  - needs_diagram
+  tagline: Piecewise sketch of |x|−|x−2| then solve equals 1; single-step payoff.
+  priority: 37
+  rank: 590
+  tier: D
+  category: juan
+  d10: 2.5
+  real: 5.0
+  by: deepseek-v4.1-flash-free
+tags:
+- curve_sketching
+- algebra_and_functions

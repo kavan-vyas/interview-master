@@ -1,0 +1,91 @@
+id: no-odd-degree-terms-symmetric-product
+title: No odd-degree terms in a product of two alternating and non-alternating sums
+topics:
+- polynomials
+- symmetry
+- even and odd functions
+- coefficients
+warmup: false
+answer_source: generated
+statement: Prove that in the product $(1-x+x^2-x^3+\cdots-x^{99}+x^{100})(1+x+x^2+\cdots+x^{99}+x^{100})$
+  after multiplying out and collecting terms, there does not appear a term in $x$ of odd degree.
+stages:
+- goal: Relate the second factor to the first by substituting $-x$ into the first factor.
+  expected: Let $A(x)=\sum_{k=0}^{100}(-1)^k x^k$ and $B(x)=\sum_{k=0}^{100}x^k$. Then $B(x)=A(-x)$.
+  solution: $A(-x)=\sum_{k=0}^{100}(-1)^k(-x)^k=\sum_{k=0}^{100}x^k=B(x)$, since $(-1)^k(-1)^k=1$.
+  common_errors:
+  - Substituting $-x$ incorrectly, e.g. getting $(-1)^k x^k$ instead of $x^k$.
+  - Assuming the two factors are unrelated because their signs look different.
+  hints:
+    rephrase: What happens to the first factor if every $x$ is replaced by $-x$?
+    smaller_case: Compare $1-x+x^2$ with $1+x+x^2$ after replacing $x$ by $-x$ in the first.
+    key_idea: Look for a symmetry between the two factors under $x\mapsto -x$.
+  check: sp.expand(sum((-1)**k*(-x)**k for k in range(101)) - sum(x**k for k in range(101)))
+  check_ok: null
+- goal: Show that the product $F(x)=A(x)B(x)$ is an even function of $x$.
+  expected: $F(x)=A(x)A(-x)$ and $F(-x)=F(x)$, so $F$ is even.
+  solution: Since $B(x)=A(-x)$, $F(x)=A(x)A(-x)$. Replacing $x$ by $-x$ gives $F(-x)=A(-x)A(x)=F(x)$,
+    so $F$ is even.
+  common_errors:
+  - Forgetting that multiplication of polynomials is commutative when checking $F(-x)$.
+  - Checking evenness only on a few terms rather than the whole function.
+  hints:
+    rephrase: What does it mean for a polynomial to be unchanged when $x$ is replaced by $-x$?
+    smaller_case: For $G(x)=(1+x)(1-x)$, check whether $G(-x)=G(x)$.
+    key_idea: Substitute $-x$ into the whole product and use the relation from the previous stage.
+  check: sp.expand(sum((-1)**k*x**k for k in range(101)).subs(x,-x) * sum((-1)**k*x**k for k in range(101)).subs(x,-x)
+    - sum((-1)**k*x**k for k in range(101))*sum(x**k for k in range(101)))
+  check_ok: null
+- goal: Conclude that the coefficients of all odd-degree terms vanish.
+  expected: If $F(x)=\sum_n c_n x^n$ is even, then $c_n\big((-1)^n-1\big)=0$ for all $n$. For odd $n$,
+    $(-1)^n=-1$, which forces $c_n=0$.
+  solution: Even symmetry gives $\sum_n c_n(-1)^n x^n=\sum_n c_n x^n$, so comparing coefficients, $c_n\big((-1)^n-1\big)=0$.
+    For odd $n$ we have $(-1)^n=-1$, so $-2c_n=0$ and $c_n=0$. Hence the product has no term of odd degree.
+  common_errors:
+  - Concluding that odd coefficients vanish without comparing coefficients of $F(x)$ and $F(-x)$.
+  - Mixing up which parity of $n$ gives $(-1)^n=-1$.
+  hints:
+    rephrase: If two polynomials are equal for every $x$, what must their coefficients satisfy?
+    smaller_case: For $H(x)=c_0+c_1x+c_2x^2$ with $H(-x)=H(x)$, what can you say about $c_1$?
+    key_idea: Compare the coefficient of each power of $x$ in $F(-x)$ and $F(x)$.
+  check: sp.simplify((-1)**99 + 1)
+  check_ok: null
+extensions:
+  '3':
+  - Show that the product has only terms of even degree when the first factor is replaced by $1-x+x^2-x^3$
+    and the second by $1+x+x^2+x^3$.
+  '4':
+  - Find the coefficient of $x^{100}$ in the product $A(x)B(x)$ with $A$ and $B$ as defined above.
+  '5':
+  - Generalise to show that $A(x)A(-x)$ is even for any polynomial $A$ with real coefficients, and state
+    what this implies for the odd-degree coefficients of $A(x)A(-x)$.
+spoken_vocab:
+- alternating sum
+- first factor
+- second factor
+- replace x by minus x
+- even function
+- odd degree terms
+- coefficients
+- product
+- minus x to the ninety nine
+- plus x to the one hundred
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 2
+  minutes: 8
+  flags: []
+  tagline: Substituting -x reveals the product is even; elegant symmetry insight with a clean proof.
+  priority: 81
+  rank: 225
+  tier: B
+  category: tbo
+  d10: 2.5
+  real: 5.0
+  by: haiku
+tags:
+- proof
+- algebra_and_functions

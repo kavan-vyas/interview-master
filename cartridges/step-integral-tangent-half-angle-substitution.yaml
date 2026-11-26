@@ -1,0 +1,126 @@
+id: step-integral-tangent-half-angle-substitution
+title: Half-angle substitution and a definite integral with parameter alpha
+topics:
+- calculus
+- integration
+- trigonometric identities
+- half-angle substitution
+- definite integrals
+warmup: false
+answer_source: pdf
+statement: Show that $\sin\theta=\frac{2t}{1+t^2}$, $\cos\theta=\frac{1-t^2}{1+t^2}$, and $\frac{1+\cos\theta}{\sin\theta}=\tan\left(\frac{\pi}{2}-\frac{\theta}{2}\right)$,
+  where $t=\tan\frac{\theta}{2}$. Let $I=\int_0^{\pi/2}\frac{1}{1+\cos\alpha\sin\theta}\,d\theta$. Use
+  the substitution $t=\tan\frac{\theta}{2}$ to show that, for $0<\alpha<\frac{\pi}{2}$, $I=\int_0^1\frac{2}{(t+\cos\alpha)^2+\sin^2\alpha}\,dt$.
+  By means of the further substitution $t+\cos\alpha=\sin\alpha\tan u$, show that $I=\frac{\alpha}{\sin\alpha}$.
+  Deduce a similar result for $\int_0^{\pi/2}\frac{1}{1+\sin\alpha\cos\varphi}\,d\varphi$.
+stages:
+- goal: Establish the half-angle identities for $\sin\theta$ and $\cos\theta$ in terms of $t=\tan\frac{\theta}{2}$,
+    and show the tangent identity.
+  expected: $\sin\theta=\frac{2t}{1+t^2}$, $\cos\theta=\frac{1-t^2}{1+t^2}$, and $\frac{1+\cos\theta}{\sin\theta}=\frac{1}{t}=\tan\left(\frac{\pi}{2}-\frac{\theta}{2}\right)$.
+  solution: Use $\sin\theta=2\sin\frac{\theta}{2}\cos\frac{\theta}{2}$ and $\cos\theta=\cos^2\frac{\theta}{2}-\sin^2\frac{\theta}{2}$.
+    Divide top and bottom by $\cos^2\frac{\theta}{2}$, using $1+t^2=\sec^2\frac{\theta}{2}$, to get the
+    two formulae. Then $1+\cos\theta=\frac{2}{1+t^2}$, so $\frac{1+\cos\theta}{\sin\theta}=\frac{2/(1+t^2)}{2t/(1+t^2)}=\frac{1}{t}=\cot\frac{\theta}{2}=\tan\left(\frac{\pi}{2}-\frac{\theta}{2}\right)$.
+  common_errors:
+  - Using $\cos\theta=2\cos^2\frac{\theta}{2}-1$ and then mis-simplifying into the $t$-form.
+  - Forgetting that $\frac{1}{t}=\cot\frac{\theta}{2}$ and that $\tan(\frac{\pi}{2}-x)=\cot x$.
+  hints:
+    rephrase: Express everything in terms of $\sin\frac{\theta}{2}$ and $\cos\frac{\theta}{2}$, then divide
+      through by $\cos^2\frac{\theta}{2}$.
+    smaller_case: Check the identities at $\theta=\frac{\pi}{2}$, where $t=1$.
+    key_idea: Use $1+t^2=\sec^2\frac{\theta}{2}$ to convert the half-angle expressions.
+  check: null
+- goal: Use $t=\tan\frac{\theta}{2}$ to show that $I=\int_0^1\frac{2}{(t+\cos\alpha)^2+\sin^2\alpha}\,dt$
+    for $0<\alpha<\frac{\pi}{2}$.
+  expected: Using $d\theta=\frac{2\,dt}{1+t^2}$, the limits $t=0$ to $t=1$, and $1+\cos\alpha\sin\theta=\frac{(t+\cos\alpha)^2+\sin^2\alpha}{1+t^2}$,
+    the integrand becomes $\frac{2}{(t+\cos\alpha)^2+\sin^2\alpha}$.
+  solution: With $t=\tan\frac{\theta}{2}$ we have $d\theta=\frac{2\,dt}{1+t^2}$, and $\theta=0,\frac{\pi}{2}$
+    correspond to $t=0,1$. Also $1+\cos\alpha\sin\theta=\frac{1+t^2+2t\cos\alpha}{1+t^2}=\frac{(t+\cos\alpha)^2+\sin^2\alpha}{1+t^2}$,
+    since $t^2+2t\cos\alpha+1=(t+\cos\alpha)^2+1-\cos^2\alpha$. So $\frac{1}{1+\cos\alpha\sin\theta}\,d\theta=\frac{1+t^2}{(t+\cos\alpha)^2+\sin^2\alpha}\cdot\frac{2\,dt}{1+t^2}=\frac{2\,dt}{(t+\cos\alpha)^2+\sin^2\alpha}$.
+  common_errors:
+  - Forgetting the factor 2 in $d\theta=\frac{2\,dt}{1+t^2}$.
+  - Forgetting to change the limits of integration.
+  - Mis-completing the square, giving $\sin\alpha$ where $\sin^2\alpha$ belongs.
+  hints:
+    rephrase: Write $d\theta$ in terms of $dt$, then write the denominator over $1+t^2$.
+    smaller_case: Take $\alpha=\frac{\pi}{2}$ and check that the integrand becomes $\frac{2}{t^2+1}$ after
+      substitution.
+    key_idea: Put the whole denominator $1+\cos\alpha\sin\theta$ over $1+t^2$ and then complete the square
+      in $t$.
+  check: null
+- goal: Use $t+\cos\alpha=\sin\alpha\tan u$ to show that $I=\frac{\alpha}{\sin\alpha}$.
+  expected: $I=\frac{\alpha}{\sin\alpha}$, where $u$ runs from $\frac{\pi}{2}-\alpha$ to $\frac{\pi}{2}-\frac{\alpha}{2}$
+    and the integrand becomes $\frac{2}{\sin\alpha}$.
+  solution: Let $t+\cos\alpha=\sin\alpha\tan u$, so $dt=\sin\alpha\sec^2u\,du$, and $(t+\cos\alpha)^2+\sin^2\alpha=\sin^2\alpha\sec^2u$.
+    The integrand becomes $\frac{2\sin\alpha\sec^2u}{\sin^2\alpha\sec^2u}\,du=\frac{2}{\sin\alpha}\,du$.
+    At $t=0$, $\tan u=\cot\alpha$, so $u=\frac{\pi}{2}-\alpha$. At $t=1$, $\tan u=\frac{1+\cos\alpha}{\sin\alpha}=\cot\frac{\alpha}{2}$,
+    so $u=\frac{\pi}{2}-\frac{\alpha}{2}$. Both lie in $(0,\frac{\pi}{2})$. So $I=\frac{2}{\sin\alpha}\left[\left(\frac{\pi}{2}-\frac{\alpha}{2}\right)-\left(\frac{\pi}{2}-\alpha\right)\right]=\frac{\alpha}{\sin\alpha}$.
+  common_errors:
+  - Getting the limits for $u$ wrong, often by using $\tan u=\cos\alpha$ instead of $\cot\alpha$ at $t=0$.
+  - Simplifying $\frac{1+\cos\alpha}{\sin\alpha}$ incorrectly; it equals $\cot\frac{\alpha}{2}$.
+  - Dropping the $\frac{1}{\sin\alpha}$ factor when collecting terms.
+  hints:
+    rephrase: Work out the value of $\tan u$ at each endpoint, then find $u$ in the interval $(0,\frac{\pi}{2})$.
+    smaller_case: Take $\alpha=\frac{\pi}{3}$ and find the value of $t+\cos\alpha$ at $t=0$ and $t=1$.
+    key_idea: After substitution, the denominator cancels against $dt$, so the integrand is a constant
+      multiple of $du$.
+  check: simplify(2/sin(a)*((pi/2 - a/2) - (pi/2 - a)) - a/sin(a))
+  check_ok: true
+- goal: Deduce the value of $\int_0^{\pi/2}\frac{1}{1+\sin\alpha\cos\varphi}\,d\varphi$ for $0<\alpha<\frac{\pi}{2}$.
+  expected: $\int_0^{\pi/2}\frac{1}{1+\sin\alpha\cos\varphi}\,d\varphi=\frac{\frac{\pi}{2}-\alpha}{\cos\alpha}$.
+  solution: Put $\varphi=\frac{\pi}{2}-\theta$, so $\cos\varphi=\sin\theta$. The integral becomes $\int_0^{\pi/2}\frac{d\theta}{1+\sin\alpha\sin\theta}$.
+    Let $\beta=\frac{\pi}{2}-\alpha\in(0,\frac{\pi}{2})$, so $\sin\alpha=\cos\beta$. This is the integral
+    $I$ with $\alpha$ replaced by $\beta$, which equals $\frac{\beta}{\sin\beta}=\frac{\pi/2-\alpha}{\cos\alpha}$.
+  common_errors:
+  - Forgetting to change $\cos\varphi$ to $\sin\theta$ with the substitution.
+  - Replacing $\sin\alpha$ by $\cos\alpha$ in the answer without substituting $\beta=\frac{\pi}{2}-\alpha$
+    in the denominator.
+  - Writing the answer as $\frac{\pi/2+\alpha}{\cos\alpha}$ by sign error in $\beta$.
+  hints:
+    rephrase: Find a substitution that turns $\cos\varphi$ into $\sin\theta$, then identify $\sin\alpha$
+      as a cosine.
+    smaller_case: Check the final formula at $\alpha\to0$, where the integral is $\int_0^{\pi/2}1\,d\varphi$.
+    key_idea: Write $\sin\alpha=\cos\beta$ for a suitable $\beta$ in $(0,\frac{\pi}{2})$ and reuse the
+      earlier result.
+  check: abs(Integral(1/(1+sin(Rational(1,2))*cos(f)), (f, 0, pi/2)).evalf(30) - ((pi/2 - Rational(1,2))/cos(Rational(1,2))).evalf(30))
+    < 1e-12
+  check_ok: null
+extensions:
+  '3':
+  - Using the result with $\sin\alpha=\frac{1}{2}$, evaluate $\int_0^{\pi/2}\frac{1}{1+\frac{1}{2}\cos\varphi}\,d\varphi$.
+  '4':
+  - Find the limit as $\alpha\to\frac{\pi}{2}^-$ of $\int_0^{\pi/2}\frac{1}{1+\sin\alpha\cos\varphi}\,d\varphi$,
+    and compare it with the integral evaluated directly at $\alpha=\frac{\pi}{2}$.
+  '5':
+  - For $0<a<1$, show that $\int_0^{\pi/2}\frac{d\theta}{1+a\sin\theta}=\frac{\arccos a}{\sqrt{1-a^2}}$.
+spoken_vocab:
+- integral from zero to pi over two
+- one over one plus cos alpha sine theta
+- t equals tan theta over two
+- sine theta equals two t over one plus t squared
+- cos theta equals one minus t squared over one plus t squared
+- tan u
+- pi over two minus alpha
+- half angle
+- substitution
+- alpha over sine alpha
+- completing the square
+- Leibniz
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#14
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 4
+  minutes: 18
+  flags: []
+  tagline: Half-angle substitution gives α/sinα, then a symmetry-based variant.
+  priority: 82
+  rank: 188
+  tier: B
+  category: siklos
+  d10: 5.5
+  real: 3.5
+  by: haiku
+tags:
+- integration
+- trigonometry

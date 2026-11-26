@@ -1,0 +1,70 @@
+id: fibonacci-ratio-limit
+title: Limit of consecutive Fibonacci ratios
+topics:
+- sequences
+- recurrences
+- limits
+- quadratics
+warmup: true
+answer_source: generated
+statement: If the ratio of consecutive Fibonacci numbers approaches a limit what must this limit be?
+stages:
+- goal: Name the limit $L=\lim_{n\to\infty} F_{n+1}/F_n$ and find the equation it must satisfy.
+  expected: $L$ satisfies $L^2-L-1=0$, so $L=\frac{1+\sqrt{5}}{2}$ (the positive root).
+  solution: Let $F_{n+1}/F_n \to L$. Divide $F_{n+1}=F_n+F_{n-1}$ by $F_n$ to get $F_{n+1}/F_n = 1 + F_{n-1}/F_n$.
+    As $n\to\infty$, $F_{n-1}/F_n \to 1/L$, so $L = 1+1/L$, i.e. $L^2-L-1=0$. The Fibonacci numbers are
+    positive, so $L>0$ and $L=\frac{1+\sqrt{5}}{2}\approx 1.618$.
+  common_errors:
+  - Choosing the negative root $\frac{1-\sqrt{5}}{2}$, which is impossible because all Fibonacci numbers
+    are positive.
+  - Guessing a simple value such as 1 or 2 without deriving the equation.
+  - Forgetting that $F_{n-1}/F_n$ tends to $1/L$, not to $L$.
+  hints:
+    rephrase: Call the limit $L$ and write the recurrence in a form that involves only ratios of consecutive
+      terms.
+    smaller_case: Compute a few ratios such as $F_3/F_2$, $F_4/F_3$, $F_5/F_4$ from $F_1=F_2=1$ and see
+      what they seem to approach.
+    key_idea: Divide the recurrence $F_{n+1}=F_n+F_{n-1}$ by $F_n$, then pass to the limit and solve the
+      resulting quadratic.
+  check: ((1+sqrt(5))/2)**2 - (1+sqrt(5))/2 - 1
+  check_ok: true
+extensions:
+  '3':
+  - Find $\lim_{n\to\infty} F_{n+2}/F_n$ using the same method.
+  '4':
+  - Derive Binet's formula for $F_n$ from the characteristic equation of the recurrence.
+  '5':
+  - Explain why the ratios $F_{n+1}/F_n$ alternate around the limit but still converge, and prove it.
+spoken_vocab:
+- Fibonacci
+- F sub n
+- consecutive
+- ratio
+- limit
+- L
+- L squared minus L minus one equals zero
+- golden ratio
+- one plus root five over two
+- positive root
+- recurrence
+- divide through
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 4
+  difficulty: 2
+  parts: 1
+  minutes: 4
+  flags:
+  - trivial
+  tagline: One-line limit trick; good prompt to probe whether the limit exists.
+  priority: 33
+  rank: 617
+  tier: D
+  category: tbo
+  d10: 4.3
+  real: 5.5
+  by: deepseek-v4.1-flash-free
+tags:
+- sequences_and_series
+- limits_and_approximation

@@ -1,0 +1,153 @@
+id: sketch-sin-x-plus-cos-2x-symmetries
+title: Sketch y = sin x + cos 2x and identify its symmetries
+topics:
+- trigonometric functions
+- curve sketching
+- symmetry
+- periodicity
+- stationary points
+warmup: false
+answer_source: generated
+statement: 'Sketch the following curve and identify all the symmetries, if any: $y = \sin(x) + \cos(2x)$.'
+stages:
+- goal: Find the period of the function and decide whether it is even, odd or neither.
+  expected: Fundamental period $2\pi$. Neither even nor odd.
+  solution: '$\sin x$ has period $2\pi$ and $\cos 2x$ has period $\pi$, so the sum repeats every $2\pi$.
+    Since $\cos 2x$ has period $\pi$, the smallest period of the sum is determined by $\sin x$, which
+    is $2\pi$ (a shift by $\pi$ changes $\sin x$ to $-\sin x$, so $\pi$ is not a period). Parity: $f(-x)=-\sin
+    x+\cos 2x$. This is not equal to $f(x)$ (fails e.g. at $x=\pi/2$: $f(-\pi/2)=-2$, $f(\pi/2)=0$) and
+    not equal to $-f(x)$ (fails at $x=0$: $f(0)=1\neq -1$). So neither even nor odd, i.e. no symmetry
+    about the y-axis or the origin.'
+  common_errors:
+  - Saying the period is $\pi$ because of the $\cos 2x$ term
+  - Claiming the function is even because $\cos 2x$ is even
+  - Claiming it is odd because $\sin x$ is odd
+  - Testing parity at one point only
+  hints:
+    rephrase: What is the smallest positive shift $T$ for which $f(x+T)=f(x)$ for every $x$, and what
+      happens when you replace $x$ by $-x$?
+    smaller_case: 'Look at each term on its own first: what are the period and parity of $\sin x$, and
+      of $\cos 2x$? Then test a single shift of $\pi$ on the whole sum.'
+    key_idea: A sum of periodic functions repeats when all terms repeat together. To disprove a symmetry,
+      one counterexample value is enough.
+  check: simplify(sin(x+2*pi)+cos(2*(x+2*pi))-(sin(x)+cos(2*x)))
+  check_ok: true
+- goal: Find the vertical lines of reflection symmetry.
+  expected: Symmetric about $x=\pi/2+k\pi$ for every integer $k$.
+  solution: Compute $f(\pi-x)=\sin(\pi-x)+\cos(2\pi-2x)=\sin x+\cos 2x=f(x)$. So the graph is symmetric
+    in the line $x=\pi/2$. Combined with period $2\pi$, reflecting about $x=\pi/2$ then translating by
+    $2\pi k$ gives $f(\pi+2k\pi-x)=f(x)$, which is symmetry in $x=\pi/2+k\pi$. Equivalently, with $x=\pi/2+t$,
+    $f=\cos t-\cos 2t$, which is even in $t$. The lines are $x=\pi/2+k\pi$, e.g. $x=\pi/2,\ 3\pi/2,\ -\pi/2$.
+  common_errors:
+  - Finding only $x=\pi/2$ and forgetting the repeats from periodicity
+  - Writing the lines as $x=\pi/2+2k\pi$ and missing $x=3\pi/2$
+  - Guessing the line from the graph without verifying algebraically
+  hints:
+    rephrase: A reflection in the line $x=a$ means $f(2a-x)=f(x)$. Which value of $a$ makes both terms
+      behave nicely?
+    smaller_case: Where is the graph of $\sin x$ alone symmetric? Then check whether $\cos 2x$ is symmetric
+      about the same line.
+    key_idea: Use the identities for $\sin(\pi-x)$ and for $\cos$ of an angle reduced by $2\pi$, then
+      use the period to get all the other lines.
+  check: simplify(sin(pi-x)+cos(2*(pi-x))-(sin(x)+cos(2*x)))
+  check_ok: true
+- goal: Decide whether there is any point (rotational) symmetry.
+  expected: No centre of rotational symmetry.
+  solution: 'A centre $(a,b)$ requires $f(2a-x)+f(x)=2b$ for all $x$. The $\cos 2x$ parts give $\cos 2x+\cos(4a-2x)=2\cos(2a)\cos(2x-2a)$,
+    which is constant only if $\cos 2a=0$. The $\sin$ parts give $\sin x+\sin(2a-x)=2\sin a\cos(x-a)$,
+    which is constant only if $\sin a=0$. These cannot both hold, since $\cos 2a=0$ forces $\sin^2 a=1/2$.
+    Hence no point symmetry. This agrees with the picture: the graph has a line of symmetry through each
+    of its extremes, and it is not a graph that looks the same upside down.'
+  common_errors:
+  - Assuming the origin is the only possible centre and stopping after showing it is not odd
+  - Assuming point symmetry because the graph looks wavy
+  - Forgetting that a centre of symmetry could be at any $(a,b)$
+  hints:
+    rephrase: What condition must $f(x)$ and $f(2a-x)$ satisfy together for the graph to map to itself
+      under a half-turn about $(a,b)$?
+    smaller_case: Take the two terms separately. For what centres $a$ does each term alone satisfy the
+      condition with a constant sum?
+    key_idea: Use sum-to-product on each harmonic and see whether the same $a$ can make both sums constant.
+  check: simplify(cos(2*x)+cos(4*a-2*x)-2*cos(2*a)*cos(2*x-2*a))
+  check_ok: true
+- goal: Find the intercepts and stationary points needed for the sketch.
+  expected: Zeros at $x=\pi/2$, $7\pi/6$, $11\pi/6$ in $[0,2\pi]$; $y$-intercept 1; maxima $9/8$ at $\sin
+    x=1/4$; local minimum $0$ at $x=\pi/2$; global minimum $-2$ at $x=3\pi/2$.
+  solution: 'Use $\cos 2x=1-2\sin^2 x$, so $f=-2s^2+s+1$ with $s=\sin x$. Zeros: $2s^2-s-1=0$, so $s=1$
+    or $s=-1/2$, giving $x=\pi/2,\ 7\pi/6,\ 11\pi/6$ on $[0,2\pi]$. Also $f(0)=1$. Derivative: $f''=\cos
+    x-2\sin 2x=\cos x(1-4\sin x)$. So $\cos x=0$ ($x=\pi/2,3\pi/2$) or $\sin x=1/4$. At $\sin x=1/4$:
+    $f=1/4+1-1/8=9/8$, a maximum, at $x=\arcsin(1/4)\approx0.253$ and $x=\pi-\arcsin(1/4)\approx2.889$.
+    At $x=\pi/2$, $f=0$, a local minimum between the two maxima. At $x=3\pi/2$, $f=-2$, the global minimum.
+    Sketch: start at $1$, rise to $9/8$, dip to touch $0$ at $\pi/2$ (the line of symmetry), rise again
+    to $9/8$, fall through $1$ at $x=\pi$, cross zero at $7\pi/6$, down to $-2$ at $3\pi/2$, back up through
+    zero at $11\pi/6$ to $1$ at $2\pi$. Mark the lines of symmetry $x=\pi/2$ and $x=3\pi/2$ and repeat
+    with period $2\pi$.'
+  common_errors:
+  - Differentiating incorrectly, e.g. $f'=\cos x-2\sin x$
+  - Missing the solutions from $\sin x=1/4$ and only using $\cos x=0$
+  - Saying $x=\pi/2$ is a maximum rather than a local minimum touching the axis
+  - Not marking $f(\pi)=1$ and $f(2\pi)=1$ as the same height as the $y$-intercept
+  - Only finding one root for $\sin x=-1/2$
+  hints:
+    rephrase: Which standard identity lets you write the whole function in terms of $\sin x$ only, so
+      that finding zeros and turning points becomes a quadratic problem?
+    smaller_case: Try plugging in the easy values $x=0,\pi/2,\pi,3\pi/2,2\pi$ first and plot those five
+      points before refining.
+    key_idea: Factorise the derivative into a product, then classify each stationary point using the symmetry
+      already found.
+  check: simplify(diff(sin(x)+cos(2*x),x)-cos(x)*(1-4*sin(x)))
+  check_ok: true
+extensions:
+  '3':
+  - Find the range of $f(x)=\sin x+\cos 2x$ and justify it.
+  - Solve $\sin x+\cos 2x=1$ for $x\in[0,2\pi]$.
+  '4':
+  - Determine all lines of symmetry of $y=\sin x+\cos 3x$ and compare with the given curve.
+  - Compute $\int_0^{2\pi}(\sin x+\cos 2x)^2\,dx$ using the symmetries and orthogonality.
+  '5':
+  - For $y=\sin(x)+\cos(nx)$ with integer $n$, characterise exactly which $n$ give a line of symmetry
+    and which give a centre of symmetry, with proof.
+  - For $y=\sin x+\cos(\alpha x)$ with $\alpha$ irrational, show the function is not periodic and discuss
+    which symmetries survive.
+spoken_vocab:
+- y equals sine x plus cosine two x
+- sin x
+- cos 2x
+- pi over two
+- three pi over two
+- period two pi
+- even function
+- odd function
+- line of symmetry
+- reflection
+- rotational symmetry
+- point of symmetry
+- stationary point
+- local maximum
+- local minimum
+- global minimum
+- double angle formula
+- cos 2x equals one minus two sine squared x
+- arcsine of one quarter
+- nine eighths
+- seven pi over six
+- eleven pi over six
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 4
+  minutes: 12
+  flags:
+  - needs_diagram
+  tagline: Double-angle rewrite reveals hidden reflection symmetry; neither even nor odd.
+  priority: 74
+  rank: 285
+  tier: B
+  category: other
+  d10: 4.5
+  real: 5.0
+  by: haiku
+tags:
+- curve_sketching
+- trigonometry

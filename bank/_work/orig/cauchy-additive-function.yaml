@@ -1,0 +1,105 @@
+id: cauchy-additive-function
+title: 'Cauchy''s functional equation: rational and monotone real solutions'
+topics:
+- functional equations
+- rationals
+- reals
+- monotonicity
+- limits
+warmup: false
+answer_source: pdf
+statement: Let $f:\mathbb{Q}\to\mathbb{Q}$ satisfy $f(x+y)=f(x)+f(y)$ for all rational $x,y$. (i) Show
+  that $f(0)=0$ and $f(-x)=-f(x)$. (ii) Show that $f(nx)=nf(x)$ for every integer $n$. (iii) Deduce that
+  $f(x)=cx$ for all rational $x$, where $c=f(1)$. (iv) Now let $g:\mathbb{R}\to\mathbb{R}$ satisfy $g(x+y)=g(x)+g(y)$
+  for all real $x,y$, and suppose also that $g$ is increasing. Show that $g(x)=cx$ for all real $x$.
+stages:
+- goal: Show $f(0)=0$ and $f(-x)=-f(x)$.
+  expected: $f(0)=0$ and $f(-x)=-f(x)$.
+  solution: Setting $x=y=0$ gives $f(0)=2f(0)$, so $f(0)=0$. Setting $y=-x$ gives $f(0)=f(x)+f(-x)=0$,
+    so $f(-x)=-f(x)$.
+  common_errors:
+  - Assuming $f(0)$ is arbitrary
+  - Using $y=-x$ before establishing $f(0)=0$
+  hints:
+    rephrase: Put both variables equal to zero first, then choose the second variable as the negative
+      of the first.
+    smaller_case: Apply the equation with $x=y=0$ and see what it says about $f(0)$.
+    key_idea: Use the equation at the special values $0$ and $-x$.
+  check: solve(Eq(F0, 2*F0), F0)[0]
+  check_ok: true
+- goal: Show $f(nx)=nf(x)$ for every integer $n$.
+  expected: $f(nx)=nf(x)$ for all integers $n$.
+  solution: 'For $n\geq 0$, induct: $f(0\cdot x)=0=0\cdot f(x)$, and $f((n+1)x)=f(nx)+f(x)=(n+1)f(x)$.
+    For negative $n$, use $f(-x)=-f(x)$ from (i).'
+  common_errors:
+  - Forgetting the negative integer case
+  - Not stating the base case
+  - Confusing $f(nx)$ with $nf(x)$ when $n$ is not an integer
+  hints:
+    rephrase: Prove the claim for nonnegative integers by induction, then extend to negative ones.
+    smaller_case: Check the claim for $n=2$ directly from the functional equation.
+    key_idea: Induction on $n$, with the sign rule from (i) for negative values.
+  check: simplify(((n+1)*Fx) - (n*Fx + Fx))
+  check_ok: true
+- goal: Deduce $f(x)=cx$ for all rational $x$ with $c=f(1)$.
+  expected: $f(x)=cx$ for all rational $x$, where $c=f(1)$.
+  solution: Let $p$ be an integer and $q>0$ an integer. Then $qf(p/q)=f(q\cdot p/q)=f(p)=pf(1)=pc$, so
+    $f(p/q)=\frac{p}{q}c$.
+  common_errors:
+  - Dividing by $q$ without noting $q\neq 0$
+  - Writing $f(p)$ as $f(p)$ without using (ii)
+  - Forgetting that $c$ is determined by $f(1)$
+  hints:
+    rephrase: Multiply $f(p/q)$ by $q$ and use the integer rule.
+    smaller_case: Find $f(1/2)$ by writing $2\cdot(1/2)=1$.
+    key_idea: Use $f(nx)=nf(x)$ with $n=q$ and $x=p/q$.
+  check: simplify(q*(p/q)*c - p*c)
+  check_ok: true
+- goal: Show $g(x)=cx$ for all real $x$ when $g$ is additive and increasing.
+  expected: $g(x)=cx$ for all real $x$, where $c=g(1)$, and $c\geq 0$.
+  solution: The argument of (i)-(iii) gives $g(r)=cr$ for rational $r$. For real $x$, choose rationals
+    $r_n\leq x\leq s_n$ with $r_n\to x$ and $s_n\to x$. Since $g$ is increasing, $cr_n\leq g(x)\leq cs_n$.
+    Letting $n\to\infty$ gives $g(x)=cx$.
+  common_errors:
+  - Forgetting to use monotonicity for the sandwich
+  - Not justifying that $c\geq 0$ for the inequalities to point the right way
+  - Choosing rationals that do not converge to $x$
+  hints:
+    rephrase: Trap the real number $x$ between two rationals that approach it from both sides.
+    smaller_case: Trap $\sqrt2$ between rationals with denominator $10^n$ and see how $g$ behaves on them.
+    key_idea: Monotonicity turns bounds on $x$ into bounds on $g(x)$, and the rational values fix those
+      bounds.
+  check: limit(c*(x - 1/n), n, oo) - c*x
+  check_ok: true
+extensions:
+  '3':
+  - Show that an additive $g:\mathbb{R}\to\mathbb{R}$ that is bounded above on some interval $[0,\delta]$
+    is linear.
+  '4':
+  - Show that an additive $g:\mathbb{R}\to\mathbb{R}$ that is continuous at $0$ is linear.
+  '5':
+  - Show that an additive $g:\mathbb{R}\to\mathbb{R}$ with $g(x)\geq 0$ for all $x\geq 0$ is linear.
+spoken_vocab:
+- f of x plus y equals f of x plus f of y
+- Cauchy functional equation
+- rationals
+- reals
+- increasing
+- f of zero
+- c equals f of one
+- sandwich
+- limit
+- integer
+source: jaymin/Jaymin Interview (1).pdf#p17
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 4
+  minutes: 25
+  flags: []
+  tagline: Rational-to-real progression with monotonicity; builds a complete rigorous argument.
+  priority: 107
+  rank: 37
+  tier: A
+  category: jaymin

@@ -1,0 +1,118 @@
+id: sinc-and-shifted-sinc-sketch
+title: Sketch sin x over x and sin x over (x minus 1)
+topics:
+- limits
+- removable discontinuity
+- asymptotes
+- curve sketching
+warmup: false
+answer_source: generated
+statement: Sketch $y=\dfrac{\sin(x)}{x}$ and $y=\dfrac{\sin(x)}{x-1}$.
+stages:
+- goal: Find what happens to $y=\dfrac{\sin x}{x}$ at $x=0$.
+  expected: The expression is undefined at $x=0$ but tends to $1$ as $x\to0$, so there is a removable
+    discontinuity (a hole) at $(0,1)$. The function is even.
+  solution: $\sin x/x$ is $0/0$ at $x=0$. By the standard limit $\lim_{x\to0}\sin x/x=1$, so defining
+    $y(0)=1$ makes it continuous there. $\sin x$ and $x$ are both odd, so the quotient is even.
+  common_errors:
+  - Setting y(0)=0 because sin 0 = 0
+  - Calling x=0 a vertical asymptote
+  - Ignoring that the function is undefined at x=0
+  hints:
+    rephrase: What value does the fraction approach when x gets very close to 0 but never equals 0?
+    smaller_case: Evaluate sin(x)/x in radians at x = 0.1, 0.01 and 0.001 and watch the trend.
+    key_idea: Compare how fast the numerator and the denominator each shrink to zero.
+  check: limit(sin(x)/x, x, 0) - 1
+  check_ok: true
+- goal: Describe the behaviour of $y=\dfrac{\sin x}{x}$ for large $|x|$ and list its zeros.
+  expected: $y\to0$ as $|x|\to\infty$, so $y=0$ is a horizontal asymptote. The curve oscillates about
+    the x-axis inside the envelope $y=\pm1/x$. Zeros are at $x=n\pi$ for nonzero integers $n$.
+  solution: Since $|\sin x|\le1$, we have $|\sin x/x|\le1/|x|\to0$. The curve touches the envelope only
+    near points where $|\sin x|=1$. The zeros are where $\sin x=0$, excluding $x=0$, which is the hole.
+  common_errors:
+  - Claiming the curve approaches the envelope at every point
+  - Including x=0 as a zero of the function
+  - Saying the function tends to 1 at infinity
+  hints:
+    rephrase: What happens to the size of sin x divided by x when x is very large?
+    smaller_case: Bound |sin x| by 1 and see what the whole fraction is bounded by.
+    key_idea: A bounded numerator divided by a denominator that keeps growing.
+  check: limit(sin(x)/x, x, oo)
+  check_ok: true
+- goal: For $y=\dfrac{\sin x}{x-1}$, find the zeros, the y-intercept and the behaviour near $x=1$.
+  expected: Zeros at $x=n\pi$ for all integers $n$, including $0$. The y-intercept is $(0,0)$. There is
+    a vertical asymptote at $x=1$ because $\sin 1\ne0$. $y\to+\infty$ as $x\to1^+$ and $y\to-\infty$ as
+    $x\to1^-$.
+  solution: The numerator vanishes at $x=n\pi$, and none of these equals $1$, so no zero cancels. $y(0)=\sin0/(0-1)=0$.
+    Near $x=1$ the numerator is about $\sin1>0$, and the denominator goes to $0$ from above on the right
+    and from below on the left. Hence $+\infty$ from the right and $-\infty$ from the left.
+  common_errors:
+  - Forgetting that x=0 is also a zero
+  - Making x=1 a removable discontinuity
+  - Getting the signs of the infinite limits the wrong way round
+  hints:
+    rephrase: Where is the denominator zero, and is the numerator also zero at that point?
+    smaller_case: Work out the value of sin(1) and the points where sin x is zero.
+    key_idea: Zeros of the numerator give x-intercepts. Zeros of the denominator that are not cancelled
+      give vertical asymptotes.
+  check: limit(sin(x)/(x-1), x, 1, dir='+') == oo
+  check_ok: true
+- goal: Compare the two curves far from the origin and near their special points. State the asymptotes
+    of each.
+  expected: Both have horizontal asymptote $y=0$. The first has a removable hole at $(0,1)$. The second
+    passes through the origin and has a vertical asymptote at $x=1$.
+  solution: As $|x|\to\infty$ both fractions tend to $0$ because the numerator is bounded and the denominator
+    is unbounded. The first function has a removable hole at $x=0$ with value $1$. The second has a vertical
+    asymptote at $x=1$ and the origin as its y-intercept.
+  common_errors:
+  - Giving the second function a horizontal asymptote other than y=0
+  - Confusing the hole at x=0 with an asymptote
+  - Forgetting the asymptote at x=1 for the second function
+  hints:
+    rephrase: Compare the behaviour of both functions far away from the origin and at the points where
+      their denominators vanish.
+    smaller_case: Ask what happens to the fraction when the denominator becomes very large in size.
+    key_idea: A bounded numerator over an unbounded denominator tends to zero.
+  check: limit(sin(x)/(x-1), x, oo)
+  check_ok: true
+extensions:
+  '3':
+  - Sketch $y=\dfrac{\sin x}{x-\pi}$ and identify any removable discontinuity and its value.
+  '4':
+  - Sketch $y=\dfrac{\sin x}{x^2-1}$ and find all its asymptotes.
+  '5':
+  - Prove that $\left|\dfrac{\sin x}{x}\right|\le\dfrac{1}{|x|}$ for all $x\ne0$ and use it to show that
+    the limit as $x\to\infty$ is $0$.
+spoken_vocab:
+- sine of x over x
+- sine of x over x minus one
+- limit
+- removable discontinuity
+- hole
+- vertical asymptote
+- horizontal asymptote
+- pi
+- integer n
+- even function
+- envelope
+- y-intercept
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 4
+  minutes: 15
+  flags:
+  - needs_diagram
+  tagline: Compares two sinc-type curves; the 'asymptotes' request is a good trap.
+  priority: 64
+  rank: 402
+  tier: C
+  category: tbo
+  d10: 3.0
+  real: 4.0
+  by: haiku
+tags:
+- curve_sketching
+- limits_and_approximation

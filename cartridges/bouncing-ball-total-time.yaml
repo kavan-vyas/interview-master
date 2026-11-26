@@ -1,0 +1,102 @@
+id: bouncing-ball-total-time
+title: 'Bouncing ball with halving energy: total time'
+topics:
+- mechanics
+- energy
+- geometric series
+- limits
+warmup: false
+answer_source: generated
+statement: If you drop a ball from height $h$, and it loses half of its energy every time it bounces,
+  how long does it bounce for?
+stages:
+- goal: Find the height reached after the k-th bounce.
+  expected: $h_k=h/2^k$, since energy is proportional to height ($E=mgh$) and energy halves each bounce.
+  solution: Energy at the top of each rebound is $mgh_k$. Halving the energy halves the height, so $h_1=h/2$,
+    $h_2=h/4$, and in general $h_k=h/2^k$.
+  common_errors:
+  - Halving the speed instead of the energy, which gives the wrong height ratio.
+  - Assuming the height is halved at each bounce while ignoring the fact that energy is proportional to
+    height.
+  - Writing $h_k=h/k$.
+  hints:
+    rephrase: What quantity is proportional to energy when there is no air resistance?
+    smaller_case: Work out what height the ball reaches after just the first bounce.
+    key_idea: At the top of a bounce, all the energy is potential energy, $mgh$.
+  check: simplify((h/2**k).subs(k, 3) - h/8)
+  check_ok: true
+- goal: Find the time for one fall or bounce from a given height.
+  expected: A drop from height $H$ takes $\sqrt{2H/g}$, so a full bounce from height $H$ takes $2\sqrt{2H/g}$.
+    For $H=h/2$ the bounce takes $2\sqrt{h/g}$.
+  solution: Using $H=\frac{1}{2}gt^2$ gives $t=\sqrt{2H/g}$. A bounce goes up and comes back down, so
+    it takes twice this time. Substituting $H=h/2$ gives $2\sqrt{2(h/2)/g}=2\sqrt{h/g}$.
+  common_errors:
+  - Forgetting that a bounce has an up and a down part, and counting only one.
+  - Using the wrong formula for falling time, such as $H/g$.
+  - Using the initial height $h$ for every bounce.
+  hints:
+    rephrase: How long does it take an object dropped from rest to fall a distance H?
+    smaller_case: Compute the fall time from h=2 metres with g=10, then double it for a bounce.
+    key_idea: 'Motion under constant gravity from rest: $H=\frac{1}{2}gt^2$, and a bounce is symmetric
+      on the way up and down.'
+  check: simplify(2*sqrt(2*(h/2)/g) - 2*sqrt(h/g))
+  check_ok: true
+- goal: Sum the infinite series of bounce times to get the total time.
+  expected: $T=\sqrt{2h/g}\,(3+2\sqrt{2})=(4+3\sqrt{2})\sqrt{h/g}$, about $8.24\sqrt{h/g}$.
+  solution: 'The first fall takes $\sqrt{2h/g}$. The k-th bounce takes $2\sqrt{2h/2^k/g}=2\sqrt{2h/g}\,(1/\sqrt{2})^k$.
+    Summing over $k\ge1$ with ratio $r=1/\sqrt{2}$ gives $2\sum_{k\ge1}r^k=2\frac{r}{1-r}=2(\sqrt{2}+1)$.
+    Total: $\sqrt{2h/g}\,[1+2(\sqrt{2}+1)]=\sqrt{2h/g}\,(3+2\sqrt{2})$. Multiplying by $\sqrt{2}$ gives
+    $(4+3\sqrt{2})\sqrt{h/g}$.'
+  common_errors:
+  - Summing only the bounce times and forgetting the initial fall.
+  - Using ratio 1/2 instead of $1/\sqrt{2}$ for the time, since time scales with the square root of height.
+  - Using the sum $\sum r^k$ from $k=0$ and double counting the first term.
+  - Concluding the total time is infinite because there are infinitely many bounces.
+  hints:
+    rephrase: Does time scale with height, with the square of height, or with the square root of height?
+    smaller_case: Write the first two bounce times as multiples of the first fall time, then guess the
+      pattern.
+    key_idea: Time for a fall scales with the square root of height, so the time ratio per bounce is a
+      square root of the height ratio. Then use a geometric series.
+  check: simplify(sqrt(2*h/g)*(3+2*sqrt(2)) - (4+3*sqrt(2))*sqrt(h/g))
+  check_ok: true
+extensions:
+  '3':
+  - How many bounces occur in total, and why does a finite total time not contradict an infinite number
+    of bounces?
+  '4':
+  - Suppose the ball keeps a fraction $e$ of its energy per bounce. Show the total time is $\sqrt{2h/g}\,\frac{1+s}{1-s}$
+    with $s=\sqrt{e}$, and check it reproduces the halving case.
+  '5':
+  - Discuss how air resistance or an imperfect bounce would change the model, and which assumption would
+    break the geometric series first.
+spoken_vocab:
+- h
+- g
+- over two to the k
+- root two
+- three plus two root two
+- four plus three root two
+- square root of h over g
+- energy
+- bounce
+- geometric series
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions (anonymous).pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Geometric series over bounces; energy-versus-height ambiguity invites productive discussion.
+  priority: 81
+  rank: 250
+  tier: B
+  category: past-interviews
+  d10: 5.0
+  real: 8.0
+  by: deepseek-v4.1-flash-free
+tags:
+- sequences_and_series
+- mechanics

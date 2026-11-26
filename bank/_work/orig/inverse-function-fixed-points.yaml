@@ -1,0 +1,122 @@
+id: inverse-function-fixed-points
+title: Solving f(x)=f^{-1}(x) for an increasing and a decreasing function
+topics:
+- inverse functions
+- domain and range
+- completing the square
+- proof
+- monotonicity
+- cube roots
+warmup: false
+answer_source: pdf
+statement: Let $f(x)=x^2-2x$ for $x\ge1$. (i) Find $f^{-1}(x)$ and its domain. (ii) Solve $f(x)=f^{-1}(x)$.
+  (iii) Prove that if $f$ is strictly increasing, every solution of $f(x)=f^{-1}(x)$ satisfies $f(x)=x$.
+  (iv) Show that (iii) can fail for decreasing functions, by solving $g(x)=g^{-1}(x)$ for $g(x)=-x^3$.
+stages:
+- goal: Find the inverse of f and its domain.
+  expected: $f^{-1}(x)=1+\sqrt{1+x}$, with domain $x\ge-1$.
+  solution: 'Complete the square: $f(x)=(x-1)^2-1$. Write $y=(x-1)^2-1$. Since $x\ge1$, $x-1=\sqrt{y+1}$,
+    the non-negative root, so $x=1+\sqrt{y+1}$. Swapping the variables gives $f^{-1}(x)=1+\sqrt{1+x}$.
+    The range of $f$ is $[-1,\infty)$, which is the domain of $f^{-1}$, so $x\ge-1$.'
+  common_errors:
+  - Taking the negative square root, which gives x<1 and lies outside the domain of f.
+  - Giving the domain of f^{-1} as x>=1, the domain of f, rather than the range of f.
+  - Sign errors in completing the square.
+  - Forgetting to swap x and y to obtain the inverse.
+  hints:
+    rephrase: Write y=f(x) and solve for x, keeping the restriction x>=1 in mind.
+    smaller_case: What are f(1) and f(2), and what do they tell you about the range of f?
+    key_idea: Complete the square, and remember that the domain of the inverse is the range of the original
+      function.
+  check: simplify(((1+sqrt(1+x))**2 - 2*(1+sqrt(1+x))) - x) == 0
+  check_ok: true
+- goal: Solve f(x)=f^{-1}(x).
+  expected: The only solution is $x=3$, since $f(3)=3=f^{-1}(3)$. The value $x=0$ is rejected because
+    it is outside the domain $x\ge1$.
+  solution: 'By part (iii), any solution satisfies $f(x)=x$, so $x^2-2x=x$, i.e. $x^2-3x=0$, giving $x=0$
+    or $x=3$. Only $x=3$ satisfies $x\ge1$. Check: $f(3)=9-6=3$ and $f^{-1}(3)=1+\sqrt4=3$, so the equation
+    holds.'
+  common_errors:
+  - Keeping x=0 even though it lies outside the domain x>=1.
+  - Squaring the equation x^2-2x=1+sqrt(1+x) and failing to check for extraneous roots.
+  - Solving f(x)=x incorrectly as x^2-2x=-x.
+  hints:
+    rephrase: Use the result you will prove in part (iii) to narrow down where solutions can lie.
+    smaller_case: Does x=2 satisfy f(x)=f^{-1}(x)? Compare f(2) with f^{-1}(2).
+    key_idea: For a strictly increasing f, solutions of f(x)=f^{-1}(x) lie on the line y=x, so solve f(x)=x
+      within the domain.
+  check: '[s for s in solve(x**2-2*x-x, x) if s >= 1] == [3]'
+  check_ok: null
+- goal: Prove that if f is strictly increasing, every solution of f(x)=f^{-1}(x) satisfies f(x)=x.
+  expected: Let $f(x)=f^{-1}(x)=c$. Then $f(c)=x$. If $x<c$, strict monotonicity gives $f(x)<f(c)$, i.e.
+    $c<x$, a contradiction. Similarly $x>c$ is impossible. So $x=c$ and $f(x)=x$.
+  solution: Suppose $f(x)=f^{-1}(x)=c$. Applying $f$ to $f^{-1}(x)=c$ gives $f(c)=x$. So $f(x)=c$ and
+    $f(c)=x$. If $x<c$ then $f(x)<f(c)$ by strict increase, so $c<x$, which contradicts $x<c$. If $x>c$
+    then similarly $c>x$, a contradiction. Hence $x=c$, so $f(x)=c=x$.
+  common_errors:
+  - Assuming f is linear or differentiable, which the statement does not require.
+  - Handling only one of the cases x<c and x>c.
+  - Concluding x=c without deriving a contradiction from monotonicity.
+  - Confusing the roles of f and f^{-1} when applying f to both sides.
+  hints:
+    rephrase: Name the common value c. What does f^{-1}(x)=c tell you about f(c)?
+    smaller_case: Suppose f(x)=5 and f(5)=2 with f increasing. Explain why this is impossible.
+    key_idea: Strict monotonicity turns an inequality between inputs into the same inequality between
+      outputs, which contradicts the relation between x and c.
+  check: null
+- goal: Solve g(x)=g^{-1}(x) for g(x)=-x^3 and show that a solution need not lie on y=x.
+  expected: $g^{-1}(x)=-\sqrt[3]{x}$. The real solutions are $x\in\{-1,0,1\}$. The points $(1,-1)$ and
+    $(-1,1)$ lie off the line $y=x$, so the conclusion of (iii) fails for this decreasing function.
+  solution: To find $g^{-1}$, write $y=-x^3$, so $x=-y^3$ and $y=-\sqrt[3]{x}$. The equation $-x^3=-\sqrt[3]{x}$
+    gives $x^3=\sqrt[3]{x}$, so $x^9=x$, i.e. $x(x^8-1)=0$. The real solutions are $x=0,1,-1$. At $x=1$,
+    $g(1)=-1=g^{-1}(1)$, giving the point $(1,-1)$. At $x=-1$, $g(-1)=1=g^{-1}(-1)$, giving the point
+    $(-1,1)$. Neither lies on $y=x$.
+  common_errors:
+  - Writing $g^{-1}(x)=x^{1/3}$ and losing the sign.
+  - Missing the solutions x=plus or minus 1 by considering only x=0.
+  - Assuming the only solution is x=0 because it is on y=x, and missing that the others are off the line.
+  - Forgetting to check that (1,-1) is not on the line y=x.
+  hints:
+    rephrase: Find the inverse of g first by writing y=-x^3 and solving for x.
+    smaller_case: Check whether g(2)=g^{-1}(2).
+    key_idea: Reduce the equation to a polynomial by eliminating the cube root, then identify the real
+      roots and check each against y=x.
+  check: set([s for s in solve(x**9 - x, x) if s.is_real]) == {-1, 0, 1}
+  check_ok: null
+extensions:
+  '3':
+  - Find the inverse of h(x)=x^2-2x on the domain x<=1 and state its domain.
+  - Check whether the inverse of x^2+1 on x>=0 satisfies the fixed-point property.
+  '4':
+  - Find a strictly decreasing function k for which k(x)=k^{-1}(x) has a solution off the line y=x.
+  - Show that for strictly decreasing f, solutions of f(x)=f^{-1}(x) lie on the curve where f(x)=f^{-1}(x)
+    meets y=x only at isolated points.
+  '5':
+  - Prove that for strictly decreasing f, the solutions of f(x)=f^{-1}(x) are symmetric in the line y=x.
+  - Characterise all functions f such that every solution of f(x)=f^{-1}(x) lies on y=x.
+spoken_vocab:
+- f of x equals x squared minus two x
+- x greater than or equal to one
+- f inverse of x
+- one plus square root of one plus x
+- strictly increasing
+- strictly decreasing
+- g of x equals minus x cubed
+- cube root of x
+- x to the power nine equals x
+- x equals zero or three
+- minus one
+- proof by contradiction
+- fixed point
+source: jaymin/Jaymin Interview (1).pdf#p57
+verified: false
+rating:
+  score: 9
+  difficulty: 3
+  parts: 4
+  minutes: 25
+  flags: []
+  tagline: Inverse, fixed-point proof, and decreasing counterexample; rich, well-scaffolded progression.
+  priority: 130
+  rank: 18
+  tier: S

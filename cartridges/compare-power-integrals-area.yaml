@@ -1,0 +1,98 @@
+id: compare-power-integrals-area
+title: Comparing two integrals of the form (1-x^a)^(1/b) by a reflection-of-area argument
+topics:
+- definite integrals
+- area under a curve
+- change of variable
+- Fubini
+- comparison of integrals
+warmup: false
+answer_source: generated
+statement: Which of the following numbers is bigger and why; $I=\int_0^1(1-x^7)^{\frac{1}{4}}\,dx$ or
+  $J=\int_0^1(1-x^4)^{\frac{1}{7}}\,dx$?
+stages:
+- goal: Show that I equals J by reading both as areas of the same region.
+  expected: I = J, because I = integral from 0 to 1 of (1-y^4)^(1/7) dy after swapping the roles of x
+    and y in the region x^7 + y^4 <= 1.
+  solution: Let R be the region in the unit square where x^7 + y^4 <= 1. For a fixed x in [0,1], the vertical
+    slice of R runs from y=0 to y=(1-x^7)^(1/4), so the area of R equals integral from 0 to 1 of (1-x^7)^(1/4)
+    dx = I. For a fixed y in [0,1], the horizontal slice runs from x=0 to x=(1-y^4)^(1/7), so the area
+    of R also equals integral from 0 to 1 of (1-y^4)^(1/7) dy. Renaming y as x gives J. Both integrands
+    are continuous on [0,1], so Fubini's theorem applies and I = J.
+  common_errors:
+  - Using a slice orientation that does not match the boundary curve, so the two integrals look different.
+  - Concluding I and J are unequal because their integrands look different at first sight.
+  - Mixing up which exponent goes with which variable when inverting the curve.
+  hints:
+    rephrase: Think of y = (1-x^7)^(1/4) as the boundary of a region and ask what its area is when sliced
+      in two directions.
+    smaller_case: 'Test the same idea on the quarter disc x^2 + y^2 <= 1: compute its area by vertical
+      slices and by horizontal slices.'
+    key_idea: The integral of a height function over [0,1] is an area, and the same region can be sliced
+      in the other direction to give a different-looking integral.
+  check: I - J
+  check_ok: false
+- goal: Decide which number is bigger and give the reason.
+  expected: 'Neither is bigger: I = J. Both equal (1/28) times Gamma(1/7) times Gamma(1/4) divided by
+    Gamma(39/28).'
+  solution: By stage 1, I and J are the same area measured in two orientations, so neither is larger.
+    As a check, the Beta function gives I = (1/7) B(1/7, 5/4) and J = (1/4) B(1/4, 8/7). Using Gamma(5/4)
+    = Gamma(1/4)/4 and Gamma(8/7) = Gamma(1/7)/7, both reduce to (1/28) Gamma(1/7) Gamma(1/4) / Gamma(39/28),
+    since 1/7 + 5/4 = 1/4 + 8/7 = 39/28.
+  common_errors:
+  - Claiming I is bigger because (1-x^7) is closer to 1 near x=0 than (1-x^4) is, without comparing the
+    integrals.
+  - Stopping at the area argument without stating the equality clearly.
+  - Making an arithmetic error in the Beta function reduction.
+  hints:
+    rephrase: Ask whether the two integrals are different expressions for the same quantity.
+    smaller_case: Compare the two integrands at x = 0.5 and at x = 0.9 to see whether one looks larger,
+      then ask whether that pointwise comparison decides the integral.
+    key_idea: A pointwise comparison is not enough here; the integrals are areas of one region, so compare
+      them through that region.
+  check: null
+extensions:
+  '3':
+  - Show that the integral from 0 to 1 of (1-x^3)^(1/2) dx equals the integral from 0 to 1 of (1-x^2)^(1/3)
+    dx.
+  - Sketch the region x^7 + y^4 <= 1 and state which quadrant it lies in.
+  '4':
+  - Express the common value of I and J using the Beta function in a simpler form.
+  - Show that for positive a and b, the integral from 0 to 1 of (1-x^a)^(1/b) dx equals the integral from
+    0 to 1 of (1-x^b)^(1/a) dx.
+  '5':
+  - Show that the integral from 0 to 1 of (1-x^p)^q dx equals (1/p) times B(1/p, q+1) for positive p and
+    q, and use it to recover the equality of I and J.
+  - Find a general condition on positive exponents p and q under which the integral from 0 to 1 of (1-x^p)^(1/q)
+    dx is independent of the order of p and q.
+spoken_vocab:
+- integral from zero to one
+- one minus x to the power seven
+- raised to one quarter
+- one minus x to the power four
+- raised to one seventh
+- I equals J
+- area under the curve
+- x to the seven plus y to the four less than or equal to one
+- Beta function
+- Gamma of thirty nine over twenty eight
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 8
+  difficulty: 7
+  parts: 2
+  minutes: 12
+  flags: []
+  tagline: Reflection-of-area swap shows the integrals are equal, not ordered.
+  priority: 85
+  rank: 160
+  tier: B
+  category: tbo
+  d10: 5.5
+  real: 5.5
+  by: deepseek-v4.1-flash-free
+tags:
+- integration
+- geometry
+- algebra_and_functions

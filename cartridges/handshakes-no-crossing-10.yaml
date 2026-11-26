@@ -1,0 +1,98 @@
+id: handshakes-no-crossing-10
+title: 'Handshakes around a round table: no arms cross'
+topics:
+- combinatorics
+- probability
+- Catalan numbers
+- recursion
+warmup: false
+answer_source: pdf
+statement: Ten people sit around a round table. They pair up at random, and each person shakes hands with
+  their partner, all at the same moment. Think of each handshake as a straight line across the table joining
+  the two people. What is the probability that no arms cross?
+stages:
+- goal: Count all ways to pair up the 10 people.
+  expected: 945, since 9*7*5*3*1 = 945.
+  solution: Person 1 has 9 possible partners. The lowest-labelled person still unpaired then has 7 choices,
+    then 5, 3 and 1. The product is 9*7*5*3*1 = 945.
+  common_errors:
+  - Using 10! = 3628800, which counts orderings of people rather than pairings.
+  - Using C(10,2) = 45, which counts a single handshake rather than a full pairing.
+  - Forgetting to multiply the successive choices together.
+  hints:
+    rephrase: Choose the partner of one person at a time, then count the choices for whoever is left.
+    smaller_case: With 4 people, how many ways can they be paired up in total?
+    key_idea: Fix the lowest-labelled unpaired person, count their possible partners, and repeat on the
+      people who remain.
+  check: answer - 945
+  check_ok: false
+- goal: Count the pairings in which no two handshakes cross.
+  expected: 42 (the Catalan number C_5).
+  solution: Let H_n be the number of non-crossing pairings of 2n people, with H_0 = 1. Person 1's partner
+    splits the others into two arcs, each of which must pair within itself, so H_n = sum over k from 0
+    to n-1 of H_k * H_(n-1-k). This gives H_1=1, H_2=2, H_3=5, H_4=14, H_5=42.
+  common_errors:
+  - Using 5! = 120 instead of counting non-crossing pairings.
+  - Forgetting that each arc must contain an even number of people.
+  - Treating rotations of the table as different arrangements.
+  hints:
+    rephrase: Look at who person 1 shakes hands with. What happens to the people on each side of that
+      handshake?
+    smaller_case: Among the 3 pairings of 4 people around a table, how many have no crossing arms?
+    key_idea: Each side of person 1's handshake must pair up among its own people, so the count splits
+      into a sum of products of smaller counts. Define H_n for 2n people with H_0 = 1.
+  check: answer - 42
+  check_ok: false
+- goal: Give the probability that no arms cross.
+  expected: 2/45, from 42/945.
+  solution: 'All pairings are equally likely, so the probability is the number of non-crossing pairings
+    divided by the total: 42/945 = 2/45.'
+  common_errors:
+  - Dividing by 10! instead of by the number of pairings.
+  - Giving 1/42 or 42 as the probability.
+  - Failing to simplify the fraction.
+  hints:
+    rephrase: Divide the favourable count by the total count, both counted over pairings.
+    smaller_case: For 4 people, 2 of the 3 pairings have no crossing. What is that probability?
+    key_idea: Probability is favourable outcomes over total outcomes, and each pairing is equally likely.
+  check: answer - Rational(2,45)
+  check_ok: false
+extensions:
+  '3':
+  - What is the probability that no arms cross for 6 people around the table? (Total pairings 15.)
+  '4':
+  - What is the probability for 8 people? (Total pairings 105, non-crossing pairings 14.)
+  '5':
+  - What is the probability for 12 people? (Non-crossing pairings H_6 = 132 out of 10395 total.)
+spoken_vocab:
+- ten people
+- round table
+- handshake
+- pair up
+- probability
+- no arms cross
+- non-crossing
+- Catalan number
+- two over forty-five
+- forty-two over nine hundred and forty-five
+- nine times seven times five times three times one
+- recursion
+source: jzmaths/JZMaths Interview Questions from the website trial.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 3
+  minutes: 20
+  flags: []
+  tagline: Non-crossing pairings give Catalan numbers, yielding an elegant probability answer.
+  priority: 91
+  rank: 126
+  tier: A
+  category: jzmaths
+  d10: 6.0
+  real: 8.0
+  by: deepseek-v4.1-flash-free
+tags:
+- combinatorics
+- probability

@@ -1,0 +1,118 @@
+id: simultaneous-and-inequality
+title: Simultaneous equations and a linear inequality
+topics:
+- simultaneous equations
+- substitution
+- linear inequalities
+- algebra
+warmup: true
+answer_source: pdf
+statement: '(a) Solve the simultaneous equations $3x + 2y = 16$ and $5x - y = 5$, finding both $x$ and
+  $y$.
+
+
+  (b) Solve the inequality $3(2x - 1) < 4x + 9$.'
+stages:
+- goal: Rearrange one equation to make $y$ the subject.
+  expected: y = 5x - 5
+  solution: From $5x - y = 5$, add $y$ and subtract $5$ to get $y = 5x - 5$.
+  common_errors:
+  - Writing $y = 5x + 5$ (sign error when moving $y$ or $5$)
+  - Writing $y = 5 - 5x$ (swapping terms)
+  - Rearranging the wrong equation, which is not wrong but makes later steps harder
+  hints:
+    rephrase: Which equation has a single $y$ term that is easy to isolate?
+    smaller_case: Make $y$ the subject of $2x - y = 3$.
+    key_idea: Isolate $y$ by moving the other terms to the other side, keeping track of each sign.
+  check: Eq(solve(Eq(5*x - y, 5), y)[0], 5*x - 5)
+  check_ok: true
+- goal: Substitute into the other equation and solve for $x$.
+  expected: x = 2
+  solution: 'Substitute: $3x + 2(5x - 5) = 16$, so $3x + 10x - 10 = 16$, $13x = 26$, $x = 2$.'
+  common_errors:
+  - Forgetting to multiply the $-5$ by $2$
+  - Writing $3x + 10x - 10 = 16$ and then getting $x = 26/3$ or similar
+  - Sign errors when moving $-10$ across the equals sign
+  hints:
+    rephrase: Replace $y$ in the first equation with your expression, then simplify so only $x$ remains.
+    smaller_case: Solve $x + 2(x - 1) = 7$ by the same method.
+    key_idea: Substitution reduces two unknowns to one; expand the brackets carefully before collecting
+      terms.
+  check: Eq(solve(Eq(3*x + 2*(5*x - 5), 16), x)[0], 2)
+  check_ok: true
+- goal: Find $y$.
+  expected: y = 5
+  solution: 'Substitute $x = 2$ into $y = 5x - 5$: $y = 10 - 5 = 5$. Check: $3(2) + 2(5) = 16$ and $5(2)
+    - 5 = 5$.'
+  common_errors:
+  - Substituting into the wrong equation and getting an inconsistent value
+  - Arithmetic slip, such as $5(2) - 5 = 0$
+  - Not checking the answer in the original equations
+  hints:
+    rephrase: Now that you know $x$, which equation gives $y$ most easily?
+    smaller_case: If $x = 1$ and $y = 5x - 5$, what is $y$?
+    key_idea: Put the known value back into a simple expression for the other unknown, then check in both
+      original equations.
+  check: Eq(5*Integer(2) - 5, 5)
+  check_ok: true
+- goal: Solve the inequality $3(2x - 1) < 4x + 9$.
+  expected: x < 6
+  solution: 'Expand: $6x - 3 < 4x + 9$. Subtract $4x$: $2x - 3 < 9$. Add $3$: $2x < 12$. Divide by $2$:
+    $x < 6$.'
+  common_errors:
+  - Expanding $3(2x-1)$ as $6x - 1$
+  - Writing $x > 6$ or $x \le 6$ instead of $x < 6$
+  - Sign errors when moving $4x$ across the inequality
+  hints:
+    rephrase: Expand the brackets first, then collect the $x$ terms on one side and the numbers on the
+      other.
+    smaller_case: Solve $2x + 1 < 7$ using the same steps.
+    key_idea: Treat it like an equation; the inequality direction stays the same unless you multiply or
+      divide by a negative number.
+  check: reduce_inequalities(3*(2*x - 1) < 4*x + 9, x) == (x < 6)
+  check_ok: false
+extensions:
+  '3':
+  - Solve $4x - 3y = 2$ and $x + 2y = 9$ simultaneously.
+  - Solve $2(x + 3) \ge 5x - 3$ and show the solution on a number line.
+  '4':
+  - Solve $x^2 + y^2 = 25$ and $y = x + 1$ simultaneously.
+  - Find all integers $n$ satisfying $-3 < 2n + 1 \le 9$.
+  '5':
+  - Solve the simultaneous equations $ax + by = c$ and $dx + ey = f$ in general, stating when a unique
+    solution exists.
+  - Find the set of values of $k$ for which $x^2 - kx + 4 = 0$ has real roots.
+spoken_vocab:
+- three x plus two y equals sixteen
+- five x minus y equals five
+- x
+- y
+- simultaneous equations
+- substitution
+- bracket
+- less than
+- six
+- inequality
+- number line
+- expand
+- collect terms
+source: kclms/kclms-specimen-questions-3.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 2
+  minutes: 4
+  flags:
+  - trivial
+  tagline: Routine linear simultaneous equations and inequality; pure procedure with no discussion scope.
+  priority: 24
+  rank: 651
+  tier: D
+  category: kclms
+  d10: 1.0
+  real: 2.0
+  by: haiku
+tags:
+- algebra_and_functions
+- inequalities

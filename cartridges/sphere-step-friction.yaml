@@ -1,0 +1,131 @@
+id: sphere-step-friction
+title: Sphere drawn onto a step with a horizontal force at the top
+topics:
+- statics
+- moments
+- limiting friction
+- trigonometry
+warmup: false
+answer_source: pdf
+statement: A uniform solid sphere of radius $a$ and mass $m$ is drawn very slowly and without slipping
+  from horizontal ground onto a step of height $a/2$. A horizontal force of magnitude $F$ is always applied
+  to the highest point of the sphere and is always perpendicular to the vertical face of the step. Find
+  the maximum value of $F$ during the motion, and prove that the coefficient of friction between the sphere
+  and the edge of the step must exceed $1/\sqrt{3}$.
+stages:
+- goal: Express F in terms of theta, where theta is the angle between the radius to the edge contact point
+    and the downward vertical.
+  expected: $F = \dfrac{mg\sin\theta}{1+\cos\theta} = mg\tan\dfrac{\theta}{2}$.
+  solution: Take moments about the edge contact point C. The reaction and friction at C pass through C
+    and have no moment. The centre O lies a distance $a\sin\theta$ horizontally from C, so the weight
+    has moment $mga\sin\theta$. The top point of the sphere lies $a+a\cos\theta$ above C, because O is
+    $a\cos\theta$ above C. So F has moment $Fa(1+\cos\theta)$. Balancing gives $F=\dfrac{mg\sin\theta}{1+\cos\theta}=mg\tan\dfrac{\theta}{2}$.
+  common_errors:
+  - Taking moments about the centre, which brings in the unknown friction and hides the reaction.
+  - Using the lever arm $a\sin\theta$ for F instead of the height of the top point above C.
+  - Writing $\tan\theta$ in place of $\tan(\theta/2)$.
+  hints:
+    rephrase: Choose a point where two of the unknown contact forces have zero moment.
+    smaller_case: What is the equilibrium when theta is zero, so that the edge is directly below the centre?
+    key_idea: Taking moments about the contact point with the edge removes the reaction and friction from
+      the equation.
+  check: m*g*sin(t)/(1+cos(t)) - m*g*tan(t/2)
+  check_ok: null
+- goal: Find the maximum value of F during the motion.
+  expected: $F_{\max} = mg/\sqrt3$, reached when $\cos\theta = 1/2$, that is when the sphere is just touching
+    the ground.
+  solution: Since $F = mg\tan(\theta/2)$ increases with $\theta$, the maximum occurs at the largest $\theta$.
+    As the sphere rises, the centre height $y_O$ increases and $\cos\theta = (y_O - a/2)/a$ increases,
+    so $\theta$ decreases. The largest $\theta$ is at the start, when the sphere touches the ground with
+    its centre at height $a$. Then $\cos\theta = (a - a/2)/a = 1/2$, so $\theta=\pi/3$ and $F_{\max} =
+    mg\tan(\pi/6) = mg/\sqrt3$.
+  common_errors:
+  - Assuming the maximum occurs when the sphere is at the top of the step, where F = 0.
+  - Using $\cos\theta=1/2$ for the wrong height of the centre.
+  - Taking $\tan\theta$ rather than $\tan(\theta/2)$ when evaluating F.
+  hints:
+    rephrase: How does the angle theta change as the centre of the sphere rises?
+    smaller_case: Consider the moment the sphere touches both the ground and the top edge. Compute the
+      vertical offset between the centre and the edge.
+    key_idea: F increases with theta, so the maximum is found by maximising theta over the motion.
+  check: m*g*sin(pi/3)/(1+cos(pi/3)) - m*g/sqrt(3)
+  check_ok: null
+- goal: Find the reaction R at the edge and show that the friction f equals F.
+  expected: $R = mg$, and the friction at the edge has magnitude $f = F$.
+  solution: 'Moments about the centre O: only F (at the top, lever arm a) and the friction at C (lever
+    arm a) have moments, so $f = F$. Resolving along the radius at C: the weight contributes $-mg\cos\theta$
+    and the horizontal force contributes $-F\sin\theta$, so $R = F\sin\theta + mg\cos\theta$. Using $F\sin\theta
+    = mg(1-\cos\theta)$ from stage 1 gives $R = mg$.'
+  common_errors:
+  - Assuming the reaction is $mg\cos\theta$ and ignoring the horizontal force's component along the radius.
+  - Taking moments about the edge again, which does not give the friction directly.
+  - Mixing up the sign conventions for the components along the radius.
+  hints:
+    rephrase: The normal reaction at the edge acts along the radius. Resolve all the forces along that
+      radius direction.
+    smaller_case: What is R when theta is zero, so that F is zero and the edge is directly below the centre?
+    key_idea: Resolving along the radius eliminates the friction, and the identity from stage 1 simplifies
+      the result.
+  check: m*g*sin(t)/(1+cos(t))*sin(t) + m*g*cos(t) - m*g
+  check_ok: null
+- goal: Show that the coefficient of friction must exceed 1/sqrt(3).
+  expected: Limiting friction requires $F \le \mu R = \mu mg$ throughout. At the worst point $F_{\max}
+    = mg/\sqrt3$, so $\mu mg > mg/\sqrt3$, giving $\mu > 1/\sqrt3$.
+  solution: 'Friction at the edge must satisfy $f \le \mu R$, where $f = F$ and $R = mg$. The most demanding
+    point is where F is largest, $F_{\max} = mg/\sqrt3$. The sphere must not slip there, so the friction
+    needed must be strictly less than the limiting value: $\mu mg > mg/\sqrt3$, hence $\mu > 1/\sqrt3$.
+    At this limiting position the ground reaction is zero because the sphere is just leaving the ground,
+    so the edge analysis above is complete.'
+  common_errors:
+  - Comparing F with $\mu$ times the ground reaction, which is not part of the edge analysis.
+  - Writing the condition as $\mu \ge 1/\sqrt3$ without explaining why equality is excluded for no slip.
+  - Using $R = mg\cos\theta$ from an earlier mistake in stage 3.
+  hints:
+    rephrase: Friction at the edge cannot exceed mu times the normal reaction. Which of the two quantities
+      do you still need to combine with F?
+    smaller_case: If F were a constant value F0, what inequality would link F0 with mu times R?
+    key_idea: The condition must hold at the point where F is largest, because that is where friction
+      is most demanded.
+  check: null
+extensions:
+  '3':
+  - Find the friction coefficient required if the step had height h instead of a/2.
+  - Redo the moment argument with F applied at the centre height instead of the top point.
+  '4':
+  - Find the value of theta at which F is half of its maximum value.
+  '5':
+  - Explain why friction at the edge is the only horizontal force that can balance F once the sphere is
+    off the ground.
+spoken_vocab:
+- F equals m g sine theta over one plus cosine theta
+- F max equals m g over root three
+- mu greater than one over root three
+- R equals m g
+- theta
+- radius a
+- step height a over two
+- moments about the contact point
+- limiting friction
+- coefficient of friction mu
+- sphere
+- edge
+- horizontal force F
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#19
+verified: false
+rating:
+  quality: 7
+  difficulty: 8
+  parts: 4
+  minutes: 20
+  flags:
+  - needs_diagram
+  tagline: Multi-stage statics with a friction-bound proof; fiddly geometry.
+  priority: 74
+  rank: 283
+  tier: B
+  category: siklos
+  d10: 6.5
+  real: 3.0
+  by: haiku
+tags:
+- mechanics

@@ -1,0 +1,105 @@
+id: coin-hth-vs-htt
+title: 'Coin patterns: HTH versus HTT'
+topics:
+- probability
+- Markov chains
+- coin patterns
+- Conway's method
+warmup: false
+answer_source: generated
+statement: A fair coin is tossed repeatedly. I win if the sequence HTH appears before HTT does. (a) Find
+  the probability that I win. (b) Is the answer surprising? Compare it to a game decided by HH versus
+  TT. (c) What if instead we compare HTH against THT?
+stages:
+- goal: Find the probability that HTH appears before HTT.
+  expected: $\frac{1}{2}$
+  solution: 'Track the longest suffix that is a prefix of HTH or HTT. States: S (no progress), H (last
+    toss H), HT (last two HT). Let $x_S, x_H, x_{HT}$ be the probabilities that I win. From S: $x_S=\frac{x_H+x_S}{2}$.
+    From H: $x_H=\frac{x_H+x_{HT}}{2}$. From HT: $x_{HT}=\frac{1+0}{2}=\frac12$ (H gives HTH and wins,
+    T gives HTT and loses). Then $x_H=\frac12$ and $x_S=\frac12$.'
+  common_errors:
+  - Using the wrong state after HT followed by T; it should go to the state for HTT, which loses, not
+    back to S.
+  - Forgetting that H from state H stays in state H.
+  - Concluding $1/3$ or $2/3$ from a heuristic count of patterns.
+  hints:
+    rephrase: After each toss, ask what the longest useful beginning of HTH or HTT you have just completed
+      is.
+    smaller_case: Look at the first three tosses. Which outcomes decide the game immediately?
+    key_idea: Use a small Markov chain whose states are the useful prefixes. Write one equation per state
+      and solve.
+  check: '(lambda xS,xH,xHT: solve([xS-(xH+xS)/2, xH-(xH+xHT)/2, xHT-Rational(1,2)],[xS,xH,xHT],dict=True)[0][xS]-Rational(1,2))(Symbol(''xS''),Symbol(''xH''),Symbol(''xHT''))'
+  check_ok: null
+- goal: Decide whether the answer in (a) is surprising, comparing it with HH versus TT.
+  expected: HH versus TT is exactly fair by H-T symmetry. HTH versus HTT is also exactly fair, which is
+    less obvious because the game has no such symmetry. HTH overlaps itself while HTT does not, and this
+    advantage is exactly cancelled.
+  solution: Swapping H and T maps HH to TT and TT to HH, so that game is fair. HTH and HTT are not swapped
+    by any symmetry, so their equal chances are a coincidence of structure. Conway's leading-number method
+    gives odds $(D_{BB}-D_{BA}):(D_{AA}-D_{AB})$. Here $D_{AA}=10$, $D_{AB}=2$, $D_{BB}=8$, $D_{BA}=0$,
+    giving 8:8, so 1:1.
+  common_errors:
+  - Saying the result is obviously fair because the coin is fair.
+  - Claiming HTH wins more often because it overlaps itself.
+  - Confusing the symmetric comparison HH versus TT with the asymmetric comparison HTH versus HTT.
+  hints:
+    rephrase: Which of the two games has an obvious symmetry, and what does that symmetry do to the two
+      patterns?
+    smaller_case: Ask whether HH versus HT, which is not symmetric, would also be fair. Use a short example
+      to see.
+    key_idea: Compare the self-overlap of each pattern with how it overlaps the other pattern.
+- goal: Compare HTH against THT.
+  expected: $\frac{1}{2}$, fair by the symmetry that swaps H and T.
+  solution: 'Swapping H and T maps HTH to THT and THT to HTH, and the coin is fair, so the two patterns
+    have equal chances of appearing first. Markov chain check: with states S, H, HT, T, TH, the equations
+    $y_S=\frac{y_H+y_T}{2}$, $y_H=\frac{y_H+y_{HT}}{2}$, $y_{HT}=\frac{1+y_T}{2}$, $y_T=\frac{y_T+y_{TH}}{2}$,
+    $y_{TH}=\frac{y_H}{2}$ solve to $y_S=\frac12$.'
+  common_errors:
+  - Taking the transitions from THT's perspective incorrectly, e.g. confusing TH and HT states.
+  - Solving the system and making an arithmetic slip, which gives a value other than $1/2$.
+  - Assuming the answer is not symmetric because HTH and THT look different.
+  hints:
+    rephrase: Which relabelling of the coin turns one pattern into the other?
+    smaller_case: Check that swapping H and T maps HT to TH and TT to HH, and see what that does to the
+      game.
+    key_idea: A symmetry of the coin that swaps the two patterns forces equal chances.
+  check: '(lambda yS,yH,yHT,yT,yTH: solve([yS-(yH+yT)/2, yH-(yH+yHT)/2, yHT-(1+yT)/2, yT-(yT+yTH)/2, yTH-yH/2],[yS,yH,yHT,yT,yTH],dict=True)[0][yS]-Rational(1,2))(Symbol(''yS''),Symbol(''yH''),Symbol(''yHT''),Symbol(''yT''),Symbol(''yTH''))'
+  check_ok: null
+extensions:
+  '3':
+  - Find $P(\text{HH before TT})$ by a symmetry argument, and confirm it with Conway's method.
+  '4':
+  - Find the expected number of tosses until HTH first appears, using the overlap weights $2^k$.
+  '5':
+  - Write a short simulation to estimate the probabilities for HTH versus HTT and HTH versus THT, then
+    compare with the exact answers.
+spoken_vocab:
+- H T H before H T T
+- probability I win
+- fair coin
+- Markov chain
+- state S
+- state H T
+- HH versus TT
+- THT
+- one half
+- Conway's method
+- overlap
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Penney-style pattern race; answer 1/2 tempts intuition-testing comparisons.
+  priority: 81
+  rank: 246
+  tier: B
+  category: juan
+  d10: 4.5
+  real: 5.0
+  by: deepseek-v4.1-flash-free
+tags:
+- probability

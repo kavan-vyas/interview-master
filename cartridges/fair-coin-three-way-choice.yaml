@@ -1,0 +1,106 @@
+id: fair-coin-three-way-choice
+title: Fair three-way choice with a fair coin
+topics:
+- probability
+- expected value
+- rejection sampling
+- geometric distribution
+warmup: false
+answer_source: generated
+statement: 'I have 3 options for breakfast: an apple, a banana and a citrus. I would like to use a fair,
+  2-sided coin to decide what to eat. What could I do and what would be the expected value of choosing
+  an apple? If your method does not terminate, find the expected number of coin flips needed to make a
+  decision.'
+stages:
+- goal: Describe a method using a fair coin that chooses each of the three options with equal probability.
+  expected: Flip the coin twice. HH means apple, HT means banana, TH means citrus. If TT occurs, discard
+    the result and repeat the two flips.
+  solution: Two flips give four equally likely outcomes. Three of them are assigned to the three fruits,
+    each with probability 1/4. The remaining outcome TT is discarded and the procedure repeats. Conditioned
+    on a decision, each fruit is equally likely, so each has probability 1/3. A fixed number of flips
+    cannot give exactly 1/3 each, because all coin probabilities are dyadic.
+  common_errors:
+  - Assigning the fourth outcome to a fruit, which breaks fairness
+  - Using a fixed number of flips, which cannot give exactly 1/3
+  - Thinking the method must always stop after finitely many flips
+  hints:
+    rephrase: You need at least three distinct equally likely outcomes. How many coin flips give at least
+      three?
+    smaller_case: How would you choose between two options with a fair coin?
+    key_idea: Use enough flips to produce at least as many outcomes as options, assign each option its
+      own outcome, and repeat if an unused outcome appears.
+  check: null
+- goal: Find the probability (expected value of the indicator) that the choice is the apple.
+  expected: $\dfrac{1}{3}$
+  solution: The apple is chosen on the first round with probability 1/4 (HH). With probability 1/4 the
+    round is repeated, so $P=\sum_{k\ge 0}(1/4)^k\cdot(1/4)=\dfrac{1/4}{1-1/4}=\dfrac{1}{3}$. The expected
+    value of the indicator that the apple is chosen is therefore $1/3$.
+  common_errors:
+  - Answering 1/4 and forgetting that the procedure repeats
+  - Answering 1/2 or 1/3 without justifying it through the rejection method
+  - Forgetting to sum the geometric series
+  hints:
+    rephrase: How likely is the apple on the first round, and what happens if the round is repeated?
+    smaller_case: Compute the probability of the apple if the procedure stopped after the first round.
+    key_idea: Use a geometric series over the repeated rounds, with the repetition probability as the
+      common ratio.
+  check: Rational(1,4)/(1-Rational(1,4)) - Rational(1,3)
+  check_ok: true
+- goal: Find the expected number of coin flips needed to make a decision.
+  expected: $\dfrac{8}{3}$
+  solution: Each round uses 2 flips and ends the procedure with probability 3/4. So the number of rounds
+    is geometric with mean $4/3$. The expected number of flips is $2\cdot\tfrac{4}{3}=\tfrac{8}{3}$. Equivalently,
+    $\sum_{k\ge1} 2k\,(1/4)^{k-1}(3/4)=\tfrac{8}{3}$.
+  common_errors:
+  - Answering 2, ignoring the repeated rounds
+  - Using the mean number of rounds as 3/4 instead of 4/3
+  - Forgetting to multiply the rounds by 2 flips per round
+  hints:
+    rephrase: Each round uses a fixed number of flips and succeeds with a fixed probability. What is the
+      expected number of rounds?
+    smaller_case: What is the probability that the first round gives a decision?
+    key_idea: The number of rounds is geometric, so its mean is the reciprocal of the success probability.
+  check: Rational(8,3) - Rational(3,2)*(1/(1-Rational(1,4)))**2
+  check_ok: true
+extensions:
+  '3':
+  - Can any method using exactly 3 coin flips give each option probability 1/3? Why not?
+  '4':
+  - For n options, use k=ceiling(log2 n) flips per round and reject unused outcomes. Derive the expected
+    number of flips.
+  '5':
+  - Show that 8/3 is the minimum expected number of flips for a fair three-way choice (Knuth–Yao).
+spoken_vocab:
+- fair coin
+- two-sided coin
+- apple
+- banana
+- citrus
+- expected value
+- expected number of coin flips
+- probability
+- one third
+- two thirds
+- eight over three
+- heads
+- tails
+- reject
+source: screenshots/Screenshot 2026-11-19 at 14.36.06.png
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Classic fair-coin simulation; invites rejection sampling, optimality, Knuth-Yao discussion.
+  priority: 81
+  rank: 236
+  tier: B
+  category: screenshots
+  d10: 4.5
+  real: 8.5
+  by: deepseek-v4.1-flash-free
+tags:
+- probability
+- combinatorics

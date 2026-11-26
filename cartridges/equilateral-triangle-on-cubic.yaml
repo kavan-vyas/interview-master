@@ -1,0 +1,96 @@
+id: equilateral-triangle-on-cubic
+title: Equilateral triangle on y = x^3 with a vertex at the origin
+topics:
+- coordinate geometry
+- algebraic factorisation
+- symmetry
+- degenerate cases
+warmup: false
+answer_source: generated
+statement: Points $A, B, C$ lie on the curve $y=x^3$, with $B$ at the origin. (a) Explain why, if triangle
+  $ABC$ is equilateral, $A$ and $C$ must be reflections of each other in the origin. (b) Find the coordinates
+  of $A$ and $C$. (c) Is there more than one equilateral triangle with $B$ at the origin and $A, C$ on
+  the curve? Why or why not?
+stages:
+- goal: Write $A=(a,a^3)$ and $C=(c,c^3)$, then use $BA=BC$ (with $B=(0,0)$) to relate $a$ and $c$.
+  expected: $a^2+a^6=c^2+c^6$, which factors as $(a^2-c^2)(1+a^4+a^2c^2+c^4)=0$. Since the second factor
+    is at least 1, $c^2=a^2$, so $c=\pm a$.
+  solution: $BA^2=a^2+a^6$ and $BC^2=c^2+c^6$. Setting them equal gives $a^2+a^6-c^2-c^6=0$. This factors
+    as $(a^2-c^2)(1+a^4+a^2c^2+c^4)=0$, and the second factor is at least 1, so $a^2=c^2$ and $c=\pm a$.
+  common_errors:
+  - Comparing $BA$ and $BC$ as if the curve were a line, and missing the factorisation.
+  - Dropping the factor $1+a^4+a^2c^2+c^4$ without checking it is never zero.
+  - Concluding that $c=a$ gives a second triangle, when it gives the same point.
+  hints:
+    rephrase: An equilateral triangle has all sides equal, so look at the two sides that meet at $B$ and
+      compare their squared lengths.
+    smaller_case: Pick a specific value for $a$, such as $a=1$, and ask which other points on the curve
+      are the same distance from the origin.
+    key_idea: Equal distances from $B$ mean equal squared distances. Subtract the two expressions and
+      factor the difference.
+  check: (a**2+a**6-c**2-c**6) - (a**2-c**2)*(1+a**4+a**2*c**2+c**4)
+  check_ok: true
+- goal: Decide which sign choice gives a genuine triangle, then answer parts (a), (b) and (c).
+  expected: $c=a$ gives $C=A$, which is not a triangle. $c=-a$ gives $C=-A$, so $B$ is the midpoint of
+    $AC$ and the three points are collinear. So no non-degenerate equilateral triangle exists. The forced
+    reflection in (a) is only a candidate, and it is degenerate. For (b), there are no valid coordinates.
+    For (c), there is no such triangle, so there is not more than one.
+  solution: With $c=-a$, the cross product of $\vec{BA}$ and $\vec{BC}$ is $a\cdot(-a)^3-(-a)\cdot a^3=-a^4+a^4=0$.
+    The points are collinear, so $ABC$ has zero area and cannot be equilateral. With $c=a$, $A$ and $C$
+    coincide. Therefore the set of equilateral triangles with $B$ at the origin is empty.
+  common_errors:
+  - Calling the reflected pair an equilateral triangle without checking that the area is non-zero.
+  - Treating $c=a$ as a second, distinct triangle.
+  - Assuming the curve has 60-degree rotational symmetry about the origin, which it does not.
+  hints:
+    rephrase: If $C$ is the reflection of $A$ through the origin, what is the midpoint of $AC$, and where
+      does it sit relative to $B$?
+    smaller_case: Take $a=1$ and list every candidate $C$ on the curve. For each one, decide whether the
+      three points form a triangle.
+    key_idea: Equal side lengths are not enough. Also check that the three points are not collinear.
+  check: (a*c**3 - c*a**3).subs(c, -a)
+  check_ok: true
+extensions:
+  '3':
+  - Does the same conclusion hold for $y=x^2$ with $B$ at the origin?
+  '4':
+  - If the curve is translated to $y=x^3+1$ and $B$ is moved to $(0,1)$, does the answer change? Explain.
+  '5':
+  - Which curves through the origin admit an equilateral triangle with one vertex at the origin and the
+    other two vertices on the curve? What property of $y=x^3$ rules out the degenerate reflected case?
+spoken_vocab:
+- y equals x cubed
+- points A, B, C
+- origin
+- equilateral triangle
+- reflection in the origin
+- a squared plus a to the sixth
+- c squared plus c to the sixth
+- a squared minus c squared
+- plus or minus a
+- collinear
+- midpoint
+- cross product
+- degenerate
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 4
+  difficulty: 4
+  parts: 3
+  minutes: 12
+  flags:
+  - wrong_or_unclear_solution
+  tagline: 'Premise is false: reflections through the origin give collinear points, not an equilateral
+    triangle.'
+  priority: 43
+  rank: 562
+  tier: C
+  category: juan
+  d10: 5.5
+  real: 2.5
+  by: deepseek-v4.1-flash-free
+tags:
+- coordinate_geometry
+- algebra_and_functions
+- geometry

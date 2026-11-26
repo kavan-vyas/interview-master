@@ -1,0 +1,112 @@
+id: cauchy-additive-continuous
+title: Continuous additive functions are linear
+topics:
+- functional equations
+- density of rationals
+- continuity
+- Cauchy equation
+- Hamel basis
+warmup: false
+answer_source: generated
+statement: Suppose $f:\mathbb{R}\to\mathbb{R}$ is continuous and satisfies $f(x+y)=f(x)+f(y)$ for all
+  real $x, y$. (a) Show $f(x)=cx$ for some constant $c$. (b) Where did you use continuity? What can go
+  wrong if we drop that assumption?
+stages:
+- goal: Show f(0) = 0 and f(-x) = -f(x).
+  expected: f(0) = 0 and f(-x) = -f(x) for all x.
+  solution: Setting $x=y=0$ gives $f(0)=2f(0)$, so $f(0)=0$. Setting $y=-x$ gives $0=f(0)=f(x)+f(-x)$,
+    so $f(-x)=-f(x)$.
+  common_errors:
+  - Assuming f(0) is 1 or some nonzero constant
+  - Forgetting to derive oddness from the equation
+  hints:
+    rephrase: Substitute x = y = 0 into the equation. What does it force about f(0)?
+    smaller_case: Ask what f(0+0) says, and then what f(x + (-x)) says.
+    key_idea: Choosing special values for the variables, such as 0 or a pair of opposites, gives direct
+      constraints on f.
+  check: F0 - sp.solve(sp.Eq(F0, 2*F0), F0)[0]
+  check_ok: null
+- goal: Show f(q) = c q for every rational q, where c = f(1).
+  expected: f(q) = c q for all rational q.
+  solution: By induction, $f(nx)=nf(x)$ for positive integers $n$. For $q=m/n$ with $n\ge1$, $n\,f(m/n)
+    = f(m) = m\,f(1)$, so $f(m/n) = \frac{m}{n}f(1) = c\,q$. Negative rationals follow from oddness.
+  common_errors:
+  - Handling integer multiples but not rationals
+  - Forgetting the sign for negative rationals
+  hints:
+    rephrase: If you know f(1), what can you say about f(2), f(3), and f(1/2)?
+    smaller_case: Compute f(1/2) using f(1) = f(1/2) + f(1/2).
+    key_idea: Apply additivity n times to a fraction m/n and compare with f at an integer.
+  check: sp.simplify(sp.solve(sp.Eq(n*F, m*c), F)[0] - c*m/n)
+  check_ok: null
+- goal: Use continuity to extend f(q) = cq from the rationals to all reals.
+  expected: f(x) = c x for all real x.
+  solution: Let $g(x)=f(x)-cx$. Then $g$ is continuous and vanishes on $\mathbb{Q}$. For any real $x$,
+    choose rationals $q_k\to x$. Then $f(x)=\lim f(q_k)=\lim cq_k = cx$, using continuity of $f$ at $x$.
+    So $f(x)=cx$ for all $x$.
+  common_errors:
+  - Saying continuity only gives linearity on the rationals
+  - Choosing a sequence of rationals that does not converge to x
+  hints:
+    rephrase: Given a real number x, what kind of set can approximate it, and which property of f lets
+      you pass the approximation through?
+    smaller_case: Approximate sqrt(2) by rationals and think about what f does to those approximations.
+    key_idea: The rationals are dense in the reals. A continuous function is determined by its values
+      on a dense set.
+- goal: Identify where continuity was used and describe what can fail without it.
+  expected: Continuity is used only in the density/limit step. Without it there exist additive functions
+    that are not linear, built with a Hamel basis and the axiom of choice.
+  solution: Continuity is used only in the step extending from $\mathbb{Q}$ to $\mathbb{R}$. Parts of
+    the argument, such as $f(q)=cq$, need only additivity. Without continuity, $f$ is linear over $\mathbb{Q}$
+    but not necessarily over $\mathbb{R}$. Using a Hamel basis of $\mathbb{R}$ over $\mathbb{Q}$ and the
+    axiom of choice, one builds additive functions that are not of the form $cx$. These functions are
+    unbounded on every interval and have dense graphs in $\mathbb{R}^2$. They cannot be written explicitly.
+  common_errors:
+  - Claiming all additive functions must be linear without continuity
+  - Believing discontinuous solutions can be written in closed form
+  hints:
+    rephrase: In the previous stage, which step needed the values of f at irrational points?
+    smaller_case: Ask whether f could match cx on the rationals and still differ on the irrationals while
+      staying additive.
+    key_idea: Additivity alone controls f on the rationals. Continuity is the extra analytic constraint
+      that pins down the irrationals.
+extensions:
+  '3':
+  - Show that if f is additive and bounded on some interval, then f(x) = cx for all x.
+  '4':
+  - Show that if f is additive and monotone, then f is linear.
+  '5':
+  - Show that every discontinuous additive function has a dense graph in R^2.
+spoken_vocab:
+- f of x plus y equals f of x plus f of y
+- continuous
+- constant c
+- rationals
+- reals
+- density
+- Cauchy functional equation
+- Hamel basis
+- axiom of choice
+- f of one
+- f of m over n
+- limit
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 4
+  minutes: 15
+  flags: []
+  tagline: Classic Cauchy equation; continuity step and counterexample discussion add depth.
+  priority: 82
+  rank: 199
+  tier: B
+  category: juan
+  d10: 5.0
+  real: 6.0
+  by: deepseek-v4.1-flash-free
+tags:
+- functional_equations
+- proof
+- limits_and_approximation

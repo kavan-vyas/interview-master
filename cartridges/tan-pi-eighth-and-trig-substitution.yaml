@@ -1,0 +1,117 @@
+id: tan-pi-eighth-and-trig-substitution
+title: Tangent of pi/8 and a trigonometric substitution integral
+topics:
+- trigonometric identities
+- double angle formulae
+- integration by substitution
+- definite integrals
+warmup: false
+answer_source: pdf
+statement: Given that $\tan\frac{\pi}{4}=1$, show that $\tan\frac{\pi}{8}=\sqrt{2}-1$. Let $I=\int_{-1}^{1}\frac{1}{\sqrt{1+x}+\sqrt{1-x}+2}\,dx$.
+  Show, by using the change of variable $x=\sin 4t$, that $I=\int_0^{\pi/8}\frac{2\cos 4t}{\cos^2 t}\,dt$.
+  Hence show that $I=4\sqrt{2}-\pi-2$.
+stages:
+- goal: Show that $\tan\frac{\pi}{8}=\sqrt{2}-1$ using $\tan\frac{\pi}{4}=1$.
+  expected: $\tan\frac{\pi}{8}=\sqrt{2}-1$, taking the positive root of $t^2+2t-1=0$.
+  solution: Let $t=\tan\frac{\pi}{8}$. The double angle formula gives $\tan\frac{\pi}{4}=\frac{2t}{1-t^2}=1$,
+    so $t^2+2t-1=0$ and $t=-1\pm\sqrt{2}$. Since $0<\frac{\pi}{8}<\frac{\pi}{2}$, $t>0$, so $t=\sqrt{2}-1$.
+  common_errors:
+  - Accepting the negative root $-1-\sqrt{2}$ without checking the sign of $\tan\frac{\pi}{8}$.
+  - Sign slip when rearranging $2t=1-t^2$ into $t^2+2t-1=0$.
+  - Not justifying why the tangent of an acute angle is positive.
+  hints:
+    rephrase: Use the double angle formula for tangent, relating the angle $\frac{\pi}{8}$ to its double
+      $\frac{\pi}{4}$.
+    smaller_case: 'Test the same idea on $\tan\frac{\pi}{6}$: what does the doubled angle give for $\tan\frac{\pi}{3}$?'
+    key_idea: Let $t=\tan\frac{\pi}{8}$. The formula for $\tan 2\theta$ gives a quadratic in $t$; choose
+      the root with the correct sign for an acute angle.
+  check: sympy.simplify(sympy.tan(sympy.pi/8) - (sympy.sqrt(2)-1)) == 0
+  check_ok: null
+- goal: Use $x=\sin 4t$ to show $I=\int_0^{\pi/8}\frac{2\cos 4t}{\cos^2 t}\,dt$.
+  expected: Limits $t\in[-\pi/8,\pi/8]$, $dx=4\cos 4t\,dt$, $\sqrt{1\pm x}=\cos 2t\pm\sin 2t$, denominator
+    $=4\cos^2 t$, and by symmetry $I=\int_0^{\pi/8}\frac{2\cos 4t}{\cos^2 t}\,dt$.
+  solution: Put $x=\sin 4t$. The limits $x=\pm1$ correspond to $t=\pm\frac{\pi}{8}$, and $dx=4\cos 4t\,dt$.
+    Since $1\pm\sin 4t=(\cos 2t\pm\sin 2t)^2$, and on $|t|\le\frac{\pi}{8}$ we have $\cos 2t\ge|\sin 2t|$,
+    so $\sqrt{1+x}=\cos 2t+\sin 2t$ and $\sqrt{1-x}=\cos 2t-\sin 2t$. The denominator becomes $2\cos 2t+2=4\cos^2
+    t$. So the integrand times $dx$ is $\frac{4\cos 4t}{4\cos^2 t}\,dt=\frac{\cos 4t}{\cos^2 t}\,dt$.
+    This is even in $t$, so $I=2\int_0^{\pi/8}\frac{\cos 4t}{\cos^2 t}\,dt=\int_0^{\pi/8}\frac{2\cos 4t}{\cos^2
+    t}\,dt$.
+  common_errors:
+  - Forgetting the factor 4 in $dx=4\cos 4t\,dt$.
+  - Using limits $-1$ to $1$ for $t$ instead of $-\frac{\pi}{8}$ to $\frac{\pi}{8}$.
+  - Choosing the wrong sign for $\sqrt{1-x}$; on this range $\cos 2t-\sin 2t\ge 0$.
+  - Dropping the factor 2 from the symmetry of the even integrand.
+  hints:
+    rephrase: Write $1+x$ and $1-x$ as squares of linear combinations of $\cos 2t$ and $\sin 2t$, and
+      track the limits.
+    smaller_case: Find which values of $t$ correspond to $x=0$ and $x=1$, and check the square root signs
+      there.
+    key_idea: Use $1\pm\sin 4t=(\cos 2t\pm\sin 2t)^2$, the identity $1+\cos 2t=2\cos^2 t$, and $dx=4\cos
+      4t\,dt$.
+  check: sympy.simplify((sympy.cos(2*t)+sympy.sin(2*t))+(sympy.cos(2*t)-sympy.sin(2*t))+2 - 4*sympy.cos(t)**2)
+    == 0
+  check_ok: null
+- goal: Evaluate $I$ and show that $I=4\sqrt{2}-\pi-2$.
+  expected: $I=4\sqrt{2}-\pi-2$
+  solution: 'Use $\cos 4t=2\cos^2 2t-1=8\cos^4 t-8\cos^2 t+1$, so $\frac{\cos 4t}{\cos^2 t}=8\cos^2 t-8+\sec^2
+    t$. Hence $I=2\int_0^{\pi/8}(8\cos^2 t-8+\sec^2 t)\,dt$. Since $8\cos^2 t=4+4\cos 2t$, an antiderivative
+    of the integrand is $4\sin 2t-8t+2\tan t$. At $t=\frac{\pi}{8}$: $4\sin\frac{\pi}{4}=2\sqrt{2}$, $-8\cdot\frac{\pi}{8}=-\pi$,
+    and $2\tan\frac{\pi}{8}=2\sqrt{2}-2$ from stage 1. At $t=0$ every term is zero. Total: $4\sqrt{2}-\pi-2$.
+    (The source''s intermediate line writes the constant as $-4$; the correct constant is $-8$.)'
+  common_errors:
+  - Writing the constant as $-4$ instead of $-8$ after dividing $\cos 4t$ by $\cos^2 t$.
+  - Expanding $\cos 4t$ incorrectly.
+  - Forgetting the factor 2 in front of the integral when integrating.
+  - Forgetting that the $-8t$ term contributes $-\pi$ at the upper limit.
+  - Not using the value of $\tan\frac{\pi}{8}$ from stage 1.
+  hints:
+    rephrase: Expand $\cos 4t$ completely in powers of $\cos t$, then divide by $\cos^2 t$ term by term.
+    smaller_case: Do the same division for $\cos 2t$ divided by $\cos^2 t$, and compare with the formula
+      for $\cos 2t$.
+    key_idea: Use $\cos 2t=2\cos^2 t-1$ twice, then integrate using $\int\sec^2 t\,dt=\tan t$ and $\int\cos^2
+      t\,dt=\frac{t}{2}+\frac{\sin 2t}{4}$.
+  check: sympy.simplify(2*sympy.integrate(8*sympy.cos(t)**2 - 8 + sympy.sec(t)**2, (t, 0, sympy.pi/8))
+    - (4*sympy.sqrt(2) - sympy.pi - 2)) == 0
+  check_ok: null
+extensions:
+  '3':
+  - Use the same double angle argument to find $\tan\frac{\pi}{16}$ in surd form.
+  '4':
+  - Estimate $I$ numerically and compare with $4\sqrt{2}-\pi-2$.
+  '5':
+  - Explain why the square root signs are forced on the interval and what goes wrong outside $|t|\le\frac{\pi}{8}$.
+spoken_vocab:
+- tan
+- pi over eight
+- pi over four
+- square root of two minus one
+- integral from minus one to one
+- square root of one plus x
+- square root of one minus x
+- substitute x equals sine four t
+- cosine four t
+- cosine squared t
+- sec squared t
+- two times the integral from zero to pi over eight
+- four root two minus pi minus two
+- tan of pi over eight
+- d x equals four cosine four t d t
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#13
+verified: false
+rating:
+  quality: 6
+  difficulty: 6
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Clean substitution-and-identity integral, but heavily scaffolded, limiting discussion.
+  priority: 71
+  rank: 322
+  tier: B
+  category: siklos
+  d10: 5.0
+  real: 4.0
+  by: haiku
+tags:
+- integration
+- trigonometry

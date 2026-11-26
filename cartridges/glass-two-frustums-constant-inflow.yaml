@@ -1,0 +1,98 @@
+id: glass-two-frustums-constant-inflow
+title: Water Level in a Glass Made of Two Frustums
+topics:
+- rates of change
+- volume of frustums
+- graph interpretation
+- calculus intuition
+warmup: true
+answer_source: pdf
+statement: This glass is made from frustums of two circular cones. Water is poured into the glass at a
+  constant rate. Which of the following graphs (options a to e) best shows the height of water in the
+  glass against time? [Options a) to e) are graphs of height $h$ against time $t$; they are not reproduced
+  in this cartridge.]
+stages:
+- goal: Explain how the cross-sectional area of the glass controls how fast the water level rises.
+  expected: Volume is added at a constant rate $\frac{dV}{dt}=Q$. The water level rises at rate $\frac{dh}{dt}=\frac{Q}{A(h)}$,
+    where $A(h)$ is the surface area at height $h$. So the level rises quickly where the glass is narrow
+    and slowly where it is wide. The slope of the height-time graph is steep where the glass is narrow
+    and shallow where it is wide.
+  solution: Let $A(h)$ be the horizontal cross-sectional area at water height $h$. Then $V(t)$ satisfies
+    $\frac{dV}{dt}=Q$ (constant), and $\frac{dV}{dt}=A(h)\frac{dh}{dt}$. Hence $\frac{dh}{dt}=\frac{Q}{A(h)}$.
+    A narrow section has small $A(h)$, so $\frac{dh}{dt}$ is large and the graph is steep. A wide section
+    gives a shallow graph. The graph must therefore match the way the glass narrows and widens.
+  common_errors:
+  - Assuming the height rises at a constant rate because the inflow is constant. Constant volume rate
+    does not give constant height rate unless the cross-section is constant.
+  - Reversing the relationship and saying the level rises faster where the glass is wider.
+  - Treating the glass as a single cone, so the shape is ignored.
+  hints:
+    rephrase: If the same amount of water goes in each second, what decides how much the level rises in
+      that second?
+    smaller_case: Compare a tall thin tube with a wide bowl, both filled at the same rate. Which level
+      climbs faster?
+    key_idea: The rate at which the height changes equals the volume rate divided by the cross-sectional
+      area at that height.
+  check: null
+- goal: Identify which of the graphs (a to e) matches the glass.
+  expected: Option c
+  solution: Option c is the graph that matches the narrowing and widening profile of the two-frustum glass,
+    as given in the source answer. Each section of the glass produces a segment of the graph whose steepness
+    is inversely proportional to the cross-sectional area at that height.
+  common_errors:
+  - Choosing a graph that is a straight line, which would require a constant cross-section.
+  - Choosing a graph that gets steeper where the glass widens, which reverses the inverse relationship
+    with area.
+  hints:
+    rephrase: Go up the glass one section at a time. For each section, ask whether the level should climb
+      fast or slowly.
+    smaller_case: Look at only the bottom frustum. Does its graph segment look steep or shallow?
+    key_idea: Steepness of the height-time graph is inversely proportional to the cross-sectional area
+      at each height.
+  check: null
+extensions:
+  '3':
+  - A cone-shaped vessel with its point at the bottom is filled at a constant rate. Describe the shape
+    of the height-time graph.
+  - Show that for a cone with apex at the bottom, $h \propto t^{1/3}$ when filled at constant rate.
+  '4':
+  - A frustum with base radius $r_1$ and top radius $r_2$ is filled at constant rate. Set up the integral
+    for the time to fill it to height $H$.
+  '5':
+  - Derive $\frac{dh}{dt}$ for a general surface of revolution $x=f(h)$ and state the conditions under
+    which the graph has an inflection point.
+spoken_vocab:
+- height
+- water
+- constant rate
+- frustum
+- cone
+- cross-sectional area
+- graph
+- time
+- dV over dt
+- dh over dt
+- option c
+- inversely proportional
+source: kclms/kclms-mcq-specimen-questions-answers-included.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 4
+  parts: 2
+  minutes: 5
+  flags:
+  - missing_info
+  - needs_diagram
+  tagline: Concept of varying cross-section; options missing, so unusable as written.
+  priority: 9
+  rank: 710
+  tier: D
+  category: kclms
+  d10: 4.0
+  real: 3.0
+  by: deepseek-v4.1-flash-free
+tags:
+- differentiation
+- geometry
+- curve_sketching

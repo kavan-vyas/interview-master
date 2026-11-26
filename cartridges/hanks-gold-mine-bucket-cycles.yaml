@@ -1,0 +1,130 @@
+id: hanks-gold-mine-bucket-cycles
+title: 'Hank''s gold mine: maximising ore raised'
+topics:
+- Newton's second law
+- constant acceleration
+- pulleys
+- optimisation
+warmup: false
+answer_source: pdf
+statement: Hank's Gold Mine has a very long vertical shaft of height $l$. A light chain of length $l$
+  passes over a small smooth light fixed pulley at the top of the shaft. To one end of the chain is attached
+  a bucket $A$ of negligible mass and to the other a bucket $B$ of mass $m$. When bucket $A$ is at the
+  top it is filled with mass $2m$ of water and bucket $B$ is filled with mass $\lambda m$ of ore, where
+  $0<\lambda<1$. The buckets are then released, so that bucket $A$ descends and bucket $B$ ascends. When
+  bucket $B$ reaches the top both buckets are emptied and released, so that bucket $B$ descends and bucket
+  $A$ ascends. The time to fill and empty the buckets is negligible. Find the time taken from the moment
+  bucket $A$ is released at the top until the first time it reaches the top again. This process goes on
+  for a very long time. Show that, if the greatest amount of ore is to be raised in that time, then $\lambda$
+  must satisfy $f'(\lambda)=0$ where $f(\lambda)=\dfrac{\lambda(1-\lambda)^{1/2}}{(1-\lambda)^{1/2}+(3+\lambda)^{1/2}}$.
+stages:
+- goal: Find the acceleration $a$ of bucket $A$ during its descent.
+  expected: $a=\dfrac{g(1-\lambda)}{3+\lambda}$.
+  solution: 'For $A$ (mass $2m$ descending): $2mg-T=2ma$. For $B$ (total mass $(1+\lambda)m$ ascending):
+    $T-(1+\lambda)mg=(1+\lambda)ma$. Adding gives $(1-\lambda)mg=(3+\lambda)ma$, so $a=\dfrac{g(1-\lambda)}{3+\lambda}$.'
+  common_errors:
+  - Using the mass $m$ instead of $(1+\lambda)m$ for bucket $B$
+  - Adding the equations with a sign error
+  - Forgetting that bucket $A$ has negligible mass only when it is empty
+  hints:
+    rephrase: Write Newton's second law for each bucket separately, using the same tension $T$ in the
+      chain.
+    smaller_case: Set $\lambda=0$ and check that the acceleration is the value you would expect from masses
+      $2m$ and $m$.
+    key_idea: Add the two equations to eliminate $T$.
+  check: solve([-T+2*m*g-2*m*a, T-(1+lam)*m*g-(1+lam)*m*a],[T,a])[a] - g*(1-lam)/(3+lam)
+  check_ok: true
+- goal: Show that one complete cycle takes $t=\sqrt{\dfrac{2l}{g}}\left(1+\sqrt{\dfrac{3+\lambda}{1-\lambda}}\right)$.
+  expected: $t=\sqrt{\dfrac{2l}{g}}+\sqrt{\dfrac{2l}{a}}$ with $\sqrt{\dfrac{2l}{a}}=\sqrt{\dfrac{2l}{g}}\sqrt{\dfrac{3+\lambda}{1-\lambda}}$.
+  solution: Bucket $A$ descends a distance $l$ from rest with acceleration $a$, taking $t_1=\sqrt{2l/a}$.
+    Then $B$ (now empty, mass $m$) descends with acceleration $g$ while $A$ rises, taking $t_2=\sqrt{2l/g}$.
+    Total cycle time is $t_1+t_2=\sqrt{\dfrac{2l}{g}}\left(1+\sqrt{\dfrac{3+\lambda}{1-\lambda}}\right)$.
+  common_errors:
+  - Using $a$ for the ascent of $A$ in the second phase instead of $g$
+  - Forgetting the time for the second phase
+  - Inverting the ratio inside the square root
+  hints:
+    rephrase: 'Split the cycle into two phases: the descent of $A$ and the descent of $B$.'
+    smaller_case: In the second phase, what is the acceleration of an empty bucket $B$ if $A$ has negligible
+      mass?
+    key_idea: Use $s=\tfrac12 at^2$ for each phase, then add the times.
+  check: sqrt(2*l/(g*(1-lam)/(3+lam))) + sqrt(2*l/g) - sqrt(2*l/g)*(1+sqrt((3+lam)/(1-lam)))
+  check_ok: false
+- goal: Show that maximising the long-run ore raised means maximising $\lambda/t$, and that $\lambda/t$
+    is proportional to $f(\lambda)$.
+  expected: Ore raised per unit time is $\dfrac{\lambda m}{t}$, and $\dfrac{\lambda}{1+\sqrt{(3+\lambda)/(1-\lambda)}}=f(\lambda)$.
+  solution: Each cycle raises $\lambda m$ of ore, so over a long time $T$ about $T/t$ cycles occur and
+    the ore raised is $\lambda mT/t$. Maximising ore raised means maximising $\lambda/t$. Since $t=\sqrt{2l/g}\,(1+\sqrt{(3+\lambda)/(1-\lambda)})$,
+    $\lambda/t$ is $\lambda/\sqrt{2l/g}$ times $1/(1+\sqrt{(3+\lambda)/(1-\lambda)})$. Multiplying top
+    and bottom by $\sqrt{1-\lambda}$ gives $\dfrac{\lambda\sqrt{1-\lambda}}{\sqrt{1-\lambda}+\sqrt{3+\lambda}}$,
+    which is $f(\lambda)$ up to the constant factor $1/\sqrt{2l/g}$.
+  common_errors:
+  - Forgetting the factor $\lambda$ in the ore raised
+  - Maximising $t$ instead of $\lambda/t$
+  - Multiplying the wrong part of the fraction when converting to $f(\lambda)$
+  hints:
+    rephrase: The ore raised in a time $T$ is proportional to $\lambda$ times the number of cycles. How
+      many cycles fit into time $T$?
+    smaller_case: Take $\lambda=\tfrac12$ and compare the two expressions for $\lambda/t$ numerically.
+    key_idea: Multiply the numerator and denominator by $\sqrt{1-\lambda}$ to match the form of $f$.
+  check: lam/(1+sqrt((3+lam)/(1-lam))) - lam*sqrt(1-lam)/(sqrt(1-lam)+sqrt(3+lam))
+  check_ok: false
+- goal: Explain why the optimum satisfies $f'(\lambda)=0$ on $0<\lambda<1$.
+  expected: $f(0)=f(1)=0$ and $f>0$ on $(0,1)$, so the maximum is an interior stationary point with $f'(\lambda)=0$.
+  solution: $f(\lambda)>0$ on $(0,1)$, while $f(0)=0$ (since $\lambda=0$) and $f(1)=0$ (since $\sqrt{1-\lambda}=0$).
+    By continuity $f$ attains a maximum in $(0,1)$. At an interior maximum of a differentiable function,
+    $f'(\lambda)=0$.
+  common_errors:
+  - Assuming the maximum is at an endpoint without checking $f(0)$ and $f(1)$
+  - Forgetting that $f$ must be differentiable at the maximum
+  - Confusing a stationary point with a minimum
+  hints:
+    rephrase: What are the values of $f$ at the two ends of the interval $0<\lambda<1$?
+    smaller_case: Sketch a function that is zero at both ends and positive in between.
+    key_idea: Use the extreme value theorem and the fact that an interior maximum of a differentiable
+      function has zero derivative.
+  check: (lam*sqrt(1-lam)/(sqrt(1-lam)+sqrt(3+lam))).subs(lam,0) + (lam*sqrt(1-lam)/(sqrt(1-lam)+sqrt(3+lam))).subs(lam,1)
+  check_ok: true
+extensions:
+  '3':
+  - Show that $f(\lambda)\to0$ as $\lambda\to0$ and as $\lambda\to1$, and explain what this implies for
+    the maximum.
+  '4':
+  - Explain why every cycle has the same duration, so the long-run rate of ore raised is $\lambda m/t$.
+  '5':
+  - Estimate, to two decimal places, the value of $\lambda$ that maximises $f$ on $(0,1)$.
+spoken_vocab:
+- Hank's gold mine
+- bucket A
+- bucket B
+- lambda
+- mass m
+- chain length l
+- pulley
+- acceleration a
+- cycle time t
+- f of lambda
+- f prime of lambda equals zero
+- square root of one minus lambda
+- square root of three plus lambda
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#18
+verified: false
+rating:
+  quality: 6
+  difficulty: 6
+  parts: 4
+  minutes: 20
+  flags:
+  - garbled
+  tagline: Two-stage pulley motion feeding a genuine optimisation; statement truncated mid-sentence.
+  priority: 64
+  rank: 405
+  tier: C
+  category: siklos
+  d10: 7.0
+  real: 4.5
+  by: deepseek-v4.1-flash-free
+tags:
+- mechanics
+- differentiation
+- algebra_and_functions

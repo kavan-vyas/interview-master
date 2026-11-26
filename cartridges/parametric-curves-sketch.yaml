@@ -1,0 +1,128 @@
+id: parametric-curves-sketch
+title: Sketching three parametric curves
+topics:
+- parametric equations
+- curve sketching
+- trigonometric identities
+- polar coordinates
+- exponential decay
+warmup: false
+answer_source: generated
+statement: 'A curve is defined parametrically by coordinates $(x(t), y(t))$. Sketch the curves described
+  by the following parametrisations: $x(t)=t$, $y(t)=t^2$; $x(t)=\sin t$, $y(t)=\cos t$; and $x(t)=e^{-2t}\sin
+  t$, $y(t)=e^{-2t}\cos t$.'
+stages:
+- goal: Identify the curve for x(t) = t, y(t) = t^2, including its shape and direction of traversal.
+  expected: 'The Cartesian relation is y = x^2: an upward-opening parabola with vertex at the origin.
+    As t runs from negative infinity to positive infinity, x increases from negative infinity to positive
+    infinity, so the whole parabola is traced once from left to right.'
+  solution: Since x = t, substitute into y = t^2 to get y = x^2 for all real x. This is a parabola with
+    vertex (0,0) opening upward. Because x = t is strictly increasing, the point moves left to right along
+    the curve as t increases, covering every point exactly once.
+  common_errors:
+  - Describing the curve as a line or as y = x instead of y = x squared.
+  - Forgetting that t ranges over all reals, so the full parabola is traced.
+  - Sketching a parabola opening downward.
+  hints:
+    rephrase: Find a relation between x and y that holds whatever t is.
+    smaller_case: Compute the points for t = -1, 0 and 1 and see where they lie.
+    key_idea: Eliminate the parameter by substituting one coordinate into the other.
+  check: simplify(t**2 - t**2)
+  check_ok: true
+- goal: Identify the curve for x(t) = sin t, y(t) = cos t and its direction.
+  expected: The unit circle x^2 + y^2 = 1, traced once clockwise as t goes from 0 to 2 pi. The starting
+    point is (0, 1) at t = 0, then (1, 0) at t = pi/2.
+  solution: 'x^2 + y^2 = sin^2 t + cos^2 t = 1, so the point always lies on the unit circle. Evaluating:
+    t = 0 gives (0,1); t = pi/2 gives (1,0); t = pi gives (0,-1). The motion goes top, right, bottom,
+    which is clockwise. The period is 2 pi, so one full loop is traced per interval of length 2 pi.'
+  common_errors:
+  - Saying the motion is counterclockwise, which comes from reading the parametrisation as (cos t, sin
+    t).
+  - Forgetting to state the period 2 pi.
+  - Stating the Cartesian equation as x + y = 1 or some other non-circle relation.
+  hints:
+    rephrase: Compute the point at t = 0 and at t = pi/2, then find a relation between x and y that is
+      always true.
+    smaller_case: Look at t = 0, t = pi/2, and t = pi separately and track the motion around the origin.
+    key_idea: A standard trigonometric identity links sin^2 and cos^2; use it to find the Cartesian equation,
+      then check the direction from the points.
+  check: simplify(sin(t)**2 + cos(t)**2 - 1)
+  check_ok: true
+- goal: Describe the curve for x(t) = e^(-2t) sin t, y(t) = e^(-2t) cos t, including its shape, direction
+    and behaviour as t goes to plus or minus infinity.
+  expected: A spiral. In polar form r = e^(-2t) with the angle measured from the positive y-axis equal
+    to t. As t increases the curve moves clockwise and spirals inward toward the origin; as t goes to
+    minus infinity it spirals outward. Each full turn (Delta t = 2 pi) multiplies the radius by e^(-4
+    pi).
+  solution: Compute x^2 + y^2 = e^(-4t)(sin^2 t + cos^2 t) = e^(-4t), so the distance from the origin
+    is r = e^(-2t). Since (x, y) = r(sin t, cos t), the angle from the positive y-axis is t. Increasing
+    t rotates the point clockwise (t = 0 gives (0, e^0) = (0,1); t = pi/2 gives a point on the positive
+    x-axis). Because r decreases as t increases, the curve spirals inward. As t tends to plus infinity,
+    r tends to 0, so the curve approaches the origin. As t tends to minus infinity, r grows without bound,
+    so the curve spirals outward. One full turn multiplies the radius by e^(-2 * 2 pi) = e^(-4 pi).
+  common_errors:
+  - Treating the curve as a circle because of the sine and cosine, and forgetting the exponential factor.
+  - Measuring the angle from the positive x-axis, which gives the wrong direction of rotation.
+  - Claiming the spiral moves outward for t going to plus infinity.
+  - Computing the decay per turn as e^(-2 pi) instead of e^(-4 pi).
+  hints:
+    rephrase: Find x^2 + y^2 first. What does it tell you about the distance from the origin?
+    smaller_case: Look at t = 0 and t = pi/2 to find the starting point and the direction of motion.
+    key_idea: Write (x, y) in polar form with radius r and angle measured from the positive y-axis; then
+      read off how r and the angle change with t.
+  check: simplify(exp(-4*t)*(sin(t)**2 + cos(t)**2) - exp(-4*t))
+  check_ok: true
+extensions:
+  '3':
+  - Sketch x(t) = t, y(t) = t^3 and explain whether the curve can be written as y as a function of x.
+  - Sketch the curve x(t) = t^2, y(t) = t^3 and identify any cusp or self-intersection.
+  '4':
+  - Parametrise an ellipse with semi-axes a and b, then find its Cartesian equation.
+  - For x(t) = e^(-2t) sin t, y(t) = e^(-2t) cos t, find the arc length from t = 0 to t = infinity.
+  '5':
+  - Find the curvature of the parabola x(t) = t, y(t) = t^2 at a general point and state where it is largest.
+  - Show that the spiral x(t) = e^(-2t) sin t, y(t) = e^(-2t) cos t has a tangent direction that makes
+    a constant angle with the radius vector, and find that angle.
+spoken_vocab:
+- parametric
+- parametrisation
+- x of t
+- y of t
+- parabola
+- unit circle
+- sine
+- cosine
+- pi
+- e to the minus two t
+- e to the minus four t
+- spiral
+- polar
+- radius
+- clockwise
+- counterclockwise
+- origin
+- positive y-axis
+- tends to infinity
+- Cartesian equation
+- arc length
+- curvature
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 6 (anonymous).pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Parabola, circle and decaying spiral test direction of traversal and asymptotic behaviour.
+  priority: 71
+  rank: 335
+  tier: B
+  category: past-interviews
+  d10: 3.5
+  real: 5.0
+  by: haiku
+tags:
+- curve_sketching
+- trigonometry
+- exponentials_and_logarithms

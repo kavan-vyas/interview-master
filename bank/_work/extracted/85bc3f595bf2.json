@@ -1,0 +1,58 @@
+[
+ {
+  "q": "The complete graph $K_n$ has $n$ vertices, each pair joined by an edge. For which $n$ can you trace every edge exactly once in a single closed route, returning to your start? For which $n$ is this possible if you need not return?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p89"
+ },
+ {
+  "q": "In a round-robin tournament, every pair of players plays once and there are no draws. Prove that the players can be listed $P_1, P_2, \\ldots, P_n$ so that each player beats the next one in the list.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p89"
+ },
+ {
+  "q": "A graph is $simple$ if it has no loops and no repeated edges, and $planar$ if it can be drawn in the plane with no edges crossing. You may assume Euler's formula: a connected planar graph drawn in the plane with $V$ vertices, $E$ edges and $F$ faces (including the outer face) satisfies $V - E + F = 2$. (i) Show that in any graph the sum of the degrees of the vertices is $2E$. Deduce that the number of vertices of odd degree is even. (ii) Show that a connected simple planar graph with $V \\geq 3$ satisfies $E \\leq 3V - 6$. (iii) Deduce that $K_5$, the complete graph on five vertices, is not planar. (iv) Three houses must each be connected to three utilities (gas, water, electricity) by pipes that do not cross. Show that this is impossible. (v) Show that every simple planar graph has a vertex of degree at most 5.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p89"
+ },
+ {
+  "q": "(i) Show that if a connected graph has a closed trail using every edge exactly once, then every vertex has even degree. (ii) Conversely, sketch a proof that if a connected graph has every degree even, such a trail exists. (iii) A double-six domino set has 28 dominoes, one for each unordered pair of numbers from 0 to 6 (including doubles). Can all 28 be laid in a closed ring, with touching ends matching? (iv) What about a double-five set of 21 dominoes? Can they even be laid in an open line?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p89"
+ },
+ {
+  "q": "A graph is $k$-colourable if its vertices can be coloured with $k$ colours so that adjacent vertices always differ. (i) What is the least number of colours needed for a cycle of length $n$? (ii) Show that a graph in which every vertex has degree at most $\\Delta$ is $(\\Delta + 1)$-colourable. (iii) Prove that a graph is 2-colourable if and only if it has no cycle of odd length. (iv) Some straight lines are drawn in the plane. Show that the regions formed can be 2-coloured so that regions sharing an edge have different colours.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p89"
+ },
+ {
+  "q": "A $tree$ is a connected graph with no cycles. (i) Show that every tree with at least two vertices has a leaf (a vertex of degree 1). (ii) Deduce that a tree with $n$ vertices has exactly $n - 1$ edges. (iii) Show that in a tree, any two vertices are joined by exactly one path. (iv) How many different trees are there on the labelled vertices $\\{1,2,3\\}$? On $\\{1,2,3,4\\}$? On $\\{1,\\ldots,5\\}$? Make a conjecture.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p89"
+ },
+ {
+  "q": "Two diagonally opposite corner squares are removed from an $8 \\times 8$ chessboard. Can the remaining 62 squares be covered exactly by 31 dominoes, each covering two adjacent squares?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p89"
+ },
+ {
+  "q": "A corridor has 100 closed lockers. Student 1 opens every locker. Student 2 toggles (opens if closed, closes if open) every second locker, student 3 toggles every third locker, and so on up to student 100. Which lockers end up open?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p89"
+ }
+]

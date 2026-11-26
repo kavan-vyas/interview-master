@@ -1,0 +1,85 @@
+id: functional-equation-x-and-one-minus-x
+title: Functional equation with f(x) and f(1-x)
+topics:
+- functional equations
+- algebra
+- simultaneous equations
+- substitution
+warmup: true
+answer_source: pdf
+statement: Find all functions $f:\mathbb{R}\to\mathbb{R}$ such that for every real $x$, $f(x)+2f(1-x)=x^2$.
+stages:
+- goal: Produce a second equation by substituting a related argument into the functional equation.
+  expected: $f(1-x)+2f(x)=(1-x)^2$ for every real $x$.
+  solution: 'The given equation holds for every real $x$, so replace $x$ by $1-x$: $f(1-x)+2f(1-(1-x))=(1-x)^2$,
+    which simplifies to $f(1-x)+2f(x)=(1-x)^2$.'
+  common_errors:
+  - Writing $f(1+x)$ instead of $f(1-x)$, because the substitution $1-x$ inside $1-x$ is not simplified
+    correctly.
+  - Replacing $x$ by $1-x$ on the right side but not on the left, or the reverse.
+  hints:
+    rephrase: The equation holds for every real number, so you may plug in any expression for x, including
+      one involving x itself.
+    smaller_case: Pick a specific number, for example $x=0$, and write the equation for that value. Then
+      do the same with the general expression.
+    key_idea: Apply the substitution $x\to 1-x$ and simplify $1-(1-x)$ carefully.
+  check: sp.expand((1-x)**2 - (x**2-2*x+1))
+  check_ok: true
+- goal: Solve the pair of linear equations for f(x) and f(1-x), and verify the solution satisfies the
+    original equation.
+  expected: $f(x)=\frac{x^2-4x+2}{3}$, and this is the unique solution.
+  solution: 'Let $A=f(x)$ and $B=f(1-x)$. Then $A+2B=x^2$ and $2A+B=(1-x)^2$. Eliminating $B$ gives $3A=2(1-x)^2...
+    $ more precisely: multiply the first equation by 2 and subtract the second: $3B=2x^2-(1-x)^2$, and
+    then $A=x^2-2B$, which gives $A=\frac{x^2-4x+2}{3}$. Check: $f(1-x)=\frac{x^2+2x-1}{3}$, so $f(x)+2f(1-x)=\frac{(x^2-4x+2)+(2x^2+4x-2)}{3}=x^2$.
+    Uniqueness follows because the linear system has a non-zero determinant ($1\cdot1-2\cdot2=-3\neq0$),
+    so $f(x)$ is forced.'
+  common_errors:
+  - Solving the system with a sign error when eliminating, which gives a function that fails the original
+    equation.
+  - Stopping after finding one candidate without checking it in the original equation.
+  - Claiming uniqueness without showing that the two substitutions determine $f(x)$ fully.
+  hints:
+    rephrase: You now have two equations involving the same two unknown values, $f(x)$ and $f(1-x)$. Treat
+      them as simultaneous linear equations.
+    smaller_case: Write both equations with $A=f(x)$ and $B=f(1-x)$ and eliminate one unknown.
+    key_idea: Check your answer by substituting it back into the original equation, and argue uniqueness
+      from the non-zero determinant of the linear system.
+  check: sp.simplify((x**2-4*x+2)/3 + 2*(((1-x)**2-4*(1-x)+2)/3) - x**2)
+  check_ok: null
+extensions:
+  '3':
+  - Find all functions $f$ with $f(x)+2f(1-x)=x^2+c$ for a constant $c$, and state how the solution changes.
+  - Solve $f(x)+f(1/x)=x$ for $x\neq0$ using the same elimination idea.
+  '4':
+  - Solve $f(x)+3f(1-x)=g(x)$ for a general polynomial $g$, and say when a unique solution exists.
+  - Find all $f$ with $f(x)+f(-x)=2x^2$ and $f(x)-f(-x)=4x$, and combine the results.
+  '5':
+  - Find all continuous functions $f:\mathbb{R}\to\mathbb{R}$ satisfying $f(x)+2f(1-x)=x^2$ and an extra
+    constraint of your choice, and show the constraint is needed for uniqueness in a related problem.
+spoken_vocab:
+- f of x plus two f of one minus x
+- equals x squared
+- replace x by one minus x
+- f of one minus x plus two f of x
+- equals one minus x squared
+- solve the two linear equations
+- x squared minus four x plus two over three
+source: jaymin/Jaymin Interview (1).pdf#p9
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 2
+  minutes: 5
+  flags: []
+  tagline: Clean substitute-and-solve pair; a solid warm-up with limited extension.
+  priority: 60
+  rank: 462
+  tier: C
+  category: jaymin
+  d10: 4.0
+  real: 4.5
+  by: deepseek-v4.1-flash-free
+tags:
+- functional_equations
+- algebra_and_functions

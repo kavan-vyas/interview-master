@@ -1,0 +1,84 @@
+id: binary-chains-parity
+title: Binary chains of length n and even parity
+topics:
+- counting
+- binary strings
+- parity
+- bijection
+- binomial sums
+warmup: true
+answer_source: generated
+statement: How many binary chains of length $n$ are there, and how many of these are even parity?
+stages:
+- goal: Count all binary chains of length $n$.
+  expected: $2^n$
+  solution: A binary chain has $n$ positions, each holding 0 or 1 independently. By the multiplication
+    principle there are $2\cdot 2\cdots 2 = 2^n$ chains.
+  common_errors:
+  - Answering $2n$ (adding instead of multiplying the choices).
+  - Answering $n!$ or $n^2$.
+  - Forgetting that repeated symbols are allowed.
+  hints:
+    rephrase: A chain is a string. How many choices do you have at each position?
+    smaller_case: For $n=2$, list every string of length 2 and count them.
+    key_idea: Independent choices at each position multiply.
+  check: simplify(N_total - 2**n)  (N_total is the stated total count)
+  check_ok: null
+- goal: Count the chains of length $n$ with even parity (an even number of 1s), for $n\ge 1$.
+  expected: $2^{n-1}$ (for $n\ge 1$).
+  solution: Flip the first bit of each chain. This changes the number of 1s by exactly one, so it maps
+    even-parity chains bijectively to odd-parity chains. Hence the two sets have equal size, and since
+    together they make $2^n$ chains, each has $2^{n-1}$. Equivalently, $\sum_{k\text{ even}}\binom{n}{k}=2^{n-1}$
+    for $n\ge 1$. For $n=0$ the only chain is the empty chain, which has even parity, so the count is
+    1, not $2^{-1}$; the formula needs $n\ge 1$.
+  common_errors:
+  - Answering $2^{n-2}$ or $2^n/4$.
+  - Counting odd parity instead of even (the answers coincide for $n\ge 1$, but the reasoning should be
+    stated).
+  - Summing $\binom{n}{k}$ over all $k$ and getting $2^n$.
+  - Giving $2^{n-1}$ for $n=0$ without noting the restriction.
+  hints:
+    rephrase: Parity counts the 1s. Does flipping one bit change the parity?
+    smaller_case: For $n=2$, which of the four strings have an even number of 1s?
+    key_idea: Find a pairing or bijection between even-parity and odd-parity chains.
+  check: simplify(E_even - 2**(n-1))  (E_even is the stated even-parity count)
+  check_ok: null
+extensions:
+  '3':
+  - Show without binomial sums that the even and odd counts are equal for $n\ge 1$.
+  '4':
+  - Count chains with exactly $k$ ones and sum over even $k$ to check your parity answer.
+  '5':
+  - Use $(1+x)^n$ and $(1-x)^n$ to derive the even-parity count with a generating function.
+spoken_vocab:
+- binary chain
+- length n
+- two to the n
+- even parity
+- odd parity
+- number of ones
+- two to the n minus one
+- binomial coefficient
+- n choose k
+- bijection
+- flip the first bit
+source: screenshots/Screenshot 2026-11-19 at 14.36.06.png
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 2
+  minutes: 4
+  flags:
+  - trivial
+  tagline: Counting via binomial sums; too direct for deep discussion.
+  priority: 17
+  rank: 699
+  tier: D
+  category: screenshots
+  d10: 2.5
+  real: 6.0
+  by: deepseek-v4.1-flash-free
+tags:
+- combinatorics
+- proof

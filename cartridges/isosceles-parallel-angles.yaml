@@ -1,0 +1,116 @@
+id: isosceles-parallel-angles
+title: Isosceles triangle with a line parallel to the base
+topics:
+- angles
+- isosceles triangles
+- parallel lines
+- angles on a straight line
+warmup: false
+answer_source: pdf
+statement: In the diagram, $AB = AC$ and line $DE$ is parallel to line $BC$. The point $Q$ lies on $BC$
+  extended. $\angle ABC = 65^\circ$. Find angles (i) $\angle BAC$, (ii) $\angle DAB$, (iii) $\angle ACQ$,
+  showing and explaining each step in your working.
+stages:
+- goal: Find angle BAC, showing the reasoning.
+  expected: 50°
+  solution: 'Triangle ABC is isosceles with AB = AC, so the base angles are equal: angle ACB = angle ABC
+    = 65°. The angles in a triangle sum to 180°, so angle BAC = 180° − 65° − 65° = 50°.'
+  common_errors:
+  - Treating angle BAC as equal to 65° because it looks like the base angle.
+  - Forgetting that both base angles are 65°, so subtracting only one of them.
+  - Using 180° − 65° = 115° as the apex angle.
+  hints:
+    rephrase: The triangle has two equal sides. What do you know about the two angles opposite those sides?
+      Then what do all three angles of a triangle add up to?
+    smaller_case: Imagine the apex angle is 90°. Would the two base angles be equal, and what would they
+      be?
+    key_idea: In an isosceles triangle the base angles are equal, and the three angles of any triangle
+      sum to 180°.
+  check: 180 - 2*65 - 50
+  check_ok: true
+- goal: Find angle DAB, explaining which angle property you use and why.
+  expected: 65°
+  solution: DE is parallel to BC, and AB is a transversal crossing both lines. Angle DAB and angle ABC
+    are alternate angles (D is on the opposite side of AB from C, with D on the line through A parallel
+    to BC), so they are equal. Angle DAB = 65°.
+  common_errors:
+  - Using angle BAC = 50° instead of the alternate angle.
+  - Confusing alternate angles with corresponding or co-interior angles.
+  - Adding 65° and 50° together.
+  hints:
+    rephrase: Look at the transversal AB crossing the two parallel lines. Which angle at A lies in the
+      same position as angle ABC, but on the other side of the transversal?
+    smaller_case: Draw just the two parallel lines and one transversal. Name the two angles that are on
+      opposite sides of the transversal and between the parallel lines. How are they related?
+    key_idea: Alternate angles between parallel lines are equal.
+  check: 65 - 65
+  check_ok: true
+- goal: Find angle ACQ, explaining why it is an exterior angle and how it relates to angle ACB.
+  expected: 115°
+  solution: Q lies on BC extended, so BCQ is a straight line. Angle ACB = 65° (from part i, since the
+    base angles are equal, or from angle ABC). Angles on a straight line sum to 180°, so angle ACQ = 180°
+    − 65° = 115°.
+  common_errors:
+  - Using 65° directly as angle ACQ, since it is the base angle.
+  - Using angle BAC = 50° in the calculation.
+  - Subtracting 50° from 180°.
+  hints:
+    rephrase: Angle ACQ and angle ACB share the vertex C. Where does the point Q sit relative to B and
+      C, and what does that tell you about the two angles together?
+    smaller_case: If you extend the line BC past C and then draw AC, what two angles sit side by side
+      on that straight line at C?
+    key_idea: Angles on a straight line sum to 180°. Also, the base angle at C is equal to the base angle
+      at B.
+  check: 180 - 65 - 115
+  check_ok: true
+extensions:
+  '3':
+  - If angle ABC were 40°, find angles BAC and ACQ.
+  - Explain why angle DAB and angle ABC must be equal even if DE is drawn on the other side of A.
+  '4':
+  - Prove that the exterior angle at C equals the sum of the two interior opposite angles of triangle
+    ABC, using angle sums only.
+  - If AB were not equal to AC, which of the three answers would change and which would stay the same?
+  '5':
+  - 'Generalise: for an isosceles triangle with apex angle x and a line through the apex parallel to the
+    base, express each angle in terms of x.'
+  - Explain why the result in part ii would still hold if DE were a line through A but on the other side
+    of the triangle.
+spoken_vocab:
+- AB equals AC
+- line DE
+- parallel to line BC
+- point Q
+- lies on BC extended
+- angle ABC
+- 65 degrees
+- angle BAC
+- angle DAB
+- angle ACQ
+- isosceles triangle
+- base angles
+- alternate angles
+- angles on a straight line
+- 180 degrees
+- exterior angle
+- transversal
+source: kclms/kclms-specimen-questions-2.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 3
+  parts: 3
+  minutes: 8
+  flags:
+  - needs_diagram
+  - missing_info
+  tagline: Angle chase depends on a diagram and the position of D, which aren't given.
+  priority: 25
+  rank: 649
+  tier: D
+  category: kclms
+  d10: 2.0
+  real: 3.0
+  by: haiku
+tags:
+- geometry

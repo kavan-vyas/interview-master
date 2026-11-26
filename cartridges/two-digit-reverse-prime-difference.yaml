@@ -1,0 +1,77 @@
+id: two-digit-reverse-prime-difference
+title: Prime difference with the reversed two-digit number
+topics:
+- number theory
+- divisibility
+- place value
+warmup: true
+answer_source: generated
+statement: Is there a $2$-digit number $ab$ such that the difference between $ab$ and its reverse $ba$
+  is prime?
+stages:
+- goal: Write the difference between ab and ba in terms of a and b.
+  expected: The difference is 9(a - b), or 9|a - b| in absolute value.
+  solution: ab = 10a + b and ba = 10b + a. Their difference is (10a + b) - (10b + a) = 9a - 9b = 9(a -
+    b).
+  common_errors:
+  - Forgetting the place values of the digits
+  - Reading ab as a times b
+  hints:
+    rephrase: Write each two-digit number as its tens digit times 10 plus its units digit.
+    smaller_case: Take 52 and 25. What is their difference, and what does it share with the digits?
+    key_idea: 'Place value: a two-digit number is 10 times its tens digit plus its units digit.'
+  check: (10*a+b)-(10*b+a) - 9*(a-b)
+  check_ok: true
+- goal: Decide whether the difference can be prime.
+  expected: No.
+  solution: The difference is 9 times (a - b). If a = b the difference is 0, which is not prime. Otherwise
+    its absolute value is a multiple of 9, so it is divisible by 3 and is at least 9. A prime divisible
+    by 3 must equal 3, so no such difference is prime.
+  common_errors:
+  - Testing a few examples and stopping
+  - Forgetting that 0 is not prime
+  - Ignoring the common factor and only checking small differences
+  hints:
+    rephrase: Look at the factor that every such difference shares, and ask whether a prime can have that
+      factor.
+    smaller_case: Compute the differences for 31 and 13, and for 74 and 47. What do you notice?
+    key_idea: Once the difference is a fixed multiple of a number, ask whether a prime can be that multiple.
+  check: not sympy.isprime(9)
+  check_ok: null
+extensions:
+  '3':
+  - Can a 3-digit number abc minus its reverse cba be prime?
+  '4':
+  - Show that the difference between any 4-digit number and its reverse is divisible by 9.
+  '5':
+  - Prove that every number and its digit reversal differ by a multiple of 9, for any number of digits.
+spoken_vocab:
+- two digit number
+- a b
+- reverse
+- ten a plus b
+- difference
+- prime
+- nine
+- divisible by nine
+- zero
+- not prime
+source: past-interviews/Actual Past Interview Questions/H1.jpg
+verified: false
+rating:
+  quality: 3
+  difficulty: 2
+  parts: 2
+  minutes: 4
+  flags:
+  - trivial
+  tagline: Neat factor-of-9 observation, but the answer is nearly immediate.
+  priority: 27
+  rank: 622
+  tier: D
+  category: past-interviews
+  d10: 2.0
+  real: 6.0
+  by: haiku
+tags:
+- number_theory

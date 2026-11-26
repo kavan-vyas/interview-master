@@ -1,0 +1,86 @@
+id: wallis-cos-powers-0-pi
+title: Integrals of cos powers over 0 to pi
+topics:
+- integration
+- reduction formulae
+- symmetry
+- trigonometric integrals
+warmup: true
+answer_source: generated
+statement: Calculate $\int_0^{\pi}\cos^4\theta\,d\theta$. What about $\int_0^{\pi}\cos^5\theta\,d\theta$?
+stages:
+- goal: Evaluate $\int_0^{\pi}\cos^4\theta\,d\theta$.
+  expected: $\frac{3\pi}{8}$
+  solution: Write $\cos^2\theta=\frac{1+\cos 2\theta}{2}$, so $\cos^4\theta=\frac{1}{4}(1+2\cos 2\theta+\cos^2
+    2\theta)$. Then $\cos^2 2\theta=\frac{1+\cos 4\theta}{2}$. Integrating over $[0,\pi]$, the terms $\cos
+    2\theta$ and $\cos 4\theta$ integrate to 0, leaving $\frac{1}{4}\left(\pi+\frac{\pi}{2}\right)=\frac{3\pi}{8}$.
+    Equivalently, the reduction $I_4=\frac{3}{4}I_2$ with $I_2=\frac{\pi}{2}$ gives the same result.
+  common_errors:
+  - Answering $\frac{\pi}{2}$, which is $\int_0^{\pi}\cos^2\theta\,d\theta$.
+  - Answering $\frac{3\pi}{16}$, which is the integral over $[0,\frac{\pi}{2}]$ only.
+  - Integrating $\cos^4\theta$ as $\frac{\cos^5\theta}{5}$ or similar incorrect power rules.
+  hints:
+    rephrase: Can you rewrite $\cos^4\theta$ in terms of $\cos 2\theta$ and $\cos 4\theta$?
+    smaller_case: Start with $\int_0^{\pi}\cos^2\theta\,d\theta$ and see how the same method works there.
+    key_idea: Use the double-angle identity to reduce the power of cosine, then note which terms integrate
+      to zero over a full period.
+  check: simplify(answer - 3*pi/8) == 0
+  check_ok: false
+- goal: Evaluate $\int_0^{\pi}\cos^5\theta\,d\theta$.
+  expected: $0$
+  solution: Substitute $\theta\mapsto\pi-\theta$. Then $\cos(\pi-\theta)=-\cos\theta$, so $\cos^5(\pi-\theta)=-\cos^5\theta$.
+    The integral $J=\int_0^{\pi}\cos^5\theta\,d\theta$ therefore satisfies $J=\int_0^{\pi}\cos^5(\pi-\theta)\,d\theta=-J$,
+    so $J=0$. The same result follows from $u=\sin\theta$ on each half-interval, which gives opposite
+    contributions.
+  common_errors:
+  - Using a reduction formula with the wrong sign, which can produce a non-zero value.
+  - Thinking the answer is $\frac{8}{15}$, which is $\int_0^{\pi/2}\cos^5\theta\,d\theta$, and forgetting
+    the second half of the interval.
+  - Assuming the integral of an odd power of cosine is always positive.
+  hints:
+    rephrase: How does $\cos(\pi-\theta)$ compare with $\cos\theta$?
+    smaller_case: Compare the graph of $\cos\theta$ on $\left[0,\frac{\pi}{2}\right]$ with its graph on
+      $\left[\frac{\pi}{2},\pi\right]$.
+    key_idea: Look for a symmetry of the interval $[0,\pi]$ that changes the sign of the integrand.
+  check: answer == 0
+  check_ok: false
+extensions:
+  '3':
+  - Derive the reduction formula $I_n=\frac{n-1}{n}I_{n-2}$ for $I_n=\int_0^{\pi}\cos^n\theta\,d\theta$,
+    and use it to re-derive the cos fourth result.
+  - Explain why all odd powers of cosine give zero over $[0,\pi]$, using a symmetry argument.
+  '4':
+  - Evaluate $\int_0^{\pi}\cos^6\theta\,d\theta$.
+  '5':
+  - Evaluate $\int_0^{\pi}\sin^5\theta\,d\theta$.
+  - Evaluate $\int_0^{\pi}\sin^4\theta\cos^2\theta\,d\theta$.
+spoken_vocab:
+- integral from zero to pi
+- cosine to the fourth theta d theta
+- cosine to the fifth theta d theta
+- three pi over eight
+- double angle identity
+- reduction formula
+- symmetry
+- theta maps to pi minus theta
+- Wallis integral
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 7 (anonymous).pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 3
+  parts: 2
+  minutes: 4
+  flags:
+  - trivial
+  tagline: Quick even-versus-odd power contrast; too short for deep discussion.
+  priority: 27
+  rank: 620
+  tier: D
+  category: past-interviews
+  d10: 3.0
+  real: 5.0
+  by: haiku
+tags:
+- integration
+- trigonometry

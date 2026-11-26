@@ -1,0 +1,106 @@
+id: factorial-sum-mod-7
+title: Remainder of 1! + 2! + ... + 100! mod 7
+topics:
+- modular arithmetic
+- factorials
+- divisibility
+- number theory
+warmup: true
+answer_source: pdf
+statement: What is the remainder of $1!+2!+3!+4!+\cdots+100!$ when divided by $7$?
+stages:
+- goal: Explain what happens to n! modulo 7 once n is at least 7.
+  expected: For n >= 7, 7 is a factor of n!, so n! is divisible by 7 and contributes remainder 0.
+  solution: n! = 1 x 2 x ... x n. When n >= 7, the factor 7 appears in this product, so 7 divides n!.
+    Hence n! ≡ 0 (mod 7) for all n >= 7. For example, 7! = 5040 = 7 x 720.
+  common_errors:
+  - Assuming only 7! is divisible by 7 and forgetting that 8!, 9!, ... are also multiples of 7.
+  - Confusing 'divisible by 7' with 'equal to 7'.
+  hints:
+    rephrase: Which factors appear in n! once n is 7 or larger?
+    smaller_case: Look at 7! and 8! separately. Does 7 divide each of them?
+    key_idea: A product that contains a factor p is divisible by p.
+  check: Mod(factorial(7), 7) - 0
+  check_ok: true
+- goal: Find the remainder of 1! + 2! + 3! + 4! + 5! + 6! when divided by 7.
+  expected: '5'
+  solution: '1! + 2! + 3! + 4! + 5! + 6! = 1 + 2 + 6 + 24 + 120 + 720 = 873. Since 7 x 124 = 868, we have
+    873 ≡ 5 (mod 7). Working with residues also works: 1, 2, 6, 3, 1, 6 sum to 19, and 19 ≡ 5 (mod 7).'
+  common_errors:
+  - Arithmetic slips when adding 1 + 2 + 6 + 24 + 120 + 720.
+  - Dividing 873 by 7 incorrectly, for example by taking 873 mod 9 or 873 mod 10.
+  - Reducing each factorial mod 7 incorrectly, e.g. writing 4! = 24 ≡ 3 but then 5! ≡ 5 instead of 1.
+  hints:
+    rephrase: You only need the first six terms. How can you reduce each factorial mod 7 without computing
+      the whole sum?
+    smaller_case: Try 1! + 2! + 3! alone. What is its remainder mod 7?
+    key_idea: Reduce each term mod 7 first, then add the residues and reduce again.
+  check: Mod(Sum(factorial(k), (k, 1, 6)).doit(), 7) - 5
+  check_ok: true
+- goal: Combine the two previous results to give the remainder of 1! + 2! + ... + 100! when divided by
+    7.
+  expected: '5'
+  solution: By stage 1, every term from 7! to 100! is divisible by 7, so the whole sum is congruent mod
+    7 to 1! + 2! + ... + 6!. By stage 2, that sum leaves remainder 5. So the remainder is 5.
+  common_errors:
+  - Forgetting that the remainder of a sum is not the sum of remainders unless the residues are reduced
+    consistently.
+  - Stopping at the wrong upper limit, such as summing only up to 6! but then miscounting the leftover
+    terms.
+  hints:
+    rephrase: Which terms can you drop from the sum without changing the remainder mod 7?
+    smaller_case: What is the remainder of 1! + 2! + ... + 8! mod 7? Does it match the remainder for just
+      the first six terms?
+    key_idea: Terms that are multiples of the modulus contribute nothing to the remainder.
+  check: Mod(Sum(factorial(k), (k, 1, 100)).doit(), 7) - 5
+  check_ok: true
+extensions:
+  '3':
+  - 'Find the remainder of 1! + 2! + ... + 100! when divided by 3. (Answer: 0, since 1! + 2! = 3 and every
+    n! with n >= 3 is divisible by 3.)'
+  - 'Find the remainder of 1! + 2! + ... + 100! when divided by 5. (Answer: 3, since 1! + 2! + 3! + 4!
+    = 33 and every n! with n >= 5 is divisible by 5.)'
+  '4':
+  - 'Find the remainder of 1! + 2! + ... + 100! when divided by 11. (Answer: 0. Reducing 1! through 10!
+    mod 11 gives residues 1, 2, 6, 2, 10, 5, 2, 5, 1, 10, which sum to 44 ≡ 0.)'
+  - Show that for n >= 4, the number 1! + 2! + ... + n! is never a perfect square.
+  '5':
+  - 'Show that for n >= 4, the number 1! + 2! + ... + n! is never a perfect square. Hint: the sum ends
+    in digit 3 for n >= 4, and no perfect square ends in 3.'
+  - Let S(n) = 1! + 2! + ... + n!. Determine all n for which S(n) is divisible by 4.
+spoken_vocab:
+- factorial
+- one factorial plus two factorial plus three factorial
+- dot dot dot
+- one hundred factorial
+- remainder
+- divided by seven
+- modulo seven
+- congruent to
+- seven divides
+- multiple of seven
+- residue
+- sum from k equals one to six
+- four factorial
+- six factorial
+- seven factorial
+- eight factorial
+source: nextstepmaths/NextStepMaths Interview Questions/interview-question-9.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 3
+  parts: 3
+  minutes: 6
+  flags: []
+  tagline: 'Key insight: n! vanishes mod 7 from n=7 onward.'
+  priority: 61
+  rank: 453
+  tier: C
+  category: nextstepmaths
+  d10: 3.0
+  real: 8.0
+  by: deepseek-v4.1-flash-free
+tags:
+- number_theory
+- sequences_and_series

@@ -1,0 +1,96 @@
+id: gamma-half-factorial
+title: 'Non-integer factorial: (-1/2)!'
+topics:
+- gamma function
+- improper integrals
+- substitution
+warmup: false
+answer_source: generated
+statement: This lets us define $x!$ for non-integer $x$. Using $\int_0^\infty e^{-u^2}\,du=\frac{\sqrt{\pi}}{2}$
+  and the substitution $x=u^2$, show that $(-\tfrac{1}{2})!=\sqrt{\pi}$.
+stages:
+- goal: Write $(-\tfrac12)!$ as an integral using the definition of the factorial for non-integers.
+  expected: $(-\tfrac12)!=\int_0^\infty t^{-1/2}e^{-t}\,dt=\Gamma(\tfrac12)$, using $x!=\Gamma(x+1)=\int_0^\infty
+    t^{x}e^{-t}\,dt$ with $x=-\tfrac12$.
+  solution: Use $x!=\Gamma(x+1)=\int_0^\infty t^{x}e^{-t}\,dt$. Setting $x=-\tfrac12$ gives $(-\tfrac12)!=\int_0^\infty
+    t^{-1/2}e^{-t}\,dt$, which is $\Gamma(\tfrac12)$.
+  common_errors:
+  - Writing the integrand as $t^{1/2}$ instead of $t^{-1/2}$
+  - Forgetting the limits 0 and infinity
+  hints:
+    rephrase: The factorial of a non-integer is defined by an integral. Put the given value of $x$ into
+      the exponent of $t$.
+    smaller_case: 'Check the same definition at $x=1$: which integral should give $1!=1$?'
+    key_idea: The integral $\int_0^\infty t^{x}e^{-t}\,dt$ converges for every $x>-1$, so it can define
+      $x!$ at non-integer values.
+  check: integrate(t**(-Rational(1,2))*exp(-t),(t,0,oo)) - gamma(Rational(1,2))
+  check_ok: true
+- goal: Substitute $t=u^2$ (the substitution $x=u^2$ from the question, applied to the integration variable)
+    and rewrite the integral in $u$.
+  expected: $\int_0^\infty t^{-1/2}e^{-t}\,dt=2\int_0^\infty e^{-u^2}\,du$, because $t^{-1/2}=1/u$, $e^{-t}=e^{-u^2}$
+    and $dt=2u\,du$.
+  solution: 'With $t=u^2$: $t^{-1/2}=u^{-1}$, $e^{-t}=e^{-u^2}$ and $dt=2u\,du$. The limits stay $0$ to
+    $\infty$. So the integrand becomes $u^{-1}e^{-u^2}\cdot 2u=2e^{-u^2}$.'
+  common_errors:
+  - Forgetting the factor 2 from $dt=2u\,du$
+  - Writing $t^{-1/2}$ as $u^2$ instead of $u^{-1}$
+  hints:
+    rephrase: Replace every $t$ by a function of $u$, including the differential.
+    smaller_case: What is $d(u^2)$ when $u$ changes by a small amount?
+    key_idea: 'The differential transforms with the derivative of the substitution: differentiate $t=u^2$
+      with respect to $u$.'
+  check: integrate(2*exp(-u**2),(u,0,oo)) - integrate(exp(-u**2)/u*2*u,(u,0,oo))
+  check_ok: true
+- goal: Use the given Gaussian integral to find $(-\tfrac12)!$.
+  expected: $(-\tfrac12)!=2\cdot\frac{\sqrt\pi}{2}=\sqrt\pi$.
+  solution: By the previous stage $(-\tfrac12)!=2\int_0^\infty e^{-u^2}\,du=2\cdot\frac{\sqrt\pi}{2}=\sqrt\pi$.
+  common_errors:
+  - Dropping the factor 2 and getting $\sqrt{\pi}/2$
+  - Confusing the Gaussian integral with $\int_0^\infty e^{-u^2}\,du=\sqrt{\pi}$
+  hints:
+    rephrase: Substitute the given value of the Gaussian integral into the expression from the previous
+      step.
+    smaller_case: What is $2\cdot 1$? Now try $2\cdot\tfrac12$.
+    key_idea: Track every constant factor from the substitution through to the end.
+  check: 2*integrate(exp(-u**2),(u,0,oo)) - sqrt(pi)
+  check_ok: true
+extensions:
+  '3':
+  - Show that $\Gamma(x+1)=x\Gamma(x)$ using integration by parts.
+  - Evaluate $(\tfrac12)!$ from the definition.
+  '4':
+  - Use $(\tfrac12)!$ to compute $(\tfrac32)!$.
+  - Show $\Gamma(\tfrac12)^2=\pi$ using a double integral in polar coordinates.
+  '5':
+  - Derive $\int_0^\infty e^{-u^2}\,du$ from the square of the integral in polar coordinates.
+  - Find $(-\tfrac32)!$ using the recurrence $\Gamma(x+1)=x\Gamma(x)$.
+spoken_vocab:
+- minus a half factorial
+- factorial of x
+- gamma function
+- integral from zero to infinity
+- e to the minus t
+- t to the minus one half
+- square root of pi
+- substitute t equals u squared
+- d t equals two u d u
+- e to the minus u squared
+- two times the integral
+source: jaymin/Jaymin Interview (1).pdf#p49
+verified: false
+rating:
+  quality: 5
+  difficulty: 5
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: Elegant link between factorials and Gaussian integral via substitution.
+  priority: 76
+  rank: 265
+  tier: B
+  category: jaymin
+  d10: 4.0
+  real: 2.5
+  by: deepseek-v4.1-flash-free
+tags:
+- integration

@@ -1,0 +1,112 @@
+id: hunter-sloth-free-fall
+title: Hunter and the Falling Sloth
+topics:
+- mechanics
+- free fall
+- projectile motion
+- relative motion
+warmup: true
+answer_source: pdf
+statement: A hunter points a gun at a sloth in a tree. Suppose that the sloth lets go of the tree at the
+  same instant the hunter fires the gun. Will the sloth be hit? Describe any assumptions you make.
+stages:
+- goal: Describe the motion of the sloth after release and the motion of the bullet after firing.
+  expected: 'Sloth: free fall, vertical acceleration $-g$, no horizontal velocity. Bullet: vertical acceleration
+    $-g$, constant horizontal velocity along the aim line (ignoring air resistance).'
+  solution: Take the gun as origin and the vertical as y. Once released, the sloth has initial velocity
+    zero and experiences only gravity, so its height is $y_s(t)=h-\tfrac{1}{2}gt^2$. The bullet leaves
+    the gun with speed $v$ along the aim direction and is also subject to gravity, so its vertical position
+    drops by the same $\tfrac{1}{2}gt^2$ in addition to its straight-line travel.
+  common_errors:
+  - Forgetting that gravity acts on the bullet as well as the sloth.
+  - Assuming the bullet's speed makes gravity negligible, without checking.
+  - Treating the sloth as having horizontal velocity.
+  hints:
+    rephrase: Write the position of the sloth and of the bullet as functions of time, each including the
+      effect of gravity.
+    smaller_case: 'Ignore the bullet entirely: what is the vertical motion of an object released from
+      rest?'
+    key_idea: Both objects are subject to the same gravitational acceleration. Compare how each one's
+      position changes over time.
+  check: simplify(diff(-g*t**2/2, t, 2) + g)
+  check_ok: true
+- goal: Determine whether the bullet meets the sloth and at what time.
+  expected: Yes. The bullet meets the sloth at $t=D/v$, where $D$ is the initial gun-to-sloth distance
+    and $v$ is the muzzle speed.
+  solution: Let $G$ be the gun position and $S_0$ the sloth's starting position, with $D=|S_0-G|$ and
+    $\hat{u}=(S_0-G)/D$. The bullet is aimed at $S_0$, so its position is $G+vt\,\hat{u}+(0,-\tfrac{1}{2}gt^2)$.
+    The sloth's position is $S_0+(0,-\tfrac{1}{2}gt^2)$. The gravity terms cancel exactly, so the difference
+    is $(vt-D)\hat{u}$. This is zero when $t=D/v$, so the bullet arrives at the sloth's original location
+    exactly when the sloth is there.
+  common_errors:
+  - Concluding the bullet misses because it falls below the sloth's path.
+  - Failing to notice that the gravity terms cancel in the difference of positions.
+  - Aiming at the sloth's future position instead of its starting position, which is not needed here.
+  hints:
+    rephrase: Consider the difference between the bullet's position and the sloth's position at each moment.
+    smaller_case: 'Set gravity to zero first. Does the bullet hit the sloth? Then restore gravity: does
+      anything change in the difference?'
+    key_idea: Gravity acts equally on both objects, so it may drop out of their relative position.
+  check: simplify(v*(D/v) - D)
+  check_ok: true
+- goal: Check that the sloth is still in the air when the bullet arrives.
+  expected: The sloth reaches the ground at $t_g=\sqrt{2h/g}$, where $h$ is its starting height above
+    ground. The hit occurs only if $D/v < \sqrt{2h/g}$.
+  solution: The sloth hits the ground when $h-\tfrac{1}{2}gt^2=0$, so $t_g=\sqrt{2h/g}$. The bullet arrives
+    at time $D/v$. A hit occurs if the bullet arrives before the sloth reaches the ground. For a typical
+    rifle with $v$ of several hundred m/s and $D$ of tens of metres, $D/v$ is far less than $t_g$ for
+    a sloth at a height of a few metres, so the sloth is hit.
+  common_errors:
+  - Forgetting that the sloth can land before the bullet arrives.
+  - Using the sloth's horizontal distance instead of the full distance $D$ in the time calculation.
+  - Not stating the condition for the hit, leaving the answer dependent on the numbers.
+  hints:
+    rephrase: Ask what happens to the sloth before the bullet reaches it.
+    smaller_case: Suppose the gun is very far away. Does the answer still hold?
+    key_idea: Compare the time the bullet takes to arrive with the time the sloth takes to fall to the
+      ground.
+  check: simplify(-g*(sqrt(2*h/g))**2/2 + h)
+  check_ok: true
+extensions:
+  '3':
+  - Add air resistance acting on the bullet only. Does the hit still occur, and how does the answer change?
+  - The sloth grabs a branch one metre below its starting point. Does the answer change?
+  '4':
+  - The hunter fires from a moving vehicle. Does the bullet still meet the sloth?
+  - The sloth is released with a horizontal velocity. Find where the bullet should be aimed.
+  '5':
+  - Include the rotation of the Earth and its effect on long-range shots.
+  - Model a sloth that falls with drag. Under what conditions does the bullet still hit?
+spoken_vocab:
+- sloth
+- hunter
+- gun
+- bullet
+- free fall
+- acceleration due to gravity
+- g
+- relative motion
+- initial distance
+- muzzle velocity
+- hit
+- height
+- time
+- air resistance
+source: nextstepmaths/NextStepMaths Interview Questions/interview-question-13.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 4
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Open-ended modelling; relative motion makes the answer surprising and assumption-rich.
+  priority: 91
+  rank: 123
+  tier: A
+  category: nextstepmaths
+  d10: 4.2
+  real: 8.0
+  by: deepseek-v4.1-flash-free
+tags:
+- mechanics

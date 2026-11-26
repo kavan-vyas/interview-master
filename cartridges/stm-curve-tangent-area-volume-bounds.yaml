@@ -1,0 +1,136 @@
+id: stm-curve-tangent-area-volume-bounds
+title: Tangent line to $y=\frac{1}{1+x^2}$ and bounds on $\pi$ and $\ln 2$
+topics:
+- calculus
+- tangents
+- intersections
+- areas
+- volumes of revolution
+- inequalities
+warmup: false
+answer_source: pdf
+statement: 'Give a sketch of the curve $y=\frac{1}{1+x^2}$, for $x\geq 0$. Find the equation of the line
+  that intersects the curve at $x=0$ and is tangent to the curve at some point with $x>0$. Prove that
+  there are no further intersections between the line and the curve. Draw the line on your sketch. By
+  considering the area under the curve for $0\leq x\leq 1$, show that $\pi>3$. Show also, by considering
+  the volume formed by rotating the curve about the $y$ axis, that $\ln 2>\frac{2}{3}$. [Note: $\int_0^1\frac{1}{1+x^2}\,dx=\frac{\pi}{4}$.]'
+stages:
+- goal: Find the tangent line through $(0,1)$ that touches the curve at some point with $x>0$.
+  expected: The tangent touches the curve at $(1,\frac12)$ with gradient $-\frac12$, so the line is $y=1-\frac{x}{2}$.
+  solution: Let the tangent point be $(p,q)$ with $q=\frac{1}{1+p^2}$. The gradient is $-\frac{2p}{(1+p^2)^2}=-2pq^2$.
+    The tangent passes through $(0,1)$, so $1=q-(-2pq^2)p=q+2p^2q^2$. Multiplying by $(1+p^2)^2$ gives
+    $(1+p^2)+2p^2=(1+p^2)^2$, so $1+3p^2=1+2p^2+p^4$, hence $p^4=p^2$. With $p>0$, $p=1$, so $q=\frac12$
+    and the gradient is $-\frac12$. The line through $(0,1)$ is $y=1-\frac{x}{2}$.
+  common_errors:
+  - Using the gradient at $(0,1)$ instead of at the tangent point.
+  - Forgetting that the tangent point is unknown and must satisfy the tangency and passing conditions
+    together.
+  - Dropping the solution $p=0$ or $p=\pm1$ without checking the condition $x>0$.
+  hints:
+    rephrase: Let the tangent point have unknown $x$-coordinate $p$. Write the gradient there and require
+      the tangent line to pass through $(0,1)$.
+    smaller_case: Find the tangent at $x=0$ first, to see that its gradient is zero and it is not the
+      line asked for.
+    key_idea: Two conditions, tangency and passing through $(0,1)$, give two equations in $p$ and $q$
+      that you can combine.
+  check: (1/(1+1**2) - S(1)/2) + (-2*1*(1/(1+1**2))**2 + S(1)/2)
+  check_ok: true
+- goal: Prove that the line $y=1-\frac{x}{2}$ has no further intersections with the curve for $x\geq0$.
+  expected: Setting $\frac{1}{1+x^2}=1-\frac{x}{2}$ gives $x(x-1)^2=0$, so the only intersections are
+    $x=0$ and $x=1$, where $x=1$ is a tangency.
+  solution: Multiply $\frac{1}{1+x^2}=1-\frac{x}{2}$ by $2(1+x^2)$ to get $2=(2-x)(1+x^2)$. Expanding
+    gives $2=2+2x^2-x-x^3$, so $x^3-2x^2+x=0$, i.e. $x(x-1)^2=0$. For $x\geq0$ the solutions are $x=0$
+    and $x=1$. The repeated root at $x=1$ is the tangency point, so there are no others.
+  common_errors:
+  - Mishandling the algebra when clearing denominators.
+  - Missing the repeated root and wrongly concluding there are two distinct tangency-free intersections.
+  - Forgetting to restrict to $x\geq0$ in the final statement.
+  hints:
+    rephrase: Clear the denominator, bring every term to one side, and factor the resulting polynomial.
+    smaller_case: Check that $x=0$ and $x=1$ satisfy the equation, then ask whether the polynomial has
+      any other roots.
+    key_idea: A cubic with a repeated factor can have fewer distinct roots than its degree, which shows
+      the tangency.
+  check: expand((2-x)*(1+x**2) - 2 + x*(x-1)**2)
+  check_ok: true
+- goal: Use the area under the curve on $0\leq x\leq1$ to show that $\pi>3$.
+  expected: The curve lies strictly above the line on $0<x<1$, so $\frac{\pi}{4}>\int_0^1\left(1-\frac{x}{2}\right)dx=\frac34$,
+    giving $\pi>3$.
+  solution: The difference $\frac{1}{1+x^2}-\left(1-\frac{x}{2}\right)$ equals $\frac{\frac{x}{2}(x-1)^2}{1+x^2}$,
+    which is positive on $0<x<1$. So the curve is above the line there and the areas satisfy $\int_0^1\frac{1}{1+x^2}dx>\int_0^1\left(1-\frac{x}{2}\right)dx$.
+    The left side is $\frac{\pi}{4}$ and the right side is $1-\frac14=\frac34$. So $\frac{\pi}{4}>\frac34$,
+    and $\pi>3$.
+  common_errors:
+  - Using the line as an upper bound instead of a lower bound.
+  - Computing $\int_0^1\left(1-\frac{x}{2}\right)dx$ incorrectly.
+  - Forgetting that the inequality is strict.
+  hints:
+    rephrase: Compare the area under the curve with the area under a simpler function that you can integrate
+      exactly and that lies below the curve.
+    smaller_case: Use a horizontal line $y=\frac12$ on $[0,1]$ and compare its area with the curve.
+    key_idea: Find a line that stays below the curve on $[0,1]$, then the area under the line is a lower
+      bound.
+  check: integrate(1/(1+x**2) - (1-x/2), (x,0,1)) - (pi/4 - S(3)/4)
+  check_ok: true
+- goal: Use the volume of revolution about the $y$-axis to show that $\ln 2>\frac23$.
+  expected: The volume is $V=\int_0^1 2\pi x\cdot\frac{1}{1+x^2}\,dx=\pi\ln 2$. The solid contains the
+    one from the line, of volume $\frac{2\pi}{3}$, so $\pi\ln 2>\frac{2\pi}{3}$ and $\ln 2>\frac23$.
+  solution: By cylindrical shells, $V=\int_0^1 2\pi x\cdot\frac{1}{1+x^2}dx=\pi\left[\ln(1+x^2)\right]_0^1=\pi\ln2$.
+    The region under the line on $0\le x\le1$ generates a solid of volume $\int_0^1 2\pi x\left(1-\frac{x}{2}\right)dx=2\pi\left(\frac12-\frac16\right)=\frac{2\pi}{3}$.
+    Since the curve lies above the line on $[0,1]$, the first solid contains the second, so $\pi\ln2>\frac{2\pi}{3}$.
+    Dividing by $\pi$ gives $\ln 2>\frac23$.
+  common_errors:
+  - Using disc method for a rotation about the $y$-axis rather than shells.
+  - Forgetting the factor $2\pi x$ in the shell integrand.
+  - Using the line's volume as an upper bound.
+  hints:
+    rephrase: Use the shell method for rotation about the $y$-axis. Then compare the resulting volume
+      with the volume generated by a simpler region below the curve.
+    smaller_case: Find the volume of revolution of the region under $y=1$ for $0\le x\le1$ about the $y$-axis,
+      to see the shell formula.
+    key_idea: The shell volume integral can be evaluated with a logarithm, and the line-based region gives
+      a lower bound.
+  check: integrate(2*pi*x/(1+x**2), (x,0,1)) - pi*log(2)
+  check_ok: true
+extensions:
+  '3':
+  - Explain why the curve lies above the line $y=1-\frac{x}{2}$ for all $x\ge0$ except at the two points
+    of contact.
+  '4':
+  - Find the area of the triangle formed by the line $y=1-\frac{x}{2}$ and the two coordinate axes.
+  '5':
+  - Show that the volume of revolution about the $y$-axis of the region under the line $y=1-\frac{x}{2}$,
+    for $0\le x\le1$, is $\frac{2\pi}{3}$.
+spoken_vocab:
+- one over one plus x squared
+- y equals one minus x over two
+- tangent
+- gradient
+- pi
+- ln two
+- shells
+- volume of revolution
+- area under the curve
+- intersection
+- tangency
+- sketch
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#8
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 4
+  minutes: 25
+  flags: []
+  tagline: One tangent inequality doubles as the bound for both area and volume.
+  priority: 92
+  rank: 74
+  tier: A
+  category: siklos
+  d10: 4.5
+  real: 6.0
+  by: haiku
+tags:
+- differentiation
+- integration
+- inequalities

@@ -1,0 +1,134 @@
+id: coin-first-head-pattern-waiting-times
+title: First Head, HH vs HT Waiting Times, and Who Wins
+topics:
+- expectation
+- first-step analysis
+- pattern waiting times
+- conditional reasoning
+warmup: false
+answer_source: pdf
+statement: Let $E$ be the expected number of tosses of a fair coin until the first head. (i) Find $E$.
+  (ii) Find the expected number of tosses until $HH$ first appears. (iii) Find the expected number of
+  tosses until $HT$ first appears. (iv) Explain, without calculation, why the answers to (ii) and (iii)
+  are different. (v) Alice and Bob watch the same sequence of tosses. Alice wins if $HH$ appears before
+  $HT$, and Bob wins if $HT$ appears before $HH$. Who is more likely to win?
+stages:
+- goal: Find the expected number of tosses until the first head (part i).
+  expected: $E=2$.
+  solution: Condition on the first toss. With probability $\frac{1}{2}$ it is a head and the process stops
+    (contributing 1 toss in total). With probability $\frac{1}{2}$ it is a tail, and we have spent one
+    toss and are back at the start. So $E = 1 + \frac{1}{2}E$, giving $E=2$.
+  common_errors:
+  - Answering 1, forgetting that the expectation includes the tails before the head.
+  - Writing $E=p$ instead of the reciprocal form $E=1/p$.
+  hints:
+    rephrase: On average, how many tosses does it take before a head appears when each toss is a fair
+      coin?
+    smaller_case: Suppose heads were certain on each toss. How many tosses would you need? Then consider
+      a coin that is heads with probability 1/4.
+    key_idea: Condition on the first toss and use the fact that after a tail the situation is the same
+      as at the start.
+  check: x - 2
+  check_ok: false
+- goal: Find the expected number of tosses until $HH$ first appears (part ii).
+  expected: $E=6$.
+  solution: 'Let $E_0$ be the expected remaining time at the start, and $E_1$ the expected remaining time
+    after a single H. From the start: $E_0 = 1 + \frac{1}{2}E_0 + \frac{1}{2}E_1$. From $E_1$: a head
+    finishes, a tail returns to the start, so $E_1 = 1 + \frac{1}{2}E_0$. Substituting, $E_0 = 2 + E_1
+    = 3 + \frac{1}{2}E_0$, so $E_0 = 6$.'
+  common_errors:
+  - Treating the waiting time for HH like that for a single head (answer 2).
+  - Forgetting that a tail after an H resets progress to zero, not to one.
+  hints:
+    rephrase: 'Track two situations: no useful progress yet, and the last toss was a head. What happens
+      from each on the next toss?'
+    smaller_case: Write the equations for the two states, then solve them as a pair.
+    key_idea: Use a state for each amount of the pattern already matched, and apply first-step analysis
+      to each state.
+  check: x - 6
+  check_ok: false
+- goal: Find the expected number of tosses until $HT$ first appears (part iii).
+  expected: $E=4$.
+  solution: 'Let $E_0$ be the expected remaining time at the start and $E_1$ the expected remaining time
+    after a head. From the start: $E_0 = 1 + \frac{1}{2}E_0 + \frac{1}{2}E_1$. From $E_1$: a head keeps
+    us in the state $E_1$ (the latest head is still the useful one), and a tail finishes, so $E_1 = 1
+    + \frac{1}{2}E_1$, giving $E_1 = 2$. Then $\frac{1}{2}E_0 = 1 + 1$, so $E_0 = 4$.'
+  common_errors:
+  - Using the HH reset logic, where a head after a head leaves you at the start.
+  - Solving the equation for $E_1$ incorrectly as $E_1=1$.
+  hints:
+    rephrase: After a head, what does a further head do to your progress toward HT? What does a tail do?
+    smaller_case: Write the state after one head and check whether any toss there can lose progress.
+    key_idea: 'Two states again: start, and last toss was H. Note which transitions keep you in the second
+      state and which finish the pattern.'
+  check: x - 4
+  check_ok: false
+- goal: Explain without calculation why the answers to (ii) and (iii) differ (part iv).
+  expected: After an H in HT, a failure is another H, which is still the useful last symbol, so no progress
+    is lost. After an H in HH, a failure is a T, which sends you back to the start. Also HH overlaps with
+    itself while HT does not, so HH is harder to build up.
+  solution: 'The structure of the pattern determines the waiting time. In HT, the only way to lose progress
+    is to see a T, and that T completes the pattern. In HH, a T discards the progress made. Overlap is
+    the reason: HH can be partially rebuilt from its own prefix only in a limited way, whereas HT cannot
+    be partly undone by a non-completing toss.'
+  common_errors:
+  - Saying the probabilities of H and T are different, which they are not.
+  - Describing the difference without relating it to what a failure does to progress.
+  hints:
+    rephrase: Compare what happens to your progress after a wrong toss in each pattern.
+    smaller_case: Look at what a T does after an H in each pattern, and what an H does.
+    key_idea: Compare whether a failed attempt wipes out progress or keeps it, and whether the pattern
+      overlaps with itself.
+  check: null
+- goal: Decide who is more likely to win the race between $HH$ and $HT$ (part v).
+  expected: 'Neither: each wins with probability $\frac{1}{2}$.'
+  solution: 'No pattern can appear until the first head. The toss after the first head decides the game
+    immediately: if it is H the sequence has $HH$ and Alice wins; if it is T the sequence has $HT$ and
+    Bob wins. Each outcome has probability $\frac{1}{2}$, so neither is more likely to win.'
+  common_errors:
+  - Using the expected waiting times to argue that Bob wins because $HT$ is faster (4 < 6).
+  - Forgetting that the first head is the only event that matters.
+  hints:
+    rephrase: Do the two patterns have the same first letter? What decides which one is completed first?
+    smaller_case: Consider only the sequence of tosses from the first head onward.
+    key_idea: Expected waiting time does not decide a race between two patterns that start in the same
+      way.
+  check: x - Rational(1, 2)
+  check_ok: false
+extensions:
+  '3':
+  - What is the expected number of tosses until HHH first appears?
+  '4':
+  - In a race between HHH and HTH, does the pattern with the shorter expected waiting time always win?
+    Why or why not?
+  '5':
+  - Find the generating function of the waiting time for HH, and use it to recover the expectation.
+spoken_vocab:
+- expected value
+- E
+- expected number of tosses
+- fair coin
+- heads
+- tails
+- H H
+- H T
+- first head
+- Alice
+- Bob
+- wins
+- probability one half
+- first toss
+- first step analysis
+source: jaymin/Jaymin Interview (1).pdf#p41
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 5
+  minutes: 15
+  flags: []
+  tagline: Waiting times for HH vs HT reveal a surprising, well-motivated winner.
+  priority: 108
+  rank: 29
+  tier: S
+  category: jaymin

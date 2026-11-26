@@ -1,0 +1,16 @@
+[
+ {
+  "q": "Let $f(x) = ax - \\frac{x^3}{1 + x^2}$, where $a$ is a constant. Show that, if $a \\geq \\frac{9}{8}$, then $f'(x) \\geq 0$ for all $x$.",
+  "kind": "maths",
+  "answer": "Quotient rule gives $f'(x) = \\frac{a + (2a-3)x^2 + (a-1)x^4}{(1+x^2)^2}$. The denominator is positive and the numerator is a quadratic in $x^2$. Since $a$ appears with a plus sign and the coefficients $(2a-3)$ and $(a-1)$ increase with $a$, the numerator is at least its value at $a = \\frac{9}{8}$ for $x^2 \\geq 0$: $\\frac{9}{8} + (\\frac{9}{4} - 3)x^2 + (\\frac{9}{8} - 1)x^4 = \\frac{(x^2-3)^2}{8} \\geq 0$. Hence $f'(x) \\geq 0$ for all $x$. (Completing the square also works but is more elaborate.)",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#2"
+ },
+ {
+  "q": "The $n$ positive numbers $x_1, x_2, \\ldots, x_n$, where $n \\geq 3$, satisfy $x_1 = 1 + \\frac{1}{x_2}$, $x_2 = 1 + \\frac{1}{x_3}$, $\\ldots$, $x_{n-1} = 1 + \\frac{1}{x_n}$, and also $x_n = 1 + \\frac{1}{x_1}$. Show that (i) $x_1, x_2, \\ldots, x_n > 1$, (ii) $x_1 - x_2 = -\\frac{x_2 - x_3}{x_2 x_3}$, (iii) $x_1 = x_2 = \\cdots = x_n$. Hence find the value of $x_1$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#2"
+ }
+]

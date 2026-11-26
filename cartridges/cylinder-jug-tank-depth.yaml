@@ -1,0 +1,89 @@
+id: cylinder-jug-tank-depth
+title: Cylinder jug poured into rectangular tank
+topics:
+- mensuration
+- volume
+- cylinder
+- prism
+warmup: true
+answer_source: pdf
+statement: A full cylindrical jug has radius 5 cm and height 12 cm. All of the water in it is poured into
+  an empty rectangular tank whose base measures 10 cm by 15 cm. How deep is the water in the tank? Give
+  your answer in terms of $\pi$.
+stages:
+- goal: Find the volume of water in the jug.
+  expected: 300π cubic cm
+  solution: Volume of a cylinder is V = πr²h = π × 5² × 12 = 300π cm³.
+  common_errors:
+  - Using 5 as the diameter, so r = 2.5 and V = 75π
+  - Using the diameter 10 as the radius, giving 1200π
+  - Using the surface area formula instead of the volume formula
+  hints:
+    rephrase: How much space does the water occupy, and what formula gives the space inside a cylinder?
+    smaller_case: Work out the volume of a cylinder with radius 1 cm and height 1 cm first.
+    key_idea: Volume of a cylinder is base area times height, with base area πr².
+  check: pi*5**2*12 - 300*pi
+  check_ok: true
+- goal: Find the depth of water in the rectangular tank.
+  expected: 2π cm (about 6.3 cm)
+  solution: Pouring conserves volume, so the water fills the tank to depth d where 10 × 15 × d = 300π.
+    Hence d = 300π / 150 = 2π cm ≈ 6.28 cm.
+  common_errors:
+  - Dividing by 10 or 15 instead of the base area 150
+  - Dropping the π and giving a numerical answer only
+  - Using the jug's height of 12 cm as the depth
+  hints:
+    rephrase: The tank has the same water volume as the jug. What is the base area of the tank, and what
+      is the depth?
+    smaller_case: If the tank base were 10 cm by 10 cm and the volume were 100 cm³, what would the depth
+      be?
+    key_idea: Volume equals base area times depth, so depth is volume divided by base area.
+  check: 300*pi/150 - 2*pi
+  check_ok: true
+extensions:
+  '3':
+  - If the tank base were 10 cm by 10 cm instead, how deep would the water be? Give your answer in terms
+    of π.
+  '4':
+  - Water is poured into the tank at 10 cm³ per second. How long does it take to reach the depth you found?
+  '5':
+  - The jug is a cylinder of radius r and height h, and it is poured into a tank with base a by b. Find
+    the depth in general and state when the water would overflow a tank of height 5 cm.
+spoken_vocab:
+- cylinder
+- cylindrical
+- jug
+- radius
+- height
+- pi
+- two pi
+- cubic centimetres
+- rectangular
+- tank
+- base
+- depth
+- volume
+- five squared
+- times
+- divided by
+- one hundred and fifty
+- three hundred pi
+source: kclms/kclms-specimen-questions-4.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 1
+  parts: 2
+  minutes: 4
+  flags:
+  - trivial
+  tagline: Single-step volume arithmetic with no real reasoning depth.
+  priority: 17
+  rank: 696
+  tier: D
+  category: kclms
+  d10: 1.5
+  real: 2.0
+  by: deepseek-v4.1-flash-free
+tags:
+- geometry

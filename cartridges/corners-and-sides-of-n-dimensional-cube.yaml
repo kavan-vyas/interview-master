@@ -1,0 +1,114 @@
+id: corners-and-sides-of-n-dimensional-cube
+title: Corners and sides of squares, cubes and n-dimensional cubes
+topics:
+- combinatorics
+- geometry
+- higher dimensions
+- counting
+- pattern generalisation
+warmup: false
+answer_source: pdf
+statement: How many corners and sides does a square have? How many corners and sides does a 3-dimensional
+  square have? How many corners and sides does a 4-dimensional square have? How many corners and sides
+  does a square in $n$ dimensions have?
+stages:
+- goal: State the number of corners and sides of a square (2 dimensions).
+  expected: 4 corners and 4 sides.
+  solution: A square has 4 vertices (corners) and 4 edges (sides).
+  common_errors:
+  - Confusing the sides of a square with its faces or diagonals.
+  - Counting diagonals as sides.
+  hints:
+    rephrase: Picture the outline of a square. How many corners does it have, and how many straight edges
+      join them?
+    smaller_case: Consider a line segment. How many endpoints does it have, and how many segments are
+      there?
+    key_idea: Corners are vertices. Sides are the edges that join adjacent corners.
+  check: (2**2 - 4) + (2*2**(2-1) - 4)
+  check_ok: true
+- goal: State the number of corners and sides of a 3-dimensional square, i.e. a cube.
+  expected: 8 corners and 12 sides.
+  solution: A cube has 8 vertices. Each vertex meets 3 edges, and each edge has 2 vertices, so the number
+    of edges is $\frac{8\times 3}{2}=12$.
+  common_errors:
+  - Saying 6 sides, which counts faces instead of edges.
+  - Saying 6 corners, which is the number of faces.
+  - Forgetting that the square at the base and top give 12 edges, not 8.
+  hints:
+    rephrase: A cube has flat square faces. Are you counting faces or the straight edges between them?
+    smaller_case: Start from the square. How do you get from a square to a cube by adding one dimension?
+    key_idea: Count each vertex and the number of edges at each vertex, then divide by 2 so you do not
+      count each edge twice.
+  check: (2**3 - 8) + (3*2**(3-1) - 12)
+  check_ok: true
+- goal: State the number of corners and sides of a 4-dimensional square, i.e. a tesseract.
+  expected: 16 corners and 32 sides.
+  solution: 'Corners: $2^4=16$. Each corner meets 4 sides, so the number of sides is $\frac{16\times 4}{2}=32$.'
+  common_errors:
+  - Using 8 corners, which assumes the count grows by 4 per dimension rather than doubling.
+  - Using 24 sides, which confuses sides with 2-faces.
+  - Forgetting to divide by 2 when counting sides from vertex incidences.
+  hints:
+    rephrase: Look at how the corner count changed from a square to a cube. Does it add a fixed amount
+      or multiply by a fixed factor?
+    smaller_case: Use your cube answer. How does each new dimension change the number of corners?
+    key_idea: Use the same vertex-edge counting method as before, with the number of edges at each vertex
+      now equal to the dimension.
+  check: (2**4 - 16) + (4*2**(4-1) - 32)
+  check_ok: true
+- goal: Give general formulas for the number of corners and sides of an $n$-dimensional square.
+  expected: 'Corners: $2^n$. Sides: $n\cdot 2^{n-1}$.'
+  solution: 'Each extra dimension doubles the corner count, so there are $2^n$ corners. Each corner meets
+    $n$ sides (one per dimension), and each side has 2 corners, so the number of sides is $\frac{2^n\cdot
+    n}{2}=n\cdot2^{n-1}$. Check: $n=2$ gives 4 and 4, $n=3$ gives 8 and 12, $n=4$ gives 16 and 32.'
+  common_errors:
+  - Writing the corner count as $2n$ or $n^2$ instead of $2^n$.
+  - Writing the side count as $n\cdot2^n$ without dividing by 2.
+  - Stating a general formula that does not match the 2-, 3- and 4-dimensional cases.
+  hints:
+    rephrase: Look at your three numerical answers. What rule gives the corner counts, and then what rule
+      gives the side counts?
+    smaller_case: Set $n=3$ in your formulas. Do they return 8 corners and 12 sides?
+    key_idea: Count incidences between corners and sides, then remember that each side is counted from
+      both of its ends.
+  check: simplify(n*2**(n-1) - n*2**n/2)
+  check_ok: true
+extensions:
+  '3':
+  - How many 2-dimensional faces (squares) does a 4-dimensional cube have?
+  '4':
+  - How many 3-dimensional faces (cubes) does a 4-dimensional cube have?
+  '5':
+  - How many space diagonals (joining corners that do not share a face) does an $n$-dimensional cube have?
+spoken_vocab:
+- square
+- cube
+- corners
+- vertices
+- sides
+- edges
+- dimension
+- n dimensions
+- two to the power n
+- n times two to the power n minus one
+- tesseract
+- faces
+source: past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2012.docx
+verified: false
+rating:
+  quality: 4
+  difficulty: 2
+  parts: 4
+  minutes: 8
+  flags: []
+  tagline: Pattern-spotting from squares and cubes to n dimensions, mostly recall-driven with little depth.
+  priority: 52
+  rank: 517
+  tier: C
+  category: past-interviews
+  d10: 4.5
+  real: 8.0
+  by: deepseek-v4.1-flash-free
+tags:
+- combinatorics
+- geometry

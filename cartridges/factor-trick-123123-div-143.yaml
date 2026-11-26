@@ -1,0 +1,78 @@
+id: factor-trick-123123-div-143
+title: Divide 123123 by 143 Using 1001
+topics:
+- factorisation
+- number sense
+- division
+- mental arithmetic
+warmup: true
+answer_source: pdf
+statement: 'Given that $1001 = 7 \times 11 \times 13$, what is $123123 \div 143$? Options: a) 821 b) 1599
+  c) 901 d) 861 e) 1353'
+stages:
+- goal: Rewrite 123123 using the given factorisation of 1001.
+  expected: $123123 = 123 \times 1001$
+  solution: $123123 = 123 \times 1001 = 123 \times 1001$, because $123123$ is $123$ repeated twice. Multiplying
+    $123$ by $1001$ gives $123\,000 + 123 = 123\,123$.
+  common_errors:
+  - Missing the repeated block and writing $123123 = 123 \times 1000$.
+  - Multiplying by $100$ instead of $1000$ when constructing the repeated number.
+  hints:
+    rephrase: Look at the digits of 123123. What pattern do you see, and which given number matches it?
+    smaller_case: What is $12 \times 101$? Does it look like repeating the digits 12?
+    key_idea: A number formed by writing a block twice equals that block times a number of the form $10^k+1$.
+  check: 123*1001 - 123123
+  check_ok: true
+- goal: Divide by 143 and state the answer option.
+  expected: 861, which is option d
+  solution: $143 = 11 \times 13$. So $123123 \div 143 = \frac{123 \times 7 \times 11 \times 13}{11 \times
+    13} = 123 \times 7 = 861$. The answer is option d.
+  common_errors:
+  - Dividing by 7 instead of multiplying, giving $123/7$.
+  - Cancelling only one of the factors 11 or 13.
+  - Selecting option b (1599), which is $123 \times 13$ rather than $123 \times 7$.
+  hints:
+    rephrase: Which factors of 1001 are still left after you cancel 143?
+    smaller_case: Compute $1001 \div 143$ first. What is left over?
+    key_idea: Cancel the common factors of 11 and 13, then multiply the remaining factors together.
+  check: 123*7 - 861
+  check_ok: true
+extensions:
+  '3':
+  - 'Compute $456456 \div 286$ using the same idea. (Hint: $456456 = 456 \times 1001$, and $286 = 2 \times
+    11 \times 13$.)'
+  - Compute $789789 \div 91$ without a calculator.
+  '4':
+  - Show that every six-digit number of the form $\overline{abcabc}$ is divisible by 7, 11 and 13.
+  '5':
+  - Prove that $\overline{abcabc}$ is divisible by 1001 for any three-digit block $\overline{abc}$, and
+    state the general rule for $\overline{abcdefabcdef}$.
+spoken_vocab:
+- one two three one two three
+- divided by
+- one hundred and forty three
+- eight six one
+- seven times eleven times thirteen
+- one thousand and one
+- factorise
+- option d
+source: kclms/kclms-mcq-specimen-questions-answers-included.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 2
+  minutes: 2
+  flags:
+  - trivial
+  tagline: Multiple-choice arithmetic shortcut; little discussion scope.
+  priority: 17
+  rank: 694
+  tier: D
+  category: kclms
+  d10: 2.0
+  real: 2.5
+  by: deepseek-v4.1-flash-free
+tags:
+- number_theory
+- algebra_and_functions

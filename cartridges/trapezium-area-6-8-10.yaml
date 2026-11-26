@@ -1,0 +1,92 @@
+id: trapezium-area-6-8-10
+title: Trapezium area from side lengths
+topics:
+- geometry
+- trapezium
+- Pythagoras theorem
+- area
+warmup: false
+answer_source: pdf
+statement: ABCD is a trapezium with AB parallel to DC. AB = 9 cm, DC = 30 cm, AD = 10 cm and BC = 17 cm.
+  Find the area of the trapezium.
+stages:
+- goal: Find the perpendicular height of the trapezium.
+  expected: 8 cm
+  solution: Drop perpendiculars from A and B to DC. Let the horizontal offset from D to the foot of A's
+    perpendicular be x, and from C to B's foot be y. Then x + y = 30 − 9 = 21. Pythagoras gives x² + h²
+    = 100 and y² + h² = 289, so x² − y² = −189, i.e. (x − y)(x + y) = −189, so x − y = −9. Hence x = 6,
+    y = 15, and h = √(100 − 36) = 8 cm.
+  common_errors:
+  - Assuming the trapezium is isosceles, so the offsets are equal
+  - Using AD as the height instead of the perpendicular distance
+  - Mixing up which offset belongs to which side
+  hints:
+    rephrase: Draw perpendiculars from A and B onto DC. What right-angled triangles do you see, and what
+      is the common side?
+    smaller_case: Suppose the two horizontal offsets were both 0. What would the height be, and why would
+      the shape be a rectangle?
+    key_idea: The two horizontal offsets plus AB must add up to DC, and each leg is the hypotenuse of
+      a right-angled triangle that shares the height.
+  check: sqrt(10**2 - 6**2) - 8
+  check_ok: true
+- goal: Find the area of the trapezium.
+  expected: 156 cm²
+  solution: Area = ½ (AB + DC) × h = ½ (9 + 30) × 8 = ½ × 39 × 8 = 156 cm².
+  common_errors:
+  - Forgetting the factor ½ in the trapezium formula
+  - Using the leg lengths instead of the parallel sides
+  - Using the wrong height from stage 1
+  hints:
+    rephrase: Which two sides are parallel, and what is the perpendicular distance between them?
+    smaller_case: If the two parallel sides were both 4 cm and the height were 2 cm, what would the area
+      be?
+    key_idea: The area of a trapezium is the average of the parallel sides multiplied by the height.
+  check: Rational(39,2)*8 - 156
+  check_ok: true
+extensions:
+  '3':
+  - Find the length of the diagonal AC.
+  '4':
+  - Give a general formula for the area of a trapezium with parallel sides a and b, legs p and q, and
+    height h.
+  '5':
+  - Explain why the offsets from stage 1 are uniquely determined by the four side lengths, and what happens
+    if one offset comes out negative.
+spoken_vocab:
+- trapezium
+- parallel
+- AB
+- DC
+- AD
+- BC
+- perpendicular
+- height
+- Pythagoras
+- right-angled triangle
+- hypotenuse
+- centimetres
+- squared
+- half
+- times
+- nine plus thirty
+- thirty nine
+- one hundred and fifty six
+source: kclms/kclms-specimen-questions-4.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 2
+  minutes: 6
+  flags:
+  - needs_diagram
+  tagline: Offset-difference trick yields clean height; setup needs care.
+  priority: 47
+  rank: 537
+  tier: C
+  category: kclms
+  d10: 3.5
+  real: 4.5
+  by: haiku
+tags:
+- geometry

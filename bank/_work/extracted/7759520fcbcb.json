@@ -1,0 +1,86 @@
+[
+ {
+  "q": "Three towns on a straight road, $A$, $B$ and $C$. Distances between them are unknown. You must build a warehouse so that every day you go from the warehouse to each town and back. Where should you build the warehouse?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Maths & Philosophy Oxford Interview.doc"
+ },
+ {
+  "q": "Prove that $n^3 - n$ is divisible by $3$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Maths & Philosophy Oxford Interview.doc"
+ },
+ {
+  "q": "Prove that $n^7 - n$ is divisible by $42$, given that it is divisible by $7$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Maths & Philosophy Oxford Interview.doc"
+ },
+ {
+  "q": "Lots of quick questions on hyperbolic functions (a chosen topic).",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Maths & Philosophy Oxford Interview.doc"
+ },
+ {
+  "q": "Draw a quintic curve.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Maths & Philosophy Oxford Interview.doc"
+ },
+ {
+  "q": "Prove that $101$ is not prime, but that $10101$, $1010101$, $101010101$ etc. are all prime (given lots of help).",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Maths & Philosophy Oxford Interview.doc"
+ },
+ {
+  "q": "Interview based on a passage on intentions: if you were given a million pounds at midnight for intending to drink non-fatal poison the following afternoon, could this happen if it doesn't matter whether you actually drink it or not?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Maths & Philosophy Oxford Interview.doc"
+ },
+ {
+  "q": "Asked about the problem of evil, as this was on my personal statement.",
+  "kind": "personal",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Maths & Philosophy Oxford Interview.doc"
+ },
+ {
+  "q": "Is maths an invention or a discovery?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Maths & Philosophy Oxford Interview.doc"
+ },
+ {
+  "q": "Asked about the books on my personal statement.",
+  "kind": "personal",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Maths & Philosophy Oxford Interview.doc"
+ },
+ {
+  "q": "Find the height of a triangular prism.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Maths & Philosophy Oxford Interview.doc"
+ },
+ {
+  "q": "Differentiate simple trig functions.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Maths & Philosophy Oxford Interview.doc"
+ }
+]

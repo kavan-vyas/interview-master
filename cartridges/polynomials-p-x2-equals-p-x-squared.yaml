@@ -1,0 +1,98 @@
+id: polynomials-p-x2-equals-p-x-squared
+title: Polynomials with p(x^2) = (p(x))^2
+topics:
+- polynomials
+- functional equations
+- degree comparison
+warmup: false
+answer_source: pdf
+statement: Let $p$ be a polynomial with real coefficients such that $p(x^2)=(p(x))^2$ for every real number
+  $x$. Find every polynomial $p$ with this property.
+stages:
+- goal: Show that any nonzero solution has leading coefficient 1.
+  expected: The leading coefficient a equals 1.
+  solution: Let p have degree n and leading coefficient a. The top term of p(x^2) is a x^(2n), and the
+    top term of (p(x))^2 is a^2 x^(2n). Comparing gives a = a^2, and since a is nonzero, a = 1.
+  common_errors:
+  - Forgetting that a must be nonzero before dividing.
+  - Comparing the wrong powers of x.
+  - Concluding a = -1 because a^2 = 1 is also a root.
+  hints:
+    rephrase: Compare the highest power of x on each side of p(x^2) = (p(x))^2.
+    smaller_case: Try p(x) = ax + b. What does the x^2 coefficient force?
+    key_idea: Compare the coefficient of the top power of x on each side. This gives an equation in a
+      alone.
+  check: answer - 1
+  check_ok: false
+- goal: Show that p cannot have a second non-zero term below its leading term.
+  expected: The coefficient c of the next non-zero term must be 0.
+  solution: Suppose p(x) = x^n + c x^k + (lower terms) with k < n and c nonzero. In (p(x))^2, the coefficient
+    of x^(n+k) is 2c, since only the pairs (n,k) and (k,n) contribute. In p(x^2), the exponents are 2e,
+    and every exponent e < n in p satisfies 2e <= 2k < n+k, while 2n > n+k, so the coefficient of x^(n+k)
+    is 0. Then 2c = 0, a contradiction, so c = 0.
+  common_errors:
+  - Forgetting other pairs of exponents that could contribute to x^(n+k).
+  - Using 2k >= n+k, which fails because k < n.
+  - Concluding that c could be nonzero when n+k is odd.
+  hints:
+    rephrase: Compare the coefficient of x^(n+k) on both sides, using only the top two terms of p.
+    smaller_case: Take p(x) = x^2 + c x. Compare the x^3 coefficient on both sides.
+    key_idea: Show that the x^(n+k) coefficient is nonzero on one side and zero on the other. Use the
+      inequality 2k < n+k < 2n.
+  check: answer
+  check_ok: true
+- goal: State all real polynomials that satisfy the equation.
+  expected: p = 0, or p(x) = x^n for some integer n >= 0 (this includes p = 1).
+  solution: 'Both families work: (x^n)^2 = x^(2n) = (x^2)^n, and the zero polynomial trivially works.
+    The first two stages show that every nonzero solution has the form x^n.'
+  common_errors:
+  - Omitting the zero polynomial.
+  - Omitting the constant polynomial 1, which is x^0.
+  - Stating only p(x) = x^2 or only p(x) = x.
+  hints:
+    rephrase: Check which monomials satisfy the equation, then include the zero polynomial.
+    smaller_case: Does p(x) = x^3 work? Does p(x) = 1 work?
+    key_idea: Use the previous stages to restrict to monomials, and check the monomials directly.
+  check: simplify(answer.subs(x, x**2) - answer**2)
+  check_ok: false
+extensions:
+  '3':
+  - Show that every real polynomial solution p with p(x^2) = (p(x))^2 has no real roots other than 0,
+    unless p is the zero polynomial.
+  '4':
+  - Find all complex polynomials p with p(x^2) = (p(x))^2 for every complex x.
+  '5':
+  - Find all real polynomials p with p(x^2) = (p(x))^2 that are also even, meaning p(-x) = p(x) for all
+    x.
+spoken_vocab:
+- polynomial
+- real coefficients
+- p of x squared equals p of x squared
+- leading coefficient
+- degree
+- monomial
+- zero polynomial
+- x to the n
+- next term
+- coefficient
+- contradiction
+- comparing coefficients
+source: jzmaths/JZMaths Interview Questions from the website trial.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Functional equation forcing monic monomials, with rich follow-up discussion
+  priority: 91
+  rank: 112
+  tier: A
+  category: jzmaths
+  d10: 6.0
+  real: 7.0
+  by: haiku
+tags:
+- functional_equations
+- algebra_and_functions

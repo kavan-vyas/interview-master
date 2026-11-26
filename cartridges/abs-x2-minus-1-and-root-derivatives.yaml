@@ -1,0 +1,126 @@
+id: abs-x2-minus-1-and-root-derivatives
+title: 'Sketching |x²−1| and fractional powers: where the derivative fails'
+topics:
+- graph sketching
+- absolute value
+- piecewise functions
+- differentiability
+- fractional powers
+- cusps and vertical tangents
+warmup: false
+answer_source: generated
+statement: Sketch $y=|x^2-1|$ and comment on the derivative. Sketch $y=x^{\frac{1}{3}}$ and comment on
+  the derivative. Sketch $y=x^{\frac{2}{3}}$ and comment on the derivative.
+stages:
+- goal: Sketch $y=|x^2-1|$, then state where it is not differentiable and give its derivative.
+  expected: 'Piecewise form: $y=x^2-1$ for $|x|\ge 1$ and $y=1-x^2$ for $|x|<1$. The graph is W-shaped:
+    zeros with corners at $(\pm1,0)$, a local maximum $y=1$ at $x=0$, and it rises without bound as $|x|\to\infty$.
+    It is not differentiable at $x=\pm1$, where the one-sided slopes are $-2$ (left) and $2$ (right).
+    Elsewhere $y''=2x$ for $|x|>1$ and $y''=-2x$ for $|x|<1$, so $y''(0)=0$.'
+  solution: 'Split by sign of $x^2-1$. For $|x|>1$, $y=x^2-1$ so $y''=2x$. For $|x|<1$, $y=1-x^2$ so $y''=-2x$.
+    At $x=1$: left derivative $\lim_{x\to1^-}(-2x)=-2$, right derivative $\lim_{x\to1^+}2x=2$. These differ,
+    so there is a corner. At $x=-1$: left derivative $2(-1)=-2$, right derivative $-2(-1)=2$. Again a
+    corner. The function is continuous everywhere, so the corners are the only failures of differentiability.
+    Compactly, $y''=2x\,\mathrm{sgn}(x^2-1)$.'
+  common_errors:
+  - Treating the corners at $x=\pm1$ as smooth because the function is continuous there
+  - Writing $y'=2x$ everywhere and missing the sign change inside $(-1,1)$
+  - Reflecting the whole parabola instead of only the part where $x^2-1<0$
+  - Assuming differentiability because each one-sided slope exists, without comparing them
+  hints:
+    rephrase: Split the function into cases according to whether $x^2-1$ is positive or negative.
+    smaller_case: Consider $y=|x|$ near $x=0$. Where does its graph have a corner, and why?
+    key_idea: A function built from an absolute value has a corner where the inside changes sign. Compare
+      the one-sided slopes at that point.
+  check: simplify(diff(1-x**2,x).subs(x,1)+2)==0 and simplify(diff(x**2-1,x).subs(x,1)-2)==0
+  check_ok: true
+- goal: Sketch $y=x^{1/3}$ and comment on its derivative.
+  expected: The real cube root is defined for all real $x$. It is odd, strictly increasing, and passes
+    through $(-1,-1)$, $(0,0)$, $(1,1)$. For $x\ne0$, $y'=\frac{1}{3}x^{-2/3}>0$. As $x\to0$ the slope
+    tends to $+\infty$ from both sides, so there is a vertical tangent at the origin and the function
+    is not differentiable at $0$.
+  solution: Write $y=x^{1/3}$ as the real cube root. By the power rule, $y'=\frac{1}{3}x^{-2/3}=\frac{1}{3x^{2/3}}$
+    for $x\ne0$. Since $x^{2/3}=(x^{1/3})^2>0$ for $x\ne0$, $y'>0$ wherever it is defined. As $x\to0$
+    the denominator tends to $0$, so $y'\to+\infty$ on both sides. The origin is a point of vertical tangency,
+    not a corner.
+  common_errors:
+  - Sketching only the branch $x\ge0$ and forgetting the negative real cube roots
+  - Substituting $x=0$ into $\frac13 x^{-2/3}$ and reporting $y'(0)=0$
+  - Claiming $y'<0$ for $x<0$
+  - Describing the origin as a corner instead of a vertical tangent
+  hints:
+    rephrase: Ask which real numbers have real cube roots, and what the graph looks like near zero.
+    smaller_case: Compare the shape of $y=x^3$ near $0$ with its reflection in $y=x$.
+    key_idea: Use the power rule with exponent $\frac13$, then examine what happens to the denominator
+      as $x\to0$.
+  check: simplify(diff(x**Rational(1,3),x) - Rational(1,3)*x**Rational(-2,3))==0
+  check_ok: true
+- goal: Sketch $y=x^{2/3}$ and comment on its derivative.
+  expected: '$y=(\sqrt[3]{x})^2\ge0$ for all real $x$, so it is even with a minimum at the origin. The
+    origin is a cusp with a vertical tangent. For $x\ne0$, $y''=\frac{2}{3}x^{-1/3}$: negative for $x<0$
+    (decreasing), positive for $x>0$ (increasing). As $x\to0^-$, $y''\to-\infty$; as $x\to0^+$, $y''\to+\infty$.
+    The function is not differentiable at $0$.'
+  solution: Using the real cube root convention, $x^{2/3}=(x^{1/3})^2\ge0$ for all real $x$, and it is
+    even. For $x\ne0$, $y'=\frac{2}{3}x^{-1/3}$. When $x<0$, $x^{-1/3}<0$ so $y'<0$. When $x>0$, $y'>0$.
+    The one-sided limits of $y'$ at $0$ are $-\infty$ (from the left) and $+\infty$ (from the right),
+    so the origin is a sharp minimum (cusp) with a vertical tangent, and $y$ is not differentiable there.
+  common_errors:
+  - Restricting the domain to $x\ge0$
+  - Claiming $y'(0)=0$ because the origin is a minimum
+  - Treating $x^{-1/3}$ as positive for negative $x$
+  - Confusing this graph with $y=x^{2}$, which is smooth at $0$
+  hints:
+    rephrase: Rewrite $x^{2/3}$ as the square of a cube root, and ask what sign it takes.
+    smaller_case: Compare the slopes of $y=x^2$ on either side of $0$, then ask how the slopes of this
+      graph differ near $0$.
+    key_idea: Find the one-sided limits of the derivative at $0$. If they are infinite with opposite signs,
+      the curve has a cusp.
+  check: simplify(diff(x**Rational(2,3),x) - Rational(2,3)*x**Rational(-1,3))==0
+  check_ok: true
+extensions:
+  '3':
+  - Show that $y=|x^3-x|$ has corners at $x=-1,0,1$ and find the one-sided slopes at each.
+  - Sketch $y=|x^2-4|$ and state where the derivative is undefined.
+  '4':
+  - Find the derivative of $y=|\sin x|$ and state where it fails to exist.
+  - Sketch $y=(x^2-4)^{1/3}$ and identify every vertical tangent.
+  '5':
+  - Use the limit definition to show $y=|x|^{1/2}$ is not differentiable at $0$.
+  - Use the limit definition to find the derivative of $y=x^{5/3}$ at $0$, and explain why it exists.
+spoken_vocab:
+- absolute value of x squared minus one
+- modulus
+- y equals x to the power one third
+- x to the power two thirds
+- cube root
+- derivative
+- vertical tangent
+- cusp
+- corner
+- left derivative
+- right derivative
+- sign function
+- differentiable
+- real cube root
+- power rule
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 7
+  difficulty: 4
+  parts: 3
+  minutes: 10
+  flags:
+  - needs_diagram
+  tagline: 'Non-differentiable points: kinks, vertical tangent, and a cusp compared.'
+  priority: 73
+  rank: 304
+  tier: B
+  category: tbo
+  d10: 4.5
+  real: 5.5
+  by: deepseek-v4.1-flash-free
+tags:
+- curve_sketching
+- differentiation
+- algebra_and_functions

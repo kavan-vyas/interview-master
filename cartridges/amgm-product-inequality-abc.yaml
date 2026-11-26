@@ -1,0 +1,98 @@
+id: amgm-product-inequality-abc
+title: Product inequality (a+b)(b+c)(c+a) >= 8abc via AM-GM
+topics:
+- inequalities
+- AM-GM inequality
+- equality cases
+warmup: true
+answer_source: pdf
+statement: Prove that for all positive real numbers $a,b,c$, $(a+b)(b+c)(c+a)\ge 8abc$. When does equality
+  hold?
+stages:
+- goal: Prove the two-variable AM-GM inequality a + b >= 2 sqrt(ab) for positive a and b.
+  expected: a + b - 2 sqrt(ab) = (sqrt(a) - sqrt(b))^2 >= 0, with equality exactly when a = b.
+  solution: Let x = sqrt(a) and y = sqrt(b), both positive. Then a + b - 2 sqrt(ab) = x^2 + y^2 - 2xy
+    = (x - y)^2 >= 0. Equality holds iff x = y, i.e. a = b.
+  common_errors:
+  - Dropping the square root when expanding (sqrt(a) - sqrt(b))^2
+  - Stating the inequality without using positivity
+  - Forgetting the equality case
+  check: simplify((a + b - 2*sqrt(a)*sqrt(b)) - (sqrt(a) - sqrt(b))**2) with a and b declared positive
+  hints:
+    rephrase: Compare the arithmetic mean and geometric mean of two positive numbers.
+    smaller_case: 'Test a = 1, b = 4: compare the arithmetic mean with the geometric mean.'
+    key_idea: Introduce square roots of a and b and rewrite the difference as a perfect square.
+  check_ok: null
+- goal: Multiply the three AM-GM inequalities for the pairs (a,b), (b,c), (c,a) to prove (a+b)(b+c)(c+a)
+    >= 8abc.
+  expected: Since all quantities are positive, (a+b)(b+c)(c+a) >= (2 sqrt(ab))(2 sqrt(bc))(2 sqrt(ca))
+    = 8 sqrt(a^2 b^2 c^2) = 8abc.
+  solution: By stage 1, a + b >= 2 sqrt(ab), b + c >= 2 sqrt(bc), c + a >= 2 sqrt(ca). All sides are non-negative,
+    so multiplying preserves the inequalities. The product of the right-hand sides is 8 sqrt(a^2 b^2 c^2)
+    = 8abc, since a, b, c > 0.
+  common_errors:
+  - Multiplying inequalities whose sides may be negative
+  - Simplifying sqrt(a^2 b^2 c^2) incorrectly
+  - Forgetting to state that all quantities are positive
+  check: sqrt(a**2*b**2*c**2) - a*b*c with a, b, c declared positive
+  hints:
+    rephrase: Use the three inequalities from the previous stage and combine them.
+    smaller_case: With a = b = c = 1, multiply the bounds for two of the brackets and compare.
+    key_idea: Multiplying inequalities between non-negative quantities keeps the direction; then simplify
+      the square root of a squared product.
+  check_ok: null
+- goal: State when equality holds, and verify the equal case.
+  expected: Equality holds iff a = b = c. When a = b = c = t, both sides equal 8t^3.
+  solution: Equality in the product requires equality in each of the three AM-GM inequalities, so a =
+    b, b = c and c = a, i.e. a = b = c. Conversely, if a = b = c = t, then (a+b)(b+c)(c+a) = (2t)^3 =
+    8t^3 = 8abc. So equality holds exactly when a = b = c.
+  common_errors:
+  - Stating only the 'if' direction
+  - Claiming equality when just two variables are equal
+  - Forgetting that every factor must be at equality for the product to be at equality
+  check: 'simplify(((a+b)*(b+c)*(c+a) - 8*a*b*c).subs({b: a, c: a})) with a declared positive'
+  hints:
+    rephrase: Ask when each of the three inequalities from the previous stage becomes an equality.
+    smaller_case: Test a = b = c = 2 in the original inequality.
+    key_idea: Equality in AM-GM for two positive numbers requires them to be equal.
+  check_ok: null
+extensions:
+  '3':
+  - Prove that a^2 + b^2 + c^2 >= ab + bc + ca for all real a, b, c.
+  '4':
+  - Prove that a/b + b/a >= 2 for all positive a and b.
+  '5':
+  - Prove that (a^2+b^2)(b^2+c^2)(c^2+a^2) >= 8a^2 b^2 c^2 for all positive real a, b, c.
+spoken_vocab:
+- a plus b
+- b plus c
+- c plus a
+- product
+- eight a b c
+- greater than or equal to
+- square root of a b
+- AM GM inequality
+- arithmetic mean
+- geometric mean
+- equality holds
+- a equals b equals c
+- positive real numbers
+source: jaymin/Jaymin Interview (1).pdf#p9
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: Standard multiply-three-AM-GM proof; straightforward with clear equality case.
+  priority: 66
+  rank: 373
+  tier: C
+  category: jaymin
+  d10: 2.5
+  real: 5.0
+  by: deepseek-v4.1-flash-free
+tags:
+- inequalities
+- algebra_and_functions

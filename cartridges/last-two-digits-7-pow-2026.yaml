@@ -1,0 +1,69 @@
+id: last-two-digits-7-pow-2026
+title: Last two digits of 7^2026
+topics:
+- modular arithmetic
+- powers
+- cycles of residues
+warmup: true
+answer_source: pdf
+statement: Find the last two digits of $7^{2026}$.
+stages:
+- goal: Find a short power of $7$ that is congruent to $1$ modulo $100$.
+  expected: $7^4\equiv1\pmod{100}$.
+  solution: $7^2=49$, $7^4=49^2=2401\equiv1\pmod{100}$.
+  common_errors:
+  - Computing $7^4$ incorrectly.
+  - Looking for a cycle only among small powers and missing that $7^4\equiv1$.
+  hints:
+    rephrase: Compute successive powers of $7$ modulo $100$ until you find a power that gives $1$.
+    smaller_case: Compute $7^2 \bmod 100$ and then square the result.
+    key_idea: Squaring a residue repeatedly gives a cycle; look for the first return to $1$.
+  check: Mod(7**4, 100) - 1
+  check_ok: true
+- goal: Reduce the exponent modulo the cycle length and find the last two digits of $7^{2026}$.
+  expected: $7^{2026}\equiv49\pmod{100}$, so the last two digits are $49$.
+  solution: $2026=4\cdot506+2$, so $7^{2026}=(7^4)^{506}\cdot7^2\equiv1^{506}\cdot49=49\pmod{100}$.
+  common_errors:
+  - Computing $2026\bmod 4$ incorrectly.
+  - Reducing the exponent modulo $100$ instead of the cycle length $4$.
+  - Giving $1$ as the answer by losing the leftover factor $7^2$.
+  hints:
+    rephrase: Write $2026$ as a multiple of $4$ plus a remainder, then split the power.
+    smaller_case: What is $7^6 \bmod 100$ if you use $7^4\equiv1$?
+    key_idea: Exponents only need to be reduced modulo the length of the cycle.
+  check: Mod(7**2026, 100) - 49
+  check_ok: true
+extensions:
+  '3':
+  - Find the last two digits of $3^{2026}$.
+  '4':
+  - Find the last three digits of $7^{2026}$.
+  '5':
+  - Find the last two digits of $13^{2026}$.
+spoken_vocab:
+- seven to the power two thousand twenty six
+- last two digits
+- modulo one hundred
+- seven to the fourth
+- two thousand twenty six modulo four
+- congruent to one
+- cycle
+- remainder
+source: jaymin/Jaymin Interview (1).pdf#p1
+verified: false
+rating:
+  quality: 4
+  difficulty: 4
+  parts: 2
+  minutes: 5
+  flags: []
+  tagline: Spotting 7^4 ≡ 1 mod 100 turns it into a short, neat calculation.
+  priority: 60
+  rank: 461
+  tier: C
+  category: jaymin
+  d10: 3.0
+  real: 4.5
+  by: haiku
+tags:
+- number_theory

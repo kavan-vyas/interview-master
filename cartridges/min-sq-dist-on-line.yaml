@@ -1,0 +1,95 @@
+id: min-sq-dist-on-line
+title: Minimise x²+y² on the line x+2y=5
+topics:
+- optimisation
+- algebra
+- geometry
+- inequalities
+warmup: false
+answer_source: pdf
+statement: Find the minimum value of $x^2+y^2$ subject to $x+2y=5$. Give as many different methods as
+  you can.
+stages:
+- goal: Minimise $x^2+y^2$ on the line by eliminating one variable and completing the square.
+  expected: The minimum is 5, attained at $(x,y)=(1,2)$.
+  solution: 'Substitute $x=5-2y$: $x^2+y^2=(5-2y)^2+y^2=5y^2-20y+25=5(y-2)^2+5\geq 5$. Equality when $y=2$,
+    so $x=1$.'
+  common_errors:
+  - Stopping after finding the critical point without checking it is a minimum
+  - Arithmetic slip in expanding $(5-2y)^2$
+  - Giving the minimising point but not the minimum value
+  hints:
+    rephrase: Use the constraint to remove one variable, then look at the resulting quadratic in the other.
+    smaller_case: Try the point $(5,0)$ on the line. What is $x^2+y^2$ there, and can you do better nearby?
+    key_idea: After substitution, the expression is a quadratic in one variable, and completing the square
+      exposes its minimum.
+  check: 5*2**2 - 20*2 + 25 - 5
+  check_ok: true
+- goal: 'Give a different method: a Cauchy-Schwarz bound.'
+  expected: $(x+2y)^2\leq(1^2+2^2)(x^2+y^2)$, so $x^2+y^2\geq 5$.
+  solution: By Cauchy-Schwarz, $(x\cdot 1+y\cdot 2)^2\leq (x^2+y^2)(1^2+2^2)$. Hence $25\leq 5(x^2+y^2)$,
+    so $x^2+y^2\geq 5$. Equality holds when $(x,y)$ is proportional to $(1,2)$, giving $(1,2)$.
+  common_errors:
+  - Using the wrong weights, such as $(1^2+1^2)$
+  - Forgetting to square $x+2y=5$ to get 25
+  - Not stating when equality holds
+  hints:
+    rephrase: Write $x+2y$ as a dot product of two vectors and bound it.
+    smaller_case: Check the inequality $(a+2b)^2\leq 5(a^2+b^2)$ for $a=b=1$.
+    key_idea: Cauchy-Schwarz bounds a dot product by the product of the vector lengths.
+  check: 25/5 - 5
+  check_ok: true
+- goal: 'Give a geometric method: interpret $x^2+y^2$ as squared distance from the origin.'
+  expected: The squared distance from the origin to the line $x+2y=5$ is 5.
+  solution: The distance from $(0,0)$ to $x+2y-5=0$ is $|{-5}|/\sqrt{1^2+2^2}=5/\sqrt5=\sqrt5$. The minimum
+    of $x^2+y^2$ is the square of this distance, which is 5. The nearest point is the foot of the perpendicular,
+    $(1,2)$.
+  common_errors:
+  - Forgetting to square the distance
+  - Using the formula without dividing by $\sqrt{a^2+b^2}$
+  - Confusing the foot of the perpendicular with the line's intercepts
+  hints:
+    rephrase: Think of $x^2+y^2$ as the squared distance from the origin to a point on the line.
+    smaller_case: Find the distance from the origin to the line $x+2y=10$ using the same idea and see
+      how the scale changes.
+    key_idea: The closest point on a line to the origin is where the connecting segment is perpendicular
+      to the line.
+  check: (5/sqrt(5))**2 - 5
+  check_ok: true
+extensions:
+  '3':
+  - Minimise $x^2+y^2+z^2$ subject to $x+2y+3z=6$.
+  '4':
+  - Minimise $x^2+y^2+z^2+w^2$ subject to $x+y+z+w=4$.
+  '5':
+  - Minimise $x^2+y^2+z^2$ subject to $x+2y+3z=6$ and $x-y+z=0$.
+spoken_vocab:
+- x squared plus y squared
+- subject to
+- x plus two y equals five
+- minimum value
+- Cauchy Schwarz
+- foot of the perpendicular
+- distance from the origin
+- complete the square
+- substitute
+- equality
+source: jaymin/Jaymin Interview (1).pdf#p17
+verified: false
+rating:
+  quality: 7
+  difficulty: 4
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: 'Open-ended: algebra, Cauchy-Schwarz and geometry give three methods to compare.'
+  priority: 96
+  rank: 57
+  tier: A
+  category: jaymin
+  d10: 2.0
+  real: 6.0
+  by: haiku
+tags:
+- coordinate_geometry
+- inequalities

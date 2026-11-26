@@ -1,0 +1,98 @@
+id: pi-bounds-from-integral-bound
+title: Bounding the integral and deducing bounds on pi
+topics:
+- inequalities
+- integral bounds
+- AM-GM type bounds
+- approximations of pi
+warmup: false
+answer_source: generated
+statement: Show that $\int_0^1\frac{x^4(1-x)^4}{1+x^2}\,dx$ is less than $\frac{1}{256}$, since $x(1-x)\le\frac{1}{4}$.
+  What bounds on $\pi$ does this give?
+stages:
+- goal: Bound the integrand pointwise on $[0,1]$.
+  expected: $x^4(1-x)^4=\big(x(1-x)\big)^4\le\left(\frac14\right)^4=\frac{1}{256}$, and $\frac{1}{1+x^2}<1$
+    for $x\in(0,1]$, so $\frac{x^4(1-x)^4}{1+x^2}<\frac{1}{256}$ on $(0,1)$.
+  solution: 'Since $0\le x(1-x)\le\frac14$ on $[0,1]$, raising to the fourth power preserves the bound:
+    $(x(1-x))^4\le\frac{1}{256}$. Dividing by $1+x^2\ge 1$ only makes the expression smaller. So the integrand
+    is at most $\frac{1}{256}$ and strictly less on $(0,1)$.'
+  common_errors:
+  - Using $x(1-x)\le\frac{1}{4}$ but forgetting to raise to the fourth power, giving $\frac{1}{4}$ instead
+    of $\frac{1}{256}$
+  - Forgetting the denominator $1+x^2$ or misjudging its effect on the bound
+  hints:
+    rephrase: What is the largest possible value of $x(1-x)$ on $[0,1]$, and how does that affect the
+      fourth power?
+    smaller_case: Evaluate $x^4(1-x)^4$ at $x=1/2$ and compare it with the bound.
+    key_idea: Bound the product $x(1-x)$ first, then take the fourth power, then use $1+x^2\ge1$.
+  check: simplify(Rational(1,4)**4 - Rational(1,256))
+  check_ok: true
+- goal: Integrate the pointwise bound to get a bound on the integral.
+  expected: $\int_0^1\frac{x^4(1-x)^4}{1+x^2}\,dx<\frac{1}{256}$.
+  solution: The integrand is continuous and strictly less than $\frac{1}{256}$ on $(0,1)$. Integrating
+    over an interval of length $1$ gives $\int_0^1 \le \frac{1}{256}$, and strictness holds because the
+    difference is a positive continuous function on $(0,1)$.
+  common_errors:
+  - Using $\le$ carelessly without noting that strictness also holds
+  - Forgetting that the interval has length 1, so the bound is not multiplied by anything
+  hints:
+    rephrase: If a function is at most a constant $C$ on $[0,1]$, what bound does its integral satisfy?
+    smaller_case: Integrate the constant $\frac{1}{256}$ over $[0,1]$.
+    key_idea: Monotonicity of the integral, plus strictness from continuity.
+  check: simplify(Lt(integrate(x**4*(1-x)**4/(1+x**2),(x,0,1)), Rational(1,256)))
+  check_ok: true
+- goal: Deduce bounds on $\pi$ from $\frac{22}{7}-\pi=I$ and $I<\frac{1}{256}$.
+  expected: $\frac{5625}{1792}<\pi<\frac{22}{7}$, i.e. $3.1389\ldots<\pi<3.1428\ldots$.
+  solution: From the previous question, $I=\frac{22}{7}-\pi$. With $I<\frac{1}{256}$, we get $\pi>\frac{22}{7}-\frac{1}{256}=\frac{5625}{1792}$.
+    Combined with $\pi<\frac{22}{7}$, this gives $\frac{5625}{1792}<\pi<\frac{22}{7}$, approximately $3.13895<\pi<3.142857$.
+  common_errors:
+  - Flipping the inequality when rearranging $I=\frac{22}{7}-\pi$ to solve for $\pi$
+  - Arithmetic error in $\frac{22}{7}-\frac{1}{256}$
+  hints:
+    rephrase: Rewrite $\frac{22}{7}-\pi<\frac{1}{256}$ as a lower bound on $\pi$.
+    smaller_case: Compute $\frac{22}{7}-\frac{1}{256}$ as a decimal and see if it looks like a plausible
+      lower bound.
+    key_idea: Rearrange $\frac{22}{7}-\pi<\frac{1}{256}$, keeping track of the sign.
+  check: simplify(Rational(22,7) - Rational(1,256) - Rational(5625,1792))
+  check_ok: true
+extensions:
+  '3':
+  - Show that $\int_0^1 x^n(1-x)^n\,dx\le 4^{-n}$ for any positive integer $n$.
+  '4':
+  - Show $\int_0^1 x^4(1-x)^4\,dx=\frac{1}{630}$ and compare it with the bound $\frac{1}{256}$.
+  '5':
+  - Explain why the bound $\frac{1}{256}$ is much weaker than the exact difference $\frac{22}{7}-\pi\approx
+    0.00126$.
+spoken_vocab:
+- integral from 0 to 1
+- x to the fourth
+- one minus x to the fourth
+- over one plus x squared
+- less than one over 256
+- x times one minus x
+- less than or equal to one quarter
+- fourth power
+- pi
+- twenty two over seven
+- five thousand six hundred and twenty five over seven hundred and ninety two
+- three point one three nine
+- three point one four two eight
+source: jaymin/Jaymin Interview (1).pdf#p41
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 3
+  minutes: 10
+  flags: []
+  tagline: Classic integral-bounding trick yielding rigorous two-sided bounds on pi
+  priority: 96
+  rank: 55
+  tier: A
+  category: jaymin
+  d10: 3.0
+  real: 5.0
+  by: haiku
+tags:
+- integration
+- inequalities

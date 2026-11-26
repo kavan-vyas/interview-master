@@ -1,0 +1,65 @@
+[
+ {
+  "q": "Calculate $\\int_{-\\infty}^{\\infty} e^{-x^2/2}\\,dx$.",
+  "kind": "maths",
+  "answer": "$\\sqrt{2\\pi}$. Square the integral, convert to polar coordinates ($\\iint e^{-(x^2+y^2)/2}\\,dx\\,dy=\\int_0^{2\\pi}\\int_0^\\infty e^{-r^2/2}r\\,dr\\,d\\theta=2\\pi$), then take the square root.",
+  "short": true,
+  "source": "zhou-quant/zhou-quant-guide.pdf#3"
+ },
+ {
+  "q": "Prove $(1+x)^n \\ge 1+nx$ for all $x>-1$ and all integers $n\\ge 2$.",
+  "kind": "maths",
+  "answer": "Taylor expansion of $f(x)=(1+x)^n$ at $x_0=0$: $f(x)=1+nx+\\frac{n(n-1)}{2}(1+\\xi)^{n-2}x^2$ with $\\xi$ between $0$ and $x$. Since $x>-1$, $(1+\\xi)^{n-2}>0$ and $n(n-1)\\ge 0$, so $f(x)\\ge 1+nx$. Alternative: induction. Base $n=2$: $(1+x)^2=1+2x+x^2\\ge 1+2x$. Step: $(1+x)^{k+1}=(1+kx)(1+x)=1+(k+1)x+kx^2\\ge 1+(k+1)x$.",
+  "short": false,
+  "source": "zhou-quant/zhou-quant-guide.pdf#3"
+ },
+ {
+  "q": "Solve $x^2=37$ to the third digit.",
+  "kind": "maths",
+  "answer": "$x\\approx 6.083$. Newton's method on $f(x)=x^2-37$ from $x_0=6$: $x_1=6-\\frac{36-37}{12}=6.083$ (check: $6.083^2\\approx 37.00289$). Alternatively, $(6+y)^2=37$ gives $y^2+12y-1=0$, so $y\\approx 0.083$.",
+  "short": true,
+  "source": "zhou-quant/zhou-quant-guide.pdf#3"
+ },
+ {
+  "q": "Could you explain some root-finding algorithms to solve $f(x)=0$? Assume $f(x)$ is a differentiable function.",
+  "kind": "maths",
+  "answer": "Newton's method: $x_{n+1}=x_n-\\frac{f(x_n)}{f'(x_n)}$, quadratic convergence, but needs a starting point close to the root. Bisection: start with $f(a_0)<0<f(b_0)$, halve the bracket each step by checking the sign of $f$ at the midpoint; linear convergence, but convergence is guaranteed once a valid bracket is found. Secant method: $x_{n+1}=x_n-f(x_n)\\frac{x_n-x_{n-1}}{f(x_n)-f(x_{n-1})}$, no derivative needed, convergence rate $(1+\\sqrt5)/2$, needs starting values close to the root.",
+  "short": false,
+  "source": "zhou-quant/zhou-quant-guide.pdf#3"
+ },
+ {
+  "q": "What is the distance from the origin to the plane $2x+3y+4z=12$?",
+  "kind": "maths",
+  "answer": "$\\frac{12}{\\sqrt{29}}$. Minimise $x^2+y^2+z^2$ subject to $2x+3y+4z-12=0$ with Lagrange multipliers, then use the general formula $D=\\frac{|d|}{\\sqrt{a^2+b^2+c^2}}$.",
+  "short": true,
+  "source": "zhou-quant/zhou-quant-guide.pdf#3"
+ },
+ {
+  "q": "Solve the ordinary differential equation $y'+6xy=0$, $y(0)=1$.",
+  "kind": "maths",
+  "answer": "$y=e^{-3x^2}$. Separate variables: $\\ln y=-3x^2+c$; the initial condition gives $c=0$.",
+  "short": true,
+  "source": "zhou-quant/zhou-quant-guide.pdf#3"
+ },
+ {
+  "q": "Solve the ordinary differential equation $\\frac{dy}{dx}=\\frac{x-y}{x+y}$.",
+  "kind": "maths",
+  "answer": "Substitute $z=x+y$, so $\\frac{dy}{dx}=\\frac{2x-z}{z}$ and $\\frac{dz}{dx}=\\frac{2x}{z}$. Separating gives $z\\,dz=2x\\,dx$, so $(x+y)^2=2x^2+c$, i.e. $y^2+2xy-x^2=c$.",
+  "short": false,
+  "source": "zhou-quant/zhou-quant-guide.pdf#3"
+ },
+ {
+  "q": "Solve the ordinary differential equation $y'+\\frac{y}{x}=\\frac{1}{x^2}$, $y(1)=1$, where $x>0$.",
+  "kind": "maths",
+  "answer": "$y=\\frac{\\ln x+1}{x}$. The integrating factor is $x$, so $(xy)'=\\frac{1}{x}$, giving $xy=\\ln x+c$. The initial condition gives $c=1$.",
+  "short": false,
+  "source": "zhou-quant/zhou-quant-guide.pdf#3"
+ },
+ {
+  "q": "Calculate $i^i$.",
+  "kind": "maths",
+  "answer": "$i^i=e^{-\\pi/2}$. Use Euler's formula $e^{i\\theta}=\\cos\\theta+i\\sin\\theta$ (proved via Taylor series). Then $\\ln i=i\\frac{\\pi}{2}$, so $i^i=e^{i\\ln i}=e^{-\\pi/2}$.",
+  "short": true,
+  "source": "zhou-quant/zhou-quant-guide.pdf#3"
+ }
+]

@@ -1,0 +1,86 @@
+id: rectangle-length-width-percent-area
+title: 'Rectangle: length up 20%, width down 20%'
+topics:
+- percentages
+- area
+- rectangles
+- multiplicative change
+warmup: true
+answer_source: pdf
+statement: A rectangle's length is increased by $20\%$ and its width is decreased by $20\%$. What happens
+  to its area? a) It stays the same b) It increases by $4\%$ c) It decreases by $4\%$ d) It decreases
+  by $2\%$ e) It increases by $2\%$
+stages:
+- goal: Express the new area as a multiple of the original area.
+  expected: 0.96 times the original area (i.e. $1.2 \times 0.8 = 0.96$).
+  solution: Let the original length be $L$ and width $W$, so area $LW$. New length is $1.2L$, new width
+    is $0.8W$. New area is $1.2L \times 0.8W = 0.96\,LW$.
+  common_errors:
+  - 'Adding the percentages: $+20\% - 20\% = 0$, so concluding the area stays the same.'
+  - Multiplying $1.2 \times 0.8$ incorrectly, e.g. getting $1.04$ or $0.98$.
+  - Treating the area change as additive rather than multiplicative.
+  hints:
+    rephrase: Area is length times width. If each side changes by a factor, what happens to the product?
+    smaller_case: Take a rectangle that is 10 by 10. Work out its new length and new width after the changes,
+      then its new area.
+    key_idea: Percentage changes to a product multiply as scale factors; they do not add or cancel in
+      the way the percentages suggest.
+  check: Rational(12,10)*Rational(8,10) - Rational(96,100)
+  check_ok: true
+- goal: State the percentage change in area and choose the matching option.
+  expected: The area decreases by $4\%$, which is option c.
+  solution: The new area is $0.96$ of the old area, a factor of $1 - 0.04$. So the area decreases by $4\%$.
+    Option c.
+  common_errors:
+  - Choosing option d ($2\%$) by halving the 4% or by averaging the two percentages.
+  - Choosing option a because the two changes seem to cancel.
+  - Reading the factor $0.96$ as an increase.
+  hints:
+    rephrase: If the new area is a fraction of the old one, how far below 100% is that fraction?
+    smaller_case: If the new area were 0.5 times the old one, by what percentage would it have decreased?
+    key_idea: A decrease of $p\%$ corresponds to a multiplier of $1 - p/100$; compare the multiplier you
+      found with this.
+  check: Rational(96,100) - 1 + Rational(4,100)
+  check_ok: true
+extensions:
+  '3':
+  - Length up $50\%$ and width down $50\%$. What is the percentage change in area?
+  '4':
+  - Length up by $x\%$ and width down by $x\%$. Show that the area always decreases for any $x > 0$.
+  '5':
+  - Length up $a\%$ and width up $b\%$, with area change $r\%$. Find $r$ in terms of $a$ and $b$, and
+    discuss when a 'compensating' change gives zero net change.
+spoken_vocab:
+- rectangle
+- length
+- width
+- area
+- percent
+- twenty percent
+- decrease
+- increase
+- four percent
+- two percent
+- times
+- point nine six
+- multiply
+- stays the same
+source: kclms/kclms-specimen-mcq-3.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 1
+  minutes: 2
+  flags:
+  - trivial
+  tagline: Classic percentage trap; answer is a 4% decrease, not zero.
+  priority: 17
+  rank: 678
+  tier: D
+  category: kclms
+  d10: 1.5
+  real: 2.5
+  by: haiku
+tags:
+- algebra_and_functions

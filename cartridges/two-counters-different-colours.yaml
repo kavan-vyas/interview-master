@@ -1,0 +1,90 @@
+id: two-counters-different-colours
+title: Two counters without replacement
+topics:
+- probability
+- conditional probability
+- without replacement
+- mutually exclusive events
+warmup: true
+answer_source: pdf
+statement: A bag contains $4$ red and $6$ blue counters. Two counters are taken from the bag at random,
+  one after the other, without replacement. What is the probability that they are different colours? a)
+  $\frac{8}{15}$ b) $\frac{12}{25}$ c) $\frac{2}{5}$ d) $\frac{4}{9}$ e) $\frac{1}{2}$
+stages:
+- goal: Find the probability that the first counter is red and the second is blue.
+  expected: $\frac{4}{10}\times\frac{6}{9} = \frac{4}{15}$
+  solution: 'There are 10 counters in total. P(first red) = $\frac{4}{10}$. After one red is removed there
+    are 9 counters, 6 of them blue, so P(second blue | first red) = $\frac{6}{9}$. Multiply: $\frac{4}{10}\times\frac{6}{9}
+    = \frac{24}{90} = \frac{4}{15}$.'
+  common_errors:
+  - Using $\frac{4}{10}\times\frac{6}{10}$, which treats the draws as with replacement.
+  - Forgetting to reduce the total to 9 for the second draw.
+  - Simplifying $\frac{24}{90}$ incorrectly.
+  hints:
+    rephrase: What is the chance the first counter is red, and then what is the chance the second is blue
+      given that?
+    smaller_case: Suppose there was only 1 red and 1 blue counter in the bag. What is the chance of different
+      colours?
+    key_idea: After the first draw, the total number of counters changes, so the second probability uses
+      9, not 10.
+  check: sp.Rational(4,10)*sp.Rational(6,9) - sp.Rational(4,15)
+  check_ok: null
+- goal: Add the two mutually exclusive orders to get the probability of different colours.
+  expected: 'P(different colours) = P(red then blue) + P(blue then red) = $\frac{4}{15} + \frac{4}{15}
+    = \frac{8}{15}$. Answer: a).'
+  solution: 'P(blue then red) = $\frac{6}{10}\times\frac{4}{9} = \frac{24}{90} = \frac{4}{15}$. The two
+    orders cannot both happen, so add: $\frac{4}{15}+\frac{4}{15} = \frac{8}{15}$. Answer: a) $\frac{8}{15}$.'
+  common_errors:
+  - Stopping after one order, which gives $\frac{4}{15}$ and no option matches.
+  - Adding the two orders with replacement, which gives $\frac{12}{25}$ (option b).
+  - Miscounting the blue-then-red case by using 6 for the second draw's denominator.
+  hints:
+    rephrase: There are two orders in which the colours could come out different. Which are they?
+    smaller_case: With 1 red and 1 blue counter, how many orders give different colours?
+    key_idea: The two orders are mutually exclusive, so their probabilities add.
+  check: 2*sp.Rational(4,15) - sp.Rational(8,15)
+  check_ok: null
+extensions:
+  '3':
+  - Find the probability that both counters are the same colour and check it sums with your answer to
+    1.
+  - Find the probability that the second counter is red.
+  '4':
+  - Repeat the calculation if the counters are replaced after the first draw.
+  - Find the probability that the first counter is blue given that the second is red.
+  '5':
+  - Generalise to $r$ red and $b$ blue counters, drawing two without replacement.
+  - Show that drawing with and without replacement give the same answer if the colours are the same.
+spoken_vocab:
+- four
+- six
+- red
+- blue
+- counters
+- probability
+- without replacement
+- ten
+- nine
+- four over fifteen
+- eight over fifteen
+- different colours
+- add
+source: kclms/kclms-specimen-mcq-3.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 2
+  minutes: 3
+  flags:
+  - trivial
+  tagline: Routine MCQ; only tests two-stage without-replacement counting.
+  priority: 17
+  rank: 669
+  tier: D
+  category: kclms
+  d10: 1.5
+  real: 2.5
+  by: haiku
+tags:
+- probability

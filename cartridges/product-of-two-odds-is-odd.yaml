@@ -1,0 +1,76 @@
+id: product-of-two-odds-is-odd
+title: Product of two odd numbers is odd
+topics:
+- number theory
+- proof
+- parity
+warmup: true
+answer_source: generated
+statement: Prove that the product of two odd numbers is odd.
+stages:
+- goal: Write two arbitrary odd integers in algebraic form and multiply them out.
+  expected: Let $a=2m+1$ and $b=2n+1$ with $m,n\in\mathbb{Z}$. Then $ab=4mn+2m+2n+1$.
+  solution: An odd integer leaves remainder 1 on division by 2, so $a=2m+1$ and $b=2n+1$ for some integers
+    $m,n$. Then $ab=(2m+1)(2n+1)=4mn+2m+2n+1$.
+  common_errors:
+  - Using the same letter for both numbers, which forces them to be equal.
+  - Expanding the product and dropping the constant term 1.
+  - Writing an odd number as $2m$ instead of $2m+1$.
+  hints:
+    rephrase: How could you write an odd number using a whole-number variable and a fixed constant?
+    smaller_case: Take 3 and 5. Write each one as 2 times something plus 1, then multiply.
+    key_idea: Odd means one more than an even number, and an even number is a multiple of 2.
+  check: expand((2*m+1)*(2*n+1) - (4*m*n + 2*m + 2*n + 1))
+  check_ok: true
+- goal: Show the product has the form 2k+1 for an integer k, so it is odd.
+  expected: $ab=2k+1$ with $k=2mn+m+n$, which is an integer.
+  solution: $4mn+2m+2n+1=2(2mn+m+n)+1$. Since $m,n$ are integers, $k=2mn+m+n$ is an integer, so $ab$ is
+    odd.
+  common_errors:
+  - Concluding oddness without exhibiting an integer k.
+  - Claiming k must be even, which is not needed and is false in general.
+  - Checking a few examples and calling that a proof for all integers.
+  hints:
+    rephrase: Can you group the terms so that every term except one is a multiple of 2?
+    smaller_case: Take m=1 and n=1, so a=b=3. Find the product and split it into an even part plus 1.
+    key_idea: Factor 2 out of every term except the constant, then check that what remains is a whole
+      number.
+  check: expand(2*(2*m*n + m + n) + 1 - (2*m+1)*(2*n+1))
+  check_ok: true
+extensions:
+  '3':
+  - Prove that the product of an even integer and an odd integer is even.
+  - Prove that the sum of two odd integers is even.
+  '4':
+  - Show that the square of an odd integer is odd.
+  - Prove by induction that a product of n odd integers is odd.
+  '5':
+  - Show that $n^2-n$ is always even for every integer $n$, using a parity argument.
+spoken_vocab:
+- a equals two m plus one
+- b equals two n plus one
+- m and n are integers
+- product
+- odd
+- even
+- two m n plus m plus n
+- k
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions (anonymous).pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 1
+  parts: 2
+  minutes: 2
+  flags:
+  - trivial
+  tagline: Pure algebra recall; too short to probe anything.
+  priority: 17
+  rank: 682
+  tier: D
+  category: past-interviews
+  d10: 1.0
+  real: 3.0
+  by: haiku
+tags:
+- proof

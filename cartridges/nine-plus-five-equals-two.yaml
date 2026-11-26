@@ -1,0 +1,85 @@
+id: nine-plus-five-equals-two
+title: When does 9+5 equal 2?
+topics:
+- modular arithmetic
+- divisibility
+warmup: true
+answer_source: generated
+statement: When does $9+5$ equal $2$? In other words, for which moduli $n$ is $9+5 \equiv 2 \pmod{n}$
+  true?
+stages:
+- goal: Compute $9+5$ and the difference $14-2$, and state what must be true of that difference for $9+5
+    \equiv 2 \pmod{n}$ to hold.
+  expected: $9+5=14$, so $14-2=12$. The congruence holds exactly when $n$ divides $12$.
+  solution: $9+5=14$. $14 \equiv 2 \pmod{n}$ means $n \mid (14-2)$, so $n \mid 12$.
+  common_errors:
+  - Saying $9+5=12$ or some other arithmetic slip.
+  - Confusing 'equals' in ordinary arithmetic with congruence and concluding the statement is never true.
+  - Forgetting that a congruence means the difference is a multiple of the modulus.
+  hints:
+    rephrase: 'Work out the sum first. Then ask: when do two numbers leave the same remainder after division
+      by $n$?'
+    smaller_case: Try $4+4$ against $2$. What is the difference, and which moduli divide it?
+    key_idea: Two numbers are congruent mod $n$ exactly when their difference is divisible by $n$.
+  check: 14 - 2 - 12
+  check_ok: true
+- goal: List all moduli $n > 2$ for which $9+5 \equiv 2 \pmod{n}$.
+  expected: '$n \in \{3, 4, 6, 12\}$. These are the divisors of $12$ that are greater than $2$. The famous
+    case is $n=12$, clock arithmetic: $14$ o''clock is $2$ o''clock.'
+  solution: 'The divisors of $12$ are $1,2,3,4,6,12$. Excluding $1$ and $2$ (which would make the congruence
+    trivially about small remainders), we get $3,4,6,12$. Check: $14 \bmod 3 = 2$, $14 \bmod 4 = 2$, $14
+    \bmod 6 = 2$, $14 \bmod 12 = 2$.'
+  common_errors:
+  - Giving only $n=12$ and missing the other divisors.
+  - Including $n=1$ or $n=2$. For $n=2$, $2 \bmod 2 = 0$, not $2$, and for $n=1$ every remainder is $0$,
+    so both fail.
+  - Listing divisors of $14$ instead of $12$.
+  hints:
+    rephrase: The modulus has to divide a specific number you already found in stage one. Which divisors
+      of that number leave a remainder of $2$?
+    smaller_case: For $4+4 \equiv 2 \pmod{n}$, the difference is $6$. Which moduli $n > 2$ work?
+    key_idea: The remainder must be strictly less than $n$, so $n$ must be larger than $2$. Combine that
+      with the divisibility condition from stage one.
+  check: '[d for d in divisors(12) if d > 2] == [3, 4, 6, 12]'
+  check_ok: null
+extensions:
+  '3':
+  - For which moduli $n > 1$ does $7+7 \equiv 0 \pmod{n}$ hold? Justify your answer.
+  '4':
+  - Prove that $a+b \equiv c \pmod{n}$ holds if and only if $n \mid (a+b-c)$. Then explain why reducing
+    each term mod $n$ before adding gives the same result.
+  '5':
+  - Solve $x+5 \equiv 2 \pmod{12}$ for $x$ in the range $0 \le x \le 11$, and explain why there is exactly
+    one solution.
+spoken_vocab:
+- nine plus five
+- equals
+- congruent
+- modulo
+- mod
+- divides
+- divisors of twelve
+- clock arithmetic
+- remainder
+- twelve
+- difference
+- greater than two
+source: nextstepmaths/NextStepMaths Interview Questions/interview-question-21.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 2
+  parts: 2
+  minutes: 3
+  flags:
+  - trivial
+  tagline: Short divisibility exercise; recall-level with little discussion scope.
+  priority: 27
+  rank: 634
+  tier: D
+  category: nextstepmaths
+  d10: 2.0
+  real: 4.5
+  by: haiku
+tags:
+- number_theory

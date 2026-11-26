@@ -1,0 +1,75 @@
+id: four-balls-two-boxes
+title: Four balls into two boxes
+topics:
+- probability
+- counting
+- combinations
+warmup: true
+answer_source: generated
+statement: Four balls are dropped into two boxes, with an equal chance of each ball falling into either
+  box. What is the probability that there are two balls in each box?
+stages:
+- goal: Count the equally likely outcomes of placing the four balls.
+  expected: 16 outcomes, since each of the 4 balls independently has 2 choices (2^4 = 16).
+  solution: The balls are distinguishable and each has two independent choices of box, so the sample space
+    has 2 × 2 × 2 × 2 = 16 equally likely outcomes.
+  common_errors:
+  - Counting 2 outcomes (one per box) instead of 2^4.
+  - Treating the balls as identical, which gives a non-uniform count of distributions.
+  hints:
+    rephrase: How many different ways can the four balls each choose one of two boxes?
+    smaller_case: With two balls, list all the box assignments. How many are there?
+    key_idea: Each ball's choice is independent, so multiply the number of choices for each ball.
+- goal: Count the outcomes with two balls in each box and find the probability.
+  expected: 3/8, from C(4,2) = 6 favourable outcomes out of 16.
+  solution: Choose which 2 of the 4 balls go in box 1 (C(4,2) = 6 ways); the remaining 2 go in box 2.
+    So P = 6/16 = 3/8.
+  common_errors:
+  - Doubling C(4,2) because either box could hold the pair. Choosing box 1's pair already covers every
+    assignment.
+  - Giving 6/16 without simplifying, or dividing by a wrong total.
+  hints:
+    rephrase: Pick which balls go into the first box, and check that the rest is forced.
+    smaller_case: With two balls, how many assignments put one ball in each box?
+    key_idea: Favourable outcomes divided by total equally likely outcomes; choosing a 2-ball subset counts
+      each assignment exactly once.
+  check: candidate - Rational(3, 8)
+  check_ok: false
+extensions:
+  '3':
+  - 'Generalise to n balls into two boxes: find the probability of an equal split when n is even, as a
+    binomial coefficient over 2^n.'
+  - Find the probability that the first box is empty when four balls are dropped.
+  '4':
+  - 'Four balls into three boxes, each ball equally likely: find the probability that every box is non-empty.'
+  - Find the probability that exactly one box is empty when four balls are dropped into three boxes.
+  '5':
+  - Discuss how the sample space changes if the balls are indistinguishable and you count distributions
+    instead of assignments.
+  - Suppose the boxes have different chances of receiving a ball (p and 1-p). Find the probability of
+    an equal split with four balls.
+spoken_vocab:
+- four balls
+- two boxes
+- probability
+- two balls in each box
+- two to the power of four
+- sixteen
+- C four choose two
+- six over sixteen
+- three eighths
+- equally likely
+- independent
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 2 (anonymous).pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 2
+  parts: 2
+  minutes: 5
+  flags: []
+  tagline: Simple binomial counting; quick warm-up with little scope for extension.
+  priority: 35
+  rank: 604
+  tier: D
+  category: past-interviews

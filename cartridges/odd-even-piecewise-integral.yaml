@@ -1,0 +1,132 @@
+id: odd-even-piecewise-integral
+title: 'Odd and even functions: a symmetric integral and a parity product'
+topics:
+- integration
+- odd and even functions
+- symmetry
+- piecewise functions
+- parity of products
+warmup: false
+answer_source: pdf
+statement: 'Let $f(x)=\sin(\pi x)$ for $|x|\leq 1$ and $f(x)=x$ for $|x|>1$. Sketch $f(x)$. Integrate
+  $\int_{2}^{-2} f(x)\,dx$. Discussion of even and odd functions, as a result: $t(x)=t(-x)$, $g(x)=g(-x)$,
+  $h(x)=t(x)g(x)$. Odd or even?'
+stages:
+- goal: Evaluate $\int_{2}^{-2} f(x)\,dx$ for the piecewise function $f$.
+  expected: '0'
+  solution: 'Reversing the limits gives $\int_{2}^{-2} f(x)\,dx=-\int_{-2}^{2} f(x)\,dx$. Split the symmetric
+    interval: $\int_{-2}^{2} f = \int_{-2}^{-1} x\,dx + \int_{-1}^{1} \sin(\pi x)\,dx + \int_{1}^{2} x\,dx$.
+    The outer pieces give $[x^2/2]_{-2}^{-1}=-\tfrac{3}{2}$ and $[x^2/2]_{1}^{2}=\tfrac{3}{2}$, which
+    cancel. The middle integral is $\int_{-1}^{1}\sin(\pi x)\,dx=0$ because the integrand is odd on a
+    symmetric interval. So $\int_{-2}^{2} f=0$ and therefore $\int_{2}^{-2} f(x)\,dx=0$.'
+  common_errors:
+  - Forgetting the sign change when the limits are reversed.
+  - Evaluating $\int_{-1}^{1}\sin(\pi x)\,dx$ as nonzero, for example by treating it as a positive area.
+  - Integrating $x$ over $[-2,-1]$ and $[1,2]$ with the wrong signs, so the outer pieces do not cancel.
+  - Applying the formula for $|x|\leq 1$ over the whole interval.
+  hints:
+    rephrase: What happens to a definite integral when you swap its limits? Then look at how the interval
+      $[-2,2]$ splits into three pieces.
+    smaller_case: Take the simpler integral $\int_{-1}^{1}\sin(\pi x)\,dx$. Sketch the graph on $[-1,1]$
+      and compare the area above the axis with the area below it.
+    key_idea: Look for symmetry about the origin in the integrand on $[-2,2]$, and track the sign that
+      comes from swapping the limits.
+  check: ans - 0
+  check_ok: true
+- goal: Sketch $f$ and decide whether $f$ is odd, even, or neither.
+  expected: odd
+  solution: 'On $|x|\leq 1$, $f(-x)=\sin(-\pi x)=-\sin(\pi x)=-f(x)$. On $|x|>1$, $f(-x)=-x=-f(x)$. So
+    $f(-x)=-f(x)$ for all $x$, which makes $f$ odd. Its graph is symmetric about the origin: the sine
+    arc on $[-1,1]$ and the line $y=x$ outside it both have rotational symmetry about $(0,0)$. The sketch
+    should show a sine arc through $(-1,-1)$, $(0,0)$, $(1,1)$ and the line $y=x$ continuing beyond those
+    points.'
+  common_errors:
+  - Checking parity at only one point, or only on one side of the origin.
+  - Confusing $\sin(-\pi x)$ with $\sin(\pi x)$ and concluding $f$ is even.
+  - Sketching the sine arc with the wrong amplitude or period, for example a peak of 2 instead of 1.
+  - Thinking that because $f$ is piecewise it cannot have any parity.
+  hints:
+    rephrase: Compare $f(-x)$ with $f(x)$ on each piece separately. Does the sign flip, stay the same,
+      or do neither?
+    smaller_case: Pick $x=\tfrac{1}{2}$ and compare $f(\tfrac{1}{2})$ with $f(-\tfrac{1}{2})$. Then pick
+      $x=\tfrac{3}{2}$ and do the same.
+    key_idea: Test the defining relation $f(-x)=\pm f(x)$ on both pieces of the definition. Both pieces
+      must satisfy the same relation.
+  check: simplify(Piecewise((sin(pi*x), Abs(x)<=1), (x, True)).subs(x,-x) + Piecewise((sin(pi*x), Abs(x)<=1),
+    (x, True)))
+  check_ok: true
+- goal: Given $t(x)=t(-x)$, $g(x)=g(-x)$ and $h(x)=t(x)g(x)$, decide whether $h$ is odd or even.
+  expected: even
+  solution: Compute $h(-x)=t(-x)g(-x)$. Since $t$ and $g$ are both even, $t(-x)=t(x)$ and $g(-x)=g(x)$.
+    So $h(-x)=t(x)g(x)=h(x)$, which makes $h$ even. In general, even times even is even, and odd times
+    odd is also even.
+  common_errors:
+  - Concluding that $h$ is odd by analogy with a sign rule for odd functions.
+  - Concluding that $h$ is neither because the parities of $t$ and $g$ are not given separately.
+  - Substituting $-x$ into $t$ only and forgetting $g$.
+  - Writing $h(-x)=-t(x)g(x)$ by mistake.
+  hints:
+    rephrase: Write out $h(-x)$ as a product of two factors and replace each factor using its given symmetry.
+    smaller_case: Take $t(x)=x^2$ and $g(x)=\cos x$, which are both even. Compute $h(-x)$ and compare
+      it with $h(x)$.
+    key_idea: Substitute $-x$ into the whole product, then use each factor's stated symmetry.
+  check: simplify((Function('t')(x)*Function('g')(x)).subs(x,-x).subs({Function('t')(-x):Function('t')(x),
+    Function('g')(-x):Function('g')(x)}) - Function('t')(x)*Function('g')(x))
+  check_ok: true
+extensions:
+  '3':
+  - Show that an odd function times an even function is odd, using the same substitution method.
+  - Decide whether $x\sin(\pi x)$ and $\sin(\pi x)\cos x$ are odd, even, or neither, and justify each
+    answer.
+  '4':
+  - Prove that $\int_{-a}^{a} k(x)\,dx=0$ for any odd integrable $k$, by splitting the integral at $0$
+    and substituting $u=-x$.
+  - For $f$ from the question, find $\int_{-3}^{3} f(x)\,dx$ and explain how the answer relates to the
+    parity of $f$.
+  '5':
+  - Show that every function $F$ can be written as the sum of an even part and an odd part, and give those
+    parts explicitly.
+  - For $F(x)=\sin(\pi x)+x$ on $\mathbb{R}$, find the even and odd parts of $F$ and check that they add
+    back to $F$.
+spoken_vocab:
+- f of x
+- sine of pi x
+- absolute value of x less than or equal to one
+- f of x equals x
+- integral from two to minus two
+- integral from minus two to two
+- odd function
+- even function
+- neither odd nor even
+- t of x equals t of minus x
+- g of x equals g of minus x
+- h of x equals t of x times g of x
+- reverse the limits
+- symmetric interval
+- minus x
+- sketch the graph
+- origin
+- pi
+- sine
+- cosine
+source: past-interviews/Actual Past Interview Questions/G2.jpg
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 3
+  minutes: 8
+  flags:
+  - needs_diagram
+  - garbled
+  tagline: Odd-function symmetry over a symmetric interval, but the statement is disjointed.
+  priority: 35
+  rank: 600
+  tier: D
+  category: past-interviews
+  d10: 2.0
+  real: 3.0
+  by: haiku
+tags:
+- algebra_and_functions
+- integration

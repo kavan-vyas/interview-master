@@ -1,0 +1,136 @@
+id: fermat-little-theorem-binomial-primes
+title: Prime binomial coefficients, Fermat's little theorem and 3^2026 mod 7
+topics:
+- Fermat's little theorem
+- binomial theorem
+- modular arithmetic
+- prime numbers
+warmup: false
+answer_source: pdf
+statement: Let $p$ be a prime. (i) Show that $p$ divides $\binom{p}{k}$ for $1\le k\le p-1$. (ii) Deduce
+  that $(a+1)^p\equiv a^p+1 \pmod p$ for every integer $a$. (iii) Prove that $a^p\equiv a \pmod p$ for
+  every integer $a\ge 0$. (iv) Deduce that if $p\nmid a$ then $a^{p-1}\equiv 1 \pmod p$. Find the remainder
+  when $3^{2026}$ is divided by 7. (v) Show that $n^{13}-n$ is divisible by 2730 for every integer $n$.
+stages:
+- goal: Prove that p divides C(p,k) for 1 <= k <= p-1, and check the case p = 7, k = 3.
+  expected: C(p,k) = p! / (k! (p-k)!). The prime p divides p! but not k! (p-k)!, because all factors of
+    the latter are less than p. Hence p divides C(p,k). For p = 7, k = 3 we get C(7,3) = 35, which is
+    divisible by 7.
+  solution: 'Write C(p,k) * k! * (p-k)! = p!. Since p is prime and divides p!, p divides the product C(p,k)
+    * k! * (p-k)!. Every factor of k! and of (p-k)! is at most p-1, so p divides none of them; since p
+    is prime, p must divide C(p,k). Example: C(7,3) = 7!/(3! 4!) = 35 = 7 * 5.'
+  common_errors:
+  - Arguing that C(p,k) is not an integer multiple of p because it is 'large'
+  - Claiming p divides k! or (p-k)! for some k
+  - Forgetting that p must be prime for the argument to work
+  check: binomial(7,3) - 35
+  hints:
+    rephrase: Write the binomial coefficient as a quotient of factorials and look at which factors survive.
+    smaller_case: 'Take p = 5 and k = 2: check whether 5 divides C(5,2).'
+    key_idea: A prime dividing a product must divide one of its factors; ask which factors of p! can cancel
+      against k! (p-k)!.
+  check_ok: true
+- goal: Deduce that (a+1)^p is congruent to a^p + 1 modulo p, and verify with p = 5, a = 2.
+  expected: 'By the binomial theorem, (a+1)^p is the sum of C(p,k) a^k over k from 0 to p. The terms k
+    = 0 and k = p give 1 and a^p; by part (i) every middle term is divisible by p. For p = 5, a = 2: 3^5
+    - (2^5 + 1) = 210, divisible by 5.'
+  solution: (a+1)^p = sum_{k=0}^{p} C(p,k) a^k. The k = 0 term is 1 and the k = p term is a^p. For 1 <=
+    k <= p-1, p divides C(p,k) by (i), so those terms are divisible by p. Therefore (a+1)^p congruent
+    to a^p + 1 modulo p.
+  common_errors:
+  - Forgetting the k = 0 term contributes 1
+  - Applying the result only for positive a
+  - Dropping the coefficient C(p,k) from middle terms
+  check: ((2+1)**5 - (2**5 + 1)) % 5
+  hints:
+    rephrase: Expand (a+1)^p with the binomial theorem and single out the first and last terms.
+    smaller_case: Take p = 3 and a = 1 and compare 2^3 with 1^3 + 1.
+    key_idea: Use part (i) to remove every middle term modulo p.
+  check_ok: true
+- goal: Prove that a^p is congruent to a modulo p for every integer a >= 0, by induction.
+  expected: 'Base case a = 0: 0^p = 0. Inductive step: if a^p is congruent to a, then (a+1)^p is congruent
+    to a^p + 1, which is congruent to a + 1, by part (ii). Check p = 7, a = 3: 3^7 - 3 = 2184 = 7 * 312.'
+  solution: Induct on a >= 0. For a = 0, both sides equal 0. Assume a^p congruent to a modulo p. By (ii),
+    (a+1)^p congruent to a^p + 1, and by the hypothesis this is congruent to a + 1. Hence the statement
+    holds for a+1 and therefore for all a >= 0.
+  common_errors:
+  - Using the induction hypothesis in the wrong direction
+  - Omitting the base case
+  - Applying (ii) without the correct modulus
+  check: (3**7 - 3) % 7
+  hints:
+    rephrase: Use induction on a for non-negative integers.
+    smaller_case: Check the statement directly for a = 0 and a = 1.
+    key_idea: Assume the result for a and combine it with the identity from the previous stage to get
+      the result for a + 1.
+  check_ok: true
+- goal: Deduce Fermat's little theorem, then find the remainder when 3^2026 is divided by 7.
+  expected: If p does not divide a, then a^{p-1} is congruent to 1 modulo p. Since 3^6 is congruent to
+    1 modulo 7 and 2026 = 6 * 337 + 4, we get 3^{2026} congruent to 3^4 = 81, which is congruent to 4
+    modulo 7. The remainder is 4.
+  solution: From a^p congruent to a modulo p, we have p divides a(a^{p-1} - 1). Since p does not divide
+    a, p divides a^{p-1} - 1, so a^{p-1} is congruent to 1. For p = 7 and a = 3, 3^6 congruent to 1, and
+    2026 = 6 * 337 + 4, so 3^{2026} = (3^6)^{337} * 3^4 congruent to 3^4 = 81 congruent to 4 modulo 7.
+  common_errors:
+  - Reducing 2026 modulo 7 instead of modulo 6
+  - 'Arithmetic slip: 81 modulo 7 is 4, not 81 - 70 = 11'
+  - Forgetting to cancel the factor a in the deduction
+  check: 3**2026 % 7 - 4
+  hints:
+    rephrase: Reduce the exponent using a theorem about powers modulo a prime.
+    smaller_case: Compute 3^2 and 3^3 modulo 7 and look for a repeating pattern.
+    key_idea: By Fermat, the exponent only matters modulo p - 1, so reduce 2026 modulo 6.
+  check_ok: true
+- goal: Show that n^13 - n is divisible by 2730 for every integer n.
+  expected: 2730 = 2 * 3 * 5 * 7 * 13. For each prime p in this list, p - 1 divides 12, so n^13 = n^{12}
+    n is congruent to n modulo p (with n^{12} congruent to 1 when p does not divide n). Hence each prime
+    divides n^13 - n, and since the primes are distinct, their product 2730 divides n^13 - n.
+  solution: Factor 2730 = 2 * 3 * 5 * 7 * 13. For p in {2, 3, 5, 7, 13}, p - 1 is in {1, 2, 4, 6, 12},
+    each dividing 12. If p divides n, then p divides n^13 - n. If p does not divide n, Fermat gives n^{p-1}
+    congruent to 1, and since (p-1) divides 12, n^{12} congruent to 1, so n^13 congruent to n modulo p.
+    Thus every prime factor divides n^13 - n. These primes are distinct, so their product 2730 divides
+    n^13 - n.
+  common_errors:
+  - Checking only one prime and claiming the product divides
+  - Omitting p = 2 or p = 13
+  - Using p-1 divides 13 instead of p-1 divides 12
+  check: 2*3*5*7*13 - 2730
+  hints:
+    rephrase: Factor 2730 and check each prime factor on its own.
+    smaller_case: 'Test n = 2 for the prime 3: does 3 divide 2^13 - 2?'
+    key_idea: For a prime p, reduce the exponent 13 modulo p - 1 and use Fermat.
+  check_ok: true
+extensions:
+  '3':
+  - Prove that 2^p is congruent to 2 modulo p for every prime p.
+  '4':
+  - Find the remainder when 5^2026 is divided by 13.
+  '5':
+  - Prove that p^2 - 1 is divisible by 24 for every prime p >= 5.
+spoken_vocab:
+- prime p
+- binomial coefficient
+- p choose k
+- congruent modulo p
+- Fermat's little theorem
+- binomial theorem
+- a to the power p
+- three to the power two thousand twenty six
+- modulo seven
+- remainder
+- n to the power thirteen minus n
+- two thousand seven hundred thirty
+- induction
+source: jaymin/Jaymin Interview (1).pdf#p9
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 5
+  minutes: 25
+  flags: []
+  tagline: Chains binomial lemma to Fermat and 2730 divisibility; excellent multi-step structure.
+  priority: 108
+  rank: 27
+  tier: S
+  category: jaymin

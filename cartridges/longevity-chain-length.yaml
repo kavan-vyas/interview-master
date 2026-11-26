@@ -1,0 +1,107 @@
+id: longevity-chain-length
+title: Longest longevity chain
+topics:
+- number theory
+- modular arithmetic
+- digit sums
+- pigeonhole
+warmup: false
+answer_source: generated
+statement: A longevity chain is a sequence of consecutive integers, whose digit sums are never a multiple
+  of 9. What is the longest possible length of a longevity chain?
+stages:
+- goal: Relate the digit sum of an integer to the integer itself modulo 9.
+  expected: For any integer m, the digit sum s(m) satisfies s(m) congruent to m modulo 9, so s(m) is a
+    multiple of 9 exactly when m is a multiple of 9.
+  solution: Take m >= 0 with decimal digits d_k,...,d_0, so m = sum of d_i times 10^i. Since 10 is congruent
+    to 1 modulo 9, each power 10^i is congruent to 1, so m is congruent to the sum of the digits, s(m).
+    For negative integers, use the digit sum of |m|. Since |m| is congruent to m or -m modulo 9, and 0
+    is a multiple of 9, the statement that the digit sum is a multiple of 9 is equivalent to m being a
+    multiple of 9.
+  common_errors:
+  - Claiming that digit sums are multiples of 9 for exactly the multiples of 9, without proving the congruence.
+  - Forgetting that negative integers use the digit sum of their absolute value.
+  hints:
+    rephrase: What remainder does 10 leave when divided by 9? How does that help with the powers of 10
+      in a decimal representation?
+    smaller_case: Compare the number 1234 with its digit sum 1+2+3+4. What is the difference, and is it
+      divisible by 9?
+    key_idea: Digit sums and the numbers themselves agree modulo 9.
+  check: Mod(1234 - (1 + 2 + 3 + 4), 9)
+  check_ok: true
+- goal: Show that any run of 9 consecutive integers contains one whose digit sum is a multiple of 9, and
+    hence bound the chain length by 8.
+  expected: The longest possible longevity chain has length 8.
+  solution: Nine consecutive integers have nine different remainders modulo 9, so one of them is congruent
+    to 0 modulo 9. Call it m. Then m is a multiple of 9 (possibly 0), and by the previous stage its digit
+    sum is a multiple of 9. So no longevity chain can contain 9 consecutive integers, and the length is
+    at most 8.
+  common_errors:
+  - Concluding the maximum is 9 by arguing that nine numbers can avoid multiples of 9 in some configuration.
+  - Excluding 0 from multiples of 9 for negative chains, which would change the bound for chains that
+    include 0. Count 0 as a multiple of 9.
+  hints:
+    rephrase: Take any nine consecutive integers. How many different remainders modulo 9 do they cover,
+      and what does that force?
+    smaller_case: Look at the integers 10 through 18. Which of them has a digit sum that is a multiple
+      of 9?
+    key_idea: In any block of 9 consecutive integers, every remainder mod 9 appears exactly once, so one
+      of them is a multiple of 9.
+  check: Integer(8) - 8
+  check_ok: true
+- goal: Give an explicit longevity chain of length 8.
+  expected: The chain 1, 2, 3, 4, 5, 6, 7, 8.
+  solution: Each of these integers is less than 9, so its digit sum is itself, namely 1 through 8. None
+    of these is a multiple of 9, so the chain is valid and has length 8, matching the upper bound.
+  common_errors:
+  - Choosing a chain that includes 9 or 18, whose digit sums are multiples of 9.
+  - Mixing up the length of the chain with the largest integer in it.
+  hints:
+    rephrase: Find eight consecutive positive integers whose digit sums are each small. Which ones avoid
+      digit sums of 9?
+    smaller_case: Could the chain 7, 8, 9 work? Check the digit sum of 9.
+    key_idea: Pick a block of consecutive integers that lies strictly between two consecutive multiples
+      of 9.
+  check: null
+extensions:
+  '3':
+  - Find the analogous answer when the forbidden digit sums are multiples of some other number k instead
+    of 9, and identify for which k the modular argument gives a bound.
+  '4':
+  - Work in base b instead of base 10. Show that the longest chain whose digit sums avoid multiples of
+    b minus 1 has length b minus 2, and give an example.
+  '5':
+  - Replace digit sums with alternating digit sums and the forbidden values with multiples of 11. Find
+    the longest chain and prove your bound.
+spoken_vocab:
+- longevity chain
+- consecutive integers
+- digit sum
+- multiple of nine
+- modulo nine
+- ten is congruent to one modulo nine
+- nine consecutive integers
+- longest possible length
+- eight
+- decimal digits
+- absolute value
+- remainder
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 3
+  parts: 3
+  minutes: 6
+  flags: []
+  tagline: A digit-sum mod 9 argument gives a crisp bound, though the construction is trivial.
+  priority: 61
+  rank: 448
+  tier: C
+  category: tbo
+  d10: 2.5
+  real: 6.0
+  by: haiku
+tags:
+- number_theory
+- proof

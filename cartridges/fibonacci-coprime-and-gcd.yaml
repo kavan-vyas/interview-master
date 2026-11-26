@@ -1,0 +1,102 @@
+id: fibonacci-coprime-and-gcd
+title: 'Fibonacci numbers: coprimality and gcd structure'
+topics:
+- number theory
+- Fibonacci sequence
+- gcd
+- induction
+- divisibility
+warmup: false
+answer_source: generated
+statement: The Fibonacci numbers are defined by $F_1=F_2=1$, $F_{n+1}=F_n+F_{n-1}$. (a) Prove that consecutive
+  Fibonacci numbers are coprime. (b) Can you conjecture a formula for $\gcd(F_m, F_n)$ in terms of $\gcd(m,
+  n)$?
+stages:
+- goal: Show that any common divisor of $F_{n+1}$ and $F_n$ also divides $F_{n-1}$.
+  expected: If $d \mid F_{n+1}$ and $d \mid F_n$, then $d \mid (F_{n+1}-F_n)=F_{n-1}$.
+  solution: Let $d$ divide both $F_{n+1}$ and $F_n$. Since $F_{n+1}-F_n=F_{n-1}$ by the recurrence, $d$
+    divides $F_{n-1}$ as well.
+  common_errors:
+  - Writing $F_{n+1}-F_n=F_{n+1}+F_n$ (a sign slip).
+  - Assuming $d$ divides $F_{n-1}$ without deriving it from the recurrence.
+  hints:
+    rephrase: Take a number that divides both $F_{n+1}$ and $F_n$. What can you subtract from one to get
+      a new Fibonacci term?
+    smaller_case: 'Try $n=3$: which number divides both $F_4=3$ and $F_3=2$?'
+    key_idea: Use the recurrence to rewrite one term in terms of the other two, then use the fact that
+      a common divisor of two numbers divides their difference.
+  check: all(fibonacci(k+1) - fibonacci(k) - fibonacci(k-1) == 0 for k in range(2, 40))
+  check_ok: null
+- goal: Conclude that consecutive Fibonacci numbers are coprime.
+  expected: Repeating the step reduces any common divisor to $F_1=1$, so $\gcd(F_n,F_{n+1})=1$ for all
+    $n\ge 1$ (by induction, with base case $\gcd(F_1,F_2)=\gcd(1,1)=1$).
+  solution: By the previous step, a common divisor of $F_{n+1}$ and $F_n$ divides $F_{n-1}$, then $F_{n-2}$,
+    and so on down to $F_2=1$ or $F_1=1$. So the only common divisor is 1, i.e. $\gcd(F_n,F_{n+1})=1$.
+  common_errors:
+  - Stopping at a general statement without a base case.
+  - Confusing coprime with prime.
+  hints:
+    rephrase: Keep applying the previous step. Where does the chain end?
+    smaller_case: What is $\gcd(F_4,F_5)$ if you apply the step repeatedly?
+    key_idea: A descending chain of divisors ends at a known base term, and the base term is 1.
+- goal: Conjecture a formula for $\gcd(F_m,F_n)$ in terms of $\gcd(m,n)$.
+  expected: $\gcd(F_m,F_n)=F_{\gcd(m,n)}$.
+  solution: 'The known result is $\gcd(F_m,F_n)=F_{\gcd(m,n)}$. Check: $\gcd(F_4,F_6)=\gcd(3,8)=1=F_2$,
+    and $\gcd(F_6,F_9)=\gcd(8,34)=2=F_3$.'
+  common_errors:
+  - Conjecturing $\gcd(F_m,F_n)=\gcd(m,n)$, which fails already for $m=n=3$ ($\gcd(2,2)=2$ but $\gcd(3,4)$
+    is not the same thing in general; test $m=6$, $n=9$).
+  - Forgetting that $F_{1}=F_{2}=1$, so $\gcd(m,n)=1$ gives $F_1=1$.
+  hints:
+    rephrase: Compute a few small cases of $\gcd(F_m,F_n)$ and look for a pattern involving the indices.
+    smaller_case: Compute $\gcd(F_2,F_4)$ and $\gcd(F_4,F_6)$ and compare with $\gcd(2,4)$ and $\gcd(4,6)$.
+    key_idea: Fibonacci numbers with index dividing one another behave like a divisibility-preserving
+      sequence. Look at which index is the natural 'gcd' of the two indices.
+  check: all(gcd(fibonacci(m), fibonacci(n)) - fibonacci(gcd(m, n)) == 0 for m in range(1, 25) for n in
+    range(1, 25))
+  check_ok: null
+extensions:
+  '3':
+  - Prove that $F_m \mid F_n$ whenever $m \mid n$.
+  - Show that $\gcd(F_n,F_{n+2})$ equals 1 when $n$ is odd and 2 when $n$ is even.
+  '4':
+  - Explain how the Euclidean algorithm applied to $(F_{n+1},F_n)$ mirrors the recurrence, and why it
+    takes the maximum number of steps for Fibonacci pairs.
+  '5':
+  - Prove that for $m\ge 3$, $F_m \mid F_n$ if and only if $m \mid n$.
+spoken_vocab:
+- F sub n
+- F sub n plus one
+- F sub n minus one
+- Fibonacci numbers
+- consecutive Fibonacci numbers
+- coprime
+- gcd
+- greatest common divisor
+- F sub m
+- F sub gcd of m comma n
+- divides
+- recurrence
+- induction
+- base case
+- Euclidean algorithm
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Coprimality proof leads to a genuine gcd conjecture; strong discussion potential.
+  priority: 81
+  rank: 235
+  tier: B
+  category: juan
+  d10: 4.5
+  real: 7.5
+  by: deepseek-v4.1-flash-free
+tags:
+- number_theory
+- proof
+- sequences_and_series

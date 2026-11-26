@@ -1,0 +1,73 @@
+id: compare-31-11-with-17-14
+title: Compare 31^11 and 17^14 without a calculator
+topics:
+- inequalities
+- powers
+- estimation
+- bounding with powers of two
+warmup: true
+answer_source: pdf
+statement: 'Without a calculator, decide which is larger: $31^{11}$ or $17^{14}$.'
+stages:
+- goal: Bound 31^11 from above by a power of 2.
+  expected: Since 31 < 32 = 2^5, we get 31^11 < 32^11 = 2^55.
+  solution: 31 < 32 = 2^5 implies 31^11 < (2^5)^11 = 2^55, since raising positive numbers to the same
+    power preserves the inequality.
+  common_errors:
+  - Using 31 < 2^4 instead of 31 < 2^5
+  - Computing 32^11 incorrectly as 2^{50}
+  check: 32**11 - 2**55
+  hints:
+    rephrase: Find the nearest power of 2 that is just above 31.
+    smaller_case: Bound 3^2 from above by a power of 2 in the same way.
+    key_idea: Replace the base by a power of 2 slightly larger than it, then raise to the same exponent.
+  check_ok: true
+- goal: Bound 17^14 from below by a power of 2, and decide which of the two numbers is larger.
+  expected: Since 17 > 16 = 2^4, we get 17^14 > 2^56. Then 31^11 < 2^55 < 2^56 < 17^14, so 17^14 is larger.
+  solution: 17 > 16 = 2^4 implies 17^14 > (2^4)^14 = 2^56. Combining with the bound from stage 1 gives
+    31^11 < 2^55 < 2^56 < 17^14. Therefore 17^14 is larger.
+  common_errors:
+  - Concluding without a bound on both sides
+  - 'Miscounting the exponent: 16^14 = 2^56, not 2^54'
+  - Comparing the numbers using only the leading digits
+  check: 16**14 - 2**56
+  hints:
+    rephrase: Find a power of 2 that lies just below 17 and raise it to the power 14.
+    smaller_case: Compare 5^2 with a nearby power of 2 from below.
+    key_idea: Combine a lower bound on one number with an upper bound on the other to compare them.
+  check_ok: true
+extensions:
+  '3':
+  - Without a calculator, compare 10^30 and 3^63.
+  '4':
+  - Without a calculator, compare 2^100 and 3^63.
+  '5':
+  - Without a calculator, compare 99^50 and 100^49.
+spoken_vocab:
+- thirty-one to the power eleven
+- seventeen to the power fourteen
+- which is larger
+- two to the power fifty-five
+- two to the power fifty-six
+- sixteen
+- thirty-two
+- without a calculator
+source: jaymin/Jaymin Interview (1).pdf#p9
+verified: false
+rating:
+  quality: 5
+  difficulty: 3
+  parts: 2
+  minutes: 5
+  flags: []
+  tagline: Neat power-of-two bounding trick; short but clean.
+  priority: 70
+  rank: 367
+  tier: C
+  category: jaymin
+  d10: 4.0
+  real: 7.0
+  by: deepseek-v4.1-flash-free
+tags:
+- number_theory
+- inequalities

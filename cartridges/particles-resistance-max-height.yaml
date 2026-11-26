@@ -1,0 +1,105 @@
+id: particles-resistance-max-height
+title: Particles with and without resistance reaching the same maximum height
+topics:
+- mechanics
+- projectiles
+- resistance
+- energy
+- kinematics
+warmup: false
+answer_source: generated
+statement: Two particles, $A$ and $B$, of the same size and mass are projected from the same point. They
+  both reach the same maximum height, but $B$ experiences resistance while $A$ does not. Which particle
+  reaches its maximum height first? How does the presence of resistance affect the initial speed required
+  for the particles to reach the same maximum height?
+stages:
+- goal: Find the maximum height and the time to reach it for particle A (no resistance) in terms of its
+    launch speed u_A.
+  expected: Maximum height H = u_A²/(2g), time to maximum height t_A = u_A/g.
+  solution: For A, the only force is gravity, so the motion is uniformly decelerated at g. From v = 0
+    = u_A − g t, t_A = u_A/g. From v² = u_A² − 2gH, H = u_A²/(2g).
+  common_errors:
+  - Sign errors in v = u + at when taking upward as positive.
+  - Forgetting the factor of 2 in H = u²/(2g).
+  hints:
+    rephrase: Only gravity acts on A. Write the equations of motion for uniform deceleration.
+    smaller_case: Take g = 10 m/s² and u = 20 m/s. How high does the particle rise and how long does it
+      take?
+    key_idea: Use the constant-acceleration equations, with the velocity at the top equal to zero.
+- goal: Explain how resistance changes the launch speed needed to reach the same height H.
+  expected: 'B must be projected faster than A: u_B > u_A.'
+  solution: Resistance does negative work on B, so B needs more initial kinetic energy to gain the same
+    potential energy mgH. Hence ½m u_B² = mgH + (work done against resistance) > ½m u_A² = mgH, giving
+    u_B > u_A. In the linear-resistance model below, u_B ≈ u_A + k u_A²/(3g) to first order in k.
+  common_errors:
+  - Saying B needs less speed because resistance slows it down.
+  - Concluding the speeds are equal because the maximum heights are equal.
+  hints:
+    rephrase: Think about where the energy goes for the particle with resistance.
+    smaller_case: Compare the energy needed to reach a fixed height with and without a force opposing
+      the motion.
+    key_idea: Energy lost to resistance must be replaced at launch, so the initial kinetic energy must
+      be larger.
+- goal: Decide which particle reaches its maximum height first and justify it.
+  expected: B reaches its maximum height first, because t_B < t_A, despite its larger launch speed.
+  solution: 'Model resistance as −mkv. For B, the upward motion gives v(t) = (u_B + g/k)e^(−kt) − g/k,
+    so the time to the top is t_B = (1/k) ln(1 + k u_B/g). Matching heights gives u_B/k − (g/k²) ln(1
+    + k u_B/g) = u_A²/(2g). Expanding in small k gives t_B ≈ t_A − k u_A²/(6g²) < t_A. Numerical check
+    with g = k = 1 and u_A = 1: H = 0.5, u_B ≈ 1.358, t_B ≈ 0.858 < t_A = 1.'
+  common_errors:
+  - Assuming that because B is launched faster it must reach the top later.
+  - Ignoring the extra deceleration caused by resistance when comparing times.
+  hints:
+    rephrase: Compare the deceleration of the two particles on the way up, not just their launch speeds.
+    smaller_case: Consider a particle with very large resistance and ask how quickly it can stop.
+    key_idea: Compare the two times to the top using the equations of motion including the resistance
+      term, keeping the common height fixed.
+extensions:
+  '3':
+  - Repeat the analysis with quadratic resistance −mkv². Is B still the first to reach its maximum height?
+  - Find the total time of flight, up and back down, for both particles.
+  '4':
+  - Show that for linear resistance the ascent time is t = (1/k) ln(1 + k u/g), and check the small-k
+    limit.
+  - Discuss whether the result depends on the form of the resistance law, and give a general argument.
+  '5':
+  - Show that, for any resistance opposing the motion, the ascent time to a fixed height is shorter than
+    for the frictionless case, using an energy or integral argument.
+  - Discuss how the answer changes if the particles are projected at the same speed instead of reaching
+    the same height.
+spoken_vocab:
+- particle A
+- particle B
+- same mass
+- projected
+- maximum height
+- resistance
+- no resistance
+- initial speed
+- launch speed
+- u
+- g
+- time to maximum height
+- reaches first
+- kinetic energy
+- potential energy
+- linear resistance
+- k v
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 2 (anonymous).pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: 'Counterintuitive: resistance needs more launch speed yet still peaks sooner.'
+  priority: 91
+  rank: 113
+  tier: A
+  category: past-interviews
+  d10: 4.0
+  real: 6.0
+  by: haiku
+tags:
+- mechanics

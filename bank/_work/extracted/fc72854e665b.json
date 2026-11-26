@@ -1,0 +1,58 @@
+[
+ {
+  "q": "Problem 56 (Testing for a rare disease). A disease affects 1% of a population. A test detects it in 99% of people who have it, but also gives a positive result for 5% of people who do not. (i) A randomly chosen person tests positive. What is the probability they have the disease? (ii) Show that, in terms of odds, posterior odds = prior odds $\\times$ likelihood ratio, where the likelihood ratio is $\\frac{P(+\\mid D)}{P(+\\mid D^c)}$. (iii) The person takes a second, independent test, also positive. What is the probability now? (iv) How many consecutive positive results are needed before the probability of disease exceeds 99%? (v) Comment on the assumption of independence.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p57"
+ },
+ {
+  "q": "Problem 57 (Maxima and minima of uniform variables). Let $X$ and $Y$ be independent and uniform on $[0,1]$. (i) Show that $P(\\max(X,Y)\\le t)=t^2$ for $0\\le t\\le 1$, and hence find $E[\\max(X,Y)]$. (ii) Find $E[\\min(X,Y)]$. (iii) Find $E|X-Y|$. (iv) If $X_1,\\ldots,X_n$ are independent and uniform on $[0,1]$, show that $E[\\max X_i]=\\frac{n}{n+1}$. (v) Serial numbers are uniform on $[0,\\theta]$ for an unknown $\\theta$. You observe $n$ of them, with maximum $m$. Explain why $\\frac{n+1}{n}m$ is a sensible estimate of $\\theta$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p57"
+ },
+ {
+  "q": "Problem 58 (The secretary problem). Candidates $1,\\ldots,n$ for a job arrive in a uniformly random order. After each interview you learn only how the candidate ranks against those already seen, and must accept or reject immediately. Strategy $S_r$: reject the first $r-1$ candidates, then accept the first one who is better than everyone seen so far. (i) For $n=3$, find the probability that $S_r$ picks the best candidate for $r=1,2,3$. (ii) Show that for $2\\le r\\le n$, $S_r$ succeeds with probability $P_r=\\frac{r-1}{n}\\sum_{k=r}^{n}\\frac{1}{k-1}$. (iii) By approximating the sum with an integral, show that for large $n$ and $r\\approx xn$, $P_r\\approx -x\\ln x$. Deduce the best $x$ and the resulting probability.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p57"
+ },
+ {
+  "q": "Problem 59. Without using a calculator, decide which is larger: $e^{\\pi}$ or $\\pi^{e}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p57"
+ },
+ {
+  "q": "Problem 60 (A symmetric integral). Evaluate $\\int_0^{\\pi/2}\\frac{\\sin x}{\\sin x+\\cos x}\\,dx$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p57"
+ },
+ {
+  "q": "Problem 61 (A limit of a sum). Find $\\lim_{n\\to\\infty}\\sum_{k=1}^{n}\\frac{n}{n^2+k^2}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p57"
+ },
+ {
+  "q": "Problem 62. Show geometrically that $\\sin x < x < \\tan x$ for $0<x<\\frac{\\pi}{2}$, and deduce that $\\frac{\\sin x}{x}\\to 1$ as $x\\to 0$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p57"
+ },
+ {
+  "q": "Problem 63 (Is $\\pi$ less than $\\frac{22}{7}$?). Show that $\\int_0^1 \\frac{x^4(1-x)^4}{1+x^2}\\,dx=\\frac{22}{7}-\\pi$, and deduce that $\\pi<\\frac{22}{7}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p57"
+ }
+]

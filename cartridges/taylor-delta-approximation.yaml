@@ -1,0 +1,106 @@
+id: taylor-delta-approximation
+title: Taylor expansion, integral approximation and the delta limit
+topics:
+- Taylor series
+- integration
+- asymptotic approximation
+- Dirac delta
+- distributions
+warmup: false
+answer_source: pdf
+statement: 'i) Using Taylor series, prove the following when $x$ is a small number. Assume $f(x)$ is infinitely
+  differentiable (everywhere): $\left|\int_0^x f(x)\,dx - x f(0)\right| \leq \frac{1}{2} C x^2$, where
+  $|f''(x)| \leq C$. ii) Approximate the following when $x$ is a small number: $\int_0^{1/n} (n - n x^2)
+  f(x)\,dx$. iii) You are given $g_n(x)$ which satisfies: $g_n(x) = -n^2(|x| - \frac{1}{n})$ if $|x| <
+  \frac{1}{n}$, and $0$ otherwise (the source notes $g_n(x) = \delta(x)$, the Dirac delta function). What
+  is $\int_{-\infty}^{\infty} g_n(x) f(x)\,dx$ when $n \to 0$?'
+stages:
+- goal: Prove $\left|\int_0^x f(t)\,dt - x f(0)\right|\le \frac12 C x^2$ using Taylor's theorem.
+  expected: Write $f(t)=f(0)+t\,f'(\xi_t)$ with $\xi_t$ between $0$ and $t$. Then $|f(t)-f(0)|\le C|t|$,
+    and integrating gives the bound $\frac{C x^2}{2}$.
+  solution: $\int_0^x f - x f(0)=\int_0^x (f(t)-f(0))\,dt$. Taylor's theorem with Lagrange remainder gives
+    $f(t)-f(0)=t f'(\xi_t)$, so $|f(t)-f(0)|\le C|t|$ since $|f'|\le C$. Hence $\left|\int_0^x (f(t)-f(0))\,dt\right|\le\int_0^{|x|}
+    C s\,ds=\frac{C x^2}{2}$. The case $x<0$ follows by the same argument with $|x|$.
+  common_errors:
+  - Bounding $|f(t)-f(0)|$ by $|f(0)|+|f(t)|$, which loses the $x^2$ order.
+  - Using $|f'|\le C$ only at $t=x$ instead of on the whole interval.
+  - Forgetting that $\int_0^x$ with $x<0$ needs the absolute value of $x$.
+  hints:
+    rephrase: Subtract $x f(0)$ inside the integral first.
+    smaller_case: Take $f(t)=t$ and $C=1$, then check both sides at $x=2$.
+    key_idea: Apply the mean value form of Taylor's theorem to $f$ on the interval between $0$ and $t$.
+  check: null
+- goal: For large $n$, approximate $I_n=\int_0^{1/n}(n-nx^2)f(x)\,dx$ using the small interval $[0,1/n]$.
+  expected: $I_n = f(0) + \frac{f'(0)}{2n} + O\!\left(\frac{1}{n^2}\right)$.
+  solution: On $[0,1/n]$, $f(x)=f(0)+x f'(0)+O(x^2)$. Then $n\int_0^{1/n} f\,dx = n\left(\frac{f(0)}{n}+\frac{f'(0)}{2n^2}+O(n^{-3})\right)=f(0)+\frac{f'(0)}{2n}+O(n^{-2})$.
+    The term $n\int_0^{1/n}x^2 f\,dx = \frac{f(0)}{3n^2}+O(n^{-3})$ is already $O(n^{-2})$. So $I_n=f(0)+\frac{f'(0)}{2n}+O(n^{-2})$.
+  common_errors:
+  - Dropping the $f'(0)$ term from the linear Taylor part.
+  - Miscomputing $\int_0^{1/n}x\,dx$ as $\frac{1}{n}$ instead of $\frac{1}{2n^2}$.
+  - Keeping the $n x^2$ term without checking its order in $n$.
+  hints:
+    rephrase: Expand $f$ to first order about $0$, since the interval is tiny.
+    smaller_case: 'Test $f(x)=1$: what does $\int_0^{1/n}(n-nx^2)\,dx$ give?'
+    key_idea: Rescale with $x=u/n$ to see the size of each term in powers of $1/n$.
+  check: null
+- goal: Find $\lim \int_{-\infty}^{\infty} g_n(x) f(x)\,dx$ for the delta-approximating $g_n$.
+  expected: $f(0)$. The limit is taken as the support $[-1/n,1/n]$ shrinks, i.e. $n\to\infty$. Read literally,
+    $n\to 0$ does not give a delta, so clarify this with the interviewer.
+  solution: For $|x|<1/n$, $|x|-\frac1n<0$, so $g_n(x)=n^2\left(\frac1n-|x|\right)\ge 0$. Its total mass
+    is $\int g_n=2n^2\int_0^{1/n}\left(\frac1n-x\right)dx=1$. By symmetry $\int g_n(x)\,x\,dx=0$, and
+    $\int g_n(x)\,x^2\,dx=\frac{1}{6n^2}$. Therefore $\int g_n f = f(0)+\frac{f''(0)}{12n^2}+\dots\to
+    f(0)$ as $n\to\infty$. If $n\to0$ literally, the support width $1/n$ grows, so $g_n$ no longer concentrates
+    at $0$.
+  common_errors:
+  - Treating $g_n$ as negative because of the leading minus sign.
+  - Concluding $0$ because $g_n$ vanishes away from the origin.
+  - Reading $n\to 0$ literally without noticing that the support widens.
+  hints:
+    rephrase: Check the sign and the total area of $g_n$ first.
+    smaller_case: Take $f\equiv 1$. What does $\int g_n f$ give for any $n$?
+    key_idea: A nascent delta has unit mass and concentrates at $0$ as its width tends to $0$.
+  check: null
+extensions:
+  '3':
+  - 'Extend part i to second order: if $|f''''|\le C$, bound $\left|\int_0^x f - x f(0) - \frac{x^2}{2}f''(0)\right|$
+    by $\frac{C|x|^3}{6}$.'
+  '4':
+  - Show $\int_{-\infty}^{\infty} g_n(x)\,dx=1$ and find $\int_{-\infty}^{\infty} g_n(x)\,x\,dx$ for this
+    symmetric $g_n$.
+  '5':
+  - Show $\int_{-\infty}^{\infty} g_n(x)\,x^2\,dx=\frac{1}{6n^2}$ and hence that the error term in part
+    iii is $\frac{f''(0)}{12n^2}$.
+spoken_vocab:
+- integral from zero to x
+- f of t
+- f prime of zero
+- C x squared over two
+- n
+- one over n
+- big O of one over n squared
+- Dirac delta
+- g sub n
+- infinity
+- minus infinity
+- small x
+- Taylor series
+source: screenshots/Screenshot 2026-11-19 at 14.36.02.png
+verified: false
+rating:
+  quality: 6
+  difficulty: 6
+  parts: 3
+  minutes: 15
+  flags:
+  - garbled
+  tagline: Taylor bound leads to the delta-sequence limit; statement has errors to fix
+  priority: 63
+  rank: 409
+  tier: C
+  category: screenshots
+  d10: 5.0
+  real: 2.5
+  by: haiku
+tags:
+- limits_and_approximation
+- integration

@@ -1,0 +1,75 @@
+id: rearrange-v-squared-formula
+title: Making a the subject of v squared equals u squared plus two a s
+topics:
+- rearranging formulae
+- substitution
+warmup: true
+answer_source: pdf
+statement: Make $a$ the subject of $v^2 = u^2 + 2as$, and hence find $a$ when $v = 13$, $u = 5$ and $s
+  = 6$.
+stages:
+- goal: Make $a$ the subject of $v^2 = u^2 + 2as$.
+  expected: $a = \dfrac{v^2 - u^2}{2s}$
+  solution: Subtract $u^2$ from both sides to get $v^2 - u^2 = 2as$. Divide both sides by $2s$ to get
+    $a = \dfrac{v^2 - u^2}{2s}$.
+  common_errors:
+  - Dividing by $2$ but not by $s$.
+  - Writing $\dfrac{v^2}{2s} - u^2$ instead of subtracting $u^2$ from $v^2$ before dividing.
+  - Forgetting to subtract $u^2$ first.
+  hints:
+    rephrase: Undo the operations on $a$ one at a time, in the reverse order of how they were applied.
+    smaller_case: Make $a$ the subject of $v = 2a + 1$.
+    key_idea: Isolate the term containing $a$, then divide by everything multiplying it.
+  check: simplify((v**2-u**2)/(2*s) * 2*s - (v**2-u**2))
+  check_ok: true
+- goal: Substitute $v = 13$, $u = 5$, $s = 6$ to find $a$.
+  expected: $a = 12$
+  solution: $a = \dfrac{13^2 - 5^2}{2 \cdot 6} = \dfrac{169 - 25}{12} = \dfrac{144}{12} = 12$.
+  common_errors:
+  - Calculating $13^2 - 5^2$ incorrectly.
+  - Computing $(13-5)^2$ instead of $13^2 - 5^2$.
+  - Forgetting the factor of 2 in the denominator.
+  hints:
+    rephrase: Substitute the three values into your rearranged formula, then simplify.
+    smaller_case: Substitute $v=3$, $u=1$, $s=1$ into $a = \dfrac{v^2-u^2}{2s}$.
+    key_idea: Evaluate the squares first, then the subtraction, then the division.
+  check: (13**2-5**2)/(2*6) - 12
+  check_ok: true
+extensions:
+  '3':
+  - Make $u$ the subject of $v^2 = u^2 + 2as$, then find both possible values of $u$ when $v = 13$, $a
+    = 4$ and $s = 6$.
+  '4':
+  - Make $s$ the subject of $v^2 = u^2 + 2as$, then find $s$ when $v = 13$, $u = 5$ and $a = 12$.
+  '5':
+  - Explain why, for given values of $u$, $a$ and $s$, the formula only gives a real value of $v$ when
+    $u^2 + 2as \geq 0$.
+spoken_vocab:
+- make a the subject
+- v squared equals u squared plus two a s
+- v squared minus u squared
+- over two s
+- thirteen
+- five
+- six
+- one hundred and sixty nine minus twenty five
+- one hundred and forty four over twelve
+- twelve
+source: kclms/kclms-specimen-questions-3.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 2
+  parts: 2
+  minutes: 4
+  flags: []
+  tagline: Standard SUVAT rearrangement with clean numerical answer; limited discussion.
+  priority: 35
+  rank: 596
+  tier: D
+  category: kclms
+  d10: 1.5
+  real: 3.0
+  by: haiku
+tags:
+- algebra_and_functions

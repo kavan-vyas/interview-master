@@ -1,0 +1,82 @@
+id: cubic-inequality-x3-less-2x2-3x
+title: Solving a cubic inequality
+topics:
+- inequalities
+- cubics
+- sign analysis
+- factorisation
+warmup: true
+answer_source: pdf
+statement: Find the values of $x$ for which $x^3 < 2x^2+3x$.
+stages:
+- goal: Move all terms to one side and factorise completely.
+  expected: x(x-3)(x+1) < 0
+  solution: 'Subtract 2x^2+3x from both sides: x^3-2x^2-3x < 0. Factor out x: x(x^2-2x-3) < 0. Then factor
+    the quadratic: x(x-3)(x+1) < 0.'
+  common_errors:
+  - Dividing by x without considering the sign of x or the case x=0
+  - Dropping the factor x
+  - Sign error when moving terms across the inequality
+  hints:
+    rephrase: Move every term to one side so the right-hand side is zero, then look for a common factor.
+    smaller_case: Try the same rearrangement on the inequality x^3 < x.
+    key_idea: A product of linear factors can only change sign at its roots.
+  check: sp.expand(x*(x-3)*(x+1) - (x**3-2*x**2-3*x)) == 0
+  check_ok: false
+- goal: Use the critical points to find all x where the product is negative.
+  expected: x < -1 or 0 < x < 3
+  solution: 'The critical points are -1, 0 and 3. Test the sign of x(x-3)(x+1) in each interval: for x>3
+    it is positive; on (0,3) it is negative; on (-1,0) it is positive; for x<-1 it is negative. The strict
+    inequality excludes the critical points, so the solution is x<-1 or 0<x<3.'
+  common_errors:
+  - Mixing up which intervals are negative
+  - Combining the two solution intervals into one, e.g. -1<x<3
+  - Including the endpoints, which is wrong for a strict inequality
+  - Forgetting the branch x<-1
+  hints:
+    rephrase: For which x does the expression equal zero? Those points split the number line into intervals.
+    smaller_case: Find the set of x with x(x-1) < 0 by testing one value in each interval.
+    key_idea: Test one point in each interval between consecutive roots. For simple roots the sign alternates
+      across each root.
+  check: sp.solve_univariate_inequality(x**3 < 2*x**2+3*x, x, relational=False) == sp.Union(sp.Interval.open(-sp.oo,
+    -1), sp.Interval.open(0, 3))
+  check_ok: null
+extensions:
+  '3':
+  - Find all real x such that x^3 > x.
+  '4':
+  - Find all real x such that (x-1)/(x+2) < 1.
+  '5':
+  - Find all real x such that x^4-5x^2+4 < 0.
+spoken_vocab:
+- x cubed
+- less than
+- two x squared plus three x
+- x squared minus two x minus three
+- open interval
+- union
+- critical points
+- sign table
+- minus one
+- zero
+- three
+source: step-workbook/Cambridge STEP Short Workbook.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 2
+  minutes: 4
+  flags:
+  - trivial
+  tagline: Factor and sign-check; a routine warm-up with little to discuss.
+  priority: 17
+  rank: 697
+  tier: D
+  category: step-workbook
+  d10: 2.5
+  real: 4.0
+  by: deepseek-v4.1-flash-free
+tags:
+- inequalities
+- algebra_and_functions

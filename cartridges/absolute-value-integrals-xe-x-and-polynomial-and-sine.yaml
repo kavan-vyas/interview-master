@@ -1,0 +1,125 @@
+id: absolute-value-integrals-xe-x-and-polynomial-and-sine
+title: Integrals of absolute values
+topics:
+- integration
+- absolute value
+- integration by parts
+- sign analysis
+- trigonometric identities
+warmup: false
+answer_source: pdf
+statement: 'Show that $\int_{-1}^{1}|xe^x|\,dx=-\int_{-1}^{0}xe^x\,dx+\int_{0}^{1}xe^x\,dx$ and hence
+  evaluate the integral. Evaluate the following integrals: (i) $\int_0^4\left|x^3-2x^2-x+2\right|\,dx$;
+  (ii) $\int_{-\pi}^{\pi}\left|\sin x+\cos x\right|\,dx$.'
+stages:
+- goal: Show that $\int_{-1}^{1}|xe^x|\,dx=-\int_{-1}^{0}xe^x\,dx+\int_{0}^{1}xe^x\,dx$.
+  expected: $|xe^x|=-xe^x$ for $x<0$ and $|xe^x|=xe^x$ for $x\ge0$, so the integral splits at $0$ as stated.
+  solution: Since $e^x>0$ for all $x$, $xe^x$ has the same sign as $x$. So $|xe^x|=-xe^x$ for $x<0$ and
+    $|xe^x|=xe^x$ for $x\ge 0$. Splitting $\int_{-1}^{1}$ at $0$ gives $\int_{-1}^{1}|xe^x|\,dx=-\int_{-1}^{0}xe^x\,dx+\int_{0}^{1}xe^x\,dx$.
+  common_errors:
+  - Using the wrong sign on $[-1,0]$.
+  - Forgetting that $e^x>0$, so the sign depends only on $x$.
+  - Splitting at a point other than $0$.
+  hints:
+    rephrase: Find where $xe^x$ is negative.
+    smaller_case: Check the sign of $xe^x$ at $x=-\frac{1}{2}$ and at $x=\frac{1}{2}$.
+    key_idea: The exponential is always positive, so the sign of the product is the sign of $x$.
+  check: sympy.simplify(sympy.Abs(x*sympy.exp(x)).subs(x,-sympy.Rational(1,2)) + (x*sympy.exp(x)).subs(x,-sympy.Rational(1,2)))
+    == 0
+  check_ok: null
+- goal: Evaluate $\int_{-1}^{1}|xe^x|\,dx$.
+  expected: $2-2e^{-1}$
+  solution: An antiderivative of $xe^x$ is $(x-1)e^x$. Then $\int_0^1 xe^x\,dx=[(x-1)e^x]_0^1=1$ and $\int_{-1}^0
+    xe^x\,dx=[(x-1)e^x]_{-1}^0=-1+2e^{-1}$. So $\int_{-1}^1|xe^x|\,dx=-(-1+2e^{-1})+1=2-2e^{-1}$.
+  common_errors:
+  - Sign error when integrating by parts.
+  - Computing $\int_{-1}^{1}xe^x\,dx$ directly (which gives $2e^{-1}$) without the absolute value split.
+  - Arithmetic error at the lower limit $x=-1$ involving $e^{-1}$.
+  hints:
+    rephrase: Find an antiderivative of $xe^x$ using integration by parts.
+    smaller_case: Evaluate $\int_0^1 xe^x\,dx$ first.
+    key_idea: Check that the antiderivative differentiates correctly, then apply the correct sign on each
+      piece.
+  check: sympy.simplify(sympy.integrate(-x*sympy.exp(x),(x,-1,0)) + sympy.integrate(x*sympy.exp(x),(x,0,1))
+    - (2-2*sympy.exp(-1))) == 0
+  check_ok: null
+- goal: Evaluate $\int_0^4\left|x^3-2x^2-x+2\right|\,dx$.
+  expected: $\frac{133}{6}$, i.e. $22\frac{1}{6}$.
+  solution: 'Factor $x^3-2x^2-x+2=(x-2)(x-1)(x+1)$. On $[0,1]$ the polynomial is positive, on $[1,2]$
+    it is negative, and on $[2,4]$ it is positive. With antiderivative $F(x)=\frac{x^4}{4}-\frac{2x^3}{3}-\frac{x^2}{2}+2x$:
+    $F(0)=0$, $F(1)=\frac{13}{12}$, $F(2)=\frac{2}{3}$, $F(4)=\frac{64}{3}$. So the integral is $\left(F(1)-F(0)\right)-\left(F(2)-F(1)\right)+\left(F(4)-F(2)\right)=\frac{13}{12}+\frac{5}{12}+\frac{62}{3}=\frac{133}{6}$.'
+  common_errors:
+  - Integrating the signed polynomial over $[0,4]$ without splitting, which gives $\frac{64}{3}$.
+  - Wrong sign on $[1,2]$.
+  - Arithmetic error in $F(1)$ or $F(2)$.
+  - Not finding both sign changes at $x=1$ and $x=2$.
+  hints:
+    rephrase: Find where the cubic changes sign on $[0,4]$.
+    smaller_case: Compare $\int_0^4|x-2|\,dx$ with $\int_0^4(x-2)\,dx$ to see the effect of the absolute
+      value.
+    key_idea: Factor the cubic; only some of its roots lie inside $[0,4]$, and those are where the sign
+      can change.
+  check: sympy.simplify(sympy.integrate(x**3-2*x**2-x+2,(x,0,1)) - sympy.integrate(x**3-2*x**2-x+2,(x,1,2))
+    + sympy.integrate(x**3-2*x**2-x+2,(x,2,4)) - sympy.Rational(133,6)) == 0
+  check_ok: null
+- goal: Evaluate $\int_{-\pi}^{\pi}\left|\sin x+\cos x\right|\,dx$.
+  expected: $4\sqrt{2}$
+  solution: 'Let $G(x)=\sin x-\cos x$, so $G''(x)=\sin x+\cos x$. The integrand vanishes at $x=-\frac{\pi}{4}$
+    and $x=\frac{3\pi}{4}$ within $[-\pi,\pi]$. It is negative on $[-\pi,-\frac{\pi}{4}]$, positive on
+    $[-\frac{\pi}{4},\frac{3\pi}{4}]$, and negative on $[\frac{3\pi}{4},\pi]$. Values: $G(-\pi)=1$, $G(-\frac{\pi}{4})=-\sqrt{2}$,
+    $G(\frac{3\pi}{4})=\sqrt{2}$, $G(\pi)=1$. So the integral is $-(G(-\frac{\pi}{4})-G(-\pi))+(G(\frac{3\pi}{4})-G(-\frac{\pi}{4}))-(G(\pi)-G(\frac{3\pi}{4}))=(\sqrt{2}+1)+2\sqrt{2}+(\sqrt{2}-1)=4\sqrt{2}$.'
+  common_errors:
+  - Using the wrong zero, such as $\frac{\pi}{4}$ instead of $-\frac{\pi}{4}$.
+  - Assuming the integrand keeps one sign on $[-\pi,\pi]$.
+  - Sign errors on the outer pieces $[-\pi,-\frac{\pi}{4}]$ and $[\frac{3\pi}{4},\pi]$.
+  - Arithmetic slip when evaluating $\sin$ and $\cos$ at $\pm\frac{\pi}{4}$ or $\frac{3\pi}{4}$.
+  hints:
+    rephrase: Write $\sin x+\cos x$ as a single sine and find where it is zero on $[-\pi,\pi]$.
+    smaller_case: Check the sign of $\sin x+\cos x$ at $x=0$, $x=\frac{\pi}{2}$ and $x=-\frac{\pi}{2}$.
+    key_idea: Combine the sine and cosine into one sine with a phase shift, then use the sign of that
+      sine on each interval between zeros.
+  check: sympy.simplify(-((sympy.sin(-sympy.pi/4)-sympy.cos(-sympy.pi/4))-(sympy.sin(-sympy.pi)-sympy.cos(-sympy.pi)))
+    + ((sympy.sin(3*sympy.pi/4)-sympy.cos(3*sympy.pi/4))-(sympy.sin(-sympy.pi/4)-sympy.cos(-sympy.pi/4)))
+    - ((sympy.sin(sympy.pi)-sympy.cos(sympy.pi))-(sympy.sin(3*sympy.pi/4)-sympy.cos(3*sympy.pi/4))) -
+    4*sympy.sqrt(2)) == 0
+  check_ok: null
+extensions:
+  '3':
+  - Evaluate $\int_{-a}^{a}|xe^x|\,dx$ for a general $a>0$.
+  '4':
+  - Evaluate $\int_0^{2\pi}|\sin x-\cos x|\,dx$.
+  '5':
+  - Describe a general method for $\int_a^b|p(x)|\,dx$ when $p$ is a polynomial with real roots.
+spoken_vocab:
+- absolute value of x e to the x
+- integral from minus one to one
+- integral from minus one to zero
+- integral from zero to one
+- x e to the x
+- e to the minus one
+- integral from zero to four
+- x cubed minus two x squared minus x plus two
+- integral from minus pi to pi
+- sine x plus cosine x
+- four root two
+- two minus two e to the minus one
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#13
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 4
+  minutes: 15
+  flags: []
+  tagline: Sign-splitting integrals; mostly mechanical, with a useful sine-shift step.
+  priority: 72
+  rank: 317
+  tier: B
+  category: siklos
+  d10: 5.5
+  real: 3.5
+  by: deepseek-v4.1-flash-free
+tags:
+- integration
+- trigonometry
+- algebra_and_functions

@@ -1,0 +1,88 @@
+id: min-sum-abs-four-points
+title: Minimising a sum of four absolute distances
+topics:
+- modulus
+- minimisation
+- median
+- piecewise linear functions
+warmup: true
+answer_source: generated
+statement: Find the minimum value of the expression $|x-1|+|x-2|+|x-4|+|x-6|$.
+stages:
+- goal: Identify the value(s) of $x$ at which the minimum occurs.
+  expected: Any $x$ in the closed interval $[2,4]$, which is the interval between the two middle points
+    $2$ and $4$.
+  solution: The sum of distances to a set of points is piecewise linear, with changes of slope at $1,2,4,6$.
+    For an even number of points, the minimum is attained on the whole interval between the two middle
+    values, which here are $2$ and $4$. The slope is $-2$ on $(1,2)$, $0$ on $(2,4)$ and $+2$ on $(4,6)$.
+  common_errors:
+  - Stating the minimum is at a single point such as $x=3$ (the mean of the points) rather than using
+    the median.
+  - Picking $x=1$ or $x=6$, which are endpoints and give a large value.
+  - Thinking the minimum is only at $x=2$ and not at all points between $2$ and $4$.
+  hints:
+    rephrase: Think of each term as the distance from $x$ to a point on the number line. Where should
+      $x$ sit to make the total distance smallest?
+    smaller_case: Try the three-term version $|x-1|+|x-2|+|x-4|$. Where is its minimum?
+    key_idea: The sum of absolute distances is minimised at a median of the points.
+  check: (Abs(2-1)+Abs(2-2)+Abs(2-4)+Abs(2-6))-(Abs(3-1)+Abs(3-2)+Abs(3-4)+Abs(3-6))+(Abs(3-1)+Abs(3-2)+Abs(3-4)+Abs(3-6))-7
+  check_ok: true
+- goal: Find the minimum value of the expression.
+  expected: $7$
+  solution: 'At $x=2$: $1+0+2+4=7$. At $x=4$: $3+2+0+2=7$. Any value in between gives the same total,
+    so the minimum is $7$.'
+  common_errors:
+  - Evaluating at $x=3$ and getting $3+1+1+3=8$, then reporting $8$.
+  - Arithmetic slips when adding the four distances.
+  - Reporting the minimiser $x=2$ or $x=4$ as the minimum value.
+  hints:
+    rephrase: Substitute the value you found in the first stage into the expression and add up the four
+      distances.
+    smaller_case: Evaluate the expression at $x=2$ only, term by term.
+    key_idea: The minimum value is the value of the expression at the minimiser, not the minimiser itself.
+  check: Abs(2-1)+Abs(2-2)+Abs(2-4)+Abs(2-6)-7
+  check_ok: true
+extensions:
+  '3':
+  - Minimise $|x-1|+|x-2|+|x-4|$. Where is the minimum?
+  - Minimise $|x-1|+|x-4|$. Where is the minimum, and what is it?
+  '4':
+  - Minimise $|x-1|+|x-2|+|x-4|+|x-6|+|x-9|$. What is the minimiser?
+  - Explain why the minimum of $|x-a|+|x-b|$ is $|b-a|$ for $a<b$.
+  '5':
+  - Minimise $\sum_{i=1}^{n}|x-a_i|$ for distinct $a_1<\dots<a_n$ with $n$ odd. Describe the minimiser.
+  - Minimise $|x-1|+|x-2|+|x-4|+|x-6|$ subject to $x\ge 3$. What changes?
+spoken_vocab:
+- minimum
+- absolute value
+- mod x minus one
+- mod x minus two
+- mod x minus four
+- mod x minus six
+- median
+- interval
+- closed interval
+- two and four
+- piecewise linear
+- slope
+- sum
+- evaluate
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 2
+  minutes: 8
+  flags: []
+  tagline: Median argument; the minimum is attained on an interval, not a single point.
+  priority: 65
+  rank: 384
+  tier: C
+  category: tbo
+  d10: 2.5
+  real: 6.5
+  by: haiku
+tags:
+- inequalities
+- algebra_and_functions

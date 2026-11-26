@@ -1,0 +1,104 @@
+id: smallest-a-sine-exp-inequality
+title: Smallest a for a sine-exponential inequality
+topics:
+- inequalities
+- monotonicity
+- derivatives
+- trigonometric bounds
+- exponential functions
+warmup: false
+answer_source: generated
+statement: Find the smallest $a>1$ such that $\dfrac{a+\sin(x)}{a+\sin(y)}\le e^{y-x}$ for all $x\le y$.
+stages:
+- goal: Rewrite the inequality in a form without division.
+  expected: For a > 1 the inequality is equivalent to (a + sin x) e^x <= (a + sin y) e^y for all x <=
+    y.
+  solution: Since a > 1, a + sin t >= a - 1 > 0 for all t, so the denominator a + sin y is positive. Multiply
+    both sides by (a + sin y) e^x, which is positive. Then (a + sin x) e^x <= (a + sin y) e^y, because
+    e^{y-x} e^x = e^y.
+  common_errors:
+  - Forgetting to check the sign of a + sin t, which fails for a <= 1.
+  - Cross-multiplying incorrectly and losing the factor e^x or e^y.
+  - Reversing the inequality when multiplying.
+  hints:
+    rephrase: Clear the denominator, then move the exponentials to one side.
+    smaller_case: Look at the inequality with a = 2, x = 0 and y = 1, and check the sign of a + sin t.
+    key_idea: Write e^{y-x} as e^y / e^x and multiply through by the positive quantities.
+  check: sp.simplify((a+sp.sin(x))/(a+sp.sin(y)) - (a+sp.sin(x))*sp.exp(x)/((a+sp.sin(y))*sp.exp(y))*sp.exp(y-x))
+    == 0
+  check_ok: null
+- goal: Turn the condition into a derivative condition.
+  expected: The condition holds for all x <= y exactly when g(t) = (a + sin t) e^t is nondecreasing, which
+    holds exactly when a + sin t + cos t >= 0 for all t.
+  solution: The condition says g(x) <= g(y) whenever x <= y, which means g is nondecreasing on R. For
+    a differentiable function this is equivalent to g' >= 0 everywhere. Compute g'(t) = cos t e^t + (a
+    + sin t) e^t = e^t (a + sin t + cos t). Since e^t > 0, g' >= 0 for all t is equivalent to a + sin
+    t + cos t >= 0 for all t.
+  common_errors:
+  - Dropping the cos t term from the product rule.
+  - Stating the condition only at some t values rather than for all t.
+  - Claiming monotonicity requires g' > 0 strictly; g' >= 0 with isolated zeros is enough.
+  hints:
+    rephrase: For a function never to decrease, what must its derivative satisfy everywhere?
+    smaller_case: Differentiate (a + sin t) e^t for a = 2 and see whether the derivative stays nonnegative
+      at t = 0 and t = 5 pi / 4.
+    key_idea: A differentiable function is nondecreasing on R exactly when its derivative is nonnegative
+      everywhere; use the product rule.
+  check: sp.simplify(sp.diff((a+sp.sin(x))*sp.exp(x), x) - sp.exp(x)*(a+sp.sin(x)+sp.cos(x))) == 0
+  check_ok: null
+- goal: Find the smallest a and confirm it is greater than 1.
+  expected: The minimum of sin t + cos t is -sqrt(2), so a >= sqrt(2). The smallest such a is sqrt(2),
+    which is greater than 1.
+  solution: Need a >= -(sin t + cos t) for all t. The maximum of -(sin t + cos t) is sqrt(2), attained
+    at t = 5 pi / 4 where sin t = cos t = -sqrt(2)/2. So a >= sqrt(2) is necessary and sufficient. The
+    smallest a is sqrt(2), and sqrt(2) > 1 as required.
+  common_errors:
+  - Using the maximum of sin t + cos t, which is sqrt(2), instead of the minimum.
+  - Concluding a >= 1 from a + sin t >= 0, which is weaker than the derivative condition.
+  - Forgetting to verify that the answer satisfies a > 1.
+  hints:
+    rephrase: What is the smallest value that sin t + cos t can take, and what does that force on a?
+    smaller_case: Check the value of sin t + cos t at t = 0, t = pi/2 and t = pi to see the range it covers.
+    key_idea: sin t + cos t = sqrt(2) sin(t + pi/4), so its range is [-sqrt(2), sqrt(2)].
+  check: sp.simplify(sp.sin(5*sp.pi/4)+sp.cos(5*sp.pi/4)+sp.sqrt(2)) == 0
+  check_ok: null
+extensions:
+  '3':
+  - Show that the same answer sqrt(2) holds if sin is replaced by cos in the inequality.
+  '4':
+  - Replace e^{y-x} with e^{k(y-x)} for k > 0. Show that the smallest a is sqrt(1 + k^2)/k.
+  '5':
+  - Explain why the rewriting in the first stage fails for 0 < a < 1, where a + sin t can be zero or negative.
+spoken_vocab:
+- a plus sine of x over a plus sine of y
+- less than or equal to
+- e to the y minus x
+- for all x less than or equal to y
+- smallest a greater than one
+- derivative
+- nondecreasing
+- product rule
+- sine x plus cosine x
+- minus square root of two
+- five pi over four
+- square root of two
+- greater than one
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 8
+  difficulty: 7
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Monotonicity of (a+sin t)e^t gives a=√2; rich justification and discussion.
+  priority: 91
+  rank: 103
+  tier: A
+  category: tbo
+  d10: 7.5
+  real: 5.0
+  by: haiku
+tags:
+- inequalities
+- differentiation

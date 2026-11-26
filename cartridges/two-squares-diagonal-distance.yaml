@@ -1,0 +1,93 @@
+id: two-squares-diagonal-distance
+title: Diagonal distance between two squares on a line
+topics:
+- coordinates
+- Pythagoras
+- lengths
+- right-angled triangles
+warmup: false
+answer_source: pdf
+statement: A square of side 7 cm and a square of side 5 cm stand side by side with their bases on the
+  same horizontal line. Find the length of the line joining the bottom left corner of the larger square
+  to the top right corner of the smaller square.
+stages:
+- goal: Find the horizontal distance between the bottom left corner of the larger square and the top right
+    corner of the smaller square.
+  expected: 12 cm
+  solution: Place the bottom left corner of the larger square at the origin (0, 0). The larger square
+    spans x from 0 to 7, and the smaller square spans x from 7 to 12. The top right corner of the smaller
+    square is at (12, 5). The horizontal distance is 12 cm.
+  common_errors:
+  - Using 7 or 5 as the horizontal gap
+  - Forgetting that the smaller square's width adds to the larger square's width
+  hints:
+    rephrase: Measuring from the left edge of the larger square, where is the right edge of the smaller
+      square?
+    smaller_case: Two unit squares stand side by side on a line. How far horizontally is the bottom left
+      corner of the first from the top right corner of the second?
+    key_idea: Use coordinates with the bottom left corner of the larger square at the origin, then add
+      the widths of the squares along the horizontal.
+  check: ans - 12
+  check_ok: false
+- goal: Find the length of the joining line.
+  expected: 13 cm
+  solution: The vertical distance is 5 cm, the height of the smaller square, because both bases lie on
+    the same horizontal line. The horizontal and vertical lines form a right-angled triangle with legs
+    12 and 5. By Pythagoras, the length is sqrt(12^2 + 5^2) = sqrt(169) = 13 cm.
+  common_errors:
+  - Adding the legs to get 12 + 5 = 17
+  - Using 7 as the vertical height
+  - Miscalculating 144 + 25 when taking the square root
+  hints:
+    rephrase: What shape do the horizontal line, the vertical line and the joining line form together?
+    smaller_case: A right-angled triangle has legs 3 and 4. What is the length of its hypotenuse?
+    key_idea: 'Pythagoras: the square of the joining length equals the square of the horizontal distance
+      plus the square of the vertical distance.'
+  check: ans - 13
+  check_ok: false
+extensions:
+  '3':
+  - Find the distance from the top left corner of the larger square to the bottom right corner of the
+    smaller square. Leave your answer as a square root.
+  '4':
+  - Three squares of sides a, b and c stand side by side in that order on the same horizontal line. Find
+    the distance from the bottom left corner of the first square to the top right corner of the third
+    square, in terms of a, b and c.
+  '5':
+  - Find the angle the joining line in the original problem makes with the horizontal, to one decimal
+    place.
+spoken_vocab:
+- square
+- side length
+- seven centimetres
+- five centimetres
+- bottom left corner
+- top right corner
+- horizontal
+- vertical
+- right-angled triangle
+- square root of one hundred and forty-four plus twenty-five
+- thirteen centimetres
+- Pythagoras
+- twelve centimetres
+- coordinates
+source: kclms/kclms-specimen-questions-3.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 2
+  parts: 2
+  minutes: 4
+  flags:
+  - needs_diagram
+  tagline: Pleasant 5-12-13 triangle, but a short, single-idea problem.
+  priority: 27
+  rank: 621
+  tier: D
+  category: kclms
+  d10: 2.5
+  real: 3.5
+  by: haiku
+tags:
+- geometry
+- coordinate_geometry

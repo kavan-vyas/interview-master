@@ -1,0 +1,83 @@
+id: cube-three-red-faces
+title: Colouring three faces of a cube
+topics:
+- counting
+- symmetry
+- Burnside's lemma
+warmup: false
+answer_source: generated
+statement: If I colour three faces of a cube red and the other faces blue, how many distinguishable colourings
+  are there?
+stages:
+- goal: Count the colourings before accounting for rotations.
+  expected: 'Choose which 3 of the 6 faces are red: $\binom{6}{3}=20$ colourings.'
+  solution: Each colouring is determined by its red set, a 3-subset of the 6 faces, so there are $\binom{6}{3}=20$
+    colourings in total.
+  common_errors:
+  - Forgetting that the blue faces are determined by the red ones.
+  - Using $6^3$ or $3!$ instead of a combination.
+  hints:
+    rephrase: How many ways are there to choose 3 faces out of 6 to be red?
+    smaller_case: How many ways are there to choose 2 faces out of 6 to be red, ignoring rotation?
+    key_idea: A colouring is determined by its set of red faces, so count sets, not arrangements.
+  check: binomial(6,3)-20
+  check_ok: true
+- goal: Count colourings up to rotation of the cube and give the number of distinguishable colourings.
+  expected: '2. The two classes are: (a) the three red faces meet at a common vertex, and (b) the red
+    faces contain a pair of opposite faces plus one adjacent face.'
+  solution: 'Burnside: identity fixes 20; six 90 degree face rotations fix 0; three 180 degree face rotations
+    fix 4 each (12); eight 120 degree vertex rotations fix 2 each (16); six 180 degree edge rotations
+    fix 0. Total $20+0+12+16+0=48$, and $48/24=2$.'
+  common_errors:
+  - Answering 20 (ignoring rotations).
+  - Answering 1 by assuming all 3-face sets are equivalent.
+  - Miscounting Burnside fixed sets for the 120 degree rotations.
+  - Treating mirror images as the same without checking they are rotations.
+  hints:
+    rephrase: Two colourings are indistinguishable if one can be rotated into the other. Count the classes
+      of red sets under rotation.
+    smaller_case: How many distinguishable colourings are there with 2 red faces and 4 blue, up to rotation?
+    key_idea: Count orbits under the rotation group, for example with Burnside's lemma.
+  check: Rational(48,24)-2
+  check_ok: true
+extensions:
+  '3':
+  - 'Two red faces and four blue faces: how many distinguishable colourings are there?'
+  '4':
+  - 'Three red, two blue and one green face: how many distinguishable colourings are there up to rotation?'
+  '5':
+  - Colour the 8 vertices of a cube with 3 colours. How many distinguishable colourings are there up to
+    rotation?
+spoken_vocab:
+- cube
+- three faces
+- red
+- blue
+- distinguishable
+- colourings
+- rotation
+- six choose three
+- twenty
+- Burnside
+- identity rotation
+- vertex
+- opposite faces
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 2
+  minutes: 8
+  flags: []
+  tagline: Two rotation orbits among the 20 colourings; extends naturally to Burnside's lemma.
+  priority: 55
+  rank: 483
+  tier: C
+  category: tbo
+  d10: 5.5
+  real: 8.0
+  by: deepseek-v4.1-flash-free
+tags:
+- combinatorics
+- geometry

@@ -1,0 +1,118 @@
+id: iterated-log-domain-range
+title: Domain and range of iterated natural logarithms
+topics:
+- functions
+- domain and range
+- composition of functions
+- logarithms
+- iteration
+warmup: false
+answer_source: generated
+statement: What is the domain and range of the functions $f(x)=\ln(x)$, $f(f(x))$ and $f(f(f(x)))$? What
+  about $f^n(x)$, the $n$-fold composition of $f$?
+stages:
+- goal: Find the domain and range of f(x) = ln x.
+  expected: Domain (0, infinity) and range the set of all real numbers.
+  solution: ln x is defined exactly when x > 0, so the domain is (0, infinity). As x runs over (0, infinity),
+    ln x runs over all real numbers, so the range is R.
+  common_errors:
+  - Giving the domain as all reals or as x >= 0.
+  - Giving the range as (0, infinity) by confusing it with the domain.
+  hints:
+    rephrase: For which inputs does the logarithm produce a real output? What values can it take?
+    smaller_case: Evaluate ln at 1, at 1/100 and at 100 to see the outputs.
+    key_idea: ln x is a strictly increasing bijection from (0, infinity) onto the reals.
+  check: sp.calculus.util.continuous_domain(sp.log(x), x, sp.S.Reals) == sp.Interval.open(0, sp.oo)
+  check_ok: null
+- goal: Find the domain and range of f(f(x)) = ln(ln x).
+  expected: Domain (1, infinity) and range R.
+  solution: f(f(x)) is defined when x > 0 and ln x > 0, which means x > 1. As x runs over (1, infinity),
+    ln x runs over (0, infinity), and ln of that runs over all real numbers. So the range is R.
+  common_errors:
+  - Using only x > 0 as the domain and forgetting that the inner output must be positive.
+  - Stating the range as (0, infinity) or (-infinity, 0).
+  hints:
+    rephrase: The outer logarithm needs a positive input. What must the inner logarithm be?
+    smaller_case: Check whether x = 1 and x = 2 give defined values of ln(ln x).
+    key_idea: The domain of a composition is the set of inputs whose inner output lies in the outer domain.
+  check: sp.calculus.util.continuous_domain(sp.log(sp.log(x)), x, sp.S.Reals) == sp.Interval.open(1, sp.oo)
+  check_ok: null
+- goal: Find the domain and range of f(f(f(x))) = ln(ln(ln x)).
+  expected: Domain (e, infinity) and range R.
+  solution: f(f(f(x))) is defined when x > 0, ln x > 0 and ln(ln x) > 0. The last condition gives ln x
+    > 1, so x > e. As x runs over (e, infinity), ln x runs over (1, infinity), ln x - ln of that runs
+    over (0, infinity), and ln of that runs over R. So the range is R.
+  common_errors:
+  - Stopping at x > 1 and forgetting the third condition.
+  - Writing the domain as x > e^2 or similar, from a wrong inversion.
+  hints:
+    rephrase: 'Work from the outside in: what must the middle expression exceed for the outer log to be
+      defined?'
+    smaller_case: Check whether x = e and x = e^2 are in the domain of ln(ln(ln x)).
+    key_idea: Each extra layer of logarithm raises the threshold for the input, since ln(y) > 0 exactly
+      when y > 1.
+  check: sp.calculus.util.continuous_domain(sp.log(sp.log(sp.log(x))), x, sp.S.Reals) == sp.Interval.open(sp.E,
+    sp.oo)
+  check_ok: null
+- goal: Find the domain and range of f^n, the n-fold composition, for general n.
+  expected: Domain (E_{n-1}, infinity) where E_0 = 0 and E_{k+1} = e^{E_k}, so E_{n-1} is a tower of n-1
+    copies of e. The range is R for every n.
+  solution: Let E_0 = 0 and E_{k+1} = e^{E_k}, so E_1 = 1, E_2 = e and E_3 = e^e. By induction, f^m(x)
+    = 0 exactly when x = E_m, and f^m is strictly increasing on its domain (E_{m-1}, infinity). f^n(x)
+    is defined when f^{n-1}(x) > 0, which holds exactly when x > E_{n-1}. So the domain is (E_{n-1}, infinity).
+    On this interval f^n is continuous and strictly increasing, tends to minus infinity as x approaches
+    E_{n-1} from above, and tends to infinity as x goes to infinity. So the range is R.
+  common_errors:
+  - Giving the domain as (0, infinity) for all n.
+  - Writing the threshold as e^(n-1) instead of an iterated exponential tower.
+  - Claiming the range shrinks, when each f^n is onto R.
+  hints:
+    rephrase: Track the threshold for x at which each successive output first becomes positive.
+    smaller_case: Find the domain of f^3 and see how its threshold relates to the one for f^2.
+    key_idea: f^m(x) = 0 exactly when x equals the m-th term of the tower defined by E_0 = 0 and E_{k+1}
+      = e^{E_k}.
+  check: sp.calculus.util.continuous_domain(sp.log(sp.log(sp.log(sp.log(x)))), x, sp.S.Reals) == sp.Interval.open(sp.E**sp.E,
+    sp.oo)
+  check_ok: null
+extensions:
+  '3':
+  - Show that ln x = x has no real solution, so f has no real fixed point.
+  '4':
+  - Compute the threshold for the domain of f^4 numerically, which is e^e, approximately 15.15 for the
+    inner exponent. Give the threshold for f^4 as a number.
+  '5':
+  - Describe how the domain thresholds E_n grow as n increases, and why the domains shrink to the empty
+    set only in the limit.
+spoken_vocab:
+- f of x equals natural log of x
+- f composed with f
+- f applied three times
+- f to the n
+- domain
+- range
+- open interval
+- zero to infinity
+- e to the e
+- real numbers
+- tower of exponentials
+- strictly increasing
+- continuous
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 8
+  difficulty: 4
+  parts: 4
+  minutes: 12
+  flags: []
+  tagline: Nested-log domains build into a tower; range stays all reals, generalising to n.
+  priority: 92
+  rank: 83
+  tier: A
+  category: tbo
+  d10: 4.5
+  real: 7.0
+  by: haiku
+tags:
+- exponentials_and_logarithms
+- functional_equations

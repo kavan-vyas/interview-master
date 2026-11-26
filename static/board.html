@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>Board · Interview Master</title>
+<link rel="icon" href="/static/favicon.svg?v=11" type="image/svg+xml">
+<style>
+  :root { --ink: #1d1d1f; --bar: #111613; --mute: #8a948c; --leaf: #b6ff3b; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #fbfbf8; font: 600 13px system-ui, sans-serif; overscroll-behavior: none; }
+  #c { position: fixed; inset: 52px 0 0 0; touch-action: none; cursor: crosshair; background:
+    linear-gradient(#0000 31px, #e9ebe6 32px) 0 0 / 32px 32px, linear-gradient(90deg, #0000 31px, #e9ebe6 32px) 0 0 / 32px 32px; }
+  .bar { position: fixed; inset: 0 0 auto 0; height: 52px; display: flex; align-items: center; gap: 6px; padding: 0 10px; background: var(--bar); color: #e8f3ea; user-select: none; -webkit-user-select: none; }
+  .bar button { height: 36px; min-width: 36px; padding: 0 10px; border-radius: 10px; border: 1px solid #2a332c; background: #182019; color: inherit; font: inherit; cursor: pointer; }
+  .bar button.on { background: var(--leaf); color: #061001; border-color: var(--leaf); }
+  .sw { width: 22px; height: 22px; border-radius: 50%; display: inline-block; vertical-align: middle; }
+  .sep { width: 1px; height: 26px; background: #2a332c; margin: 0 4px; }
+  .grow { flex: 1; }
+  #st { font: 12px ui-monospace, monospace; color: var(--mute); white-space: nowrap; }
+  #st.ok { color: var(--leaf); } #st.err { color: #ff6b6b; }
+  .ic { width: 18px; height: 18px; vertical-align: -4px; }
+  #st::before { content: ""; display: inline-block; width: 10px; height: 10px; margin-right: 6px; vertical-align: -1px; -webkit-mask: url(/static/icons/circle-dot.svg) center / contain no-repeat; mask: url(/static/icons/circle-dot.svg) center / contain no-repeat; background: currentColor; }
+  #pg { font: 12px ui-monospace, monospace; color: var(--mute); min-width: 44px; text-align: center; }
+</style>
+</head>
+<body>
+<div class="bar">
+  <button data-tool="pen" class="on" title="Pen (P)"><svg class="ic"><use href="/static/icons.svg#pen-line"/></svg></button>
+  <button data-tool="erase" title="Eraser (E)"><svg class="ic"><use href="/static/icons.svg#eraser"/></svg></button>
+  <span class="sep"></span>
+  <button data-col="#1d1d1f" class="on"><i class="sw" style="background:#1d1d1f"></i></button>
+  <button data-col="#1f5fd1"><i class="sw" style="background:#1f5fd1"></i></button>
+  <button data-col="#d1301f"><i class="sw" style="background:#d1301f"></i></button>
+  <button data-col="#13894a"><i class="sw" style="background:#13894a"></i></button>
+  <span class="sep"></span>
+  <button data-w="2">thin</button><button data-w="3.5" class="on">mid</button><button data-w="6">bold</button>
+  <span class="sep"></span>
+  <button id="undo" title="Undo (⌘Z)"><svg class="ic"><use href="/static/icons.svg#undo-2"/></svg></button><button id="redo" title="Redo (⇧⌘Z)"><svg class="ic"><use href="/static/icons.svg#redo-2"/></svg></button>
+  <span class="sep"></span>
+  <button id="prev">‹</button><span id="pg">1/1</span><button id="next">›</button><button id="newp" title="New page (N)">+ page</button>
+  <span class="grow"></span>
+  <span id="st">not sent</span>
+  <button id="fs" title="Fullscreen"><svg class="ic"><use href="/static/icons.svg#maximize"/></svg></button>
+</div>
+<canvas id="c"></canvas>
+<script>
+(() => {
+  const C = document.getElementById("c"), X = C.getContext("2d"), ST = document.getElementById("st");
+  const SID = new URLSearchParams(location.search).get("sid") || new Date().toISOString().replace(/[-:T]/g, "").slice(0, 14);
+  const pages = [{ strokes: [], redo: [] }];
+  let pi = 0, tool = "pen", col = "#1d1d1f", width = 3.5, cur = null, ver = 0, sentVer = -1, idleT = 0;
+  const P = () => pages[pi];
+
+  function fit() {
+    const r = devicePixelRatio || 1, w = innerWidth, h = innerHeight - 52;
+    C.width = w * r; C.height = h * r; C.style.width = w + "px"; C.style.height = h + "px";
+    X.setTransform(r, 0, 0, r, 0, 0); redraw();
+  }
+  function drawStroke(ctx, s) {
+    const p = s.pts; if (!p.length) return;
+    ctx.strokeStyle = ctx.fillStyle = s.col; ctx.lineCap = ctx.lineJoin = "round";
+    if (p.length === 1) { ctx.beginPath(); ctx.arc(p[0][0], p[0][1], s.w * p[0][2], 0, 7); ctx.fill(); return; }
+    for (let i = 1; i < p.length; i++) {           // per-segment width follows Pencil pressure
+      const a = p[i - 1], b = p[i];
+      ctx.lineWidth = s.w * (0.4 + (a[2] + b[2]) * 0.8);
+      ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke();
+    }
+  }
+  function redraw() { X.clearRect(0, 0, C.width, C.height); P().strokes.forEach(s => drawStroke(X, s)); }
+  const changed = () => { ver++; P().redo = []; schedule(); };
+  const label = () => document.getElementById("pg").textContent = `${pi + 1}/${pages.length}`;
+
+  /* input: pen + mouse draw; finger touches ignored (palm rejection; Sidecar sends Pencil as pen/mouse) */
+  const pt = e => { const r = C.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top, e.pointerType === "pen" && e.pressure > 0 ? e.pressure : .5]; };
+  function eraseAt(x, y) {
+    const st = P().strokes, n = st.length;
+    P().strokes = st.filter(s => !s.pts.some(p => Math.hypot(p[0] - x, p[1] - y) < 12));
+    if (P().strokes.length !== n) { redraw(); ver++; schedule(); }
+  }
+  C.addEventListener("pointerdown", e => {
+    if (e.pointerType === "touch") return;
+    if (e.button === 5 || e.buttons === 32) tool = "erase";   // Pencil/stylus eraser end
+    C.setPointerCapture(e.pointerId);
+    if (tool === "erase") { cur = { erase: true }; eraseAt(...pt(e)); return; }
+    cur = { col, w: width, pts: [pt(e)] }; P().strokes.push(cur); drawStroke(X, cur);
+  });
+  C.addEventListener("pointermove", e => {
+    if (!cur || e.pointerType === "touch") return;
+    const evs = e.getCoalescedEvents ? e.getCoalescedEvents() : [e];
+    if (cur.erase) { evs.forEach(v => eraseAt(...pt(v))); return; }
+    evs.forEach(v => { const p = pt(v), q = cur.pts.at(-1); cur.pts.push(p); drawStroke(X, { col: cur.col, w: cur.w, pts: [q, p] }); });
+  });
+  const up = () => { if (!cur) return; if (!cur.erase) changed(); cur = null; };
+  C.addEventListener("pointerup", up); C.addEventListener("pointercancel", up);
+  C.addEventListener("lostpointercapture", up); addEventListener("pointerup", up); addEventListener("blur", up);
+  addEventListener("contextmenu", e => e.preventDefault());   // Pencil long-press: no menu
+
+  /* snapshots: 1.5 s after pen idle, plus every 20 s if changed */
+  function schedule() { clearTimeout(idleT); idleT = setTimeout(send, 1500); }
+  async function send() {
+    if (ver === sentVer || cur) return;
+    const v = ver, src = P().strokes, W = innerWidth, H = innerHeight - 52;
+    let x0 = W, y0 = H, x1 = 0, y1 = 0;            // crop to ink so Claude sees writing, not empty paper
+    src.forEach(s => s.pts.forEach(([x, y]) => { x0 = Math.min(x0, x); y0 = Math.min(y0, y); x1 = Math.max(x1, x); y1 = Math.max(y1, y); }));
+    if (!src.length) { x0 = y0 = 0; x1 = W || 800; y1 = H || 600; }
+    x0 = Math.max(0, x0 - 30); y0 = Math.max(0, y0 - 30); x1 += 30; y1 += 30;   // no upper clamp: ink can sit outside a shrunk window
+    const k = Math.min(2, 1400 / Math.max(x1 - x0, y1 - y0, 1));
+    const o = document.createElement("canvas"); o.width = Math.ceil((x1 - x0) * k); o.height = Math.ceil((y1 - y0) * k);
+    const ox = o.getContext("2d"); ox.fillStyle = "#fff"; ox.fillRect(0, 0, o.width, o.height);
+    ox.setTransform(k, 0, 0, k, -x0 * k, -y0 * k); src.forEach(s => drawStroke(ox, s));
+    const blob = await new Promise(r => o.toBlob(r, "image/png"));
+    try {
+      const r = await fetch(`/api/board/snap?sid=${SID}&page=${pi}&pages=${pages.length}`, { method: "POST", body: blob });
+      if (!r.ok) throw 0;
+      const j = await r.json(); sentVer = v;
+      ST.className = "ok"; ST.textContent = `live · #${j.n} · ${new Date().toLocaleTimeString().slice(0, 8)}`;
+    } catch { ST.className = "err"; ST.textContent = "offline, retrying"; setTimeout(send, 3000); }
+  }
+  setInterval(() => { if (ver !== sentVer && !cur) send(); }, 20000);
+
+  /* toolbar */
+  const pick = (attr, el) => { document.querySelectorAll(`[${attr}]`).forEach(b => b.classList.toggle("on", b === el)); };
+  document.querySelectorAll("[data-tool]").forEach(b => b.onclick = () => { tool = b.dataset.tool; pick("data-tool", b); });
+  document.querySelectorAll("[data-col]").forEach(b => b.onclick = () => { col = b.dataset.col; tool = "pen"; pick("data-col", b); pick("data-tool", document.querySelector("[data-tool=pen]")); });
+  document.querySelectorAll("[data-w]").forEach(b => b.onclick = () => { width = +b.dataset.w; pick("data-w", b); });
+  const undo = () => { const s = P().strokes.pop(); if (s) { P().redo.push(s); redraw(); ver++; schedule(); } };
+  const redo = () => { const s = P().redo.pop(); if (s) { P().strokes.push(s); redraw(); ver++; schedule(); } };
+  const go = i => { pi = Math.max(0, Math.min(pages.length - 1, i)); label(); redraw(); ver++; schedule(); };
+  document.getElementById("undo").onclick = undo; document.getElementById("redo").onclick = redo;
+  document.getElementById("prev").onclick = () => go(pi - 1); document.getElementById("next").onclick = () => go(pi + 1);
+  document.getElementById("newp").onclick = () => { pages.push({ strokes: [], redo: [] }); go(pages.length - 1); };
+  document.getElementById("fs").onclick = () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
+  addEventListener("keydown", e => {
+    const k = e.key.toLowerCase();
+    if ((e.metaKey || e.ctrlKey) && k === "z") { e.preventDefault(); e.shiftKey ? redo() : undo(); }
+    else if (k === "p") document.querySelector("[data-tool=pen]").click();
+    else if (k === "e") document.querySelector("[data-tool=erase]").click();
+    else if (k === "n") document.getElementById("newp").click();
+  });
+  addEventListener("resize", fit); fit(); label();
+  window.__board = { SID, send, pages };
+})();
+</script>
+</body>
+</html>

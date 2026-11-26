@@ -1,0 +1,98 @@
+id: prime-divides-square-implies-divides-base
+title: Prime divides a square implies prime divides the base
+topics:
+- number theory
+- primes
+- divisibility
+- Bezout's identity
+- Euclid's lemma
+warmup: true
+answer_source: generated
+statement: Prove that if $p$ is prime and $p\mid a^2$, then $p\mid a$. (a) Where have you used this before?
+stages:
+- goal: Assume p does not divide a and deduce what this means for gcd(a,p).
+  expected: gcd(a,p)=1.
+  solution: The only positive divisors of the prime p are 1 and p. So gcd(a,p) is 1 or p. If p∤a, then
+    gcd(a,p) cannot be p, so gcd(a,p)=1.
+  common_errors:
+  - Confusing 'p does not divide a' with 'a is coprime to p' without justification.
+  - Writing gcd(a,p)=p without checking.
+  hints:
+    rephrase: Assume p does not divide a. What can you say about the greatest common divisor of a and
+      p?
+    smaller_case: Take p=5 and a=3. What is gcd(3,5)?
+    key_idea: The only divisors of a prime p are 1 and p.
+  check: null
+- goal: Use Bezout's identity and multiply through by a to derive that p divides a, contradicting the
+    assumption.
+  expected: Since gcd(a,p)=1, there are integers u, v with $1=ua+vp$. Multiplying by a gives $a=ua^2+vpa$.
+    Since p divides $a^2$, it divides $ua^2$. Also p divides $vpa$. So p divides a, which contradicts
+    p∤a. Hence p∣a.
+  solution: 'By Bezout''s identity, $ua+vp=1$. Multiply both sides by a: $a = ua^2 + vpa$. Both terms
+    on the right are divisible by p, since $p \mid a^2$ and $p \mid vpa$. Therefore $p \mid a$. This contradicts
+    the assumption that p∤a, so the assumption is false and p∣a.'
+  common_errors:
+  - Claiming p∣a² means p²∣a² or p∣a directly without proof.
+  - Using Bezout without justifying gcd(a,p)=1.
+  - Forgetting to multiply the Bezout identity by a.
+  hints:
+    rephrase: Write 1 as an integer combination of a and p, then multiply the identity by a.
+    smaller_case: Take p=3 and a=6. Check that 3 divides a² and a. Then try a=4 and see what the argument
+      predicts.
+    key_idea: Bezout's identity expresses gcd(a,p) as an integer combination of a and p.
+  check: null
+- goal: (a) Name where this result has been used before.
+  expected: Examples include the proof that √p is irrational (or √2), the uniqueness of prime factorisation,
+    and Euclid's lemma used in proofs about gcds and modular inverses.
+  solution: 'The result is Euclid''s lemma. It is the key step in showing that √p is irrational: if √p=m/n
+    in lowest terms then $pn^2=m^2$, so p divides m², hence p divides m, a contradiction. It is also the
+    basis for uniqueness of prime factorisation.'
+  common_errors:
+  - Saying it has not been used before without thinking about standard proofs.
+  - Naming a result that does not depend on this lemma.
+  hints:
+    rephrase: Think about proofs that a square root of a prime is irrational, or about why prime factorisations
+      are unique.
+    smaller_case: Consider whether the proof that √2 is irrational needs the fact that 2 divides a square.
+    key_idea: Recall where primes interact with squares in standard proofs.
+  check: null
+extensions:
+  '3':
+  - For prime p, prove that if p divides ab then p divides a or p divides b.
+  '4':
+  - Show that if p divides a^k for some k≥1, then p divides a.
+  '5':
+  - Prove that √3 is irrational using the idea from this question.
+spoken_vocab:
+- p
+- a
+- prime
+- divides
+- a squared
+- Euclid's lemma
+- greatest common divisor
+- Bezout's identity
+- coprime
+- contradiction
+- square root of p
+- irrational
+- factorisation
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 3
+  parts: 2
+  minutes: 5
+  flags: []
+  tagline: Short Bezout proof with a classic extension to irrationality of square roots.
+  priority: 61
+  rank: 443
+  tier: C
+  category: juan
+  d10: 3.0
+  real: 7.0
+  by: haiku
+tags:
+- proof
+- number_theory

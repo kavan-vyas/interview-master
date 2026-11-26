@@ -1,0 +1,158 @@
+id: standard-integrals-set-a
+title: Standard integrals and reduction techniques
+topics:
+- integration
+- completing the square
+- partial fractions
+- complex exponentials
+- trigonometric substitution
+- integration by parts
+warmup: false
+answer_source: pdf
+statement: 'Calculate the following integrals: (i) $\int a^x\,dx$; (ii) $\int\frac{1}{x^2-2x+6}\,dx$;
+  (iii) $\int e^{ax}\cos(bx)\,dx$; (iv) $\int e^{ax}e^{ibx}\,dx$; (v) $\int\frac{1}{1-x^3}\,dx$; (vi)
+  $\int\operatorname{cosec}x\,dx$; (vii) $\int\sec x\,dx$; (viii) $\int\frac{1}{\sqrt{c^2+m^2y^2}}\,dy$;
+  (ix) $\int\tan^{-1}x\,dx$; (x) $\int x^3e^{x^2}\,dx$.'
+stages:
+- goal: Integrate (i) a^x and (ii) 1/(x^2 - 2x + 6).
+  expected: (i) a^x/ln a + C. (ii) (1/sqrt5) arctan((x-1)/sqrt5) + C. Assume a > 0 with a not equal to
+    1.
+  solution: '(i) Write a^x = e^(x ln a), so the antiderivative is a^x/ln a. (ii) Complete the square:
+    x^2 - 2x + 6 = (x-1)^2 + 5. Use the standard form integral of du/(u^2+k^2) = (1/k) arctan(u/k) with
+    u = x-1 and k = sqrt5.'
+  common_errors:
+  - Writing the integral of a^x as a^(x+1)/(x+1)
+  - Forgetting the 1/ln a factor
+  - Taking k = 5 instead of sqrt5 in the arctan
+  - Not completing the square
+  - Omitting + C
+  hints:
+    rephrase: For (i), what is the derivative of a^x? For (ii), can the quadratic be written as a sum
+      of squares?
+    smaller_case: For (i), differentiate a^x written as e^(x ln a) by the chain rule and see what constant
+      is needed.
+    key_idea: Use the integral of e^(kx) equals e^(kx)/k, and the arctan standard form after completing
+      the square.
+  check: simplify((diff(a**x/log(a),x) - a**x)**2 + (diff(atan((x-1)/sqrt(5))/sqrt(5),x) - 1/(x**2-2*x+6))**2)
+  check_ok: true
+- goal: Integrate (iii) e^(ax) cos(bx) and (iv) e^(ax) e^(ibx).
+  expected: (iii) (a cos(bx) + b sin(bx)) e^(ax)/(a^2+b^2) + C. (iv) e^((a+ib)x)/(a+ib) + C.
+  solution: (iii) Try e^(ax)(P cos(bx) + Q sin(bx)), differentiate, and match coefficients of cos(bx)
+    and sin(bx). This gives P = a/(a^2+b^2) and Q = b/(a^2+b^2) times the constant needed. Alternatively
+    integrate by parts twice. (iv) e^(ax) e^(ibx) = e^((a+ib)x), so integrate with k = a+ib to get e^((a+ib)x)/(a+ib).
+  common_errors:
+  - Dropping the sin(bx) cross term in (iii)
+  - Using a^2+b^2 incorrectly, for example dividing only one term
+  - Treating i as a real variable in (iv)
+  - Not checking the antiderivative by differentiation
+  hints:
+    rephrase: For (iii), what if you guessed a solution of the form e^(ax) times a combination of sin
+      and cos? For (iv), combine the exponentials first.
+    smaller_case: In (iii), set b = 0 and check your method reduces to a standard integral.
+    key_idea: Either integrate by parts twice (the integral reappears, so solve for it) or use the complex
+      exponential and take real parts.
+  check: simplify((diff(exp(a*x)*(a*cos(b*x)+b*sin(b*x))/(a**2+b**2), x) - exp(a*x)*cos(b*x))**2 + (diff(exp((a+I*b)*x)/(a+I*b),
+    x) - exp(a*x)*exp(I*b*x))*conjugate(diff(exp((a+I*b)*x)/(a+I*b), x) - exp(a*x)*exp(I*b*x)))
+  check_ok: true
+- goal: Integrate (v) 1/(1 - x^3) and (vi) cosec x.
+  expected: (v) (1/6) ln((x^2+x+1)/(x-1)^2) + (1/sqrt3) arctan((2x+1)/sqrt3) + C. (vi) ln|tan(x/2)| +
+    C.
+  solution: '(v) Partial fractions: 1/(1-x^3) = (1/3)/(1-x) + ((x+2)/3)/(x^2+x+1). Write x+2 = (1/2)(2x+1)
+    + 3/2. Integrate the linear part to get logs and complete the square in x^2+x+1 = (x+1/2)^2 + 3/4
+    for the arctan. Combine the logarithms. (vi) Write cosec x = 1/(2 sin(x/2) cos(x/2)) = sec^2(x/2)/(2
+    tan(x/2)). Then the integrand is the derivative of ln tan(x/2) times 1/2 with a substitution t = tan(x/2),
+    giving ln|tan(x/2)|.'
+  common_errors:
+  - Wrong partial fraction numerators
+  - Losing the 1/3 factor on the log term
+  - Losing the 1/6 factor when combining logs
+  - Writing ln|sin x| or ln|cosec x + cot x| without conversion
+  - Dropping absolute values inside the logarithm
+  hints:
+    rephrase: For (v), factor the denominator and decompose into partial fractions. For (vi), what rewriting
+      makes the integrand a derivative of something simple?
+    smaller_case: For (v), first factor 1 - x^3 as (1-x)(1+x+x^2).
+    key_idea: For (vi), use the half-angle identity sin x = 2 sin(x/2) cos(x/2) and the substitution t
+      = tan(x/2).
+  check: simplify((diff((1/6)*log((x**2+x+1)/(x-1)**2) + atan((2*x+1)/sqrt(3))/sqrt(3), x) - 1/(1-x**3))**2
+    + (diff(log(tan(x/2)), x) - 1/sin(x))**2)
+  check_ok: true
+- goal: Integrate (vii) sec x and (viii) 1/sqrt(c^2+m^2 y^2) with respect to y.
+  expected: (vii) ln|(1+tan(x/2))/(1-tan(x/2))| + C, equivalently ln|sec x + tan x| + C. (viii) (1/m)
+    asinh(my/c) + C, equivalently (1/m) ln((my + sqrt(m^2y^2+c^2))/c) + C. Assume c, m > 0.
+  solution: (vii) Multiply numerator and denominator by sec x + tan x, or substitute t = tan(x/2), dx
+    = 2dt/(1+t^2), cos x = (1-t^2)/(1+t^2). This gives the integral of 2dt/(1-t^2) = ln|(1+t)/(1-t)|.
+    (viii) Substitute my = c tan u, so sqrt(c^2+m^2y^2) = c sec u and dy = (c/m) sec^2 u du. The integral
+    becomes (1/m) integral of sec u du, which is part (vii). Converting back gives the stated forms.
+  common_errors:
+  - Dropping the absolute value in the logarithm
+  - Claiming the integral of sec x is ln|sec x| instead of ln|sec x + tan x|
+  - Forgetting the 1/m factor in (viii)
+  - Substitution error in the square root, for example not using sec^2 u in dy
+  hints:
+    rephrase: For (vii), multiply top and bottom by a clever expression that makes the denominator a derivative.
+      For (viii), which substitution would remove the square root?
+    smaller_case: For (viii), take m = 1 and try the substitution y = (c/m) tan u.
+    key_idea: Use the trig substitution for sqrt(c^2 + m^2 y^2), then reduce the result to the sec integral
+      from (vii).
+  check: simplify((diff(log((1+tan(x/2))/(1-tan(x/2))), x) - 1/cos(x))**2 + (diff(asinh(m*y/c)/m, y) -
+    1/sqrt(c**2+m**2*y**2))**2)
+  check_ok: false
+- goal: Integrate (ix) arctan x and (x) x^3 e^(x^2).
+  expected: (ix) x arctan x - (1/2) ln(1+x^2) + C. (x) (1/2)(x^2 - 1) e^(x^2) + C.
+  solution: (ix) Integrate by parts with u = arctan x and dv = dx, giving x arctan x - integral of x/(1+x^2)
+    dx. The second integral is (1/2) ln(1+x^2). (x) Substitute u = x^2, so du = 2x dx and x^3 dx = (1/2)
+    u du. Then the integral is (1/2) integral of u e^u du = (1/2)(u-1) e^u, which gives (1/2)(x^2-1)e^(x^2).
+  common_errors:
+  - Forgetting the -(1/2) ln(1+x^2) term in (ix)
+  - Sign error in the integration by parts formula
+  - Forgetting the factor 2x in du in (x)
+  - Integrating x^3 e^(x^2) as x^3 times the integral of e^(x^2)
+  hints:
+    rephrase: For (ix), which technique handles a single function you cannot integrate directly? For (x),
+      find a substitution that absorbs the x^3.
+    smaller_case: For (ix), differentiate x arctan x and see what extra term appears.
+    key_idea: (ix) uses integration by parts with u = arctan x. (x) uses u = x^2, noting x^3 dx = (1/2)
+      u du.
+  check: simplify((diff(x*atan(x) - log(1+x**2)/2, x) - atan(x))**2 + (diff((x**2-1)*exp(x**2)/2, x) -
+    x**3*exp(x**2))**2)
+  check_ok: true
+extensions:
+  '3':
+  - Evaluate the integral of e^(ax) sin(bx) using the same method as part (iii).
+  '4':
+  - Use partial fractions to integrate 1/(x^3+1) and comment on the log and arctan terms that appear.
+  '5':
+  - Show that the integrals of sec x and cosec x are related by a substitution.
+spoken_vocab:
+- integral of a to the x
+- one over x squared minus two x plus six
+- e to the a x cosine b x
+- e to the a x e to the i b x
+- one over one minus x cubed
+- cosecant x
+- secant x
+- one over root c squared plus m squared y squared
+- arctan x
+- x cubed e to the x squared
+- plus C
+- partial fractions
+- complete the square
+source: step-workbook/Cambridge STEP Short Workbook.pdf#1
+verified: false
+rating:
+  quality: 3
+  difficulty: 4
+  parts: 10
+  minutes: 18
+  flags: []
+  tagline: Mostly recall and mechanical; a few reductions give some substance.
+  priority: 44
+  rank: 557
+  tier: C
+  category: step-workbook
+  d10: 3.0
+  real: 3.0
+  by: haiku
+tags:
+- integration

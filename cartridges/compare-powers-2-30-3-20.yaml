@@ -1,0 +1,79 @@
+id: compare-powers-2-30-3-20
+title: Comparing large powers without a calculator
+topics:
+- indices
+- powers
+- estimation
+- comparing numbers
+warmup: true
+answer_source: pdf
+statement: Without using a calculator, decide which is larger, $2^{30}$ or $3^{20}$. Show how you know.
+stages:
+- goal: Rewrite both powers so they have the same exponent.
+  expected: $2^{30} = 8^{10}$ and $3^{20} = 9^{10}$
+  solution: Use $(a^m)^n = a^{mn}$. $2^{30} = (2^3)^{10} = 8^{10}$ and $3^{20} = (3^2)^{10} = 9^{10}$.
+  common_errors:
+  - Using $(2^3)^{3}$ or other incorrect exponent rules
+  - Rewriting only one of the two powers
+  - Multiplying exponents incorrectly, such as $2^{3} \cdot 10$ instead of $(2^3)^{10}$
+  hints:
+    rephrase: Can you write each power as a power of a smaller base raised to some common exponent?
+    smaller_case: Rewrite $2^6$ and $3^4$ so that you can compare them with the same exponent.
+    key_idea: A power of a power multiplies the exponents, so look for a way to split $30$ and $20$ into
+      a common factor.
+  check: And(Eq(2**30, 8**10), Eq(3**20, 9**10))
+  check_ok: true
+- goal: Decide which is larger and justify it.
+  expected: $3^{20}$ is larger, because $9^{10} > 8^{10}$ with the same exponent.
+  solution: Both are 10th powers. Since $9 > 8$, $9^{10} > 8^{10}$, so $3^{20} > 2^{30}$.
+  common_errors:
+  - Concluding $2^{30}$ is larger because $30 > 20$
+  - Comparing the bases without matching the exponents
+  - Failing to justify the comparison
+  hints:
+    rephrase: Now that both sides have the same exponent, what does the size of the base tell you?
+    smaller_case: Which is larger, $5^3$ or $4^3$, and why?
+    key_idea: With equal exponents, the power with the larger base is the larger number.
+  check: Gt(3**20, 2**30)
+  check_ok: true
+extensions:
+  '3':
+  - Which is larger, $5^{12}$ or $6^{10}$? Show how you know without a calculator.
+  - Which is larger, $7^{8}$ or $2^{24}$?
+  '4':
+  - Which is larger, $2^{100}$ or $10^{30}$? Use the rewriting method and estimate if needed.
+  - Which is larger, $3^{50}$ or $5^{30}$?
+  '5':
+  - Which is larger, $3^{40}$ or $4^{30}$? Justify your answer.
+  - Order $2^{50}$, $3^{33}$ and $5^{22}$ from smallest to largest, showing the method.
+spoken_vocab:
+- two to the power of thirty
+- three to the power of twenty
+- power
+- exponent
+- base
+- larger
+- eight to the power of ten
+- nine to the power of ten
+- rewrite
+- common exponent
+- without a calculator
+source: kclms/kclms-specimen-questions-3.pdf#0
+verified: false
+rating:
+  quality: 4
+  difficulty: 4
+  parts: 2
+  minutes: 4
+  flags: []
+  tagline: 'Classic exponent trick: rewrite both as tenth powers.'
+  priority: 45
+  rank: 553
+  tier: C
+  category: kclms
+  d10: 2.5
+  real: 6.0
+  by: deepseek-v4.1-flash-free
+tags:
+- number_theory
+- algebra_and_functions

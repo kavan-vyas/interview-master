@@ -1,0 +1,247 @@
+[
+ {
+  "q": "Let $a, b, c >0$ with $a+b+c= 1$. Prove that $ab+bc+ca\\le \\frac{1}{3}$. (a) When does equality hold? (b) Can you generalise your argument to $n$ positive reals summing to 1?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "Let $a, b, c >0$. Prove that $(a+b+c)\\left(\\frac{1}{a}+\\frac{1}{b}+\\frac{1}{c}\\right)\\ge 9$. (a) When does equality hold?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "Provide a solution to the equation $2^x+3^x=5^x$. (a) By considering the function $f(x)=\\left(\\frac{2}{5}\\right)^x+\\left(\\frac{3}{5}\\right)^x$, show that $x=1$ is the only real solution. (b) What property of $f$ did you use?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "Consider the equation $x^3-3x=1$. (a) By substituting $x=2\\cos\\theta$, show that this equation is equivalent to $\\cos 3\\theta=\\frac{1}{2}$. (b) Hence find all three real roots of the cubic. (c) Why did the substitution $x=2\\cos\\theta$ work here, what feature of the cubic suggested it?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "Let $z$ be a complex number with $|z|=1$. (a) Show that $|z+1|\\le 2$, and determine when equality holds. (b) Find the range of possible values of $|z^2+z+1|$ as $z$ varies over the unit circle.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "Define a sequence by $a_1=1$ and $a_{n+1}=a_n+\\frac{1}{a_n}$. (a) Show that $a_n\\to\\infty$. (b) Show that $a_n^2\\approx 2n$ for large $n$. (c) What is $\\lim_{n\\to\\infty} \\frac{a_n}{\\sqrt{n}}$?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "Suppose $f:\\mathbb{R}\\to\\mathbb{R}$ is continuous and satisfies $f(x+y)=f(x)+f(y)$ for all real $x, y$. (a) Show $f(x)=cx$ for some constant $c$. (b) Where did you use continuity? What can go wrong if we drop that assumption?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "Evaluate $\\lim_{x\\to 0}\\frac{\\sin x-x}{x^3}$. (a) Now evaluate $\\lim_{x\\to 0}\\frac{\\tan x-\\sin x}{x^3}$. (b) Can you see a quick way to relate the two limits without redoing all the work?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "A right circular cylinder is inscribed in a sphere of fixed radius $R$. (a) Find the height and radius of the cylinder of maximum volume. (b) Now maximise the total surface area of the cylinder instead. Do you get the same shape?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "Sketch the curve $y=xe^{-x}$. (a) Find all turning points and points of inflection, and describe the behaviour as $x\\to\\pm\\infty$. (b) Now sketch $y=x^2e^{-x}$ on a fresh set of axes. What features carry over?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "Evaluate $\\int_0^1 x\\ln x\\,dx$. (a) Generalise to find $\\int_0^1 x^n\\ln x\\,dx$ for a positive integer $n$. (b) What happens to your answer as $n\\to\\infty$? Does that make sense given the shape of $x^n\\ln x$ on $(0,1)$?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "Does the series $\\sum_{n=2}^{\\infty}\\frac{1}{n\\ln n}$ converge? Hint: compare this to a related integral. (a) How does the answer compare to $\\sum_{n=1}^{\\infty}\\frac{1}{n^2}$, and to $\\sum_{n=1}^{\\infty}\\frac{1}{n}$? (b) What about $\\sum_{n=1}^{\\infty}\\frac{1}{n^p}$ for different values of $p$?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "Consider $f(x)=x^x$ for $x>0$. (a) Find $f'(x)$. (b) Find the minimum value of $f$, and the value of $x$ at which it occurs. (c) Sketch $f$ for $x>0$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "Water is poured at a constant rate of $2\\ \\text{cm}^3/\\text{s}$ into an inverted cone of semi-vertical angle $30^\\circ$ (vertex pointing down). (a) Find the rate at which the water level is rising when the depth is 5 cm. (b) Does this rate increase or decrease as the water deepens? Explain why that makes sense physically.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "Show that $e^x\\ge 1+x$ for all real $x$, with equality only at $x=0$. (a) Use this inequality to prove the AM\u2013GM inequality for $n$ positive reals $x_1,\\dots,x_n$. (Hint: apply the inequality to $x_i/\\bar{x}-1$, where $\\bar{x}$ is the arithmetic mean.)",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "An equilateral triangle is inscribed in a circle of radius 1. Its incircle is drawn, and a second equilateral triangle is inscribed in that incircle, and so on indefinitely. (a) Find the ratio of the area of each triangle to the area of the previous one. (b) Find the total area enclosed by all the triangles in the infinite sequence.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "Points $A, B, C$ lie on the curve $y=x^3$, with $B$ at the origin. (a) Explain why, if triangle $ABC$ is equilateral, $A$ and $C$ must be reflections of each other in the origin. (b) Find the coordinates of $A$ and $C$. (c) Is there more than one equilateral triangle with $B$ at the origin and $A, C$ on the curve? Why or why not?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "A point $P$ moves so that its distance from the fixed point $F=(0,1)$ equals its distance from the fixed line $y=-1$. (a) Find the equation of the locus of $P$, and identify the curve. (b) How does the locus change if the line is moved further from $F$, keeping $F$ fixed? (c) What happens in the limiting case where the line passes through $F$?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "A cube has side length 1. (a) Find the angle between a space diagonal of the cube and a face diagonal that shares a vertex with it. (b) Find the angle between two face diagonals that share a vertex but lie on different faces.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "A cone has base radius $r$ and height $h$. A plane parallel to the base cuts the cone at height $h/2$ (measured from the base). (a) Find the ratio of the volume of the small cone (top piece) to the volume of the frustum (bottom piece). (b) At what height should the cut be made to bisect the volume exactly?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "In a triangle $ABC$ with the usual side labels $a, b, c$, prove the projection formula $a=b\\cos C+c\\cos B$. (a) What does this identity become when $C=90^\\circ$? (b) Can you find two essentially different proofs (e.g. one using the cosine rule, one using vectors)?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "Two players take turns rolling a fair six-sided die, Player 1 rolling first. The first player to roll a 6 wins. (a) Find the probability that Player 1 wins. (b) Generalise to an $n$-sided die. Does your formula tend to a sensible limit as $n\\to\\infty$?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "A fair coin is tossed repeatedly. I win if the sequence HTH appears before HTT does. (a) Find the probability that I win. (b) Is the answer surprising? Compare it to a game decided by HH versus TT. (c) What if instead we compare HTH against THT?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "A box contains $n$ red balls and $m$ blue balls. Balls are drawn one at a time, without replacement, until the first red ball is drawn. (a) Find the expected number of draws required. (b) Does your answer still make sense in the limits $n\\to 0$ and $m\\to 0$?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "A biased coin has $P(\\text{heads})=p$. It is tossed $n$ times. (a) Write down the probability of exactly $k$ heads. (b) For fixed $n$ and $k$, find the value of $p$ that maximises this probability. (c) Does your answer to (b) match what you would intuitively guess?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "Prove that there are infinitely many primes of the form $4k+3$. (a) Where does your argument break down if you try to adapt it to primes of the form $4k+1$?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "Find all pairs of positive integers $(x, y)$ with $x>y$ satisfying $x^2-y^2=105$. (a) How many pairs are there for a general odd positive integer $N$ in place of 105? (b) What changes if $N$ is even?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "Prove that if $p$ is prime and $p\\mid a^2$, then $p\\mid a$. (a) Where have you used this before?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "The Fibonacci numbers are defined by $F_1=F_2=1$, $F_{n+1}=F_n+F_{n-1}$. (a) Prove that consecutive Fibonacci numbers are coprime. (b) Can you conjecture a formula for $\\gcd(F_m, F_n)$ in terms of $\\gcd(m, n)$?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "For a fixed positive integer $n$, find the number of pairs of positive integers $(x, y)$ satisfying $\\frac{1}{x}+\\frac{1}{y}=\\frac{1}{n}$. (a) Work out the answer explicitly for $n=6$. (b) Express the general answer in terms of the number of divisors of $n^2$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "Sketch the curve $y^2=x^2(x+1)$. (a) Identify any symmetry, intercepts, and the behaviour of the curve near the origin. (b) For which values of $x$ does the curve exist at all?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "Sketch $y=\\frac{1}{1+x^2}$ and $y=\\frac{x}{1+x^2}$ on the same axes. (a) Find and classify the turning points of each curve, and any asymptotes. (b) Is there a relationship between the two functions (for instance, via differentiation or integration)?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "Sketch $y=|x|-|x-2|$ for all real $x$. (a) Use your sketch to solve $|x|-|x-2|=1$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "You have 12 coins, identical in appearance. Exactly one is counterfeit and has a different weight from the rest (you do not know if it is heavier or lighter). You have a balance scale and may use it exactly 3 times. (a) Describe a strategy that is guaranteed to identify the counterfeit coin and determine whether it is heavier or lighter. (b) Why is 3 weighings the fewest that could possibly work, for 12 coins?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ },
+ {
+  "q": "Five points are chosen anywhere inside or on the boundary of a unit square (a square of side length 1). (a) Prove that some two of the points must be at most $\\frac{\\sqrt{2}}{2}$ apart. (b) Does the same argument, adapted appropriately, work for $n^2+1$ points in a unit square?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "juan/Mathematics Interview Questions - Juan.pdf#0"
+ }
+]

@@ -1,0 +1,109 @@
+id: distances-point-line-two-curves
+title: 'Shortest distances: point, line and two parabolas'
+topics:
+- calculus optimisation
+- distance from a point to a curve
+- perpendicular distance to a line
+- symmetry of curves
+warmup: false
+answer_source: generated
+statement: What is the shortest distance from the point $A(3,1)$ to the curve with equation $y=x^2+1$?
+  What is the shortest distance from the line $y=x$ and the curve $y=x^2+1$? What is the shortest distance
+  between the two curves $y=x^2+1$ and $x=y^2+1$?
+stages:
+- goal: Find the shortest distance from $A(3,1)$ to $y=x^2+1$.
+  expected: $\sqrt{5}$, attained at the point $(1,2)$.
+  solution: A general point on the curve is $(x,x^2+1)$. Its squared distance to $A$ is $f(x)=(x-3)^2+x^4$.
+    Then $f'(x)=2(x-3)+4x^3=2(x^3\cdot 2+x-3)/2$, so $f'(x)=0$ gives $2x^3+x-3=0$. Factorising, $(x-1)(2x^2+2x+3)=0$,
+    and the quadratic has negative discriminant, so $x=1$ is the only critical point. Since $f\to\infty$,
+    this is the global minimum. $f(1)=4+1=5$, so the distance is $\sqrt{5}$.
+  common_errors:
+  - Minimising the vertical distance $|x^2+1-1|$ instead of the Euclidean distance
+  - Writing the squared distance with $(x^2+1)^2$ instead of $(x^2+1-1)^2=x^4$
+  - Stopping at $x=1$ without checking that it is a minimum, or accepting a complex root of the cubic
+  hints:
+    rephrase: Write the distance from a general point on the curve to $A$, then minimise its square.
+    smaller_case: Try the point $(0,1)$ on the curve and compare its distance to $A$ with a point nearby.
+    key_idea: Minimising the squared distance gives the same point as minimising the distance, and it
+      produces a polynomial with a rational root.
+  check: simplify(sqrt((1-3)**2+((1**2+1)-1)**2) - sqrt(5))
+  check_ok: true
+- goal: Find the shortest distance from the line $y=x$ to $y=x^2+1$.
+  expected: $\frac{3\sqrt{2}}{8}$, attained at the point $(\frac12,\frac54)$.
+  solution: The perpendicular distance from $(t,t^2+1)$ to $x-y=0$ is $|t-(t^2+1)|/\sqrt{2}=|t^2-t+1|/\sqrt2$.
+    Since $t^2-t+1=(t-\tfrac12)^2+\tfrac34>0$, the minimum is at $t=\tfrac12$. The value is $\frac{3/4}{\sqrt2}=\frac{3\sqrt2}{8}$.
+  common_errors:
+  - Using the vertical gap $3/4$ as the answer and forgetting to divide by $\sqrt{2}$
+  - Dividing by $2$ instead of $\sqrt2$ in the point-to-line formula
+  - Minimising the wrong expression, such as $t^2+t+1$
+  hints:
+    rephrase: Use the standard perpendicular distance formula from a point to a line, then minimise over
+      the parameter on the curve.
+    smaller_case: Check whether the curve ever meets the line $y=x$. If not, where is it closest in the
+      vertical direction?
+    key_idea: The expression $t^2-t+1$ is always positive, so you can complete the square.
+  check: simplify((Rational(1,2)**2 - Rational(1,2) + 1)/sqrt(2) - 3*sqrt(2)/8)
+  check_ok: true
+- goal: Find the shortest distance between $y=x^2+1$ and $x=y^2+1$.
+  expected: $\frac{3\sqrt{2}}{4}$, attained at the pair of points $(\frac12,\frac54)$ and $(\frac54,\frac12)$.
+  solution: The two curves are reflections of each other in the line $y=x$, and they do not intersect.
+    Take $P=(s,s^2+1)$ on the first curve and its mirror image $Q=(s^2+1,s)$ on the second. Then $|PQ|^2=2(s^2-s+1)^2$,
+    which is minimised at $s=\tfrac12$, giving $|PQ|^2=\tfrac98$. So the minimum distance is $\frac{3\sqrt2}{4}$.
+    This is twice the answer to part two, as expected because $PQ$ is perpendicular to $y=x$ and bisected
+    by it. The check that $(\frac12,\frac54)$ is the global minimum is that the first-order conditions
+    for a general pair $(s,t)$ are satisfied only at $s=t=\tfrac12$ among real solutions.
+  common_errors:
+  - Assuming the closest points are not a symmetric pair without checking
+  - Forgetting that the distance between the two curves is twice the distance from one curve to the mirror
+    line
+  - Solving $y=x^2+1$ together with $x=y^2+1$ and claiming an intersection exists, when the system has
+    no real solution
+  hints:
+    rephrase: Look at how the two equations are related before doing any calculus.
+    smaller_case: Pick a point on the first curve and find its reflection in $y=x$. Is the reflection
+      on the second curve?
+    key_idea: The shortest segment between mirror-image curves is perpendicular to the mirror line, so
+      you only need to optimise one parameter.
+  check: simplify(sqrt(2*(Rational(1,2)**2 - Rational(1,2) + 1)**2) - 3*sqrt(2)/4)
+  check_ok: true
+extensions:
+  '3':
+  - Find the shortest distance from $A(3,1)$ to the curve $x=y^2+1$ and compare it with the answer to
+    part one.
+  '4':
+  - Explain why a mirror-image pair of curves always has its shortest connecting segment perpendicular
+    to the mirror line.
+  '5':
+  - Show that the first-order conditions for the distance between $y=x^2+1$ and $x=y^2+1$ have only one
+    real solution pair, not just a symmetric one.
+spoken_vocab:
+- A three comma one
+- y equals x squared plus one
+- x equals y squared plus one
+- the line y equals x
+- square root of five
+- three root two over eight
+- three root two over four
+- shortest distance
+- perpendicular distance
+- reflection in y equals x
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 3
+  minutes: 20
+  flags: []
+  tagline: Quartic minimisation, then a symmetry insight about perpendicular bisection between parabolas.
+  priority: 91
+  rank: 129
+  tier: A
+  category: tbo
+  d10: 6.5
+  real: 7.0
+  by: deepseek-v4.1-flash-free
+tags:
+- differentiation
+- coordinate_geometry
+- geometry

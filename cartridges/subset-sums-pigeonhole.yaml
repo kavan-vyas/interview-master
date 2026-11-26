@@ -1,0 +1,90 @@
+id: subset-sums-pigeonhole
+title: Equal subset sums and the pigeonhole principle
+topics:
+- combinatorics
+- pigeonhole principle
+- counting subsets
+warmup: false
+answer_source: generated
+statement: 'Consider the set $\{1,2,3,6\}$. Notice that there are distinct subsets having the same sum;
+  for example, $\{1,2\}$ and $\{3\}$, and $\{1,2,3\}$ and $\{6\}$. Now consider a set of ten elements
+  $\{x_1, x_2, \ldots, x_{10}\}$, where $0<x_i<100$. Would you expect a similar property to occur? What
+  would affect the likelihood of two distinct subsets having the same sum: the range of possible values,
+  or the total number of elements?'
+stages:
+- goal: Decide whether a set of ten elements with 0 < x_i < 100 must have two distinct subsets with the
+    same sum.
+  expected: Yes, it must (taking the x_i to be integers).
+  solution: Yes. A set of 10 elements has 2^10 = 1024 subsets, but the subset sums all lie in the range
+    0 to 990 (at most 991 values), so by pigeonhole two distinct subsets share a sum.
+  common_errors:
+  - Answering no because the example set has a different structure.
+  - Forgetting that the empty subset counts as a subset.
+  - Assuming the x_i are real numbers, where the pigeonhole argument does not apply directly.
+  hints:
+    rephrase: Compare how many subsets there are with how many different totals they can produce.
+    smaller_case: For three elements below 10, count the subsets and the largest possible sum.
+    key_idea: Count subsets and count possible sums, then apply the pigeonhole principle.
+  check: sympy.Gt(2**10, 10*99 + 1)
+  check_ok: null
+- goal: 'State the key counting fact: the number of subsets grows exponentially in n while the number
+    of possible sums grows only linearly in n when each element is bounded.'
+  expected: With n elements below 100, there are 2^n subsets but at most about 99n + 1 possible sums,
+    so the subset count eventually dominates.
+  solution: 'Subsets: 2^n. Possible sums: integers from 0 to at most 99n, which is at most 99n + 1 values.
+    For large n, 2^n exceeds 99n + 1, forcing collisions.'
+  common_errors:
+  - Thinking the range of values is the main factor when the range is fixed.
+  - Saying the collision depends on the specific numbers chosen.
+  hints:
+    rephrase: 'Which grows faster as n increases: the number of subsets or the largest possible sum?'
+    smaller_case: Compare 2^4 with the maximum sum for four elements below 100.
+    key_idea: Exponential growth of subsets versus linear growth of sums.
+- goal: 'Answer the question: which factor affects the likelihood more, the range of possible values or
+    the total number of elements?'
+  expected: The total number of elements, since the number of subsets grows as 2^n while the range grows
+    only linearly.
+  solution: The number of elements dominates. Doubling the range only changes the count of possible sums
+    modestly, whereas adding one element doubles the number of subsets.
+  common_errors:
+  - Choosing range because the bound 100 seems important.
+  - Failing to explain why adding one element changes the count so strongly.
+  hints:
+    rephrase: If you add one more element, how does the number of subsets change? If you double the bound,
+      how does the number of possible sums change?
+    smaller_case: Compare the effect of adding one element with the effect of doubling the bound for a
+      set of size 3.
+    key_idea: Compare the multiplicative effect of new elements with the additive effect of a larger range.
+extensions:
+  '3':
+  - Find the smallest n such that any n distinct integers in {1,...,10} must have two distinct subsets
+    with equal sums.
+  - Show that for the set {1,2,4,...,2^(n-1)} all subset sums are distinct, and explain why this does
+    not contradict the pigeonhole argument.
+  '4':
+  - Prove that any n-element set of positive integers has two disjoint subsets with equal sum when n is
+    large enough, and state a bound.
+  - Discuss how the result changes if the elements are real numbers rather than integers.
+  '5':
+  - Use the Erdos-Moser problem to discuss how many distinct subset sums a set of n elements below 2^n
+    must have.
+  - Compare the pigeonhole bound with the known sharper bounds for distinct subset sums.
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 5 (anonymous).pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 4
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: 'Exponential subsets versus linear sums: strong conceptual pigeonhole discussion.'
+  priority: 81
+  rank: 212
+  tier: B
+  category: past-interviews
+  d10: 4.0
+  real: 7.0
+  by: haiku
+tags:
+- combinatorics
+- proof

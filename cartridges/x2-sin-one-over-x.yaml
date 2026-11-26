@@ -1,0 +1,102 @@
+id: x2-sin-one-over-x
+title: Sketch y = x^2 sin(1/x)
+topics:
+- curve sketching
+- limits
+- squeeze theorem
+- differentiability
+warmup: true
+answer_source: generated
+statement: Sketch the curve $y = x^2 \sin\left(\frac{1}{x}\right)$.
+stages:
+- goal: Find the behaviour at $x=0$ and check for symmetry.
+  expected: The function is undefined at 0 but extends continuously with $f(0)=0$. It is odd, so the graph
+    is symmetric about the origin.
+  solution: Since $|\sin(1/x)|\le1$, we have $|x^2\sin(1/x)|\le x^2\to0$. By the squeeze theorem, $\lim_{x\to0}f(x)=0$,
+    so define $f(0)=0$. Also $f(-x)=x^2\sin(-1/x)=-f(x)$, so $f$ is odd and the graph is symmetric about
+    the origin.
+  common_errors:
+  - Calling the function discontinuous at 0 because $1/x$ is undefined there
+  - Forgetting that the envelope $x^2$ forces the limit to be 0
+  - Missing the symmetry through the origin
+  hints:
+    rephrase: How large can $|\sin(1/x)|$ be, and what does that do to $|x^2\sin(1/x)|$ near $0$?
+    smaller_case: Compare $|f(0.01)|$ with $0.01^2$.
+    key_idea: Bound the sine by 1 and apply the squeeze theorem.
+  check: limit(x**2*sin(1/x), x, 0)
+  check_ok: true
+- goal: Describe the envelope of the graph and where it touches the envelope and crosses zero.
+  expected: The envelope is $y=\pm x^2$. The curve touches the envelope where $|\sin(1/x)|=1$, i.e. at
+    $x=2/((2m+1)\pi)$ for integers $m$. It crosses zero at $x=1/(k\pi)$ for nonzero integers $k$. These
+    zeros and touching points accumulate at 0.
+  solution: Since $-1\le\sin(1/x)\le1$, we have $-x^2\le f(x)\le x^2$. Equality holds exactly when $\sin(1/x)=\pm1$,
+    i.e. $1/x=\pi/2+j\pi$, so $x=2/((2m+1)\pi)$. The curve crosses zero when $\sin(1/x)=0$, i.e. $1/x=k\pi$,
+    so $x=1/(k\pi)$ for nonzero integers $k$. As $|x|\to0$ the zeros and the touching points become infinitely
+    dense while the amplitude shrinks like $x^2$.
+  common_errors:
+  - Drawing the envelope as $y=\pm x$ instead of $y=\pm x^2$
+  - Thinking the zeros are finite or are spaced evenly in $x$
+  - Forgetting the negative $x$ branch
+  hints:
+    rephrase: Where does $\sin(1/x)$ reach its maximum and minimum values, and where does it vanish?
+    smaller_case: Evaluate $\sin(1/x)$ at $x=2/\pi$ and at $x=2/(3\pi)$.
+    key_idea: The envelope comes from $|\sin(1/x)|\le1$. The zeros come from $1/x$ hitting multiples of
+      $\pi$.
+  check: null
+- goal: Find $f'(0)$ and decide whether the curve is smooth at the origin.
+  expected: $f'(0)=0$ exists, so the curve is differentiable at the origin with a horizontal tangent.
+    However, $f'$ is not continuous at 0, because $f'(x)=2x\sin(1/x)-\cos(1/x)$ for $x\ne0$ has no limit
+    as $x\to0$.
+  solution: $f'(0)=\lim_{h\to0}\frac{h^2\sin(1/h)}{h}=\lim_{h\to0}h\sin(1/h)=0$, by the squeeze theorem.
+    For $x\ne0$, the product rule gives $f'(x)=2x\sin(1/x)-\cos(1/x)$. The term $\cos(1/x)$ takes the
+    values $\pm1$ arbitrarily close to 0, so $\lim_{x\to0}f'(x)$ does not exist. The slopes near the origin
+    oscillate between roughly $-1$ and $1$.
+  common_errors:
+  - Claiming $f'$ is continuous at 0 because the envelope is flat there
+  - Claiming $f$ is not differentiable at 0
+  - Forgetting the $-\cos(1/x)$ term in $f'$
+  hints:
+    rephrase: Compute the difference quotient $\frac{f(h)-f(0)}{h}$ and take $h\to0$.
+    smaller_case: Bound $|f(h)/h|$ for a small $h$.
+    key_idea: Use the squeeze theorem on $h\sin(1/h)$, then differentiate for $x\ne0$ separately.
+  check: null
+extensions:
+  '3':
+  - Show that $f$ is differentiable everywhere but $f'$ is discontinuous at 0 only.
+  '4':
+  - Explain why $g(x)=x\sin(1/x)$ is continuous at 0 but not differentiable there.
+  '5':
+  - Determine whether $f$ has bounded variation on $[0,1]$.
+spoken_vocab:
+- x squared sine one over x
+- sketch
+- envelope y equals plus or minus x squared
+- zeros
+- touching points
+- squeeze theorem
+- odd function
+- derivative at zero
+- difference quotient
+- continuous at the origin
+- sine of one over x
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 3 (anonymous).pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 5
+  parts: 3
+  minutes: 15
+  flags:
+  - needs_diagram
+  tagline: Rich envelope sketch leading to discontinuous derivative discussion at origin
+  priority: 83
+  rank: 168
+  tier: B
+  category: past-interviews
+  d10: 4.0
+  real: 6.0
+  by: haiku
+tags:
+- curve_sketching
+- differentiation
+- limits_and_approximation

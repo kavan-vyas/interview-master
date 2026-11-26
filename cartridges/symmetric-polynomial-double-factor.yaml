@@ -1,0 +1,104 @@
+id: symmetric-polynomial-double-factor
+title: Symmetric polynomial divisible by x minus y has a double factor
+topics:
+- polynomials
+- factor theorem
+- symmetry
+- algebraic reasoning
+warmup: false
+answer_source: generated
+statement: 'Let $P(x,y)$ be a polynomial in $x$ and $y$ such that: i) $P(x,y)\equiv P(y,x)$ ii) $(x-y)$
+  is a factor of $P(x,y)$. Deduce that $(x-y)^2$ is a factor of $P(x,y)$.'
+stages:
+- goal: Write P = (x-y)Q and use symmetry to find how Q behaves when x and y are swapped.
+  expected: Q(y,x) = -Q(x,y)
+  solution: Write P(x,y) = (x-y)Q(x,y). Then P(y,x) = (y-x)Q(y,x). Symmetry gives (y-x)Q(y,x) = (x-y)Q(x,y),
+    so (x-y)[Q(y,x) + Q(x,y)] = 0. Since (x-y) is a nonzero polynomial and polynomials form an integral
+    domain, Q(y,x) + Q(x,y) = 0, i.e. Q(y,x) = -Q(x,y).
+  common_errors:
+  - Writing P(y,x) = (x-y)Q(y,x) with the wrong sign
+  - Dividing by (x-y) without noting that it is nonzero in an integral domain
+  - Concluding that Q is symmetric instead of antisymmetric
+  hints:
+    rephrase: Substitute the factorisation into both sides of the symmetry condition and compare the two
+      expressions.
+    smaller_case: Try P(x,y) = (x-y)(x+y)^0 and check the sign when you swap x and y.
+    key_idea: The factor x-y changes sign under swapping, so the other factor must compensate. Cancel
+      the nonzero common factor.
+  check: null
+- goal: Use the antisymmetry of Q to show that Q vanishes on the diagonal x = y.
+  expected: Setting y = x in Q(y,x) + Q(x,y) = 0 gives 2Q(x,x) = 0, so Q(x,x) = 0.
+  solution: Put y = x in Q(x,y) + Q(y,x) = 0 to get 2Q(x,x) = 0. The coefficients are real (or rational),
+    so 2 is invertible and Q(x,x) = 0 as a polynomial in x.
+  common_errors:
+  - Assuming Q(x,x) = 0 without substituting into the antisymmetry relation
+  - Forgetting that dividing by 2 needs characteristic not equal to 2
+  - Substituting x = 0 instead of setting y = x
+  hints:
+    rephrase: Put the two variables equal in the relation you found in the previous stage.
+    smaller_case: Take Q(x,y) = x - y, check that it is antisymmetric, and see what it gives on the diagonal.
+    key_idea: Setting the two variables equal in an antisymmetric relation forces the diagonal value to
+      be zero, when 2 is invertible.
+  check: null
+- goal: Conclude that (x-y) divides Q, and hence (x-y)^2 divides P.
+  expected: Q(x,y) = (y-x)R(x,y) for some polynomial R, so P(x,y) = (x-y)(y-x)R(x,y) = -(x-y)^2 R(x,y),
+    and (x-y)^2 divides P.
+  solution: Since Q(x,x) = 0, the factor theorem applied to Q as a polynomial in y over x gives (y-x)
+    dividing Q, so Q = (y-x)R for some polynomial R. Then P = (x-y)Q = (x-y)(y-x)R = -(x-y)^2 R, which
+    shows (x-y)^2 is a factor of P.
+  common_errors:
+  - Dropping the minus sign and writing P = (x-y)^2 R with the wrong sign (harmless for divisibility but
+    worth stating)
+  - Applying the factor theorem with the wrong variable
+  - Claiming the conclusion without showing that Q vanishes on the diagonal
+  hints:
+    rephrase: Use the fact that Q vanishes when y = x to write Q as a multiple of (y - x).
+    smaller_case: Take P(x,y) = (x-y)^3 and see how many factors of (x-y) it has.
+    key_idea: A polynomial vanishing at y = x is divisible by (y - x). Multiply this factor by the original
+      (x-y).
+  check: null
+extensions:
+  '3':
+  - Give an explicit symmetric example divisible by (x-y)^2, such as (x-y)^2 (x+y), and verify symmetry
+    and divisibility.
+  - Show that an antisymmetric polynomial divisible by (x-y) need not be divisible by (x-y)^2, for example
+    x-y itself.
+  '4':
+  - 'Show that the argument needs characteristic not equal to 2: over F_2, P = x+y is symmetric and divisible
+    by x-y = x+y, but (x+y)^2 does not divide it.'
+  - Explain where the step dividing by 2 is used and what fails without it.
+  '5':
+  - Prove that if (x-y)^m exactly divides a symmetric polynomial P, then m is even.
+  - 'Generalise: for symmetric P divisible by (x-y)^m, determine the parity of the exact multiplicity
+    of (x-y) in P.'
+spoken_vocab:
+- P of x comma y
+- x minus y
+- x minus y squared
+- Q of x comma y
+- P of y comma x
+- polynomial
+- factor
+- symmetric
+- characteristic not two
+- factor theorem
+- integral domain
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Antisymmetric quotient argument reveals a hidden double factor.
+  priority: 81
+  rank: 209
+  tier: B
+  category: tbo
+  d10: 4.5
+  real: 7.0
+  by: haiku
+tags:
+- proof
+- algebra_and_functions

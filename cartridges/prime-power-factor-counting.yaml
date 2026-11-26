@@ -1,0 +1,110 @@
+id: prime-power-factor-counting
+title: Counting Factors of Prime Powers
+topics:
+- prime numbers
+- factors
+- divisor counting
+- unique factorisation
+- optimisation over integers
+warmup: false
+answer_source: generated
+statement: What is a prime number? If $p$ is prime, what are the factors of $p^n$, and how many factors
+  does $p^n$ have? If $p$ and $q$ are distinct primes, how many factors does $p^nq^m$ have? Hence show
+  that $p^nq^m$ has $(n+1)(m+1)$ positive factors. If $p^nq^m$ has exactly 14 positive factors, what is
+  the smallest possible value of $p^nq^m$?
+stages:
+- goal: Define a prime number, then list the positive factors of p^n and count them.
+  expected: A prime is an integer greater than 1 whose only positive divisors are 1 and itself. The positive
+    factors of p^n are 1, p, p², …, pⁿ, so there are n + 1 of them.
+  solution: By unique prime factorisation, any positive divisor of pⁿ has the form pᵏ with 0 ≤ k ≤ n,
+    because p is the only prime in pⁿ. Each value of k gives a different divisor, so the count is n +
+    1. For example, 2³ = 8 has the divisors 1, 2, 4, 8, which is 4 = 3 + 1 of them.
+  common_errors:
+  - Omitting p⁰ = 1 from the list.
+  - Claiming p^n has only two factors, 1 and p^n.
+  - Including 0 or negative numbers as factors.
+  hints:
+    rephrase: Which positive integers divide 8 exactly? Find them all and then look for a pattern.
+    smaller_case: List the divisors of 2² and of 3². How many are there in each case?
+    key_idea: 'Use unique prime factorisation: a divisor of a prime power must be a power of the same
+      prime.'
+  check: len(divisors(2**3)) - (3+1)
+  check_ok: true
+- goal: For distinct primes p and q, count the positive factors of p^n q^m, and hence show there are (n
+    + 1)(m + 1).
+  expected: The positive factors are exactly p^i q^j with 0 ≤ i ≤ n and 0 ≤ j ≤ m. Since the choices of
+    i and j are independent and each pair gives a different number, there are (n + 1)(m + 1) factors.
+  solution: By unique factorisation, every positive divisor of p^n q^m has the form p^i q^j with 0 ≤ i
+    ≤ n and 0 ≤ j ≤ m, and each pair (i, j) gives a different number. There are n + 1 choices for i and
+    m + 1 choices for j, so the total is (n + 1)(m + 1). For example, 2² · 3³ = 108 has 3 × 4 = 12 factors.
+  common_errors:
+  - Adding the exponents, giving n + m + 1, instead of multiplying the choices.
+  - Forgetting that i = 0 or j = 0 gives valid factors.
+  - Double counting a factor that appears under two different pairs (i, j).
+  hints:
+    rephrase: How many choices do you have for the power of p, and separately for the power of q? How
+      do you combine them?
+    smaller_case: Take n = m = 1 and count the divisors of 2 · 3 by hand.
+    key_idea: Multiply the numbers of choices for each prime, using uniqueness of prime factorisation
+      to avoid repeats.
+  check: len(divisors(2**2*3**3)) - (2+1)*(3+1)
+  check_ok: true
+- goal: Find the smallest value of p^n q^m, for distinct primes p and q, that has exactly 14 positive
+    factors.
+  expected: 2⁶ · 3 = 192.
+  solution: We need (n + 1)(m + 1) = 14. With n, m ≥ 1, the pairs of factors are {2, 7} or {1, 14}; the
+    case {1, 14} would need an exponent 0, so the only option with both primes present is {n+1, m+1} =
+    {2, 7}, giving exponents {1, 6}. Put the larger exponent 6 on the smaller prime 2 and the exponent
+    1 on 3, giving 2⁶ · 3 = 192. The alternative 2 · 3⁶ = 1458 is larger. If a single prime is allowed
+    (m = 0), then 2¹³ = 8192 is larger still. So the minimum is 192.
+  common_errors:
+  - Putting the larger exponent on the larger prime, giving 2 · 3⁶ = 1458.
+  - Overlooking the choice of which prime gets which exponent.
+  - Treating 14 as a sum of exponents rather than a product of (n + 1)(m + 1).
+  hints:
+    rephrase: Which pairs of positive integers multiply to give 14? Each pair corresponds to exponents
+      for the two primes.
+    smaller_case: What is the smallest number of the form p^a q^b with exactly 6 positive factors?
+    key_idea: Factor 14 as (n+1)(m+1), then decide which prime should carry the larger exponent to make
+      the product as small as possible.
+  check: 2**6*3 - 192
+  check_ok: true
+extensions:
+  '3':
+  - Show that if n = p₁^a₁ p₂^a₂ … p_k^a_k with distinct primes, then n has ∏(aᵢ + 1) positive factors.
+  '4':
+  - How many positive factors does 2⁴ · 3² · 5 have? Find their sum.
+  '5':
+  - Find the smallest positive integer with exactly 12 positive factors, and justify that it is the smallest.
+spoken_vocab:
+- prime
+- positive factors
+- divisors
+- p to the power n
+- q to the power m
+- n plus one times m plus one
+- two to the power six times three
+- two to the power thirteen
+- unique factorisation
+- exponent
+- distinct primes
+- smallest possible value
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 8 (anonymous).pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 3
+  minutes: 10
+  flags: []
+  tagline: Clean factor-counting chain ending in a neat smallest-value search.
+  priority: 61
+  rank: 442
+  tier: C
+  category: past-interviews
+  d10: 3.5
+  real: 4.0
+  by: haiku
+tags:
+- number_theory
+- combinatorics

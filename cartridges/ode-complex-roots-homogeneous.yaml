@@ -1,0 +1,83 @@
+id: ode-complex-roots-homogeneous
+title: Homogeneous second-order ODE with complex roots
+topics:
+- ordinary differential equations
+- characteristic equation
+- complex roots
+warmup: true
+answer_source: pdf
+statement: What is the solution of the ordinary differential equation $y''+y'+y=0$?
+stages:
+- goal: Write the characteristic equation and find its roots.
+  expected: $r^2+r+1=0$, with roots $r=-\frac{1}{2}\pm\frac{\sqrt{3}}{2}i$.
+  solution: Substitute $y=e^{rx}$ to get $r^2+r+1=0$. The discriminant is $1-4=-3<0$, so $r=\frac{-1\pm
+    i\sqrt{3}}{2}=-\frac{1}{2}\pm\frac{\sqrt{3}}{2}i$.
+  common_errors:
+  - Giving real roots even though the discriminant is negative.
+  - Dropping the factor of 2 in the quadratic formula, giving $\pm i\sqrt{3}$ instead of $\frac{\pm i\sqrt{3}}{2}$.
+  - Sign error on the real part, writing $+\frac{1}{2}$.
+  hints:
+    rephrase: What auxiliary equation does $y=e^{rx}$ produce, and what does the quadratic formula say
+      about its roots?
+    smaller_case: Try $y''+y=0$ first. What is its characteristic equation, and what are its roots?
+    key_idea: For $ar^2+br+c$ the roots are $\frac{-b\pm\sqrt{b^2-4ac}}{2a}$. A negative discriminant
+      gives complex conjugate roots.
+  check: simplify(ans**2+ans+1)
+  check_ok: false
+- goal: Write the general real solution from the complex roots.
+  expected: $y=e^{-x/2}\left(c_1\cos\frac{\sqrt{3}}{2}x+c_2\sin\frac{\sqrt{3}}{2}x\right)$
+  solution: For roots $\alpha\pm i\beta$, the general solution is $e^{\alpha x}(c_1\cos\beta x+c_2\sin\beta
+    x)$. Here $\alpha=-\frac{1}{2}$ and $\beta=\frac{\sqrt{3}}{2}$, so $y=e^{-x/2}\left(c_1\cos\frac{\sqrt{3}}{2}x+c_2\sin\frac{\sqrt{3}}{2}x\right)$.
+  common_errors:
+  - Using $e^{\beta x}$ instead of $e^{\alpha x}$.
+  - Using $\beta=\sqrt{3}$ instead of $\frac{\sqrt{3}}{2}$.
+  - Omitting the sine term or the cosine term.
+  - Writing $e^{-x}$ instead of $e^{-x/2}$.
+  hints:
+    rephrase: Each root has a real part and an imaginary part. Which part controls the envelope and which
+      controls the oscillation?
+    smaller_case: What is the general solution if the roots are $\pm 2i$, so the equation is $y''+4y=0$?
+    key_idea: Write each root as $\alpha\pm i\beta$. Euler's formula turns $e^{(\alpha\pm i\beta)x}$ into
+      real functions multiplied by $e^{\alpha x}$.
+  check: simplify(diff(ans,x,2)+diff(ans,x)+ans)
+  check_ok: true
+extensions:
+  '3':
+  - Solve $y''+2y'+5y=0$ with $y(0)=1$ and $y'(0)=0$.
+  '4':
+  - Show that $y''+y'+y=0$ has no nonzero periodic solution.
+  '5':
+  - Prove that every solution of $y''+y'+y=0$ tends to $0$ as $x\to\infty$.
+spoken_vocab:
+- y double prime plus y prime plus y equals zero
+- characteristic equation
+- r squared plus r plus one
+- discriminant
+- alpha plus or minus i beta
+- e to the alpha x
+- cosine
+- sine
+- general solution
+- c one
+- c two
+- square root of three over two
+- minus one half
+source: zhou-quant/zhou-quant-guide.pdf#4
+verified: false
+rating:
+  quality: 2
+  difficulty: 3
+  parts: 2
+  minutes: 5
+  flags:
+  - trivial
+  tagline: Routine characteristic-equation recall with little room for discussion.
+  priority: 17
+  rank: 685
+  tier: D
+  category: zhou-quant
+  d10: 1.5
+  real: 2.0
+  by: haiku
+tags:
+- differential_equations

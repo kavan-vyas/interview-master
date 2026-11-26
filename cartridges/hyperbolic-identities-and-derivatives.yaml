@@ -1,0 +1,114 @@
+id: hyperbolic-identities-and-derivatives
+title: Hyperbolic identities, derivatives and inverse sinh
+topics:
+- hyperbolic functions
+- differentiation
+- inverse hyperbolic functions
+warmup: true
+answer_source: generated
+statement: Use the definitions, and the results of the previous question, to show that (i) $\operatorname{sech}^2
+  x = 1 - \tanh^2 x$ (ii) $\frac{d(\tanh x)}{dx} = \operatorname{sech}^2 x$ (iii) $\frac{d^2(\sinh x)}{dx^2}
+  = \sinh x$ (iv) $\sinh^{-1} x = \ln\left(x + \sqrt{x^2+1}\right)$.
+stages:
+- goal: Show that $\operatorname{sech}^2 x = 1 - \tanh^2 x$.
+  expected: $\operatorname{sech}^2 x = \dfrac{1}{\cosh^2 x} = \dfrac{\cosh^2 x - \sinh^2 x}{\cosh^2 x}
+    = 1 - \tanh^2 x$, using $\cosh^2 x - \sinh^2 x = 1$.
+  solution: From the exponential definitions, $\cosh^2 x - \sinh^2 x = \frac{(e^x+e^{-x})^2 - (e^x-e^{-x})^2}{4}
+    = \frac{4}{4} = 1$. Then $\operatorname{sech}^2 x = \frac{1}{\cosh^2 x} = \frac{\cosh^2 x - \sinh^2
+    x}{\cosh^2 x} = 1 - \frac{\sinh^2 x}{\cosh^2 x} = 1 - \tanh^2 x$.
+  common_errors:
+  - Writing $\operatorname{sech}^2 x = 1 + \tanh^2 x$ (sign error).
+  - Treating $\cosh^2 x - \sinh^2 x = 1$ as $\cosh^2 x + \sinh^2 x = 1$.
+  - Forgetting that $\tanh x = \sinh x / \cosh x$.
+  hints:
+    rephrase: Write sech and tanh in terms of cosh and sinh, then look for a common denominator.
+    smaller_case: 'Check the identity at $x = 0$ first: what are $\cosh 0$ and $\sinh 0$?'
+    key_idea: Express everything in terms of $\cosh x$ and $\sinh x$, and use the fact that $\cosh^2 x
+      - \sinh^2 x$ is constant.
+  check: simplify((1/cosh(x)**2 - (1 - tanh(x)**2)).rewrite(exp))
+  check_ok: true
+- goal: Show that $\frac{d(\tanh x)}{dx} = \operatorname{sech}^2 x$.
+  expected: $\frac{d(\tanh x)}{dx} = \frac{\cosh^2 x - \sinh^2 x}{\cosh^2 x} = \operatorname{sech}^2 x$.
+  solution: Using $\frac{d}{dx}\sinh x = \cosh x$ and $\frac{d}{dx}\cosh x = \sinh x$, the quotient rule
+    gives $\frac{d}{dx}\tanh x = \frac{\cosh x \cdot \cosh x - \sinh x \cdot \sinh x}{\cosh^2 x} = \frac{\cosh^2
+    x - \sinh^2 x}{\cosh^2 x} = \operatorname{sech}^2 x$.
+  common_errors:
+  - Using $\frac{d}{dx}\cosh x = -\sinh x$ (sign error), which gives the wrong sign in the numerator.
+  - Swapping the order in the quotient rule numerator.
+  - Not simplifying the numerator with $\cosh^2 x - \sinh^2 x = 1$ or with the result of part (i).
+  hints:
+    rephrase: Write tanh as a quotient of two functions and apply the quotient rule.
+    smaller_case: Recall the derivatives of $\sinh x$ and $\cosh x$ separately, and differentiate each
+      in turn.
+    key_idea: After applying the quotient rule, simplify the numerator using the identity for $\cosh^2
+      x - \sinh^2 x$.
+  check: simplify((diff(tanh(x), x) - 1/cosh(x)**2).rewrite(exp))
+  check_ok: true
+- goal: Show that $\frac{d^2(\sinh x)}{dx^2} = \sinh x$.
+  expected: $\frac{d^2}{dx^2}\sinh x = \frac{d}{dx}\cosh x = \sinh x$.
+  solution: $\frac{d}{dx}\sinh x = \cosh x$, and $\frac{d}{dx}\cosh x = \sinh x$, so $\frac{d^2}{dx^2}\sinh
+    x = \sinh x$.
+  common_errors:
+  - Writing $\frac{d}{dx}\cosh x = -\sinh x$.
+  - Confusing the second derivative with the derivative of $\cosh x$ alone.
+  hints:
+    rephrase: Differentiate twice, one step at a time.
+    smaller_case: Write the exponential definition of $\sinh x$ and differentiate it directly.
+    key_idea: Recall the first derivatives of $\sinh x$ and $\cosh x$.
+  check: simplify(diff(sinh(x), x, 2) - sinh(x))
+  check_ok: true
+- goal: Show that $\sinh^{-1} x = \ln\left(x + \sqrt{x^2+1}\right)$.
+  expected: Let $y = \sinh^{-1} x$, so $x = \sinh y$. Then $e^{2y} - 2x e^y - 1 = 0$, so $e^y = x \pm
+    \sqrt{x^2+1}$. Since $e^y > 0$ and $x - \sqrt{x^2+1} < 0$, we get $e^y = x + \sqrt{x^2+1}$ and so
+    $y = \ln\left(x + \sqrt{x^2+1}\right)$.
+  solution: Put $y = \sinh^{-1} x$, so $x = \frac{e^y - e^{-y}}{2}$. Multiplying by $2e^y$ gives $e^{2y}
+    - 2x e^y - 1 = 0$, a quadratic in $e^y$ with roots $x \pm \sqrt{x^2+1}$. The root $x - \sqrt{x^2+1}$
+    is negative (since $\sqrt{x^2+1} > |x|$), so it is rejected because $e^y > 0$. Hence $e^y = x + \sqrt{x^2+1}$
+    and taking logs gives the result.
+  common_errors:
+  - Keeping the negative root $x - \sqrt{x^2+1}$ and not rejecting it.
+  - Forgetting to multiply by $e^y$ before forming the quadratic.
+  - Taking logs of the wrong root or dropping the log.
+  hints:
+    rephrase: Write $x = \sinh y$ in exponentials and treat the equation as a quadratic in $e^y$.
+    smaller_case: 'Check the method with $x = 0$: what value of $y$ satisfies $\sinh y = 0$?'
+    key_idea: Use the sign of $e^y$ to decide which root of the quadratic is acceptable.
+  check: simplify(radsimp(sinh(log(x + sqrt(x**2 + 1))).rewrite(exp) - x))
+  check_ok: true
+extensions:
+  '3':
+  - Show directly from the exponential definitions that $\cosh^2 x - \sinh^2 x = 1$.
+  '4':
+  - Show that $\cosh^{-1} x = \ln\left(x + \sqrt{x^2-1}\right)$ for $x \geq 1$.
+  '5':
+  - Find $\frac{d}{dx}\sinh^{-1} x$ and show it equals $(x^2+1)^{-1/2}$.
+spoken_vocab:
+- sech squared x equals one minus tanh squared x
+- d tanh x d x
+- sech
+- tanh
+- sinh
+- cosh
+- inverse sinh
+- natural log
+- square root of x squared plus one
+- second derivative
+source: step-workbook/Cambridge STEP Short Workbook.pdf#1
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 4
+  minutes: 15
+  flags: []
+  tagline: Chains identities and derivatives to derive the logarithmic form of inverse sinh.
+  priority: 72
+  rank: 310
+  tier: B
+  category: step-workbook
+  d10: 4.0
+  real: 3.0
+  by: big-pickle
+tags:
+- hyperbolic_functions
+- differentiation

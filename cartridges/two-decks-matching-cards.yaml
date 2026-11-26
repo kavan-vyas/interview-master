@@ -1,0 +1,135 @@
+id: two-decks-matching-cards
+title: 'Two decks: probability of k matching pairs'
+topics:
+- probability
+- permutations
+- derangements
+- inclusion-exclusion
+- fixed points
+warmup: false
+answer_source: generated
+statement: 'Two full decks of cards are shuffled and placed side by side. I take the top card from each
+  pile and pair them up. What is the probability I have: i) 52 matching pairs? ii) 51 matching pairs?
+  iii) 50 matching pairs? iv) 49 matching pairs? v) $k$ matching pairs?'
+stages:
+- goal: Recast the pairing as a random permutation.
+  expected: Label the cards of the second deck by their positions. The pairing is a permutation $\sigma$
+    of the 52 cards, and every permutation is equally likely, with $52!$ possibilities in total. A matching
+    pair is a fixed point of $\sigma$.
+  solution: Each deck is a uniformly random ordering, so the pairing of positions is a uniformly random
+    bijection between the two decks, that is, a uniformly random permutation of 52 items. The number of
+    matching pairs equals the number of fixed points of this permutation. There are $52!$ equally likely
+    permutations.
+  common_errors:
+  - Treating each pair as matching independently with probability 1/52, which ignores the dependence between
+    positions.
+  - Forgetting that a match means the same card, face and suit, not just the same rank.
+  hints:
+    rephrase: Think of the second deck's order as a rearrangement of the first. Which rearrangements count
+      as matches?
+    smaller_case: Take just 3 cards in each deck. How many orderings of the second deck have exactly one
+      card in the same position as the first?
+    key_idea: Model the whole pairing as one arrangement of all 52 cards and count arrangements with a
+      given number of fixed positions.
+  check: null
+- goal: Find the probabilities of exactly 52 and exactly 51 matching pairs.
+  expected: Exactly 52 matches has probability $\frac{1}{52!}$. Exactly 51 matches has probability $0$.
+  solution: 52 matches means the permutation is the identity, which is one of the $52!$ permutations.
+    51 matches forces the 52nd pair to match too, since only one card remains in each deck, so 51 matches
+    is impossible.
+  common_errors:
+  - Assigning a positive probability to 51 matches.
+  - Confusing the identity permutation count with a different number.
+  hints:
+    rephrase: If 51 pairs match, what can you say about the last pair?
+    smaller_case: With 2 cards in each deck, how many pairings have exactly 1 match?
+    key_idea: Consider what a single unmatched pair forces when only one pair is left.
+  check: null
+- goal: Find the probabilities of exactly 50 and exactly 49 matching pairs.
+  expected: Exactly 50 matches has probability $\frac{1}{2\cdot 50!}$. Exactly 49 matches has probability
+    $\frac{1}{3\cdot 49!}$.
+  solution: For 50 matches, choose the 2 unmatched positions in $\binom{52}{2}=1326$ ways. On those two
+    positions the cards must be swapped, and that is the only derangement of 2 items, so there are $1326$
+    permutations and the probability is $\frac{1326}{52!}=\frac{1}{2\cdot 50!}$. For 49 matches, choose
+    3 unmatched positions in $\binom{52}{3}=22100$ ways, and the number of derangements of 3 items is
+    2, giving $44200$ permutations and probability $\frac{44200}{52!}=\frac{1}{3\cdot 49!}$.
+  common_errors:
+  - Forgetting that the non-matching positions must be deranged, not just mismatched in any way.
+  - Using $\binom{52}{50}$ as the number of ways to place the mismatches but counting derangements of
+    2 as 2 instead of 1.
+  - Arithmetic slips when converting $\frac{1326}{52!}$ into factorial form.
+  hints:
+    rephrase: Pick the positions that do not match. Among those positions, how many ways can the cards
+      be arranged so that none matches?
+    smaller_case: With 3 unmatched positions, list the arrangements of 3 cards so that no card stays put.
+    key_idea: Count the permutations with exactly k fixed points by choosing the fixed positions and deranging
+      the rest.
+  check: binomial(52,2)*subfactorial(2)/factorial(52) - 1/(2*factorial(50))
+  check_ok: true
+- goal: Give the probability of exactly $k$ matching pairs for general $k$.
+  expected: $P(k)=\frac{\binom{52}{k}\,D_{52-k}}{52!}=\frac{1}{k!}\sum_{j=0}^{52-k}\frac{(-1)^j}{j!}$,
+    where $D_m$ is the number of derangements of $m$ items.
+  solution: 'Choose the $k$ fixed positions in $\binom{52}{k}$ ways and derange the remaining $52-k$ positions
+    in $D_{52-k}$ ways, then divide by $52!$. Using $D_m=m!\sum_{j=0}^{m}\frac{(-1)^j}{j!}$ and $\binom{52}{k}\frac{(52-k)!}{52!}=\frac{1}{k!}$
+    gives the sum form. Check: $k=52$ gives $\frac{1}{52!}$, $k=51$ gives $0$, $k=50$ gives $\frac{1}{2\cdot
+    50!}$, $k=49$ gives $\frac{1}{3\cdot 49!}$.'
+  common_errors:
+  - Using $\binom{52}{k}$ alone without derangements of the remaining positions.
+  - Summing to the wrong upper limit, for example $52$ instead of $52-k$.
+  - Dropping the alternating signs in the derangement sum.
+  hints:
+    rephrase: Choose which k positions match, then ask how many ways the other positions can be filled
+      with no further matches.
+    smaller_case: Check your formula against the cases k=50 and k=51 that you have already worked out
+      by hand.
+    key_idea: Use inclusion-exclusion on the number of forced matches to count derangements of the remaining
+      positions.
+  check: binomial(52,7)*subfactorial(45)/factorial(52) - (1/factorial(7))*Sum((-1)**j/factorial(j),(j,0,45)).doit()
+  check_ok: true
+extensions:
+  '3':
+  - As k grows large with 52 cards replaced by n, what does $P(k)$ approach? Justify the limit.
+  - What is the expected number of matching pairs?
+  '4':
+  - Find the probability of at least one matching pair, and compare it with the value approached as the
+    deck size grows.
+  - Explain why the answer to the expected-value question does not depend on the deck size.
+  '5':
+  - How would the answer change if the decks were not shuffled but the second deck was shuffled and the
+    first was in standard order? Explain why it is the same.
+  - Generalise to two decks of $n$ cards, each with $m$ copies of every card.
+spoken_vocab:
+- two decks
+- fifty two cards
+- shuffled
+- matching pairs
+- probability
+- factorial
+- binomial coefficient
+- fifty two choose k
+- derangement
+- inclusion exclusion
+- permutation
+- fixed points
+- sum from j equals zero
+- minus one to the power j
+- over j factorial
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 7
+  parts: 5
+  minutes: 25
+  flags: []
+  tagline: Rencontres-style matching; part (ii) is a trap and general k invites discussion.
+  priority: 93
+  rank: 64
+  tier: A
+  category: tbo
+  d10: 6.0
+  real: 5.5
+  by: haiku
+tags:
+- probability
+- combinatorics

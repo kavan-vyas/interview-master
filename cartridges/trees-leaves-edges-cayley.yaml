@@ -1,0 +1,161 @@
+id: trees-leaves-edges-cayley
+title: 'Trees: leaves, n-1 edges, unique paths, Cayley counts'
+topics:
+- graph theory
+- trees
+- induction
+- extremal arguments
+- counting
+- conjecture
+warmup: false
+answer_source: pdf
+statement: 'A tree is a connected graph with no cycles.
+
+
+  (i) Show that every tree with at least two vertices has a leaf (a vertex of degree $1$).
+
+
+  (ii) Deduce that a tree with $n$ vertices has exactly $n-1$ edges.
+
+
+  (iii) Show that in a tree, any two vertices are joined by exactly one path.
+
+
+  (iv) How many different trees are there on the labelled vertices $\{1,2,3\}$? On $\{1,2,3,4\}$? On $\{1,\dots,5\}$?
+  Make a conjecture for $n$ labelled vertices.'
+stages:
+- goal: Prove that every tree with at least two vertices has a leaf.
+  expected: 'Take a longest path. Its endpoint has degree 1: a neighbour off the path would extend it,
+    and a neighbour on the path other than the next vertex would create a cycle.'
+  solution: A tree with at least two vertices is connected, so it has an edge and hence a path with at
+    least one edge. The graph is finite, so choose a path $P=v_0v_1\dots v_k$ of maximum length, where
+    $k\ge 1$. The endpoint $v_0$ has the neighbour $v_1$ on $P$. A neighbour of $v_0$ not on $P$ would
+    extend $P$, contradicting maximality. A neighbour $v_j$ on $P$ with $j\ge 2$ would give the cycle
+    $v_0v_1\dots v_jv_0$, which is forbidden. Hence $\deg(v_0)=1$.
+  common_errors:
+  - Picking an arbitrary vertex and claiming it is a leaf
+  - Forgetting that a longest path must contain at least one edge (this is where having at least two vertices
+    is used)
+  - Handling neighbours off the path but not neighbours on the path, or vice versa
+  - Taking a maximal-degree or 'furthest' vertex without justification
+  hints:
+    rephrase: Look at the two ends of a path that cannot be made any longer.
+    smaller_case: Draw a path on 4 vertices and a star on 4 vertices. Where are the leaves, and what do
+      the ends of a longest path look like?
+    key_idea: Maximality of the path restricts where the endpoint's neighbours can be, and the no-cycle
+      condition rules out the rest.
+  check: null
+- goal: Show by induction on n that a tree on n vertices has exactly n-1 edges, and check the case n=5.
+  expected: Remove a leaf and its edge. The rest is still a tree on n-1 vertices, so it has n-2 edges
+    by hypothesis. Adding the leaf edge back gives n-1 edges. For n=5 this is 4.
+  solution: 'Base case: a tree on $1$ vertex has $0=1-1$ edges. Inductive step: let $T$ be a tree on $n\ge
+    2$ vertices and let $v$ be a leaf (part (i)). Delete $v$ and its unique edge. The result is acyclic,
+    since deleting cannot create a cycle. It is connected, because a path between two remaining vertices
+    never passes through $v$ (a vertex of degree $1$ cannot be an interior vertex of a path). So it is
+    a tree on $n-1$ vertices, with $n-2$ edges by hypothesis. Restoring $v$ and its edge gives $n-1$ edges.
+    For $n=5$ this gives $4$ edges.'
+  common_errors:
+  - Forgetting to check that the remaining graph is still connected
+  - Removing an arbitrary vertex rather than a leaf, which can disconnect the graph
+  - Starting the induction at a base case that is not a tree, or not checking it
+  - Miscounting by adding or removing the leaf edge twice
+  hints:
+    rephrase: What happens to the number of vertices and edges when you delete one leaf and its edge?
+    smaller_case: Take the path on 3 vertices. Delete an endpoint and count what is left. Then do the
+      same for a star on 4 vertices.
+    key_idea: Deleting a leaf keeps you inside the class of trees, so the induction hypothesis applies
+      to the smaller tree.
+  check: (5-1)-4
+  check_ok: true
+- goal: Show that in a tree, any two vertices are joined by exactly one path.
+  expected: Connectedness gives at least one path. If two different paths joined x and y, some edge of
+    one is missing from the other, and the rest of the two paths gives another route between its ends,
+    which together with that edge forms a cycle.
+  solution: Connectedness gives at least one $x$-$y$ path. Suppose $P\ne Q$ are two $x$-$y$ paths. If
+    every edge of $P$ were an edge of $Q$, then $P$ would be a subpath of $Q$ starting at $x$ and ending
+    at $y$, so $P=Q$. Hence some edge $e=ab$ lies on $P$ but not on $Q$, with $a$ nearer $x$ on $P$. Follow
+    $P$ backwards from $a$ to $x$, then $Q$ from $x$ to $y$, then $P$ backwards from $y$ to $b$. This
+    is a walk from $a$ to $b$ not using $e$, so it contains an $a$-$b$ path avoiding $e$. Adding $e$ to
+    this path gives a cycle, contradicting that the graph is a tree. So the path is unique.
+  common_errors:
+  - Saying the paths 'might share vertices' without actually producing a cycle
+  - Confusing paths with walks, which may repeat vertices and need not contain a cycle
+  - Assuming the two paths share only their endpoints
+  - Forgetting to prove existence of a path, which comes from connectedness
+  hints:
+    rephrase: Suppose two different routes exist between the same two vertices. What can you build from
+      them that avoids some edge but still links its endpoints?
+    smaller_case: Take a 4-cycle and two opposite vertices. How many paths join them, and what cycle do
+      they form together?
+    key_idea: Two distinct routes between the same endpoints always contain a loop, and a tree forbids
+      loops.
+  check: null
+- goal: Count the labelled trees on {1,2,3}, {1,2,3,4} and {1,...,5}, and conjecture a formula for n labelled
+    vertices.
+  expected: 3, 16 and 125 trees respectively. The conjecture is $n^{n-2}$ (Cayley's formula).
+  solution: '$n=3$: every tree is a path, determined by its middle vertex, so there are $3$. $n=4$: stars
+    are determined by the centre, giving $4$; paths give $4!/2=12$; total $16$. $n=5$: paths give $5!/2=60$;
+    stars give $5$; the fork (degree sequence $3,2,1,1,1$) is determined by choosing the degree-3 vertex
+    ($5$ ways), the degree-2 vertex ($4$ ways) and the leaf attached to it ($3$ ways), giving $60$; total
+    $125$. The counts $3,16,125$ equal $3^1,4^2,5^3$, suggesting $n^{n-2}$, which is Cayley''s formula.'
+  common_errors:
+  - Counting unlabelled shapes instead of labelled trees
+  - Using $4!$ or $5!$ for paths, forgetting that a path and its reverse are the same
+  - Missing the fork shape on 5 vertices
+  - Stating a conjecture that fits only one or two data points
+  hints:
+    rephrase: Sort the trees on each vertex count by shape, then count how many labellings each shape
+      has.
+    smaller_case: Start with n=3. Each tree is a path, so ask which vertex is in the middle.
+    key_idea: For each shape, count labelled copies carefully, counting a path and its reverse once; then
+      compare the totals with powers of n.
+  check: Abs(3-3**1)+Abs(factorial(4)/2+4-4**2)+Abs(factorial(5)/2+5+5*4*3-5**3)
+  check_ok: true
+extensions:
+  '3':
+  - Show that a tree on n vertices with n at least 2 has at least two leaves.
+  - Which trees on n vertices have exactly two leaves?
+  '4':
+  - Prove that adding any edge to a tree creates exactly one cycle.
+  - Show that a connected graph on n vertices with n-1 edges is a tree.
+  '5':
+  - Prove Cayley's formula $n^{n-2}$ by counting labelled trees with Prüfer sequences.
+  - How many labelled trees on n vertices have vertex 1 of degree exactly d?
+spoken_vocab:
+- tree
+- connected graph
+- cycle
+- leaf
+- degree
+- vertex
+- vertices
+- edge
+- path
+- longest path
+- induction
+- labelled vertices
+- star
+- fork
+- Cayley's formula
+- n to the power n minus two
+- n minus one
+source: jaymin/Jaymin Interview (1).pdf#p73
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 4
+  minutes: 35
+  flags: []
+  tagline: Proofs building to Cayley's formula, conjectured from small counts.
+  priority: 110
+  rank: 25
+  tier: S
+  category: jaymin
+  d10: 6.0
+  real: 7.0
+  by: haiku
+refined: true
+tags:
+- proof
+- combinatorics

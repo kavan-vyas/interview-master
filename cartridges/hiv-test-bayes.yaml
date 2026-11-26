@@ -1,0 +1,102 @@
+id: hiv-test-bayes
+title: 'HIV test: probability of disease given a positive result'
+topics:
+- conditional probability
+- Bayes' theorem
+- probability trees
+warmup: false
+answer_source: generated
+statement: $1$ person in $1000$ is HIV positive. Test results are $99.9\%$ correct, which we take to mean
+  the test gives a positive result for $99.9\%$ of people with the disease and a negative result for $99.9\%$
+  of people without it. What is the probability that someone with a positive result actually has the disease?
+stages:
+- goal: Find the joint probability that a randomly chosen person both has the disease and tests positive.
+  expected: $P(D \text{ and } +) = \frac{999}{1000000} = 0.000999$
+  solution: 'Base rate $P(D)=\frac{1}{1000}$. Sensitivity $P(+\mid D)=\frac{999}{1000}$. Multiply: $\frac{1}{1000}\cdot\frac{999}{1000}=\frac{999}{1000000}$.'
+  common_errors:
+  - Using $0.999$ as the base rate instead of $0.001$
+  - Stopping at the test accuracy and never using the base rate
+  hints:
+    rephrase: Start with the fraction of people who have the disease, then ask what the test does to that
+      group.
+    smaller_case: Imagine a population of 100,000 people. How many have the disease, and how many of those
+      test positive?
+    key_idea: Multiply the base rate by the probability of a positive result given the disease.
+  check: Rational(1,1000)*Rational(999,1000) - Rational(999,1000000)
+  check_ok: true
+- goal: Find the overall probability of testing positive, including false positives from healthy people.
+  expected: $P(+) = \frac{999}{500000} = 0.001998$
+  solution: $P(+) = P(+\mid D)P(D) + P(+\mid \text{not }D)P(\text{not }D) = \frac{999}{1000}\cdot\frac{1}{1000}
+    + \frac{1}{1000}\cdot\frac{999}{1000} = \frac{999}{1000000}+\frac{999}{1000000}=\frac{999}{500000}$.
+  common_errors:
+  - Leaving out the false positives from the $999$ healthy people per $1000$
+  - Using $P(+\mid\text{not }D)=0.999$ instead of $0.001$
+  hints:
+    rephrase: A positive result can come from either the diseased group or the healthy group. Account
+      for both.
+    smaller_case: Among 100,000 people, count the positive results from the diseased group and separately
+      from the healthy group.
+    key_idea: 'Use the law of total probability over the two groups: diseased and not diseased.'
+  check: Rational(999,1000000) + Rational(1,1000)*Rational(999,1000) - Rational(999,500000)
+  check_ok: true
+- goal: Compute $P(\text{disease}\mid\text{positive})$ and interpret it.
+  expected: $\frac{1}{2}$, i.e. $50\%$. Only half of positive results come from people who actually have
+    the disease.
+  solution: By Bayes' theorem, $P(D\mid +) = \frac{P(D \text{ and } +)}{P(+)} = \frac{999/1000000}{999/500000}
+    = \frac{1}{2}$.
+  common_errors:
+  - Answering $99.9\%$, which confuses $P(+\mid D)$ with $P(D\mid +)$
+  - Answering $0.1\%$ or $1/1000$, ignoring the test result
+  - Dividing by $P(D)$ instead of $P(+)$
+  hints:
+    rephrase: Of all the positive results, what fraction belong to people who really have the disease?
+    smaller_case: Among 100,000 people, compare the number of true positives with the total number of
+      positives.
+    key_idea: Divide the joint probability from stage one by the overall probability of a positive result
+      from stage two.
+  check: (Rational(999,1000000))/(Rational(999,500000)) - Rational(1,2)
+  check_ok: true
+extensions:
+  '3':
+  - If a second, independent test on the same person is also positive, what is the probability that they
+    have the disease?
+  '4':
+  - Redo the calculation for a disease with prevalence $1$ in $10000$, keeping $99.9\%$ accuracy.
+  '5':
+  - How would the answer change if the false positive rate were $1\%$ instead of $0.1\%$, with prevalence
+    still $1$ in $1000$? Explain why false positive rate matters more than sensitivity when the disease
+    is rare.
+spoken_vocab:
+- one in one thousand
+- probability
+- positive
+- negative
+- P of D given positive
+- P of positive given disease
+- Bayes theorem
+- ninety nine point nine percent
+- false positive
+- sensitivity
+- specificity
+- base rate
+- total probability
+- one half
+- fifty percent
+source: past-interviews/Actual Past Interview Questions/H2.jpg
+verified: false
+rating:
+  quality: 8
+  difficulty: 4
+  parts: 3
+  minutes: 10
+  flags: []
+  tagline: 'Counterintuitive: a positive test gives exactly a 50% chance of disease.'
+  priority: 91
+  rank: 124
+  tier: A
+  category: past-interviews
+  d10: 4.6
+  real: 7.5
+  by: deepseek-v4.1-flash-free
+tags:
+- probability

@@ -1,0 +1,87 @@
+id: die-all-faces-appear
+title: Probability all six faces appear in n rolls
+topics:
+- probability
+- inclusion-exclusion
+- counting
+warmup: false
+answer_source: generated
+statement: We roll a 6-sided die $n$ times. What's the probability that all faces have appeared?
+stages:
+- goal: Set up inclusion-exclusion over the faces that never appear.
+  expected: P_n = \sum_{k=0}^{6} (-1)^k \binom{6}{k} \left(\frac{6-k}{6}\right)^n
+  solution: Let A_i be the event that face i never appears. The wanted probability is 1 minus the probability
+    of the union of the A_i. For any set S of k faces, P(all faces in S never appear) = ((6-k)/6)^n. Inclusion-exclusion
+    over the sets S gives P_n = \sum_{k=0}^{6} (-1)^k \binom{6}{k} ((6-k)/6)^n.
+  common_errors:
+  - Using (5/6)^n for the probability that a single face is missing but forgetting the signs
+  - Forgetting that the faces are not independent, which is why inclusion-exclusion is needed
+  hints:
+    rephrase: Instead of counting ways for all faces to appear, count events where some face is missing.
+    smaller_case: For a 2-sided coin rolled n times, what is P(both sides appear)?
+    key_idea: Inclusion-exclusion over the set of faces that are missing.
+  check: null
+- goal: Check the formula for n less than 6 and evaluate it at n=6.
+  expected: The sum is 0 for n less than 6, and P_6 = 5/324.
+  solution: For n less than 6 there are not enough rolls to show six faces, so the sum is zero. For n=6
+    the sum gives (6!)/6^6 = 720/46656 = 5/324.
+  common_errors:
+  - Evaluating the formula at n=6 with the wrong binomial coefficients
+  - Writing 720/6^6 without simplifying
+  hints:
+    rephrase: What must the probability be when there are fewer rolls than faces?
+    smaller_case: Check the formula at n=1 and at n=2.
+    key_idea: With n=6 every roll must show a different face, so count the orderings of six faces.
+  check: sum((-1)**k*binomial(6,k)*Rational(6-k,6)**6 for k in range(7)) - Rational(5,324)
+  check_ok: null
+- goal: Express P_n using surjections and Stirling numbers.
+  expected: P_n = 6! * S(n,6) / 6^n, where S(n,6) is the Stirling number of the second kind.
+  solution: The number of sequences of n rolls using all six faces is the number of surjections from n
+    rolls onto 6 faces, which is 6! S(n,6). Dividing by 6^n total sequences gives P_n.
+  common_errors:
+  - Confusing Stirling numbers of the first and second kind
+  - Forgetting to divide by 6^n
+  hints:
+    rephrase: How many rolls-to-faces maps use every face exactly once as a partition into 6 nonempty
+      groups?
+    smaller_case: For n=6, how many sequences use all faces?
+    key_idea: Surjections equal 6! times the number of ways to partition the rolls into 6 nonempty blocks.
+  check: 720*stirling(6,6)/6**6 - Rational(5,324)
+  check_ok: false
+extensions:
+  '3':
+  - What is the expected number of rolls until all six faces have appeared?
+  '4':
+  - Compute the probability that all six faces appear in exactly 7 rolls.
+  '5':
+  - Show that P_n tends to 1 as n tends to infinity.
+spoken_vocab:
+- die
+- six sided die
+- n rolls
+- probability
+- faces
+- inclusion exclusion
+- binomial six k
+- minus one to the k
+- five over six
+- stirling number
+source: screenshots/Screenshot 2026-11-19 at 14.37.58.png
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 3
+  minutes: 10
+  flags: []
+  tagline: Inclusion-exclusion route to Stirling numbers; strong follow-up discussion.
+  priority: 71
+  rank: 353
+  tier: B
+  category: screenshots
+  d10: 6.6
+  real: 8.4
+  by: deepseek-v4.1-flash-free
+tags:
+- probability
+- combinatorics

@@ -1,0 +1,78 @@
+id: mod-100-eleven-power-ten
+title: Divisibility of 11^10 - 1 by 100
+topics:
+- number theory
+- modular arithmetic
+- binomial theorem
+warmup: true
+answer_source: generated
+statement: Prove, without directly calculating its value, that $11^{10}-1$ is divisible by $100$.
+stages:
+- goal: Expand $11^{10}$ with the binomial theorem applied to $(1+10)^{10}$ and identify the first two
+    terms.
+  expected: $11^{10}-1 = 100 + \sum_{k=2}^{10}\binom{10}{k}10^k$
+  solution: Write $11=1+10$, so $11^{10}=\sum_{k=0}^{10}\binom{10}{k}10^k$. The $k=0$ term is $1$ and
+    the $k=1$ term is $\binom{10}{1}\cdot 10^1=100$. Subtracting $1$ leaves $11^{10}-1 = 100 + \sum_{k=2}^{10}\binom{10}{k}10^k$.
+  common_errors:
+  - Forgetting the $k=0$ term, so the subtraction of 1 is not handled correctly.
+  - Taking the $k=1$ term as 10 instead of $\binom{10}{1}\cdot 10 = 100$.
+  - Writing $11^{10}$ as $10^{10}+1$, which is not a valid expansion.
+  hints:
+    rephrase: How can you write 11 as a sum of two simpler numbers so the binomial theorem helps?
+    smaller_case: Apply the same idea to $11^2-1$ and look at which expansion terms carry powers of 10.
+    key_idea: Write 11 as 1 + 10, apply the binomial theorem, and track which terms carry factors of 10.
+  check: sp.expand(11**10 - 1 - (100 + sum(sp.binomial(10,k)*10**k for k in range(2,11))))
+  check_ok: null
+- goal: Show that every remaining term is divisible by 100, and conclude the divisibility.
+  expected: For $k\ge 2$, $10^k$ is divisible by $100$, so the sum is a multiple of $100$. Hence $11^{10}-1$
+    is $100$ plus a multiple of $100$, so it is divisible by $100$.
+  solution: For $k\ge 2$, $10^k = 100\cdot 10^{k-2}$, so each term $\binom{10}{k}10^k$ is a multiple of
+    $100$. Therefore $11^{10}-1 = 100\left(1+\sum_{k=2}^{10}\binom{10}{k}10^{k-2}\right)$, which is divisible
+    by $100$.
+  common_errors:
+  - Claiming the $k=2$ term is not divisible by 100, when $10^2=100$ exactly.
+  - Stating divisibility without writing the expression as $100$ times an integer.
+  hints:
+    rephrase: Which powers of 10 are guaranteed to be multiples of 100?
+    smaller_case: In the expansion of $(1+10)^3$, check which terms are multiples of 100.
+    key_idea: Factor out 100 from the whole expression and check that what remains is an integer.
+  check: sp.Mod(sum(sp.binomial(10,k)*10**k for k in range(2,11)), 100)
+  check_ok: null
+extensions:
+  '3':
+  - Show that $11^{10}-1$ is divisible by $4$ and by $25$ separately, then explain why this implies divisibility
+    by $100$.
+  '4':
+  - Prove that $11^{n}-1$ is divisible by $10$ for every positive integer $n$.
+  '5':
+  - Find the largest power of $10$ that divides $11^{10}-1$, and justify your answer without computing
+    the full number.
+spoken_vocab:
+- eleven to the power of ten
+- minus one
+- divisible by one hundred
+- binomial theorem
+- choose
+- sum from k equals two to ten
+- ten to the power of k
+- modulo one hundred
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 3
+  difficulty: 2
+  parts: 2
+  minutes: 5
+  flags:
+  - trivial
+  tagline: Binomial expansion of (1+10)^10 makes divisibility by 100 immediate; a short warm-up.
+  priority: 27
+  rank: 637
+  tier: D
+  category: tbo
+  d10: 2.5
+  real: 5.5
+  by: haiku
+tags:
+- number_theory
+- proof

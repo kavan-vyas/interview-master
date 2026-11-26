@@ -1,0 +1,108 @@
+id: rational-root-nth-root-irrational
+title: Rational root theorem and irrationality of nth roots
+topics:
+- number theory
+- rational root theorem
+- proof
+- divisibility
+- irrationality
+warmup: false
+answer_source: generated
+statement: If the rational quantity $\dfrac{p}{q}$ (in lowest terms) is a root of $f(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0$,
+  prove that $p\mid a_0$ and $q\mid a_n$. Hence show that the $n$th root of an integer is either an integer
+  itself or irrational.
+stages:
+- goal: Clear denominators in $f(p/q)=0$.
+  expected: $a_np^n+a_{n-1}p^{n-1}q+\cdots+a_1pq^{n-1}+a_0q^n=0$
+  solution: Substitute $x=p/q$ into $f$ and multiply by $q^n$ to get $\sum_{k=0}^{n}a_kp^kq^{n-k}=0$.
+    Every term is an integer, so divisibility arguments can be used.
+  common_errors:
+  - Multiplying by $q$ only, which does not clear all the denominators
+  - Mixing up the powers of $p$ and $q$ in the terms
+  hints:
+    rephrase: What happens to the fraction if you multiply the whole equation by a suitable power of $q$?
+    smaller_case: Take $n=2$ and a root $p/q$ of $a_2x^2+a_1x+a_0$. Multiply through by $q^2$ and check
+      each term.
+    key_idea: Multiplying by the highest power of the denominator makes every term an integer.
+  check: null
+- goal: Deduce that $p\mid a_0$.
+  expected: Since $p\mid a_0q^n$ and $\gcd(p,q)=1$, we have $p\mid a_0$.
+  solution: From stage 1, $a_0q^n=-p\left(a_np^{n-1}+a_{n-1}p^{n-2}q+\cdots+a_1q^{n-1}\right)$, so $p\mid
+    a_0q^n$. Since $\gcd(p,q)=1$, $\gcd(p,q^n)=1$. By Euclid's lemma, $p\mid a_0$.
+  common_errors:
+  - Forgetting to use $\gcd(p,q)=1$, which is needed to cancel
+  - Writing the factorisation with the wrong terms
+  hints:
+    rephrase: Isolate the term $a_0q^n$ on one side. What can you say about its divisibility by $p$?
+    smaller_case: For $n=1$, the equation is $a_1p+a_0q=0$. Which of $p$ and $a_0$ must divide the other?
+    key_idea: If $p$ divides a product and shares no factor with one of the factors, then $p$ divides
+      the other factor.
+  check: null
+- goal: Deduce that $q\mid a_n$ by the symmetric argument.
+  expected: $q\mid a_n$, because $q\mid a_np^n$ and $\gcd(q,p)=1$.
+  solution: 'Isolate the leading term: $a_np^n=-q\left(a_{n-1}p^{n-1}+\cdots+a_0q^{n-1}\right)$. So $q\mid
+    a_np^n$. Since $\gcd(q,p^n)=1$, Euclid''s lemma gives $q\mid a_n$.'
+  common_errors:
+  - Copying the $p$ argument without swapping the roles of $p$ and $q$
+  - Forgetting that $\gcd(q,p^n)=1$ follows from $\gcd(p,q)=1$
+  hints:
+    rephrase: Isolate the leading term $a_np^n$ instead. What does it tell you about divisibility by $q$?
+    smaller_case: For $n=2$, write $a_2p^2$ in terms of $q$. What divides it?
+    key_idea: Use the same lemma with the roles of $p$ and $q$ exchanged.
+  check: null
+- goal: Apply the result to $x^n=N$ with $N\in\mathbb{Z}$.
+  expected: A rational $n$th root of an integer $N$ is itself an integer, so the $n$th root of $N$ is
+    either an integer or irrational.
+  solution: Suppose the $n$th root $r$ of $N$ is rational, $r=p/q$ in lowest terms. Then $r$ is a root
+    of $f(x)=x^n-N$, whose leading coefficient is $a_n=1$. By stage 3, $q\mid 1$, so $q=1$ and $r=p$ is
+    an integer. Hence every $n$th root of an integer is either an integer or irrational.
+  common_errors:
+  - Concluding that every $n$th root is irrational, which ignores perfect powers
+  - Forgetting that the leading coefficient of $x^n-N$ is $1$
+  hints:
+    rephrase: If the $n$th root is rational, which polynomial with leading coefficient $1$ is it a root
+      of?
+    smaller_case: Consider $n=2$ and $N=8$. Could $\sqrt{8}$ equal a rational $p/q$ in lowest terms? Use
+      the divisibility results.
+    key_idea: Apply the divisibility result to the polynomial $x^n-N$, whose leading coefficient is $1$.
+  check: null
+extensions:
+  '3':
+  - Deduce that $\sqrt[3]{2}$ is irrational.
+  '4':
+  - Use the rational root theorem to prove that $\sqrt{2}+\sqrt{3}$ is irrational.
+  '5':
+  - Prove that $\sqrt[3]{2}+1$ is irrational.
+spoken_vocab:
+- p divides a naught
+- q divides a n
+- lowest terms
+- rational root
+- nth root
+- Euclid's lemma
+- greatest common divisor
+- coprime
+- leading coefficient
+- denominator
+- sum from k equals zero to n
+- irrational
+- integer
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 6
+  difficulty: 6
+  parts: 4
+  minutes: 15
+  flags: []
+  tagline: Rational root theorem proof gives integer-or-irrational dichotomy for nth roots.
+  priority: 72
+  rank: 307
+  tier: B
+  category: tbo
+  d10: 5.0
+  real: 6.0
+  by: haiku
+tags:
+- proof
+- number_theory

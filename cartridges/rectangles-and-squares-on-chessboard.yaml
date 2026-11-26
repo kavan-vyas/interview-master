@@ -1,0 +1,77 @@
+id: rectangles-and-squares-on-chessboard
+title: Rectangles and squares on an 8 by 8 chessboard
+topics:
+- counting
+- combinatorics
+- binomial coefficients
+- summation
+warmup: true
+answer_source: pdf
+statement: How many rectangles (of any size) are there on an $8 \times 8$ chessboard? How many squares?
+stages:
+- goal: Count the rectangles on an $8 \times 8$ chessboard.
+  expected: $\binom{9}{2}^2 = 36^2 = 1296$ rectangles.
+  solution: A rectangle is determined by its top and bottom edges, which are two of the 9 horizontal grid
+    lines, and its left and right edges, which are two of the 9 vertical grid lines. There are $\binom{9}{2}$
+    choices for each pair, giving $\binom{9}{2}^2 = 1296$.
+  common_errors:
+  - Counting $8 \times 8 = 64$ or $\binom{8}{2}^2$, using 8 lines instead of 9
+  - Counting only rectangles of the board's grid cells instead of all sizes
+  hints:
+    rephrase: A rectangle is fixed by choosing its boundary lines. How many grid lines are there in each
+      direction?
+    smaller_case: On a $1 \times 1$ board there is one rectangle. On a $2 \times 2$ board, how many lines
+      are there in each direction?
+    key_idea: Choose two horizontal lines and two vertical lines; the choices are independent.
+  check: binomial(9,2)**2 - 1296
+  check_ok: true
+- goal: Count the squares on an $8 \times 8$ chessboard of all sizes.
+  expected: $\sum_{k=1}^{8} (9-k)^2 = \sum_{k=1}^{8} k^2 = 204$ squares.
+  solution: A $k \times k$ square has $(9-k)$ possible horizontal positions and $(9-k)$ vertical positions,
+    giving $(9-k)^2$ placements. Summing over $k = 1,\ldots,8$ gives $1^2 + 2^2 + \cdots + 8^2 = 204$.
+  common_errors:
+  - Counting only $1 \times 1$ squares (64) or only the largest square (1)
+  - Using $(8-k)^2$ for placements, which misses the last row and column of positions
+  hints:
+    rephrase: For a fixed square side length $k$, how many positions can its top-left corner take?
+    smaller_case: On a $2 \times 2$ board, how many $1 \times 1$ squares and how many $2 \times 2$ squares
+      are there?
+    key_idea: Count each side length separately, then add over all side lengths.
+  check: Sum((9-k)**2,(k,1,8)).doit() - 204
+  check_ok: true
+extensions:
+  '3':
+  - Find the number of squares on an $m \times m$ board for general $m$.
+  '4':
+  - Find the number of rectangles on an $m \times n$ board, and check your answer with $m=n=8$.
+  '5':
+  - Count the axis-aligned boxes in an $n \times n \times n$ cube, using the same choosing-lines idea.
+spoken_vocab:
+- rectangles
+- squares
+- eight by eight chessboard
+- binomial nine choose two
+- grid lines
+- sum of k squared
+- horizontal lines
+- vertical lines
+- positions
+- side length k
+source: jaymin/Jaymin Interview (1).pdf#p25
+verified: false
+rating:
+  quality: 7
+  difficulty: 4
+  parts: 2
+  minutes: 8
+  flags: []
+  tagline: Choose two of nine gridlines per direction; generalise to m×n boards.
+  priority: 90
+  rank: 136
+  tier: A
+  category: jaymin
+  d10: 3.5
+  real: 6.5
+  by: haiku
+tags:
+- combinatorics

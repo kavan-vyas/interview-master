@@ -1,0 +1,128 @@
+[
+ {
+  "q": "How does your study of maths and physics help you understand the real world? Give an example of a real life situation.",
+  "kind": "personal",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Maths Trinity Hall Cambridge 2005.doc"
+ },
+ {
+  "q": "Sketch the graphs of $\\sin(x^2)$ and $\\sin^2 x$. What shape is the first graph near the origin?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Maths Trinity Hall Cambridge 2005.doc"
+ },
+ {
+  "q": "Prove that $n^3-n$ is divisible by 6. If $n$ is odd, what is $n^3-n$ divisible by?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Maths Trinity Hall Cambridge 2005.doc"
+ },
+ {
+  "q": "I have an upside-down hollow cone. If I fill it half way up, what proportion of the volume of the whole cone is filled? How can you explain the change in area and volume of any shape when its sides are doubled?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Maths Trinity Hall Cambridge 2005.doc"
+ },
+ {
+  "q": "I have two children, at least one of them is a daughter. What is the probability that I have at least one son?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Maths Trinity Hall Cambridge 2005.doc"
+ },
+ {
+  "q": "What is the minimum value of $x^2+y^2+\\frac{1}{x^2+y^2}$?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Maths Trinity Hall Cambridge 2005.doc"
+ },
+ {
+  "q": "What is $0.\\dot{9}$? Prove it using the geometric progression formula.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Maths Trinity Hall Cambridge 2005.doc"
+ },
+ {
+  "q": "Why do you like maths? Why did you choose to do maths, and not physics, chemistry, or natural sciences?",
+  "kind": "personal",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Maths Trinity Hall Cambridge 2005.doc"
+ },
+ {
+  "q": "What hobbies do you have?",
+  "kind": "personal",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Maths Trinity Hall Cambridge 2005.doc"
+ },
+ {
+  "q": "Integrate $\\ln x$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Maths Trinity Hall Cambridge 2005.doc"
+ },
+ {
+  "q": "Prove the integration by parts formula from first principles.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Maths Trinity Hall Cambridge 2005.doc"
+ },
+ {
+  "q": "How would you get an approximation for the temperature of the Sun? What information would you need?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Maths Trinity Hall Cambridge 2005.doc"
+ },
+ {
+  "q": "Define $\\cosh x$ and $\\sinh x$. Sketch both on the same graph. Where do both graphs cut the axes? What is the gradient of $\\sinh x$ at $x=0$?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Maths Trinity Hall Cambridge 2005.doc"
+ },
+ {
+  "q": "Prove that $\\sinh^{-1}x = \\ln\\left(x+\\sqrt{1+x^2}\\right)$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Maths Trinity Hall Cambridge 2005.doc"
+ },
+ {
+  "q": "Find the roots of $x^3-13x^2+39x-27=0$, given that the roots are in geometric progression.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Maths Trinity Hall Cambridge 2005.doc"
+ },
+ {
+  "q": "Prove geometrically the Newton-Raphson method of finding approximations to roots. Show a case where this method fails. Does this method work with all functions that are increasing throughout?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Maths Trinity Hall Cambridge 2005.doc"
+ },
+ {
+  "q": "What is special about the angle in a semicircle? Prove it from scratch.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Maths Trinity Hall Cambridge 2005.doc"
+ },
+ {
+  "q": "Show an elegant proof that you met in masterclasses/lectures outside of school.",
+  "kind": "personal",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Maths Trinity Hall Cambridge 2005.doc"
+ }
+]

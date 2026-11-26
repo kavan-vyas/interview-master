@@ -1,0 +1,108 @@
+id: sketch-y-squared-equals-x-squared-x-plus-one
+title: Sketching y² = x²(x+1)
+topics:
+- curve sketching
+- algebra
+- symmetry
+- implicit curves
+- inequalities
+warmup: false
+answer_source: generated
+statement: Sketch the curve $y^2=x^2(x+1)$. (a) Identify any symmetry, intercepts, and the behaviour of
+  the curve near the origin. (b) For which values of $x$ does the curve exist at all?
+stages:
+- goal: Identify the symmetry of the curve.
+  expected: The curve is symmetric about the $x$-axis, since the equation depends only on $y^2$.
+  solution: Replacing $y$ by $-y$ leaves $y^2=x^2(x+1)$ unchanged, so for every point $(x,y)$ on the curve,
+    $(x,-y)$ is also on it. The curve is symmetric about the $x$-axis.
+  common_errors:
+  - Claiming symmetry about the $y$-axis, which would require replacing $x$ by $-x$ and leaving the equation
+    unchanged (it does not, because of the $(x+1)$ factor).
+  - Claiming symmetry about the origin.
+  hints:
+    rephrase: Which substitution, applied to only one variable, leaves the equation unchanged?
+    smaller_case: Test the point $(1,\sqrt{2})$. Is $(1,-\sqrt{2})$ on the curve?
+    key_idea: A symmetry about an axis corresponds to a substitution that changes the sign of exactly
+      one coordinate and leaves the equation unchanged.
+- goal: Find the intercepts with the axes.
+  expected: The $x$-intercepts are $(-1,0)$ and $(0,0)$. The curve meets the $y$-axis only at the origin.
+  solution: Setting $y=0$ gives $x^2(x+1)=0$, so $x=0$ (a double root) or $x=-1$. Setting $x=0$ gives
+    $y^2=0$, so $y=0$ only.
+  common_errors:
+  - Missing $x=-1$ as an intercept.
+  - Treating the origin as only one intercept, without noting it is a double root.
+  hints:
+    rephrase: Set $y=0$ and solve for $x$. Then set $x=0$ and solve for $y$.
+    smaller_case: What is the $x$-intercept when $x^2(x+1)=0$ has a repeated factor?
+    key_idea: Intercepts are found by setting the other coordinate to zero. Pay attention to repeated
+      roots.
+  check: Eq(FiniteSet(*solve(x**2*(x+1), x)), FiniteSet(-1, 0))
+  check_ok: true
+- goal: Determine the values of $x$ for which the curve exists.
+  expected: The curve exists exactly when $x\ge -1$.
+  solution: A real $y$ exists only when $x^2(x+1)\ge 0$. Since $x^2\ge 0$, this needs $x+1\ge 0$ (or $x=0$,
+    which is already included), so $x\ge -1$.
+  common_errors:
+  - Answering $x\ge 0$ and forgetting the loop between $x=-1$ and $x=0$.
+  - Forgetting the requirement $x^2(x+1)\ge 0$ and reading only $x+1\ge 0$ with no check of sign.
+  hints:
+    rephrase: For which $x$ is the right-hand side non-negative?
+    smaller_case: Check $x=-2$, $x=-0.5$ and $x=1$ and decide which give a non-negative value.
+    key_idea: The square of a real number is non-negative, so the right-hand side must be non-negative.
+  check: Eq(solve_univariate_inequality(x**2*(x+1) >= 0, x, relational=False), Interval(-1, oo))
+  check_ok: true
+- goal: Describe the behaviour of the curve near the origin.
+  expected: The origin is a node (a double point) with tangent lines $y=x$ and $y=-x$.
+  solution: Near the origin $x^3$ is negligible compared with $x^2$, so $y^2\approx x^2$, giving $y\approx
+    \pm x$. The two branches pass through the origin with these slopes, so the origin is a node.
+  common_errors:
+  - Calling the origin a cusp, which would need the two branches to share a tangent.
+  - Using $y^2\approx x^3$ near the origin, which is the wrong leading term.
+  hints:
+    rephrase: 'Which term dominates when $x$ is very small: $x^2$ or $x^3$?'
+    smaller_case: What slopes do the two branches have when $x=0.01$?
+    key_idea: Find the lowest-degree part of the equation near the origin and factor it.
+  check: expand((y - x)*(y + x) - (y**2 - x**2))
+  check_ok: true
+extensions:
+  '3':
+  - Find the area enclosed by the loop between $x=-1$ and $x=0$.
+  '4':
+  - Parametrise the curve using $t=y/x$ and find $x(t)$ and $y(t)$.
+  '5':
+  - Find the maximum value of $y$ on the loop, and the $x$-value where it occurs.
+spoken_vocab:
+- y squared equals x squared times x plus one
+- x squared
+- x plus one
+- symmetry
+- x-axis
+- y-axis
+- intercepts
+- origin
+- node
+- tangent
+- y equals x
+- y equals minus x
+- exists
+- greater than or equal to minus one
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 4
+  parts: 4
+  minutes: 12
+  flags:
+  - needs_diagram
+  tagline: Implicit curve with symmetry, existence domain, and a node at origin.
+  priority: 74
+  rank: 284
+  tier: B
+  category: juan
+  d10: 3.0
+  real: 6.0
+  by: haiku
+tags:
+- curve_sketching
+- coordinate_geometry

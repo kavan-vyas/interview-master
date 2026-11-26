@@ -1,0 +1,81 @@
+id: boys-girls-ratio-club
+title: Boys and girls ratio in a club
+topics:
+- ratio
+- linear equations
+- word problems
+warmup: true
+answer_source: pdf
+statement: 'The ratio of boys to girls in a club is $3 : 5$. When $6$ more boys join the club, the numbers
+  of boys and girls are equal. How many members did the club have originally? a) $16$ b) $20$ c) $32$
+  d) $24$ e) $40$'
+stages:
+- goal: Use the ratio and the extra boys to find the common multiplier.
+  expected: Let the numbers be $3k$ boys and $5k$ girls. Then $3k + 6 = 5k$, so $k = 3$.
+  solution: Boys $= 3k$ and girls $= 5k$. After 6 more boys join, $3k+6 = 5k$, so $2k = 6$ and $k = 3$.
+    So there were 9 boys and 15 girls.
+  common_errors:
+  - Adding 6 to the girls instead of the boys.
+  - Reversing the ratio to $5k$ boys and $3k$ girls.
+  - Solving $3k + 6 = 5k$ incorrectly as $k = 6$.
+  hints:
+    rephrase: Write the boys and girls as multiples of one unit. Which group changes?
+    smaller_case: If there were 3 boys and 5 girls originally, how many more boys would make them equal?
+    key_idea: Only the boys change, so equate $3k+6$ with the fixed number of girls $5k$.
+  check: 3*3 + 6 - 5*3
+  check_ok: true
+- goal: Find the original total number of club members.
+  expected: 'Total $= 3k + 5k = 8k = 8 \times 3 = 24$. Answer: d).'
+  solution: 'Original total is $3k + 5k = 8k$, and with $k = 3$ this is 24. Answer: d) 24.'
+  common_errors:
+  - Using the total after the 6 boys join, which is 30, instead of the original.
+  - Giving $k = 3$ as the answer instead of the total.
+  - Miscalculating $8 \times 3$.
+  hints:
+    rephrase: The question asks for the original number of members, not the boys or girls separately.
+    smaller_case: If $k$ were 1, what would the original total be?
+    key_idea: Add the boy and girl parts of the original ratio, using the multiplier you just found.
+  check: 8*3 - 24
+  check_ok: true
+extensions:
+  '3':
+  - If 6 boys left instead of joining, how many members would there be?
+  - If 6 girls joined instead of boys, how many would there be originally?
+  '4':
+  - Find the new ratio of boys to girls after the 6 boys join.
+  - Find the number of members originally if the ratio were $2:3$ and 4 boys joined.
+  '5':
+  - Generalise to ratio $a:b$ with $n$ boys joining, and state the condition for a solution.
+  - Explain why the answer must be a multiple of 8.
+spoken_vocab:
+- ratio
+- three
+- five
+- boys
+- girls
+- six more
+- equal
+- k
+- twenty four
+- eight k
+- members
+- originally
+source: kclms/kclms-specimen-mcq-3.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 2
+  minutes: 2
+  flags:
+  - trivial
+  tagline: Simple ratio arithmetic with a multiple-choice answer; little discussion.
+  priority: 17
+  rank: 698
+  tier: D
+  category: kclms
+  d10: 1.5
+  real: 3.0
+  by: deepseek-v4.1-flash-free
+tags:
+- algebra_and_functions

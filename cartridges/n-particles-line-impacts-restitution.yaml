@@ -1,0 +1,139 @@
+id: n-particles-line-impacts-restitution
+title: Chain of collisions with geometric masses
+topics:
+- collisions
+- coefficient of restitution
+- conservation of momentum
+- kinetic energy
+- geometric series
+warmup: false
+answer_source: pdf
+statement: $N$ particles $P_1, P_2, \ldots, P_N$ with masses $m, qm, q^2m, \ldots, q^{N-1}m$ respectively
+  are at rest at distinct points along a straight line in gravity-free space. The particle $P_1$ is set
+  in motion towards $P_2$ with velocity $V$, and in every subsequent impact the coefficient of restitution
+  is $e$, where $0<e<1$. Show that after the first impact the velocities of $P_1$ and $P_2$ are $\left(\frac{1-eq}{1+q}\right)V$
+  and $\left(\frac{1+e}{1+q}\right)V$ respectively. Show that if $q \leqslant e$, then there are exactly
+  $N-1$ impacts, and that if $q=e$, then the total loss of kinetic energy after all impacts have occurred
+  is equal to $\frac{1}{2} m e\left(1-e^{N-1}\right)V^2$.
+stages:
+- goal: Find the velocities of P_1 and P_2 after the first impact.
+  expected: V_1 = (1 - eq)V/(1+q) and V_2 = (1+e)V/(1+q).
+  solution: 'Conservation of momentum: mV = mV_1 + qm V_2, so V_1 + qV_2 = V. Newton''s law of restitution:
+    V_2 - V_1 = eV. Substituting V_2 = V_1 + eV into the first equation gives V_1(1+q) = V(1 - eq), so
+    V_1 = (1-eq)V/(1+q). Then V_2 = V_1 + eV = (1+e)V/(1+q).'
+  common_errors:
+  - Taking the restitution law as V_1 - V_2 = eV, which reverses the sign.
+  - Using the mass ratio wrongly (for example q m instead of q m for P_2 and m for P_1).
+  - Algebra slips when eliminating one unknown.
+  hints:
+    rephrase: What two quantities are conserved or related by the rules of impact, and how many equations
+      do you have for two unknowns?
+    smaller_case: Take q=1 (equal masses). Work out the velocities by hand and check them against your
+      general formulas.
+    key_idea: 'Use conservation of momentum together with the restitution relation: separation speed equals
+      e times approach speed.'
+  check: simplify(((1 - e*q)*V + q*(1 + e)*V)/(1 + q) - V) + simplify((1 + e)*V/(1 + q) - (1 - e*q)*V/(1
+    + q) - e*V)
+  check_ok: true
+- goal: Show that P_1 cannot strike P_2 again after the first impact.
+  expected: V_2 - V_1 = eV, which is positive, so P_2 moves faster than P_1 and separates from it.
+  solution: From the previous stage, V_2 - V_1 = [(1+e) - (1 - eq)]V/(1+q) = e(1+q)V/(1+q) = eV. Since
+    e>0 and V>0 this is positive, so P_2 pulls away from P_1 and no second impact between them can occur
+    before P_2 is struck. Also V_1 = (1-eq)V/(1+q) is positive because eq <= e^2 < 1 when q <= e.
+  common_errors:
+  - Concluding that the separation is zero or negative because of a sign error.
+  - Forgetting to check that the first particle's velocity is positive.
+  hints:
+    rephrase: After impact, could P_1 ever catch up with P_2 if P_2 is moving faster?
+    smaller_case: Use q=1 and e=1/2 to check whether the relative velocity is positive.
+    key_idea: Compare the velocities of the two particles just after impact.
+  check: simplify((1 + e)*V/(1 + q) - (1 - e*q)*V/(1 + q) - e*V)
+  check_ok: true
+- goal: For q <= e, show that there are exactly N-1 impacts.
+  expected: The speed ratio r = (1+e)/(1+q) is at least 1 exactly when q <= e. Each particle's speed after
+    being struck is no less than the speed of the particle behind it, so no particle is struck from behind
+    again. The impact chain runs once for each consecutive pair, giving exactly N-1 impacts.
+  solution: Let u_k be the speed of P_k just before impact k (between P_k and P_{k+1}), with u_1 = V.
+    The masses satisfy mass(P_{k+1})/mass(P_k) = q, so by the same calculation as the first impact, P_{k+1}
+    leaves with speed u_{k+1} = r u_k with r = (1+e)/(1+q), and P_k leaves with speed a_k = c u_k with
+    c = (1-eq)/(1+q) > 0. Thus a_k = c r^{k-1} V... more precisely a_k = c u_k with u_k = r^{k-1} V. Since
+    a_{k-1} = c u_{k-1} and a_k = c r u_{k-1}, we have a_k >= a_{k-1} exactly when r >= 1, i.e. q <= e.
+    So P_k never catches P_{k-1} again. P_{k+1} always moves faster than P_k after impact k because r
+    > c. Hence each pair (P_k, P_{k+1}) for k = 1, ..., N-1 impacts exactly once, giving N-1 impacts.
+  common_errors:
+  - Forgetting that the mass ratio of struck to striker is q at every stage, not only at the first impact.
+  - Concluding that more impacts occur because speeds are growing rather than comparing the striker's
+    speed with the one behind it.
+  - Treating r >= 1 as r > 1, which misses the equality case q = e.
+  hints:
+    rephrase: After each impact, compare the speed of the particle that has just been struck with the
+      speed of the particle that struck it earlier.
+    smaller_case: Look at only P_1, P_2 and P_3 and track the velocities after each impact.
+    key_idea: Each impact has the same form as the first one, so the speeds follow a geometric pattern.
+      Compare the ratio of successive speeds with 1.
+  check: simplify((1 + e)/(1 + q) - 1 - (e - q)/(1 + q))
+  check_ok: true
+- goal: For q = e, find the final velocities and the total kinetic energy lost.
+  expected: Final speeds are (1-e)V for P_1, ..., P_{N-1} and V for P_N. The loss of kinetic energy is
+    (1/2) m e (1 - e^{N-1}) V^2.
+  solution: With q = e, the ratio r = 1, so each particle that is struck leaves with speed V, and the
+    striker leaves with speed c V = (1-e)V. So P_1, ..., P_{N-1} end with speed (1-e)V and P_N ends with
+    speed V. P_k has mass e^{k-1} m. Final kinetic energy is (1/2) m V^2 [(1-e)^2 (1 + e + ... + e^{N-2})
+    + e^{N-1}] = (1/2) m V^2 [(1-e)(1 - e^{N-1}) + e^{N-1}] = (1/2) m V^2 (1 - e + e^N). Initial kinetic
+    energy is (1/2) m V^2, so the loss is (1/2) m V^2 (e - e^N) = (1/2) m e (1 - e^{N-1}) V^2.
+  common_errors:
+  - Using masses of P_k as m rather than e^{k-1} m in the energy sum.
+  - Summing the geometric series with the wrong number of terms.
+  - Forgetting to add the energy of P_N.
+  hints:
+    rephrase: When q = e, what happens to the speed of each particle at the moment it is struck?
+    smaller_case: Take N = 2 with masses m and em and find the final speeds and energy loss directly.
+    key_idea: Use the fact that the speed does not change along the chain, then sum a geometric series
+      of kinetic energies.
+  check: expand(e*(1 - e**(N - 1)) - (e - e**N))
+  check_ok: null
+extensions:
+  '3':
+  - Find the total loss of kinetic energy for general q <= e.
+  '4':
+  - What changes when q > e? Describe the sequence of impacts for N = 3.
+  '5':
+  - Verify that total momentum is conserved at the end of the process when q = e, and explain why this
+    check does not confirm the energy result.
+spoken_vocab:
+- P one
+- P two
+- P N
+- mass m
+- q m
+- e
+- V
+- restitution
+- kinetic energy
+- impact
+- one minus e q over one plus q
+- one plus e over one plus q
+- e to the power N minus one
+- half m e
+- geometric progression
+- q less than or equal to e
+- N minus one impacts
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#17
+verified: false
+rating:
+  quality: 8
+  difficulty: 7
+  parts: 4
+  minutes: 25
+  flags: []
+  tagline: Momentum and restitution chain with rich algebra and energy-loss discussion.
+  priority: 92
+  rank: 81
+  tier: A
+  category: siklos
+  d10: 6.5
+  real: 3.0
+  by: haiku
+tags:
+- mechanics
+- sequences_and_series

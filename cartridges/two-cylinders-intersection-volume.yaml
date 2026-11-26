@@ -1,0 +1,81 @@
+id: two-cylinders-intersection-volume
+title: Volume of two intersecting cylinders (Steinmetz solid)
+topics:
+- multivariable calculus
+- volume
+- cross-sections
+- integration
+warmup: false
+answer_source: pdf
+statement: Suppose two cylinders of equal radius $r$ intersect at right angles, and their central axes
+  also intersect. What is the volume of the intersection?
+stages:
+- goal: Set up coordinates and find the area of a cross-section perpendicular to one axis.
+  expected: $4(r^2-x^2)$
+  solution: Take the cylinders as $x^2+y^2\le r^2$ and $x^2+z^2\le r^2$, whose axes are the $z$- and $y$-axes.
+    Fix $x$. Then $|y|\le\sqrt{r^2-x^2}$ and $|z|\le\sqrt{r^2-x^2}$, so the cross-section is a square
+    of side $2\sqrt{r^2-x^2}$ with area $4(r^2-x^2)$.
+  common_errors:
+  - Using a circle as the cross-section
+  - Using side length $2r$ instead of $2\sqrt{r^2-x^2}$
+  - Forgetting that the cross-section depends on the slicing coordinate
+  hints:
+    rephrase: Choose a slicing direction and write each cylinder's constraint in terms of the two coordinates
+      that remain.
+    smaller_case: Find the cross-section at $x=0$ first, then reason about how it shrinks as $x$ grows.
+    key_idea: Once the slicing coordinate is fixed, each cylinder bounds one of the two remaining coordinates
+      independently.
+  check: sp.simplify(ans - 4*(r**2 - x**2))
+  check_ok: null
+- goal: Integrate the cross-sectional area over the full range of the slicing coordinate.
+  expected: $\frac{16}{3}r^3$
+  solution: The slicing coordinate runs from $-r$ to $r$, so $V=\int_{-r}^{r}4(r^2-x^2)\,dx=8\int_0^r(r^2-x^2)\,dx=8\left(r^3-\frac{r^3}{3}\right)=\frac{16}{3}r^3$.
+  common_errors:
+  - Integrating only from $0$ to $r$ and forgetting the symmetry factor
+  - Dropping the factor 4 from the square's area
+  - Evaluating $\int_0^r x^2\,dx$ incorrectly as $r^2$
+  hints:
+    rephrase: Add up the slice areas over the whole range the slicing coordinate can take.
+    smaller_case: Set $r=1$ and integrate the polynomial by hand.
+    key_idea: Symmetry lets you halve the work, but make sure you count both halves.
+  check: sp.simplify(ans - sp.Rational(16,3)*r**3)
+  check_ok: null
+extensions:
+  '3':
+  - Show that the ball $x^2+y^2+z^2\le r^2$ lies inside the intersection and compare the two volumes.
+  '4':
+  - Compute the surface area of the intersection.
+  '5':
+  - Find the volume when the two cylinders have radii $r$ and $s$ with $r\neq s$, still intersecting at
+    right angles.
+spoken_vocab:
+- volume
+- two cylinders
+- radius r
+- right angles
+- cross section
+- square
+- integral from minus r to r
+- four times r squared minus x squared
+- sixteen thirds r cubed
+- Steinmetz solid
+source: zhou-quant/zhou-quant-guide.pdf#2
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 2
+  minutes: 15
+  flags:
+  - needs_diagram
+  tagline: Classic Steinmetz solid; square cross-sections and natural extensions to discuss.
+  priority: 77
+  rank: 259
+  tier: B
+  category: zhou-quant
+  d10: 5.5
+  real: 6.0
+  by: haiku
+tags:
+- geometry
+- integration

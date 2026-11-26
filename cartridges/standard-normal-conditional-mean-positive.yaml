@@ -1,0 +1,91 @@
+id: standard-normal-conditional-mean-positive
+title: Conditional mean of a standard normal given positive
+topics:
+- probability
+- normal distribution
+- conditional expectation
+- integration
+warmup: false
+answer_source: pdf
+statement: If $X$ is a standard normal random variable, $X\sim N(0,1)$, what is $E[X\mid X>0]$?
+stages:
+- goal: Find $P(X>0)$ for the standard normal.
+  expected: $\frac12$
+  solution: The standard normal density is symmetric about $0$, so $P(X>0)=P(X<0)$. Since $P(X=0)=0$ and
+    these two events together have probability $1$, each equals $\frac12$.
+  common_errors:
+  - Answering $1$ for the probability
+  - Treating $E[X\mid X>0]$ as $E[X]=0$ and ignoring the condition
+  hints:
+    rephrase: What fraction of the standard normal's probability lies to the right of zero?
+    smaller_case: Think about the symmetry of the bell curve about its centre.
+    key_idea: The density is symmetric about $0$ and the total probability is $1$.
+  check: sp.simplify(ans - sp.Rational(1,2))
+  check_ok: null
+- goal: Evaluate $\int_0^\infty x\,\frac{1}{\sqrt{2\pi}}e^{-x^2/2}\,dx$.
+  expected: $\frac{1}{\sqrt{2\pi}}$
+  solution: The factor $x$ is the negative derivative of the exponent $-x^2/2$. An antiderivative of $x
+    e^{-x^2/2}$ is $-e^{-x^2/2}$. Evaluating from $0$ to $\infty$ gives $0-(-1)=1$. Multiplying by $\frac{1}{\sqrt{2\pi}}$
+    gives $\frac{1}{\sqrt{2\pi}}$.
+  common_errors:
+  - Dropping the constant $\frac{1}{\sqrt{2\pi}}$
+  - Sign error when differentiating $-x^2/2$, giving $-1$
+  - Integrating from $-\infty$ to $0$ instead
+  hints:
+    rephrase: Look for an antiderivative of $x e^{-x^2/2}$ directly.
+    smaller_case: Compute $\int_0^1 x e^{-x^2/2}\,dx$ first and look for the pattern.
+    key_idea: The factor $x$ is (up to sign) the derivative of the exponent, so the integrand is a derivative
+      of an exponential.
+  check: sp.simplify(ans - 1/sp.sqrt(2*sp.pi))
+  check_ok: null
+- goal: Combine the pieces using the definition of conditional expectation.
+  expected: $\sqrt{\frac{2}{\pi}}$
+  solution: By definition $E[X\mid X>0]=\frac{\int_0^\infty x\,\phi(x)\,dx}{P(X>0)}$, where $\phi$ is
+    the standard normal density. Dividing $\frac{1}{\sqrt{2\pi}}$ by $\frac12$ gives $\frac{2}{\sqrt{2\pi}}=\sqrt{\frac{2}{\pi}}$.
+  common_errors:
+  - Forgetting to divide by $P(X>0)$
+  - Simplifying $\frac{2}{\sqrt{2\pi}}$ incorrectly as $\frac{1}{\sqrt{\pi}}$
+  - Reporting $E[X]=0$ as the answer
+  hints:
+    rephrase: Combine the two pieces you found using the definition of conditional expectation.
+    smaller_case: What would the answer be if the probability were $1$ instead of $\frac12$?
+    key_idea: Conditional expectation is the partial integral over the event divided by the probability
+      of the event.
+  check: sp.simplify(ans - sp.sqrt(2/sp.pi))
+  check_ok: null
+extensions:
+  '3':
+  - Find $E[X\mid X<0]$.
+  '4':
+  - Compute $\mathrm{Var}(X\mid X>0)$.
+  '5':
+  - Compute $E[X\mid X>a]$ for a general constant $a$ in terms of the standard normal density.
+spoken_vocab:
+- standard normal
+- X given X greater than zero
+- expected value
+- probability of X greater than zero
+- one half
+- integral from zero to infinity
+- x times e to the minus x squared over two
+- one over root two pi
+- square root of two over pi
+- conditional expectation
+source: zhou-quant/zhou-quant-guide.pdf#2
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 1
+  minutes: 6
+  flags: []
+  tagline: 'Classic half-normal mean: clean integration, nice conditional-expectation sanity check.'
+  priority: 51
+  rank: 522
+  tier: C
+  category: zhou-quant
+  d10: 2.5
+  real: 4.5
+  by: haiku
+tags:
+- probability

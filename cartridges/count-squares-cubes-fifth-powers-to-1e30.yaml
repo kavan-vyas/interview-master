@@ -1,0 +1,109 @@
+id: count-squares-cubes-fifth-powers-to-1e30
+title: Count perfect squares, cubes or fifth powers up to 10^30
+topics:
+- counting
+- inclusion-exclusion
+- perfect powers
+- lcm
+warmup: false
+answer_source: generated
+statement: How many integers from $1$ to $10^{30}$ inclusive are perfect squares, cubes or fifth powers?
+stages:
+- goal: Count the squares, cubes and fifth powers up to 10^30 separately and add them.
+  expected: 'Squares: $10^{15}$. Cubes: $10^{10}$. Fifth powers: $10^{6}$. Sum: $10^{15}+10^{10}+10^{6}=1000010001000000$.'
+  solution: Integers up to N that are k-th powers are $1^k,2^k,\dots,\lfloor N^{1/k}\rfloor^k$, so the
+    count is $\lfloor N^{1/k}\rfloor$. Here $N=10^{30}$ gives $10^{30/2}=10^{15}$, $10^{30/3}=10^{10}$,
+    and $10^{30/5}=10^6$. Summing gives $1000010001000000$.
+  common_errors:
+  - Using N/2 or N/3 for the number of powers
+  - Dividing the exponent incorrectly
+  - Forgetting that 1 is counted as a power
+  hints:
+    rephrase: How many k-th powers lie in 1 to N, and how do you find the largest base whose k-th power
+      is at most N?
+    smaller_case: Take N=100 and count the squares and cubes in 1 to 100 separately.
+    key_idea: The k-th powers up to N are 1^k, 2^k, ..., up to the largest integer whose k-th power is
+      at most N.
+  check: 10**15 + 10**10 + 10**6 - 1000010001000000
+  check_ok: true
+- goal: Count the overlaps between each pair of the three sets.
+  expected: 'A number that is both a square and a cube is a sixth power, so the overlaps are sixth powers
+    ($10^5$), tenth powers ($10^3$) and fifteenth powers ($10^2$). Sum of pairwise overlaps: $10^5+10^3+10^2=101100$.'
+  solution: A positive integer is both a j-th and a k-th power exactly when it is an lcm(j,k)-th power.
+    The lcm pairs are lcm(2,3)=6, lcm(2,5)=10, lcm(3,5)=15, giving counts $\lfloor 10^{30/6}\rfloor=10^5$,
+    $\lfloor 10^{30/10}\rfloor=10^3$, $\lfloor 10^{30/15}\rfloor=10^2$.
+  common_errors:
+  - Using the product of exponents instead of the lcm
+  - Counting pairwise overlaps with the wrong exponent, e.g. 10^(30/4)
+  - Forgetting that the overlaps must be subtracted
+  hints:
+    rephrase: Which exponent describes numbers that are simultaneously two kinds of power?
+    smaller_case: For N=100, list which numbers from 1 to 100 are both squares and cubes.
+    key_idea: Use the least common multiple of the two exponents for each overlap.
+  check: 10**5 + 10**3 + 10**2 - 101100
+  check_ok: true
+- goal: Count the triple overlap and combine everything by inclusion-exclusion.
+  expected: The triple overlap is the set of 30th powers, count $10^{30/30}=10$. The total is $10^{15}+10^{10}+10^{6}-(10^5+10^3+10^2)+10=1000010000898910$.
+  solution: 'Inclusion-exclusion gives $|S\cup C\cup F|=|S|+|C|+|F|-|S\cap C|-|S\cap F|-|C\cap F|+|S\cap
+    C\cap F|$. The triple overlap is the set of lcm(2,3,5)=30th powers, of which there are $10^{30/30}=10$.
+    Substituting: $1000010001000000-101100+10=1000010000898910$.'
+  common_errors:
+  - Forgetting to add back the triple overlap
+  - Using lcm(2,3,5) incorrectly as 15 or 2
+  - Arithmetic errors when subtracting 101100 from 1000010001000000
+  hints:
+    rephrase: Add the single sets, subtract the pairwise overlaps, then correct for the part you subtracted
+      too many times.
+    smaller_case: For N=100 verify the inclusion-exclusion formula by listing all squares, cubes and fifth
+      powers up to 100.
+    key_idea: Inclusion-exclusion over the seven nonempty subsets of {squares, cubes, fifth powers}; the
+      triple overlap is counted by the lcm of 2, 3 and 5.
+  check: 10**15 + 10**10 + 10**6 - (10**5 + 10**3 + 10**2) + 10 - 1000010000898910
+  check_ok: true
+extensions:
+  '3':
+  - Count integers from 1 to 10^30 that are perfect squares or cubes but not fifth powers.
+  '4':
+  - Redo the count up to 10^30 with seventh powers added to squares, cubes and fifth powers.
+  '5':
+  - Explain why the number of k-th powers up to N is the integer part of N^(1/k), and why 1 is always
+    included.
+spoken_vocab:
+- ten to the thirty
+- perfect square
+- cube
+- fifth power
+- inclusion exclusion
+- least common multiple
+- ten to the fifteen
+- ten to the ten
+- ten to the six
+- ten to the five
+- ten to the three
+- ten to the two
+- ten
+- sixth power
+- tenth power
+- fifteenth power
+- thirtieth power
+- plus
+- minus
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 3
+  minutes: 10
+  flags: []
+  tagline: Clean inclusion-exclusion over powers with a tidy closed form.
+  priority: 71
+  rank: 356
+  tier: B
+  category: tbo
+  d10: 4.0
+  real: 6.0
+  by: deepseek-v4.1-flash-free
+tags:
+- combinatorics
+- number_theory

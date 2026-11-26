@@ -1,0 +1,156 @@
+id: heron-13-14-15-inradius-circumradius
+title: 'The 13-14-15 triangle: area, inradius, circumradius and Euler''s formula'
+topics:
+- triangle area
+- Pythagoras
+- inradius
+- circumradius
+- law of sines
+- incentre
+- circumcentre
+- Euler's formula
+- coordinate geometry
+warmup: false
+answer_source: pdf
+statement: A triangle has sides 13, 14 and 15. (i) Find its area without Heron's formula. (ii) Show that
+  any triangle has area $rs$, where $r$ is the inradius and $s$ the semi-perimeter. Find $r$. (iii) Show
+  that any triangle has area $\frac{abc}{4R}$, where $R$ is the circumradius. Find $R$. (iv) Place $B$
+  at the origin and $C$ at $(14,0)$. Find the coordinates of the incentre $I$ and circumcentre $O$, and
+  verify Euler's formula $OI^2=R(R-2r)$.
+stages:
+- goal: Find the area of the triangle with sides 13, 14, 15 without using Heron's formula.
+  expected: Area $=84$. Take the side of length 14 as base; the altitude is $12$ and its foot splits the
+    base into $5$ and $9$.
+  solution: 'Let the altitude to the side of length 14 have length $h$, with foot splitting that side
+    into $x$ and $14-x$. Pythagoras gives $13^2-x^2=h^2=15^2-(14-x)^2$. Expanding: $169-x^2=225-196+28x-x^2$,
+    so $169=29+28x$ and $x=5$. Then $h^2=169-25=144$ and $h=12$. The area is $\frac{1}{2}\cdot14\cdot12=84$.'
+  common_errors:
+  - Using the side 13 or 15 as the base but still taking the segment length as $x$ from the wrong vertex.
+  - Writing the second Pythagoras equation with $x$ instead of $14-x$.
+  - Forgetting the factor $\frac{1}{2}$ in the area formula.
+  hints:
+    rephrase: Drop a perpendicular from the vertex opposite the side of length 14 onto that side. Use
+      Pythagoras on both right triangles, with the foot at distance $x$ from one end.
+    smaller_case: Try the same method on a triangle with sides 5, 5, 6. The altitude onto the side of
+      length 6 splits it into two equal pieces.
+    key_idea: The two Pythagoras equations share the same altitude. Eliminate the altitude squared between
+      them to find where the foot lies.
+  check: Rational(1,2)*14*12 - 84
+  check_ok: true
+- goal: Show that the area equals $rs$ and hence find the inradius $r$.
+  expected: Area $=rs$ with $s=\frac{13+14+15}{2}=21$, so $r=\frac{84}{21}=4$.
+  solution: Join the incentre $I$ to the three vertices. This splits the triangle into three triangles,
+    each with height $r$ and base one side. Their areas sum to $\frac{1}{2}r(a+b+c)=rs$, where $s=\frac{a+b+c}{2}$.
+    For this triangle $s=21$, so $r=\frac{84}{21}=4$.
+  common_errors:
+  - Using the perimeter $42$ instead of the semi-perimeter $21$.
+  - Writing $r$ as area divided by perimeter.
+  - Dropping the factor $\frac{1}{2}$ when summing the three small triangles.
+  hints:
+    rephrase: Split the triangle into three smaller triangles using the incentre. What is the height of
+      each one?
+    smaller_case: For an equilateral triangle of side 2, compare the area with the product of the inradius
+      and the semi-perimeter.
+    key_idea: Each small triangle has one side of the original triangle as base and the inradius as height.
+      Add the three areas and compare with the semi-perimeter.
+  check: 84/21 - 4
+  check_ok: true
+- goal: Show that the area equals $\frac{abc}{4R}$ and hence find the circumradius $R$.
+  expected: Area $=\frac{abc}{4R}$, so $R=\frac{13\cdot14\cdot15}{4\cdot84}=\frac{65}{8}$.
+  solution: The area is $\frac{1}{2}bc\sin A$. By the extended law of sines, $\sin A=\frac{a}{2R}$, so
+    the area is $\frac{1}{2}bc\cdot\frac{a}{2R}=\frac{abc}{4R}$. Hence $R=\frac{abc}{4\cdot\text{Area}}=\frac{13\cdot14\cdot15}{4\cdot84}=\frac{2730}{336}=\frac{65}{8}$.
+  common_errors:
+  - Using $\frac{abc}{2R}$ instead of $\frac{abc}{4R}$.
+  - Using the law of sines with the sine of the wrong angle.
+  - Dividing $2730$ by $84$ and forgetting the factor $4$ in the denominator.
+  hints:
+    rephrase: Start from the area as half of two sides times the sine of the included angle. Then bring
+      in the circumradius using the law of sines.
+    smaller_case: Check the formula on a right triangle with legs 3 and 4. Where is the circumcentre,
+      and what is $R$?
+    key_idea: The extended law of sines links each side with the sine of its opposite angle and the circumradius.
+  check: 13*14*15/(4*84) - Rational(65,8)
+  check_ok: true
+- goal: Place $B$ at the origin and $C$ at $(14,0)$. Find the incentre $I$.
+  expected: '$A=(5,12)$ and $I=(6,4)$. The incentre is the weighted average of the vertices, with each
+    vertex weighted by the length of the side opposite it: $I=\frac{14A+15B+13C}{42}$.'
+  solution: From part (i), $A=(5,12)$ when $B=(0,0)$ and $C=(14,0)$. Let $a=|BC|=14$, $b=|CA|=15$, $c=|AB|=13$.
+    The incentre is $I=\frac{aA+bB+cC}{a+b+c}=\frac{14(5,12)+15(0,0)+13(14,0)}{42}=\frac{(252,168)}{42}=(6,4)$.
+    The $y$-coordinate $4$ agrees with the inradius from part (ii).
+  common_errors:
+  - Taking the centroid, i.e. weighting all vertices equally.
+  - Weighting each vertex by the length of an adjacent side instead of the opposite side.
+  - Mixing up which vertex is labelled $A$, $B$ or $C$ when substituting.
+  hints:
+    rephrase: The incentre is a weighted average of the vertices. Think about which side length should
+      weight which vertex.
+    smaller_case: For a right triangle with the right angle at the origin and legs along the axes of lengths
+      3 and 4, find the incentre using the same weighting idea and check that its distance from each side
+      is equal.
+    key_idea: The weight on each vertex is the length of the side opposite that vertex.
+  check: ((14*5+13*14)/42 - 6)**2 + ((14*12)/42 - 4)**2
+  check_ok: true
+- goal: Find the circumcentre $O$ and verify Euler's formula $OI^2=R(R-2r)$.
+  expected: $O=\left(7,\frac{33}{8}\right)$. Then $OI^2=\frac{65}{64}$ and $R(R-2r)=\frac{65}{8}\cdot\frac{1}{8}=\frac{65}{64}$,
+    so Euler's formula holds.
+  solution: $O$ is equidistant from $B$ and $C$, so its $x$-coordinate is $7$. Write $O=(7,y)$. Then $OB^2=OA^2$
+    gives $49+y^2=(5-7)^2+(12-y)^2=4+144-24y+y^2$, so $24y=99$ and $y=\frac{33}{8}$. Check $OB^2=49+\frac{1089}{64}=\frac{4225}{64}=\left(\frac{65}{8}\right)^2$,
+    consistent with $R=\frac{65}{8}$. Next $OI^2=(7-6)^2+\left(\frac{33}{8}-4\right)^2=1+\frac{1}{64}=\frac{65}{64}$.
+    Also $R(R-2r)=\frac{65}{8}\left(\frac{65}{8}-8\right)=\frac{65}{8}\cdot\frac{1}{8}=\frac{65}{64}$.
+    Equal, so Euler's formula is verified.
+  common_errors:
+  - Using the incentre's $x$-coordinate $6$ for $O$ instead of the perpendicular bisector of $BC$.
+  - Writing $(5-0)^2$ instead of $(5-7)^2$ when equating distances.
+  - Computing $R-2r$ with the wrong value of $R$ or $r$.
+  hints:
+    rephrase: The circumcentre is equidistant from $B$ and $C$, so start by finding its $x$-coordinate.
+      Then use $OA=OB$ to find its $y$-coordinate.
+    smaller_case: For the right triangle with vertices $(0,0)$, $(2,0)$, $(0,2)$, find the circumcentre
+      by the same two steps and check the answer by drawing.
+    key_idea: Find the perpendicular bisector of the horizontal side $BC$ first. Then set $OA^2=OB^2$
+      to solve for the remaining coordinate.
+  check: (49 + Rational(33,8)**2 - Rational(65,8)**2)**2 + ((1 + (Rational(33,8)-4)**2) - Rational(65,8)*(Rational(65,8)-8))**2
+  check_ok: true
+extensions:
+  '3':
+  - Show that the excentre opposite $A$ for this triangle lies at a distance $r_a=\frac{\text{Area}}{s-a}$
+    from side $BC$, and find $r_a$.
+  '4':
+  - Prove Euler's formula $OI^2=R(R-2r)$ for a general triangle using the power of the point $I$ with
+    respect to the circumcircle.
+  '5':
+  - Compute the distance from the orthocentre $H$ to the incentre $I$ for this triangle and say whether
+    $I$ lies on the nine-point circle.
+spoken_vocab:
+- thirteen
+- fourteen
+- fifteen
+- semi-perimeter
+- Heron's formula
+- inradius
+- circumradius
+- incentre
+- circumcentre
+- Euler's formula
+- O I squared
+- R times R minus 2r
+- a b c over 4 R
+- law of sines
+- sine of A
+- altitude
+- foot of the altitude
+- Pythagoras
+- weighted average
+- perpendicular bisector
+source: jaymin/Jaymin Interview (1).pdf#p65
+verified: false
+rating:
+  score: 9
+  difficulty: 4
+  parts: 5
+  minutes: 25
+  flags: []
+  tagline: 'One triangle, five stages: area, r, R, incentre, circumcentre, Euler.'
+  priority: 130
+  rank: 20
+  tier: S

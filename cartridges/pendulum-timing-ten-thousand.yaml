@@ -1,0 +1,99 @@
+id: pendulum-timing-ten-thousand
+title: Timing a pendulum for ten thousand swings
+topics:
+- mechanics
+- measurement uncertainty
+- small oscillations
+- estimation
+warmup: false
+answer_source: generated
+statement: Why could you not time a pendulum for $10000$ swings by watching it with a timer?
+stages:
+- goal: Estimate how long a $10000$-swing timing run would take for a pendulum about $1$ m long.
+  expected: The period is about $2$ s, so $10000$ swings take about $20000$ s, roughly $5.6$ hours.
+  solution: The period is $T=2\pi\sqrt{L/g}\approx 2.0$ s for $L=1$ m. Then $10000T\approx 2\times10^4$
+    s $=\tfrac{50}{9}$ h, about $5.6$ hours.
+  common_errors:
+  - Confusing seconds and hours
+  - Confusing the period with the number of swings
+  - Counting half swings as full periods
+  hints:
+    rephrase: Work out how long one full swing takes, then multiply by the number of swings.
+    smaller_case: If one swing takes $3$ seconds, how long do $10$ swings take?
+    key_idea: Total time equals the number of periods multiplied by the period.
+  check: Rational(10000*2,3600) - Rational(50,9)
+  check_ok: true
+- goal: Assess how large the reaction-time error is compared with the total time measured.
+  expected: A start and stop error of about $0.2$ s over $10000$ swings is a fractional error of about
+    $10^{-5}$, so the reaction time alone is not the limit.
+  solution: The timing error is about $0.2$ s on a total time of about $20000$ s. The fractional error
+    is $0.2/20000=10^{-5}$, which is negligible. Averaging over many swings makes a fixed reaction error
+    small.
+  common_errors:
+  - Concluding that reaction time alone makes long timing impossible
+  - Comparing the reaction error with the period of one swing instead of the total time
+  hints:
+    rephrase: Compare the fixed timing error with the total duration being measured, not with one swing.
+    smaller_case: If a single $2$ s swing is timed with a $0.2$ s error, what fraction of the swing is
+      that error?
+    key_idea: A fixed error becomes a smaller fraction of a longer measured interval.
+  check: Rational(2,10)/(2*10000) - Rational(1,100000)
+  check_ok: true
+- goal: Identify what actually defeats the method over thousands of swings.
+  expected: Counting $10000$ swings by eye is unreliable, a single miscount ruins the result, and damping
+    shrinks the amplitude so the period drifts. The period depends on amplitude as $T\approx T_0(1+\theta_0^2/16)$,
+    and a light gate avoids all of this.
+  solution: Over hours, the observer cannot keep an accurate count or steady attention. Damping reduces
+    the amplitude, so the period is not constant over the run. For $\theta_0=0.1$ rad, the correction
+    is $\theta_0^2/16=1/1600$, about $0.06\%$. Using a light gate with a counter, or timing fewer swings,
+    avoids these problems.
+  common_errors:
+  - Blaming only reaction time
+  - Ignoring the amplitude dependence of the period
+  - Assuming an undamped pendulum in a real experiment
+  hints:
+    rephrase: 'Ask what is hard to keep steady over several hours: the count, the observer''s attention,
+      or the physics of the pendulum.'
+    smaller_case: If a pendulum's amplitude halves each cycle, would its period stay exactly the same?
+    key_idea: The period depends weakly on amplitude, so compare the small-angle period with its first
+      correction.
+  check: Rational(1,16)*Rational(1,100) - Rational(1,1600)
+  check_ok: true
+extensions:
+  '3':
+  - Estimate how many swings must be timed so that a $0.2$ s reaction error becomes less than $1\%$ of
+    the total time.
+  '4':
+  - Add damping with a decay constant and find how long the amplitude takes to halve.
+  '5':
+  - Derive the correction $\theta_0^2/16$ from the complete period integral involving $K(\sin(\theta_0/2))$.
+spoken_vocab:
+- pendulum
+- ten thousand swings
+- period
+- small angle approximation
+- theta naught
+- reaction time
+- light gate
+- damping
+- fractional error
+- seconds and hours
+source: oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 3
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: Estimation that shifts from reaction time to damping as the real limit.
+  priority: 71
+  rank: 333
+  tier: B
+  category: oxbridge-random
+  d10: 2.5
+  real: 5.0
+  by: haiku
+tags:
+- mechanics
+- limits_and_approximation

@@ -1,0 +1,98 @@
+id: lines-in-plane-intersections
+title: Intersection points of n non-parallel lines
+topics:
+- combinatorics
+- counting
+- plane geometry
+- pairs
+- general position
+warmup: true
+answer_source: generated
+statement: If you have $n$ non-parallel lines in a plane, how many points of intersection are there?
+stages:
+- goal: Count the intersection points for $n$ non-parallel lines, taking the generic case where no three
+    lines pass through the same point. Ask for the formula in terms of $n$.
+  expected: $\binom{n}{2} = \frac{n(n-1)}{2}$ points.
+  solution: 'Any two non-parallel lines meet in exactly one point. Each unordered pair of lines gives
+    one intersection. With no three lines concurrent, distinct pairs give distinct points, so the count
+    is the number of unordered pairs, $\binom{n}{2}=\frac{n(n-1)}{2}$. Check: $n=2$ gives 1, $n=3$ gives
+    3, $n=4$ gives 6.'
+  common_errors:
+  - Answering $n(n-1)$, which counts ordered pairs and double counts each point.
+  - Answering $n^2$ or $n$.
+  - Answering $n-1$, which treats the lines as a chain rather than all pairs.
+  - Forgetting to state the assumption that no three lines are concurrent, so the formula is only the
+    maximum count.
+  hints:
+    rephrase: Each intersection is created by exactly which kind of selection of lines?
+    smaller_case: Take $n=3$ and sketch three lines in general position. How many crossings do you see,
+      and which pairs make them?
+    key_idea: Count pairs of lines, not individual lines.
+  check: expand_func(binomial(n, 2)) - n*(n - 1)/2
+  check_ok: true
+- goal: 'Follow-up: what is the fewest number of distinct intersection points that $n\ge 2$ non-parallel
+    lines can have?'
+  expected: 1 point, when all the lines pass through a single common point.
+  solution: Two non-parallel lines always meet, so there is at least one point for $n\ge 2$. If all $n$
+    lines pass through one common point, every pair meets at that same point, giving exactly 1 distinct
+    intersection point. So the minimum is 1, and the maximum is $\binom{n}{2}$.
+  common_errors:
+  - Answering 0 because lines in a plane might miss each other, forgetting that non-parallel lines must
+    meet.
+  - Answering $\binom{n}{2}$, which is the maximum, not the minimum.
+  - Answering 2 by thinking of lines in pairs.
+  hints:
+    rephrase: What is the smallest number of distinct places where all the lines can meet each other?
+    smaller_case: With two non-parallel lines, how many intersection points are there? Now add a third
+      line through that same point.
+    key_idea: Concurrency merges points, so making lines pass through a common point reduces the count.
+  check: 1 - 1
+  check_ok: true
+extensions:
+  '3':
+  - Suppose the lines fall into groups of mutually parallel lines with sizes $a_1,\dots,a_m$ and no three
+    lines are concurrent. Find the number of intersection points in terms of the $a_i$.
+  - Write a general formula for the count when $k$ lines all pass through one common point and the other
+    lines are in general position.
+  '4':
+  - Suppose $n$ lines are in general position. Show that the number of regions they divide the plane into
+    is $1+n+\binom{n}{2}$.
+  - If exactly three lines are concurrent and all other pairs are in general position, find the number
+    of distinct intersection points in terms of $n$.
+  '5':
+  - Prove that for $n$ lines in general position, the number of regions is $1+n+\binom{n}{2}$ by induction,
+    and find the number of new regions created by the $k$th line.
+  - Consider $n$ lines with some concurrency. Find a general formula for the number of distinct intersection
+    points in terms of the multiplicities of each concurrency point.
+spoken_vocab:
+- n
+- n choose two
+- binomial n choose two
+- n times n minus one over two
+- non-parallel
+- intersection point
+- concurrent
+- general position
+- plane
+- pairs of lines
+- minimum
+- maximum
+source: nextstepmaths/NextStepMaths Interview Questions/interview-question-14.pdf#0
+verified: false
+rating:
+  quality: 4
+  difficulty: 2
+  parts: 2
+  minutes: 5
+  flags: []
+  tagline: Classic counting warm-up; the fewest-points follow-up adds a sharp twist.
+  priority: 45
+  rank: 548
+  tier: C
+  category: nextstepmaths
+  d10: 2.0
+  real: 6.0
+  by: haiku
+tags:
+- combinatorics
+- geometry

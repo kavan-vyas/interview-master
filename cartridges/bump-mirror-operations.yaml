@@ -1,0 +1,133 @@
+id: bump-mirror-operations
+title: 'Bumping and mirroring: composing operations'
+topics:
+- functions and composition
+- algebraic manipulation
+- invariants
+- parity
+- proof
+warmup: false
+answer_source: pdf
+statement: 'To bump a number means to add five to it, and to mirror a number means to subtract it from
+  $10$. (a) If you bump a number and then bump the answer, the overall effect is to add ten. What is the
+  overall effect if you: (i) mirror a number and then mirror the answer; (ii) bump a number and then mirror
+  the answer; (iii) mirror a number and then bump the answer? (b) Show that if you bump a number, mirror
+  the answer and then bump the answer to that, this has the same overall effect as just mirroring the
+  number once. (c) Find a sequence of three operations, each a bump or a mirror, that has the overall
+  effect of just changing the sign of the number. (d) (i) Find a sequence of six operations, each a bump
+  or a mirror, that leaves every number unchanged. (ii) Is it possible to find an odd number of operations,
+  each a bump or a mirror, that leaves every number unchanged? Justify your answer.'
+stages:
+- goal: Find the overall effect of each two-step combination (i), (ii) and (iii).
+  expected: '(i) No change: n. (ii) 5 − n. (iii) 15 − n.'
+  solution: '(i) Mirror then mirror: 10 − (10 − n) = n. (ii) Bump then mirror: 10 − (n + 5) = 5 − n. (iii)
+    Mirror then bump: (10 − n) + 5 = 15 − n.'
+  common_errors:
+  - Mixing up the order, so that bump then mirror is treated as mirror then bump
+  - Forgetting the minus sign when mirroring a bumped number
+  - Confusing the effect of two mirrors with two bumps
+  hints:
+    rephrase: Apply the first operation to n, then apply the second operation to the result. Keep track
+      of the order carefully.
+    smaller_case: Pick a specific number, such as 2, and apply each combination to it to see what happens.
+    key_idea: Write each result in the form plus or minus n, plus a constant.
+  check: (10 - (10 - n) - n) + (10 - (n + 5) - (5 - n)) + ((10 - n) + 5 - (15 - n))
+  check_ok: true
+- goal: Show that bump, mirror, bump has the same overall effect as a single mirror.
+  expected: n → n + 5 → 5 − n → 10 − n, which is the same as mirroring once.
+  solution: 'Bump: n + 5. Mirror: 10 − (n + 5) = 5 − n. Bump: (5 − n) + 5 = 10 − n. This equals a single
+    mirror, 10 − n.'
+  common_errors:
+  - Stopping after the mirror and not applying the final bump
+  - Sign errors when mirroring n + 5
+  - Confusing the result with n + 10
+  hints:
+    rephrase: Track the number through each step on paper, and compare the final expression with the result
+      of a single mirror.
+    smaller_case: Try the sequence on the number 1 and check it matches a single mirror of 1.
+    key_idea: Show two expressions are equal for all n by simplifying one to match the other.
+  check: (5 - n + 5) - (10 - n)
+  check_ok: true
+- goal: Find three operations, each a bump or a mirror, whose overall effect is to change the sign of
+    n.
+  expected: Bump, bump, mirror, giving 10 − (n + 10) = −n.
+  solution: 'Bump: n + 5. Bump: n + 10. Mirror: 10 − (n + 10) = −n. This changes the sign of n.'
+  common_errors:
+  - Using mirror first, which gives 10 − n and cannot produce −n in the next steps
+  - Forgetting that a mirror is needed to flip the sign
+  - Making the constant wrong, so that the result is not exactly −n
+  hints:
+    rephrase: Which operation changes the sign of the number? What must the number look like before you
+      apply it?
+    smaller_case: Try to get the result to be exactly the negative of n using just one bump and one mirror.
+    key_idea: Mirror is the only operation that changes the sign. The bumps must adjust the constant so
+      that the mirror gives exactly −n.
+  check: 10 - ((n + 5) + 5) - (-n)
+  check_ok: true
+- goal: (i) Find six operations that leave every number unchanged. (ii) Decide whether an odd number of
+    operations can leave every number unchanged, with justification.
+  expected: (i) Bump, bump, mirror, bump, bump, mirror. (ii) No. Mirrors must be even to keep the sign,
+    and bumps must be even because c/5 must start and end even, so the total is even.
+  solution: (i) n → n + 5 → n + 10 → 10 − (n + 10) = −n → −n + 5 → −n + 10 → 10 − (−n + 10) = n. (ii)
+    Write any result as ±n + c. A bump changes c by 5. A mirror flips the sign of n and changes c to 10
+    − c. Starting from n with c = 0, the sign is fixed only if the number of mirrors is even. Also c stays
+    a multiple of 5, and c/5 changes by 1 with each bump, while a mirror sends c/5 to 2 − c/5, which keeps
+    its parity. Since c must be 0 at the end and c/5 starts at 0, the number of bumps is even. So the
+    total number of operations is even.
+  common_errors:
+  - Claiming the answer is yes for odd operations because some sequence seems to work
+  - Arguing only about signs and forgetting the constant
+  - Stating the parity argument without showing why c/5 changes parity
+  hints:
+    rephrase: Look at the sequence from part (c). What happens if you add two more operations that restore
+      the number?
+    smaller_case: Think about whether any sequence of one operation, or of three operations, can leave
+      every number unchanged.
+    key_idea: Track both the sign and the constant of the result in the form plus or minus n plus c, and
+      ask what each operation does to each part.
+extensions:
+  '3':
+  - Suppose bump now means add three and mirror still means subtract from ten. Find a sequence of operations
+    that leaves every number unchanged.
+  '4':
+  - Is there a shorter sequence than three operations whose overall effect is to change the sign of every
+    number?
+  '5':
+  - Characterise all sequences of bumps and mirrors that leave every integer unchanged, and prove your
+    characterisation.
+spoken_vocab:
+- bump
+- mirror
+- add five
+- subtract from ten
+- ten minus n
+- n plus five
+- n plus ten
+- minus n
+- overall effect
+- sign
+- odd
+- even
+- parity
+- invariant
+- justify
+source: kclms/kclms-specimen-questions-2.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 5
+  parts: 4
+  minutes: 15
+  flags: []
+  tagline: Hidden parity invariant decides the odd-operations question; playful, well-structured.
+  priority: 92
+  rank: 93
+  tier: A
+  category: kclms
+  d10: 5.0
+  real: 8.5
+  by: deepseek-v4.1-flash-free
+tags:
+- algebra_and_functions
+- functional_equations
+- proof

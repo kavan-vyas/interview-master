@@ -1,0 +1,107 @@
+id: nested-equilateral-triangles-incircle
+title: Nested inscribed equilateral triangles
+topics:
+- geometry
+- equilateral triangles
+- incircle and circumcircle
+- similarity
+- geometric series
+warmup: false
+answer_source: generated
+statement: An equilateral triangle is inscribed in a circle of radius 1. Its incircle is drawn, and a
+  second equilateral triangle is inscribed in that incircle, and so on indefinitely. (a) Find the ratio
+  of the area of each triangle to the area of the previous one. (b) Find the total area enclosed by all
+  the triangles in the infinite sequence.
+stages:
+- goal: Relate the incircle radius of an equilateral triangle to its circumradius.
+  expected: 'The incircle radius is half the circumradius: r = R/2.'
+  solution: For an equilateral triangle with side s, the circumradius is R = s/sqrt(3) and the inradius
+    is r = s/(2 sqrt(3)). Hence r = R/2. The incentre and circumcentre coincide.
+  common_errors:
+  - Using r = R for the incircle.
+  - Confusing the inradius formula with the circumradius formula.
+  - Forgetting that the centre is shared by both circles.
+  hints:
+    rephrase: Compare the two circles associated with the same equilateral triangle, and express both
+      radii in terms of the side length s.
+    smaller_case: Take a side length s = 2 and compute both radii numerically.
+    key_idea: In an equilateral triangle the centroid, incentre and circumcentre are the same point.
+  check: simplify(s/(2*sqrt(3)) - (s/sqrt(3))/2)
+  check_ok: true
+- goal: Find the ratio of the area of each triangle to the area of the previous one.
+  expected: Each new triangle has circumradius half that of the previous triangle, so the area ratio is
+    1/4.
+  solution: An equilateral triangle with circumradius r has area (3 sqrt(3)/4) r^2. The next triangle
+    is inscribed in the incircle of radius r/2, so its circumradius is r/2 and its area is (3 sqrt(3)/4)(r/2)^2.
+    The ratio is (1/2)^2 = 1/4.
+  common_errors:
+  - Giving the linear scale factor 1/2 as the area ratio instead of squaring it.
+  - Using the side ratio incorrectly.
+  - Using the incircle radius of the new triangle rather than its circumradius.
+  hints:
+    rephrase: Identify the circumradius of each new triangle in terms of the previous one.
+    smaller_case: Work out the area of the first triangle when R = 1, then find the area of the second.
+    key_idea: Area scales with the square of the linear scale factor.
+  check: simplify((3*sqrt(3)/4*(r/2)**2)/(3*sqrt(3)/4*r**2) - Rational(1,4))
+  check_ok: true
+- goal: Find the total area of all the triangles in the infinite sequence.
+  expected: 'Sum of areas = (3 sqrt(3)/4) * sum_{k>=0} (1/4)^k = sqrt(3), about 1.732. (Note: the triangles
+    are nested, so the region they jointly enclose is just the first triangle, of area 3 sqrt(3)/4; the
+    intended answer for the total is the sum sqrt(3).)'
+  solution: The first triangle has area 3 sqrt(3)/4 (with R=1). Areas form a geometric series with first
+    term 3 sqrt(3)/4 and ratio 1/4, so the sum is (3 sqrt(3)/4)/(1 - 1/4) = (3 sqrt(3)/4)(4/3) = sqrt(3).
+    Because each triangle lies inside the previous one, the union of their regions equals the first triangle,
+    so if the question meant the enclosed region rather than the sum of areas, the answer would be 3 sqrt(3)/4.
+  common_errors:
+  - Summing the areas incorrectly by using the ratio 1/2 instead of 1/4.
+  - Forgetting the first term in the geometric series.
+  - Not clarifying whether 'total area enclosed' means the sum of areas or the area of the union.
+  hints:
+    rephrase: Recognise the sequence of areas as a geometric series and identify its first term and ratio.
+    smaller_case: Write out the first three areas explicitly and add them.
+    key_idea: The sum of a geometric series with ratio strictly between -1 and 1 is first term divided
+      by one minus ratio.
+  check: simplify(summation(3*sqrt(3)/4*Rational(1,4)**k, (k, 0, oo)) - sqrt(3))
+  check_ok: true
+extensions:
+  '3':
+  - Find the total perimeter of all the triangles in the infinite sequence.
+  '4':
+  - Find the total area of all the circumcircles in the sequence.
+  '5':
+  - Show that the sequence of inscribed triangles has a limiting point and identify it.
+spoken_vocab:
+- equilateral triangle
+- inscribed
+- circumscribed circle
+- radius one
+- incircle
+- circumradius
+- inradius
+- ratio of areas
+- geometric series
+- first term
+- common ratio
+- sum to infinity
+- square root of three
+- three root three over four
+- nested triangles
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 4
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: Circumradius-to-inradius ratio gives a geometric series; clean and extendable to other polygons.
+  priority: 81
+  rank: 226
+  tier: B
+  category: juan
+  d10: 4.0
+  real: 5.5
+  by: haiku
+tags:
+- geometry
+- sequences_and_series

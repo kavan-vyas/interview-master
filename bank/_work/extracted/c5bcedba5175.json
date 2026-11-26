@@ -1,0 +1,58 @@
+[
+ {
+  "q": "Real numbers $x$ and $y$ satisfy $x+y=10$ and $xy=21$. What is the value of $x^2+y^2$? a) 58 b) 79 c) 100 d) 37 e) 42",
+  "kind": "maths",
+  "answer": "a) 58",
+  "short": true,
+  "source": "kclms/kclms-specimen-mcq-2.pdf#0"
+ },
+ {
+  "q": "In the diagram, $AB=AC$, and the point $D$ lies on $BC$ such that $AD=BD=DC$. What is angle $\\theta$? a) $60^\\circ$ b) $72^\\circ$ c) $90^\\circ$ d) $108^\\circ$ e) $120^\\circ$",
+  "kind": "maths",
+  "answer": "c) 90\u00b0",
+  "short": true,
+  "source": "kclms/kclms-specimen-mcq-2.pdf#0"
+ },
+ {
+  "q": "Solve the equation $\\frac{x+2}{x-1}+\\frac{x-1}{x+2}=\\frac{5}{2}$. What is the sum of all real solutions? a) \u22121 b) 3 c) 0 d) 1 e) 4",
+  "kind": "maths",
+  "answer": "a) \u22121",
+  "short": false,
+  "source": "kclms/kclms-specimen-mcq-2.pdf#0"
+ },
+ {
+  "q": "Pipe A fills an empty tank in 6 hours. Pipe B fills an empty tank in 4 hours. Pipe C empties a full tank in 3 hours. Pipes A and B are opened at the same time with the tank empty. One hour later, pipe C is also opened. How many hours after pipes A and B were opened is the tank full? a) 7 b) 8 c) 9 d) 10 e) 12",
+  "kind": "maths",
+  "answer": "b) 8",
+  "short": false,
+  "source": "kclms/kclms-specimen-mcq-2.pdf#0"
+ },
+ {
+  "q": "How many positive integers less than 1000 are divisible by 6 or by 15, but not by both? a) 33 b) 133 c) 166 d) 199 e) 232",
+  "kind": "maths",
+  "answer": "c) 166",
+  "short": false,
+  "source": "kclms/kclms-specimen-mcq-2.pdf#0"
+ },
+ {
+  "q": "What is the units digit of $7^{2026}+3^{2026}$? a) 0 b) 2 c) 4 d) 6 e) 8",
+  "kind": "maths",
+  "answer": "e) 8",
+  "short": true,
+  "source": "kclms/kclms-specimen-mcq-2.pdf#0"
+ },
+ {
+  "q": "Two circles with centres $P$ and $Q$ have radii 5 and 3 respectively, and $PQ=10$. What is the length of an external common tangent to the two circles (the segment between the two points of tangency)? a) $\\sqrt{92}$ b) $4\\sqrt{6}$ c) 6 d) 8 e) $2\\sqrt{6}$",
+  "kind": "maths",
+  "answer": "b) $4\\sqrt{6}$",
+  "short": false,
+  "source": "kclms/kclms-specimen-mcq-2.pdf#0"
+ },
+ {
+  "q": "Three fair six-sided dice are rolled. What is the probability that the sum of the three scores is 10? a) $\\frac{1}{6}$ b) $\\frac{1}{8}$ c) $\\frac{1}{9}$ d) $\\frac{5}{36}$ e) $\\frac{1}{12}$",
+  "kind": "maths",
+  "answer": "b) $\\frac{1}{8}$",
+  "short": true,
+  "source": "kclms/kclms-specimen-mcq-2.pdf#0"
+ }
+]

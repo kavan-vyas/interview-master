@@ -1,0 +1,102 @@
+id: sum-of-squares-and-cubes-real-roots
+title: Real roots of sum of squares and sum of cubes
+topics:
+- real numbers
+- quadratics
+- discriminant
+- factorising sums of cubes
+warmup: false
+answer_source: generated
+statement: If $a$ and $b$ are real, show that $(x-a)^2+(x-b)^2=0$ has no real roots, and that $(x-a)^3+(x-b)^3=0$
+  has one real root.
+stages:
+- goal: Analyse $(x-a)^2+(x-b)^2=0$ over the reals. Show there are no real roots, and state what happens
+    when $a=b$.
+  expected: If $a\neq b$, there are no real roots. If $a=b$, the equation is $2(x-a)^2=0$ and has the
+    single root $x=a$. The discriminant of $2x^2-2(a+b)x+a^2+b^2$ is $-4(a-b)^2$, which is negative exactly
+    when $a\neq b$.
+  solution: 'For real $x$, each square is non-negative, so the sum is $\geq 0$, with equality only when
+    $x-a=0$ and $x-b=0$. This is impossible when $a\neq b$, so there are no real roots. The discriminant
+    route: expanding gives $2x^2-2(a+b)x+(a^2+b^2)$ with discriminant $4(a+b)^2-8(a^2+b^2)=-4(a-b)^2$.
+    The statement as given holds only for $a\neq b$; when $a=b$ the root $x=a$ is real.'
+  common_errors:
+  - Claiming no real roots for all $a,b$, which fails when $a=b$
+  - Concluding the sum of squares is never zero, without checking when both squares can vanish
+  - Expanding incorrectly, e.g. getting the discriminant sign wrong
+  hints:
+    rephrase: What values can a sum of two squares of real numbers take? When can it equal zero?
+    smaller_case: Try $a=0,\ b=0$ and then $a=0,\ b=1$. What happens to the equation in each case?
+    key_idea: A sum of squares of real numbers is non-negative and equals zero only when each square is
+      zero.
+  check: discriminant(2*x**2 - 2*(a+b)*x + a**2 + b**2, x) + 4*(a-b)**2
+  check_ok: true
+- goal: Find the real root of $(x-a)^3+(x-b)^3=0$.
+  expected: The only real root is $x=\frac{a+b}{2}$.
+  solution: Let $u=x-a$ and $v=x-b$, so $u+v=2x-a-b$. Using $u^3+v^3=(u+v)(u^2-uv+v^2)$, the equation
+    becomes $(2x-a-b)(u^2-uv+v^2)=0$. Setting the first factor to zero gives $x=\frac{a+b}{2}$.
+  common_errors:
+  - Taking the cube root of each term separately and forgetting the factor structure
+  - Writing the root as $\frac{a-b}{2}$ or $a+b$
+  hints:
+    rephrase: Sum of cubes can be factorised. Find the factor that gives a linear equation.
+    smaller_case: Take $a=0$ and $b=2$. Solve $x^3+(x-2)^3=0$ and see what the root looks like in terms
+      of $a$ and $b$.
+    key_idea: Use $u^3+v^3=(u+v)(u^2-uv+v^2)$, with $u=x-a$ and $v=x-b$.
+  check: simplify(((a+b)/2 - a)**3 + ((a+b)/2 - b)**3)
+  check_ok: true
+- goal: Show that $x=\frac{a+b}{2}$ is the only real root, i.e. the second factor gives no other real
+    roots.
+  expected: $u^2-uv+v^2=0$ has real solutions only when $u=v=0$, which means $x=a=b$. In that case $x=\frac{a+b}{2}$
+    still, so there is exactly one real root.
+  solution: Write $u^2-uv+v^2=\left(u-\frac{v}{2}\right)^2+\frac{3}{4}v^2$. This is non-negative for real
+    $u,v$ and equals zero only when $v=0$ and then $u=0$. So $x=b$ and $x=a$ would both be needed, which
+    forces $a=b=x$, and then $x=\frac{a+b}{2}$ anyway. Hence there is exactly one real root.
+  common_errors:
+  - Stopping after finding one root, without showing the other factor has no real zeros
+  - Arguing the second factor is never zero, which misses the case $a=b=x$
+  hints:
+    rephrase: Show the quadratic factor is positive except possibly at one point, and check whether that
+      point gives a new root.
+    smaller_case: Take $a=b=1$. Factor $(x-1)^3+(x-1)^3$ and count the real roots.
+    key_idea: Complete the square in $u$ to show $u^2-uv+v^2$ is non-negative, with equality only at $u=v=0$.
+  check: simplify((x-a)**3 + (x-b)**3 - (2*x - a - b)*((x-a)**2 - (x-a)*(x-b) + (x-b)**2))
+  check_ok: true
+extensions:
+  '3':
+  - Show that $(x-a)^5+(x-b)^5=0$ has exactly one real root for all real $a,b$.
+  '4':
+  - For which real $c$ does $(x-a)^2+(x-b)^2=c$ have real solutions for every $a,b$?
+  '5':
+  - 'Generalise: for which $n$ does $(x-a)^n+(x-b)^n=0$ have exactly one real root for all real $a,b$?
+    Justify your answer.'
+spoken_vocab:
+- x minus a squared plus x minus b squared
+- sum of squares
+- no real roots
+- discriminant
+- x minus a cubed plus x minus b cubed
+- sum of cubes factorisation
+- u squared minus u v plus v squared
+- real root
+- a plus b over two
+- completing the square
+source: past-interviews/Actual Past Interview Questions/H2.jpg
+verified: false
+rating:
+  quality: 4
+  difficulty: 5
+  parts: 3
+  minutes: 12
+  flags:
+  - wrong_or_unclear_solution
+  tagline: Good real-root contrast, but the no-roots claim fails when a=b.
+  priority: 43
+  rank: 559
+  tier: C
+  category: past-interviews
+  d10: 2.0
+  real: 5.0
+  by: haiku
+tags:
+- algebra_and_functions
+- roots_of_polynomials

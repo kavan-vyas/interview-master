@@ -1,0 +1,130 @@
+id: gamblers-ruin-roulette
+title: 'Gambler''s Ruin: Recurrence, Fair and Biased Cases, Roulette, and Expected Duration'
+topics:
+- gambler's ruin
+- recurrence relations
+- difference equations
+- expectation
+- roulette probability
+warmup: false
+answer_source: pdf
+statement: A gambler starts with £$k$ and repeatedly bets £1, winning each bet with probability $p$ and
+  losing with probability $q=1-p$. She stops on reaching £$N$ or £0, and $p_k$ is the probability she
+  reaches £$N$. (i) Show that $p_k = p\,p_{k+1} + q\,p_{k-1}$ for $0<k<N$, with $p_0=0$ and $p_N=1$. (ii)
+  For a fair game ($p=\frac{1}{2}$) show that $p_k=\frac{k}{N}$. (iii) For $p\neq\frac{1}{2}$ show that
+  $p_k=\frac{1-r^k}{1-r^N}$, where $r=\frac{q}{p}$. (iv) In roulette, a bet on red wins with probability
+  $\frac{18}{38}$. Estimate the probability of turning £10 into £20 by betting £1 at a time. (v) For the
+  fair game, show that the expected number of bets is $k(N-k)$.
+stages:
+- goal: Derive the recurrence for the ruin probability and its boundary conditions (part i).
+  expected: 'Condition on the first bet: $p_k = p\,p_{k+1} + q\,p_{k-1}$ for $0<k<N$, with $p_0=0$ and
+    $p_N=1$.'
+  solution: After one bet, the gambler is at $k+1$ with probability $p$ (a win) or at $k-1$ with probability
+    $q$ (a loss). By the Markov property, the probability of reaching $N$ from $k$ is the weighted average
+    of the probabilities from those two positions. The boundary values hold because if she starts at $0$
+    she has already lost, and if she starts at $N$ she has already won.
+  common_errors:
+  - Swapping $p$ and $q$ in the recurrence.
+  - Forgetting the boundary conditions, or using $p_0=1$.
+  hints:
+    rephrase: After one bet, where can she be, and what is the chance of reaching N from there?
+    smaller_case: Write the recurrence explicitly for $k=1$ when $N=2$.
+    key_idea: 'First-step analysis: condition on the outcome of the first bet.'
+  check: null
+- goal: Solve the recurrence for the fair game (part ii).
+  expected: $p_k=\frac{k}{N}$.
+  solution: With $p=q=\frac{1}{2}$ the recurrence becomes $p_k - p_{k-1} = p_{k+1} - p_k$, so consecutive
+    differences are constant and $p_k$ is linear in $k$. The boundary conditions $p_0=0$ and $p_N=1$ give
+    $p_k = \frac{k}{N}$.
+  common_errors:
+  - Forgetting that constant differences imply a linear function.
+  - Using the boundary conditions with the wrong indices.
+  hints:
+    rephrase: What kind of sequence has equal gaps between consecutive terms?
+    smaller_case: Take $N=3$ and write $p_1$ and $p_2$ in terms of $p_0$ and $p_3$.
+    key_idea: With $p=q=\frac{1}{2}$, the second differences vanish, so the sequence is linear.
+  check: simplify(ans - k/N)
+  check_ok: null
+- goal: Solve the recurrence for a biased game (part iii).
+  expected: $p_k=\frac{1-r^k}{1-r^N}$ with $r=\frac{q}{p}$.
+  solution: Try $p_k = A + B\lambda^k$. Substituting into the recurrence gives $p\lambda^2 - \lambda +
+    q = 0$, with roots $\lambda=1$ and $\lambda = \frac{q}{p}=r$. So $p_k = A + B r^k$. From $p_0=0$,
+    $B=-A$. From $p_N=1$, $A(1-r^N)=1$. Therefore $p_k = \frac{1-r^k}{1-r^N}$.
+  common_errors:
+  - Using $r=p/q$ instead of $q/p$.
+  - Forgetting to check the boundary conditions after finding the general form.
+  hints:
+    rephrase: Try a solution of the form $A + B\lambda^k$ and find the values of $\lambda$ that work.
+    smaller_case: Substitute $\lambda^k$ into the recurrence and divide by $\lambda^{k-1}$.
+    key_idea: Characteristic equation of the recurrence, then impose the two boundary conditions.
+  check: simplify(ans - (1 - r**k)/(1 - r**N)) with r = q/p
+  check_ok: null
+- goal: Estimate the probability of doubling £10 to £20 at roulette using red bets (part iv).
+  expected: $p_{10}=\frac{1}{1+r^{10}}$ with $r=\frac{10}{9}$, which is about $0.26$, compared with $0.5$
+    in a fair game.
+  solution: Here $p=\frac{18}{38}$ and $q=\frac{20}{38}$, so $r=\frac{q}{p}=\frac{20}{18}=\frac{10}{9}$.
+    With $k=10$ and $N=20$, the formula gives $p_{10}=\frac{1-r^{10}}{1-r^{20}}=\frac{1}{1+r^{10}}$. Since
+    $r^{10}=(10/9)^{10}\approx 2.87$, the probability is about $\frac{1}{3.87}\approx 0.26$.
+  common_errors:
+  - Using $r=\frac{p}{q}$, which reverses the direction of the bias.
+  - Using $0.5$ from the fair game instead of the biased formula.
+  - Miscalculating $r^{10}$ by a large margin.
+  hints:
+    rephrase: Which ratio of losing to winning probabilities enters the formula, and how many bets separate
+      £10 from £20?
+    smaller_case: Check the formula with $k=N/2$ in the fair case, which should give one half.
+    key_idea: Use the biased-game formula with the correct value of $r$, then estimate the power numerically.
+  check: Abs(x - 1/(1+Rational(10,9)**10)) < Rational(1,200)
+  check_ok: null
+- goal: Show that the expected number of bets in the fair game is $k(N-k)$ (part v).
+  expected: $E_k = k(N-k)$, satisfying $E_k = 1 + \frac{1}{2}(E_{k-1}+E_{k+1})$ with $E_0=E_N=0$.
+  solution: 'Condition on the first bet: $E_k = 1 + \frac{1}{2}(E_{k-1}+E_{k+1})$ with $E_0=E_N=0$. Substituting
+    $k(N-k)$: $(k-1)(N-k+1)+(k+1)(N-k-1) = 2k(N-k)-2$. So the right side is $1+\frac{1}{2}(2k(N-k)-2)=k(N-k)$,
+    as required. Boundary values are $0$ at both ends, so the solution is $k(N-k)$.'
+  common_errors:
+  - Forgetting the extra $1$ for the first bet in the recurrence.
+  - Checking the recurrence without checking the boundary values.
+  hints:
+    rephrase: Let $E_k$ be the expected number of bets from $k$. Write one equation relating $E_k$ to
+      its neighbours.
+    smaller_case: Check the recurrence for $N=3$ and $k=1$ or $k=2$ by listing the values.
+    key_idea: First-step analysis for expectations, with the cost of one bet added on each step.
+  check: simplify(ans - k*(N - k))
+  check_ok: null
+extensions:
+  '3':
+  - What is the probability of ruin if $p=0.6$, $k=5$ and $N=10$?
+  '4':
+  - Find the expected duration of the game when $p\neq\frac{1}{2}$.
+  '5':
+  - Show that the expected duration in the biased case has a closed form in terms of $r$, $k$ and $N$.
+spoken_vocab:
+- gambler
+- starts with pounds k
+- bets one pound
+- win probability p
+- lose probability q
+- reaches N
+- ruin
+- recurrence
+- fair game
+- r equals q over p
+- roulette
+- red
+- eighteen thirty-eighths
+- probability
+- expected number of bets
+- k times N minus k
+source: jaymin/Jaymin Interview (1).pdf#p41
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 5
+  minutes: 25
+  flags: []
+  tagline: 'Full ruin arc: recurrence, fair and biased cases, roulette estimate, expected duration.'
+  priority: 108
+  rank: 26
+  tier: S
+  category: jaymin

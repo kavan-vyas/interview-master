@@ -1,0 +1,117 @@
+id: tanh-half-x-sketch-inequality
+title: Sketch and prove x > tanh(x/2) for x > 0
+topics:
+- hyperbolic functions
+- inequalities
+- calculus
+- curve sketching
+warmup: true
+answer_source: generated
+statement: With the aid of a sketch, show that $x > \tanh\left(\frac{x}{2}\right)$ for $x > 0$
+stages:
+- goal: Sketch y = x and y = tanh(x/2) on the same axes for x > 0. Describe how the two curves compare
+    near the origin and as x grows.
+  expected: Both curves pass through the origin. The line y = x has slope 1. The curve y = tanh(x/2) has
+    slope 1/2 at the origin, since its derivative is (1/2)sech^2(x/2), which equals 1/2 at x = 0. The
+    curve is bounded above by 1 and levels off towards that asymptote, while the line keeps rising. So
+    for x > 0 the line lies above the curve.
+  solution: Both graphs start at (0,0). Slope of y = x is 1. Slope of tanh(x/2) at 0 is (1/2)sech^2(0)
+    = 1/2. Since 1/2 < 1, the curve starts below the line. tanh(x/2) < 1 for all x, and it tends to 1,
+    while x grows without bound, so the curve stays below the line. The sketch therefore shows x > tanh(x/2)
+    for x > 0. A sketch alone is not a proof, so stage 2 makes this rigorous.
+  common_errors:
+  - Taking the slope of tanh(x/2) at the origin as 1 rather than 1/2
+  - Forgetting the horizontal asymptote y = 1 of tanh, so the line-above-curve picture is not justified
+    for large x
+  - Treating the sketch as a complete proof
+  hints:
+    rephrase: Put the line y = x and the curve y = tanh(x/2) on one graph. Where do they meet, and what
+      are their slopes there?
+    smaller_case: Look only at x small and positive. Which graph rises faster from the origin?
+    key_idea: Compare the rates at which the two graphs leave the origin, then consider the curve's bounded
+      behaviour.
+  check: sp.diff(sp.tanh(x/2), x).subs(x, 0) - sp.Rational(1,2)
+  check_ok: null
+- goal: Prove that tanh(u) < u for all u > 0, by considering g(u) = u - tanh(u) with g(0) = 0 and its
+    derivative.
+  expected: g(0) = 0. g'(u) = 1 - sech^2(u) = tanh^2(u) > 0 for u > 0. So g is strictly increasing on
+    [0, infinity) and g(u) > 0 for u > 0, i.e. tanh(u) < u.
+  solution: Let g(u) = u - tanh(u). Then g(0) = 0 and g'(u) = 1 - sech^2(u) = tanh^2(u). For u > 0, tanh(u)
+    > 0, so g'(u) > 0. Hence g is strictly increasing on [0, infinity), so g(u) > g(0) = 0 for u > 0.
+    Therefore tanh(u) < u for u > 0.
+  common_errors:
+  - Differentiating tanh(u) incorrectly, for example as sech(u) rather than sech^2(u)
+  - Using g'(u) > 0 without noting that it holds for u > 0 only (it fails to be strict at u = 0)
+  - Concluding from g(0) = 0 alone without the monotonicity argument
+  hints:
+    rephrase: Define a difference function between u and tanh(u). What is its value at u = 0, and what
+      is its derivative?
+    smaller_case: Check the claim numerically at u = 0.5 and u = 2 to see which way the inequality points.
+    key_idea: A function that starts at 0 and has positive derivative on (0, infinity) is positive there.
+      Find the derivative of u - tanh(u) and use the identity 1 - sech^2 = tanh^2.
+  check: sp.simplify(sp.diff(u - sp.tanh(u), u) - sp.tanh(u)**2)
+  check_ok: null
+- goal: Use the result of stage 2 with u = x/2 to conclude that x > tanh(x/2) for x > 0.
+  expected: For x > 0, u = x/2 > 0, so tanh(x/2) < x/2. Since x/2 < x for x > 0, we get tanh(x/2) < x/2
+    < x, hence x > tanh(x/2).
+  solution: Set u = x/2. For x > 0, u > 0, so stage 2 gives tanh(x/2) < x/2. For x > 0, x/2 < x. Combining,
+    tanh(x/2) < x/2 < x, so x > tanh(x/2) for all x > 0. This matches the sketch.
+  common_errors:
+  - Substituting incorrectly, for example writing tanh(x/2) < x rather than tanh(x/2) < x/2
+  - Forgetting to check that u = x/2 is positive, which is the condition needed for stage 2
+  - Dropping the strict inequality
+  hints:
+    rephrase: Choose the substitution that turns tanh(x/2) into tanh(u). Does the result from the previous
+      stage apply to your new variable?
+    smaller_case: 'Test x = 2: compare 2 with tanh(1), using a calculator if needed.'
+    key_idea: Substitute u = x/2 into the previous inequality and chain it with one more simple comparison.
+  check: sp.simplify((u - sp.tanh(u)).subs(u, x/2) - (x/2 - sp.tanh(x/2)))
+  check_ok: null
+extensions:
+  '3':
+  - Show that sinh(x) > x for x > 0 using a derivative argument.
+  - Show that tanh(x) < x for x > 0 directly from the result of stage 2.
+  '4':
+  - Show that tanh(x) > x - x^3/3 for x > 0.
+  - Find the range of values of a for which tanh(ax) < x holds for all x > 0.
+  '5':
+  - Show that sech^2(x) >= 1 - x^2 for all real x.
+  - Prove that |tanh(x)| <= |x| for all real x and state when equality holds.
+spoken_vocab:
+- x
+- greater than
+- tanh
+- tanh of x over two
+- hyperbolic tangent
+- sketch
+- y equals x
+- origin
+- slope
+- asymptote
+- sech squared
+- derivative
+- strictly increasing
+- substitute u equals x over two
+- sinh
+- cosh
+- identity
+- hyperbolic
+source: nextstepmaths/NextStepMaths Interview Questions/interview-question-25.pdf#0
+verified: false
+rating:
+  quality: 4
+  difficulty: 4
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: Monotonicity argument via derivative; conclusion follows almost immediately.
+  priority: 51
+  rank: 521
+  tier: C
+  category: nextstepmaths
+  d10: 3.0
+  real: 5.0
+  by: haiku
+tags:
+- hyperbolic_functions
+- inequalities

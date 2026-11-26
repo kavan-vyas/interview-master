@@ -1,0 +1,90 @@
+id: cube-diagonal-angles
+title: Angles between cube diagonals
+topics:
+- 3D geometry
+- vectors
+- dot product
+- angles
+warmup: false
+answer_source: generated
+statement: A cube has side length 1. (a) Find the angle between a space diagonal of the cube and a face
+  diagonal that shares a vertex with it. (b) Find the angle between two face diagonals that share a vertex
+  but lie on different faces.
+stages:
+- goal: Place the cube in coordinates, then find the angle between the space diagonal $(1,1,1)$ and the
+    face diagonal $(1,1,0)$, both starting at the origin.
+  expected: $\cos\theta=\frac{2}{\sqrt{3}\sqrt{2}}=\frac{\sqrt{6}}{3}$, so $\theta=\arccos\frac{\sqrt{6}}{3}\approx
+    35.26^\circ$.
+  solution: Take the cube $[0,1]^3$ with a vertex at the origin. The space diagonal is $u=(1,1,1)$ with
+    $|u|=\sqrt{3}$. The face diagonal is $v=(1,1,0)$ with $|v|=\sqrt{2}$. Then $\cos\theta=\frac{u\cdot
+    v}{|u||v|}=\frac{2}{\sqrt{6}}=\frac{\sqrt{6}}{3}$.
+  common_errors:
+  - Using the wrong vertex or picking a face diagonal that does not share the vertex.
+  - Reporting the complement of the answer, about $54.74^\circ$, which is the angle between the space
+    diagonal and the plane of the face.
+  - Using a length of 1 for the diagonals instead of $\sqrt{3}$ and $\sqrt{2}$.
+  hints:
+    rephrase: Put one corner of the cube at the origin and write each diagonal as a vector from that corner.
+    smaller_case: In a unit square, find the angle between its two diagonals at a shared corner, using
+      the same vector method.
+    key_idea: Use $\cos\theta=\frac{u\cdot v}{|u||v|}$, and compute the lengths of the diagonals carefully.
+  check: Matrix([1,1,1]).dot(Matrix([1,1,0]))/(sqrt(3)*sqrt(2)) - sqrt(6)/3
+  check_ok: true
+- goal: Find the angle between two face diagonals that share a vertex and lie on different faces.
+  expected: $\cos\theta=\frac{1}{2}$, so $\theta=60^\circ$. For example, $(1,1,0)$ and $(1,0,1)$ from
+    the origin.
+  solution: Take $u=(1,1,0)$ and $v=(1,0,1)$. Each has length $\sqrt{2}$, and $u\cdot v=1$. So $\cos\theta=\frac{1}{2}$
+    and $\theta=60^\circ$. The three face diagonals from a vertex form an equilateral triangle.
+  common_errors:
+  - Answering 90 degrees by assuming the diagonals are perpendicular.
+  - Forgetting to divide by $|u||v|=2$ and getting a dot product of 1 without normalising.
+  - Choosing two diagonals on the same face, which gives a different angle.
+  hints:
+    rephrase: Pick two face diagonals from the same corner that lie on different faces, and write both
+      as vectors.
+    smaller_case: Consider the three faces that meet at one corner of the cube. Which pairs of face diagonals
+      from that corner lie on different faces?
+    key_idea: The dot product of the two vectors and their lengths give the angle directly.
+  check: Matrix([1,1,0]).dot(Matrix([1,0,1]))/(sqrt(2)*sqrt(2)) - Rational(1,2)
+  check_ok: true
+extensions:
+  '3':
+  - Find the angle between two face diagonals that lie on opposite faces and do not share a vertex.
+  '4':
+  - Find the angle between two body diagonals of the cube.
+  '5':
+  - Find the dihedral angle between two faces of the regular tetrahedron formed by alternate vertices
+    of the cube.
+spoken_vocab:
+- cube
+- side length one
+- space diagonal
+- face diagonal
+- shares a vertex
+- different faces
+- dot product
+- square root of three
+- square root of two
+- square root of six over three
+- arccosine
+- degrees
+- unit vector
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 2
+  minutes: 10
+  flags: []
+  tagline: Coordinates give arccos(sqrt(2/3)) and 60°; asking why they differ invites discussion.
+  priority: 55
+  rank: 484
+  tier: C
+  category: juan
+  d10: 4.0
+  real: 7.5
+  by: deepseek-v4.1-flash-free
+tags:
+- vectors
+- geometry

@@ -1,0 +1,9 @@
+[
+ {
+  "q": "Given that $(\\sqrt[3]{4}-\\sqrt[3]{2})(\\sqrt[3]{a}+\\sqrt[3]{b}+\\sqrt[3]{c}) = 2$, what does $abc$ equal?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "nextstepmaths/NextStepMaths Interview Questions/interview-question-16.pdf#0"
+ }
+]

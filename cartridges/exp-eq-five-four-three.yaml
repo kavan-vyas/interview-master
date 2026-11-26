@@ -1,0 +1,78 @@
+id: exp-eq-five-four-three
+title: Solve 5^x = 4^x + 3^x
+topics:
+- exponential equations
+- monotonicity
+- real analysis
+warmup: false
+answer_source: generated
+statement: Do you know a solution to the equation $5^x=4^x+3^x$? Are there any more? Prove it.
+stages:
+- goal: Find at least one real solution of $5^x=4^x+3^x$ by trying simple values of x.
+  expected: x = 2 works, since 5^2 = 25 = 16 + 9 = 4^2 + 3^2.
+  solution: Try small integers. x=0 gives 1 against 2, x=1 gives 5 against 7, and x=2 gives 25 against
+    25. So x=2 is a solution.
+  common_errors:
+  - Stopping after x=0 and x=1, seeing the sides differ, and concluding there is no solution
+  - Confusing 5^x with 5x, or 4^x+3^x with 7^x
+  hints:
+    rephrase: Find a value of x for which the two sides of the equation are equal.
+    smaller_case: Compare both sides when x = 0 and when x = 1. Which side is bigger in each case?
+    key_idea: Test small whole-number values of x systematically.
+  check: 5**2-(4**2+3**2)
+  check_ok: true
+- goal: Prove that x = 2 is the only real solution.
+  expected: Divide both sides by 5^x to get (4/5)^x + (3/5)^x = 1. The left side is strictly decreasing
+    in x because 4/5 and 3/5 lie in (0,1). It equals 1 at x=2, so no other real x gives 1.
+  solution: Since 5^x > 0, the equation is equivalent to f(x) = (4/5)^x + (3/5)^x = 1. For 0 < b < 1,
+    the function b^x is strictly decreasing, so f is strictly decreasing as a sum of two strictly decreasing
+    functions. Also f(2) = 16/25 + 9/25 = 1. A strictly decreasing function takes each value at most once,
+    so x = 2 is the unique real solution.
+  common_errors:
+  - Testing only integers and claiming the solution set is complete
+  - Asserting monotonicity without justifying that each base is less than 1
+  - Dividing incorrectly, so the rewritten equation no longer matches the original
+  hints:
+    rephrase: Divide the equation by a positive quantity so that both terms become powers of fractions
+      with a common variable exponent. Then think about how the left side changes as x increases.
+    smaller_case: Look at (4/5)^x alone for x = 0, 1, 2, and then for large x. What happens to its size?
+    key_idea: Divide through by 5^x. A strictly monotone function takes each value at most once.
+extensions:
+  '3':
+  - Show that 2^x + 3^x = 4^x has exactly one real solution.
+  '4':
+  - Solve 7^x = 3^x + 4^x for real x, and prove there are no other solutions.
+  '5':
+  - Let a, b, c be positive integers with a^2 = b^2 + c^2 and b, c < a. Prove that a^x = b^x + c^x has
+    exactly one real solution.
+spoken_vocab:
+- five to the power of x
+- four to the power of x
+- three to the power of x
+- equals
+- plus
+- real solution
+- divide by five to the power of x
+- strictly decreasing
+- monotonic
+- unique solution
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 5
+  parts: 2
+  minutes: 10
+  flags: []
+  tagline: Guess x=2, then prove uniqueness by dividing by 5^x
+  priority: 85
+  rank: 157
+  tier: B
+  category: tbo
+  d10: 4.5
+  real: 8.5
+  by: deepseek-v4.1-flash-free
+tags:
+- exponentials_and_logarithms
+- algebra_and_functions
+- proof

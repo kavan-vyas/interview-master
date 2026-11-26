@@ -1,0 +1,163 @@
+id: lattice-paths-catalan-reflection
+title: Lattice paths, Vandermonde-type identity and Catalan reflection
+topics:
+- lattice paths
+- binomial coefficients
+- bijection
+- reflection principle
+- Catalan numbers
+warmup: false
+answer_source: pdf
+statement: 'A path goes from $(0,0)$ to $(n,n)$ in unit steps, each step being either $R$ (right, $(1,0)$)
+  or $U$ (up, $(0,1)$).
+
+
+  (i) Show that there are $\binom{2n}{n}$ such paths.
+
+
+  (ii) By considering where a path meets the line $x+y=n$, prove that $\sum_{k=0}^{n}\binom{n}{k}^2=\binom{2n}{n}$.
+
+
+  (iii) Call a path bad if it visits some point strictly above the line $y=x$. By reflecting part of a
+  bad path in the line $y=x+1$, show that the number of bad paths is $\binom{2n}{n-1}$.
+
+
+  (iv) Deduce that the number of paths that never go above $y=x$ is $\frac{1}{n+1}\binom{2n}{n}$, and
+  check this for $n=3$ by listing the paths.'
+stages:
+- goal: (i) Count the paths from $(0,0)$ to $(n,n)$.
+  expected: A path is a word of $2n$ letters with exactly $n$ $R$'s and $n$ $U$'s, so there are $\binom{2n}{n}$
+    paths.
+  solution: Each path has $2n$ steps, of which exactly $n$ are $R$ and $n$ are $U$. A path is determined
+    by choosing which $n$ of the $2n$ positions are $R$ (the rest are $U$), giving $\binom{2n}{n}$ paths.
+  common_errors:
+  - Answering $2^{2n}$, which ignores that the path must end at $(n,n)$
+  - Choosing $n$ positions among $n$ steps instead of among $2n$ steps
+  - Counting $n!\,n!$ or $(2n)!$, treating the steps as distinguishable
+  hints:
+    rephrase: Every path uses the same number of $R$ steps and the same number of $U$ steps. How many
+      steps are there in total, and what does the path look like as a string of letters?
+    smaller_case: For $n=1$ and $n=2$, list all paths from $(0,0)$ to $(n,n)$ and count them.
+    key_idea: A path is a word in $R$ and $U$ with a fixed number of each letter. Count the ways to place
+      one letter type.
+  check: binomial(6,3) - 20
+  check_ok: true
+- goal: (ii) Prove $\sum_{k=0}^{n}\binom{n}{k}^2=\binom{2n}{n}$ by splitting paths at the line $x+y=n$.
+  expected: Every path meets $x+y=n$ at exactly one point $(k,n-k)$ with $0\le k\le n$. There are $\binom{n}{k}$
+    ways to reach it and $\binom{n}{k}$ ways to go on from it to $(n,n)$, so summing $\binom{n}{k}^2$
+    over $k$ counts all $\binom{2n}{n}$ paths.
+  solution: 'After exactly $n$ steps a path is on the line $x+y=n$, at some point $(k,n-k)$ with $0\le
+    k\le n$, and it is on that line at no other time because $x+y$ increases by 1 each step. So each path
+    passes through exactly one such point. Paths from $(0,0)$ to $(k,n-k)$ use $k$ $R$''s among $n$ steps:
+    $\binom{n}{k}$. Paths from $(k,n-k)$ to $(n,n)$ use $n-k$ $R$''s and $k$ $U$''s among $n$ steps: $\binom{n}{n-k}=\binom{n}{k}$.
+    Hence $\binom{n}{k}^2$ paths pass through $(k,n-k)$. Since every path is counted exactly once, $\sum_{k=0}^n\binom{n}{k}^2=\binom{2n}{n}$
+    by (i).'
+  common_errors:
+  - Counting only the first half and forgetting to multiply by the number of ways to finish
+  - Not justifying that the second segment count is $\binom{n}{n-k}=\binom{n}{k}$
+  - Summing over the wrong range of $k$, such as $0$ to $n-1$
+  - Not explaining why each path meets the line exactly once, so paths might be double counted
+  hints:
+    rephrase: How many steps has a path taken when it first reaches the line $x+y=n$? Could it meet that
+      line again?
+    smaller_case: For $n=2$, the line is $x+y=2$. Which points on it can a path pass through, and how
+      many paths go through each?
+    key_idea: Split each path at its unique point on $x+y=n$, count the two halves separately, multiply,
+      and sum over the points.
+  check: Sum(binomial(3,k)**2,(k,0,3)).doit() - binomial(6,3)
+  check_ok: true
+- goal: (iii) Count the bad paths by reflecting the part of a bad path after its first touch of $y=x+1$.
+  expected: A bad path must touch $y=x+1$. Reflecting the tail after the first touch point in that line
+    sends the endpoint $(n,n)$ to $(n-1,n+1)$, giving a bijection with all paths to $(n-1,n+1)$, of which
+    there are $\binom{2n}{n-1}$.
+  solution: Each step changes $y-x$ by $\pm1$, starting from $0$ and ending at $0$. A bad path has $y-x\ge1$
+    at some point, so it must first hit $y=x+1$. Let $P$ be the first such point. Reflect the part of
+    the path after $P$ in the line $y=x+1$, using $(x,y)\mapsto(y-1,x+1)$. This swaps $R$ and $U$ steps
+    in that part and sends $(n,n)$ to $(n-1,n+1)$, so we get a path from $(0,0)$ to $(n-1,n+1)$. Conversely,
+    any path from $(0,0)$ to $(n-1,n+1)$ ends above $y=x+1$... more precisely at $y-x=2$, so it must meet
+    $y=x+1$; reflecting the tail after its first meeting point gives back a bad path to $(n,n)$. The two
+    maps are inverse, so it is a bijection. Paths to $(n-1,n+1)$ have $n-1$ $R$'s among $2n$ steps, so
+    there are $\binom{2n}{n-1}$ bad paths.
+  common_errors:
+  - Reflecting the part before $P$ instead of the part after it, which does not change the endpoint
+  - Using the reflected endpoint $(n+1,n-1)$ instead of $(n-1,n+1)$
+  - Reflecting in $y=x$ instead of $y=x+1$
+  - Not showing the map is reversible, i.e. that every path to $(n-1,n+1)$ meets $y=x+1$
+  hints:
+    rephrase: A bad path must touch the line $y=x+1$. Mirror everything after the first touch, and work
+      out where the endpoint $(n,n)$ goes.
+    smaller_case: For $n=2$, list the bad paths and mark where each first touches $y=x+1$. Reflect the
+      tails and see which paths you get.
+    key_idea: Reflecting the tail after the first touch gives a bijection between bad paths and all paths
+      to a different endpoint, which is easy to count. Check the reverse direction too.
+  check: binomial(6,2) - 15
+  check_ok: true
+- goal: (iv) Deduce the number of paths that never go above $y=x$, and list them for $n=3$.
+  expected: 'Good paths $=\binom{2n}{n}-\binom{2n}{n-1}=\frac{1}{n+1}\binom{2n}{n}$. For $n=3$ there are
+    5: RRRUUU, RRURUU, RRUURU, RURRUU, RURURU.'
+  solution: 'Good paths are all paths minus bad paths: $\binom{2n}{n}-\binom{2n}{n-1}$. Since $\binom{2n}{n-1}=\binom{2n}{n}\cdot\frac{n}{n+1}$,
+    this equals $\binom{2n}{n}\left(1-\frac{n}{n+1}\right)=\frac{1}{n+1}\binom{2n}{n}$. For $n=3$: $\binom63-\binom62=20-15=5=\frac14\cdot20$.
+    The good paths are those in which every prefix has at least as many $R$''s as $U$''s: RRRUUU, RRURUU,
+    RRUURU, RURRUU, RURURU. Any other arrangement, such as URRRUU or RUURRU, has a prefix with more $U$''s
+    than $R$''s.'
+  common_errors:
+  - Forgetting to simplify $\binom{2n}{n-1}$ as $\frac{n}{n+1}\binom{2n}{n}$
+  - Listing a path that goes above the diagonal, such as RUURRU, which has more $U$'s than $R$'s after
+    three steps
+  - Listing fewer or more than 5 paths for $n=3$ by missing or repeating an arrangement
+  - Listing words that do not have exactly three $R$'s and three $U$'s
+  hints:
+    rephrase: Good paths are the complement of the bad paths among all paths. What does that give, using
+      parts (i) and (iii)?
+    smaller_case: 'Check the formula at $n=1$ and $n=2$ by listing paths: you should find 1 and 2 good
+      paths respectively.'
+    key_idea: Subtract, then write $\binom{2n}{n-1}$ as a multiple of $\binom{2n}{n}$ using factorials.
+      For the list, require every prefix to have at least as many $R$'s as $U$'s.
+  check: binomial(6,3)/4 - binomial(6,3) + binomial(6,2)
+  check_ok: true
+extensions:
+  '3':
+  - Show that the Catalan numbers $C_n=\frac{1}{n+1}\binom{2n}{n}$ satisfy $C_{n+1}=\sum_{k=0}^{n}C_kC_{n-k}$,
+    by splitting a good path at its first return to the line $y=x$.
+  '4':
+  - Use a reflection in $y=x+2$ to show that the number of paths from $(0,0)$ to $(n,n)$ that reach the
+    line $y=x+2$ is $\binom{2n}{n-2}$. Hence count the paths that touch $y=x+1$ but never reach $y=x+2$.
+  - 'Generalise: how many paths from $(0,0)$ to $(n,n)$ reach the line $y=x+m$ for $m\ge1$?'
+  '5':
+  - Show that $C_n$ counts the triangulations of a convex $(n+2)$-gon, by proving they satisfy the same
+    recurrence as in the level 3 extension.
+spoken_vocab:
+- lattice path
+- unit steps
+- R right
+- U up
+- binomial two n choose n
+- sum of binomial n choose k squared
+- line x plus y equals n
+- bad path
+- reflection
+- y equals x plus one
+- good paths
+- Catalan numbers
+- one over n plus one
+source: jaymin/Jaymin Interview (1).pdf#p25
+verified: false
+rating:
+  quality: 9
+  difficulty: 7
+  parts: 4
+  minutes: 35
+  flags:
+  - needs_diagram
+  tagline: Links binomial identities, a reflection argument and Catalan numbers across four stages.
+  priority: 112
+  rank: 11
+  tier: S
+  category: jaymin
+  d10: 6.5
+  real: 7.0
+  by: haiku
+refined: true
+tags:
+- combinatorics
+- proof

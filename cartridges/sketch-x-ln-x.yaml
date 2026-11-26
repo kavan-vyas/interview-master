@@ -1,0 +1,101 @@
+id: sketch-x-ln-x
+title: Sketch y = x ln x
+topics:
+- curve sketching
+- logarithms
+- stationary points
+- concavity
+- limits
+warmup: true
+answer_source: generated
+statement: Sketch $y=x\ln(x)$.
+stages:
+- goal: Find the domain, intercepts and behaviour as x tends to 0 from the right.
+  expected: Domain x>0. Crosses the x-axis at (1,0). y<0 for 0<x<1 and y>0 for x>1. As x tends to 0 from
+    the right, y tends to 0, so the curve approaches the origin.
+  solution: 'ln x is defined only for x>0. y=0 when x=0 or ln x=0, and x=0 is excluded, so x=1 is the
+    only intercept. Since x>0, the sign of y matches the sign of ln x: negative on (0,1), positive on
+    (1,infinity). The standard limit x ln x -> 0 as x -> 0+ means the curve approaches the origin, which
+    is not on the graph (draw an open endpoint).'
+  common_errors:
+  - Including x<=0 in the domain
+  - Treating the origin as a point on the curve
+  - Getting the sign wrong on (0,1)
+  hints:
+    rephrase: For which x is ln x defined, and when is ln x zero?
+    smaller_case: Evaluate the sign of y at x=1/2 and at x=2.
+    key_idea: Because x>0, the sign of y equals the sign of ln x. The limit as x -> 0+ is a standard result.
+  check: (x*log(x)).subs(x, 1)
+  check_ok: true
+- goal: Find the stationary point and classify it.
+  expected: dy/dx = ln x + 1. The stationary point is at x=1/e, giving the minimum point (1/e, -1/e).
+  solution: By the product rule, dy/dx = ln x + 1. Setting this to zero gives ln x = -1, so x = 1/e and
+    y = (1/e)(-1) = -1/e. For x<1/e the derivative is negative, and for x>1/e it is positive, so this
+    is a minimum.
+  common_errors:
+  - Dropping the +1 from the derivative
+  - Forgetting to compute the y-value at the stationary point
+  - Calling the stationary point a maximum
+  - Using x=-1/e, which is outside the domain
+  hints:
+    rephrase: Differentiate using the product rule.
+    smaller_case: Check the sign of dy/dx at x=0.1 and at x=1.
+    key_idea: Set the derivative to zero, then check its sign on each side of the solution.
+  check: diff(x*log(x), x).subs(x, exp(-1))
+  check_ok: true
+- goal: Determine concavity and state the key features of the sketch.
+  expected: y'' = 1/x > 0 for all x>0, so the curve is concave up on its whole domain with no inflection
+    points. The minimum at (1/e,-1/e) is the global minimum. As x -> 0+, the slope tends to -infinity,
+    so the curve approaches the origin with a vertical tangent.
+  solution: 'y'''' = d/dx(ln x + 1) = 1/x, which is positive for x>0. So the curve is convex everywhere
+    on its domain and has no inflection point. Since the only stationary point is a minimum and the curve
+    is convex, that minimum is global. As x -> 0+, y'' = ln x + 1 -> -infinity, so the slope is steep
+    and negative near the origin. Sketch: start near the origin, fall steeply to the minimum at (1/e,-1/e),
+    rise through (1,0), then increase steeply.'
+  common_errors:
+  - Claiming there is an inflection point
+  - Drawing the curve through the origin with finite slope
+  - Placing the minimum at x=1
+  - Plotting values for x<=0
+  hints:
+    rephrase: Differentiate the derivative once more.
+    smaller_case: Compare the curvature near x=0.01 and x=10 using the sign of y''.
+    key_idea: The sign of y'' gives concavity. A single turning point that is a minimum on a convex curve
+      is global.
+  check: diff(x*log(x), x, 2) - 1/x
+  check_ok: true
+extensions:
+  '3':
+  - Find the tangent to y=x ln x at x=1 and add it to your sketch.
+  '4':
+  - Sketch y=x^x for x>0, and find its minimum point.
+  '5':
+  - Show that y=x ln x has no inflection point, and explain how this affects the sketch near x=0.
+spoken_vocab:
+- y equals x natural log of x
+- x greater than zero
+- one over e
+- limit as x tends to zero from above
+- second derivative
+- concave up
+- stationary point
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 3
+  minutes: 8
+  flags:
+  - needs_diagram
+  tagline: Boundary limit at 0, minimum at 1/e, and convexity make a clean sketch.
+  priority: 53
+  rank: 498
+  tier: C
+  category: tbo
+  d10: 2.5
+  real: 4.0
+  by: haiku
+tags:
+- curve_sketching
+- differentiation

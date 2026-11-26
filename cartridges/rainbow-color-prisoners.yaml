@@ -1,0 +1,88 @@
+id: rainbow-color-prisoners
+title: Rainbow Color Prisoners
+topics:
+- combinatorics
+- modular arithmetic
+- expectation
+- worst-case guarantees
+warmup: false
+answer_source: generated
+statement: 'Assign the 7 colors of the rainbow the codes $0$ to $6$, and let $X_i$ be the color code of
+  prisoner $i$, for $i=0,1,\dots,6$. Each prisoner can see the codes of the other six prisoners but not
+  their own, and each must guess their own code. How many guesses can the 7 prisoners make? Interpret
+  this as: how many of their 7 guesses can they guarantee to be correct, whatever the assignment?'
+stages:
+- goal: Give a strategy that guarantees at least one correct guess.
+  expected: Prisoner $i$ guesses $g_i\equiv i-\sum_{j\ne i}X_j \pmod 7$. Then exactly one prisoner is
+    correct, namely the one with $i\equiv S \pmod 7$, where $S=\sum_{j=0}^{6}X_j$.
+  solution: Prisoner $i$ knows $s_{-i}=\sum_{j\ne i}X_j$, so guesses $g_i\equiv i-s_{-i}\pmod 7$. Prisoner
+    $i$ is correct iff $X_i\equiv i-s_{-i}$, i.e. $X_i+s_{-i}\equiv i$, i.e. $S\equiv i\pmod 7$. Exactly
+    one residue $i\in\{0,\dots,6\}$ equals $S$, so for every assignment exactly one prisoner guesses correctly.
+    Hence at least one guess is guaranteed.
+  common_errors:
+  - Having every prisoner guess the same target sum, which gives either all seven right or all seven wrong,
+    with no guarantee
+  - Thinking that seeing six hats lets a prisoner guarantee their own code
+  - Assuming a fixed guessing rule gives a correct guess by luck rather than by design
+  hints:
+    rephrase: Each prisoner's guess can only use the other six codes, so the rule must be a function of
+      those. Look for a quantity all prisoners can agree on.
+    smaller_case: Try 2 prisoners with codes in $\{0,1\}$, working modulo 2.
+    key_idea: Agree on the total of all codes modulo 7, and give each prisoner a different target value
+      for that total.
+  check: null
+- goal: Decide whether two or more correct guesses can be guaranteed.
+  expected: No. The best guarantee is exactly one correct guess, so the answer is 1.
+  solution: Choose $X_0,\dots,X_6$ independently and uniformly from $\{0,\dots,6\}$. For any deterministic
+    strategy, $g_i$ depends only on $X_{-i}$, so it is independent of $X_i$ and $P(g_i=X_i)=\tfrac17$.
+    By linearity of expectation, $\mathbb{E}[\#\text{correct}]=7\cdot\tfrac17=1$. An average of 1 means
+    some assignment has at most one correct guess, so no strategy guarantees two. Together with stage
+    1, the guaranteed number is exactly 1.
+  common_errors:
+  - Claiming 7 correct guesses because each prisoner sees the others
+  - Assuming an average of 1 means every assignment gives exactly 1
+  - Letting a guess depend on the guesser's own code, which is not allowed
+  hints:
+    rephrase: Think about the expected number of correct guesses when the codes are chosen at random.
+    smaller_case: With 2 prisoners and 2 colors, what is the chance that one fixed guess is right?
+    key_idea: Linearity of expectation, together with the fact that a guess cannot depend on the guesser's
+      own code.
+  check: null
+extensions:
+  '3':
+  - With 3 prisoners and 3 colors, show that the sum-mod-3 strategy always gives exactly one correct guess.
+  '4':
+  - With 4 prisoners and 4 colors, explain why no deterministic strategy can guarantee two correct guesses.
+  '5':
+  - For $n$ prisoners and $n$ colors, what is the guaranteed number of correct guesses, and why?
+spoken_vocab:
+- seven prisoners
+- rainbow
+- color
+- code
+- X sub i
+- sum
+- mod seven
+- g sub i
+- expected value
+- guarantee
+- one correct guess
+source: zhou-quant/zhou-quant-guide.pdf#2
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 2
+  minutes: 12
+  flags: []
+  tagline: Modular-sum strategy guarantees one; the real question is whether two is possible.
+  priority: 85
+  rank: 156
+  tier: B
+  category: zhou-quant
+  d10: 6.5
+  real: 6.5
+  by: haiku
+tags:
+- combinatorics
+- number_theory

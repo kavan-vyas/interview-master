@@ -1,0 +1,93 @@
+id: zeta-bounds-integral-comparison
+title: Bounding the series 1 + 2^(-s) + 3^(-s) + ... by an integral
+topics:
+- series
+- integral comparison
+- monotone functions
+- inequalities
+- convergence
+warmup: false
+answer_source: generated
+statement: By considering the graph of the function $f(x)=x^{-s}$ show that $\frac{1}{s-1}<1+2^{-s}+3^{-s}+\cdots<\frac{s}{s-1}$
+  whenever $s>1$.
+stages:
+- goal: 'Prove the lower bound: the series is greater than 1/(s-1).'
+  expected: Since f is strictly decreasing, n^(-s) > integral from n to n+1 of x^(-s) dx for each n >=
+    1. Summing over n and using the integral from 1 to infinity of x^(-s) dx = 1/(s-1) gives the bound.
+  solution: For s>1 the function f(x)=x^(-s) is positive and strictly decreasing on [1,infinity). On [n,n+1],
+    f(x) < f(n), so the integral from n to n+1 of x^(-s) dx < n^(-s). Summing over n>=1 gives the sum
+    of n^(-s) > integral from 1 to infinity of x^(-s) dx. Since s>1, this improper integral equals [x^(1-s)/(1-s)]
+    from 1 to infinity = 1/(s-1). So 1+2^(-s)+3^(-s)+... > 1/(s-1), and the inequality is strict because
+    each term comparison is strict.
+  common_errors:
+  - Using f(n+1) instead of f(n) as the rectangle height, which gives the wrong direction.
+  - Evaluating the integral from 1 to infinity incorrectly, for example as 1/(s+1).
+  - Forgetting that s>1 is needed for the integral to converge.
+  hints:
+    rephrase: Compare the area under the curve over [n,n+1] with a rectangle built on the graph at x =
+      n.
+    smaller_case: Take s=2 and compare the sum of the first two terms with the integral from 1 to 3 of
+      1/x^2 dx.
+    key_idea: Since x^(-s) decreases, the rectangle of height f(n) on [n,n+1] lies above the curve, and
+      the sum of these rectangles is bounded below by the integral.
+  check: null
+- goal: 'Prove the upper bound: the series is less than s/(s-1).'
+  expected: For n>=2, n^(-s) < integral from n-1 to n of x^(-s) dx. Summing over n>=2 gives a sum less
+    than 1/(s-1), and adding the first term 1 gives less than 1+1/(s-1) = s/(s-1).
+  solution: For n>=2 and x in [n-1,n], x^(-s) >= n^(-s) because f is decreasing and x <= n. So n^(-s)
+    < integral from n-1 to n of x^(-s) dx. Summing over n>=2 gives the sum from n=2 of n^(-s) < integral
+    from 1 to infinity of x^(-s) dx = 1/(s-1). Adding 1 gives 1+2^(-s)+3^(-s)+... < 1 + 1/(s-1) = s/(s-1).
+    This also shows the series converges for s>1.
+  common_errors:
+  - Summing from n=1 instead of n=2, which uses the wrong rectangles.
+  - Writing 1 + 1/(s-1) as 1/(s-1) and dropping the 1.
+  - Missing that the inequality is strict.
+  hints:
+    rephrase: Use rectangles that lie under the curve on the interval [n-1,n] instead of over it.
+    smaller_case: Take s=2. Compare 3^(-2) with the integral from 2 to 3 of 1/x^2 dx.
+    key_idea: For n>=2, bound n^(-s) above by the integral over [n-1,n], where x is at least n.
+  check: null
+extensions:
+  '3':
+  - Show that the sum from n=1 to infinity of 1/n^2 is between 1 and 2.
+  - Show that the integral test gives convergence of the series with terms 1/(n ln n) for n>=2.
+  '4':
+  - Using the bounds above with s=2, find an interval containing pi^2/6.
+  - Show that the partial sum of 1/n from 1 to N is between ln(N+1) and 1+ln N.
+  '5':
+  - Derive a bound on the partial sums of n^(-s) that depends on s and N, and show that the error term
+    tends to 0 as N tends to infinity for s>1.
+  - Show that the sum from n=2 to infinity of 1/(n^s) is less than 1/(s-1) for s>1 and find the value
+    of the limit as s tends to 1 from above.
+spoken_vocab:
+- f of x equals x to the power minus s
+- series one plus two to the power minus s plus three to the power minus s
+- s minus one
+- s over s minus one
+- integral from one to infinity
+- integral from n to n plus one
+- strictly decreasing
+- greater than
+- less than
+- summing over n
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 2
+  minutes: 12
+  flags:
+  - needs_diagram
+  tagline: Elegant integral comparison bounding zeta; natural extensions to s→1 and asymptotics.
+  priority: 67
+  rank: 368
+  tier: C
+  category: tbo
+  d10: 2.5
+  real: 5.5
+  by: haiku
+tags:
+- proof
+- sequences_and_series
+- integration

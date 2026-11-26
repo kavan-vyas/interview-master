@@ -1,0 +1,94 @@
+id: parabola-triangles-beyond-equilateral
+title: Other triangle types from moving A and C on y = x^2 with B at the origin
+topics:
+- coordinate geometry
+- parabola
+- isosceles triangles
+- right triangles
+- dot product
+- symmetry
+warmup: false
+answer_source: generated
+statement: Once we have the equilateral case, what other sorts of triangles can we make by moving $A$
+  and $C$ on the parabola $y=x^2$ with $B$ at the origin?
+stages:
+- goal: Keep the symmetric choice $a=-c$ and vary $c>0$. Describe the triangles that result.
+  expected: Isosceles triangles with apex $B$, with $BA=BC$, for every $c>0$. The equilateral triangle
+    is the special case $c=\sqrt{3}$.
+  solution: If $a=-c$, then $|BA|=|BC|=\sqrt{c^2+c^4}$, so the triangle is isosceles with apex $B$ for
+    every $c>0$. The apex angle at $B$ changes with $c$, and the triangle is equilateral only when the
+    base also equals $\sqrt{c^2+c^4}$, which happens when $c=\sqrt{3}$.
+  common_errors:
+  - Saying the triangle is always equilateral when $a=-c$
+  - Forgetting that the apex angle at $B$ changes with $c$, so the shape varies
+  hints:
+    rephrase: Fix the symmetric choice of $A$ and $C$ and ask which sides are equal. Then ask whether
+      all three sides can be equal.
+    smaller_case: Pick two different values of $c$, such as $c=1$ and $c=2$. Compare the triangles you
+      get.
+    key_idea: Check which pairs of sides are equal. A pair of equal sides makes the triangle isosceles,
+      and the equilateral case needs a third equal side.
+  check: a + c
+  check_ok: false
+- goal: Find the condition on $a$ and $c$ for a right angle at $B$.
+  expected: $ac=-1$, equivalently $c=-1/a$.
+  solution: The vectors $\vec{BA}=(a,a^2)$ and $\vec{BC}=(c,c^2)$ have dot product $ac+a^2c^2=ac(1+ac)$.
+    A right angle at $B$ needs this to be zero. Since $a\neq 0$ and $c\neq 0$, this gives $ac=-1$. So
+    the two slopes multiply to $-1$, which is the perpendicularity condition.
+  common_errors:
+  - Using $ac=1$ instead of $ac=-1$
+  - Forgetting that the dot product is $ac+a^2c^2$, not $ac$
+  hints:
+    rephrase: A right angle at $B$ means the two vectors from $B$ are perpendicular. Write their dot product
+      in terms of $a$ and $c$.
+    smaller_case: Try $c=1$. What value of $a$ makes the vectors from $B$ perpendicular?
+    key_idea: Set the dot product to zero and factor out the common term. Ignore the factor that cannot
+      be zero.
+  check: a*c + 1
+  check_ok: false
+extensions:
+  '3':
+  - Find the condition for an isosceles triangle with apex at $A$ rather than at $B$.
+  '4':
+  - Find the condition for a right angle at $A$.
+  '5':
+  - Explain how many independent parameters determine the shape of an isosceles triangle $ABC$ with apex
+    $B$, up to similarity.
+spoken_vocab:
+- A
+- B
+- C
+- x
+- y
+- y equals x squared
+- origin
+- isosceles
+- right angle
+- dot product
+- a c equals minus one
+- c equals minus one over a
+- slope
+- perpendicular
+- apex
+- scalene
+- equilateral
+- vector
+source: past-interviews/Actual Past Interview Questions/Oxford Maths Interview Question 2019 James Munroe.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 4
+  parts: 2
+  minutes: 12
+  flags: []
+  tagline: Open-ended triangle classification; angle at B changes type as c varies.
+  priority: 75
+  rank: 270
+  tier: B
+  category: past-interviews
+  d10: 4.5
+  real: 6.5
+  by: haiku
+tags:
+- coordinate_geometry
+- geometry

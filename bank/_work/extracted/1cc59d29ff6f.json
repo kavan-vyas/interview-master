@@ -1,0 +1,37 @@
+[
+ {
+  "q": "You split $1000$ coins into two piles and count the number of coins in each pile. If there are $x$ coins in pile one and $y$ coins in pile two, you multiply $x$ by $y$ to get $xy$. Then you split both piles further, repeat the same counting and multiplication process, and add the new multiplication results to the original. The process repeats until you only have piles of 1 coin each. What is the final sum (the final 1's are not included)? Prove that you always get the same answer no matter how the piles are divided.",
+  "kind": "maths",
+  "answer": "Let $f(n)$ be the final sum for $n$ coins. Claim: $f(n)=\\frac{n(n-1)}{2}$, proved by strong induction. Base cases: $f(2)=1$, $f(3)=3$. For $N$ coins split into $x$ and $N-x$, $f(N)=x(N-x)+f(x)+f(N-x)=x(N-x)+\\frac{x(x-1)}{2}+\\frac{(N-x)(N-x-1)}{2}=\\frac{N(N-1)}{2}$, so the result is independent of splits. Hence $f(1000)=\\frac{1000\\times 999}{2}=499500$.",
+  "short": false,
+  "source": "zhou-quant/zhou-quant-guide.pdf#1"
+ },
+ {
+  "q": "A chocolate bar has $6$ rows and $8$ columns ($48$ individual squares). You break it into two smaller rectangles, and each time you break one rectangle into two smaller rectangles along a straight line. What is the minimum number of breaks needed to break the chocolate bar into $48$ single squares?",
+  "kind": "maths",
+  "answer": "$47$. For an $m\\times n$ bar the number of breaks is always $mn-1$, proved by strong induction. Simpler reason: each break increases the number of pieces by exactly 1, starting from 1 piece and ending with $mn$ pieces, so $mn-1$ breaks are needed. For $6\\times 8$, this gives $47$.",
+  "short": true,
+  "source": "zhou-quant/zhou-quant-guide.pdf#1"
+ },
+ {
+  "q": "Suppose you are on a one-way circular race track. There are $N$ gas cans randomly placed at different locations on the track, and the total gas in the cans is enough for your car to run exactly one circle. Your car starts with no gas, but you can place it at any location and pick up gas cans along the way. Can you always choose a starting position so that your car can complete the entire circle?",
+  "kind": "maths",
+  "answer": "Yes. Proof by induction on $N$. For $N=1$ it is trivial. For $N=2$, one can start at the can with at least as much gas as the distance to the other can. For the inductive step, assume the statement holds for $N=n$. For $N=n+1$, some can $i$ has enough gas to reach can $i+1$; combine cans $i$ and $i+1$ into one can with the sum of their gas, reducing to $N=n$, which has a valid start. Alternative argument: place a second car at a can, drive a full circle recording the tank level before each refill, and start at the can with the lowest recorded level.",
+  "short": false,
+  "source": "zhou-quant/zhou-quant-guide.pdf#1"
+ },
+ {
+  "q": "Can you prove that $\\sqrt{2}$ is irrational? (A rational number is a ratio of two integers; otherwise it is irrational.)",
+  "kind": "maths",
+  "answer": "Proof by contradiction. Suppose $\\sqrt{2}=\\frac{m}{n}$ with $m,n$ integers in lowest terms. Then $m^2=2n^2$, so $m^2$ is even and hence $m$ is even. Write $m=2x$, so $4x^2=2n^2$, giving $n^2=2x^2$ and $n$ even. Both $m$ and $n$ are even, contradicting that they share no common factor. So $\\sqrt{2}$ is irrational.",
+  "short": true,
+  "source": "zhou-quant/zhou-quant-guide.pdf#1"
+ },
+ {
+  "q": "Seven prisoners are given the chance to be set free tomorrow. An executioner puts a hat on each prisoner's head. Each hat can be one of the seven colours of the rainbow, assigned at the executioner's discretion. Every prisoner can see the hat colours of the other six prisoners but not his own. They cannot communicate in any form, or else they are executed. Each prisoner then writes down a guess of his own hat colour. If at least one prisoner correctly guesses his hat colour, they all go free; otherwise they are all executed. They have one night to devise a strategy. Is there a strategy that guarantees they will be set free?",
+  "kind": "maths",
+  "answer": "Yes. Code the colours as $0$ to $6$ and let $T$ be the sum of all hat codes mod $7$. Label the prisoners $i=0,\\dots,6$. Prisoner $i$ guesses $g_i$ in $\\{0,\\dots,6\\}$ such that $g_i+(\\text{sum of the other six codes})\\equiv i \\pmod 7$, i.e. $g_i\\equiv i+x_i-T \\pmod 7$, where $x_i$ is his own hat. Since $i$ takes every residue mod $7$, exactly one prisoner has $i\\equiv T$, and for that prisoner $g_i=x_i$. So at least one prisoner is always correct.",
+  "short": false,
+  "source": "zhou-quant/zhou-quant-guide.pdf#1"
+ }
+]

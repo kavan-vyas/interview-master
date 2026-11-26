@@ -1,0 +1,111 @@
+id: gamma-integral-factorial
+title: Factorial as an integral
+topics:
+- integration
+- integration by parts
+- improper integrals
+- induction
+warmup: true
+answer_source: generated
+statement: Show that $\int_0^\infty x^n e^{-x}\,dx=n!$ for every integer $n\ge 0$.
+stages:
+- goal: Start with the base case. Evaluate the integral for n = 0 and confirm it matches 0!.
+  expected: The integral equals 1, which equals 0!.
+  solution: 'For n=0 the integrand is e^{-x}. Write the improper integral as a limit: $\int_0^\infty e^{-x}\,dx=\lim_{b\to\infty}\left[-e^{-x}\right]_0^b=\lim_{b\to\infty}\left(1-e^{-b}\right)=1$.
+    Since 0! = 1, the base case holds.'
+  common_errors:
+  - Forgetting that the integral is improper and skipping the limit.
+  - Treating 0! as 0.
+  - Sign error when integrating e^{-x}, giving -1 instead of 1.
+  hints:
+    rephrase: What is the integral when the power of x is zero? Remember the upper limit is infinity,
+      so treat it as a limit.
+    smaller_case: Find the antiderivative of e^{-x} and evaluate it at 0 and at a large finite b, then
+      let b grow.
+    key_idea: An improper integral over [0, infinity) is a limit of proper integrals over [0, b].
+  check: integrate(exp(-x), (x, 0, oo)) - factorial(0)
+  check_ok: true
+- goal: Find a recurrence linking I_n = \int_0^\infty x^n e^{-x}\,dx to I_{n-1} using integration by parts.
+  expected: I_n = n I_{n-1} for every n >= 1.
+  solution: 'Take $u=x^n$ and $dv=e^{-x}\,dx$, so $du=n x^{n-1}\,dx$ and $v=-e^{-x}$. Then $I_n=\left[-x^n
+    e^{-x}\right]_0^\infty+n\int_0^\infty x^{n-1}e^{-x}\,dx$. The boundary term vanishes: at infinity,
+    $x^n e^{-x}\to 0$ because the exponential decays faster than any polynomial grows, and at 0, $x^n=0$
+    for $n\ge 1$. So $I_n=n\,I_{n-1}$.'
+  common_errors:
+  - Dropping the boundary term without checking that it vanishes.
+  - Choosing u and dv the wrong way round, which makes the integral harder.
+  - Getting the derivative of x^n wrong, e.g. writing x^n instead of n x^{n-1}.
+  - Using v = e^{-x} instead of -e^{-x}, which flips the sign.
+  hints:
+    rephrase: Try to write I_n in terms of an integral with power x^{n-1}. Which factor should you differentiate
+      and which should you integrate?
+    smaller_case: Carry out the parts computation explicitly for n = 1, and check what happens to the
+      boundary term.
+    key_idea: Integration by parts with u = x^n and dv = e^{-x} dx. Check that the boundary term disappears
+      at both ends.
+  check: integrate(x**3*exp(-x), (x, 0, oo)) - 3*integrate(x**2*exp(-x), (x, 0, oo))
+  check_ok: true
+- goal: Use the base case and the recurrence to prove the formula for all n >= 0 by induction.
+  expected: I_n = n! for all integers n >= 0, proved by induction.
+  solution: 'Base case: I_0 = 1 = 0!. Inductive step: suppose I_k = k! for some k >= 0. By the recurrence,
+    I_{k+1} = (k+1) I_k = (k+1)\cdot k! = (k+1)!. So by induction, $\int_0^\infty x^n e^{-x}\,dx=n!$ for
+    every integer $n\ge 0$.'
+  common_errors:
+  - Stating the induction hypothesis for n but using it for a different index.
+  - Omitting the base case.
+  - Concluding without noting the recurrence is valid only for n >= 1, so the step from k to k+1 must
+    use k+1 >= 1 (which it always is).
+  hints:
+    rephrase: You have a starting value and a rule that takes you from one value to the next. How do you
+      turn that into a proof for all n?
+    smaller_case: Use the recurrence to get from I_0 to I_1, then from I_1 to I_2, and see what pattern
+      appears.
+    key_idea: 'Induction: check the base case, assume the statement for k, and use the recurrence to deduce
+      it for k+1.'
+  check: integrate(x**5*exp(-x), (x, 0, oo)) - factorial(5)
+  check_ok: true
+extensions:
+  '3':
+  - Show that $\int_0^\infty x^n e^{-ax}\,dx=\frac{n!}{a^{n+1}}$ for $a>0$.
+  - Evaluate $\int_0^\infty x^{5/2}e^{-x}\,dx$ in terms of $\pi$.
+  '4':
+  - Define $\Gamma(z)=\int_0^\infty t^{z-1}e^{-t}\,dt$ for real $z>0$. Prove that $\Gamma(z+1)=z\,\Gamma(z)$,
+    and deduce $\Gamma(n+1)=n!$.
+  '5':
+  - Let $X$ be exponential with rate 1, so its density is $e^{-x}$ on $[0,\infty)$. Show that $\mathbb{E}[X^n]=n!$
+    and explain how this relates to the integral above.
+spoken_vocab:
+- integral
+- from zero to infinity
+- x to the power n
+- e to the minus x
+- n factorial
+- integration by parts
+- boundary term
+- induction
+- base case
+- I sub n
+- I sub n minus one
+- gamma function
+- limit
+- exponential decay
+- recurrence
+source: jaymin/Jaymin Interview (1).pdf#p41
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 3
+  minutes: 6
+  flags: []
+  tagline: Standard induction via integration by parts; mostly recall.
+  priority: 66
+  rank: 372
+  tier: C
+  category: jaymin
+  d10: 3.5
+  real: 6.0
+  by: deepseek-v4.1-flash-free
+tags:
+- integration
+- proof

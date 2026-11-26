@@ -1,0 +1,100 @@
+id: repunit-product-plus-one-square
+title: Repunit times a 1-0-5 number, plus one, is a perfect square
+topics:
+- number theory
+- repunits
+- perfect squares
+- algebraic identities
+warmup: false
+answer_source: generated
+statement: Let $a$ be the integer consisting of $m$ digit 1's and $b$ be the integer consisting of a digit
+  1 at the start, a digit 5 at the end and with $m-1$ digit 0's in between. Show that $ab+1$ is a perfect
+  square and find its square root.
+stages:
+- goal: Write a and b in closed form in terms of m.
+  expected: $a=\frac{10^m-1}{9}$ and $b=10^m+5$, so $ab=\frac{(10^m-1)(10^m+5)}{9}$.
+  solution: 'a is a repunit: $a=\sum_{j=0}^{m-1}10^j=\frac{10^m-1}{9}$. b has m+1 digits 1,0,...,0,5 with
+    m-1 zeros, so $b=10^m+5$. Multiply: $(10^m-1)(10^m+5)=10^{2m}+4\cdot10^m-5$.'
+  common_errors:
+  - Writing b as 10^(m-1)+5 or 10^(m+1)+5 instead of 10^m+5
+  - Forgetting the division by 9 in the repunit formula
+  - Expanding the product incorrectly, e.g. dropping the -5
+  hints:
+    rephrase: Write each number as a sum of powers of ten, then sum the geometric series.
+    smaller_case: 'Take m=2: which digits do a and b have, and how many digits does b have?'
+    key_idea: A repunit of m ones is a geometric sum, so it equals (10^m - 1) divided by 9.
+  check: simplify((10**m-1)/9*(10**m+5)*9 - (10**(2*m)+4*10**m-5))
+  check_ok: true
+- goal: Simplify ab+1 into a single expression in powers of 10^m.
+  expected: $ab+1=\frac{10^{2m}+4\cdot10^m+4}{9}=\left(\frac{10^m+2}{3}\right)^2$.
+  solution: $ab+1=\frac{10^{2m}+4\cdot10^m-5}{9}+1=\frac{10^{2m}+4\cdot10^m+4}{9}$. Since $(10^m+2)^2=10^{2m}+4\cdot10^m+4$,
+    this equals $\left(\frac{10^m+2}{3}\right)^2$.
+  common_errors:
+  - Adding 1 to the numerator instead of to the whole fraction
+  - Factoring 10^{2m}+4*10^m+4 wrongly as (10^m+1)(10^m+3)
+  - Dropping the constant term when expanding
+  hints:
+    rephrase: Multiply the two closed forms, add 1, and look for a square of a binomial in powers of 10^m.
+    smaller_case: 'Take m=1: a=1, b=15. Compute ab+1 and compare it with a square of a simple expression.'
+    key_idea: Substitute t = 10^m. The result is a quadratic in t with constant term 4 over 9, which suggests
+      a square of (t+2)/3.
+  check: simplify((10**m-1)/9*(10**m+5) + 1 - ((10**m+2)/3)**2)
+  check_ok: true
+- goal: State the square root of ab+1 and justify that it is an integer.
+  expected: $\sqrt{ab+1}=\frac{10^m+2}{3}$, which is the m-digit integer 33...34 (m-1 threes followed
+    by a 4).
+  solution: Since $10^m\equiv1\pmod 3$, $10^m+2\equiv0\pmod 3$, so $\frac{10^m+2}{3}$ is an integer. Its
+    square is ab+1 by stage 2, and it is positive, so it is the square root. For m=1 it gives 4 and ab+1=16.
+  common_errors:
+  - Giving the root as (10^m+2)/9
+  - Forgetting to check that the root is an integer
+  - Giving only the square root for m=1 and not the general form
+  hints:
+    rephrase: Which positive expression, when squared, gives the polynomial you found in the previous
+      stage?
+    smaller_case: 'Take m=1: what is ab+1, and what positive number squares to it?'
+    key_idea: For the root to be an integer, 10^m+2 must be divisible by 3. Reduce 10^m modulo 3.
+  check: simplify(((10**m+2)/3)**2 - ((10**m-1)/9*(10**m+5)+1))
+  check_ok: true
+extensions:
+  '3':
+  - Check the identity numerically for m=3 by computing a, b and ab+1 directly.
+  '4':
+  - Show that 10^m+2 is divisible by 3 for every m>=1 without using the explicit formula for the root.
+  '5':
+  - For which final digits d does a similar construction with b ending in d give ab+1 a perfect square?
+    Test small m and justify.
+spoken_vocab:
+- a
+- b
+- m
+- ab plus one
+- repunit
+- ten to the m
+- perfect square
+- square root
+- divide by nine
+- minus one
+- plus five
+- plus two
+- divided by three
+- modulo three
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 7
+  difficulty: 4
+  parts: 3
+  minutes: 10
+  flags: []
+  tagline: Closed forms collapse to (10^m+2)^2/9; integrality via 10^m mod 3.
+  priority: 81
+  rank: 219
+  tier: B
+  category: tbo
+  d10: 3.5
+  real: 5.0
+  by: haiku
+tags:
+- number_theory
+- algebra_and_functions

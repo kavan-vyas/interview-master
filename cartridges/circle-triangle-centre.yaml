@@ -1,0 +1,103 @@
+id: circle-triangle-centre
+title: Random triangle containing the centre
+topics:
+- probability
+- geometry
+- symmetry
+- complementary events
+warmup: true
+answer_source: pdf
+statement: Three points are chosen independently and uniformly at random on a circle. What is the probability
+  that the triangle they form contains the centre?
+stages:
+- goal: Fix the first point P_1 and find the probability that the other two points both lie in the semicircle
+    clockwise from P_1.
+  expected: 1/4
+  solution: Each of the other two points independently lands in a given semicircle with probability 1/2.
+    So the probability both do is (1/2)^2 = 1/4.
+  common_errors:
+  - Using 1/2 (only one point considered)
+  - Using 1/8 by multiplying three half-probabilities
+  hints:
+    rephrase: Fix the first point. For the other two points to lie on one side of the diameter through
+      it, where must each of them be?
+    smaller_case: Imagine a single fixed point and one other point. What is the probability that the second
+      point lies in a given half of the circle?
+    key_idea: Each point falling in a given half of the circle is an independent event with probability
+      one half.
+  check: sympy.Rational(1,2)**2 - sympy.Rational(1,4)
+  check_ok: null
+- goal: Find the probability that all three points lie in some semicircle, by adding the disjoint events
+    for each choice of first point.
+  expected: 3/4
+  solution: Let E_i be the event that the other two points lie in the clockwise semicircle from P_i. Triangle
+    misses the centre exactly when all three points lie in a semicircle, which is the union of E_1, E_2,
+    E_3. These events are almost surely disjoint, so the probability is 3 * 1/4 = 3/4.
+  common_errors:
+  - Adding the three probabilities without checking they are disjoint, or without noticing they are disjoint,
+    leading to confusion about the argument
+  - Forgetting to take the union and reporting 1/4 here
+  hints:
+    rephrase: The triangle misses the centre when some semicircle contains all three points. Which point
+      is the starting point of that semicircle, and can two different starting points both work?
+    smaller_case: Describe the situation for only two points on a diameter and consider which points lie
+      on which side.
+    key_idea: Use the union of events, and check that the events overlap only with probability zero.
+  check: 3*sympy.Rational(1,4) - sympy.Rational(3,4)
+  check_ok: null
+- goal: Find the probability that the triangle contains the centre.
+  expected: 1/4
+  solution: The triangle contains the centre exactly when the points are not all in a semicircle. So the
+    probability is 1 - 3/4 = 1/4.
+  common_errors:
+  - Reporting 3/4, the complement of what was asked
+  - Confusing the containing event with the missing event
+  hints:
+    rephrase: Which event is the complement of the one you just computed, and what does it mean for the
+      triangle?
+    smaller_case: For two points on a circle, which event would mean the segment between them passes near
+      the centre?
+    key_idea: Take the complement of the event that all points lie in a semicircle.
+  check: 1 - 3*sympy.Rational(1,4) - sympy.Rational(1,4)
+  check_ok: null
+extensions:
+  '3':
+  - Show that the probability that n points on a circle all lie in some semicircle is n divided by 2 to
+    the power n minus 1. Check it against n = 3.
+  '4':
+  - With four points chosen uniformly and independently on a circle, what is the probability that the
+    centre lies inside their convex hull?
+  '5':
+  - With five points chosen uniformly and independently on a circle, what is the probability that the
+    centre lies inside their convex hull?
+spoken_vocab:
+- three points
+- uniform on a circle
+- triangle
+- contains the centre
+- semicircle
+- one quarter
+- three quarters
+- complement
+- independent
+- disjoint events
+- one minus three quarters
+source: jaymin/Jaymin Interview (1).pdf#p33
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Semicircle argument gives 1/4; generalises well to n points and invites discussion.
+  priority: 96
+  rank: 60
+  tier: A
+  category: jaymin
+  d10: 4.5
+  real: 7.5
+  by: deepseek-v4.1-flash-free
+tags:
+- probability
+- geometry

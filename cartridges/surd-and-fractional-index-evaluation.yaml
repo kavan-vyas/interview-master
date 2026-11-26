@@ -1,0 +1,91 @@
+id: surd-and-fractional-index-evaluation
+title: Evaluating fractional indices without a calculator
+topics:
+- indices
+- fractional powers
+- negative powers
+- surds
+warmup: true
+answer_source: pdf
+statement: Without using a calculator, evaluate $8^{\frac{2}{3}} \times 27^{-\frac{1}{3}}$.
+stages:
+- goal: Evaluate $8^{\frac{2}{3}}$.
+  expected: '4'
+  solution: 8^(2/3) = (8^(1/3))² = 2² = 4, since the cube root of 8 is 2.
+  common_errors:
+  - Computing 8 × 2/3 or 8 ÷ 3 × 2 instead of using the root.
+  - Taking the cube root and then dividing by the numerator instead of squaring.
+  - Writing the answer as 16/3 or as 2^(2/3).
+  hints:
+    rephrase: The denominator of a fractional index tells you which root to take; the numerator tells
+      you which power to raise to.
+    smaller_case: What number cubed gives 8? Then what is the square of that number?
+    key_idea: Write the base as a power of a smaller number whose root is easy to find, then apply the
+      numerator as a power.
+  check: 8**Rational(2,3) - 4
+  check_ok: true
+- goal: Evaluate $27^{-\frac{1}{3}}$.
+  expected: 1/3
+  solution: 27^(-1/3) = 1/(27^(1/3)) = 1/3, since the cube root of 27 is 3.
+  common_errors:
+  - Giving 27^(1/3) = 3 but forgetting the negative index, so writing 3.
+  - Treating the negative sign as making the answer negative (−3 or −1/3).
+  - Writing 1/27 or 27/3 by mixing up the root and the reciprocal.
+  hints:
+    rephrase: A negative index means take the reciprocal of the positive-index value. Find the cube root
+      of 27 first.
+    smaller_case: What is the cube root of 8, and what would 8^(-1/3) be?
+    key_idea: Handle the negative sign as a reciprocal, and the fraction as a root, separately.
+  check: 27**Rational(-1,3) - Rational(1,3)
+  check_ok: true
+- goal: Multiply the two results together.
+  expected: 4/3
+  solution: 8^(2/3) × 27^(-1/3) = 4 × 1/3 = 4/3.
+  common_errors:
+  - Adding the two results instead of multiplying.
+  - Simplifying 4 × 1/3 incorrectly as 4/9 or 1/12.
+  hints:
+    rephrase: The question asks for a product of the two results from the previous stages.
+    smaller_case: What is 2 × 1/3?
+    key_idea: Multiply the numerical values, then give the result as a single fraction.
+  check: 8**Rational(2,3)*27**Rational(-1,3) - Rational(4,3)
+  check_ok: true
+extensions:
+  '3':
+  - Evaluate $16^{\frac{3}{4}} \times 8^{-\frac{2}{3}}$ without a calculator.
+  '4':
+  - Simplify $\left(\frac{125}{8}\right)^{-\frac{2}{3}}$.
+  '5':
+  - Solve $x^{\frac{3}{2}} = 27$ for $x$, giving the positive root.
+spoken_vocab:
+- eight to the power two thirds
+- twenty seven to the power minus one third
+- times
+- cube root
+- square
+- reciprocal
+- negative index
+- four thirds
+- fraction
+- one third
+- four
+- no calculator
+source: kclms/kclms-specimen-questions-4.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 3
+  minutes: 2
+  flags:
+  - trivial
+  tagline: Routine index-law arithmetic with no depth or extension.
+  priority: 23
+  rank: 652
+  tier: D
+  category: kclms
+  d10: 1.5
+  real: 2.0
+  by: haiku
+tags:
+- algebra_and_functions

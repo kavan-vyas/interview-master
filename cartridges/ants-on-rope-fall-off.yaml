@@ -1,0 +1,101 @@
+id: ants-on-rope-fall-off
+title: Ants on a rope bouncing and falling off
+topics:
+- kinematics
+- symmetry trick
+- bounds
+warmup: false
+answer_source: generated
+statement: There are $n$ ants on a rope of length $10$ m. They all move at a speed of $10$ m/s. If two
+  ants bump into each other on the rope, they instantly reverse their direction and move at the same speed.
+  The ants can be facing in any direction. If an ant gets to the end of the rope, then it falls off. Prove
+  that they all fall off eventually. Can you give an upper bound on the amount of time until all the ants
+  fall off the rope?
+stages:
+- goal: Replace the ants by ghosts that pass through each other.
+  expected: Ghosts move independently at 10 m/s in fixed directions; at every time the set of ant positions
+    and directions equals the set of ghost positions and directions, so the ants fall off exactly when
+    the ghosts do.
+  solution: When two ants collide and reverse, the same configuration results if instead they pass through
+    each other without changing velocity and we swap their labels. So each ghost follows a straight path
+    at speed 10 m/s. The multiset of (position, direction) pairs is the same for ants and ghosts at every
+    time, and a ghost leaves the rope exactly when an ant falls off.
+  common_errors:
+  - Thinking the ants keep their identities and so their paths must be tracked individually
+  - Confusing the ghost model with a claim that ants never collide
+  hints:
+    rephrase: If two ants bounce, what happens to the pair of positions if you imagine them passing through
+      each other instead?
+    smaller_case: Two ants meet on a rope. Compare the positions after the meeting in the bounce model
+      and the pass-through model.
+    key_idea: Collisions only swap labels between ants moving at equal speed, so the set of moving points
+      is unchanged.
+  check: null
+- goal: Bound the time for one ghost to leave the rope.
+  expected: Each ghost leaves within 1 second.
+  solution: A ghost at position x (0 at one end, 10 at the other) moving right at 10 m/s leaves after
+    (10-x)/10 seconds, which is at most 1 second since x is at least 0. A ghost moving left leaves after
+    x/10 seconds, at most 1 second since x is at most 10.
+  common_errors:
+  - Using the rope length as time instead of dividing by the speed
+  - Forgetting that a ghost can start in either direction
+  hints:
+    rephrase: How far can a ghost have to travel before it reaches an end, and how long does that take
+      at 10 m/s?
+    smaller_case: A ghost starts at the midpoint of the rope and moves right. How long until it leaves?
+    key_idea: Time equals distance over speed, and the distance to the end in its direction is at most
+      the full rope length.
+  check: null
+- goal: Conclude that all ants fall off and state an upper bound on the time.
+  expected: All ants have fallen off by time 1 second, so the upper bound is 1 second.
+  solution: At time t=1 second every ghost has left the rope, because each leaves within 1 second. Since
+    the ants' positions match the ghosts' positions, no ant remains on the rope. So they all fall off
+    and the upper bound is 1 second.
+  common_errors:
+  - Giving the bound as 10 seconds
+  - Arguing that ants fall off in order without justification
+  hints:
+    rephrase: If every ghost has left the rope by some time T, what does that say about the ants at time
+      T?
+    smaller_case: With one ant, how long does it take to fall off?
+    key_idea: The ants and ghosts occupy the same set of positions at every time, so when all ghosts are
+      gone, all ants are gone.
+  check: null
+extensions:
+  '3':
+  - If the rope were a closed loop, would all ants fall off? Explain.
+  '4':
+  - Why does the ghost argument fail if ants can have different speeds?
+  '5':
+  - Place one ant at 0.001 m moving toward the far end. Why is the time close to 1 second, showing the
+    bound is essentially tight?
+spoken_vocab:
+- ants
+- rope
+- ten metres
+- ten metres per second
+- bump
+- reverse direction
+- falls off
+- upper bound
+- n ants
+- time
+source: screenshots/Screenshot 2026-11-19 at 14.37.58.png
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: Ghost trick gives a clean one-second bound with simple structure.
+  priority: 71
+  rank: 363
+  tier: C
+  category: screenshots
+  d10: 3.5
+  real: 5.0
+  by: deepseek-v4.1-flash-free
+tags:
+- proof
+- mechanics

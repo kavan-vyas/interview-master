@@ -1,0 +1,30 @@
+[
+ {
+  "q": "$\\int \\frac{25}{9}\\left(2z^{-3/2}-5z^{-2}\\right)\\ln\\left(2-5z^{-1/2}\\right)\\,dz$ (limits not preserved in the source; fragment of the final part of question 26)",
+  "kind": "maths",
+  "answer": "Substitute $z=(x+1)^2$, which gives the previous integral almost exactly with a factor of 2 from $dz/dx$. The answer is twice the previous answer: $\\frac{1}{45}\\ln 3-\\frac{4}{45}$.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#11"
+ },
+ {
+  "q": "The curve $C$ has equation $y=x\\sqrt{x^2-2x+a}$, where the square root is positive. Show that, if $a>1$, then $C$ has exactly one stationary point. Sketch $C$ when (i) $a=2$ and (ii) $a=1$.",
+  "kind": "maths",
+  "answer": "$\\frac{dy}{dx}=\\frac{a-x}{(x^2-2x+a)^{3/2}}$, which is zero only when $x=a$, so there is exactly one stationary point. (i) For $a=2$, the stationary point is $(2,\\sqrt{2})$, a maximum; the curve passes through $(0,0)$, with $y\\to 1$ as $x\\to\\infty$ and $y\\to -1$ as $x\\to-\\infty$. (ii) For $a=1$, $y=\\frac{x}{|x-1|}$; the maximum becomes a vertical asymptote at $x=1$.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#11"
+ },
+ {
+  "q": "Prove that $\\sum_{k=0}^{n}\\sin k\\theta=\\frac{\\cos\\frac12\\theta-\\cos(n+\\frac12)\\theta}{2\\sin\\frac12\\theta}$. (i) Deduce that, for $n\\ge 1$, $\\sum_{k=0}^{n}\\sin\\left(\\frac{k\\pi}{n}\\right)=\\cot\\left(\\frac{\\pi}{2n}\\right)$. (ii) By differentiating $(*)$ with respect to $\\theta$, or otherwise, show that, for $n\\ge 1$, $\\sum_{k=0}^{n}k\\sin^2\\left(\\frac{k\\pi}{2n}\\right)=\\frac{(n+1)^2}{4}+\\frac14\\cot^2\\left(\\frac{\\pi}{2n}\\right)$.",
+  "kind": "maths",
+  "answer": "Multiply both sides by $2\\sin\\frac12\\theta$ and use $2\\sin A\\sin B=\\cos(B-A)-\\cos(B+A)$; the sum telescopes. (i) Set $\\theta=\\pi/n$; the result simplifies to $\\cot\\frac{\\pi}{2n}$. (ii) Differentiate and use $\\cos k\\theta=1-2\\sin^2\\frac12 k\\theta$ to get $\\sum k\\cos k\\theta=\\frac12 n(n+1)-2\\sum k\\sin^2\\frac12 k\\theta$; write the right-hand side of $(*)$ as $\\frac12[(1-\\cos n\\theta)\\cot\\frac12\\theta+\\sin n\\theta]$, differentiate, and set $\\theta=\\pi/n$ to compare the two results.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#11"
+ },
+ {
+  "q": "Consider the cubic equation $x^3-px^2+qx-r=0$, where $p\\neq 0$ and $r\\neq 0$. (i) If the three roots can be written in the form $ak^{-1}$, $a$ and $ak$ for some constants $a$ and $k$, show that one root is $q/p$ and that $q^3-rp^3=0$. (ii) If $r=q^3/p^3$, show that $q/p$ is a root and that the product of the other two roots is $(q/p)^2$. Deduce that the roots are in geometric progression. (iii) Find a necessary and sufficient condition involving $p$, $q$ and $r$ for the roots to be in arithmetic progression.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#11"
+ }
+]

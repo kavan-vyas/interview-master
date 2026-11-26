@@ -1,0 +1,127 @@
+id: cissoid-of-diocles-sketch
+title: Sketch the cissoid x(x^2 + y^2) = 2ay^2
+topics:
+- curve sketching
+- implicit curves
+- polar coordinates
+- asymptotes
+- cusps
+warmup: false
+answer_source: generated
+statement: Sketch the graph of $x(x^2 + y^2) = 2ay^2$, $a > 0$.
+stages:
+- goal: Make y^2 the subject of the equation.
+  expected: y^2 = x³ / (2a − x).
+  solution: 'Expand the left side to get x³ + xy² = 2ay². Collect the y² terms: x³ = y²(2a − x). Divide
+    by (2a − x). On the curve, x = 2a would give x³ = 0, which is impossible for a > 0, so the division
+    is valid.'
+  common_errors:
+  - Dropping the xy² term when expanding x(x² + y²).
+  - Dividing by (2a − x) without checking that it is non-zero on the curve.
+  - Sign error, writing y² = x³/(x − 2a).
+  hints:
+    rephrase: Expand the bracket and collect all the y² terms on one side.
+    smaller_case: Set a = 1 and try x = 1 to see what y must be.
+    key_idea: The equation is linear in y², so isolating y² is the natural first step.
+  check: sp.simplify((x*(x**2+y**2)-2*a*y**2).subs(y**2, x**3/(2*a-x)))==0
+  check_ok: null
+- goal: Find the domain, symmetry, asymptote, and the points of the curve that lie on the boundaries of
+    the domain.
+  expected: The curve exists only for 0 ≤ x < 2a. It is symmetric about the x-axis. There is a vertical
+    asymptote x = 2a, with y → ±∞. It passes through (0, 0) and (a, ±a).
+  solution: We need x³/(2a − x) ≥ 0. For x < 0 the numerator is negative and the denominator 2a − x is
+    positive, so there are no points. For 0 ≤ x < 2a both are non-negative, so points exist. For x > 2a
+    the denominator is negative and the numerator positive, so there are no points. As x → 2a from below,
+    y² → ∞, giving the asymptote. At x = a, y² = a³/a = a², so y = ±a.
+  common_errors:
+  - Forgetting the restriction x ≥ 0 and sketching a left-hand branch.
+  - Placing the asymptote at x = a rather than x = 2a.
+  - Forgetting the symmetry about the x-axis and drawing only one branch.
+  hints:
+    rephrase: Ask which values of x make y² non-negative, and what happens where the denominator is zero.
+    smaller_case: Set a = 1 and test x = −1, 0.5, 1 and 3.
+    key_idea: A quotient is non-negative only when numerator and denominator have the same sign. A zero
+      of the denominator gives an asymptote.
+  check: sp.simplify((x**3/(2*a-x)).subs(x, a) - a**2)==0
+  check_ok: null
+- goal: Convert to polar coordinates, find r as a function of θ, and state the range of θ that covers
+    the curve.
+  expected: r = 2a sin²θ / cos θ, for −π/2 < θ < π/2. This range covers the whole curve. r = 0 at θ =
+    0 (the origin), and r → ∞ as θ → ±π/2, which corresponds to the asymptote.
+  solution: Substitute x = r cos θ, y = r sin θ, so x² + y² = r². The left side becomes r³ cos θ and the
+    right side becomes 2a r² sin²θ. Dividing by r² gives r cos θ = 2a sin²θ, so r = 2a sin²θ / cos θ.
+    For −π/2 < θ < π/2, cos θ > 0, so r ≥ 0. Outside this range, the same points are obtained with θ shifted
+    by π, so this range covers the curve.
+  common_errors:
+  - Dividing by r instead of r², losing the origin or mishandling the powers of r.
+  - Swapping the substitutions, using x = r sin θ and y = r cos θ.
+  - Ignoring the restriction on θ and sketching the wrong branches.
+  hints:
+    rephrase: Replace x and y by r and θ, then factor out the highest power of r that appears on both
+      sides.
+    smaller_case: Set θ = π/4, and find the corresponding x and y from the Cartesian form.
+    key_idea: Use x² + y² = r². The left side then carries a factor r³ and the right side a factor r²,
+      so one common factor can be cancelled.
+  check: sp.simplify((r**3*sp.cos(th) - 2*a*r**2*sp.sin(th)**2).subs(r, 2*a*sp.sin(th)**2/sp.cos(th)))==0
+  check_ok: null
+- goal: Determine the nature of the origin and the tangent directions there. Then assemble the full sketch.
+  expected: The origin is a cusp. Near O, y² ≈ x³/(2a), so y ≈ ±x^{3/2}/√(2a). Both branches are tangent
+    to the x-axis at O and lie in x ≥ 0. The full sketch is a cusp at the origin, two branches opening
+    to the right, symmetric about the x-axis, with asymptote x = 2a and points (a, ±a).
+  solution: For small x, the denominator 2a − x ≈ 2a, so y² ≈ x³/(2a). Taking square roots gives y ≈ ±x^{3/2}/√(2a).
+    Then dy/dx ≈ ±(3/2) x^{1/2}/√(2a) → 0 as x → 0⁺, so both arms are tangent to the x-axis at the origin.
+    The point is therefore a cusp, not a smooth point. The two arms join at O and extend to the right,
+    to the asymptote x = 2a.
+  common_errors:
+  - Calling the origin a smooth point with a vertical tangent.
+  - Forgetting that both arms meet at O and are tangent to the x-axis.
+  - Mishandling the power of x or the sign when taking square roots of y².
+  hints:
+    rephrase: Find the leading behaviour of y² for small x, then take the square root.
+    smaller_case: Set a = 1 and compare x³/(2 − x) with x³/2 at x = 0.01.
+    key_idea: Near the origin the denominator is almost constant, so the curve behaves like the standard
+      cusp y² = (constant) · x³.
+  check: sp.simplify(sp.limit(sp.sqrt(x**3/(2*a-x))/x**sp.Rational(3,2), x, 0, dir='+') - 1/sp.sqrt(2*a))==0
+  check_ok: null
+extensions:
+  '3':
+  - Show that x = 2at²/(1 + t²), y = 2at³/(1 + t²) parametrises the curve, where t = y/x.
+  '4':
+  - Find the area between the cissoid and its asymptote x = 2a, using the upper half of the curve.
+  '5':
+  - Investigate whether the cissoid of Diocles is the image of a parabola under an inversion centred at
+    the origin.
+spoken_vocab:
+- x times open bracket x squared plus y squared close bracket equals two a y squared
+- a greater than zero
+- y squared equals x cubed over two a minus x
+- cissoid of Diocles
+- cusp at the origin
+- vertical asymptote x equals two a
+- polar coordinates
+- r equals two a sine squared theta over cosine theta
+- theta between minus pi over two and pi over two
+- x equals r cosine theta
+- y equals r sine theta
+- point a comma plus or minus a
+source: waleed/Curve Sketching Questions - Waleed.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 7
+  parts: 4
+  minutes: 20
+  flags:
+  - needs_diagram
+  tagline: Polar conversion, asymptote and origin analysis combine into a rich curve sketch.
+  priority: 74
+  rank: 289
+  tier: B
+  category: waleed
+  d10: 6.0
+  real: 4.0
+  by: deepseek-v4.1-flash-free
+tags:
+- curve_sketching
+- polar_coordinates
+- algebra_and_functions

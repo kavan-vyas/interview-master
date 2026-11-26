@@ -1,0 +1,96 @@
+id: cosh-sinh-definitions-and-intercepts
+title: 'Hyperbolic cosine and sine: definitions, graphs and intercepts'
+topics:
+- hyperbolic functions
+- exponentials
+- graph sketching
+- derivatives
+warmup: true
+answer_source: generated
+statement: Define $\cosh x$ and $\sinh x$. Sketch both on the same graph. Where do both graphs cut the
+  axes? What is the gradient of $\sinh x$ at $x=0$?
+stages:
+- goal: Define $\cosh x$ and $\sinh x$ in terms of exponentials.
+  expected: $\cosh x=\frac{e^{x}+e^{-x}}{2}$ and $\sinh x=\frac{e^{x}-e^{-x}}{2}$.
+  solution: 'These are the even and odd parts of $e^x$: $\cosh x$ is the average of $e^x$ and $e^{-x}$,
+    and $\sinh x$ is half their difference.'
+  common_errors:
+  - Dropping the factor of 2 in the denominator.
+  - Swapping the signs, so that $\cosh$ has a minus sign.
+  hints:
+    rephrase: Write $e^{x}$ as the sum of an even function and an odd function of $x$.
+    smaller_case: Evaluate your candidate formulas at $x=0$. Does the value match what you expect for
+      a function that is even or odd?
+    key_idea: Even part of $f(x)$ is $\frac{f(x)+f(-x)}{2}$ and odd part is $\frac{f(x)-f(-x)}{2}$.
+  check: cosh(x).rewrite(exp) - (exp(x) + exp(-x))/2
+  check_ok: true
+- goal: Sketch $y=\cosh x$ and $y=\sinh x$ on the same axes and state where each graph cuts the axes.
+  expected: $\cosh x$ cuts the $y$-axis at $(0,1)$ and never cuts the $x$-axis, since $\cosh x\ge 1$.
+    $\sinh x$ cuts both axes at the origin $(0,0)$.
+  solution: '$\cosh 0=\frac{1+1}{2}=1$, and $\cosh x\ge 1$ for all real $x$, since $e^x+e^{-x}\ge 2$ by
+    AM-GM. $\sinh 0=0$, and $\sinh x=0$ only when $e^{2x}=1$, i.e. $x=0$. The sketch: $\cosh$ is U-shaped
+    with minimum at (0,1); $\sinh$ is odd, increasing, through the origin.'
+  common_errors:
+  - Claiming $\cosh x$ crosses the $x$-axis at $\pm 1$ or elsewhere.
+  - Forgetting that $\sinh$ is odd, so its graph is symmetric about the origin.
+  hints:
+    rephrase: Substitute x = 0 into each function. Then ask whether each function can ever be zero.
+    smaller_case: Look at $\cosh x$ for $x=0$ and $x=1$. Are its values above or below the $x$-axis?
+    key_idea: Use the fact that $e^x+e^{-x}$ is always at least 2, using the AM-GM inequality or by completing
+      the square in $e^x$.
+  check: cosh(0) - 1
+  check_ok: true
+- goal: Find the gradient of $\sinh x$ at $x=0$.
+  expected: $\frac{d}{dx}\sinh x=\cosh x$, so the gradient at $x=0$ is $\cosh 0=1$.
+  solution: Differentiate $\frac{e^x-e^{-x}}{2}$ to get $\frac{e^x+e^{-x}}{2}=\cosh x$. At $x=0$ this
+    gives $1$.
+  common_errors:
+  - Differentiating to get $-\cosh x$ or $\sinh x$ instead of $\cosh x$.
+  - Confusing the gradient at $x=0$ with the value $\sinh 0=0$.
+  hints:
+    rephrase: Differentiate the exponential definition of $\sinh x$ term by term, then evaluate at $x=0$.
+    smaller_case: Differentiate $\frac{e^x-e^{-x}}{2}$ and check the sign of the $e^{-x}$ term carefully.
+    key_idea: The derivative of $e^{-x}$ is $-e^{-x}$, and this minus sign survives in the derivative
+      of $\sinh x$.
+  check: diff(sinh(x),x).subs(x,0) - 1
+  check_ok: true
+extensions:
+  '3':
+  - Prove that $\cosh^2x-\sinh^2x=1$.
+  '4':
+  - Show that $\frac{d}{dx}\cosh x=\sinh x$ and interpret this with the graphs.
+  '5':
+  - Find the Maclaurin series of $\cosh x$ and compare it with that of $e^x$.
+spoken_vocab:
+- cosh x
+- sinh x
+- hyperbolic cosine
+- hyperbolic sine
+- e to the x plus e to the minus x over two
+- gradient at zero
+- y axis intercept
+- x axis intercept
+- even function
+- odd function
+- U shaped graph
+source: past-interviews/Actual Past Interview Questions/Maths Trinity Hall Cambridge 2005.doc
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 3
+  minutes: 5
+  flags:
+  - trivial
+  tagline: Recall-level definitions and graph facts with almost no multi-step reasoning.
+  priority: 23
+  rank: 662
+  tier: D
+  category: past-interviews
+  d10: 2.5
+  real: 3.0
+  by: deepseek-v4.1-flash-free
+tags:
+- hyperbolic_functions
+- exponentials_and_logarithms
+- curve_sketching

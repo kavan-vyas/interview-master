@@ -1,0 +1,117 @@
+id: cuboid-volume-area-perimeter
+title: No cuboid has equal volume, surface area and perimeter
+topics:
+- algebra
+- cubic polynomials
+- monotonicity
+- proof
+warmup: false
+answer_source: generated
+statement: Prove that it is impossible to have a cuboid for which the volume, the surface area and the
+  perimeter are numerically equal. (The perimeter of a cuboid is the sum of the lengths of all its twelve
+  edges.)
+stages:
+- goal: Write the volume, surface area and perimeter in terms of the edge lengths $a,b,c>0$, and state
+    the three equalities.
+  expected: $abc = 2(ab+bc+ca) = 4(a+b+c)$.
+  solution: A cuboid with edges $a,b,c$ has volume $abc$, surface area $2(ab+bc+ca)$ from its three pairs
+    of faces, and perimeter $4(a+b+c)$ since each length occurs on four edges. Equality of the three quantities
+    gives $abc=2(ab+bc+ca)=4(a+b+c)$.
+  common_errors:
+  - Using $6$ times one face area for the surface area, which is only correct for a cube
+  - Writing the perimeter as $12(a+b+c)$
+  hints:
+    rephrase: Each quantity is a sum over faces or edges. Count how many faces and edges of each length
+      there are.
+    smaller_case: For a cube with edge $x$, write down the volume, surface area and perimeter.
+    key_idea: Set the three expressions equal to a common value and keep them as two equations in $a,b,c$.
+  check: null
+- goal: Show that each of $a,b,c$ is a root of one cubic, and rewrite the cubic in the form $s=g(t)$.
+  expected: With $s=a+b+c$, the cubic is $(t-a)(t-b)(t-c)=t^3-st^2+2st-4s$, so each edge $t$ satisfies
+    $s=g(t)$ where $g(t)=t^3/(t^2-2t+4)$.
+  solution: Let $s=a+b+c$. The equalities give $ab+bc+ca=2s$ and $abc=4s$. Expanding $(t-a)(t-b)(t-c)=t^3-(a+b+c)t^2+(ab+bc+ca)t-abc$
+    gives $t^3-st^2+2st-4s$, which vanishes at $t=a$, $t=b$ and $t=c$. Rearranging, $t^3=s(t^2-2t+4)$.
+    The denominator $t^2-2t+4=(t-1)^2+3$ is always positive, so $s=g(t)$ with $g(t)=t^3/(t^2-2t+4)$.
+  common_errors:
+  - Getting a sign wrong when matching the constant term to $-abc$
+  - Dividing by $t^2-2t+4$ without noting it is never zero
+  hints:
+    rephrase: Which cubic has $a,b,c$ as its roots, and how are its coefficients related to the sum, pairwise
+      products and product of the roots?
+    smaller_case: Write the cubic whose roots are $1,2,3$ and compare its coefficients with the sum, pairwise
+      products and product of those roots.
+    key_idea: Form $(t-a)(t-b)(t-c)$ and substitute the known values of the symmetric functions.
+  check: null
+- goal: Show that $g$ is strictly increasing for $t>0$, and deduce that $a=b=c$.
+  expected: $g'(t)=\dfrac{t^2(t^2-4t+12)}{(t^2-2t+4)^2}>0$ for $t>0$, because $t^2-4t+12=(t-2)^2+8>0$.
+    So $g$ is one-to-one, and since $g(a)=g(b)=g(c)=s$, we get $a=b=c$.
+  solution: 'Differentiate with the quotient rule. The numerator is $3t^2(t^2-2t+4)-t^3(2t-2)=t^4-4t^3+12t^2=t^2(t^2-4t+12)$,
+    and the denominator is a positive square. For $t>0$ this is positive, so $g$ is strictly increasing
+    and hence one-to-one. Since $a,b,c$ all map to the same value $s$, they are equal: $a=b=c=t$.'
+  common_errors:
+  - Assuming $g$ is monotone without computing the derivative
+  - Stopping at 'distinct roots' without using that a strictly monotone function takes each value only
+    once
+  hints:
+    rephrase: If three positive numbers give the same value under one function, what must be true about
+      that function?
+    smaller_case: Evaluate $g$ at $t=1$ and $t=2$ and see whether it increases between them.
+    key_idea: Compute the derivative of $g$ and examine the sign of its numerator for $t>0$.
+  check: simplify(diff(t**3/(t**2-2*t+4), t) - t**2*(t**2-4*t+12)/(t**2-2*t+4)**2)
+  check_ok: true
+- goal: Derive a contradiction from $a=b=c=t$.
+  expected: No positive real $t$ works, because $2t^2-6t+12=0$ has discriminant $36-96<0$.
+  solution: With $a=b=c=t$ we have $s=3t$, and $t^3=s(t^2-2t+4)$ gives $t^3=3t(t^2-2t+4)$. Dividing by
+    $t>0$ gives $t^2=3t^2-6t+12$, that is $2t^2-6t+12=0$. Its discriminant is $36-96=-60<0$, so there
+    is no real $t$. This contradiction shows no such cuboid exists.
+  common_errors:
+  - Forgetting to substitute $s=3t$
+  - Making an arithmetic slip when dividing by $t$
+  hints:
+    rephrase: Substitute the equal-edge case back into the equation for $s$ in terms of $t$.
+    smaller_case: Check directly what happens to the three quantities for a cube with edge $x$.
+    key_idea: Once all edges are equal, the problem reduces to one equation in one variable. Check whether
+      it has a positive real solution.
+  check: simplify(t**3 - 3*t*(t**2-2*t+4) + t*(2*t**2-6*t+12))
+  check_ok: true
+extensions:
+  '3':
+  - Find a cuboid whose volume equals its surface area, for example a cube with edge 6.
+  '4':
+  - Find one cuboid whose surface area equals its perimeter.
+  '5':
+  - Explain why the argument would fail if only two of the three quantities were required to be equal.
+spoken_vocab:
+- cuboid
+- edges a b c
+- volume
+- surface area
+- perimeter
+- twelve edges
+- a b c equals two times a b plus b c plus c a
+- four times a plus b plus c
+- cubic
+- t cubed minus s t squared
+- discriminant
+- monotone
+- derivative
+- contradiction
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 4
+  minutes: 20
+  flags: []
+  tagline: Elegant monotonicity argument forcing a=b=c, then a clean contradiction.
+  priority: 92
+  rank: 90
+  tier: A
+  category: tbo
+  d10: 6.5
+  real: 7.5
+  by: deepseek-v4.1-flash-free
+tags:
+- algebra_and_functions
+- proof

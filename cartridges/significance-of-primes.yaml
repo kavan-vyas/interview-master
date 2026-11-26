@@ -1,0 +1,84 @@
+id: significance-of-primes
+title: Significance of prime numbers
+topics:
+- number theory
+- primes
+- fundamental theorem of arithmetic
+warmup: true
+answer_source: generated
+statement: What is the significance of prime numbers?
+stages:
+- goal: Define a prime number precisely.
+  expected: A prime is an integer greater than 1 whose only positive divisors are 1 and itself.
+  solution: A prime p > 1 has exactly two positive divisors, 1 and p. Numbers greater than 1 that are
+    not prime are composite. The number 1 is not prime.
+  common_errors:
+  - Forgetting that 1 is excluded.
+  - Saying a prime is any odd number.
+  hints:
+    rephrase: What property separates 7 from 9 in terms of divisors?
+    smaller_case: List the divisors of 6 and of 7 and compare them.
+    key_idea: Count the positive divisors.
+- goal: State why primes are significant, through unique factorisation.
+  expected: Every integer greater than 1 factors uniquely (up to order) as a product of primes, so primes
+    are the multiplicative building blocks of the integers.
+  solution: The Fundamental Theorem of Arithmetic says every integer n > 1 can be written as a product
+    of primes, and this representation is unique apart from the order of the factors. This makes primes
+    the atoms of multiplication.
+  common_errors:
+  - Describing factorisation as possibly different for each route, which contradicts uniqueness.
+  - Stopping at 'primes are interesting' without a mathematical reason.
+  hints:
+    rephrase: If you break a number into multiplicative pieces that cannot be broken further, what do
+      you get, and is it always the same?
+    smaller_case: Factor 12 in two different ways and see whether the prime pieces match.
+    key_idea: Think about uniqueness of the building blocks.
+- goal: Apply the theorem by factoring 360 into primes.
+  expected: 360 = 2^3 × 3^2 × 5.
+  solution: 360 = 2 × 180 = 2 × 2 × 90 = 2 × 2 × 2 × 45 = 2^3 × 3^2 × 5, and the factorisation is unique.
+  common_errors:
+  - Writing 360 = 2^3 × 3^2 × 5^1 with an arithmetic slip, such as 2^4.
+  - Including composite factors such as 6 or 10 in the final product.
+  hints:
+    rephrase: Repeatedly divide 360 by the smallest prime that divides it.
+    smaller_case: Factor 12 first, then build up to 360.
+    key_idea: Keep dividing by the smallest prime until you reach 1.
+extensions:
+  '3':
+  - Prove that there are infinitely many primes using Euclid's argument.
+  '4':
+  - Explain why RSA encryption relies on the difficulty of factoring large semiprimes.
+  '5':
+  - Discuss how the distribution of primes connects to the Riemann hypothesis.
+spoken_vocab:
+- prime number
+- divisor
+- composite
+- fundamental theorem of arithmetic
+- unique factorisation
+- two to the power three
+- three squared
+- times
+- Euclid
+- RSA
+- Riemann hypothesis
+check: 'factorint(360) == {2: 3, 3: 2, 5: 1}'
+source: oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 2
+  parts: 3
+  minutes: 8
+  flags:
+  - trivial
+  tagline: Open conceptual question, but the stages are routine recall; limited depth.
+  priority: 33
+  rank: 614
+  tier: D
+  category: oxbridge-random
+  d10: 1.5
+  real: 4.0
+  by: haiku
+tags:
+- number_theory

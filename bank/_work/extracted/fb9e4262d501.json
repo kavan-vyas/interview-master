@@ -1,0 +1,23 @@
+[
+ {
+  "q": "What is the solution of the ordinary differential equation $y''+y'+y=0$?",
+  "kind": "maths",
+  "answer": "Here $a=b=c=1$, so $b^2-4ac=-3<0$. The roots are complex: $r=-\\frac{1}{2}\\pm\\frac{\\sqrt{3}}{2}i$, with $\\alpha=-\\frac{1}{2}$ and $\\beta=\\frac{\\sqrt{3}}{2}$. The general solution is $y=e^{-x/2}\\left(c_1\\cos\\frac{\\sqrt{3}}{2}x+c_2\\sin\\frac{\\sqrt{3}}{2}x\\right)$.",
+  "short": true,
+  "source": "zhou-quant/zhou-quant-guide.pdf#4"
+ },
+ {
+  "q": "What are the solutions of the ODEs $y''+y'+y=1$ and $y''+y'+y=x$? What is a particular solution in each case?",
+  "kind": "maths",
+  "answer": "The homogeneous part is $y_g=e^{-x/2}\\left(c_1\\cos\\frac{\\sqrt{3}}{2}x+c_2\\sin\\frac{\\sqrt{3}}{2}x\\right)$. For the right-hand side $1$, the constant $y_p=1$ is a particular solution, so $y=e^{-x/2}\\left(c_1\\cos\\frac{\\sqrt{3}}{2}x+c_2\\sin\\frac{\\sqrt{3}}{2}x\\right)+1$. For the right-hand side $x$, try $y_p=mx+n$. Then $m+mx+n=x$ gives $m=1$ and $n=-1$, so $y_p=x-1$ and $y=e^{-x/2}\\left(c_1\\cos\\frac{\\sqrt{3}}{2}x+c_2\\sin\\frac{\\sqrt{3}}{2}x\\right)+(x-1)$.",
+  "short": false,
+  "source": "zhou-quant/zhou-quant-guide.pdf#4"
+ },
+ {
+  "q": "There are three random variables $x$, $y$ and $z$. The correlation between $x$ and $y$ is $0.8$, and the correlation between $x$ and $z$ is $0.8$. What are the maximum and minimum possible correlations between $y$ and $z$?",
+  "kind": "maths",
+  "answer": "Treat the random variables as vectors, so correlation is the cosine of the angle between them. Let $\\theta$ be the angle between $x$ and $y$, with $\\cos\\theta=0.8$ and $\\sin\\theta=0.6$. The angle between $x$ and $z$ is also $\\theta$. Maximum: the angle between $y$ and $z$ is $0$, so the correlation is $1$. Minimum: the angle between $y$ and $z$ is $2\\theta$, so the correlation is $\\cos 2\\theta=\\cos^2\\theta-\\sin^2\\theta=0.8^2-0.6^2=0.28$. Pythagoras gives the same result: $\\cos 2\\theta=\\sqrt{1-0.96^2}=0.28$.",
+  "short": false,
+  "source": "zhou-quant/zhou-quant-guide.pdf#4"
+ }
+]

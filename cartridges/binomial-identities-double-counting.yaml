@@ -1,0 +1,150 @@
+id: binomial-identities-double-counting
+title: Binomial identities by double counting
+topics:
+- binomial coefficients
+- double counting
+- bijections and involutions
+- parity of subsets
+- integrating the binomial theorem
+warmup: false
+answer_source: pdf
+statement: Prove each identity by counting something in two ways where possible. (i) $\sum_{k=0}^{n}\binom{n}{k}=2^n$.
+  (ii) $\sum_{k=0}^{n} k\binom{n}{k}=n2^{n-1}$. (iii) $\sum_{k=0}^{n}(-1)^k\binom{n}{k}=0$ for $n\geq
+  1$. Deduce that a set of size $n\geq 1$ has equally many subsets of even size and of odd size. (iv)
+  $\sum_{k=0}^{n}k^2\binom{n}{k}=n(n+1)2^{n-2}$. (v) By integrating $(1+x)^n$, evaluate $\sum_{k=0}^{n}\frac{1}{k+1}\binom{n}{k}$.
+stages:
+- goal: Prove (i) by counting the subsets of an $n$-set in two ways.
+  expected: 'Both sides count all subsets of an $n$-element set: one side sorts them by size $k$, the
+    other makes an in/out choice for each element.'
+  solution: Let $X$ be an $n$-set. Sorting subsets by size, there are $\binom nk$ of size $k$, so the
+    total is $\sum_{k=0}^n\binom nk$. Alternatively, each of the $n$ elements is independently in or out
+    of the subset, giving $2^n$ subsets. Both count the same collection, so $\sum_{k=0}^n\binom nk=2^n$.
+  common_errors:
+  - Forgetting the empty set and the full set, i.e. the terms $k=0$ and $k=n$.
+  - Counting ordered selections, which gives a different total.
+  - Asserting $2^n$ without explaining why it counts the same objects as the sum.
+  hints:
+    rephrase: What does $\binom nk$ count? What single collection of objects could the whole sum be counting?
+    smaller_case: Take $n=3$ and list all 8 subsets, grouped by size.
+    key_idea: Count subsets once by size, and once by deciding in or out for each element.
+  check: sum(sympy.binomial(5,k) for k in range(6)) - 2**5
+  check_ok: null
+- goal: Prove (ii) by counting committees with a chair.
+  expected: 'Both sides count pairs (committee, chair) with the chair a member of the committee: committee
+    first gives $\sum k\binom nk$, chair first gives $n2^{n-1}$.'
+  solution: 'Count pairs $(C,c)$ where $C$ is a subset of an $n$-set and $c\in C$. Left: choose $C$ of
+    size $k$ in $\binom nk$ ways, then $c$ in $k$ ways, so the total is $\sum_k k\binom nk$. Right: choose
+    $c$ first ($n$ ways), then $C\setminus\{c\}$ is any subset of the other $n-1$ people ($2^{n-1}$ ways),
+    so the total is $n2^{n-1}$. Hence $\sum_k k\binom nk=n2^{n-1}$.'
+  common_errors:
+  - Writing $2^n$ rather than $n2^{n-1}$ on the right, forgetting the chair choice.
+  - Not requiring the chair to belong to the committee.
+  - Forgetting that the empty committee has no chair and contributes 0 on the left.
+  hints:
+    rephrase: The factor $k$ looks like a choice from $k$ people. What structure is being counted?
+    smaller_case: Take $n=2$ and list every committee with a chair; you should find 4.
+    key_idea: Choose the committee first on one side and the chair first on the other.
+  check: sum(k*sympy.binomial(5,k) for k in range(6)) - 5*2**4
+  check_ok: null
+- goal: Prove (iii) with an involution, then deduce that even and odd subsets are equally numerous.
+  expected: Toggling a fixed element pairs each even subset with an odd one, so $E=O$ and $\sum(-1)^k\binom
+    nk=E-O=0$ for $n\geq1$. Since $E+O=2^n$, each class has $2^{n-1}$ subsets.
+  solution: Let $n\geq1$ and fix an element $a$. Define $S\mapsto S\triangle\{a\}$, which adds $a$ if
+    absent and removes it if present. This changes $|S|$ by exactly 1, so it swaps parities, and applying
+    it twice gives back $S$, so it is a bijection between even and odd subsets. Hence $E=O$, and $\sum_k(-1)^k\binom
+    nk=E-O=0$. With $E+O=2^n$ from (i), each class has $2^{n-1}$ subsets. (Alternatively, put $x=-1$ in
+    $(1+x)^n=\sum_k\binom nk x^k$.)
+  common_errors:
+  - Ignoring that the toggle needs an element to toggle, so $n\geq1$ is essential (for $n=0$ the sum is
+    1).
+  - Deducing $E=O$ from the alternating sum alone without interpreting it as $E-O$.
+  - Mixing up which parity carries the minus sign.
+  hints:
+    rephrase: Can you pair every subset with a partner of opposite parity, using one rule that works for
+      all subsets?
+    smaller_case: Take $n=2$ with elements $a,b$. Pair up $\emptyset,\{a\},\{b\},\{a,b\}$ by changing
+      membership of $a$.
+    key_idea: Toggle membership of one fixed element; this is a parity-swapping bijection.
+  check: sum((-1)**k*sympy.binomial(5,k) for k in range(6))
+  check_ok: null
+- goal: Prove (iv) by counting committees with a chair and a secretary, who may be the same person.
+  expected: 'Left: $k^2$ choices of (chair, secretary) in a committee of size $k$. Right: chair first,
+    then split by whether the secretary is the same person: $n2^{n-1}+n(n-1)2^{n-2}=n(n+1)2^{n-2}$.'
+  solution: 'Count triples $(C,c,s)$ with $c,s\in C$ (possibly $c=s$). Left: choose $C$ of size $k$ ($\binom
+    nk$ ways), then $c$ and $s$ in $k^2$ ways, giving $\sum_k k^2\binom nk$. Right: choose $c$ ($n$ ways).
+    If $s=c$, the other $n-1$ people are free: $2^{n-1}$ ways. If $s\neq c$ ($n-1$ choices), the remaining
+    $n-2$ people are free: $2^{n-2}$ ways. Total: $n2^{n-1}+n(n-1)2^{n-2}=n2^{n-2}(2+n-1)=n(n+1)2^{n-2}$.
+    (The argument is for $n\geq2$; for $n=1$ the second term is 0 and both sides equal 1.)'
+  common_errors:
+  - Forgetting the case where chair and secretary coincide.
+  - Using $2^{n-1}$ instead of $2^{n-2}$ for the remaining people when the roles differ.
+  - Using $k(k-1)$ on the left, which counts only distinct roles.
+  hints:
+    rephrase: Think of $k^2$ as choosing two roles, each filled from the $k$ committee members. Can one
+      person hold both?
+    smaller_case: Take $n=2$ and count all (committee, chair, secretary) triples by hand; the total should
+      be $6$.
+    key_idea: On the right, choose the chair first and split by whether the secretary is the same person.
+  check: sum(k**2*sympy.binomial(5,k) for k in range(6)) - 5*6*2**3
+  check_ok: null
+- goal: Evaluate $\sum_{k=0}^n\frac{1}{k+1}\binom nk$ by integrating $(1+x)^n$ from 0 to 1.
+  expected: $\sum_{k=0}^{n}\frac{1}{k+1}\binom{n}{k}=\frac{2^{n+1}-1}{n+1}$.
+  solution: 'Integrate $(1+x)^n=\sum_k\binom nk x^k$ over $[0,1]$. Right side, term by term: $\sum_k\binom
+    nk\int_0^1x^k\,dx=\sum_k\frac{1}{k+1}\binom nk$. Left side: $\int_0^1(1+x)^n\,dx=\left[\frac{(1+x)^{n+1}}{n+1}\right]_0^1=\frac{2^{n+1}-1}{n+1}$.
+    Hence the sum equals $\frac{2^{n+1}-1}{n+1}$.'
+  common_errors:
+  - Integrating over the wrong interval, e.g. $[-1,0]$ or $[0,2]$.
+  - Dropping the factor $\frac1{n+1}$ from the antiderivative.
+  - Writing $2^n-1$ instead of $2^{n+1}-1$ after substituting the limits.
+  hints:
+    rephrase: Which operation turns $x^k$ into something with a $\frac1{k+1}$ in it? Apply it to both
+      sides of the binomial theorem.
+    smaller_case: 'Take $n=2$: compute $\int_0^1(1+x)^2\,dx$ and compare with $1+\frac22+\frac13$.'
+    key_idea: Integrate term by term over $[0,1]$ using $\int_0^1x^k\,dx=\frac1{k+1}$, and evaluate the
+      left side directly.
+  check: sum(sympy.binomial(4,k)/sympy.Integer(k+1) for k in range(5)) - sympy.Rational(2**5-1,5)
+  check_ok: null
+extensions:
+  '3':
+  - Using the same method, show $\sum_k k(k-1)\binom nk=n(n-1)2^{n-2}$.
+  '4':
+  - Prove $\sum_k\binom nk^2=\binom{2n}{n}$ by double counting.
+  - Show $\sum_k k\binom nk(-1)^k=0$ for $n\geq2$. What happens for $n=1$?
+  '5':
+  - Evaluate $\sum_k\frac{(-1)^k}{k+1}\binom nk$ by integration.
+  - Find a closed form for $\sum_k k^3\binom nk$ using a committee with three roles.
+spoken_vocab:
+- n choose k
+- sum from k equals zero to n
+- two to the power n
+- k times n choose k
+- n times two to the power n minus one
+- minus one to the power k
+- k squared
+- n times n plus one times two to the power n minus two
+- integral from zero to one
+- one over k plus one
+- double counting
+- involution
+- committee with a chair
+- secretary
+source: jaymin/Jaymin Interview (1).pdf#p33
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 5
+  minutes: 25
+  flags: []
+  tagline: Combinatorial proofs, an involution, and an integration twist; excellent discussion.
+  priority: 111
+  rank: 23
+  tier: S
+  category: jaymin
+  d10: 5.0
+  real: 7.0
+  by: deepseek-v4.1-flash-free
+refined: true
+tags:
+- combinatorics
+- proof

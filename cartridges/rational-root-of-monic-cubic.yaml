@@ -1,0 +1,91 @@
+id: rational-root-of-monic-cubic
+title: Can a monic integer cubic have a rational root?
+topics:
+- rational root theorem
+- polynomials
+- divisibility
+- number theory
+warmup: true
+answer_source: generated
+statement: Given $x^3+ax^2+bx+c=0$, can $x$ be a rational root?
+stages:
+- goal: Show that any rational root of $x^3+ax^2+bx+c$ (with $a,b,c$ integers) must be an integer.
+  expected: If $x=p/q$ in lowest terms is a root, then $q=\pm1$, so $x$ is an integer.
+  solution: 'Substitute $x=p/q$ with $\gcd(p,q)=1$ and multiply by $q^3$: $p^3+ap^2q+bpq^2+cq^3=0$. So
+    $p^3=-q(ap^2+bpq+cq^2)$, hence $q\mid p^3$. Since $\gcd(p,q)=1$, $\gcd(q,p^3)=1$, so $q\mid 1$ and
+    $q=\pm1$.'
+  common_errors:
+  - Forgetting that the lowest-terms representation is needed before concluding anything about $q$.
+  - Assuming $a,b,c$ are arbitrary reals, which breaks the divisibility argument.
+  hints:
+    rephrase: Write the candidate root as $p/q$ in lowest terms. Multiply the equation through by $q^3$
+      and look at which quantity is forced to be divisible by $q$.
+    smaller_case: Consider the monic quadratic $x^2+ax+b$ with integer $a,b$. Must its rational roots
+      be integers?
+    key_idea: Clear denominators and use $\gcd(p,q)=1$ to show $q$ divides a power of $p$, hence $q=\pm1$.
+  check: expand((p**3 + a*p**2*q + b*p*q**2 + c*q**3) - q**3*((p/q)**3 + a*(p/q)**2 + b*(p/q) + c))
+  check_ok: true
+- goal: Show that any integer root of the cubic must divide $c$.
+  expected: If $x=p$ is an integer root, then $p\mid c$.
+  solution: 'With $p$ an integer root: $p^3+ap^2+bp+c=0$, so $c=-p(p^2+ap+b)$, which is a multiple of
+    $p$. Hence $p\mid c$.'
+  common_errors:
+  - Concluding that every divisor of $c$ is a root, which is false.
+  - Dividing the equation by $p$ when $p=0$, forgetting that $p=0$ is allowed when $c=0$.
+  hints:
+    rephrase: Move the constant term to one side. What does the rest of the expression look like?
+    smaller_case: For $x^2+3x+2=0$ with integer root $x=p$, what must $p$ divide?
+    key_idea: Isolate the constant term $c$ and factor out $p$.
+  check: expand(c - (-p*(p**2 + a*p + b)) - (p**3 + a*p**2 + b*p + c))
+  check_ok: true
+- goal: Decide whether a rational root is possible, giving an example if so.
+  expected: Yes. For example $x^3-6x^2+11x-6=0$ has the rational root $x=1$, since $x^3-6x^2+11x-6=(x-1)(x-2)(x-3)$.
+  solution: 'Evaluate at $x=1$: $1-6+11-6=0$. So $x=1$ is a rational root. Any rational root must be an
+    integer dividing $c=-6$, so the candidates are $\pm1,\pm2,\pm3,\pm6$, and $1$ is one of them.'
+  common_errors:
+  - Answering no because a cubic need not have a rational root. The question asks whether one can exist,
+    and it can.
+  - Confusing the rational root theorem's necessary condition with a guarantee of existence.
+  hints:
+    rephrase: Is it possible for the equation to have a rational solution? Try to construct one with small
+      integers.
+    smaller_case: Find a monic quadratic with integer coefficients that has a rational root.
+    key_idea: Choose a cubic that factors with an integer linear factor, so you can test small candidate
+      roots.
+  check: 1**3 - 6*1**2 + 11*1 - 6
+  check_ok: true
+extensions:
+  '3':
+  - Show that any rational root of a monic polynomial with integer coefficients is an integer.
+  '4':
+  - Prove that $x^3-2=0$ has no rational root.
+  '5':
+  - Show that $x^3+x+1=0$ has no rational root.
+spoken_vocab:
+- rational root
+- monic cubic
+- lowest terms
+- gcd
+- divides
+- integer coefficients
+- rational root theorem
+- x cubed plus a x squared plus b x plus c
+source: past-interviews/Actual Past Interview Questions/B1.pdf#p1
+verified: false
+rating:
+  quality: 7
+  difficulty: 4
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Rational root theorem rediscovered; builds to a yes/no existence question.
+  priority: 81
+  rank: 221
+  tier: B
+  category: past-interviews
+  d10: 3.0
+  real: 7.0
+  by: haiku
+tags:
+- proof
+- number_theory

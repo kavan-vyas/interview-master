@@ -1,0 +1,101 @@
+id: right-triangle-perimeter-equals-area
+title: Integer right triangles with perimeter equal to area
+topics:
+- geometry
+- Pythagoras theorem
+- Diophantine equations
+- factorisation
+warmup: false
+answer_source: generated
+statement: A right angled triangle has all of its sides an integer length. If the length of the perimeter
+  equals the area, find all such triangles.
+stages:
+- goal: Turn the perimeter-equals-area condition into an equation in the legs p, q and hypotenuse r.
+  expected: With legs p, q and hypotenuse r, the area is pq/2, so pq/2 = p+q+r, i.e. pq = 2(p+q+r), together
+    with p^2+q^2=r^2.
+  solution: Area of a right triangle is half the product of the legs. Setting it equal to the perimeter
+    p+q+r gives pq = 2(p+q+r). The Pythagorean relation p^2+q^2=r^2 also holds.
+  common_errors:
+  - Using the wrong formula for the area
+  - Forgetting the Pythagorean relation
+  hints:
+    rephrase: Write the area of a right triangle in terms of its legs.
+    smaller_case: Pick a specific right triangle and compute its perimeter and area.
+    key_idea: Equating area with perimeter gives one equation; the Pythagorean theorem gives a second
+      one.
+- goal: Reduce the system to the single linear relation p+q-r=4.
+  expected: p+q-r = 4.
+  solution: From p^2+q^2=r^2 we get (p+q)^2 - r^2 = 2pq, so (p+q-r)(p+q+r) = 2pq. Since pq = 2(p+q+r),
+    this is 2pq = 4(p+q+r). Dividing by p+q+r > 0 gives p+q-r = 4. Equivalently, the inradius is 2, and
+    for a right triangle the inradius is (p+q-r)/2.
+  common_errors:
+  - Dividing by p+q+r without checking it is nonzero
+  - Expanding (p+q)^2 incorrectly and missing the 2pq term
+  hints:
+    rephrase: Try to factor the difference of squares (p+q)^2 - r^2.
+    smaller_case: Check the factorisation (p+q)^2 - r^2 = (p+q-r)(p+q+r) on a simple example.
+    key_idea: For a right triangle, the difference of the squares of p+q and r factors, and the area-perimeter
+      condition supplies the other factor.
+  check: (5*12-2*(5+12+13))*(6*8-2*(6+8+10))
+  check_ok: true
+- goal: Find all positive integer triangles satisfying p+q=r+4 and p^2+q^2=r^2.
+  expected: The triangles are {5, 12, 13} and {6, 8, 10}.
+  solution: Squaring p+q=r+4 and using p^2+q^2=r^2 gives 2pq = 8r+16, so pq = 4r+8. Then p and q are the
+    roots of t^2-(r+4)t+(4r+8)=0, whose discriminant is r^2-8r-16 and must be a perfect square m^2. Then
+    (r-4)^2 - m^2 = 32, so (r-4-m)(r-4+m)=32. Both factors are even with the same sign, giving the pairs
+    (2,16), (4,8), (-16,-2), (-8,-4). These give r = 13 with m = 7, and r = 10 with m = 2. The negative
+    cases give r = -5 and r = -2, which are rejected. For r=13 the roots are 5 and 12; for r=10 they are
+    6 and 8. Each triangle is found once up to swapping the legs.
+  common_errors:
+  - Missing the scaled triangle (6,8,10)
+  - Including (3,4,5), whose perimeter 12 and area 6 are not equal
+  - Counting swapped legs as distinct triangles
+  - Accepting negative values of r
+  hints:
+    rephrase: Turn the two conditions into one quadratic in t whose roots are p and q, then ask when its
+      roots are integers.
+    smaller_case: Choose one value of r and write down the quadratic whose roots would be p and q.
+    key_idea: By Vieta's formulas, p and q are roots of t^2-(p+q)t+pq, and the discriminant must be a
+      perfect square for integer roots.
+  check: (5*12-2*(5+12+13))*(6*8-2*(6+8+10))
+  check_ok: true
+extensions:
+  '3':
+  - Find all right triangles with integer sides for which the area equals twice the perimeter.
+  '4':
+  - Show that p+q-r is always even for a right triangle with integer sides.
+  '5':
+  - Prove that the area of any right triangle with integer sides is a multiple of 6.
+spoken_vocab:
+- right angled triangle
+- legs p and q
+- hypotenuse r
+- perimeter
+- area
+- p squared plus q squared equals r squared
+- p plus q minus r equals four
+- discriminant
+- perfect square
+- Vieta
+- Pythagorean triple
+- integer sides
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 5
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Key trick p+q-r=4 yields exactly (5,12,13) and (6,8,10).
+  priority: 91
+  rank: 107
+  tier: A
+  category: tbo
+  d10: 5.0
+  real: 6.0
+  by: haiku
+tags:
+- number_theory
+- geometry
+- algebra_and_functions

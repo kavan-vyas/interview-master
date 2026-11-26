@@ -1,0 +1,95 @@
+id: step-cube-coefficient-binomial
+title: Coefficient of x^6 in a cubed polynomial, then via binomial series
+topics:
+- power series
+- multinomial expansion
+- binomial series
+warmup: false
+answer_source: pdf
+statement: Find the coefficient of $x^6$ in $(1-2x+3x^2-4x^3+5x^4)^3$. (ii) By considering the binomial
+  expansions of $(1+x)^{-2}$ and $(1+x)^{-6}$, or otherwise, find the coefficient of $x^6$ in $(1-2x+3x^2-4x^3+5x^4-6x^5+7x^6)^3$.
+stages:
+- goal: Find the coefficient of $x^6$ in $(1-2x+3x^2-4x^3+5x^4)^3$.
+  expected: '369'
+  solution: 'Let the coefficients be $a_0=1,a_1=-2,a_2=3,a_3=-4,a_4=5$. Sum $a_ia_ja_k$ over ordered triples
+    with $i+j+k=6$ and $0\leq i,j,k\leq 4$. The exponent multisets are: $\{4,2,0\}$ with 6 orderings giving
+    $6\cdot 15=90$; $\{4,1,1\}$ with 3 orderings giving $3\cdot 20=60$; $\{3,3,0\}$ with 3 orderings giving
+    $3\cdot 16=48$; $\{3,2,1\}$ with 6 orderings giving $6\cdot 24=144$; $\{2,2,2\}$ with 1 ordering giving
+    $27$. Total: $90+60+48+144+27=369$.'
+  common_errors:
+  - Omitting triples that contain a zero exponent
+  - Sign errors with the negative coefficients, e.g. $(-2)(-4)$
+  - Miscounting orderings, e.g. treating $\{3,2,1\}$ as 3 arrangements instead of 6
+  - Including exponents 5 or 6, which do not appear in this quartic
+  hints:
+    rephrase: Think about which combinations of exponents, one from each factor, can add up to 6.
+    smaller_case: Find the coefficient of $x^2$ in the cube first by listing the exponent triples that
+      sum to 2.
+    key_idea: The coefficient of $x^n$ in a cube is a sum over ordered triples of exponents of products
+      of the corresponding coefficients.
+  check: Poly((1-2*x+3*x**2-4*x**3+5*x**4)**3, x).coeff_monomial(x**6) - 369
+  check_ok: true
+- goal: Using the binomial series for $(1+x)^{-2}$ and $(1+x)^{-6}$, find the coefficient of $x^6$ in
+    the cube of $1-2x+3x^2-4x^3+5x^4-6x^5+7x^6$.
+  expected: '462'
+  solution: The coefficients $(-1)^k(k+1)$ are those of $(1+x)^{-2}$. Cubing gives $(1+x)^{-6}=\sum_k
+    (-1)^k\binom{k+5}{5}x^k$. Truncating the series after $x^6$ does not change the $x^6$ coefficient
+    of the cube, since only terms of degree at most 6 contribute. So the coefficient is $(-1)^6\binom{11}{5}=\binom{11}{6}=\frac{11!}{6!\,5!}=462$.
+  common_errors:
+  - Using the wrong binomial parameter, e.g. $\binom{10}{5}$ instead of $\binom{11}{5}$
+  - Forgetting that cubing $(1+x)^{-2}$ gives $(1+x)^{-6}$, not $(1+x)^{-3}$
+  - Losing track of the alternating sign $(-1)^k$ in the general term
+  - Believing the truncation after $x^6$ alters the $x^6$ coefficient
+  hints:
+    rephrase: Check whether the coefficients 1, -2, 3, -4, ... match the expansion of a simple negative
+      power of $(1+x)$.
+    smaller_case: Compare the coefficient of $x^1$ in the cube of the series with the coefficient of $x^1$
+      in $(1+x)^{-6}$.
+    key_idea: Powers of $(1+x)^{-m}$ combine by adding exponents, and the coefficient of $x^k$ in $(1+x)^{-n}$
+      is $(-1)^k\binom{n+k-1}{k}$.
+  check: Poly((1-2*x+3*x**2-4*x**3+5*x**4-6*x**5+7*x**6)**3, x).coeff_monomial(x**6) - 462
+  check_ok: true
+extensions:
+  '3':
+  - Find the coefficient of $x^5$ in the cube of $1-2x+3x^2-4x^3+5x^4$.
+  - Find the coefficient of $x^4$ in the cube of $1-2x+3x^2-4x^3+5x^4$ and check it against the binomial
+    method.
+  '4':
+  - Find the coefficient of $x^n$ in the cube of $\sum_{k\geq 0}(-1)^k(k+1)x^k$ for general $n$.
+  - Use the expansion of $(1+x)^{-m}$ to find the coefficient of $x^{10}$ in $(1-2x+3x^2-\cdots)^5$.
+  '5':
+  - Find the coefficient of $x^6$ in the fourth power of $1-2x+3x^2-4x^3+5x^4$.
+  - Explain why truncating the series beyond $x^6$ leaves the $x^6$ coefficient of the cube unchanged,
+    and state the general condition under which this holds.
+spoken_vocab:
+- coefficient of x to the power 6
+- one minus two x plus three x squared minus four x cubed plus five x to the fourth
+- all cubed
+- binomial expansion
+- one plus x to the power minus two
+- one plus x to the power minus six
+- eleven factorial over six factorial times five factorial
+- four hundred and sixty two
+- three hundred and sixty nine
+- series
+- truncated
+- multinomial
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#3
+verified: false
+rating:
+  quality: 4
+  difficulty: 5
+  parts: 2
+  minutes: 12
+  flags: []
+  tagline: Series coefficient extraction; recognising (1+x)^-2 truncation rewards insight, but arithmetic-heavy.
+  priority: 45
+  rank: 542
+  tier: C
+  category: siklos
+  d10: 4.0
+  real: 3.0
+  by: haiku
+tags:
+- algebra_and_functions
+- sequences_and_series

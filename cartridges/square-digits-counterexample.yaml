@@ -1,0 +1,103 @@
+id: square-digits-counterexample
+title: 'Counterexample: squares with many non-0/1 digits'
+topics:
+- decimal digits
+- square numbers
+- counterexamples
+- patterns
+warmup: false
+answer_source: generated
+statement: 'Construct a counter example to the statement: When written in decimal notation, every square
+  number has at most 1000 digits that are not 0 or 1.'
+stages:
+- goal: Find a family of square numbers whose digits show a pattern, by squaring numbers made only of
+    the digit 3.
+  expected: 33^2 = 1089, 333^2 = 110889, 3333^2 = 11108889. In general, the square of a number with k
+    threes has a block of ones, one 0, a block of eights, and one final 9.
+  solution: 'Compute 33^2 = 1089, 333^2 = 110889, and 3333^2 = 11108889. Each result has ones at the start,
+    then a single 0, then eights, then a 9. The number of digits that are not 0 or 1 equals k: the eights
+    plus the final 9 give k - 1 + 1 = k.'
+  common_errors:
+  - Squaring by estimation and getting a digit wrong
+  - Counting only the 8s and forgetting the 9
+  - Concluding a pattern from only one example
+  hints:
+    rephrase: Try squaring numbers made only of the digit 3 and count the digits that are not 0 or 1.
+    smaller_case: Square 33 and 333 and look carefully at every digit of the result.
+    key_idea: Look for a repeating block of digits as the number of 3s grows.
+- goal: Prove that the square of the number with k threes has exactly k digits that are not 0 or 1, for
+    every k.
+  expected: Let N_k = (10^k - 1)/3 be the number with k threes. Then N_k^2 = R * 10^(k+1) + 80R + 9, where
+    R = (10^(k-1) - 1)/9 is the number with k-1 ones. So the digits are k-1 ones, one 0, k-1 eights, and
+    one 9, giving k digits that are not 0 or 1.
+  solution: Let y = 10^(k-1), so 10^k = 10y and 10^(k+1) = 100y. Then N_k^2 = (10y-1)^2/9 = (100y^2 -
+    20y + 1)/9. Also R = (y-1)/9, so R * 100y + 80R + 9 = (100y^2 - 100y + 80y - 80 + 81)/9 = (100y^2
+    - 20y + 1)/9, which matches. The term R*10^(k+1) gives k-1 ones followed by k+1 zeros, and the 80R
+    term fills positions with k-1 eights, and the constant 9 gives the final digit.
+  common_errors:
+  - Getting the position of the 0 wrong
+  - Getting the block lengths wrong (k-1 versus k)
+  - Writing N_k incorrectly, e.g. as 33...3 with k-1 threes
+  hints:
+    rephrase: Write the k-digit number of threes as a fraction involving powers of 10, then square it.
+    smaller_case: Use your pattern from k = 2, 3, 4 to guess the block lengths, then check the algebra.
+    key_idea: Let y = 10^(k-1) and express everything in terms of y.
+  check: simplify(((10**k-1)/3)**2 - ((10**(k-1)-1)/9*10**(k+1) + 80*(10**(k-1)-1)/9 + 9))
+  check_ok: true
+- goal: Pick a specific k that gives a counterexample, and justify it.
+  expected: Take k = 1001, so N = 33...3 with 1001 threes. Then N^2 has 1000 ones, one 0, 1000 eights,
+    and one 9. That is 1001 digits that are not 0 or 1, which is more than 1000.
+  solution: By the previous part, the square of the number with k threes has exactly k digits that are
+    not 0 or 1. Setting k = 1001 gives 1001 such digits, which contradicts the claim that every square
+    has at most 1000. So the square of 33...3 (1001 threes) is a counterexample.
+  common_errors:
+  - Choosing k = 1000, which only gives exactly 1000 such digits and is not a counterexample
+  - Forgetting that the 9 is also a digit that is not 0 or 1
+  - Not stating the counterexample explicitly
+  hints:
+    rephrase: Choose the number of threes large enough that the count of digits that are not 0 or 1 exceeds
+      1000.
+    smaller_case: How many digits that are not 0 or 1 did the square of 333 have?
+    key_idea: The count of such digits equals the number of threes, so you need more than 1000 threes.
+extensions:
+  '3':
+  - Find a different construction of a square with more than 1000 digits that are not 0 or 1.
+  '4':
+  - Show that for every positive integer m there is a square number with at least m digits that are not
+    0 or 1.
+  '5':
+  - Show that there are squares with at least k digits equal to 8 for every k, and decide whether the
+    digit 9 can be avoided in this family.
+spoken_vocab:
+- counter example
+- square number
+- decimal notation
+- digits not zero or one
+- thirty three squared
+- repunit
+- ones
+- eights
+- nine
+- one thousand
+- one thousand and one
+- threes
+- decimal digits
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 5
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Pattern from 33...3 squares, proof of digit count, explicit counterexample.
+  priority: 61
+  rank: 436
+  tier: C
+  category: tbo
+  d10: 4.5
+  real: 6.0
+  by: haiku
+tags:
+- number_theory
+- proof

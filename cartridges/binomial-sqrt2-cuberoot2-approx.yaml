@@ -1,0 +1,130 @@
+id: binomial-sqrt2-cuberoot2-approx
+title: Binomial approximations to sqrt(2) and the cube root of 2
+topics:
+- binomial expansion
+- series approximation
+- surds
+- decimal approximation
+warmup: false
+answer_source: pdf
+statement: Use the first four terms of the binomial expansion of $(1 - \frac{1}{50})^{\frac{1}{2}}$ to
+  derive the approximation $\sqrt{2} \approx 1.414214$. Calculate similarly an approximation to the cube
+  root of 2 to six decimal places by considering $(1 + \frac{N}{125})^{\frac{1}{3}}$, where $N$ is a suitable
+  number. [You need not justify the accuracy of your approximations.]
+stages:
+- goal: Write the first four terms of the binomial expansion of $(1-\frac{1}{50})^{\frac{1}{2}}$ and evaluate
+    them as a single exact fraction.
+  expected: $\frac{1979899}{2000000}$, which is $0.9899495$.
+  solution: $(1+x)^{\frac12}=1+\frac{x}{2}-\frac{x^2}{8}+\frac{x^3}{16}-\cdots$ with $x=-\frac{1}{50}$
+    gives $1-\frac{1}{100}-\frac{1}{20000}-\frac{1}{2000000}=\frac{1979899}{2000000}=0.9899495$.
+  common_errors:
+  - Using $x=\frac{1}{50}$ instead of $x=-\frac{1}{50}$, which flips the sign of the linear term.
+  - Taking the $x^2$ term as positive.
+  - Dropping the cubic term, or evaluating $\frac{x^3}{16}$ with the wrong sign.
+  hints:
+    rephrase: Write the general expansion of $(1+x)^{\frac12}$ and decide what $x$ is in this question.
+    smaller_case: Use only the first two terms and check that the result is close to $1-0.01$.
+    key_idea: Substitute into the standard expansion and track the sign of $x$ at each power.
+  check: Rational(1979899,2000000) - (1 - Rational(1,100) - Rational(1,20000) - Rational(1,2000000))
+  check_ok: true
+- goal: Use $(\frac{49}{50})^{\frac12}=\frac{7\sqrt2}{10}$ to deduce an approximation to $\sqrt2$ correct
+    to six decimal places.
+  expected: $\sqrt2\approx1.414214$
+  solution: Since $\frac{49}{50}=\frac{98}{100}$ and $\sqrt{98}=7\sqrt2$, we have $\left(\frac{49}{50}\right)^{\frac12}=\frac{7\sqrt2}{10}$.
+    So $\sqrt2\approx\frac{10}{7}\times0.9899495=1.41421357\ldots$, which gives $\sqrt2\approx1.414214$
+    to six decimal places.
+  common_errors:
+  - Forgetting the factor $\frac{10}{7}$ and quoting $0.9899495$ as the answer.
+  - Rounding too early, for example to $1.41421$.
+  - Writing $\frac{98}{100}$ as $\frac{49}{50}$ inside the square root and then mishandling the factor.
+  hints:
+    rephrase: Relate $\frac{49}{50}$ to $\sqrt2$ through the factor $\frac{7}{10}$.
+    smaller_case: Square $\frac{7\sqrt2}{10}$ and check that it gives the value you started with.
+    key_idea: Undo the scaling by the factor $\frac{7}{10}$ to isolate $\sqrt2$, then round at the end.
+  check: floor(Rational(19798990,14000000)*10**6 + Rational(1,2)) - 1414214
+  check_ok: true
+- goal: Choose a suitable integer $N$ so that $(1+\frac{N}{125})^{\frac13}$ is a known multiple of $\sqrt[3]{2}$.
+  expected: $N=3$
+  solution: We need $1+\frac{N}{125}=\frac{128}{125}$, so $N=3$. Since $128=2^7$ and $125=5^3$, we get
+    $\left(\frac{128}{125}\right)^{\frac13}=\frac{4\sqrt[3]2}{5}=\frac{8}{10}\sqrt[3]2$.
+  common_errors:
+  - Choosing $N=2$, which gives $\frac{127}{125}$ and no useful cube root.
+  - Looking for $N$ that makes $1+\frac{N}{125}$ a perfect cube, which has no suitable answer here.
+  - Forgetting that $128=2^7$ already contains a factor of 2 that is needed for $\sqrt[3]2$.
+  hints:
+    rephrase: You want the numerator $125+N$ to be a perfect cube multiplied by 2.
+    smaller_case: Try $N=1$ and check whether $126$ fits the pattern of a cube times 2.
+    key_idea: Factorise the candidate numerator into primes and look for a cube times 2.
+  check: Rational(128,125) - (1 + Rational(3,125))
+  check_ok: true
+- goal: Use the first four terms of the binomial expansion of $(1+\frac{3}{125})^{\frac13}$ and evaluate
+    them exactly.
+  expected: $\frac{1181176}{1171875}\approx1.00793685$
+  solution: $(1+x)^{\frac13}=1+\frac{x}{3}-\frac{x^2}{9}+\frac{5x^3}{81}-\cdots$ with $x=\frac{3}{125}$
+    gives $1+\frac{1}{125}-\frac{1}{15625}+\frac{1}{1171875}=\frac{1181176}{1171875}\approx1.00793685$.
+  common_errors:
+  - Using the coefficient $\frac13$ for the $x^2$ term.
+  - Getting the cubic coefficient wrong, for example using $\frac{1}{81}$ instead of $\frac{5}{81}$.
+  - Making an arithmetic slip when converting to a common denominator.
+  hints:
+    rephrase: Recall the binomial coefficients for the exponent $\frac13$ and identify $x$.
+    smaller_case: Evaluate $\frac{x}{3}$ first, then $\frac{x^2}{9}$, and check the sizes of the terms.
+    key_idea: Keep each coefficient as an exact fraction and combine them over a common denominator at
+      the end.
+  check: Rational(1181176,1171875) - (1 + Rational(1,125) - Rational(1,15625) + Rational(1,1171875))
+  check_ok: true
+- goal: Deduce $\sqrt[3]2$ to six decimal places from the expansion.
+  expected: $\sqrt[3]2\approx1.259921$
+  solution: From $\left(\frac{128}{125}\right)^{\frac13}=\frac{8}{10}\sqrt[3]2$ we get $\sqrt[3]2\approx\frac{10}{8}\times\frac{1181176}{1171875}=\frac{11811760}{9375000}=1.25992106\ldots$,
+    which gives $\sqrt[3]2\approx1.259921$.
+  common_errors:
+  - Using the factor $\frac{8}{10}$ instead of $\frac{10}{8}$.
+  - Truncating $1.2599210\ldots$ instead of rounding correctly.
+  - Failing to carry the approximation to enough decimal places before rounding.
+  hints:
+    rephrase: Work out how $\sqrt[3]2$ is related to $\left(\frac{128}{125}\right)^{\frac13}$ and rearrange.
+    smaller_case: Cube $\frac{8}{10}\sqrt[3]2$ and check that it gives $\frac{128}{125}$.
+    key_idea: Isolate $\sqrt[3]2$ by undoing the factor $\frac{8}{10}$, then round to six decimal places.
+  check: floor(Rational(11811760,9375000)*10**6 + Rational(1,2)) - 1259921
+  check_ok: true
+extensions:
+  '3':
+  - Approximate $\sqrt3$ to six decimal places using a suitable binomial expansion.
+  '4':
+  - Estimate the error in the four-term approximation to $(1-\frac{1}{50})^{\frac12}$ by comparing it
+    with the next term of the series.
+  '5':
+  - Find a suitable $N$ and expansion to approximate $\sqrt[4]2$ to six decimal places.
+spoken_vocab:
+- one minus one over fifty
+- to the power one half
+- square root of two
+- cube root of two
+- N over one hundred and twenty five
+- binomial expansion
+- x squared over eight
+- x cubed over sixteen
+- seven root two over ten
+- one hundred and twenty eight over one hundred and twenty five
+- four root two over five
+- one million one hundred eighty one thousand one hundred seventy six
+- six decimal places
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#6
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Chains binomial series with a clever choice of N for cube roots.
+  priority: 83
+  rank: 179
+  tier: B
+  category: siklos
+  d10: 5.5
+  real: 3.5
+  by: deepseek-v4.1-flash-free
+tags:
+- limits_and_approximation
+- algebra_and_functions

@@ -1,0 +1,81 @@
+id: odd-reciprocal-squares-sum
+title: Sum of reciprocals of odd squares from $\pi^2/6$
+topics:
+- infinite series
+- Basel problem
+- manipulation of series
+- rearrangement
+warmup: false
+answer_source: generated
+statement: Given that $\sum_{r=1}^{\infty} \frac{1}{r^2}=\frac{\pi^2}{6}$ find the exact value of $\sum_{r=1}^{\infty}
+  \frac{1}{(2r-1)^2}$.
+stages:
+- goal: Find the sum over even denominators, $\sum_{r=1}^{\infty}\frac{1}{(2r)^2}$.
+  expected: $\frac{\pi^2}{24}$
+  solution: $\sum_{r=1}^{\infty}\frac{1}{(2r)^2}=\frac14\sum_{r=1}^{\infty}\frac{1}{r^2}=\frac14\cdot\frac{\pi^2}{6}=\frac{\pi^2}{24}$.
+  common_errors:
+  - Using $\frac12$ instead of $\frac14$ when factoring out the square.
+  - Writing $\frac{1}{2r^2}$ instead of $\frac{1}{4r^2}$.
+  hints:
+    rephrase: Rewrite $(2r)^2$ so the series looks like the given one with a constant factor.
+    smaller_case: Compare the first two terms $\frac{1}{4}+\frac{1}{16}$ with $1+\frac14$ to see the scaling.
+    key_idea: Factor out the constant from $(2r)^2=4r^2$.
+  check: Rational(1,4)*pi**2/6 - pi**2/24
+  check_ok: true
+- goal: Use the full sum and the even-denominator sum to find the sum over odd denominators.
+  expected: $\sum_{r=1}^{\infty}\frac{1}{(2r-1)^2}=\frac{\pi^2}{8}$.
+  solution: Every positive integer $k$ is either odd ($k=2r-1$) or even ($k=2r$), but not both. So $\sum_{k\ge1}\frac{1}{k^2}=\sum_{r\ge1}\frac{1}{(2r-1)^2}+\sum_{r\ge1}\frac{1}{(2r)^2}$.
+    Hence the odd sum is $\frac{\pi^2}{6}-\frac{\pi^2}{24}=\frac{4\pi^2-\pi^2}{24}=\frac{3\pi^2}{24}=\frac{\pi^2}{8}$.
+  common_errors:
+  - Subtracting the wrong even sum, such as $\frac{\pi^2}{12}$.
+  - Arithmetic error when combining $\frac{\pi^2}{6}$ and $\frac{\pi^2}{24}$.
+  - Treating the odd and even sums as adding to the full sum with the wrong weights.
+  hints:
+    rephrase: Split the set of all positive integers into two disjoint groups and see how the full sum
+      divides.
+    smaller_case: Look at the terms $1/k^2$ for $k=1,\dots,6$ and mark which ones have odd $k$ and which
+      have even $k$.
+    key_idea: Split the full sum over all $k$ into odd $k$ and even $k$, then subtract the even part,
+      which you have already found.
+  check: pi**2/6 - pi**2/24 - pi**2/8
+  check_ok: true
+extensions:
+  '3':
+  - Using the same given result, find $\sum_{r=1}^{\infty}\frac{1}{(3r)^2}$.
+  '4':
+  - Find $\sum_{r=1}^{\infty}\frac{1}{(2r)^2-1}$ by writing the terms in partial fractions.
+  '5':
+  - Express $\sum_{r=1}^{\infty}\frac{(-1)^{r-1}}{(2r-1)^2}$ in terms of a named constant, and explain
+    why it cannot be obtained from the given result alone.
+spoken_vocab:
+- sum
+- r equals one to infinity
+- one over r squared
+- pi squared over six
+- one over two r minus one squared
+- odd
+- even
+- two r
+- factor out
+- one quarter
+- pi squared over eight
+- partition of integers
+- subtract
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 2
+  minutes: 6
+  flags: []
+  tagline: Even/odd split of the zeta series gives π²/8; neat, with room to extend.
+  priority: 65
+  rank: 382
+  tier: C
+  category: tbo
+  d10: 2.0
+  real: 5.0
+  by: haiku
+tags:
+- sequences_and_series

@@ -1,0 +1,9 @@
+# +<seconds> <speaker>: <text>     speakers: I interviewer, S student, ? unknown
++3 I: So, what's the last digit of seven to the two thousand and twenty six?
++6 S: Okay, I don't want to compute that, so I'll look at the last digits. Seven, forty nine ends in nine, then three four three so three.
++5 S: And seven to the four is two four zero one so that ends in one, so it cycles with period four.
++8 S: Two thousand and twenty six divided by four, remainder two, so it's the same as seven squared, last digit nine.
++25 I: Good. Let's move to the main problem.
++4 S: So one cubed is one, plus eight is nine, plus twenty seven is thirty five.
++12 S: Wait, no, thirty six. Then plus sixty four gives a hundred. One, nine, thirty six, a hundred. These are all squares.
++10 S: Square roots are one, three, six, ten. Those are triangular numbers, so I think S n is n times n plus one over two, all squared.

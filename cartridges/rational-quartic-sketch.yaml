@@ -1,0 +1,119 @@
+id: rational-quartic-sketch
+title: Sketch a rational quartic over a rational quartic
+topics:
+- factorisation
+- asymptotes
+- turning points
+- sign analysis
+- curve sketching
+warmup: false
+answer_source: generated
+statement: Sketch $y=\dfrac{x^4-7x^2+12}{x^4-4x^2+4}$.
+stages:
+- goal: Factor the numerator and denominator, then find the intercepts, the vertical asymptotes and the
+    horizontal asymptote.
+  expected: Numerator $(x^2-3)(x^2-4)$, denominator $(x^2-2)^2$. The x-intercepts are $\pm\sqrt3$ and
+    $\pm2$. The y-intercept is $(0,3)$. The vertical asymptotes are $x=\pm\sqrt2$, which are double poles
+    with no sign change. The horizontal asymptote is $y=1$.
+  solution: Put $u=x^2$. Then $u^2-7u+12=(u-3)(u-4)$ and $u^2-4u+4=(u-2)^2$. Zeros of the numerator give
+    intercepts. The denominator vanishes at $x=\pm\sqrt2$ to second order. Both numerator and denominator
+    have degree $4$ with leading coefficient $1$, so $y\to1$. At $x=0$, $y=12/4=3$.
+  common_errors:
+  - Saying the function is undefined only at x=±2
+  - Treating x=±√2 as simple poles where the sign changes
+  - Giving a horizontal asymptote other than y=1
+  hints:
+    rephrase: Factor the top and the bottom as polynomials in $x^2$.
+    smaller_case: Substitute $u=x^2$ into the numerator and denominator and factor each quadratic in $u$.
+    key_idea: Zeros of the factored numerator give intercepts. Denominator zeros that do not cancel give
+      asymptotes. Equal degrees give a horizontal asymptote.
+  check: limit((x**4 - 7*x**2 + 12)/(x**4 - 4*x**2 + 4), x, oo) - 1
+  check_ok: true
+- goal: Find where the curve crosses its horizontal asymptote $y=1$.
+  expected: The curve crosses $y=1$ at $x=\pm\sqrt{8/3}=\pm\dfrac{2\sqrt6}{3}$.
+  solution: $y-1=\dfrac{(x^4-7x^2+12)-(x^4-4x^2+4)}{(x^2-2)^2}=\dfrac{8-3x^2}{(x^2-2)^2}$. This vanishes
+    when $x^2=8/3$.
+  common_errors:
+  - Assuming the curve never crosses its horizontal asymptote
+  - Forgetting the negative root
+  - Getting the algebra wrong in the subtraction of the two quartics
+  hints:
+    rephrase: Find the difference between $y$ and $1$ and see where it changes sign.
+    smaller_case: Subtract $x^4-4x^2+4$ from $x^4-7x^2+12$ and simplify.
+    key_idea: The sign of $y-1$ is the sign of its numerator, since the denominator is a square.
+  check: 8 - 3*(sqrt(Rational(8,3)))**2
+  check_ok: true
+- goal: Find the turning points of the curve (for $x\ne\pm\sqrt2$) and their coordinates.
+  expected: A local minimum at $(0,3)$ on $|x|<\sqrt2$. Minima at $\left(\pm\sqrt{10/3},\,-\tfrac18\right)$
+    on the outer branches.
+  solution: The derivative is $y'=\dfrac{2x(3x^2-10)}{(x^2-2)^3}$. Its zeros are $x=0$ and $x^2=10/3$.
+    For $|x|<\sqrt2$, $y$ increases away from $0$, so $x=0$ is a minimum with $y=3$. For $\sqrt2<x<\sqrt{10/3}$,
+    $y'<0$, and for $x>\sqrt{10/3}$, $y'>0$. So $x=\sqrt{10/3}$ is a minimum with $y=-2/9\cdot9/16=-1/8$.
+  common_errors:
+  - Ignoring the minimum at x=√(10/3) and calling x=0 the only turning point
+  - Getting the minimum value wrong by forgetting the square in the denominator
+  - Missing the sign change of the derivative at x=√2
+  hints:
+    rephrase: Differentiate $y$ and find where the derivative is zero, leaving out the points $x=\pm\sqrt2$.
+    smaller_case: Substitute $x^2=10/3$ into the numerator and denominator of $y$ and simplify.
+    key_idea: Use the sign of $y'$ on each interval between the critical points and the poles.
+  check: diff((x**4 - 7*x**2 + 12)/(x**4 - 4*x**2 + 4), x).subs(x, sqrt(Rational(10,3)))
+  check_ok: true
+- goal: Describe the behaviour of the curve near $x=\pm\sqrt2$ and assemble the full sketch.
+  expected: As $x\to\pm\sqrt2$ from either side, $y\to+\infty$. On $\sqrt2<x<\sqrt{8/3}$ the curve lies
+    above $y=1$, falls to $-1/8$ at $x=\sqrt{10/3}$, then rises to approach $y=1$ from below as $x\to\infty$.
+    The curve is symmetric about the y-axis.
+  solution: The numerator is $2>0$ at $x=\sqrt2$ and the denominator is a positive square on both sides,
+    so $y\to+\infty$. Combining the intercepts, the crossing of $y=1$, the minimum at $\sqrt{10/3}$ and
+    the asymptote gives the shape. The function depends only on $x^2$, so it is even.
+  common_errors:
+  - Making the curve go to -∞ on one side of x=√2
+  - Forgetting that the curve approaches y=1 from below for large |x|
+  - Missing the symmetry about the y-axis
+  hints:
+    rephrase: What is the sign of the numerator at $x=\sqrt2$, and what is the sign of the denominator
+      near it?
+    smaller_case: Evaluate the numerator at $x=\sqrt2$ and check its sign.
+    key_idea: A double pole keeps the sign of the function on both sides of the asymptote.
+  check: limit((x**4 - 7*x**2 + 12)/(x**4 - 4*x**2 + 4), x, sqrt(2), dir='+') == oo
+  check_ok: true
+extensions:
+  '3':
+  - Sketch $y=\dfrac{x^2-3}{x^2-2}$ and find its asymptotes and turning points.
+  '4':
+  - Sketch $y=\dfrac{(x-1)(x-2)}{(x-3)^2}$ and state the sign of $y$ near $x=3$.
+  '5':
+  - Prove that $y\ge-\tfrac18$ for every real $x$ where the function is defined.
+spoken_vocab:
+- x to the fourth minus seven x squared plus twelve
+- over
+- x to the fourth minus four x squared plus four
+- double pole
+- vertical asymptote at x equals plus or minus root two
+- horizontal asymptote y equals one
+- square root of eight over three
+- square root of ten over three
+- minus one eighth
+- turning point
+- intercept
+- even function
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 5
+  difficulty: 6
+  parts: 4
+  minutes: 20
+  flags:
+  - needs_diagram
+  tagline: Double-pole sketch with asymptote crossing and turning points at x=0, ±√(10/3).
+  priority: 54
+  rank: 492
+  tier: C
+  category: tbo
+  d10: 5.5
+  real: 3.0
+  by: haiku
+tags:
+- curve_sketching
+- differentiation

@@ -1,0 +1,30 @@
+[
+ {
+  "q": "Show that $x^2 - y^2 + x + 3y - 2 = (x - y + 2)(x + y - 1)$ and hence, or otherwise, indicate by means of a sketch the region of the $x$-$y$ plane for which $x^2 - y^2 + x + 3y > 2$. Sketch also the region of the $x$-$y$ plane for which $x^2 - 4y^2 + 3x - 2y < -2$. Give the coordinates of a point for which both inequalities are satisfied or explain why no such point exists.",
+  "kind": "maths",
+  "answer": "Expanding $(x - y + 2)(x + y - 1)$ gives $x^2 - y^2 + x + 3y - 2$, so the factorisation holds. The first inequality requires $x - y + 2$ and $x + y - 1$ to have the same sign. The lines $y = x + 2$ and $y = 1 - x$ meet at $(-\\frac{1}{2}, \\frac{3}{2})$, and the required region is the left and right quadrants they form. For the second inequality, $x^2 - 4y^2 + 3x - 2y + 2 = (x - 2y + 1)(x + 2y + 2)$, so the inequality is $(x - 2y + 1)(x + 2y + 2) < 0$. The lines $2y = x + 1$ and $2y = -2 - x$ meet at $(-\\frac{3}{2}, -\\frac{1}{4})$, and the required region is the upper and lower quadrants they form. The point $(1, 2)$ satisfies both inequalities.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#7"
+ },
+ {
+  "q": "Solve the inequalities (i) $1 + 2x - x^2 > \\frac{2}{x}$ $(x \\neq 0)$, (ii) $\\sqrt{3x + 10} > 2 + \\sqrt{x + 4}$ $(x \\geqslant -\\frac{10}{3})$.",
+  "kind": "maths",
+  "answer": "(i) Multiplying by $x^2$ and analysing $x(x-1)(x+1)(x-2) < 0$ (or treating $x>0$ and $x<0$ separately) gives $-1 < x < 0$ or $1 < x < 2$. (ii) Squaring twice gives $(x-5)(x+3) > 0$ with the condition $x > -1$, so $x > 5$. The solution $x < -3$ from squaring is spurious, since it solves the inequality with $2 - \\sqrt{x+4}$ instead.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#7"
+ },
+ {
+  "q": "Sketch, without calculating the stationary points, the graph of the function $f(x) = (x - p)(x - q)(x - r)$, where $p < q < r$. By considering the quadratic equation $f'(x) = 0$, or otherwise, show that $(p + q + r)^2 > 3(qr + rp + pq)$. By considering $(x^2 + gx + h)(x - k)$, or otherwise, show that $g^2 > 4h$ is a sufficient condition but not a necessary condition for the inequality $(g - k)^2 > 3(h - gk)$ to hold.",
+  "kind": "maths",
+  "answer": "Since $f$ has two turning points, $f'(x) = 3x^2 - 2(p+q+r)x + (qr+rp+pq) = 0$ has two real roots, so its discriminant is positive, giving $(p+q+r)^2 > 3(qr+rp+pq)$. For the second part, $g^2 > 4h$ gives two real roots of $x^2 + gx + h$, so $(x^2+gx+h)(x-k)$ has two turning points, and the discriminant condition for $f'(x)=0$ gives $(g-k)^2 > 3(h-gk)$. The condition is not necessary: both turning points can lie on the same side of the $x$-axis. A counterexample is $g^2 = 4h$ with $g/2 + k \\neq 0$.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#7"
+ },
+ {
+  "q": "In a cosmological model, the radius $R$ of the universe is a function of the age $t$ of the universe. The function $R$ satisfies the three conditions: $R(0) = 0$, $R'(t) > 0$ for $t > 0$, $R''(t) < 0$ for $t > 0$, where $R''$ denotes the second derivative of $R$. The function $H$ is defined",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#7"
+ }
+]

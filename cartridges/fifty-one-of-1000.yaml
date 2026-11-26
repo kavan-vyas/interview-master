@@ -1,0 +1,131 @@
+id: fifty-one-of-1000
+title: 51 numbers from 1 to 1000 avoiding special sets
+topics:
+- pigeonhole principle
+- parity
+- primes
+- coprimality
+- squares
+- counting
+warmup: false
+answer_source: generated
+statement: 'Suppose 51 numbers are selected from the integers $1$ to $1000$. Can one choose such a collection
+  containing no: (i) even numbers? (ii) prime numbers? (iii) coprime pairs? (iv) square numbers? (v) numbers
+  which are the sum of a square and a cube?'
+stages:
+- goal: 'Part (i): can 51 numbers from 1 to 1000 contain no even numbers?'
+  expected: Yes, for example $1,3,5,\dots,101$. There are 500 odd numbers available.
+  solution: The odd numbers from 1 to 1000 are $1,3,\dots,999$, which is 500 numbers. Choosing any 51
+    of them gives a collection with no even numbers.
+  common_errors:
+  - Thinking the collection must contain both parities
+  - Miscounting the odd numbers up to 1000
+  hints:
+    rephrase: How many odd numbers are there between 1 and 1000?
+    smaller_case: Could you find 3 odd numbers between 1 and 10?
+    key_idea: Compare the number of odd integers in the range with 51.
+  check: Integer(500) >= 51
+  check_ok: true
+- goal: 'Part (ii): can 51 numbers from 1 to 1000 contain no primes?'
+  expected: Yes. For example $1,4,6,8,9,10,\dots$ works, since there are 832 non-primes in the range.
+  solution: There are $\pi(1000)=168$ primes up to 1000, so there are $1000-168=832$ numbers that are
+    not prime (including 1). Choosing any 51 of them gives a collection with no primes.
+  common_errors:
+  - Forgetting that 1 is not prime but is still allowed here
+  - Thinking there are too few non-primes to pick 51
+  hints:
+    rephrase: How many numbers from 1 to 1000 are not prime?
+    smaller_case: Name five integers between 1 and 20 that are not prime.
+    key_idea: Count the non-primes in the range and compare with 51.
+  check: 1000 - primepi(1000) >= 51
+  check_ok: true
+- goal: 'Part (iii): can 51 numbers from 1 to 1000 be chosen so that no two of them are coprime?'
+  expected: Yes. Take 51 even numbers, for example $2,4,6,\dots,102$. Any two share the factor 2, so no
+    pair is coprime.
+  solution: Two even numbers are both divisible by 2, so $\gcd\ge2$ and they are not coprime. Choosing
+    51 even numbers from 1 to 1000 (there are 500 of them) gives a collection in which no pair is coprime.
+  common_errors:
+  - Assuming a set of 51 numbers must contain a coprime pair, which is false
+  - Overlooking that the same pair-check applies to every pair in the set
+  hints:
+    rephrase: What do two even numbers have in common?
+    smaller_case: Check whether 4 and 6 are coprime.
+    key_idea: Find a common prime factor shared by all chosen numbers.
+  check: gcd(2,4) > 1
+  check_ok: true
+- goal: 'Part (iv): can 51 numbers from 1 to 1000 contain no square numbers?'
+  expected: Yes. The squares in range are $1^2,\dots,31^2$, which is 31 numbers. This leaves 969 non-squares,
+    so 51 of them can be chosen.
+  solution: The largest square up to 1000 is $31^2=961$, so there are 31 squares in range. The remaining
+    $1000-31=969$ numbers are not squares. Choosing any 51 of them gives a collection with no squares.
+  common_errors:
+  - Miscounting the squares up to 1000 (e.g. treating 961 as above the limit)
+  - Forgetting that 1 is a square
+  hints:
+    rephrase: What is the largest integer $n$ with $n^2\le1000$?
+    smaller_case: List the squares up to 30.
+    key_idea: Count the squares in range and subtract from 1000.
+  check: 1000 - floor(sqrt(1000)) >= 51
+  check_ok: true
+- goal: 'Part (v): can 51 numbers from 1 to 1000 be chosen to avoid all numbers of the form $a^2+b^3$?'
+  expected: Yes. The values $a^2+b^3$ in $[1,1000]$ come from at most 285 pairs $(a,b)$, so at least 715
+    numbers in $[1,1000]$ are not of this form. Any 51 of those will do.
+  solution: Count the pairs $(a,b)$ of non-negative integers with $a^2+b^3\le1000$. For each $b=0,\dots,10$
+    the number of valid $a$ is $1+\lfloor\sqrt{1000-b^3}\rfloor$, giving 32, 32, 32, 32, 31, 30, 29, 26,
+    23, 17, 1 for $b=0,\dots,10$. The total is 285. So at most 285 numbers in $[1,1000]$ have this form,
+    and at least $1000-285=715\ge51$ do not. Choosing any 51 of the others gives a valid collection.
+  common_errors:
+  - Trying to list all values by hand instead of bounding the count
+  - Miscounting the valid $a$ values for a given $b$
+  - Forgetting that the count only needs to be an upper bound
+  hints:
+    rephrase: For a fixed cube $b^3$, how many squares $a^2$ fit under 1000 when added?
+    smaller_case: Take $b=1$. For which $a$ is $a^2+1\le1000$?
+    key_idea: Count the pairs $(a,b)$ as an upper bound on how many values are excluded.
+  check: 1000 - 285 >= 51
+  check_ok: true
+extensions:
+  '3':
+  - Repeat part (ii) with 51 non-primes replaced by 51 composite numbers, and say how many composites
+    lie in the range.
+  '4':
+  - Find the largest subset of $\{1,\dots,1000\}$ with no two coprime numbers, and justify why it is at
+    least 500.
+  '5':
+  - Show that a set of 51 numbers from $\{1,\dots,1000\}$ must contain two numbers differing by at most
+    19 if it avoids all numbers of the form $a^2+b^3$ and all squares.
+spoken_vocab:
+- fifty one numbers
+- one to one thousand
+- no even numbers
+- no prime numbers
+- coprime pairs
+- square numbers
+- sum of a square and a cube
+- pi of one thousand
+- greatest common divisor
+- pigeonhole principle
+- odd numbers
+- non-primes
+- a squared plus b cubed
+- thirty one squared
+- two to the power
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 3 (anonymous).pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 5
+  minutes: 20
+  flags: []
+  tagline: Five avoidance constructions; parity and coprimality ideas, part (v) harder.
+  priority: 73
+  rank: 300
+  tier: B
+  category: past-interviews
+  d10: 4.5
+  real: 4.5
+  by: deepseek-v4.1-flash-free
+tags:
+- combinatorics
+- number_theory

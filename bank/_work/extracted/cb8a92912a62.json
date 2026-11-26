@@ -1,0 +1,58 @@
+[
+ {
+  "q": "Show that $3n^2+9n+6$ is divisible by $6$ for all $n \\in \\mathbb{Z}$",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/H1.jpg"
+ },
+ {
+  "q": "Prove that $\\sqrt{2}$ is irrational",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/H1.jpg"
+ },
+ {
+  "q": "How many zeros are on the end of $25!$?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/H1.jpg"
+ },
+ {
+  "q": "In a certain town $\\frac{2}{3}$ of the adult men are married to $\\frac{3}{5}$ of the adult women. What fraction of the adults in the town are married?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/H1.jpg"
+ },
+ {
+  "q": "Place numbers $1$\u2013$8$ at the vertices of a cube (A, B, C, D and the remaining vertices) so that the $4$ numbers at the corners of each face have the same sum. What do you notice about the $2$ numbers at A and B, and the $2$ numbers at C and D? Explain clearly why this is not an accident.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/H1.jpg"
+ },
+ {
+  "q": "Is there a $2$-digit number $ab$ such that the difference between $ab$ and its reverse $ba$ is prime?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/H1.jpg"
+ },
+ {
+  "q": "Two men walk $\\frac{2}{5}$ of the way into a rail tunnel (women have more sense). They hear a train and run in opposite directions from each other, both running at $15$ mph. Luckily, one gets out just as the train reaches the tunnel, and the other gets out just as the train reaches the end of the tunnel. What is the speed of the train? (Do not try this if your hearing is impaired.)",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/H1.jpg"
+ },
+ {
+  "q": "MX language: only M and X are allowed. (i) MX is a word. (ii) If $M\\alpha$ is a word then $M\\alpha\\alpha$ is a word (where $\\alpha$ = M's and X's). Is MXXX a word? (iii) If $M\\,XXX\\,\\alpha$ is a word then $M\\alpha$ is a word. Is MXXX now a word? (Rules (i) and (ii) still hold.)",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/H1.jpg"
+ }
+]

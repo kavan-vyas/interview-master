@@ -1,0 +1,119 @@
+id: wallis-integrals
+title: Wallis integrals I_n = ∫ sin^n x dx
+topics:
+- Wallis integrals
+- reduction formulae
+- integration by parts
+- squeeze theorem
+- limits
+warmup: false
+answer_source: pdf
+statement: For integers $n\ge 0$, let $I_n=\int_0^{\pi/2}\sin^n x\,dx$. (i) Find $I_0$ and $I_1$. (ii)
+  Show that $nI_n=(n-1)I_{n-2}$ for $n\ge 2$. (iii) Show that $nI_nI_{n-1}=\frac{\pi}{2}$ for all $n\ge
+  1$. (iv) Explain why $I_{n+1}\le I_n$ for all $n\ge 0$. Hence show that for $n\ge 1$, $\sqrt{\frac{\pi}{2(n+1)}}\le
+  I_n\le\sqrt{\frac{\pi}{2n}}$. (v) Find $\lim_{n\to\infty}\sqrt{n}\,I_n$.
+stages:
+- goal: Evaluate $I_0$ and $I_1$.
+  expected: $I_0=\frac{\pi}{2}$ and $I_1=1$.
+  solution: $I_0=\int_0^{\pi/2}1\,dx=\frac{\pi}{2}$. $I_1=\int_0^{\pi/2}\sin x\,dx=[-\cos x]_0^{\pi/2}=0-(-1)=1$.
+  common_errors:
+  - Taking $\sin^0x$ to be 0
+  - Evaluating $\int_0^{\pi/2}\sin x\,dx$ as $-1$ by losing the sign of the antiderivative
+  hints:
+    rephrase: Anything to the power zero is 1, so $I_0$ is the length of the interval. For $I_1$, find
+      an antiderivative of $\sin x$.
+    smaller_case: What is $\int_0^{\pi/2}\sin x\,dx$ when you evaluate $-\cos x$ at the endpoints in order?
+    key_idea: Both integrals are elementary; the only care needed is the endpoint values of $\cos$ and
+      the interval length.
+  check: integrate(sin(x)**0,(x,0,pi/2)) - pi/2 + integrate(sin(x),(x,0,pi/2)) - 1
+  check_ok: true
+- goal: Prove the reduction formula $nI_n=(n-1)I_{n-2}$ for $n\ge2$.
+  expected: Integrate by parts with $u=\sin^{n-1}x$, $dv=\sin x\,dx$, then use $\cos^2x=1-\sin^2x$ to
+    get $I_n=(n-1)(I_{n-2}-I_n)$, which rearranges to $nI_n=(n-1)I_{n-2}$.
+  solution: Write $I_n=\int_0^{\pi/2}\sin^{n-1}x\cdot\sin x\,dx$. Take $u=\sin^{n-1}x$, $v=-\cos x$. The
+    boundary term $[-\cos x\sin^{n-1}x]_0^{\pi/2}$ vanishes for $n\ge2$. So $I_n=(n-1)\int_0^{\pi/2}\sin^{n-2}x\cos^2x\,dx=(n-1)(I_{n-2}-I_n)$.
+    Hence $nI_n=(n-1)I_{n-2}$.
+  common_errors:
+  - Forgetting that the boundary term vanishes only when $n\ge 2$
+  - Sign error in $\int\sin x\,dx=-\cos x$
+  - Not replacing $\cos^2x$ by $1-\sin^2x$
+  hints:
+    rephrase: Split $\sin^n x$ as $\sin^{n-1}x\cdot\sin x$ and integrate by parts.
+    smaller_case: 'Check the boundary term when $n=2$: what is $\sin^{1}$ at $0$ and $\cos$ at $\pi/2$?'
+    key_idea: Integration by parts produces a $\cos^2x$ term, which the identity $\cos^2x=1-\sin^2x$ turns
+      back into $I_{n-2}$ and $I_n$.
+  check: 2*integrate(sin(x)**2,(x,0,pi/2)) - integrate(sin(x)**0,(x,0,pi/2))
+  check_ok: true
+- goal: Show that $J_n=nI_nI_{n-1}$ is constant and find its value.
+  expected: $nI_nI_{n-1}=\frac{\pi}{2}$ for all $n\ge1$.
+  solution: From (ii), $nI_n=(n-1)I_{n-2}$, so $J_n=nI_nI_{n-1}=(n-1)I_{n-1}I_{n-2}=J_{n-1}$. So $J_n$
+    is constant, and $J_1=1\cdot I_1\cdot I_0=\frac{\pi}{2}$.
+  common_errors:
+  - Using the recurrence with the wrong index shift
+  - Evaluating $J_1$ with $I_0$ and $I_1$ swapped
+  hints:
+    rephrase: Show $J_n=J_{n-1}$ by writing $nI_n$ using the recurrence from the previous stage.
+    smaller_case: Compute $2I_2I_1$ and compare it with $1\cdot I_1 I_0$.
+    key_idea: A sequence with $J_n=J_{n-1}$ for all $n$ is constant, so it equals its first value.
+  check: 2*integrate(sin(x)**2,(x,0,pi/2))*integrate(sin(x),(x,0,pi/2)) - pi/2
+  check_ok: true
+- goal: Prove the bounds $\sqrt{\frac{\pi}{2(n+1)}}\le I_n\le\sqrt{\frac{\pi}{2n}}$ for $n\ge1$, starting
+    from $I_{n+1}\le I_n$.
+  expected: $I_{n+1}\le I_n$ because $0\le\sin^{n+1}x\le\sin^nx$ on $[0,\pi/2]$. Then $I_n^2\le I_nI_{n-1}=\frac{\pi}{2n}$
+    and $I_n^2\ge I_nI_{n+1}=\frac{\pi}{2(n+1)}$.
+  solution: Since $0\le\sin x\le1$ on $[0,\pi/2]$, $\sin^{n+1}x\le\sin^nx$, so $I_{n+1}\le I_n$. Also
+    $I_{n+1}\le I_n\le I_{n-1}$. Using (iii), $I_n^2\le I_nI_{n-1}=\frac{\pi}{2n}$ and $I_n^2\ge I_nI_{n+1}=\frac{\pi}{2(n+1)}$.
+    Taking square roots gives the bounds.
+  common_errors:
+  - Claiming $I_{n+1}\le I_n$ without using $\sin x\le1$
+  - Using $I_n\le I_{n-1}$ in the wrong direction when bounding $I_n^2$
+  hints:
+    rephrase: Compare the integrands pointwise on $[0,\pi/2]$, then use the product identity from the
+      previous part.
+    smaller_case: At $n=1$, compare $I_1^2$ with $I_1I_0$ and $I_1I_2$.
+    key_idea: The product identity pins $I_nI_{n-1}$ and $I_nI_{n+1}$ exactly, and monotonicity sandwiches
+      $I_n^2$ between them.
+  check: And(sqrt(pi/4)<=1, 1<=sqrt(pi/2))
+  check_ok: true
+- goal: Find $\lim_{n\to\infty}\sqrt{n}\,I_n$ by squeezing.
+  expected: $\lim_{n\to\infty}\sqrt{n}\,I_n=\sqrt{\pi/2}$.
+  solution: 'Multiply the bounds by $\sqrt n$: $\sqrt{\frac{n}{n+1}}\sqrt{\frac{\pi}{2}}\le\sqrt n I_n\le\sqrt{\frac{\pi}{2}}$.
+    Both outer sides tend to $\sqrt{\pi/2}$, so the limit is $\sqrt{\pi/2}$.'
+  common_errors:
+  - Concluding the limit is $\sqrt{\pi}$ or $\sqrt{\pi/2}$ inconsistently
+  - Forgetting to multiply the bounds by $\sqrt n$
+  hints:
+    rephrase: Multiply the inequalities from the previous part by $\sqrt n$, then let $n$ grow.
+    smaller_case: What is $\lim_{n\to\infty}\frac{n}{n+1}$?
+    key_idea: 'Squeeze theorem: if both bounds converge to the same value, the middle term does too.'
+  check: limit(sqrt(n)*sqrt(pi/(2*(n+1))),n,oo) - sqrt(pi/2)
+  check_ok: true
+extensions:
+  '3':
+  - Compute $I_2$ and $I_3$ directly from the recurrence.
+  '4':
+  - Find a closed form for $I_n$ when $n$ is even, using $I_0=\frac{\pi}{2}$.
+  '5':
+  - Use the bounds to derive the Wallis product $\frac{\pi}{2}=\prod_{k\ge1}\frac{(2k)^2}{(2k-1)(2k+1)}$.
+spoken_vocab:
+- I sub n
+- integral from zero to pi over two
+- sine to the power n of x
+- Wallis integrals
+- n I sub n equals n minus one I sub n minus two
+- n I sub n times I sub n minus one equals pi over two
+- squeeze theorem
+- limit as n tends to infinity of root n times I sub n
+- square root of pi over two
+source: jaymin/Jaymin Interview (1).pdf#p49
+verified: false
+rating:
+  score: 9
+  difficulty: 4
+  parts: 5
+  minutes: 30
+  flags: []
+  tagline: 'Reduction formula, constant product, squeeze, and limit: a rich, well-structured chain.'
+  priority: 130
+  rank: 2
+  tier: S

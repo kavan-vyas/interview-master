@@ -1,0 +1,89 @@
+id: exp-one-over-x-gradient
+title: Gradient of e^(1/x) near zero in the second quadrant
+topics:
+- calculus
+- differentiation
+- limits
+warmup: false
+answer_source: generated
+statement: Draw $y = e^{1/x}$. Find the gradient close to $0$ in the second quadrant.
+stages:
+- goal: Find $\frac{dy}{dx}$ for $y = e^{1/x}$, for $x \neq 0$.
+  expected: $\frac{dy}{dx} = -\frac{e^{1/x}}{x^{2}}$
+  solution: Write $y = e^{u}$ with $u = 1/x = x^{-1}$. Then $\frac{du}{dx} = -x^{-2} = -\frac{1}{x^{2}}$,
+    so by the chain rule $\frac{dy}{dx} = e^{u}\cdot\frac{du}{dx} = e^{1/x}\cdot\left(-\frac{1}{x^{2}}\right)
+    = -\frac{e^{1/x}}{x^{2}}$.
+  common_errors:
+  - Forgetting the chain rule factor $-1/x^{2}$ and returning $e^{1/x}$ alone.
+  - Dropping the minus sign from differentiating $1/x$.
+  - Writing $\frac{1}{x^{2}}$ in the numerator instead of the denominator.
+  hints:
+    rephrase: The exponent is itself a function of $x$. How does the derivative of $e^{\text{something}}$
+      work when the something depends on $x$?
+    smaller_case: First differentiate $y = e^{2x}$, then consider how the same idea applies when the exponent
+      is $x^{-1}$.
+    key_idea: 'Chain rule: differentiate the outer exponential, then multiply by the derivative of the
+      exponent $1/x = x^{-1}$.'
+  check: simplify(diff(exp(1/x), x) - (-exp(1/x)/x**2))
+  check_ok: true
+- goal: Find what the gradient approaches as $x \to 0$ from the left, that is, in the second quadrant
+    where $x < 0$.
+  expected: The gradient tends to $0$ (it stays negative, approaching $0$ from below).
+  solution: In the second quadrant $x < 0$, so $x \to 0^{-}$ means $t = 1/x \to -\infty$. Since $x^{2}
+    = 1/t^{2}$, the gradient is $-\frac{e^{1/x}}{x^{2}} = -t^{2}e^{t}$. As $t \to -\infty$, $e^{t}$ decays
+    faster than $t^{2}$ grows, so $t^{2}e^{t} \to 0$. Therefore the gradient tends to $0$. It is negative
+    throughout, since $e^{1/x} > 0$ and $-1/x^{2} < 0$.
+  common_errors:
+  - Concluding the gradient blows up to infinity, which is the behaviour from the right side ($x \to 0^{+}$),
+    not the left.
+  - Treating $1/x$ as positive when $x$ is a small negative number.
+  - Stating only that the exponential goes to zero without checking that it beats the $1/x^{2}$ factor.
+  hints:
+    rephrase: When $x$ is a tiny negative number, what sign and size does $1/x$ have, and what does $e$
+      raised to that do?
+    smaller_case: Compare $e^{-n}$ with $n^{2}$ for large $n$. Which one wins?
+    key_idea: Substitute $t = 1/x$ and compare the growth of an exponential with a polynomial as $t \to
+      -\infty$.
+  check: limit(-exp(1/x)/x**2, x, 0, '-')
+  check_ok: true
+extensions:
+  '3':
+  - Find the second derivative of $y = e^{1/x}$ and its limit as $x \to 0^{-}$.
+  '4':
+  - Describe the behaviour of $y = e^{1/x}$ as $x \to 0^{+}$ and compare it with the behaviour on the
+    left of $x = 0$.
+  '5':
+  - Show that $f(x) = e^{-1/x^{2}}$ for $x \neq 0$, with $f(0) = 0$, is differentiable at $0$ with derivative
+    $0$.
+spoken_vocab:
+- y equals e to the power of one over x
+- gradient
+- derivative
+- dy by dx
+- second quadrant
+- x tends to zero from the left
+- chain rule
+- exponential
+- limit
+- minus e to the one over x over x squared
+source: past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2009.doc
+verified: false
+rating:
+  quality: 3
+  difficulty: 3
+  parts: 2
+  minutes: 5
+  flags:
+  - trivial
+  tagline: Quick limit computation; too short to probe much
+  priority: 27
+  rank: 644
+  tier: D
+  category: past-interviews
+  d10: 4.5
+  real: 7.5
+  by: deepseek-v4.1-flash-free
+tags:
+- differentiation
+- exponentials_and_logarithms
+- limits_and_approximation

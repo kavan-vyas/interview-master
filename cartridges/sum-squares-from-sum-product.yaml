@@ -1,0 +1,101 @@
+id: sum-squares-from-sum-product
+title: Sum of squares from sum and product
+topics:
+- algebra
+- quadratics
+- identities
+warmup: true
+answer_source: pdf
+statement: Real numbers $x$ and $y$ satisfy $x+y=10$ and $xy=21$. What is the value of $x^2+y^2$? a) 58
+  b) 79 c) 100 d) 37 e) 42
+stages:
+- goal: Express $x^2+y^2$ in terms of $x+y$ and $xy$.
+  expected: $x^2+y^2=(x+y)^2-2xy$
+  solution: Expand $(x+y)^2=x^2+2xy+y^2$, so $x^2+y^2=(x+y)^2-2xy$.
+  common_errors:
+  - Writing $x^2+y^2=(x+y)^2+2xy$ (wrong sign on the cross term).
+  - Writing $x^2+y^2=(x+y)^2$ and forgetting the cross term.
+  hints:
+    rephrase: You know the sum and the product of x and y. How can you get the sum of their squares from
+      those two quantities?
+    smaller_case: 'Try x=1, y=2: compare x^2+y^2 with (x+y)^2 and xy.'
+    key_idea: Expand the square of the sum and see what extra term appears.
+  check: (x**2+y**2) - ((x+y)**2 - 2*x*y)
+  check_ok: true
+- goal: Compute $x^2+y^2$ from the given values.
+  expected: $x^2+y^2=58$
+  solution: $x^2+y^2=10^2-2(21)=100-42=58$.
+  common_errors:
+  - Computing $10^2+2(21)=142$.
+  - Computing $10^2-21=79$, subtracting the product once instead of twice.
+  hints:
+    rephrase: Substitute the known sum and product into the formula you just found.
+    smaller_case: Check the arithmetic on 10^2 and on 2 times 21 separately.
+    key_idea: Only the sum and product are needed; no individual values of x and y.
+  check: (10**2 - 2*21) - 58
+  check_ok: true
+- goal: Confirm that real values of x and y with these properties exist.
+  expected: The discriminant of $t^2-10t+21=0$ is 16 > 0, so x and y are the real roots 3 and 7.
+  solution: x and y are roots of $t^2-(x+y)t+xy=0$, i.e. $t^2-10t+21=0$. Discriminant $=100-84=16>0$,
+    giving $t=3$ or $t=7$. So $x=3, y=7$ are real and give $x^2+y^2=9+49=58$.
+  common_errors:
+  - Forgetting the question asks for real numbers, so the discriminant must be nonnegative.
+  - Using the wrong sign in the discriminant, such as $b^2+4ac$.
+  hints:
+    rephrase: If x and y have a given sum and product, what quadratic do they satisfy?
+    smaller_case: Ask whether a quadratic with a given discriminant has real roots.
+    key_idea: Real roots need a nonnegative discriminant.
+  check: 10**2 - 4*21 - 16
+  check_ok: true
+extensions:
+  '3':
+  - Given $x+y=10$ and $xy=21$, find $x^3+y^3$.
+  - Given $x-y=4$ and $xy=21$, find $x^2+y^2$.
+  '4':
+  - Given $x+y=10$ and $x^2+y^2=58$, find $xy$.
+  - Find all real pairs $(x,y)$ with $x+y=10$ and $x^2+y^2=50$.
+  '5':
+  - Real numbers $x,y$ satisfy $x+y=s$ and $x^2+y^2=q$. For which values of $s$ and $q$ are $x$ and $y$
+    real?
+  - Prove that $x^4+y^4=(x^2+y^2)^2-2(xy)^2$ and use it to find $x^4+y^4$ when $x+y=10$, $xy=21$.
+spoken_vocab:
+- x
+- y
+- x plus y equals ten
+- x y equals twenty one
+- x squared plus y squared
+- x squared
+- y squared
+- open bracket x plus y close bracket squared
+- minus two x y
+- discriminant
+- real numbers
+- a
+- b
+- c
+- d
+- e
+- fifty eight
+- seventy nine
+- one hundred
+- thirty seven
+- forty two
+source: kclms/kclms-specimen-mcq-2.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 3
+  minutes: 2
+  flags:
+  - trivial
+  tagline: Pure identity-and-arithmetic MCQ; one line of working.
+  priority: 23
+  rank: 653
+  tier: D
+  category: kclms
+  d10: 1.5
+  real: 2.0
+  by: haiku
+tags:
+- algebra_and_functions

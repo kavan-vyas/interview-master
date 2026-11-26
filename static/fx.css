@@ -1,0 +1,185 @@
+/* fx layer: type system, extra motion, no flashing. body[data-motion="calm"] strips all of it. */
+:root {
+  --f-wide: "Unbounded", var(--display);
+  --f-syne: "Syne", var(--display);
+  --f-serif: "Fraunces", Georgia, serif;
+  --f-ital: "Instrument Serif", Georgia, serif;
+  --f-body: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* ---------------- type everywhere ---------------- */
+body { font-family: var(--f-body); font-variation-settings: normal; }
+.brand .kin:first-of-type { font-family: var(--f-wide); font-weight: 700; letter-spacing: -.03em; }
+.brand .thin { font-family: var(--f-serif); font-style: italic; font-weight: 300; font-variation-settings: "SOFT" 100, "WONK" 1; }
+.mega { font-family: var(--f-syne); font-weight: 800; letter-spacing: -.05em; font-size: clamp(44px, 8.6vw, 150px); }
+.mega.sm { font-size: clamp(40px, 6.5vw, 96px); }
+body { overflow-x: clip; }
+.mega.outline { font-family: var(--f-serif); font-style: italic; font-weight: 300; -webkit-text-stroke: 1.2px var(--ink); font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144; }
+.lede { font-family: var(--f-serif); font-weight: 300; font-variation-settings: "opsz" 24; }
+.lede .w:nth-child(4n+1) { font-family: var(--f-ital); font-style: italic; color: var(--ink); }
+.step h2 { font-family: var(--f-syne); font-weight: 800; letter-spacing: -.02em; }
+.step em, .panel h3, .transcript h3 { font-family: var(--f-wide); font-weight: 500; letter-spacing: .22em; font-size: 10px; }
+.hint, .cartinfo, label { font-family: var(--f-body); }
+.readme { font-family: var(--f-ital); }
+.problem .ttl { font-family: var(--f-syne); font-weight: 800; }
+.problem .ttl .ch:nth-child(5n+3) { font-family: var(--f-serif); font-style: italic; font-weight: 400; }
+.problem .stmt { font-family: var(--f-serif); font-size: 16px; font-variation-settings: "opsz" 18; }
+.card .type { font-family: var(--f-wide); font-weight: 800; letter-spacing: .28em; }
+.card .txt { font-family: var(--f-serif); font-weight: 420; font-variation-settings: "opsz" 36, "SOFT" 50; letter-spacing: -.01em; }
+.card .txt .w:nth-child(7n+4) { font-family: var(--f-ital); font-style: italic; font-weight: 400; }
+.card.EXTEND .txt { font-family: var(--f-syne); font-weight: 600; letter-spacing: -.02em; }
+.card .spk { font-family: var(--f-ital); }
+.act { font-family: var(--f-syne); font-weight: 700; letter-spacing: -.01em; }
+.btn.huge { font-family: var(--f-syne); font-weight: 800; }
+.btn.huge .ch:nth-child(odd) { font-family: var(--f-serif); font-style: italic; font-weight: 500; }
+.rung i { font-family: var(--f-serif); font-style: italic; }
+.stages li { font-family: var(--f-body); }
+.stages li.now { font-family: var(--f-syne); }
+.ln .tx { font-family: var(--f-body); }
+.ln.S .tx { font-family: var(--f-serif); font-variation-settings: "opsz" 14; }
+.gnote, .adaptNote { font-family: var(--f-ital); font-size: 14px; }
+.toast { font-family: var(--f-body); }
+.md { font-family: var(--f-serif); } .md h1, .md h2 { font-family: var(--f-syne); }
+.msg.assistant { font-family: var(--f-serif); font-variation-settings: "opsz" 14; }
+
+/* ---------------- kill flashing ---------------- */
+.pill.on i { animation: none; box-shadow: 0 0 0 3px rgba(182, 255, 59, .18); }
+.badge.no { animation: none; }
+.btn.huge { animation: none; box-shadow: 0 10px 40px -12px rgba(182, 255, 59, .5); }
+.act.move.ready { animation: none; box-shadow: 0 0 0 3px rgba(182, 255, 59, .25); }
+.stages li.now::before { animation: none; }
+.grain { animation: none; opacity: .045; }
+.errs.alarm { box-shadow: none; }
+.sweep::before { background: rgba(4, 7, 5, .72); backdrop-filter: blur(14px); }
+.sweep span { color: transparent; -webkit-text-stroke: 1.5px var(--ink); font-family: var(--f-syne); }
+.sweep span .ch:nth-child(even) { color: var(--ink); -webkit-text-stroke: 0; font-family: var(--f-serif); font-style: italic; font-weight: 300; }
+.ch { animation-name: chIn, none; }   /* no endless weight wobble */
+
+/* ---------------- new motion ---------------- */
+/* letters land by cycling through every family once */
+[data-letters] .ch, .problem .ttl .ch { animation: chIn 1s var(--ease) forwards, fontcycle 1.1s steps(1) both; animation-delay: calc(var(--i) * 45ms), calc(var(--i) * 45ms); }
+@keyframes fontcycle {
+  0% { font-family: var(--f-mono); } 20% { font-family: var(--f-wide); } 40% { font-family: var(--f-ital); font-style: italic; }
+  60% { font-family: var(--f-serif); } 80% { font-family: var(--f-body); }
+}
+.mega:hover .ch { animation: fontcycle .9s steps(1) both; animation-delay: calc(var(--i) * 30ms); transform: none; }
+
+/* floating maths glyphs */
+.glyphs { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.glyphs span { position: absolute; bottom: -10vh; color: var(--ink); opacity: 0; font-size: var(--s); animation: rise var(--t) linear infinite; animation-delay: var(--d); }
+@keyframes rise { 0% { transform: translateY(0) rotate(0); opacity: 0; } 10%, 85% { opacity: .07; } 100% { transform: translateY(-120vh) rotate(var(--r)); opacity: 0; } }
+
+/* marquee of topics */
+.marquee { overflow: hidden; border-block: 1px solid var(--line); margin: 0 calc(-1 * clamp(16px, 3vw, 36px)) 28px; padding: 12px 0; mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.marquee div { display: flex; gap: 40px; width: max-content; animation: mq 60s linear infinite; }
+.marquee span { white-space: nowrap; font-size: 22px; color: var(--mute); }
+.marquee span:nth-child(5n) { font-family: var(--f-wide); font-weight: 800; font-size: 15px; letter-spacing: .2em; color: var(--leaf); align-self: center; }
+.marquee span:nth-child(5n+1) { font-family: var(--f-ital); font-style: italic; font-size: 26px; }
+.marquee span:nth-child(5n+2) { font-family: var(--f-syne); font-weight: 800; }
+.marquee span:nth-child(5n+3) { font-family: var(--f-mono); font-size: 16px; align-self: center; }
+.marquee span:nth-child(5n+4) { font-family: var(--f-serif); font-weight: 300; }
+.marquee:hover div { animation-play-state: paused; }
+@keyframes mq { to { transform: translateX(-50%); } }
+
+/* 3D tilt (vars set by fx.js) */
+.step, .panel, .card { transform-style: preserve-3d; }
+.tilt { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-3px) !important; transition: transform .15s ease-out !important; }
+
+/* label roll on buttons */
+.roll { display: inline-grid; overflow: hidden; height: 1.25em; line-height: 1.25em; vertical-align: bottom; }
+.roll > span { transition: transform .5s var(--ease); }
+.roll > span + span { font-family: var(--f-serif); font-style: italic; font-weight: 500; }
+:is(.act, .btn):hover .roll > span { transform: translateY(-100%); }
+
+/* scramble-in headings */
+.scr { font-variant-numeric: tabular-nums; }
+
+/* underline draw */
+.step > header h2 { background: linear-gradient(var(--leaf), var(--leaf)) 0 100% / 0 2px no-repeat; transition: background-size .6s var(--ease), font-variation-settings .6s; }
+.step:hover > header h2 { background-size: 100% 2px; }
+
+/* cursor ring */
+.cursor { position: fixed; left: 0; top: 0; width: 34px; height: 34px; margin: -17px 0 0 -17px; border: 1px solid rgba(232, 243, 234, .35); border-radius: 50%; pointer-events: none; z-index: 70; transition: width .35s var(--spring), height .35s var(--spring), margin .35s var(--spring), border-color .3s; }
+.cursor.big { width: 64px; height: 64px; margin: -32px 0 0 -32px; border-color: var(--leaf); }
+@media (hover: none) { .cursor { display: none; } }
+
+/* transcript words + stage list stagger */
+.ln .tx .w { animation-duration: .5s; }
+.stages li { animation: lnIn .6s var(--ease) both; animation-delay: calc(var(--i, 0) * 70ms); }
+.rung i { transition: all .5s var(--spring), letter-spacing .5s; } .rung i.on { letter-spacing: .04em; }
+
+/* mode button */
+.modeBtn { font: 600 11px var(--f-wide); letter-spacing: .16em; text-transform: uppercase; padding: 7px 12px; border-radius: 99px; border: 1px solid var(--line); background: none; color: var(--mute); cursor: pointer; display: inline-flex; gap: 8px; align-items: center; }
+.modeBtn:hover { color: var(--ink); border-color: var(--ink); }
+.modeBtn b { width: 26px; height: 14px; border-radius: 99px; background: rgba(182, 255, 59, .25); position: relative; }
+.modeBtn b::after { content: ""; position: absolute; top: 2px; left: 14px; width: 10px; height: 10px; border-radius: 50%; background: var(--leaf); transition: left .3s var(--spring); }
+
+/* ================= FOCUS MODE: straight to the point ================= */
+body[data-motion="calm"] *, body[data-motion="calm"] *::before, body[data-motion="calm"] *::after { animation: none !important; transition: none !important; }
+body[data-motion="calm"] { font-family: var(--f-body); }
+body[data-motion="calm"] :is(.mega, .mega.outline, .step h2, .problem .ttl, .card .type, .card .txt, .card.EXTEND .txt, .act, .btn.huge, .brand .kin, .brand .thin, .lede, .stages li.now, .ln.S .tx, .md, .md h1, .md h2, .msg.assistant, .rung i, .ch, .w) { font-family: var(--f-body) !important; font-style: normal !important; font-variation-settings: normal !important; }
+body[data-motion="calm"] .mega.outline { color: var(--ink); -webkit-text-stroke: 0; }
+body[data-motion="calm"] .mega { font-size: clamp(40px, 6vw, 72px); font-weight: 700; letter-spacing: -.03em; }
+body[data-motion="calm"] .hero { padding: 1vh 0 2vh; }
+body[data-motion="calm"] :is(#aurora, .grain, .spot, .glyphs, .marquee, .cursor, .sweep, .lede, .brand .leaf) { display: none !important; }
+body[data-motion="calm"] :is(.ch, .w, .step, .panel, .card, .md > *) { opacity: 1 !important; filter: none !important; transform: none !important; }
+body[data-motion="calm"] .card .type { color: var(--c); -webkit-text-stroke: 0; background: none; }
+body[data-motion="calm"] .roll > span + span { display: none; }
+body[data-motion="calm"] .roll { height: auto; }
+body[data-motion="calm"] :is(.step, .panel, .card, .transcript, .md) { backdrop-filter: none; background: #0b130d; }
+body[data-motion="calm"] .card::after { display: none; }
+body[data-motion="calm"] .card .txt { font-size: clamp(18px, 1.5vw, 22px); font-weight: 500; }
+body[data-motion="calm"] .modeBtn b { background: rgba(255, 255, 255, .1); }
+body[data-motion="calm"] .modeBtn b::after { left: 2px; background: var(--mute); }
+
+/* ---------------- KaTeX ---------------- */
+.km .katex { font-size: 1.08em; white-space: nowrap; }
+.wm { white-space: nowrap; }
+.tex .katex-display { margin: .2em 0; overflow-x: auto; overflow-y: hidden; padding: 2px 0; }
+.stages li .katex, .cartinfo .katex, .toast .katex { font-size: 1em; }
+.card .txt .wm { font-style: normal; }
+
+/* ---------------- logo mark: orb + gradient waveform M ---------------- */
+.brand { align-items: center; white-space: nowrap; }
+.logo { width: 38px; height: 38px; flex: none; margin-right: 6px; overflow: visible; cursor: pointer; transition: transform .6s var(--spring); }
+.logo * { fill: none; stroke-linecap: round; stroke-linejoin: round; transform-box: view-box; transform-origin: 32px 32px; }
+.logo .lg-halo { fill: url(#lgH); animation: lgBreath 4.5s ease-in-out infinite; }
+.logo .lg-core { fill: #06100a; stroke: url(#lgG); stroke-width: 1.2; stroke-opacity: .55; }
+.logo .lg-o1 { stroke: url(#lgG); stroke-width: 1.6; stroke-dasharray: 22 6 3 6; animation: lgSpin 14s linear infinite; }
+.logo .lg-o2 { stroke: #4de2ff; stroke-opacity: .45; stroke-width: 1; stroke-dasharray: 2 4; animation: lgSpin 9s linear infinite reverse; }
+.logo .lg-m { stroke: url(#lgG); stroke-width: 4.6; stroke-dasharray: 1; animation: lgDraw 1.6s var(--ease) .15s both; }
+.logo .lg-pulse { stroke: #f4fff0; stroke-width: 2.2; stroke-dasharray: .12 .88; opacity: .85; animation: lgRun 2.6s cubic-bezier(.6, 0, .4, 1) 1.6s infinite both; }
+.logo .lg-sat circle { fill: #b6ff3b; }
+.logo .lg-sat { animation: lgSpin 5s linear infinite; }
+.logo .lg-sat.s2 circle { fill: #b58cff; } .logo .lg-sat.s2 { animation-duration: 3.2s; animation-direction: reverse; }
+.logo:hover .lg-o1 { animation-duration: 3s; } .logo:hover .lg-sat { animation-duration: 1.4s; }
+.logo:hover .lg-pulse { animation-duration: 1s; }
+@keyframes lgDraw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes lgRun { from { stroke-dashoffset: 1.12; } to { stroke-dashoffset: 0; } }
+@keyframes lgSpin { to { transform: rotate(360deg); } }
+@keyframes lgBreath { 0%, 100% { transform: scale(.9); opacity: .7; } 50% { transform: scale(1.08); opacity: 1; } }
+
+/* brand wordmark: living type, slow gradient shimmer on "Master" */
+.brand .kin .ch { display: inline-block; }
+.brand .thin .ch { animation: chIn 1s var(--ease) both, hueWave 6s ease-in-out infinite; animation-delay: calc(var(--i) * 45ms), calc(var(--i) * 160ms); }
+@keyframes hueWave { 0%, 100% { color: var(--ink); } 25% { color: #b6ff3b; } 50% { color: #4de2ff; } 75% { color: #b58cff; } }
+
+/* S-tier cards: slow light sweep around border */
+.pk-card.tS::after { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
+  background: conic-gradient(from var(--a, 0deg), transparent 0 70%, #b6ff3b 85%, transparent 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude;
+  opacity: 0; transition: opacity .3s; }
+.pk-card.tS:hover::after { opacity: 1; animation: sweepA 2.4s linear infinite; }
+@property --a { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+@keyframes sweepA { to { --a: 360deg; } }
+.pk-card:hover .pk-ring { animation: ringPop .5s var(--spring); }
+@keyframes ringPop { 50% { transform: scale(1.18) rotate(20deg); } }
+body[data-motion="calm"] :is(.lg-halo, .lg-o2, .lg-pulse, .lg-sat) { display: none; }
+
+body[data-motion="calm"] .pk-card.tS::after { display: none; }
+
+/* ---------------- perf: no live blur over the moving background ---------------- */
+:is(.step, .panel, .card, .transcript, .md) { backdrop-filter: none !important; background: rgba(10, 18, 12, .82); }
+.top { backdrop-filter: blur(8px); }
+.glyphs span { will-change: transform, opacity; }

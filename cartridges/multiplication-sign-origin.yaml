@@ -1,0 +1,73 @@
+id: multiplication-sign-origin
+title: Origin of the multiplication sign
+topics:
+- history of mathematics
+- notation
+warmup: true
+answer_source: generated
+statement: Do you know where the multiplication sign came from?
+stages:
+- goal: Recall who introduced the cross symbol for multiplication and roughly when.
+  expected: William Oughtred, an English mathematician, introduced the cross (×) in 1631 in his book Clavis
+    Mathematicae.
+  solution: Oughtred published the cross symbol for multiplication in Clavis Mathematicae (1631). It was
+    an early English notation that spread through Europe.
+  common_errors:
+  - Attributing the cross to Leibniz, who in fact favoured the dot.
+  - Giving a date in the 1700s or confusing it with the division sign.
+  hints:
+    rephrase: Think of an English mathematician of the early 1600s who worked on logarithms and slide
+      rules.
+    smaller_case: Ask yourself which symbols you learned at school and which of them had a single, identifiable
+      inventor.
+    key_idea: Notation has an inventor and a date, and the source is a famous early-17th-century textbook.
+- goal: Explain why the cross was later partly replaced by a dot or by juxtaposition.
+  expected: The cross looks too much like the letter x, which is used as a variable, so a dot (·) or simply
+    writing the symbols next to each other (ab) became preferred in algebra.
+  solution: In algebra x is an unknown, so x × y is ambiguous. Leibniz promoted the dot, and juxtaposition
+    is standard for variables, so the cross survives mainly in arithmetic.
+  common_errors:
+  - Saying the dot was invented for a different purpose, such as decimal points.
+  - Claiming the cross is no longer used anywhere.
+  hints:
+    rephrase: What goes wrong when you write x × y in an equation about an unknown x?
+    smaller_case: Compare writing 2 × 3 with writing x × y.
+    key_idea: Notation is chosen to avoid confusion between operators and variables.
+extensions:
+  '3':
+  - Who introduced the division sign ÷ and why did it spread so slowly?
+  '4':
+  - Why do programming languages use * for multiplication rather than the cross?
+  '5':
+  - Trace how mathematical notation standardised across Europe in the 16th and 17th centuries.
+spoken_vocab:
+- multiplication sign
+- times
+- cross
+- dot
+- William Oughtred
+- Clavis Mathematicae
+- Leibniz
+- juxtaposition
+- x
+- variable
+- division sign
+source: oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 1
+  parts: 2
+  minutes: 3
+  flags:
+  - trivial
+  tagline: Pure historical recall of notation; involves almost no mathematical reasoning.
+  priority: 17
+  rank: 686
+  tier: D
+  category: oxbridge-random
+  d10: 1.0
+  real: 2.0
+  by: haiku
+tags:
+- algebra_and_functions

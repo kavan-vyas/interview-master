@@ -1,0 +1,85 @@
+id: kclms-specimen-q2-equal-area-rectangles
+title: Two shaded rectangles of equal area
+topics:
+- algebra
+- areas
+- linear equations
+- geometry
+warmup: true
+answer_source: pdf
+statement: 'The two shaded rectangles have equal area. The figure shows them side by side across a 14
+  cm total width: the left shaded rectangle is 3 cm tall and the right shaded rectangle is 4 cm tall.
+  What is the total shaded area in cm²?'
+stages:
+- goal: Set up an equation using equal areas and find the width of the left shaded rectangle.
+  expected: The left shaded rectangle is 8 cm wide.
+  solution: Let the left width be x cm, so the right width is 14 - x cm. Equal areas give 3x = 4(14 -
+    x), so 3x = 56 - 4x, 7x = 56 and x = 8.
+  common_errors:
+  - Using 14 - x for the height of the left rectangle
+  - Forgetting to expand the bracket 4(14 - x) as 56 - 4x
+  - Solving 3x = 4(14 - x) and reporting 14 - x instead of x
+  hints:
+    rephrase: Each shaded area is height times width, and the two areas are equal. The two widths share
+      the 14 cm base.
+    smaller_case: Pick a trial width for the left rectangle and compare the two areas it produces.
+    key_idea: Equal areas give an equation in the unknown width of one rectangle.
+  check: solve(Eq(3*x, 4*(14 - x)), x)[0] - 8
+  check_ok: true
+- goal: Find the total shaded area.
+  expected: 48 cm².
+  solution: Each shaded rectangle has area 3 x 8 = 24 cm² (and 4 x 6 = 24 cm² for the right one). The
+    total is 24 + 24 = 48 cm².
+  common_errors:
+  - Reporting one rectangle's area (24) instead of the total
+  - Using the width of the right rectangle with the wrong height
+  hints:
+    rephrase: The question asks for both shaded regions together, so think about how the two areas combine.
+    smaller_case: Find the area of just the left shaded rectangle first, then decide how to count the
+      right one.
+    key_idea: Equal areas mean the total is twice one of them.
+  check: 2*3*8 - 48
+  check_ok: true
+extensions:
+  '3':
+  - Change the heights to 2 cm and 5 cm, keeping the 14 cm base, and find the equal-area total.
+  - Make the two shaded rectangles have equal perimeter instead of equal area and set up the equation.
+  '4':
+  - Three rectangles share a 14 cm base with heights 3, 4 and 5 cm, and all three shaded areas are equal.
+    Find the common area.
+  - Find a general formula for the common area in terms of base length and two heights.
+  '5':
+  - Show that the common area is always 2ab/(a+b) times the base, where a and b are the two heights, and
+    explain the result.
+  - Ask for the condition on heights so that the widths are both positive.
+spoken_vocab:
+- three x
+- four times fourteen minus x
+- fourteen centimetres
+- equal areas
+- x
+- cm squared
+- forty eight
+- twenty four
+- seven x equals fifty six
+- eight
+source: kclms/kclms-specimen-questions-2.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 2
+  minutes: 4
+  flags:
+  - needs_diagram
+  - trivial
+  tagline: Simple area equation, but relies on a figure the statement does not supply.
+  priority: 9
+  rank: 709
+  tier: D
+  category: kclms
+  d10: 1.5
+  real: 3.0
+  by: haiku
+tags:
+- algebra_and_functions

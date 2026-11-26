@@ -1,0 +1,177 @@
+id: graph-colouring-cycles-regions
+title: 'Graph colouring: odd cycles, greedy bound and lines in the plane'
+topics:
+- graph colouring
+- chromatic number
+- bipartite graphs
+- greedy colouring
+- parity
+- planar regions
+warmup: false
+answer_source: pdf
+statement: 'A graph is $k$-colourable if its vertices can be coloured with $k$ colours so that adjacent
+  vertices always receive different colours.
+
+
+  (i) What is the least number of colours needed to colour a cycle of length $n\ge 3$?
+
+
+  (ii) Show that a graph in which every vertex has degree at most $\Delta$ is $(\Delta+1)$-colourable.
+
+
+  (iii) Prove that a graph is $2$-colourable if and only if it has no cycle of odd length.
+
+
+  (iv) Some straight lines are drawn in the plane. Show that the regions formed can be $2$-coloured so
+  that regions sharing an edge have different colours.'
+stages:
+- goal: Find the least number of colours for a cycle of length $n\ge 3$, with proof.
+  expected: 2 colours if $n$ is even, 3 colours if $n$ is odd, with a valid colouring for each case and
+    an explanation of why 2 colours fail for odd $n$.
+  solution: 'Let the cycle be $v_1,\dots,v_n$ with $v_n$ adjacent to $v_1$. At least 2 colours are needed
+    since there is an edge. If $n$ is even, colour alternately A, B, A, B, ...; $v_n$ gets B and $v_1$
+    gets A, so the closing edge $v_nv_1$ is fine. If $n$ is odd, in any 2-colouring adjacent vertices
+    must differ, so colours alternate and $v_1,v_n$ (both in odd positions) get the same colour, yet they
+    are adjacent. So 2 colours fail. Three suffice: colour $v_1,\dots,v_{n-1}$ alternately A, B (possible
+    since this is a path), so $v_{n-1}$ gets B (as $n-1$ is even) and $v_1$ gets A, then give $v_n$ colour
+    C, which differs from both neighbours. Answer: 2 if $n$ is even, 3 if $n$ is odd.'
+  common_errors:
+  - Answering 2 for every cycle
+  - Saying odd cycles need 3 colours without showing 3 suffice
+  - Ignoring the wrap-around edge $v_nv_1$ when checking the colouring
+  - Forgetting that a 2-colouring is forced to alternate
+  hints:
+    rephrase: Colour the vertices in order around the cycle. What goes wrong at the last vertex, and for
+      which $n$?
+    smaller_case: Try a 4-cycle and then a 5-cycle with two colours. What happens at the closing edge
+      each time?
+    key_idea: With two colours the pattern is forced to alternate; the question is whether the alternation
+      closes up consistently, which depends on the parity of $n$.
+  check: ((2-1)**5+(-1)**5*(2-1)) + ((2-1)**6+(-1)**6*(2-1)) - 2
+  check_ok: true
+- goal: Show every graph with maximum degree at most $\Delta$ is $(\Delta+1)$-colourable.
+  expected: Order the vertices and colour them one at a time, each with a colour not used on its already-coloured
+    neighbours. A vertex has at most $\Delta$ neighbours, so at most $\Delta$ colours are blocked and
+    one of the $\Delta+1$ colours is free.
+  solution: Order the vertices $v_1,\dots,v_n$ and colour them in turn. When colouring $v_i$, only its
+    already-coloured neighbours matter, and there are at most $\deg(v_i)\le\Delta$ of them. So at most
+    $\Delta$ colours are forbidden, and among $\Delta+1$ colours at least one is free; choose it. Every
+    edge $v_iv_j$ with $j<i$ was checked when $v_i$ was coloured, so the final colouring is proper.
+  common_errors:
+  - Bounding the blocked colours by the degrees of the neighbours rather than the degree of the vertex
+    being coloured
+  - Claiming $\Delta$ colours suffice, which fails for an odd cycle with $\Delta=2$
+  - Not explaining why the greedy colouring is proper
+  - Counting all neighbours as coloured, rather than only earlier ones (which only helps, but shows confusion)
+  hints:
+    rephrase: Colour one vertex at a time. When you reach a given vertex, how many colours can be ruled
+      out?
+    smaller_case: Take a path on three vertices, which has $\Delta=2$. Colour it greedily in order along
+      the path.
+    key_idea: 'Greedy colouring: compare the number of forbidden colours with the number available.'
+  check: null
+- goal: Prove that a graph is 2-colourable if and only if it has no odd cycle.
+  expected: (Forward) Colours alternate along a cycle, so a cycle must have even length. (Backward) In
+    each component pick a root and colour by parity of distance from it. An edge joining two vertices
+    of the same parity would give an odd closed walk, which contains an odd cycle, a contradiction.
+  solution: 'Forward: in a proper 2-colouring colours alternate along any cycle, so returning to the start
+    takes an even number of steps; every cycle is even. Backward: suppose $G$ has no odd cycle. In each
+    component choose a root $r$ and let $d(x)$ be the distance from $r$. Colour $x$ by the parity of $d(x)$.
+    Suppose an edge $uv$ had $d(u)\equiv d(v)\pmod 2$. Take shortest paths from $r$ to $u$ and from $v$
+    to $r$ and the edge $uv$: a closed walk of length $d(u)+d(v)+1$, which is odd. Take a shortest odd
+    closed walk. If it repeated a vertex, splitting there gives two shorter closed walks with total length
+    odd, so one is odd, contradicting minimality. So it has no repeated vertex and is an odd cycle, contradicting
+    the hypothesis. Hence every edge joins vertices of opposite parity and the colouring is proper.'
+  common_errors:
+  - Proving only one direction
+  - Assuming the distance-parity colouring is proper without checking every edge
+  - Claiming an odd closed walk is automatically an odd cycle, without the shortest-walk argument
+  - Forgetting to treat each component separately
+  hints:
+    rephrase: Think of the two colours as the parity of the number of steps from a start vertex. What
+      must a cycle look like under alternating colours?
+    smaller_case: Decide whether a triangle and a 4-cycle can each be 2-coloured.
+    key_idea: Colour by parity of distance from a root; if some edge breaks it, the two paths plus that
+      edge form an odd closed walk, which yields an odd cycle.
+  check: null
+- goal: Show the regions formed by finitely many straight lines in the plane can be 2-coloured so that
+    regions sharing an edge differ.
+  expected: Choose a positive side for each line and colour each region by the parity of the number of
+    lines having it on their positive side. Regions sharing an edge lie on opposite sides of exactly one
+    line, so the count changes by 1 and the parity flips.
+  solution: A region contains no point of any line, so it lies entirely on one side of each line. Fix
+    a positive side for each line. Colour a region A if the number of lines having it on their positive
+    side is even, and B if odd. Two regions sharing an edge are separated by the line containing that
+    edge; they lie on opposite sides of it, while for every other line they lie on the same side (otherwise
+    that line would separate them and pass between them, so it would meet the shared edge in its interior,
+    impossible for a different line since the edge lies in a single line and any other line meets it in
+    at most one point). So their counts differ by exactly 1, hence their parities differ and the colours
+    differ.
+  common_errors:
+  - Colouring by the side of only one line
+  - Thinking a shared edge can lie on two distinct lines
+  - Appealing to a general planar map argument without the parity justification
+  - Confusing regions sharing an edge with regions meeting only at a vertex
+  hints:
+    rephrase: Pick a side of each line as positive. What happens to a region's label when you cross one
+      line?
+    smaller_case: Two intersecting lines make four regions. Label each by how many of the lines it is
+      on the positive side of, and check adjacent regions.
+    key_idea: Colour by the parity of the number of positive sides; crossing an edge flips exactly one
+      line's side.
+  check: null
+extensions:
+  '3':
+  - Show that the complete graph $K_n$ needs exactly $n$ colours.
+  - Does the line-region colouring still work if the lines are not all distinct, or if three lines pass
+    through one point?
+  '4':
+  - Give a graph and a vertex order for which greedy colouring uses more colours than the chromatic number.
+  - Does the 2-colouring of regions work for circles instead of lines? What about arbitrary closed curves?
+  '5':
+  - State Brooks' theorem and explain how it sharpens part (ii) for connected graphs that are neither
+    complete nor odd cycles.
+  - Show that a graph with $m$ edges is $k$-colourable with $k\le \tfrac12+\sqrt{2m+\tfrac14}$.
+spoken_vocab:
+- chromatic number
+- k-colourable
+- colour
+- proper colouring
+- cycle
+- odd cycle
+- even cycle
+- degree
+- maximum degree
+- delta
+- delta plus one
+- greedy colouring
+- bipartite
+- two-colourable
+- closed walk
+- parity
+- regions
+- lines
+- plane
+- shared edge
+- if and only if
+- complete graph
+source: jaymin/Jaymin Interview (1).pdf#p65
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 4
+  minutes: 30
+  flags: []
+  tagline: Four linked proofs covering odd cycles, greedy bounds, bipartiteness and line arrangements.
+  priority: 110
+  rank: 32
+  tier: S
+  category: jaymin
+  d10: 6.5
+  real: 7.0
+  by: deepseek-v4.1-flash-free
+refined: true
+tags:
+- combinatorics
+- proof

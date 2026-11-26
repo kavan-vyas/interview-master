@@ -1,0 +1,110 @@
+id: tictactoe-4x4x4-lines
+title: Winning lines in a 4x4x4 noughts and crosses cube
+topics:
+- combinatorics
+- counting
+- geometry
+warmup: false
+answer_source: generated
+statement: A three-dimensional version of noughts and crosses can be played with a $4\times4\times4$ cube,
+  the winner is the first player to get four noughts (or crosses) in a straight line. How many winning
+  lines are there?
+stages:
+- goal: Count the winning lines parallel to an edge of the cube.
+  expected: '48'
+  solution: Lines parallel to the x-axis are determined by their (y,z) position, giving 4 times 4 = 16
+    lines. There are 3 directions, so 3 times 16 = 48.
+  common_errors:
+  - Counting 16 lines in total instead of 16 per direction.
+  - Counting only lines through the centre of the cube.
+  - Forgetting that each direction has its own set of lines.
+  hints:
+    rephrase: A line parallel to the x-axis keeps its y and z coordinates fixed. How many choices are
+      there for those?
+    smaller_case: In a 2x2 grid, how many rows and columns are there, and how many lines in total?
+    key_idea: Fix the two coordinates that do not change along the line, then multiply by the number of
+      directions.
+  check: 3*4**2 - 48
+  check_ok: true
+- goal: Count the winning lines that run along a diagonal of a flat 4x4 slice (planar diagonals).
+  expected: '24'
+  solution: There are 3 orientations of flat slices, each with 4 slices, so 12 slices. Each 4x4 slice
+    has 2 diagonals of four cells. So 12 times 2 = 24 planar diagonals.
+  common_errors:
+  - Only counting diagonals on the outer faces of the cube.
+  - Counting 4 diagonals per slice instead of 2.
+  - Missing one orientation of slices.
+  hints:
+    rephrase: Consider every flat 4x4 slice through the cube, not only the outer faces. How many diagonals
+      does each slice have?
+    smaller_case: Check the count on a single 2x2 square first. How many diagonals does it have?
+    key_idea: Each planar slice is a 4x4 square with its own two diagonals, and slices come in three orientations.
+  check: 3*4*2 - 24
+  check_ok: true
+- goal: Count the space diagonals that pass through the centre of the cube.
+  expected: '4'
+  solution: A space diagonal changes all three coordinates, so it runs from one corner to the opposite
+    corner. The 8 corners form 4 opposite pairs, giving 4 lines, each containing four cells.
+  common_errors:
+  - Counting 8 corners instead of 4 pairs of opposite corners.
+  - Counting only the 2 main diagonals of the cube.
+  - Forgetting that each opposite pair gives exactly one line.
+  hints:
+    rephrase: A winning line must change all three coordinates. Which cells can start such a line?
+    smaller_case: How many body diagonals does a cube have, when counted as pairs of opposite corners?
+    key_idea: Space diagonals join opposite corners, so count the corners and divide by two.
+  check: 2**2 - 4
+  check_ok: true
+- goal: Give the total number of winning lines.
+  expected: '76'
+  solution: Total = 48 axis-parallel + 24 planar diagonals + 4 space diagonals = 76.
+  common_errors:
+  - Omitting one of the three categories of lines.
+  - Adding the 4 space diagonals twice.
+  - Stopping at 48 and forgetting the diagonal lines.
+  hints:
+    rephrase: 'Add up the three categories you have counted: lines along edges, planar diagonals and space
+      diagonals.'
+    smaller_case: Check your sum on a 2x2x2 cube, where edge lines, planar diagonals and space diagonals
+      can be counted in the same way.
+    key_idea: Sort winning lines by their direction, which is either along an axis, in a face-plane diagonal
+      or a space diagonal.
+  check: 3*4**2 + 3*4*2 + 4 - 76
+  check_ok: true
+extensions:
+  '3':
+  - How many winning lines does a 3x3x3 cube have, for three in a row?
+  '4':
+  - Give a formula for the number of winning lines in an n x n x n cube where n in a row wins.
+  '5':
+  - How many winning lines does a 4x4x4x4 hypercube have for four in a row?
+spoken_vocab:
+- noughts and crosses
+- four by four by four cube
+- winning line
+- straight line
+- axis
+- face diagonal
+- space diagonal
+- body diagonal
+- planar diagonal
+- three dimensional
+- four in a row
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 4
+  minutes: 12
+  flags: []
+  tagline: Structured count of lines by orientation; generalises to n-dimensional cubes.
+  priority: 82
+  rank: 182
+  tier: B
+  category: tbo
+  d10: 4.5
+  real: 6.0
+  by: haiku
+tags:
+- combinatorics

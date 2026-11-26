@@ -1,0 +1,97 @@
+id: divisibility-by-nine-rule
+title: Divisibility by 9 and 11
+topics:
+- modular arithmetic
+- divisibility rules
+- proof by congruence
+- number theory
+warmup: true
+answer_source: pdf
+statement: Given an arbitrary integer, come up with a rule to decide whether it is divisible by $9$ and
+  prove it.
+stages:
+- goal: State a rule for deciding whether an integer is divisible by $9$.
+  expected: An integer is divisible by $9$ if and only if the sum of its digits is divisible by $9$.
+  solution: Since $10\equiv1\pmod 9$, every power $10^k\equiv1\pmod 9$. So an integer $a=\sum a_k10^k$
+    satisfies $a\equiv\sum a_k\pmod 9$. Hence $9\mid a$ if and only if $9$ divides the digit sum. The
+    check uses $10^5-1=99999$, which is a multiple of $9$.
+  common_errors:
+  - Testing only the last digit, which gives a rule for divisibility by $2$ or $5$ instead.
+  - Stating the rule as the digit sum being $9$, rather than divisible by $9$.
+  hints:
+    rephrase: What is the remainder when a power of ten is divided by nine?
+    smaller_case: Take a two-digit number $10a+b$. What does it leave on division by $9$?
+    key_idea: Reduce every power of ten modulo $9$.
+  check: sympy.Mod(sympy.Integer(10)**5 - 1, 9)
+  check_ok: null
+- goal: Prove the rule by showing that $a$ and its digit sum differ by a multiple of $9$.
+  expected: $a-\sum a_k=\sum a_k(10^k-1)$, and each $10^k-1=(10-1)(10^{k-1}+\dots+1)$ is divisible by
+    $9$. Hence $a\equiv\sum a_k\pmod 9$.
+  solution: Write $a=\sum_k a_k10^k$. Then $a-\sum_k a_k=\sum_k a_k(10^k-1)$. Each $10^k-1=(10-1)(10^{k-1}+\dots+10+1)$
+    is divisible by $9$, so $a-\sum_k a_k$ is divisible by $9$. Therefore $a$ and its digit sum are divisible
+    by $9$ together.
+  common_errors:
+  - Claiming $10^k-1$ is divisible by $9$ without justifying it.
+  - Writing the difference with the wrong signs, so the identity does not hold.
+  hints:
+    rephrase: Subtract the digit sum from $a$ and see what each digit contributes.
+    smaller_case: Check the identity for the number $1234$ by computing $1234$ minus its digit sum, and
+      compare with $\sum a_k(10^k-1)$.
+    key_idea: Factor $10^k-1$ and look for a factor of $9$.
+  check: sympy.Integer(1234) - 10 - (999 + 2*99 + 3*9)
+  check_ok: null
+- goal: Extend the method to give a divisibility rule for $11$.
+  expected: An integer is divisible by $11$ if and only if its alternating digit sum $\sum(-1)^ka_k$ is
+    divisible by $11$, because $10\equiv-1\pmod{11}$.
+  solution: Since $10\equiv-1\pmod{11}$, $10^k\equiv(-1)^k\pmod{11}$, so $a\equiv\sum(-1)^ka_k\pmod{11}$.
+    For example $1331=11\cdot121$ and $1-3+3-1=0$, which is divisible by $11$. The check computes $10^3+1=1001=11\cdot91$.
+  common_errors:
+  - Using the plain digit sum instead of the alternating digit sum.
+  - Getting the sign pattern wrong, which gives $(-1)^{k+1}$ instead of $(-1)^k$. This still works for
+    the divisibility test but makes the reasoning inconsistent.
+  hints:
+    rephrase: What is $10$ modulo $11$? Which power of $10$ does this suggest?
+    smaller_case: Compute $10^2$ modulo $11$, and then $10^3$ modulo $11$.
+    key_idea: Use $10\equiv-1\pmod{11}$ and reduce powers of $10$.
+  check: sympy.Mod(sympy.Integer(10)**3 - (-1)**3, 11)
+  check_ok: null
+extensions:
+  '3':
+  - Use the same method to give a rule for divisibility by $3$, and justify it.
+  '4':
+  - Using $10^3+1=1001=7\cdot11\cdot13$, find a rule for divisibility by $7$, $11$ or $13$ based on alternating
+    sums of three-digit blocks.
+  '5':
+  - For a base $b$, find a divisibility rule for $b-1$ based on the digit sum, and prove it.
+spoken_vocab:
+- integer
+- divisible by nine
+- digit sum
+- rule
+- proof
+- ten to the power k
+- modulo nine
+- alternating digit sum
+- divisible by eleven
+- minus one
+- congruence
+- a equals a sub k times ten to the k
+source: zhou-quant/zhou-quant-guide.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 4
+  parts: 3
+  minutes: 10
+  flags: []
+  tagline: Open-ended rule-finding via 10≡1 mod 9, extending naturally to divisibility by 11.
+  priority: 81
+  rank: 240
+  tier: B
+  category: zhou-quant
+  d10: 4.0
+  real: 8.0
+  by: deepseek-v4.1-flash-free
+tags:
+- number_theory
+- proof

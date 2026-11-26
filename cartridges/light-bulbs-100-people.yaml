@@ -1,0 +1,113 @@
+id: light-bulbs-100-people
+title: 100 light bulbs and 100 people
+topics:
+- number theory
+- divisors
+- perfect squares
+- combinatorics
+warmup: false
+answer_source: generated
+statement: I have $100$ light bulbs and there are $100$ people. The first person switches on every light
+  bulb. The second person turns off every second light bulb ($2$nd, $4$th, $6$th, $\dots$). The third
+  person turns on every third light bulb, and so on. How many light bulbs are off when the $100$th person
+  has passed through?
+stages:
+- goal: For bulb number $n$, decide when it is changed and what determines whether it ends on or off.
+    Treat each action as flipping the bulb's switch.
+  expected: Person $k$ changes bulb $n$ exactly when $k$ divides $n$. Each change flips the state, so
+    bulb $n$ ends on if and only if $n$ has an odd number of divisors.
+  solution: 'Person $k$ acts on bulb $n$ exactly when $k \mid n$, so bulb $n$ is flipped once for each
+    divisor of $n$. All bulbs start off, and each flip toggles the state, so the bulb is on at the end
+    if and only if the number of flips is odd. This gives: on if and only if $n$ has an odd number of
+    divisors. The interpretation is consistent with person 1 switching everything on and person 2 switching
+    the even bulbs off.'
+  common_errors:
+  - Reading the actions as setting a bulb to a fixed state rather than flipping it. This changes the answer,
+    so the interpretation should be stated explicitly.
+  - Forgetting that person 1 acts on every bulb, so bulb $1$ is flipped once.
+  - Counting divisors incorrectly, for example missing $n$ itself as a divisor.
+  hints:
+    rephrase: Which people touch bulb number $12$, and how many times does its switch get flipped?
+    smaller_case: Take bulb $6$ and list every person who touches it. Does the switch end on or off?
+    key_idea: Each person $k$ touches bulb $n$ exactly when $k$ is a divisor of $n$, and each touch flips
+      the switch. So the final state depends only on the number of divisors.
+  check: null
+- goal: Show that $n$ has an odd number of divisors exactly when $n$ is a perfect square.
+  expected: Divisors of $n$ pair up as $d$ and $n/d$. A divisor is unpaired only when $d = n/d$, that
+    is $d = \sqrt{n}$. So $n$ has an odd number of divisors if and only if $n$ is a perfect square.
+  solution: Divisors of $n$ come in pairs $(d, n/d)$. The two members of a pair are equal only when $d
+    = n/d$, which means $d^{2} = n$, so $d = \sqrt{n}$. If $n$ is not a perfect square, every divisor
+    has a distinct partner, so the count is even. If $n = m^{2}$, the divisor $m$ is unpaired and all
+    others pair up, so the count is odd.
+  common_errors:
+  - Forgetting the pairing argument and only checking a few small examples.
+  - Concluding only prime squares have odd divisor counts, which is false.
+  - Missing that $1$ is a perfect square with exactly one divisor, which is odd.
+  hints:
+    rephrase: Look at the divisors of $12$ and of $36$. Can you pair them up, and is there ever one left
+      over?
+    smaller_case: For $n = 36$, pair the divisors as $(1,36), (2,18), (3,12), (4,9)$ and then check the
+      divisor $6$.
+    key_idea: Divisors come in pairs $d$ and $n/d$. A divisor is unpaired only when it equals its own
+      partner.
+  check: sum(1 for n in range(1, 101) if (len(divisors(n)) % 2 == 1) != bool(sqrt(n).is_integer))
+  check_ok: null
+- goal: Count the bulbs that are off after the $100$th person has passed through.
+  expected: $90$ bulbs are off. The $10$ perfect squares $1, 4, 9, \dots, 100$ are on.
+  solution: By stage 2, bulb $n$ is on exactly when $n$ is a perfect square. The perfect squares from
+    $1$ to $100$ are $1^{2}, 2^{2}, \dots, 10^{2}$, giving $10$ bulbs on. The number of bulbs off is $100
+    - 10 = 90$.
+  common_errors:
+  - Counting squares up to $99$ and getting $9$ on bulbs, which misses $100 = 10^{2}$.
+  - Reporting the number of bulbs on ($10$) rather than the number off.
+  - Counting every square root instead of every perfect square.
+  hints:
+    rephrase: Once you know which bulbs are on, how do you find the number that are off?
+    smaller_case: With $10$ bulbs and $10$ people, which bulbs are on at the end? How many is that?
+    key_idea: Use the characterisation of on bulbs from stage 2, count those bulbs, then subtract from
+      the total of $100$.
+  check: 90 - (100 - len([k**2 for k in range(1, 11)]))
+  check_ok: null
+extensions:
+  '3':
+  - Generalise to $N$ bulbs and $N$ people. How many bulbs are off, as a function of $N$?
+  '4':
+  - Suppose person $k$ flips only the bulbs whose numbers are multiples of $k$, and only when $k$ is odd.
+    Which bulbs are on at the end?
+  '5':
+  - Prove rigorously that a positive integer has an odd number of divisors if and only if it is a perfect
+    square.
+spoken_vocab:
+- light bulb
+- switch
+- toggle
+- flip
+- divisor
+- perfect square
+- odd number
+- even number
+- person k
+- bulb n
+- one hundred
+- second person
+- third person
+- hundredth person
+source: past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2009.doc
+verified: false
+rating:
+  quality: 8
+  difficulty: 5
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Classic divisor-parity insight with rich proof and extensions.
+  priority: 91
+  rank: 120
+  tier: A
+  category: past-interviews
+  d10: 4.0
+  real: 8.5
+  by: haiku
+tags:
+- number_theory
+- combinatorics

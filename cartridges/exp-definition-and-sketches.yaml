@@ -1,0 +1,128 @@
+id: exp-definition-and-sketches
+title: Define e^x and sketch e^x/x and (e^x - x - 1)/(x^3 + x^2)
+topics:
+- exponential function
+- power series
+- curve sketching
+- asymptotes
+- limits
+- stationary points
+- removable singularities
+warmup: false
+answer_source: generated
+statement: Define $e^x$. Sketch $\frac{e^x}{x}$. Also sketch $\frac{e^x - x - 1}{x^3 + x^2}$.
+stages:
+- goal: Give a precise definition of e^x.
+  expected: e^x is the power series sum over n >= 0 of x^n/n!, equivalently the limit of (1 + x/n)^n as
+    n goes to infinity, or the unique function with f' = f and f(0) = 1.
+  solution: 'The standard definition is e^x = sum over n from 0 to infinity of x^n / n!, which converges
+    for all real x. This gives e^0 = 1 and d/dx e^x = e^x. Equivalent definitions: the limit of (1 + x/n)^n,
+    or the unique solution of f'' = f with f(0) = 1. Any of these is acceptable if justified.'
+  common_errors:
+  - Defining e^x as a^x or as 2.718 raised to x without a precise meaning of the base.
+  - Stating the series without noting convergence for all x.
+  - Confusing e^x with the function ln x or with the constant e.
+  hints:
+    rephrase: Give a definition that makes its derivative and value at zero clear.
+    smaller_case: Write the first few terms of a candidate series and check how it behaves at x = 0 and
+      x = 1.
+    key_idea: Choose a definition that you can check through a derivative equation or a series, and that
+      gives value 1 at zero.
+  check: sympy.simplify(sympy.series(sympy.exp(x), x, 0, 6).removeO() - sum(x**n/sympy.factorial(n) for
+    n in range(6))) == 0
+  check_ok: null
+- goal: Sketch e^x/x. Find its stationary point and its asymptotic behaviour.
+  expected: The function is defined for x not 0. For x > 0 it is positive, goes to infinity as x goes
+    to 0 from the right and as x goes to infinity, and has a minimum at x = 1 with value e. For x < 0
+    it is negative, goes to minus infinity as x goes to 0 from the left, and tends to 0 from below as
+    x goes to minus infinity. It has no real zeros, and the line x = 0 is a vertical asymptote.
+  solution: Let f(x) = e^x/x. Then f'(x) = e^x (x-1)/x^2. The derivative is zero at x = 1, which gives
+    a minimum since f' changes from negative to positive there. The value is f(1) = e. For x > 0, f is
+    positive and f goes to infinity at both ends of (0, infinity). For x < 0, e^x/x is negative, goes
+    to minus infinity as x approaches 0 from the left, and tends to 0 as x goes to minus infinity because
+    the exponential decays faster than 1/|x| grows. There are no zeros since e^x is never zero.
+  common_errors:
+  - Forgetting that x = 0 is excluded and treating the function as continuous there.
+  - Placing the minimum at x = 0, or at x = -1.
+  - Getting the sign wrong for x < 0, or claiming the function tends to infinity as x goes to minus infinity.
+  - Forgetting to check that the value at the minimum is e, not 1.
+  hints:
+    rephrase: Find the derivative of e^x/x using the quotient rule, and find where it vanishes.
+    smaller_case: Evaluate the function at x = 1 and x = -1 and compare the signs, then consider what
+      happens near 0.
+    key_idea: Use the quotient rule for the derivative and examine the sign and limits separately on the
+      positive and negative axes.
+  check: sympy.simplify(sympy.diff(sympy.exp(x)/x, x) - sympy.exp(x)*(x-1)/x**2) == 0
+  check_ok: null
+- goal: Sketch (e^x - x - 1)/(x^3 + x^2). Identify the removable singularity, the vertical asymptote,
+    the sign changes and the behaviour at infinity.
+  expected: Rewrite the denominator as x^2(x+1). The singularity at x = 0 is removable, and the function
+    extends continuously there with value 1/2. There is a vertical asymptote at x = -1, with the function
+    tending to plus infinity from the right and to minus infinity from the left. The function is positive
+    on (-1, infinity) and negative on (-infinity, -1). As x goes to plus infinity it tends to plus infinity,
+    and as x goes to minus infinity it tends to 0 from below.
+  solution: The numerator e^x - x - 1 has Taylor expansion x^2/2 + x^3/6 + ..., and it is non-negative
+    with a double zero at 0. Dividing by x^2(x+1) gives a limit of (1/2)/(x+1) at 0, which is 1/2, so
+    the singularity at 0 is removable. At x = -1 the numerator is e^(-1) > 0 and the denominator changes
+    sign, giving a vertical asymptote. For x > 0 the numerator grows like e^x, so the function tends to
+    plus infinity. As x goes to minus infinity the numerator is about -x, the denominator about x^3, so
+    the function behaves like -1/x^2 and tends to 0 from below. The sign on (-1, 0) and (0, infinity)
+    is positive, and on (-infinity, -1) it is negative.
+  common_errors:
+  - Treating x = 0 as a genuine pole and forgetting that the numerator has a double zero there.
+  - Missing the vertical asymptote at x = -1 or using the wrong sign on each side.
+  - Claiming a horizontal asymptote at a nonzero value, or getting the wrong direction of approach as
+    x goes to minus infinity.
+  - Forgetting to check that the numerator is positive and has no other zeros.
+  hints:
+    rephrase: Factor the denominator and examine each factor separately. What happens to the numerator
+      at x = 0?
+    smaller_case: Use the Taylor expansion of e^x to find the limit as x goes to 0, and check the sign
+      at x = -1/2.
+    key_idea: Determine the zeros of the denominator, check whether each one cancels with the numerator,
+      and use the sign on each interval to sketch the curve.
+  check: sympy.limit((sympy.exp(x) - x - 1)/(x**3 + x**2), x, 0) - sympy.Rational(1, 2) == 0
+  check_ok: null
+extensions:
+  '3':
+  - Show that the curve (e^x - x - 1)/(x^3 + x^2) is bounded on (0, infinity) away from x = 0 and decide
+    whether it has a turning point there.
+  '4':
+  - Find the stationary points of e^x/x on the negative axis and explain why there are none.
+  '5':
+  - Use the power series of e^x to justify the limit at x = 0 for each of the two functions, and find
+    the second-order behaviour near x = 0.
+spoken_vocab:
+- define e to the x
+- power series
+- sum from n equals zero to infinity
+- x to the n over n factorial
+- sketch
+- e to the x over x
+- e to the x minus x minus one over x cubed plus x squared
+- removable singularity
+- vertical asymptote
+- horizontal asymptote
+- stationary point
+- quotient rule
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 3 (anonymous).pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 3
+  minutes: 20
+  flags:
+  - needs_diagram
+  tagline: Two sketches with removable singularity and asymptotes; good sketch practice
+  priority: 63
+  rank: 419
+  tier: C
+  category: past-interviews
+  d10: 5.5
+  real: 8.0
+  by: deepseek-v4.1-flash-free
+tags:
+- curve_sketching
+- exponentials_and_logarithms
+- limits_and_approximation

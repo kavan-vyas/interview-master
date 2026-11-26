@@ -1,0 +1,93 @@
+id: smoothie-juice-proportion
+title: Which smoothie is juicier?
+topics:
+- fractions
+- proportion
+- decimals
+- comparison
+warmup: true
+answer_source: pdf
+statement: A Regular fruit smoothie is sold in bottles of 360 ml which contain 84 ml of fruit juice. A
+  Deluxe fruit smoothie is sold in bottles of 250 ml which contain 60 ml of fruit juice. Which smoothie
+  contains the greater proportion of fruit juice?
+stages:
+- goal: Find the proportion of juice in the Regular smoothie.
+  expected: $\frac{7}{30}$ (≈ 0.233)
+  solution: Proportion = 84/360 = 7/30 ≈ 0.233 (dividing top and bottom by 12).
+  common_errors:
+  - Using juice ÷ non-juice (84/276) instead of juice ÷ whole bottle.
+  - Simplifying incorrectly (e.g. 84/360 = 8/36).
+  hints:
+    rephrase: What fraction of the whole bottle is juice?
+    smaller_case: If a 100 ml bottle contained 25 ml of juice, what fraction of the bottle would be juice?
+    key_idea: Proportion = part ÷ whole. Simplify the fraction by dividing top and bottom by a common
+      factor.
+  check: Rational(84,360)-Rational(7,30)
+  check_ok: true
+- goal: Find the proportion of juice in the Deluxe smoothie.
+  expected: $\frac{6}{25}$ (= 0.24)
+  solution: Proportion = 60/250 = 6/25 = 0.24 (dividing top and bottom by 10).
+  common_errors:
+  - Dividing the wrong way round (250/60).
+  - Stopping at 60/250 and failing to compare it with a value.
+  hints:
+    rephrase: 'Use the same method as before: juice divided by the whole bottle.'
+    smaller_case: If a 200 ml bottle contained 50 ml of juice, what proportion is juice?
+    key_idea: Divide the juice volume by the total bottle volume, then simplify or convert to a decimal.
+  check: Rational(60,250)-Rational(6,25)
+  check_ok: true
+- goal: State which smoothie has the greater proportion of juice, with justification.
+  expected: The Deluxe smoothie, because 0.24 > 0.233 (6/25 > 7/30).
+  solution: 'Compare 0.24 with 0.233: Deluxe is larger, so Deluxe has the greater proportion.'
+  common_errors:
+  - Comparing the absolute amounts (84 ml > 60 ml) and concluding Regular, ignoring the bottle sizes.
+  - Comparing the bottle sizes rather than the proportions.
+  hints:
+    rephrase: The question asks about proportion, not the amount of juice. Which measure should you compare?
+    smaller_case: 'Which is more: 1 out of 4, or 2 out of 7? Compare them using a common method.'
+    key_idea: Compare the two proportions on the same scale, e.g. as decimals.
+  check: Rational(6,25)>Rational(7,30)
+  check_ok: true
+extensions:
+  '3':
+  - How much juice would a 360 ml Regular smoothie need to contain to match the Deluxe proportion?
+  '4':
+  - Express each proportion as a percentage to one decimal place and compare.
+  '5':
+  - What bottle size would be needed for a Deluxe-style drink with 60 ml of juice to match the Regular
+    proportion of 7/30?
+spoken_vocab:
+- regular
+- deluxe
+- millilitres
+- fruit juice
+- proportion
+- bottle
+- seven over thirty
+- six over twenty-five
+- zero point two four
+- zero point two three three
+- greater than
+- divided by
+- simplify
+- decimal
+- percentage
+source: kclms/kclms-specimen-questions-2.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 1
+  parts: 3
+  minutes: 3
+  flags:
+  - trivial
+  tagline: Two fraction comparisons; no real mathematical depth.
+  priority: 23
+  rank: 657
+  tier: D
+  category: kclms
+  d10: 1.0
+  real: 2.5
+  by: haiku
+tags:
+- algebra_and_functions

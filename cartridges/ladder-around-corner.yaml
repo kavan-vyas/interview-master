@@ -1,0 +1,115 @@
+id: ladder-around-corner
+title: Longest ladder through perpendicular corridors
+topics:
+- calculus
+- optimisation
+- trigonometry
+- derivatives
+- geometry
+warmup: false
+answer_source: generated
+statement: If you are faced with a corridor of width $m$ and another corridor of width $n$, which is perpendicular
+  to the first, what is the maximum length of ladder you can carry through the corridors? [You may model
+  the ladder as a one-dimensional rod.]
+stages:
+- goal: Write the length of a ladder that touches both outer walls and the inner corner as a function
+    of one angle.
+  expected: Let theta be the angle the ladder makes with the outer wall of the corridor of width n. The
+    ladder's length through the two corridors is L(theta) = m sec(theta) + n csc(theta), for 0 < theta
+    < pi/2.
+  solution: Place the outer walls on the axes, with the inner corner at (m, n). The part of the ladder
+    in the corridor of width n spans a vertical gap of n, so its length is n/sin(theta). The part in the
+    corridor of width m spans a horizontal gap of m, so its length is m/cos(theta). Add the two pieces.
+  common_errors:
+  - Using the wrong trig ratio for each piece
+  - Swapping m and n in the two pieces
+  - Forgetting that the ladder must touch the inner corner
+  hints:
+    rephrase: Draw the ladder touching both outer walls and passing through the inner corner. Split it
+      into the part in each corridor.
+    smaller_case: Take m = n = 1 and theta = 45 degrees. How long is the piece in each corridor?
+    key_idea: Each piece is a hypotenuse, so relate its length to the corridor width using a trigonometric
+      ratio.
+  check: simplify(m*sec(th) + n*csc(th) - (m/cos(th) + n/sin(th)))
+  check_ok: true
+- goal: Find the stationary point of L(theta) and the condition it satisfies.
+  expected: dL/dtheta = m sin(theta)/cos^2(theta) - n cos(theta)/sin^2(theta) = 0, so m sin^3(theta) =
+    n cos^3(theta), i.e. tan(theta) = (n/m)^(1/3).
+  solution: d/dtheta sec(theta) = sec(theta) tan(theta) and d/dtheta csc(theta) = -csc(theta) cot(theta).
+    So L'(theta) = m sec(theta)tan(theta) - n csc(theta)cot(theta). Setting this to zero and multiplying
+    through by cos^2(theta) sin^2(theta) gives m sin^3(theta) = n cos^3(theta). The maximum ladder length
+    is the minimum of L, which occurs at this critical angle.
+  common_errors:
+  - Writing d/dtheta sec(theta) = sec(theta) instead of sec(theta)tan(theta)
+  - Dropping the minus sign from the derivative of csc(theta)
+  - Solving to get tan(theta) = (m/n)^(1/3) (the roles of m and n are swapped)
+  - Treating the critical point as a maximum of L when it is a minimum
+  hints:
+    rephrase: Write the length as a function of one angle, then set its rate of change to zero.
+    smaller_case: With m = n = 1, check your derivative at theta = 45 degrees and see whether the value
+      of the derivative is zero there.
+    key_idea: Derivatives of sec and csc produce tan and cot. Gather the terms and compare powers of sin
+      and cos.
+  check: simplify((m*sin(th)/cos(th)**2 - n*cos(th)/sin(th)**2).subs(th, atan((n/m)**Rational(1,3))))
+  check_ok: true
+- goal: Substitute the critical angle into L(theta) and simplify to get the maximum ladder length.
+  expected: (m^(2/3) + n^(2/3))^(3/2)
+  solution: Let t = tan(theta) = (n/m)^(1/3). Then sec(theta) = sqrt(1+t^2) and csc(theta) = sqrt(1+t^2)/t,
+    so L = sqrt(1+t^2) (m + n/t). Now m + n/t = m^(1/3)(m^(2/3) + n^(2/3)) and sqrt(1+t^2) = (m^(2/3)
+    + n^(2/3))^(1/2) / m^(1/3). Multiplying gives L_min = (m^(2/3) + n^(2/3))^(3/2).
+  common_errors:
+  - Dropping the 3/2 power at the end
+  - Mixing up the exponents 2/3 and 3/2
+  - Using theta = 45 degrees in general (this only works when m = n)
+  - Forgetting that csc(theta) = sec(theta)/tan(theta)
+  hints:
+    rephrase: Turn the critical angle into values of sine and cosine, substitute them into L, and simplify.
+    smaller_case: Set m = n = 1, find the critical angle, and compute L there.
+    key_idea: Write everything in terms of t = tan(theta), using sec(theta) = sqrt(1+t^2) and csc(theta)
+      = sqrt(1+t^2)/t.
+  check: simplify(m/cos(atan((n/m)**Rational(1,3))) + n/sin(atan((n/m)**Rational(1,3))) - (m**Rational(2,3)+n**Rational(2,3))**Rational(3,2))
+  check_ok: false
+extensions:
+  '3':
+  - Find the longest ladder that fits for a corridor of width 1 and a corridor of width 8, and check your
+    answer numerically.
+  '4':
+  - Explain why L(theta) has exactly one minimum on the interval (0, pi/2), and why that minimum is the
+    answer.
+  '5':
+  - Redo the calculation for corridors that meet at an angle phi other than 90 degrees.
+spoken_vocab:
+- m
+- n
+- theta
+- secant
+- cosecant
+- tangent
+- ladder
+- corridor
+- perpendicular
+- derivative
+- cube root
+- two thirds
+- three halves
+- minimum
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 3
+  minutes: 15
+  flags:
+  - needs_diagram
+  tagline: Classic optimisation with a famous closed-form answer and rich extension.
+  priority: 83
+  rank: 175
+  tier: B
+  category: tbo
+  d10: 4.5
+  real: 8.0
+  by: haiku
+tags:
+- differentiation
+- trigonometry

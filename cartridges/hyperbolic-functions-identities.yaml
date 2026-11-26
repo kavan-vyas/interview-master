@@ -1,0 +1,139 @@
+id: hyperbolic-functions-identities
+title: 'Hyperbolic functions: sketches, identities, and complex links'
+topics:
+- hyperbolic functions
+- sinh
+- cosh
+- tanh
+- differentiation
+- addition formulae
+- complex exponentials
+warmup: false
+answer_source: generated
+statement: 'Give a rough sketch of the graphs of the six hyperbolic functions. Show from the definitions
+  that: (i) $\cosh^2 x-\sinh^2 x=1$; (ii) $\frac{d(\sinh x)}{dx}=\cosh x$ and $\frac{d(\cosh x)}{dx}=\sinh
+  x$; (iii) $\cosh(x+y)=\cosh x\cosh y+\sinh x\sinh y$; (iv) $\cosh(ix)=\cos x$, $\sinh(ix)=i\sin x$,
+  $\cos(ix)=\cosh x$, $\sin(ix)=i\sinh x$.'
+stages:
+- goal: Give rough sketches of $\sinh$, $\cosh$, $\tanh$, $\coth$, $\operatorname{sech}$ and $\operatorname{cosech}$.
+  expected: '$\sinh$: odd, increasing, passes through $(0,0)$ with slope $1$, tends to $\pm\infty$. $\cosh$:
+    even, U-shaped, minimum $1$ at $x=0$. $\tanh$: odd, increasing from $-1$ to $1$, horizontal asymptotes
+    $y=\pm1$. $\coth$: odd, undefined at $0$, asymptotes $x=0$ and $y=\pm1$, $|\coth x|>1$. $\operatorname{sech}$:
+    even, bell-shaped, maximum $1$ at $0$, values in $(0,1]$. $\operatorname{cosech}$: odd, undefined
+    at $0$, asymptotes $x=0$ and $y=0$.'
+  solution: Use $\sinh x=\frac{e^x-e^{-x}}{2}$, $\cosh x=\frac{e^x+e^{-x}}{2}$, $\tanh x=\frac{\sinh x}{\cosh
+    x}$, $\coth x=\frac{\cosh x}{\sinh x}$, $\operatorname{sech}x=\frac{1}{\cosh x}$, $\operatorname{cosech}x=\frac{1}{\sinh
+    x}$. For large $|x|$, $\sinh x\approx\pm\frac{e^{|x|}}{2}$ and $\cosh x\approx\frac{e^{|x|}}{2}$.
+    Since $\cosh x\ge1$, $\operatorname{sech}x$ lies in $(0,1]$. Since $\tanh x=\sinh x/\cosh x\to\pm1$,
+    the horizontal asymptotes are $y=\pm1$. Since $\sinh 0=0$, $\coth$ and $\operatorname{cosech}$ are
+    undefined at $0$.
+  common_errors:
+  - Thinking $\cosh$ passes through the origin
+  - Making $\operatorname{sech}$ undefined at $0$, when it is defined there with value $1$
+  - Forgetting the horizontal asymptotes of $\tanh$ and $\coth$
+  - Getting the parity wrong, e.g. making $\operatorname{cosech}$ even
+  hints:
+    rephrase: Use the definitions in terms of $e^x$ and $e^{-x}$ to find the behaviour at $x=0$ and as
+      $x\to\pm\infty$.
+    smaller_case: Evaluate each function at $x=0$ and at $x=1$, and note where any function is undefined.
+    key_idea: Odd and even symmetry, behaviour at $0$, and the limits as $x\to\pm\infty$ determine the
+      shape of each graph.
+- goal: Show $\cosh^2x-\sinh^2x=1$ and that $\frac{d}{dx}\sinh x=\cosh x$ and $\frac{d}{dx}\cosh x=\sinh
+    x$ (parts i and ii).
+  expected: $\cosh^2x-\sinh^2x=1$; $\frac{d}{dx}\sinh x=\cosh x$; $\frac{d}{dx}\cosh x=\sinh x$.
+  solution: 'Square the definitions: $\cosh^2x=\frac{e^{2x}+2+e^{-2x}}{4}$ and $\sinh^2x=\frac{e^{2x}-2+e^{-2x}}{4}$.
+    Subtracting gives $1$. For derivatives, $\frac{d}{dx}e^{x}=e^{x}$ and $\frac{d}{dx}e^{-x}=-e^{-x}$.
+    So $\frac{d}{dx}\sinh x=\frac{e^x+e^{-x}}{2}=\cosh x$ and $\frac{d}{dx}\cosh x=\frac{e^x-e^{-x}}{2}=\sinh
+    x$.'
+  common_errors:
+  - Dropping the factor from the chain rule when differentiating $e^{-x}$
+  - Getting $\cosh^2x+\sinh^2x$ instead of the difference
+  - Confusing the derivative of $\cosh$ with $-\sinh$, which is the trigonometric result
+  hints:
+    rephrase: Square each definition, expand, and subtract. For derivatives, differentiate the exponential
+      definitions term by term.
+    smaller_case: Check the identity at $x=0$, where $\cosh 0=1$ and $\sinh 0=0$.
+    key_idea: Use $\frac{d}{dx}e^{kx}=ke^{kx}$ for each exponential term.
+  check: expand(((exp(x)+exp(-x))/2)**2 - ((exp(x)-exp(-x))/2)**2 - 1)
+  check_ok: true
+- goal: Show $\cosh(x+y)=\cosh x\cosh y+\sinh x\sinh y$ from the definitions (part iii).
+  expected: $\cosh(x+y)=\cosh x\cosh y+\sinh x\sinh y$.
+  solution: Expand $\cosh x\cosh y=\frac{e^{x+y}+e^{x-y}+e^{-x+y}+e^{-x-y}}{4}$ and $\sinh x\sinh y=\frac{e^{x+y}-e^{x-y}-e^{-x+y}+e^{-x-y}}{4}$.
+    Adding gives $\frac{2e^{x+y}+2e^{-x-y}}{4}=\frac{e^{x+y}+e^{-(x+y)}}{2}=\cosh(x+y)$.
+  common_errors:
+  - Sign error in the $\sinh x\sinh y$ term, which changes which exponentials cancel
+  - Expanding one product but not the other
+  hints:
+    rephrase: Write out both products fully as sums of four exponentials, then add.
+    smaller_case: Take $x=y=0$ and check that both sides equal $1$.
+    key_idea: The terms $e^{x-y}$ and $e^{-x+y}$ cancel when you add the two products.
+  check: expand((exp(x+y)+exp(-x-y))/2 - (((exp(x)+exp(-x))/2)*((exp(y)+exp(-y))/2) + ((exp(x)-exp(-x))/2)*((exp(y)-exp(-y))/2)))
+  check_ok: true
+- goal: Show $\cosh(ix)=\cos x$, $\sinh(ix)=i\sin x$, $\cos(ix)=\cosh x$ and $\sin(ix)=i\sinh x$ using
+    the exponential forms of the circular functions (part iv).
+  expected: $\cosh(ix)=\cos x$; $\sinh(ix)=i\sin x$; $\cos(ix)=\cosh x$; $\sin(ix)=i\sinh x$.
+  solution: 'Using $\cos x=\frac12(e^{ix}+e^{-ix})$ and $\sin x=\frac1{2i}(e^{ix}-e^{-ix})$ from the complex
+    exponential form. Then $\cosh(ix)=\frac12(e^{i\cdot ix}+e^{-i\cdot ix})=\frac12(e^{-x}+e^{x})$ is
+    not what we want, so compute carefully: $\cosh(ix)=\frac12(e^{ix}+e^{-ix})=\cos x$ directly from the
+    definition. Similarly $\sinh(ix)=\frac12(e^{ix}-e^{-ix})=i\sin x$. For the circular functions of $ix$:
+    $\cos(ix)=\frac12(e^{i(ix)}+e^{-i(ix)})=\frac12(e^{-x}+e^{x})=\cosh x$, and $\sin(ix)=\frac1{2i}(e^{-x}-e^{x})=i\sinh
+    x$, since $\frac{1}{i}=-i$.'
+  common_errors:
+  - Confusing $\cosh(ix)$ with $\cos(ix)$ and swapping the two results
+  - Forgetting that $i\cdot i=-1$ when computing $e^{i(ix)}=e^{-x}$
+  - Sign error in $\sin(ix)$, which should be $i\sinh x$ and not $-i\sinh x$
+  hints:
+    rephrase: Substitute $ix$ for $x$ in the exponential definitions. Simplify $i\cdot ix$ before using
+      the exponential function.
+    smaller_case: Find $\cos(i)$ by writing it as $\frac12(e^{-1}+e^{1})$ and compare with $\cosh 1$.
+    key_idea: Use $i\cdot i=-1$ inside the exponential, and $1/i=-i$ when dividing by $2i$.
+  check: expand((exp(I*(I*x)) - exp(-I*(I*x)))/(2*I) - I*(exp(x)-exp(-x))/2)
+  check_ok: true
+extensions:
+  '3':
+  - Show that $\tanh^2x+\operatorname{sech}^2x=1$ from the definitions.
+  '4':
+  - Show that $\frac{d}{dx}\tanh x=\operatorname{sech}^2x$.
+  '5':
+  - Show from the definitions that $\sinh 2x=2\sinh x\cosh x$.
+spoken_vocab:
+- sinh x
+- cosh x
+- tanh x
+- coth x
+- sech x
+- cosech x
+- hyperbolic functions
+- asymptote
+- odd function
+- even function
+- cosh squared minus sinh squared
+- derivative of sinh
+- addition formula
+- e to the i x
+- cos i x
+- sin i x
+- i squared equals minus one
+- one over i
+- two i
+- horizontal asymptote
+source: step-workbook/Cambridge STEP Short Workbook.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 4
+  minutes: 20
+  flags: []
+  tagline: Sketches plus proofs linking hyperbolic and circular functions via complex exponentials.
+  priority: 82
+  rank: 198
+  tier: B
+  category: step-workbook
+  d10: 5.3
+  real: 4.0
+  by: deepseek-v4.1-flash-free
+tags:
+- hyperbolic_functions
+- exponentials_and_logarithms
+- complex_numbers

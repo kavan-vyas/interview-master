@@ -1,0 +1,95 @@
+id: consecutive-product-1716
+title: Three consecutive numbers with product 1716
+topics:
+- number
+- estimation
+- consecutive integers
+- algebra
+warmup: true
+answer_source: pdf
+statement: The product of three consecutive whole numbers is $1716$. Find the three numbers, without using
+  trial and error on large numbers.
+stages:
+- goal: Write the three numbers algebraically and form the equation.
+  expected: $n(n+1)(n+2)=1716$
+  solution: Let the numbers be $n$, $n+1$ and $n+2$, where $n$ is the smallest. Their product is $n(n+1)(n+2)=1716$.
+  common_errors:
+  - Writing the numbers as $n$, $n+2$, $n+4$ (consecutive even numbers) by mistake.
+  - Writing the product as $n^3+3$ or similar, rather than the full product.
+  hints:
+    rephrase: Call the smallest number $n$. What are the next two numbers, and how do they differ?
+    smaller_case: Write the product of 2, 3 and 4 in the same form.
+    key_idea: Consecutive whole numbers differ by 1 from one another.
+- goal: Estimate the middle number without trying large values.
+  expected: The middle number is about 12, since $\sqrt[3]{1716}\approx 11.97$.
+  solution: Since $n(n+1)(n+2)$ is close to $(n+1)^3$, the middle number $n+1$ is close to $\sqrt[3]{1716}\approx
+    11.97$. So the middle number is 12.
+  common_errors:
+  - Taking the cube root of 1716 as a whole-number guess without checking that the product is near the
+    cube of the middle number.
+  - Taking the square root of 1716 instead of the cube root.
+  - Rounding 11.97 down to 11 and treating it as the middle number.
+  hints:
+    rephrase: The three numbers are all close together, so what does their product look like compared
+      with the cube of the middle one?
+    smaller_case: Estimate the cube root of 1000 and compare it with the product $9\times 10\times 11$.
+    key_idea: The product of three numbers that are close together is roughly the cube of the middle number.
+  check: Eq(answer, 12)
+  check_ok: null
+- goal: Give the smallest of the three numbers (the other two follow) and verify.
+  expected: '11, 12, 13. Check: $11\times 12\times 13=132\times 13=1716$.'
+  solution: 'With middle number 12, the numbers are 11, 12 and 13. Verify: $11\times 12=132$ and $132\times
+    13=1716$.'
+  common_errors:
+  - Giving 12 (the middle number) as the smallest number.
+  - Giving 10, 11, 12 or 12, 13, 14 without checking the product.
+  - Stopping without verifying the product.
+  hints:
+    rephrase: Once you know the middle number, what are its immediate neighbours in the whole numbers?
+    smaller_case: Consecutive numbers around 5 are 4, 5, 6. What is the smallest of the set centred on
+      12?
+    key_idea: The smallest number is one less than the middle number.
+  check: Eq(answer, 11)
+  check_ok: null
+extensions:
+  '3':
+  - Can $2024$ be written as a product of three consecutive whole numbers? Justify your answer without
+    listing every case.
+  '4':
+  - Prove that the product of any three consecutive whole numbers is divisible by 6.
+  '5':
+  - Prove that the product of four consecutive whole numbers, plus 1, is always a perfect square.
+spoken_vocab:
+- consecutive
+- whole numbers
+- product
+- cube root
+- eleven
+- twelve
+- thirteen
+- sixteen hundred
+- seventeen sixteen
+- n
+- n plus one
+- n plus two
+- times
+- equals
+source: kclms/kclms-specimen-questions-4.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: Estimating the middle value near the cube root is a good nudge.
+  priority: 71
+  rank: 358
+  tier: B
+  category: kclms
+  d10: 2.0
+  real: 5.0
+  by: deepseek-v4.1-flash-free
+tags:
+- algebra_and_functions
+- number_theory

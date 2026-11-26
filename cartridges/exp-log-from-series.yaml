@@ -1,0 +1,131 @@
+id: exp-log-from-series
+title: Exponential and logarithm from first principles
+topics:
+- series
+- exponential function
+- natural logarithm
+- indices
+warmup: false
+answer_source: pdf
+statement: (i) Using $e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots$, show that $\frac{d e^x}{dx}=e^x$.
+  (ii) Define $\ln t$ for $t>0$ as the inverse of the exponential, so $\ln e^x=x$. Set $t=e^x$ and use
+  $\frac{dx}{dt}=\frac{1}{dt/dx}$ to show $\frac{d\ln t}{dt}=\frac{1}{t}$. (iii) Assuming $e^s e^t=e^{s+t}$,
+  prove $\ln(xy)=\ln x+\ln y$. (iv) Given $a^x=e^{x\ln a}$, prove $a^x a^y=a^{x+y}$ and $a^x b^x=(ab)^x$.
+stages:
+- goal: (i) Differentiate the series for $e^x$ term by term and recognise the result as $e^x$.
+  expected: $\frac{d}{dx}\sum_{n\ge0}\frac{x^n}{n!}=\sum_{n\ge1}\frac{x^{n-1}}{(n-1)!}=\sum_{m\ge0}\frac{x^m}{m!}=e^x$
+  solution: Differentiate term by term. The constant term 1 gives 0, and for $n\ge1$ we have $\frac{d}{dx}\frac{x^n}{n!}=\frac{x^{n-1}}{(n-1)!}$.
+    Setting $m=n-1$ gives $\sum_{m\ge0}\frac{x^m}{m!}$, which is the series for $e^x$. Hence $\frac{de^x}{dx}=e^x$.
+  common_errors:
+  - Forgetting that the constant term 1 differentiates to 0, so the sum starts at n=1.
+  - Mis-reindexing, e.g. writing x^n/(n-1)! instead of x^{n-1}/(n-1)!.
+  - Not mentioning that termwise differentiation needs justification (the interviewer may ask about convergence
+    for all x).
+  hints:
+    rephrase: What does differentiating one term x^n/n! give, and what happens to the constant term?
+    smaller_case: Differentiate just the first few terms x + x^2/2 + x^3/6 and look at the pattern of
+      the result.
+    key_idea: Shift the index so the differentiated series matches the original series term for term.
+  check: sympy.expand(sympy.diff(sum(x**n/sympy.factorial(n) for n in range(0,8)),x) - sum(x**m/sympy.factorial(m)
+    for m in range(0,7)))==0
+  check_ok: null
+- goal: (ii) Use the inverse function rule with $t=e^x$ to find $\frac{d\ln t}{dt}$.
+  expected: $\frac{d\ln t}{dt}=\frac{dx}{dt}=\frac{1}{dt/dx}=\frac{1}{e^x}=\frac{1}{t}$
+  solution: Since $\ln t=x$ when $t=e^x$, we have $\frac{d\ln t}{dt}=\frac{dx}{dt}$. By the reciprocal
+    rule, $\frac{dx}{dt}=\frac{1}{dt/dx}$. From part (i), $\frac{dt}{dx}=\frac{d e^x}{dx}=e^x=t$, so $\frac{d\ln
+    t}{dt}=\frac{1}{t}$.
+  common_errors:
+  - Writing dt/dx = x or ln t instead of e^x.
+  - Inverting the wrong derivative, giving dt/dx in place of dx/dt.
+  - Forgetting that ln t and x are the same quantity under t=e^x.
+  hints:
+    rephrase: Express the derivative you want as dx/dt, since ln t equals x.
+    smaller_case: Find dt/dx when t = e^x, then apply the reciprocal rule.
+    key_idea: Use the inverse function rule dx/dt = 1/(dt/dx) and the result of part (i).
+  check: sympy.simplify(sympy.diff(sympy.log(t),t) - 1/t)==0
+  check_ok: null
+- goal: (iii) Prove $\ln(xy)=\ln x+\ln y$ for $x,y>0$ using the exponential law.
+  expected: Put $s=\ln x$, $t=\ln y$, so $xy=e^s e^t=e^{s+t}$, hence $\ln(xy)=s+t=\ln x+\ln y$.
+  solution: Let $s=\ln x$ and $t=\ln y$, so $x=e^s$ and $y=e^t$. Then $xy=e^s e^t=e^{s+t}$ by assumption.
+    Taking the inverse of the exponential, $\ln(xy)=s+t=\ln x+\ln y$.
+  common_errors:
+  - Assuming ln(xy)=ln x ln y or similar algebra errors.
+  - Not checking that x and y are positive, which is needed for ln to be defined.
+  - Taking logs without using that ln is the inverse of the exponential.
+  hints:
+    rephrase: Give ln x and ln y new names and write x and y as exponentials of those names.
+    smaller_case: 'Check the case x=y=e first: what should ln(e times e) be?'
+    key_idea: Apply the exponential law to the product of the two exponentials, then take logs.
+  check: sympy.simplify(sympy.expand_log(sympy.log(x*y)-sympy.log(x)-sympy.log(y),force=True))==0
+  check_ok: null
+- goal: (iv) Prove $a^x a^y=a^{x+y}$ using $a^x=e^{x\ln a}$.
+  expected: $a^x a^y=e^{x\ln a}e^{y\ln a}=e^{(x+y)\ln a}=a^{x+y}$
+  solution: Substitute $a^x=e^{x\ln a}$ and $a^y=e^{y\ln a}$. Then $a^x a^y=e^{x\ln a}e^{y\ln a}=e^{x\ln
+    a+y\ln a}=e^{(x+y)\ln a}=a^{x+y}$, using the exponential law.
+  common_errors:
+  - Dropping the ln a factor when combining exponents.
+  - Using a^x a^y = a^{xy} instead of a^{x+y}.
+  - Assuming a must be an integer or that a>0 is not needed.
+  hints:
+    rephrase: Write each power as e to some exponent, then combine the exponents.
+    smaller_case: Take a=e and see what a^x a^y reduces to.
+    key_idea: The exponential law e^s e^t = e^{s+t} applied with s = x ln a and t = y ln a.
+  check: sympy.simplify(sympy.exp(x*sympy.log(a))*sympy.exp(y*sympy.log(a)) - sympy.exp((x+y)*sympy.log(a)))==0
+  check_ok: null
+- goal: (iv) Prove $a^x b^x=(ab)^x$ for $a,b>0$, using part (iii).
+  expected: $a^x b^x=e^{x\ln a}e^{x\ln b}=e^{x(\ln a+\ln b)}=e^{x\ln(ab)}=(ab)^x$
+  solution: Write $a^x b^x=e^{x\ln a}e^{x\ln b}=e^{x(\ln a+\ln b)}$. By part (iii), $\ln a+\ln b=\ln(ab)$,
+    so this equals $e^{x\ln(ab)}=(ab)^x$.
+  common_errors:
+  - Combining the exponents incorrectly as x ln a ln b.
+  - Failing to use part (iii) to turn ln a + ln b into ln(ab).
+  - Stating the result without any justification from the definition a^x = e^{x ln a}.
+  hints:
+    rephrase: Put each power into the form e to something, then combine the exponents.
+    smaller_case: Take x=1 and a=b=2 and compare both sides numerically.
+    key_idea: Use the log of a product from part (iii) to combine the two logs in the exponent.
+  check: sympy.simplify(sympy.exp(x*sympy.log(a))*sympy.exp(x*sympy.log(b)) - sympy.exp(x*sympy.log(a*b)))==0
+  check_ok: null
+extensions:
+  '3':
+  - Show that $\ln(x/y)=\ln x-\ln y$ for $x,y>0$.
+  '4':
+  - Show that $\frac{d}{dx}a^x=a^x\ln a$ using $a^x=e^{x\ln a}$.
+  '5':
+  - For real $n$ and $x>0$, show that $\frac{d}{dx}x^n=nx^{n-1}$ using $x^n=e^{n\ln x}$.
+spoken_vocab:
+- e to the x
+- d e to the x d x
+- natural log
+- ln
+- inverse of the exponential
+- a to the x
+- a to the x times a to the y
+- a b to the x
+- x y
+- dx dt
+- dt dx
+- reciprocal rule
+- series
+- n factorial
+- x squared over two factorial
+source: step-workbook/Cambridge STEP Short Workbook.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 5
+  minutes: 25
+  flags: []
+  tagline: Derives log and exponent laws from series; structured but mostly bookwork
+  priority: 63
+  rank: 418
+  tier: C
+  category: step-workbook
+  d10: 5.0
+  real: 5.0
+  by: deepseek-v4.1-flash-free
+tags:
+- exponentials_and_logarithms
+- differentiation
+- proof

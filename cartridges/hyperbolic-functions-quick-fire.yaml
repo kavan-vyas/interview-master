@@ -1,0 +1,119 @@
+id: hyperbolic-functions-quick-fire
+title: Quick questions on hyperbolic functions
+topics:
+- hyperbolic functions
+- identities
+- differentiation
+- integration
+- inverse functions
+warmup: false
+answer_source: generated
+statement: 'Lots of quick questions on hyperbolic functions. Let $\cosh x = \frac{e^x + e^{-x}}{2}$ and
+  $\sinh x = \frac{e^x - e^{-x}}{2}$. Answer each part briefly: (a) state the definition of $\cosh x$
+  and $\sinh x$ in exponentials; (b) prove that $\cosh^2 x - \sinh^2 x = 1$; (c) differentiate $\sinh
+  x$; (d) solve $\sinh x = \frac{3}{4}$.'
+stages:
+- goal: State the exponential definitions of cosh x and sinh x.
+  expected: cosh x = (e^x + e^(-x))/2 and sinh x = (e^x - e^(-x))/2.
+  solution: By definition, cosh x is the average of e^x and e^(-x), and sinh x is half their difference.
+    These are the standard exponential forms.
+  common_errors:
+  - Mixing up the signs, so that cosh x is written with a minus sign.
+  - Forgetting the factor of 1/2 in one or both definitions.
+  - Writing e^x + e^x instead of e^x + e^(-x).
+  hints:
+    rephrase: Write down the two exponentials e^x and e^(-x), then say how cosh and sinh combine them.
+    smaller_case: What is cosh 0 and sinh 0? Which exponential form gives those values?
+    key_idea: cosh is the even part of e^x, and sinh is the odd part.
+  check: simplify(cosh(x) - (exp(x)+exp(-x))/2)
+  check_ok: true
+- goal: Prove the identity cosh^2 x - sinh^2 x = 1.
+  expected: 'Square both exponential forms and subtract: (e^(2x) + 2 + e^(-2x))/4 - (e^(2x) - 2 + e^(-2x))/4
+    = 1.'
+  solution: cosh^2 x = (e^(2x) + 2 + e^(-2x))/4 and sinh^2 x = (e^(2x) - 2 + e^(-2x))/4. Subtracting gives
+    4/4 = 1.
+  common_errors:
+  - Forgetting the cross term when squaring, so the +2 or -2 is dropped.
+  - Getting the sign of the cross term wrong in sinh squared.
+  - Trying to verify the identity only at a few values of x rather than proving it.
+  hints:
+    rephrase: Square the exponential forms of cosh and sinh, then subtract them.
+    smaller_case: Check the identity at x = 0. What do cosh 0 and sinh 0 equal?
+    key_idea: Expand the squares carefully, keeping track of the middle terms, and see what cancels.
+  check: simplify(cosh(x)**2 - sinh(x)**2 - 1)
+  check_ok: true
+- goal: Differentiate sinh x.
+  expected: d/dx sinh x = cosh x.
+  solution: Differentiate sinh x = (e^x - e^(-x))/2 term by term. The derivative is (e^x + e^(-x))/2 =
+    cosh x.
+  common_errors:
+  - Answering -cosh x by forgetting that the derivative of e^(-x) is -e^(-x) and dividing by the minus
+    sign incorrectly.
+  - Confusing the derivative of sinh with the derivative of cosh, which is sinh x.
+  - Giving sinh x as the answer, as if sinh were an eigenfunction of d/dx.
+  hints:
+    rephrase: Use the exponential form of sinh and differentiate it term by term.
+    smaller_case: Differentiate e^(-x) on its own. What is the result?
+    key_idea: Use the exponential definition and the chain rule on e^(-x).
+  check: simplify(diff(sinh(x), x) - cosh(x))
+  check_ok: true
+- goal: Solve sinh x = 3/4 exactly.
+  expected: x = ln 2.
+  solution: 'Let t = e^x. Then (t - 1/t)/2 = 3/4, so 2t^2 - 3t - 2 = 0, which factors as (2t + 1)(t -
+    2) = 0. Since t > 0, t = 2, so x = ln 2. Check: sinh(ln 2) = (2 - 1/2)/2 = 3/4.'
+  common_errors:
+  - Rejecting the positive root and writing x = -ln 2 instead.
+  - Algebra slip when multiplying out to form the quadratic in t.
+  - Forgetting that t = e^x must be positive, so the root -1/2 is discarded.
+  hints:
+    rephrase: Write sinh x in terms of e^x, clear the fractions, and see what equation you get.
+    smaller_case: What value of x gives sinh x = 0? Does this help you locate the solution?
+    key_idea: Substitute t = e^x to turn the equation into a quadratic in t, then keep only the positive
+      root.
+  check: sinh(log(2)) - Rational(3,4)
+  check_ok: true
+extensions:
+  '3':
+  - Show that tanh x = sinh x / cosh x satisfies 1 - tanh^2 x = sech^2 x, where sech x = 1/cosh x.
+  '4':
+  - Show that arcosh x = ln(x + sqrt(x^2 - 1)) for x >= 1, by solving cosh y = x for y.
+  '5':
+  - Evaluate the improper integral of sech x from 0 to infinity, and explain the substitution you use.
+spoken_vocab:
+- cosh
+- sinh
+- tanh
+- sech
+- hyperbolic cosine
+- hyperbolic sine
+- e to the x
+- e to the minus x
+- natural log
+- derivative
+- integral
+- identity
+- squared
+- three quarters
+- arcosh
+- substitution
+source: past-interviews/Actual Past Interview Questions/Maths & Philosophy Oxford Interview.doc
+verified: false
+rating:
+  quality: 3
+  difficulty: 2
+  parts: 4
+  minutes: 6
+  flags:
+  - trivial
+  tagline: Mostly recall-level hyperbolic questions with little room for discussion.
+  priority: 34
+  rank: 610
+  tier: D
+  category: past-interviews
+  d10: 3.7
+  real: 3.0
+  by: deepseek-v4.1-flash-free
+tags:
+- hyperbolic_functions
+- exponentials_and_logarithms
+- differentiation

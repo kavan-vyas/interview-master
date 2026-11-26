@@ -1,0 +1,123 @@
+id: bell-curve-and-its-derivative-relation
+title: Sketching 1/(1+x²) and x/(1+x²)
+topics:
+- calculus
+- curve sketching
+- turning points
+- asymptotes
+- differentiation
+- logarithmic derivative
+warmup: false
+answer_source: generated
+statement: Sketch $y=\frac{1}{1+x^2}$ and $y=\frac{x}{1+x^2}$ on the same axes. (a) Find and classify
+  the turning points of each curve, and any asymptotes. (b) Is there a relationship between the two functions
+  (for instance, via differentiation or integration)?
+stages:
+- goal: Find and classify the turning point of $f(x)=\frac{1}{1+x^2}$.
+  expected: $f'(x)=-\frac{2x}{(1+x^2)^2}$, with one stationary point at $x=0$, which is a maximum at $(0,1)$.
+  solution: By the quotient rule, $f'(x)=-\frac{2x}{(1+x^2)^2}$. The only zero is $x=0$. $f''(0)=-2<0$,
+    so $(0,1)$ is a maximum. Equivalently, $f'$ changes from positive to negative at $x=0$.
+  common_errors:
+  - Forgetting the square in the denominator of $f'$.
+  - Classifying $(0,1)$ as a minimum.
+  hints:
+    rephrase: Differentiate $(1+x^2)^{-1}$ using the chain rule. Where is the derivative zero?
+    smaller_case: What is the sign of $f'(x)$ at $x=-1$ and at $x=1$?
+    key_idea: Find the stationary points, then use the sign of the derivative on each side (or the second
+      derivative) to classify them.
+  check: diff(1/(1+x**2), x).subs(x, 0)
+  check_ok: true
+- goal: Find and classify the turning points of $g(x)=\frac{x}{1+x^2}$.
+  expected: $g'(x)=\frac{1-x^2}{(1+x^2)^2}$. The turning points are a maximum at $(1,\frac12)$ and a minimum
+    at $(-1,-\frac12)$.
+  solution: By the quotient rule, $g'(x)=\frac{(1+x^2)-2x^2}{(1+x^2)^2}=\frac{1-x^2}{(1+x^2)^2}$. Zeros
+    are at $x=\pm1$. $g'$ changes from negative to positive at $x=-1$ (minimum, $g(-1)=-\frac12$) and
+    from positive to negative at $x=1$ (maximum, $g(1)=\frac12$).
+  common_errors:
+  - Missing the minus sign in the numerator of $g'$ (getting $1+x^2$ or $1+3x^2$).
+  - Swapping the maximum and minimum.
+  hints:
+    rephrase: Use the quotient rule. The numerator of $g'$ simplifies to something with $x^2$ subtracted.
+    smaller_case: What is the sign of $g'(0)$?
+    key_idea: Where the numerator of the derivative changes sign, the function changes between increasing
+      and decreasing.
+  check: diff(x/(1+x**2), x).subs(x, 1)
+  check_ok: true
+- goal: Identify the asymptotes of both curves.
+  expected: Both curves have the horizontal asymptote $y=0$ as $x\to\pm\infty$. Neither has a vertical
+    asymptote, because $1+x^2>0$ for all real $x$.
+  solution: As $|x|\to\infty$, the numerators stay bounded or grow more slowly than $x^2$, so both functions
+    tend to 0. The denominator $1+x^2$ never vanishes, so there are no vertical asymptotes.
+  common_errors:
+  - Claiming an oblique asymptote for $g$ (the degree of the numerator is less than the degree of the
+    denominator).
+  - Looking for vertical asymptotes at $x=\pm i$, which are not real.
+  hints:
+    rephrase: Compare the degrees of numerator and denominator as $x\to\infty$. Does the denominator ever
+      equal zero?
+    smaller_case: What is $g(10)$ and $g(1000)$?
+    key_idea: For rational functions, compare degrees at infinity and check where the denominator vanishes
+      over the reals.
+- goal: State the relationship between $f$ and $g$.
+  expected: $g(x)=x f(x)$, and $f'(x)=-2g(x)f(x)$. Equivalently $g(x)=-\frac{f'(x)}{2f(x)}=\frac12\frac{d}{dx}\ln(1+x^2)$.
+    Also $\int g\,dx=\frac12\ln(1+x^2)+C$.
+  solution: Since $g=\frac{x}{1+x^2}=x\cdot f$, and $f'=-\frac{2x}{(1+x^2)^2}=-2x f^2=-2gf$, we get $g=-\frac{f'}{2f}$.
+    Because $\frac{d}{dx}\ln(1+x^2)=\frac{2x}{1+x^2}=2g$, $g$ is half the logarithmic derivative of $1+x^2$,
+    so $\int g\,dx=\frac12\ln(1+x^2)$. $g$ is not the derivative of $f$, and $f$ is not the derivative
+    of $g$, but $f$ is the derivative of $\arctan x$.
+  common_errors:
+  - Claiming $g=f'$ (false, because $f'$ is odd in $x$ with a different form).
+  - Claiming $\int g\,dx=\arctan x$ (that is the integral of $f$, not $g$).
+  hints:
+    rephrase: Compare the two functions algebraically first. Then try differentiating $\ln(1+x^2)$.
+    smaller_case: Compute $\frac{f'(1)}{f(1)}$ and compare it with $g(1)$.
+    key_idea: Express $f'$ in terms of $f$ and $x$, then use the chain rule on $\ln(1+x^2)$.
+  check: diff(1/(1+x**2), x) + 2*(x/(1+x**2))*(1/(1+x**2))
+  check_ok: true
+extensions:
+  '3':
+  - Find the area between $y=\frac{1}{1+x^2}$ and the $x$-axis from $x=-1$ to $x=1$.
+  '4':
+  - Use $\int g\,dx=\frac12\ln(1+x^2)$ to find the area between $y=\frac{x}{1+x^2}$ and the $x$-axis from
+    $x=0$ to $x=1$.
+  '5':
+  - Find all points where the two curves intersect, and explain why there is only one intersection point.
+spoken_vocab:
+- one over one plus x squared
+- x over one plus x squared
+- f of x
+- g of x
+- f prime
+- turning point
+- maximum
+- minimum
+- stationary point
+- horizontal asymptote
+- vertical asymptote
+- quotient rule
+- chain rule
+- log derivative
+- natural log
+- arctan
+- integral
+- relationship
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 3
+  parts: 4
+  minutes: 12
+  flags: []
+  tagline: Simple sketch, turning points, asymptotes; the f–g link is open-ended.
+  priority: 62
+  rank: 429
+  tier: C
+  category: juan
+  d10: 3.5
+  real: 5.0
+  by: deepseek-v4.1-flash-free
+tags:
+- curve_sketching
+- differentiation
+- algebra_and_functions

@@ -1,0 +1,118 @@
+id: three-circles-enclosed-area
+title: Area enclosed between three mutually tangent unit circles
+topics:
+- geometry
+- equilateral triangle
+- sectors
+- area
+warmup: true
+answer_source: pdf
+statement: Three circles of radius $1$ each touch the other two. Find the area of the region enclosed
+  between them.
+stages:
+- goal: Find the side length of the triangle formed by the three centres.
+  expected: $2$
+  solution: Tangent circles touch externally, so the distance between the centres of any two of them is
+    the sum of their radii, $1+1=2$. All three pairs are tangent, so the centres form an equilateral triangle
+    of side $2$.
+  common_errors:
+  - Using $1$ instead of $2$, confusing radius with centre distance.
+  - Thinking the centres form a right triangle.
+  - Not noticing that the triangle is equilateral, since all three pairs are tangent.
+  hints:
+    rephrase: What is the distance between the centres of two circles that touch each other?
+    smaller_case: Start with only two of the circles. Where are their centres relative to the point where
+      they touch?
+    key_idea: Tangency fixes the distance between centres. Three equal distances give a special triangle.
+  check: simplify(s - 2)
+  check_ok: false
+- goal: Find the area of the equilateral triangle $ABC$ formed by the centres.
+  expected: $\sqrt3$
+  solution: For an equilateral triangle of side $s$, the area is $\tfrac{\sqrt3}{4}s^2$. With $s=2$, the
+    area is $\tfrac{\sqrt3}{4}\cdot4=\sqrt3$.
+  common_errors:
+  - Using $\tfrac{\sqrt3}{2}s^2$, giving $2\sqrt3$.
+  - Writing $\tfrac{\sqrt3}{4}\cdot2$ and dropping the square.
+  - Applying a right-triangle area formula to an equilateral triangle.
+  hints:
+    rephrase: Which standard area formula applies to an equilateral triangle when you know its side?
+    smaller_case: Find the height of an equilateral triangle with side $1$, then scale.
+    key_idea: Split the triangle into two right-angled triangles with a common height and use Pythagoras
+      to find that height.
+  check: simplify(A - sqrt(3))
+  check_ok: false
+- goal: Find the total area of the parts of the three discs that lie inside the triangle.
+  expected: $\tfrac{\pi}{2}$
+  solution: At each centre, the triangle has an interior angle of $60^\circ$, and the part of that circle
+    inside the triangle is a sector of angle $60^\circ$ and radius $1$. Each sector has area $\tfrac{60}{360}\pi\cdot1^2=\tfrac{\pi}{6}$.
+    The three sectors together have area $3\cdot\tfrac{\pi}{6}=\tfrac{\pi}{2}$.
+  common_errors:
+  - Using the area of one sector instead of three.
+  - Taking the sector angle as $120^\circ$ or $30^\circ$.
+  - Using full discs instead of the sectors inside the triangle.
+  hints:
+    rephrase: Look at the angle of the triangle at one centre, and at the part of that circle that lies
+      inside the triangle.
+    smaller_case: What fraction of a full disc is a $90^\circ$ sector? Use the same idea for a different
+      angle.
+    key_idea: A sector's area is the fraction (angle $/360^\circ$) of the full disc's area.
+  check: simplify(S - pi/2)
+  check_ok: null
+- goal: Find the area enclosed between the three circles.
+  expected: $\sqrt3-\tfrac{\pi}{2}\approx0.161$
+  solution: The enclosed region is the triangle with the three sectors removed. Its area is $\sqrt3-\tfrac{\pi}{2}\approx1.732-1.571=0.161$.
+  common_errors:
+  - Adding the sectors instead of subtracting them.
+  - Subtracting full discs instead of sectors.
+  - Giving the triangle's area as the answer.
+  hints:
+    rephrase: The enclosed region is the triangle with some parts removed. Which parts?
+    smaller_case: Picture the three circles with the triangle through their centres. What is left of the
+      triangle near a corner?
+    key_idea: The enclosed curved triangle is the big triangle minus the parts of the discs that stick
+      into it.
+  check: simplify(R - (sqrt(3) - pi/2))
+  check_ok: false
+extensions:
+  '3':
+  - 'Replace the unit circles with radius $r$ and find the enclosed area. Answer: $r^2\left(\sqrt3-\tfrac{\pi}{2}\right)$.'
+  '4':
+  - Four unit circles each touch their two neighbours in a closed ring, so their centres form a square
+    of side $2$. Find the enclosed area.
+  '5':
+  - Three unit circles touch each other as above. A fourth circle of radius $r$ is tangent to all three.
+    Find $r$.
+spoken_vocab:
+- three circles
+- radius one
+- touch
+- centres
+- equilateral triangle
+- side length two
+- area
+- square root of three
+- pi over two
+- sector
+- sixty degrees
+- enclosed region
+- approximately zero point one six one
+source: jaymin/Jaymin Interview (1).pdf#p57
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 4
+  minutes: 10
+  flags:
+  - needs_diagram
+  tagline: Equilateral triangle minus three 60° sectors; clean, visual, routine multi-step.
+  priority: 79
+  rank: 257
+  tier: B
+  category: jaymin
+  d10: 4.0
+  real: 6.0
+  by: haiku
+tags:
+- geometry
+- trigonometry

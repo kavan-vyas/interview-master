@@ -1,0 +1,101 @@
+id: pi-club-pi-irrational
+title: Pi Club, pi, and irrational numbers
+topics:
+- general knowledge
+- pi
+- irrational numbers
+- number systems
+warmup: true
+answer_source: generated
+statement: What is Pi Club? What is $\pi$? What is an irrational number?
+stages:
+- goal: Say what Pi Club is.
+  expected: Pi Club is a mathematics society for maths enthusiasts. The candidate should give a short,
+    accurate description of what the club does and a reason they would like to join. Specific club details
+    could not be verified here, so confirm them with the interviewer rather than inventing them.
+  solution: 'Give the purpose first in one sentence: it is a society for people who enjoy mathematics.
+    Then add one concrete, honest reason for interest, such as puzzles, talks or problem sessions. Do
+    not invent membership or event details.'
+  common_errors:
+  - Inventing specific facts about the club's history or activities.
+  - Giving a long answer to a warm-up question.
+  - Answering only with the name without describing its purpose.
+  hints:
+    rephrase: Say what kind of group it is, and why you would be interested in it.
+    smaller_case: Name one thing a maths society might do with its members.
+    key_idea: Give the purpose first, then a short personal reason.
+  check: null
+- goal: Say what pi is.
+  expected: Pi is the ratio of a circle's circumference to its diameter, the same for every circle. Its
+    value is approximately 3.14159. It is a constant, not a fraction that is exactly 22/7.
+  solution: For any circle, C / d = pi, so C = pi d = 2 pi r. The number is approximately 3.14159 and
+    is not exactly 22/7, which is only an approximation.
+  common_errors:
+  - Treating 22/7 or 3.14 as exact values.
+  - Inverting the ratio and writing diameter over circumference.
+  - Saying pi depends on the size of the circle.
+  hints:
+    rephrase: Take any circle. Which two lengths should you compare, and in which order?
+    smaller_case: Estimate the circumference of a circle with diameter 1 by wrapping a string around a
+      tin can.
+    key_idea: The ratio of circumference to diameter is the same for every circle.
+  check: simplify(2*pi*r/(2*r) - pi)
+  check_ok: true
+- goal: Define an irrational number and say whether pi is irrational.
+  expected: An irrational number is a real number that cannot be written as p/q with integers p and q,
+    where q is not zero. Equivalently, its decimal expansion neither terminates nor repeats. Pi is irrational.
+    Examples include sqrt(2) and pi.
+  solution: A rational number is a ratio of two integers, and its decimal expansion terminates or eventually
+    repeats. An irrational number is a real number that is not rational. Pi is irrational, a result proved
+    by Lambert in the 18th century, and sqrt(2) is irrational by the classical contradiction argument.
+    The proof for pi is not expected in the answer.
+  common_errors:
+  - Saying irrational means 'not a whole number', which mixes up integers and rationals.
+  - Confusing irrational numbers with imaginary numbers.
+  - Claiming that a long decimal expansion must be irrational.
+  hints:
+    rephrase: Irrational is the opposite of which type of number?
+    smaller_case: Is 0.5 rational? Can you write it as a ratio of two integers?
+    key_idea: Ask whether the number can be written as a ratio of two integers.
+  check: null
+extensions:
+  '3':
+  - Prove that sqrt(2) is irrational.
+  '4':
+  - Is the sum of a rational number and an irrational number always irrational? Justify your answer.
+  '5':
+  - Why does knowing that pi is irrational not by itself tell you whether pi plus e is irrational?
+spoken_vocab:
+- Pi Club
+- pi
+- irrational
+- rational
+- circumference
+- diameter
+- ratio
+- p over q
+- integers
+- terminating decimal
+- repeating decimal
+- square root of two
+- Lambert
+- 22 over 7
+source: past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2009.doc
+verified: false
+rating:
+  quality: 2
+  difficulty: 1
+  parts: 3
+  minutes: 2
+  flags:
+  - trivial
+  tagline: Recall-based definitions with little mathematical reasoning or discussion scope
+  priority: 23
+  rank: 658
+  tier: D
+  category: past-interviews
+  d10: 1.0
+  real: 2.0
+  by: haiku
+tags:
+- number_theory

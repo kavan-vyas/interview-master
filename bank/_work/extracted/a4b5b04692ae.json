@@ -1,0 +1,86 @@
+[
+ {
+  "q": "Sketch the sets of points satisfying (a) $|x|+|y|=1$, (b) $\\max(|x|,|y|)=1$, and (c) $|x-y|+|x+y|=2$.",
+  "kind": "maths",
+  "answer": "(a) In the first quadrant this is the segment $x+y=1$; by symmetry the whole set is the square (diamond) with vertices $(\\pm1,0)$ and $(0,\\pm1)$. (b) The square with vertices $(\\pm1,\\pm1)$. (c) Using $|a+b|+|a-b|=2\\max(|a|,|b|)$, the condition becomes $\\max(|x|,|y|)=1$, so the set equals that in (b). Equivalently, (c) is (a) rotated by $45^\\circ$ and scaled by $\\sqrt2$.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p57"
+ },
+ {
+  "q": "Sketch $|x|^p+|y|^p=1$ for $p=\\frac12,1,2,4$. What happens as $p\\to\\infty$?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p57"
+ },
+ {
+  "q": "Let $f(x)=x^x$ for $x>0$. (i) By writing $x^x=e^{x\\ln x}$, find the limit of $f(x)$ as $x\\to0^+$, justifying your answer. (ii) Find $f'(x)$, and find the coordinates and nature of the stationary point of $f$. (iii) Sketch the graph of $y=f(x)$. (iv) For each real number $k$, find the number of positive solutions of $x^x=k$. (v) Show that $x=\\frac14$ and $x=\\frac12$ both satisfy $x^x=\\frac{1}{\\sqrt2}$, and explain how this is consistent with your answer to (iv).",
+  "kind": "maths",
+  "answer": "(i) Put $x=e^{-t}$, so $t\\to\\infty$. Then $x\\ln x=-te^{-t}\\to0$, so $f(x)\\to e^0=1$. (ii) $f'(x)=x^x(\\ln x+1)$, zero at $x=\\frac1e$. This is a minimum at $(\\frac1e,e^{-1/e})\\approx(0.37,0.69)$. (iii) The curve approaches $(0,1)$ (not included) and drops steeply downwards from there, falls to the minimum, passes through $(1,1)$ and $(2,4)$, and grows very fast for large $x$. (iv) For $k<e^{-1/e}$: no solutions. For $k=e^{-1/e}$: one solution, $x=\\frac1e$. For $e^{-1/e}<k<1$: two solutions, one on each side of $\\frac1e$. For $k\\ge1$: one solution with $x\\ge1$. Note that $k=1$ gives only $x=1$, since the value 1 is approached but never attained as $x\\to0^+$. (v) $(\\frac12)^{1/2}=\\frac1{\\sqrt2}$ and $(\\frac14)^{1/4}=2^{-1/2}=\\frac1{\\sqrt2}$. Since $e^{-1/e}\\approx0.69<\\frac1{\\sqrt2}\\approx0.71<1$, part (iv) predicts two solutions, one either side of $\\frac1e\\approx0.37$, and indeed $\\frac14<\\frac1e<\\frac12$.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p57"
+ },
+ {
+  "q": "Sketch $y=x^{1/x}$ and deduce the largest value of $n^{1/n}$ over positive integers $n$.",
+  "kind": "maths",
+  "answer": "The maximum of the continuous function $x^{1/x}$ is at $x=e$. The largest value of $n^{1/n}$ over positive integers is $3^{1/3}$, because $3^{1/3}>2^{1/2}$ (since $3^2>2^3$).",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p57"
+ },
+ {
+  "q": "Let $f(x)=\\frac{x}{x^2+1}$. (i) By considering for which $y$ the equation $y=\\frac{x}{x^2+1}$ has a real solution $x$, find the range of $f$ without calculus. (ii) Find the stationary points using calculus, and check they agree with (i). (iii) Sketch $y=f(x)$. (iv) On the same axes, sketch $y=\\frac{1}{f(x)}=x+\\frac1x$, and explain how its features follow from those of $f$. (v) Find the range of $f(f(x))$.",
+  "kind": "maths",
+  "answer": "(i) $y=\\frac{x}{x^2+1}\\iff yx^2-x+y=0$. If $y=0$, $x=0$ works. Otherwise a real root needs $1-4y^2\\ge0$, so the range is $[-\\frac12,\\frac12]$. (ii) $f'(x)=\\frac{1-x^2}{(x^2+1)^2}$, zero at $x=\\pm1$: a maximum $(1,\\frac12)$ and a minimum $(-1,-\\frac12)$, matching (i). (iii) $f$ is odd, passes through the origin with gradient 1, and tends to 0 as $x\\to\\pm\\infty$. (iv) Where $f$ is zero (at $x=0$), $\\frac1f$ has a vertical asymptote. Where $f\\to0$ at infinity, $\\frac1f$ grows like $x$, giving the asymptote $y=x$. The maximum $\\frac12$ of $f$ becomes a minimum $2$ of $\\frac1f$, and the signs agree. (v) The values of $f$ lie in $[-\\frac12,\\frac12]$, and $f$ is increasing on $[-1,1]$, which contains this interval. So $f(f(x))$ takes all values from $f(-\\frac12)=-\\frac25$ to $f(\\frac12)=\\frac25$, giving range $[-\\frac25,\\frac25]$.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p57"
+ },
+ {
+  "q": "Consider the curve $x^3+y^3=3xy$. (i) By substituting $y=tx$, show that apart from the origin the curve is given by $x=\\frac{3t}{1+t^3}$, $y=\\frac{3t^2}{1+t^3}$ with $t\\neq-1$. (ii) Show that the curve is symmetric in the line $y=x$, and find where it crosses this line. (iii) Show that $x+y\\to-1$ as $t\\to-1$. What does this say about the curve? (iv) Sketch the curve.",
+  "kind": "maths",
+  "answer": "(i) Substituting gives $x^3(1+t^3)=3tx^2$, so for $x\\neq0$, $x=\\frac{3t}{1+t^3}$ and $y=tx$. (ii) Swapping $x$ and $y$ leaves the equation unchanged. On $y=x$ we need $t=1$, giving $(\\frac32,\\frac32)$ (and the origin). (iii) $x+y=\\frac{3t(1+t)}{1+t^3}=\\frac{3t}{1-t+t^2}\\to\\frac{-3}{3}=-1$. Since $x$ and $y$ are unbounded, the curve approaches the line $x+y=-1$, an oblique asymptote. (iv) For $t\\ge0$ the point traces a loop in the first quadrant, from the origin through $(\\frac32,\\frac32)$ and back to the origin as $t\\to\\infty$. For $-1<t<0$ it runs from the origin off towards the asymptote in the second quadrant. For $t<-1$ it runs along the asymptote in the fourth quadrant back to the origin as $t\\to-\\infty$.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p57"
+ },
+ {
+  "q": "Let $f(x)=x^2-2x$ for $x\\ge1$. (i) Find $f^{-1}(x)$ and its domain. (ii) Solve $f(x)=f^{-1}(x)$. (iii) Prove that if $f$ is strictly increasing, every solution of $f(x)=f^{-1}(x)$ satisfies $f(x)=x$. (iv) Show that (iii) can fail for decreasing functions, by solving $g(x)=g^{-1}(x)$ for $g(x)=-x^3$.",
+  "kind": "maths",
+  "answer": "(i) $f(x)=(x-1)^2-1$ is increasing on $[1,\\infty)$ with range $[-1,\\infty)$, so $f^{-1}(x)=1+\\sqrt{1+x}$ for $x\\ge-1$. (ii) By (iii), solutions lie on $y=x$: $x^2-2x=x$ gives $x=0$ or $3$. Only $x=3$ is in the domain, and $f(3)=3=f^{-1}(3)$. (iii) If $f^{-1}(a)=b$ then $f(b)=a$. If $a<b$ then $f(a)<f(b)$, i.e. $b<a$, a contradiction; similarly $a>b$ is impossible. So $a=b$ and $f(a)=a$. (iv) $g^{-1}(x)=-\\sqrt[3]{x}$. Then $-x^3=-\\sqrt[3]{x}$ gives $x^9=x$, so $x\\in\\{-1,0,1\\}$. At $x=1$, $g(1)=g^{-1}(1)=-1$: the graphs meet at $(1,-1)$, which is not on $y=x$, so the claim fails for decreasing functions.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p57"
+ },
+ {
+  "q": "A ladder of length 2 stands against a vertical wall on horizontal ground, and slides down until it lies flat. What path does its midpoint follow?",
+  "kind": "maths",
+  "answer": "Put the corner at the origin, with the foot of the ladder at $(a,0)$ and the top at $(0,b)$, so $a^2+b^2=4$. The midpoint $(\\frac a2,\\frac b2)$ satisfies $x^2+y^2=1$, so it moves along a quarter circle of radius 1 centred at the corner. Geometrically, the midpoint of the hypotenuse of a right-angled triangle is its circumcentre, so it is always at distance 1 from the corner.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p57"
+ },
+ {
+  "q": "Show that the point one quarter of the way up the ladder traces a quarter ellipse.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p57"
+ },
+ {
+  "q": "Three circles of radius 1 each touch the other two. Find the area of the region enclosed between them.",
+  "kind": "maths",
+  "answer": "The centres form an equilateral triangle of side 2, with area $\\frac{\\sqrt3}{4}\\cdot2^2=\\sqrt3$. Inside it lie three $60^\\circ$ sectors, together forming half a unit disc, of area $\\frac\\pi2$. The enclosed region has area $\\sqrt3-\\frac\\pi2\\approx0.161$.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p57"
+ },
+ {
+  "q": "Two diagonals of adjacent faces of a cube meet at a vertex. What is the angle between them? What is the angle between two space diagonals of the cube?",
+  "kind": "maths",
+  "answer": "Take the unit cube with a vertex at the origin and face diagonals to $(1,1,0)$ and $(1,0,1)$. Joining their far ends gives an equilateral triangle with all sides $\\sqrt2$, so the angle is $60^\\circ$ (check: $\\cos\\theta=\\frac{(1,1,0)\\cdot(1,0,1)}{\\sqrt2\\sqrt2}=\\frac12$). Two space diagonals, along $(1,1,1)$ and $(-1,1,1)$, meet at an angle $\\theta$ with $\\cos\\theta=\\frac13$, about $70.5^\\circ$ (or its supplement).",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p57"
+ },
+ {
+  "q": "Give a proof of Pythagoras' theorem. Can you give a second, different proof?",
+  "kind": "maths",
+  "answer": "Rearrangement: place four copies of the right-angled triangle (legs $a,b$, hypotenuse $c$) inside a square of side $a+b$, so that they bound a tilted square of side $c$. Then $(a+b)^2=4\\cdot\\frac12ab+c^2$, so $a^2+b^2=c^2$. Second proof (similar triangles): the altitude from the right angle splits the hypotenuse into lengths $p$ and $q$, giving $\\frac ac=\\frac pa$ and $\\frac bc=\\frac qb$, so $a^2=cp$ and $b^2=cq$. Adding gives $a^2+b^2=c(p+q)=c^2$. The precision point is to justify that the inner quadrilateral really is a square.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p57"
+ }
+]

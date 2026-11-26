@@ -1,0 +1,106 @@
+id: expected-loops-random-rope-ends
+title: Expected loops when tying random rope ends
+topics:
+- probability
+- expectation
+- recurrence
+- harmonic-type sums
+warmup: false
+answer_source: generated
+statement: 'There are 6 ropes in a bag. In each step, two rope ends are picked at random, tied together
+  and put back into a bag. The process is repeated until there are no free ends. What is the expected
+  number of loops $e_n$ at the end of the process? (Hint: Find a formula linking $e_n$ and $e_{n-1}$)'
+stages:
+- goal: With n ropes (2n free ends), find the probability that the two picked ends belong to the same
+    rope.
+  expected: 1/(2n - 1)
+  solution: Pick the first end arbitrarily. Its partner is one of the 2n - 1 other free ends, and the
+    second pick is uniform among those. Exactly one of those ends is the partner, so the probability is
+    1/(2n - 1).
+  common_errors:
+  - Using 1/(2n) or 1/n, which ignores that the first end is already fixed
+  - Counting ends instead of ropes when deciding whether two ends share a rope
+  hints:
+    rephrase: Fix the first end. How many free ends remain, and how many of them belong to the same rope
+      as the first?
+    smaller_case: With 2 ropes (4 ends), how many possible second ends are there after the first is picked,
+      and how many form a loop?
+    key_idea: When the choice is uniform, the probability is the number of favourable outcomes divided
+      by the total number of outcomes.
+- goal: Derive a recurrence linking e_n and e_{n-1}, with the initial condition e_0.
+  expected: e_n = e_{n-1} + 1/(2n - 1), with e_0 = 0.
+  solution: 'Condition on the first tie. With probability 1/(2n - 1) the ends form a loop: one loop is
+    added and n - 1 ropes remain. Otherwise two ropes join into one, giving n - 1 ropes with free ends
+    and no new loop. So e_n = (1/(2n-1))(1 + e_{n-1}) + (1 - 1/(2n-1)) e_{n-1} = e_{n-1} + 1/(2n-1). With
+    no ropes there are no loops, so e_0 = 0.'
+  common_errors:
+  - Thinking that joining two ropes creates a loop
+  - Forgetting that a loop also reduces the number of ropes by one
+  - Forgetting the initial condition e_0 = 0
+  hints:
+    rephrase: 'Split the first tie into two cases: the two ends belong to the same rope, or to different
+      ropes. In each case, what state is left?'
+    smaller_case: Check the recurrence for n = 1, where one tie always produces one loop.
+    key_idea: Linearity of expectation lets you add the contributions from each case, weighted by their
+      probabilities.
+- goal: Give a closed form for e_n and evaluate e_6.
+  expected: e_n = sum from k = 1 to n of 1/(2k - 1), and e_6 = 1 + 1/3 + 1/5 + 1/7 + 1/9 + 1/11 = 6508/3465,
+    which is about 1.878.
+  solution: Unrolling the recurrence from e_0 = 0 gives e_n = sum over k from 1 to n of 1/(2k - 1). Substituting
+    n = 6 and using the common denominator 3465 = 3^2 * 5 * 7 * 11 gives 6508/3465. The numerator 6508
+    shares no factor with 3465, so the fraction is in lowest terms.
+  common_errors:
+  - Summing 1/k instead of 1/(2k - 1)
+  - Arithmetic slips when adding fractions with the common denominator
+  - Failing to simplify the final fraction
+  hints:
+    rephrase: Write out e_n for the first few values of n using the recurrence, then look for the pattern
+      in the added terms.
+    smaller_case: Compute e_2 by hand and compare it with the first two odd reciprocals.
+    key_idea: A recurrence of the form e_n = e_{n-1} + f(n) with e_0 = 0 unrolls into a finite sum of
+      f values.
+  check: sp.Sum(1/(2*k - 1), (k, 1, 6)).doit() - sp.Rational(6508, 3465)
+  check_ok: null
+extensions:
+  '3':
+  - Find e_10 as a sum of odd reciprocals.
+  '4':
+  - For 2 ropes, find the variance of the number of loops.
+  '5':
+  - Show that e_n = H_{2n} - (1/2) H_n, where H_m is the mth harmonic number, and deduce that e_n is asymptotically
+    (1/2) ln n + ln 2 + gamma/2.
+spoken_vocab:
+- ropes
+- six ropes
+- free ends
+- loops
+- expected number of loops
+- e sub n
+- e sub n minus one
+- one over two n minus one
+- tie together
+- put back in the bag
+- random
+- sum from k equals one to n
+- harmonic number
+- Euler gamma
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Clean recurrence from one probability; odd-harmonic closed form payoff.
+  priority: 81
+  rank: 238
+  tier: B
+  category: tbo
+  d10: 6.0
+  real: 7.5
+  by: deepseek-v4.1-flash-free
+tags:
+- probability
+- combinatorics
+- sequences_and_series

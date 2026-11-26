@@ -1,0 +1,116 @@
+id: log-line-intersections-and-exp-tangent
+title: Solving x−1=(e−1)ln x graphically and sketching y=e^x−xe
+topics:
+- graph sketching
+- logarithms
+- convexity
+- tangency
+- exponential functions
+- counting solutions
+- substitution
+warmup: false
+answer_source: generated
+statement: By sketching appropriate graphs, find all solutions to the equation $x-1=(e-1)\ln(x)$. Hence
+  sketch the graph with equation $y=e^x-xe$.
+stages:
+- goal: Sketch $y=x-1$ and $y=(e-1)\ln x$ on one set of axes, and find all their intersections.
+  expected: 'The line and the scaled logarithm meet exactly twice, at $x=1$ and $x=e$. Both lie on the
+    line $y=x-1$: at $x=1$ the point is $(1,0)$, and at $x=e$ it is $(e,e-1)$. There are no other solutions.'
+  solution: Let $g(x)=x-1-(e-1)\ln x$ for $x>0$. Then $g(1)=0$ and $g(e)=(e-1)-(e-1)\cdot1=0$. Also $g''(x)=\frac{e-1}{x^2}>0$,
+    so $g$ is strictly convex. A strictly convex function has at most two zeros, so $x=1$ and $x=e$ are
+    the only solutions.
+  common_errors:
+  - Finding only $x=1$ and missing $x=e$
+  - Forgetting the domain $x>0$ required by $\ln x$
+  - Claiming three or more solutions without a convexity argument
+  - Mis-sketching the logarithm as passing through the origin
+  hints:
+    rephrase: Sketch the line and the logarithm on the same axes and see where they cross.
+    smaller_case: Substitute the simplest positive value of $x$ into both sides and compare.
+    key_idea: Consider $g(x)=x-1-(e-1)\ln x$. Its second derivative tells you how many times it can cross
+      zero.
+  check: simplify((x-1-(E-1)*log(x)).subs(x,E))==0 and simplify((x-1-(E-1)*log(x)).subs(x,1))==0
+  check_ok: true
+- goal: Relate the equation to $e^x-xe$ through the substitution $x=e^s$, and check the identity.
+  expected: With $x=e^s$, the equation becomes $k(s)=0$ where $k(s)=e^s-1-(e-1)s$, with zeros $s=0$ and
+    $s=1$, which give $x=1$ and $x=e$. Also $e^x-xe=k(x)-(x-1)$, so the curve $y=e^x-xe$ is the curve
+    $y=k(x)$ shifted by the line $y=x-1$.
+  solution: Substitute $x=e^s$ into $x-1=(e-1)\ln x$. This gives $e^s-1=(e-1)s$, i.e. $k(s)=0$, with $k(s)=e^s-1-(e-1)s$.
+    Its zeros are $s=0,1$, so $x=e^0=1$ and $x=e^1=e$, matching stage 1. For the second curve, $k(x)-(x-1)=e^x-1-(e-1)x-x+1=e^x-ex$,
+    which is the required identity.
+  common_errors:
+  - Substituting incorrectly, for example $x=\ln s$ instead of $x=e^s$
+  - Dropping the constant $-1$ when rewriting $e^s-1-(e-1)s$
+  - Asserting the link without verifying the algebraic identity
+  - Confusing the solutions in $x$ with those in $s$
+  hints:
+    rephrase: Replace $x$ by an exponential of a new variable $s$ and simplify.
+    smaller_case: Expand $e^x-1-(e-1)x-(x-1)$ and see whether it matches $e^x-ex$.
+    key_idea: Writing $e^x-ex$ as a combination of $e^x-1-(e-1)x$ and $x-1$ turns the problem into a known
+      zero-counting problem.
+  check: simplify(exp(x)-E*x-((exp(x)-1-(E-1)*x)-(x-1)))==0
+  check_ok: true
+- goal: Sketch $y=e^x-xe$ and describe where it meets the $x$-axis.
+  expected: The curve is convex, has a single minimum $y=0$ at $x=1$ where $y'=0$, and touches the $x$-axis
+    there (a double root). $y(0)=1$, and $y\to+\infty$ as $x\to\pm\infty$. The line $y=ex$ is tangent
+    to $y=e^x$ at $(1,e)$.
+  solution: $y'=e^x-e$ vanishes only at $x=1$, and $y''=e^x>0$, so $y$ has a unique global minimum at
+    $x=1$. Here $y(1)=e-e=0$, so the curve touches the $x$-axis at $(1,0)$ and is positive elsewhere.
+    Also $y(0)=1$, and $y\to+\infty$ as $x\to+\infty$ (because of $e^x$) and as $x\to-\infty$ (because
+    of $-ex$).
+  common_errors:
+  - Claiming two zeros, as in part 1
+  - Placing the minimum at $x=0$
+  - Concluding $y(1)\ne0$ without evaluating it
+  - Forgetting that $y\to+\infty$ as $x\to-\infty$
+  hints:
+    rephrase: Find where the derivative of $e^x-ex$ is zero, then check the value there.
+    smaller_case: Evaluate $y$ at $x=0$ and $x=2$ to see the general shape.
+    key_idea: The second derivative is always positive, so any critical point is a global minimum.
+  check: simplify(diff(exp(x)-E*x,x).subs(x,1))==0 and simplify((exp(x)-E*x).subs(x,1))==0
+  check_ok: true
+extensions:
+  '3':
+  - Solve $x-1=a\ln x$ for general $a>0$ and find the values of $a$ for which there are two solutions.
+  - Find the number of solutions of $x-1=a\ln x$ as $a$ varies over $(0,\infty)$.
+  '4':
+  - Show that $e^x\ge ex$ for all real $x$, with equality only at $x=1$.
+  - Find the minimum of $y=e^x-ex$ and prove it is unique.
+  '5':
+  - Use $e^x\ge ex$ to prove $\ln x\le \frac{x}{e}$ for all $x>0$.
+  - Prove that the equation $x-1=(e-1)\ln x$ has exactly two solutions using only the derivative of $g(x)$.
+spoken_vocab:
+- x minus one equals e minus one times natural log of x
+- natural logarithm
+- e to the power of x
+- y equals e to the x minus x e
+- convex
+- strictly convex
+- second derivative
+- tangent
+- double root
+- substitution
+- x equals e to the s
+- minimum
+- intersection
+- domain x greater than zero
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 3
+  minutes: 12
+  flags:
+  - needs_diagram
+  tagline: Graphical solutions x=1 and x=e, but the link to e^x−xe is vague.
+  priority: 63
+  rank: 415
+  tier: C
+  category: tbo
+  d10: 4.0
+  real: 5.0
+  by: haiku
+tags:
+- curve_sketching
+- exponentials_and_logarithms

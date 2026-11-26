@@ -1,0 +1,84 @@
+id: ftc-leibniz-variable-limits
+title: Derivatives of integrals with variable upper limits
+topics:
+- calculus
+- fundamental theorem of calculus
+- chain rule
+- definite integrals
+warmup: true
+answer_source: generated
+statement: Without evaluating the integral, find $\frac{d}{dx}\left(\int_0^{x}\frac{1}{1+y^2}e^y\,dy\right)$.
+  Then find $\frac{d}{dx}\left(\int_0^{x^2}\frac{1}{1+y^2}e^y\,dy\right)$.
+stages:
+- goal: Differentiate $\int_0^{x}\frac{e^y}{1+y^2}\,dy$ with respect to $x$.
+  expected: $\frac{e^x}{1+x^2}$
+  solution: By the fundamental theorem of calculus, if $F(x)=\int_0^x f(y)\,dy$ with $f$ continuous, then
+    $F'(x)=f(x)$. Here $f(y)=\frac{e^y}{1+y^2}$, so the derivative is $\frac{e^x}{1+x^2}$.
+  common_errors:
+  - Trying to evaluate the integral first, which is not elementary.
+  - Writing $f(x)$ with the wrong variable, such as $\frac{e^y}{1+y^2}$ with $y$ still in it.
+  hints:
+    rephrase: The integral is a function of its upper limit. What happens when you differentiate an accumulated
+      total?
+    smaller_case: What is $\frac{d}{dx}\int_0^x 2t\,dt$? Compare with $\frac{d}{dx}\int_0^x \frac{1}{1+t^2}\,dt$.
+    key_idea: 'The fundamental theorem of calculus: differentiating the integral with respect to its upper
+      limit returns the integrand at that limit.'
+  check: simplify(diff(Integral(exp(y)/(1+y**2), (y, 0, x)), x) - exp(x)/(1+x**2)) == 0
+  check_ok: true
+- goal: Differentiate $\int_0^{x^2}\frac{e^y}{1+y^2}\,dy$ with respect to $x$.
+  expected: $\frac{2x\,e^{x^2}}{1+x^4}$
+  solution: Let $G(u)=\int_0^u f(y)\,dy$ with $f(y)=\frac{e^y}{1+y^2}$. Then $\frac{d}{dx}G(x^2)=G'(x^2)\cdot
+    2x=f(x^2)\cdot 2x=\frac{e^{x^2}}{1+x^4}\cdot 2x$.
+  common_errors:
+  - Forgetting the chain rule factor $2x$.
+  - Substituting $x^2$ into $f$ incorrectly, for example writing $1+x^2$ instead of $1+(x^2)^2=1+x^4$.
+  hints:
+    rephrase: Treat the upper limit as a function $u=x^2$. How does the integral change with $u$, and
+      how does $u$ change with $x$?
+    smaller_case: Compare the derivative of $\int_0^u f$ with respect to $u$ against the derivative when
+      $u=x$.
+    key_idea: Chain rule combined with the fundamental theorem of calculus.
+  check: simplify(diff(Integral(exp(y)/(1+y**2), (y, 0, x**2)), x) - 2*x*exp(x**2)/(1+x**4)) == 0
+  check_ok: true
+extensions:
+  '3':
+  - Find $\frac{d}{dx}\int_{\sin x}^{x^2}\frac{e^y}{1+y^2}\,dy$. Use the fundamental theorem and the chain
+    rule on both limits.
+  '4':
+  - State the Leibniz rule for $\frac{d}{dx}\int_{a(x)}^{b(x)} f(x,y)\,dy$, then apply it to $\int_0^{x^2}
+    e^{xy}\,dy$.
+  '5':
+  - Explain why the derivative in the first part can be written down without finding an antiderivative
+    of $\frac{e^y}{1+y^2}$, and what property of the integrand is actually used.
+spoken_vocab:
+- d by d x
+- integral from zero to x
+- integral from zero to x squared
+- e to the y
+- one plus y squared
+- e to the x
+- e to the x squared
+- fundamental theorem of calculus
+- chain rule
+- upper limit
+- dummy variable
+source: past-interviews/Actual Past Interview Questions/G3.jpg
+verified: false
+rating:
+  quality: 3
+  difficulty: 3
+  parts: 2
+  minutes: 5
+  flags:
+  - trivial
+  tagline: Standard FTC plus chain rule warm-up with little room for discussion.
+  priority: 27
+  rank: 642
+  tier: D
+  category: past-interviews
+  d10: 3.0
+  real: 3.0
+  by: deepseek-v4.1-flash-free
+tags:
+- integration
+- differentiation

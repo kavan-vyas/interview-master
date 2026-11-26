@@ -1,0 +1,58 @@
+[
+ {
+  "q": "Prove that the product of two odd numbers is odd.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions (anonymous).pdf#0"
+ },
+ {
+  "q": "What is the highest common factor of the difference of two odd numbers squared?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions (anonymous).pdf#0"
+ },
+ {
+  "q": "What is the first positive integer $x$ which satisfies the following inequality? $\\sin x \\leq \\frac{\\sqrt{2}}{2}$, where $x$ is measured in radians.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions (anonymous).pdf#0"
+ },
+ {
+  "q": "If you drop a ball from height $h$, and it loses half of its energy every time it bounces, how long does it bounce for?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions (anonymous).pdf#0"
+ },
+ {
+  "q": "The Fermat numbers are defined by $F_n = 2^{2^n} + 1$. Use proof by induction to show that $F_0F_1 \\cdots F_{n-1} = F_n - 2$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions (anonymous).pdf#0"
+ },
+ {
+  "q": "Person A has a fair die and Person B has a biased die, where the probability that Person B rolls a 6 is $p$. They play a game in which they take turns rolling their dice until someone rolls a 6. The person who rolls a 6 wins. If Person A starts first, what is the probability that Person A wins? What would $p$ have to be for the game to be fair? Does this value of $p$ make sense? Justify your answer.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions (anonymous).pdf#0"
+ },
+ {
+  "q": "(a) How many 5-digit numbers are there? (b) How many of these have 5 unique digits? (c) How many have 5 unique digits in ascending order?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions (anonymous).pdf#0"
+ },
+ {
+  "q": "There is a Sun with a planet orbiting it. The orbit is a perfect circle with radius $R$. There is a moon orbiting the planet; this orbit is also a perfect circle, with radius $r$. Find an equation for the position of the moon relative to the Sun. Based on your answer to the previous part, suppose $\\theta$ is the angle associated with the orbit of the planet around the Sun and $\\gamma$ is the angle associated with the orbit of the moon around the planet, where both $\\theta$ and $\\gamma$ are functions of time. If $\\theta = 12\\gamma$, what can you say about the movement of the moon around the Sun?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions (anonymous).pdf#0"
+ }
+]

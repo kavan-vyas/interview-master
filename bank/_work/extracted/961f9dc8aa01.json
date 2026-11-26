@@ -1,0 +1,16 @@
+[
+ {
+  "q": "I have a pencil attached to a rope of length $r$, freely able to move about a pivot, which is in turn free to move along the perimeter of a square frame of side length $2a$. I use the pencil to shade in the area it spans. What is the area of the shaded shape? There are multiple cases based on the relationship between $r$ and $a$.",
+  "kind": "maths",
+  "answer": "For $r \\le a$: area $= \\pi r^2 + 4r(4a - r)$. For $r > a$: area $= \\pi r^2 + 4a(a + 2r)$.",
+  "short": false,
+  "source": "sample-qs/Maths Interview Questions Sample.pdf#0"
+ },
+ {
+  "q": "a) Without using a calculator, order the following numbers from smallest to largest: $\\log_3(2)$, $\\frac{2}{3}$, $2^{1/3}$, $\\frac{3}{2}$, $\\log_2(3)$. b) i) Find the stationary point of the function $y = x^{1/x}$ (note $x^{1/x} = e^{\\frac{1}{x}\\ln(x)}$). ii) You are told this stationary point is a global maximum. Which number is greater, $e^{\\pi}$ or $\\pi^{e}$?",
+  "kind": "maths",
+  "answer": "a) $\\log_3(2) < \\frac{2}{3} < 2^{1/3} < \\frac{3}{2} < \\log_2(3)$ (approximately 0.631 < 0.666 < 1.260 < 1.5 < 1.585). b) i) $\\frac{dy}{dx} = 0$ gives $\\ln(x) = 1$, so the stationary point is $(e, e^{1/e})$. ii) $e^{\\pi} > \\pi^{e}$ (approximately 23.141 vs 22.459).",
+  "short": false,
+  "source": "sample-qs/Maths Interview Questions Sample.pdf#0"
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "q": "Problem 8 (When is $2^n - 1$ prime?): Prove that if $2^n - 1$ is prime then $n$ is prime. Is the converse true?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p9"
+ },
+ {
+  "q": "Problem 9 (When is $p^2 + 2$ prime?): Find all primes $p$ such that $p^2 + 2$ is also prime.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p9"
+ },
+ {
+  "q": "Problem 10 (Sums of two squares): (i) Show that every square is congruent to 0 or 1 modulo 4. Deduce that no integer of the form $4k + 3$ can be written as a sum of two squares. (ii) Verify that $(a^2 + b^2)(c^2 + d^2) = (ac - bd)^2 + (ad + bc)^2$. Deduce that the product of two sums of two squares is itself a sum of two squares. (iii) Hence, or otherwise, write $65$ as a sum of two squares in two essentially different ways. (iv) Prove that there are infinitely many primes of the form $4k + 3$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p9"
+ },
+ {
+  "q": "Problem 11 (Common factors of $2^m - 1$ and $2^n - 1$): Let $m$ and $n$ be positive integers. (i) Write $m = qn + r$ with $0 \\le r < n$. Show that $2^m - 1 = 2^r(2^{qn} - 1) + (2^r - 1)$, and deduce that $2^m - 1 \\equiv 2^r - 1 \\pmod{2^n - 1}$. (ii) Show that $\\gcd(a, b) = \\gcd(b, a - kb)$ for any integer $k$. Hence show that $\\gcd(2^m - 1, 2^n - 1) = \\gcd(2^n - 1, 2^r - 1)$. (iii) Deduce that $\\gcd(2^m - 1, 2^n - 1) = 2^{\\gcd(m,n)} - 1$. (iv) Find $\\gcd(2^{91} - 1, 2^{35} - 1)$, and deduce that $2^{91} - 1$ is not prime.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p9"
+ },
+ {
+  "q": "Problem 12 (Pythagorean triples): A primitive Pythagorean triple is a triple of positive integers $(a, b, c)$ with $a^2 + b^2 = c^2$ and $\\gcd(a, b, c) = 1$. (i) Show that exactly one of $a$ and $b$ is even, and that $c$ is odd. (ii) Suppose $b$ is even. Show that $\\frac{c+a}{2}$ and $\\frac{c-a}{2}$ are coprime positive integers whose product is $\\left(\\frac{b}{2}\\right)^2$. (iii) Deduce that $a = m^2 - n^2$, $b = 2mn$, $c = m^2 + n^2$ for some coprime integers $m > n > 0$ of opposite parity. (iv) Find all primitive triples with $c = 65$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p9"
+ },
+ {
+  "q": "Problem 13 (Digits and divisibility): (i) Show that every positive integer is congruent modulo 9 to the sum of its digits. (ii) Show that every positive integer is congruent modulo 11 to its alternating digit sum (units digit, minus tens digit, plus hundreds digit, and so on). (iii) Show that every six-digit number of the form $\\overline{abcabc}$ is divisible by 7, 11 and 13. (iv) Show that no perfect square has digit sum 2027. (v) Find the smallest positive multiple of 99 whose digits are all 0 or 1.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p9"
+ },
+ {
+  "q": "Problem 14 (Fermat's little theorem): Let $p$ be a prime. (i) Show that $p$ divides $\\binom{p}{k}$ for $1 \\le k \\le p - 1$. (ii) Deduce that $(a + 1)^p \\equiv a^p + 1 \\pmod{p}$ for every integer $a$. (iii) Prove that $a^p \\equiv a \\pmod{p}$ for every integer $a \\ge 0$. (iv) Deduce that if $p \\nmid a$ then $a^{p-1} \\equiv 1 \\pmod{p}$. Find the remainder when $3^{2026}$ is divided by 7. (v) Show that $n^{13} - n$ is divisible by 2730 for every integer $n$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p9"
+ },
+ {
+  "q": "Problem 15 ($31^{11}$ or $17^{14}$?): Without a calculator, decide which is larger: $31^{11}$ or $17^{14}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p9"
+ }
+]

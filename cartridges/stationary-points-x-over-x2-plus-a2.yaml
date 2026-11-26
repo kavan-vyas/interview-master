@@ -1,0 +1,112 @@
+id: stationary-points-x-over-x2-plus-a2
+title: Stationary points and sketch of x/(x^2+a^2)
+topics:
+- calculus
+- stationary points
+- quotient rule
+- curve sketching
+warmup: false
+answer_source: pdf
+statement: Find the stationary points of the function $f(x)=\frac{x}{x^2+a^2}$, where $a>0$, classifying
+  them as either maximum or minimum. Sketch the curve (without using a calculator).
+stages:
+- goal: Find the stationary points.
+  expected: f'(x) = (a^2 - x^2)/(x^2 + a^2)^2, so the stationary points occur at x = a and x = -a.
+  solution: 'Quotient rule: f''(x) = [(x^2+a^2) - 2x^2]/(x^2+a^2)^2 = (a^2 - x^2)/(x^2+a^2)^2. Setting
+    f''(x) = 0 gives x = a or x = -a.'
+  common_errors:
+  - Forgetting the -2x^2 term from the quotient rule
+  - Missing the negative root x = -a
+  - Setting the numerator to zero without checking it is the only zero contribution
+  hints:
+    rephrase: Where is the gradient of the curve zero?
+    smaller_case: Differentiate with the quotient rule and simplify the numerator before setting it to
+      zero.
+    key_idea: 'Quotient rule: (u/v)'' = (u''v - uv'')/v^2.'
+  check: simplify(diff(x/(x**2+a**2),x).subs(x,a))**2 + simplify(diff(x/(x**2+a**2),x).subs(x,-a))**2
+  check_ok: true
+- goal: Find the coordinates of the stationary points.
+  expected: (a, 1/(2a)) and (-a, -1/(2a)).
+  solution: f(a) = a/(2a^2) = 1/(2a). f(-a) = -a/(2a^2) = -1/(2a).
+  common_errors:
+  - Using a^2 instead of 2a^2 in the denominator
+  - Sign error at x = -a
+  - Giving only the x-coordinates
+  hints:
+    rephrase: Substitute each x-value you found back into f.
+    smaller_case: Substitute x = a into f(x) and simplify the denominator carefully.
+    key_idea: Watch the denominator x^2 + a^2 when x = plus or minus a.
+  check: simplify((x/(x**2+a**2)).subs(x,a) - 1/(2*a))**2 + simplify((x/(x**2+a**2)).subs(x,-a) + 1/(2*a))**2
+  check_ok: true
+- goal: Classify each stationary point as a maximum or minimum.
+  expected: x = a is a maximum (f''(a) = -1/(2a^3) < 0). x = -a is a minimum (f''(-a) = 1/(2a^3) > 0).
+  solution: 'f''''(x) = 2x(x^2 - 3a^2)/(x^2+a^2)^3. At x = a: 2a(-2a^2)/(8a^6) = -1/(2a^3) < 0, a maximum.
+    At x = -a the value is +1/(2a^3) > 0, a minimum. Consistency check: f'' is positive for -a < x < a
+    and negative outside that interval.'
+  common_errors:
+  - Sign error in f''(x)
+  - Classifying by the size of the function value rather than by the sign change of f' or sign of f''
+  - Forgetting a > 0 when signing a^3
+  hints:
+    rephrase: How can you tell from the slope whether a stationary point is a peak or a trough?
+    smaller_case: Take a specific positive value of a and test the sign of f' just to the left and just
+      to the right of each stationary point.
+    key_idea: Either the second derivative test or the sign change of f' classifies a stationary point.
+  check: simplify(diff(x/(x**2+a**2),x,2).subs(x,a) + 1/(2*a**3))**2 + simplify(diff(x/(x**2+a**2),x,2).subs(x,-a)
+    - 1/(2*a**3))**2
+  check_ok: true
+- goal: Sketch the curve.
+  expected: f is odd, passes through the origin with positive gradient 1/a^2 there, and has horizontal
+    asymptote y = 0 as x tends to plus or minus infinity. f is positive for x > 0 and negative for x <
+    0. It is increasing on (-a, a) and decreasing for |x| > a. The maximum at (a, 1/(2a)) and minimum
+    at (-a, -1/(2a)) are the turning points.
+  solution: 'Combine the features: symmetry f(-x) = -f(x), zero at x = 0, behaviour at large |x| (f tends
+    to 0), sign of f on each side of 0, and the turning points from stages 2 and 3. Draw a smooth odd
+    curve rising through the origin, peaking at x = a, falling back towards the x-axis, mirrored in the
+    origin.'
+  common_errors:
+  - Letting the curve not approach y = 0 at large |x|
+  - Missing the odd symmetry about the origin
+  - Placing the maximum at x = -a
+  - Drawing the origin as a stationary point, when f'(0) = 1/a^2 is positive
+  hints:
+    rephrase: What happens to f as x becomes very large, and what symmetry does f have?
+    smaller_case: Compare f(-x) with f(x), and check the sign of f for positive and for negative x.
+    key_idea: Combine symmetry, asymptotes, zeros and stationary points to get the shape.
+extensions:
+  '3':
+  - Find the points of inflection of f and describe the concavity on each interval.
+  '4':
+  - Show that f(x) <= 1/(2a) for all x using the inequality x^2 + a^2 >= 2a|x|.
+  '5':
+  - Describe how the curve changes as a varies and what happens to the graph as a tends to 0.
+spoken_vocab:
+- f of x equals x over x squared plus a squared
+- a greater than zero
+- f prime of x
+- stationary points
+- maximum
+- minimum
+- one over two a
+- sketch the curve
+- second derivative
+source: step-workbook/Cambridge STEP Short Workbook.pdf#1
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 4
+  minutes: 12
+  flags:
+  - needs_diagram
+  tagline: Parametric stationary points and a clean sketch with asymptote behaviour.
+  priority: 54
+  rank: 490
+  tier: C
+  category: step-workbook
+  d10: 3.0
+  real: 4.0
+  by: haiku
+tags:
+- differentiation
+- curve_sketching

@@ -1,0 +1,89 @@
+id: successive-percentage-coat
+title: Successive percentage reductions
+topics:
+- percentages
+- successive changes
+- reverse percentages
+- multipliers
+warmup: true
+answer_source: pdf
+statement: A coat is reduced by $20\%$ in a sale. A week later the sale price is reduced by a further
+  $10\%$. It now costs £72. What was the original price of the coat?
+stages:
+- goal: Find the single multiplier that represents both reductions.
+  expected: 0.72 (the price becomes 72% of the original)
+  solution: After a 20% reduction the price is $0.8$ of the original. A further 10% reduction multiplies
+    by $0.9$. Overall multiplier is $0.8 \times 0.9 = 0.72$.
+  common_errors:
+  - Adding the percentages to get a 30% reduction, giving multiplier 0.7
+  - Using 1.2 and 1.1 (increases) instead of reductions
+  - Multiplying by 0.1 or 0.2 instead of 0.8 and 0.9
+  hints:
+    rephrase: What fraction of the price remains after each reduction, and how do successive reductions
+      combine?
+    smaller_case: If the price is reduced by 50% and then by a further 50%, what fraction of the original
+      remains?
+    key_idea: Successive percentage changes multiply; they do not add.
+  check: Eq(Rational(4,5)*Rational(9,10), Rational(72,100))
+  check_ok: true
+- goal: Find the original price.
+  expected: £100
+  solution: 'Sale price = original × 0.72, so original = 72 ÷ 0.72 = £100. Check: 100 × 0.8 = 80, then
+    80 × 0.9 = 72.'
+  common_errors:
+  - Multiplying 72 by 0.72 instead of dividing
+  - Using 72 ÷ 0.7 (from adding the percentages) to get about £102.86
+  - Dividing 72 by 0.8 and 0.9 separately and combining incorrectly
+  hints:
+    rephrase: If you know the price after reductions as a fraction of the original, how can you recover
+      the original?
+    smaller_case: If £36 is 50% of the original price, what was the original price?
+    key_idea: To undo a multiplier, divide by it rather than multiply.
+  check: Eq(Rational(72)/Rational(18,25), 100)
+  check_ok: true
+extensions:
+  '3':
+  - A jacket rises by 25% and then falls by 20%. Is it back to its original price?
+  - A price is reduced by 10% and then increased by 10%. What is the overall percentage change?
+  '4':
+  - After two successive reductions of $x\%$ and $y\%$, what single percentage reduction is equivalent?
+  - A coat is reduced by 20% and then by 10%; if the sale price is £72, find the original price using
+    a different method, such as working out the reduction amounts directly.
+  '5':
+  - A price is reduced by 30% and then increased by 30%. Find the net percentage change.
+  - Three successive 10% reductions are applied to a price. Express the final price as a fraction of the
+    original and find the total percentage reduction.
+spoken_vocab:
+- coat
+- twenty percent
+- ten percent
+- sale
+- reduced
+- further reduction
+- original price
+- seventy-two pounds
+- multiply
+- divide
+- zero point seven two
+- zero point eight
+- zero point nine
+- percent
+source: kclms/kclms-specimen-questions-3.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 2
+  parts: 2
+  minutes: 3
+  flags:
+  - trivial
+  tagline: Routine successive-percentage calculation with little room for discussion.
+  priority: 27
+  rank: 624
+  tier: D
+  category: kclms
+  d10: 1.5
+  real: 3.0
+  by: haiku
+tags:
+- algebra_and_functions

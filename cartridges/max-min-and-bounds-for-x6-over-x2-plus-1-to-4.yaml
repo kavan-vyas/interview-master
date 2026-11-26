@@ -1,0 +1,109 @@
+id: max-min-and-bounds-for-x6-over-x2-plus-1-to-4
+title: Bounding an integral via a derivative identity
+topics:
+- calculus
+- maxima and minima
+- differentiation of quotients
+- coefficient matching
+- integral bounds
+warmup: false
+answer_source: pdf
+statement: (i) Show that, for $0\leqslant x\leqslant 1$, the largest value of $\frac{x^6}{(x^2+1)^4}$
+  is $\frac{1}{16}$. What is the smallest value? (ii) Find constants $A$, $B$, $C$ and $D$ such that,
+  for all $x$, $\frac{1}{(x^2+1)^4}\equiv\frac{d}{dx}\left(\frac{Ax^5+Bx^3+Cx}{(x^2+1)^3}\right)+\frac{Dx^6}{(x^2+1)^4}$.
+  (iii) Hence, or otherwise, prove that $\frac{11}{24}\leqslant\int_0^1\frac{1}{(x^2+1)^4}\,dx\leqslant\frac{11}{24}+\frac{1}{16}$.
+stages:
+- goal: Find the largest and smallest values of $\frac{x^6}{(x^2+1)^4}$ on $[0,1]$.
+  expected: Largest value $\frac{1}{16}$ at $x=1$; smallest value $0$ at $x=0$.
+  solution: Let $f(x)=\frac{x^6}{(x^2+1)^4}$. Then $f'(x)=\frac{2x^5(3-x^2)}{(x^2+1)^5}$. On $(0,1)$,
+    $x^5>0$ and $3-x^2>0$, so $f'>0$ and $f$ is increasing on $[0,1]$. The minimum is $f(0)=0$ and the
+    maximum is $f(1)=\frac{1}{16}$.
+  common_errors:
+  - Looking for an interior minimum where $f'=0$ when the function is increasing on the whole interval.
+  - Forgetting that $x=0$ is included, so the smallest value is $0$, not a positive number.
+  - Arithmetic error in differentiating $(x^2+1)^{-4}$.
+  hints:
+    rephrase: Differentiate $f$ and study the sign of $f'$ on $(0,1)$.
+    smaller_case: Compare the values of $f$ at $x=0$, $x=\frac{1}{2}$ and $x=1$ to see the trend.
+    key_idea: Factor $x^5$ out of the derivative; the sign of the remaining factor on $(0,1)$ decides
+      monotonicity.
+  check: sympy.simplify((x**6/(x**2+1)**4).subs(x,1) - sympy.Rational(1,16)) == 0
+  check_ok: null
+- goal: Find the constants $A$, $B$, $C$ and $D$.
+  expected: $A=1$, $B=\frac{5}{3}$, $C=1$, $D=1$.
+  solution: Let $P=Ax^5+Bx^3+Cx$ and $u=x^2+1$. Then $\frac{d}{dx}\left(\frac{P}{u^3}\right)=\frac{P'u-6xP}{u^4}=\frac{-Ax^6+(5A-3B)x^4+(3B-5C)x^2+C}{u^4}$.
+    Adding $\frac{Dx^6}{u^4}$ gives the numerator $(D-A)x^6+(5A-3B)x^4+(3B-5C)x^2+C$, which must equal
+    $1$. So $C=1$, $3B=5C$ gives $B=\frac{5}{3}$, $5A=3B$ gives $A=1$, and $D=A=1$.
+  common_errors:
+  - Forgetting that differentiating $u^{-3}$ produces $u^{-4}$ and so the common denominator is $(x^2+1)^4$.
+  - Sign error in the quotient rule term $-6xP$.
+  - Matching coefficients incorrectly, for example setting $D=0$.
+  - Not checking all four coefficient equations for consistency.
+  hints:
+    rephrase: Write the derivative over the common denominator $(x^2+1)^4$ and compare coefficients of
+      powers of $x$.
+    smaller_case: Look at how $\frac{d}{dx}\left(\frac{x}{x^2+1}\right)$ is written over a common denominator.
+    key_idea: Compare coefficients of $x^6$, $x^4$, $x^2$ and $x^0$ in the numerator; that gives four
+      equations for four unknowns.
+  check: sympy.simplify(sympy.diff((x**5+sympy.Rational(5,3)*x**3+x)/(x**2+1)**3, x) + x**6/(x**2+1)**4
+    - 1/(x**2+1)**4) == 0
+  check_ok: null
+- goal: Deduce that $\frac{11}{24}\leqslant\int_0^1\frac{1}{(x^2+1)^4}\,dx\leqslant\frac{11}{24}+\frac{1}{16}$.
+  expected: The integral lies between $\frac{11}{24}$ and $\frac{11}{24}+\frac{1}{16}$.
+  solution: Let $g(x)=\frac{x^5+\frac{5}{3}x^3+x}{(x^2+1)^3}$. By part (ii), $\frac{1}{(x^2+1)^4}=g'(x)+\frac{x^6}{(x^2+1)^4}$.
+    Integrating over $[0,1]$ gives $\int_0^1\frac{dx}{(x^2+1)^4}=g(1)-g(0)+\int_0^1\frac{x^6}{(x^2+1)^4}\,dx$.
+    Here $g(1)=\frac{1+\frac{5}{3}+1}{8}=\frac{11}{24}$ and $g(0)=0$. By part (i), $0\le\frac{x^6}{(x^2+1)^4}\le\frac{1}{16}$
+    on $[0,1]$, so $0\le\int_0^1\frac{x^6}{(x^2+1)^4}\,dx\le\frac{1}{16}$. Hence $\frac{11}{24}\le I\le\frac{11}{24}+\frac{1}{16}$.
+  common_errors:
+  - Evaluating $g(1)$ incorrectly.
+  - Forgetting that $g(0)=0$ and so the boundary term is just $\frac{11}{24}$.
+  - Bounding the integrand but not carrying the bound through the integral over an interval of length
+    1.
+  - Using the maximum from part (i) as a lower bound instead of the minimum $0$.
+  hints:
+    rephrase: Integrate the identity from part (ii) over $[0,1]$.
+    smaller_case: Think about what bounds the integral of a function lying between $0$ and $\frac{1}{16}$
+      on $[0,1]$.
+    key_idea: The derivative term integrates to a boundary difference, and the leftover integral is controlled
+      by the bounds from part (i).
+  check: sympy.simplify(((x**5+sympy.Rational(5,3)*x**3+x)/(x**2+1)**3).subs(x,1) - sympy.Rational(11,24))
+    == 0
+  check_ok: null
+extensions:
+  '3':
+  - Find a reduction formula for $I_n=\int_0^1\frac{dx}{(x^2+1)^n}$.
+  '4':
+  - Improve the bounds by splitting $[0,1]$ into subintervals and bounding $\frac{x^6}{(x^2+1)^4}$ on
+    each.
+  '5':
+  - Show that $\int_0^1\frac{x^6}{(x^2+1)^4}\,dx$ lies strictly between $0$ and $\frac{1}{16}$.
+spoken_vocab:
+- x to the sixth over x squared plus one to the fourth
+- derivative
+- constants A B C and D
+- x to the fifth plus five thirds x cubed plus x
+- over x squared plus one cubed
+- identically equal
+- integral from zero to one
+- eleven over twenty four
+- one over sixteen
+- derivative of x over x squared plus one
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#13
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 3
+  minutes: 20
+  flags: []
+  tagline: Derivative-identity trick bounding an integral with clean constants
+  priority: 81
+  rank: 228
+  tier: B
+  category: siklos
+  d10: 6.5
+  real: 4.0
+  by: haiku
+tags:
+- integration
+- inequalities

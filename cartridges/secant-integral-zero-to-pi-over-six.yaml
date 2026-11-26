@@ -1,0 +1,78 @@
+id: secant-integral-zero-to-pi-over-six
+title: Definite integral of secant
+topics:
+- calculus
+- integration
+- trigonometric integrals
+warmup: true
+answer_source: pdf
+statement: What is the integral of $\sec(x)$ from $x=0$ to $x=\frac{\pi}{6}$?
+stages:
+- goal: Find an antiderivative of $\sec(x)$.
+  expected: $\ln|\sec x+\tan x|+C$
+  solution: Multiply numerator and denominator by $\sec x+\tan x$. The numerator becomes $\sec^2 x+\sec
+    x\tan x$, which is the derivative of $\sec x+\tan x$. So the antiderivative is $\ln|\sec x+\tan x|+C$.
+  common_errors:
+  - Answering $\tan x$ or $\ln|\sec x|$, which do not differentiate to $\sec x$
+  - Dropping the absolute value or the constant $C$ at the indefinite stage
+  hints:
+    rephrase: Which function, when differentiated, gives $\sec x$? You may need to multiply by a clever
+      form of 1 first.
+    smaller_case: Differentiate $\ln(\sec x)$ and compare the result with $\sec x$.
+    key_idea: Multiply top and bottom by $\sec x+\tan x$ and watch what the numerator turns into.
+  check: sp.simplify(sp.diff(ans, x) - sp.sec(x))
+  check_ok: null
+- goal: Evaluate the definite integral from $0$ to $\frac{\pi}{6}$ using the antiderivative.
+  expected: $\ln\sqrt{3}$, equivalently $\frac{1}{2}\ln 3$
+  solution: At $x=\frac{\pi}{6}$, $\sec x=\frac{2}{\sqrt3}$ and $\tan x=\frac{1}{\sqrt3}$, so $\sec x+\tan
+    x=\frac{3}{\sqrt3}=\sqrt3$. At $x=0$, $\sec 0+\tan 0=1$, and $\ln 1=0$. The integral is $\ln\sqrt3-0=\ln\sqrt3=\frac12\ln
+    3$.
+  common_errors:
+  - Confusing $\sec\frac{\pi}{6}$ with $\csc\frac{\pi}{6}$
+  - Forgetting to subtract the value at the lower limit
+  - Leaving the answer as a sum of logs without simplifying
+  hints:
+    rephrase: 'Apply the fundamental theorem: evaluate the antiderivative at the upper limit and subtract
+      its value at the lower limit.'
+    smaller_case: Start by finding $\sec 0$ and $\tan 0$.
+    key_idea: Use the standard values of sine and cosine at $\frac{\pi}{6}$ to simplify $\sec x+\tan x$
+      there.
+  check: sp.simplify(ans - sp.log(sp.sqrt(3)))
+  check_ok: null
+extensions:
+  '3':
+  - Compute $\int_0^{\pi/4}\sec x\,dx$.
+  '4':
+  - Show that $\int \csc x\,dx=-\ln|\csc x+\cot x|+C$ using the same kind of trick.
+  '5':
+  - Derive a reduction formula for $\int \sec^n x\,dx$.
+spoken_vocab:
+- integral
+- secant of x
+- tangent of x
+- from zero to pi over six
+- pi over six
+- natural log
+- square root of three
+- absolute value
+- fundamental theorem of calculus
+source: zhou-quant/zhou-quant-guide.pdf#2
+verified: false
+rating:
+  quality: 3
+  difficulty: 3
+  parts: 2
+  minutes: 4
+  flags:
+  - trivial
+  tagline: Standard antiderivative recall; evaluation is mechanical.
+  priority: 27
+  rank: 628
+  tier: D
+  category: zhou-quant
+  d10: 4.0
+  real: 4.0
+  by: haiku
+tags:
+- integration
+- trigonometry

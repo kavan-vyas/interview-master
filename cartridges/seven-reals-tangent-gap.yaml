@@ -1,0 +1,85 @@
+id: seven-reals-tangent-gap
+title: Seven reals with (a-b)/(1+ab) below one over root three
+topics:
+- inequalities
+- trigonometry
+- tangent subtraction formula
+- pigeonhole principle
+warmup: false
+answer_source: generated
+statement: Seven different real numbers are chosen. Prove that there are two of them, $a$ and $b$, such
+  that $\frac{a-b}{1+ab} < \frac{1}{\sqrt{3}}$.
+stages:
+- goal: Reparametrise the seven numbers as tangents of angles in (-pi/2, pi/2) and relate the expression
+    to a tangent difference.
+  expected: Write a = tan x and b = tan y with x, y in (-pi/2, pi/2). Then (a-b)/(1+ab) = tan(x-y) whenever
+    |x-y| < pi/2.
+  solution: Since tan maps (-pi/2, pi/2) bijectively onto the reals, set x_i = arctan(a_i). Distinct numbers
+    give distinct angles, so relabel so that x_1 < x_2 < ... < x_7. For a = tan x and b = tan y, the tangent
+    subtraction formula gives tan(x-y) = (a-b)/(1+ab). The denominator 1+ab = cos(x-y)/(cos x cos y) is
+    positive when |x-y| < pi/2, so the expression is well defined.
+  common_errors:
+  - Forgetting that arctan takes values only in (-pi/2, pi/2)
+  - Using the wrong sign in the tangent subtraction formula
+  - Assuming 1+ab can vanish for the pairs considered
+  hints:
+    rephrase: Is there a standard substitution that turns the form (a-b)/(1+ab) into something simpler?
+    smaller_case: Take a = tan x and b = tan y with x close to y. What does (a-b)/(1+ab) look like?
+    key_idea: Use the tangent subtraction formula.
+- goal: Apply the pigeonhole principle to the gaps between consecutive angles.
+  expected: There exist consecutive angles x_i < x_{i+1} with 0 < x_{i+1} - x_i < pi/6.
+  solution: The six consecutive gaps x_2-x_1, ..., x_7-x_6 sum to x_7 - x_1, which is less than pi because
+    both endpoints lie in the open interval (-pi/2, pi/2). If every gap were at least pi/6, the sum would
+    be at least pi, a contradiction. So some gap theta satisfies 0 < theta < pi/6.
+  common_errors:
+  - Using seven gaps instead of six
+  - Concluding that the gap is at most pi/6 without strictness
+  - Using an interval of length 2pi instead of pi
+  hints:
+    rephrase: Seven points in an interval of length pi have six gaps between them. What can you say about
+      the smallest gap?
+    smaller_case: With three angles in an interval of length pi, what smallest gap is guaranteed?
+    key_idea: The smallest of several gaps is at most their average.
+- goal: Conclude the inequality for the chosen pair of numbers.
+  expected: Take a = tan x_{i+1} and b = tan x_i. Then (a-b)/(1+ab) = tan(theta) with 0 < theta < pi/6,
+    so (a-b)/(1+ab) < 1/sqrt(3).
+  solution: With theta = x_{i+1} - x_i in (0, pi/6), we have (a-b)/(1+ab) = tan(theta) and 1+ab > 0 as
+    shown earlier. Since tan is increasing on (0, pi/2) and tan(pi/6) = 1/sqrt(3), we get tan(theta) <
+    1/sqrt(3). This gives the required pair.
+extensions:
+  '3':
+  - With eight distinct reals, prove there are a and b with (a-b)/(1+ab) < tan(pi/7).
+  '4':
+  - For n distinct reals with n >= 4, prove there are a and b with (a-b)/(1+ab) < tan(pi/(n-1)).
+  '5':
+  - Show that the same argument proves |a-b|/|1+ab| < 1/sqrt(3) for some pair among the seven numbers.
+spoken_vocab:
+- seven different real numbers
+- a and b
+- fraction a minus b over one plus a b
+- less than one over root three
+- tangent
+- arctan
+- pi over six
+- pigeonhole principle
+- tangent subtraction formula
+- consecutive gap
+source: screenshots/Screenshot 2026-11-19 at 14.38.02.png
+verified: false
+rating:
+  quality: 8
+  difficulty: 7
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Elegant tangent-subtraction reparametrisation plus pigeonhole; a clean proof with strict inequality.
+  priority: 91
+  rank: 105
+  tier: A
+  category: screenshots
+  d10: 5.5
+  real: 7.0
+  by: haiku
+tags:
+- proof
+- trigonometry

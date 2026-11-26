@@ -1,0 +1,159 @@
+id: step-second-order-sinh-sin-reduction
+title: Reduction of y'' + k^2 y = 0 and y'' - k^2 y = 0 to first order via z = dy/dx, and whether the
+  sinh form is general
+topics:
+- second-order ODE
+- reduction to first order
+- chain rule
+- separation of variables
+- sine and sinh solutions
+- general solution
+warmup: false
+answer_source: generated
+statement: (i) Show that the equation $\frac{d^2y}{dx^2}+k^2y=0$ ($y$ real) can be written as $z\frac{dz}{dy}+k^2y=0$,
+  where $z=\frac{dy}{dx}$. Show that $z=\sqrt{c^2-k^2y^2}$, where $c$ is a constant of integration, and
+  hence show that $y=R\sin k(x-x_0)$, where $R$ and $x_0$ are constants. (ii) Repeat the steps of part
+  (i) on the equation $\frac{d^2y}{dx^2}-k^2y=0$ to obtain $y=R\sinh k(x-x_0)$. In this case, is it the
+  general solution?
+stages:
+- goal: Show that y'' + k^2 y = 0 can be written as z dz/dy + k^2 y = 0, where z = dy/dx.
+  expected: Since d^2y/dx^2 = d(dy/dx)/dx = (dz/dy)(dy/dx) = z dz/dy, the equation becomes z dz/dy + k^2
+    y = 0.
+  solution: Let z = dy/dx. By the chain rule, d^2y/dx^2 = (dz/dx) = (dz/dy)(dy/dx) = z dz/dy. Substituting
+    into d^2y/dx^2 + k^2 y = 0 gives z dz/dy + k^2 y = 0.
+  common_errors:
+  - Writing d^2y/dx^2 as dz/dy without the factor z
+  - Writing d^2y/dx^2 as dz/dx and then trying to use dz/dy without the chain rule
+  - Making a sign error when moving the k^2 y term
+  hints:
+    rephrase: Express d^2y/dx^2 in terms of z = dy/dx, and use the chain rule to change the variable from
+      x to y.
+    smaller_case: Test the chain rule on a simple function such as y = x^2 by computing dz/dx and comparing
+      it with (dz/dy) times (dy/dx).
+    key_idea: Change the independent variable from x to y using the chain rule, so the equation becomes
+      first order in z.
+- goal: From z dz/dy = -k^2 y, show that z = sqrt(c^2 - k^2 y^2), where c is a constant of integration.
+  expected: Integrating gives z^2 = c^2 - k^2 y^2, so z = sqrt(c^2 - k^2 y^2) (with the sign of the root
+    fixed by the direction of motion).
+  solution: 'Multiply the equation by 2: d(z^2)/dy = 2 z dz/dy = -2 k^2 y. Integrating with respect to
+    y gives z^2 = -k^2 y^2 + C. Writing C = c^2 gives z^2 = c^2 - k^2 y^2, so z = sqrt(c^2 - k^2 y^2)
+    up to sign.'
+  common_errors:
+  - Dropping the constant of integration
+  - Integrating with respect to x instead of y
+  - Forgetting the factor of 2 when integrating z dz/dy
+  hints:
+    rephrase: Notice that z dz/dy is half the derivative of z^2 with respect to y.
+    smaller_case: Solve the simpler equation w dw/dy = y for w, then return to z.
+    key_idea: Substitute w = z^2 to turn the equation into a simple integral in y.
+  check: simplify(sqrt(c**2-k**2*y**2)*diff(sqrt(c**2-k**2*y**2),y)+k**2*y)
+  check_ok: true
+- goal: Use z = sqrt(c^2 - k^2 y^2) with dy/dx = z to show that y = R sin k(x - x0), where R and x0 are
+    constants.
+  expected: Writing c = kR and y = R sin(theta), the equation dy/dx = k sqrt(R^2 - y^2) gives theta =
+    k(x - x0). So y = R sin k(x - x0).
+  solution: Set c = kR, so dy/dx = k sqrt(R^2 - y^2). Let y = R sin(theta). Then dy/dx = R cos(theta)
+    dtheta/dx, and sqrt(R^2 - y^2) = R cos(theta) (taking the positive root). This gives R cos(theta)
+    dtheta/dx = kR cos(theta), so dtheta/dx = k and theta = k(x - x0). Hence y = R sin k(x - x0). The
+    sign ambiguity in z is absorbed into the sign of R and into x0.
+  common_errors:
+  - Forgetting that the constant c must be linked to R (for example, c = kR)
+  - Dropping x0, which is needed as the second arbitrary constant
+  - Not justifying the choice of positive root for sqrt(R^2 - y^2)
+  hints:
+    rephrase: Substitute y = R sin(theta) into dy/dx = k sqrt(R^2 - y^2), and find the equation that theta
+      satisfies.
+    smaller_case: Set k = 1 and R = 1 and check that y = sin(x - x0) satisfies dy/dx = sqrt(1 - y^2).
+    key_idea: The square root becomes a cosine under the substitution y = R sin(theta), so theta is linear
+      in x.
+  check: simplify(diff(R*sin(k*(x-x0)),x)**2-(k**2*R**2-k**2*(R*sin(k*(x-x0)))**2))
+  check_ok: true
+- goal: Repeat the reduction for y'' - k^2 y = 0 and obtain y = R sinh k(x - x0).
+  expected: z dz/dy = k^2 y gives z^2 = c^2 + k^2 y^2. With c = kR and y = R sinh(theta), the equation
+    gives theta = k(x - x0), so y = R sinh k(x - x0).
+  solution: The equation is z dz/dy - k^2 y = 0, so d(z^2)/dy = 2k^2 y. Integrating gives z^2 = k^2 y^2
+    + c^2. Set c = kR, so dy/dx = k sqrt(R^2 + y^2). Let y = R sinh(theta). Then dy/dx = R cosh(theta)
+    dtheta/dx and sqrt(R^2 + y^2) = R cosh(theta). So dtheta/dx = k and theta = k(x - x0), giving y =
+    R sinh k(x - x0).
+  common_errors:
+  - Keeping the sign of the k^2 y term from part (i), which gives sin in place of sinh
+  - Using sqrt(c^2 - k^2 y^2) instead of sqrt(c^2 + k^2 y^2)
+  - Choosing the wrong hyperbolic identity (sinh^2 + 1 instead of cosh^2 - sinh^2 = 1 or the one-plus-sinh-squared
+    identity)
+  hints:
+    rephrase: Repeat the steps of part (i) with the new sign on the k^2 y term. Then substitute y = R
+      sinh(theta) and use a hyperbolic identity.
+    smaller_case: Take k = 1 and R = 1, and check that y = sinh(x) satisfies dy/dx = sqrt(1 + y^2).
+    key_idea: The hyperbolic identity cosh^2 - sinh^2 = 1 plays the role that sin^2 + cos^2 = 1 played
+      in part (i).
+  check: simplify(diff(R*sinh(k*(x-x0)),x)**2-(k**2*R**2+k**2*(R*sinh(k*(x-x0)))**2))
+  check_ok: true
+- goal: Decide whether y = R sinh k(x - x0) is the general solution of y'' - k^2 y = 0, and justify the
+    answer.
+  expected: No. The general solution is A cosh kx + B sinh kx, or equivalently A e^{kx} + B e^{-kx}. The
+    sinh family misses solutions such as y = cosh kx. This is because the squaring step in z^2 = c^2 +
+    k^2 y^2 only allows c^2 >= 0, and cosh kx needs c^2 = -k^2 < 0.
+  solution: The function y = cosh kx satisfies y'' = k^2 cosh kx, so it solves the equation. Suppose cosh
+    kx = R sinh k(x - x0) for real R and x0. Expanding gives R sinh kx cosh kx0 - R cosh kx sinh kx0 =
+    cosh kx. Comparing the coefficient of sinh kx gives R cosh kx0 = 0, which is impossible for real x0.
+    So cosh kx is not in the family. The sinh form is a one-parameter family in the sense of the sign
+    of c^2 and misses solutions where z^2 = c^2 + k^2 y^2 has c^2 < 0. The general solution has two constants,
+    so the sinh form is not general.
+  common_errors:
+  - Assuming two constants R and x0 automatically give the general solution
+  - Thinking the squaring step in the z-method loses no solutions
+  - Only checking that sinh solutions satisfy the ODE, not whether they cover all solutions
+  hints:
+    rephrase: Ask whether the family R sinh k(x - x0) contains y = cosh kx. Also think about how many
+      constants a second-order ODE requires.
+    smaller_case: Try to write y = e^{kx} + e^{-kx} as R sinh k(x - x0) for real R and x0.
+    key_idea: The squaring step in the z-method can hide sign information, so count the constants of the
+      general solution and compare.
+extensions:
+  '3':
+  - Write R sin k(x - x0) as A sin kx + B cos kx, and find A and B in terms of R and x0.
+  - Show that the solution y = R sin k(x - x0) gives a valid general solution for all real k, and state
+    the restrictions on k needed for the method.
+  '4':
+  - Solve y'' = k^2 y with y(0) = 0 and y'(0) = k using the z-method. Compare the answer with the exponential
+    form.
+  - Solve y'' + k^2 y = 0 with y(0) = 1 and y'(0) = 0 using the z-method, and check your answer by substitution.
+  '5':
+  - Show that A cosh kx + B sinh kx covers all solutions of y'' - k^2 y = 0, and find which choices of
+    A and B give the sinh-only family.
+  - Explain how the sign of c^2 in the first integral determines whether the solution is trigonometric,
+    hyperbolic, or linear.
+spoken_vocab:
+- d squared y by d x squared
+- plus k squared y equals zero
+- z equals d y by d x
+- z d z by d y
+- c squared minus k squared y squared
+- z equals square root of c squared minus k squared y squared
+- R sine k open bracket x minus x naught close bracket
+- R sinh k open bracket x minus x naught close bracket
+- cosh k x
+- e to the k x
+- constant of integration c
+- chain rule
+- separation of variables
+- is it the general solution
+source: step-workbook/Cambridge STEP Short Workbook.pdf#1
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 2
+  minutes: 20
+  flags: []
+  tagline: Sinh form misses solutions like e^{kx}, a strong general-solution discussion point.
+  priority: 93
+  rank: 65
+  tier: A
+  category: step-workbook
+  d10: 4.5
+  real: 5.0
+  by: haiku
+tags:
+- differential_equations
+- trigonometry

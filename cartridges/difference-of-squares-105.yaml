@@ -1,0 +1,100 @@
+id: difference-of-squares-105
+title: 'Difference of two squares: x squared minus y squared equals 105'
+topics:
+- number theory
+- factorisation
+- divisors
+- parity
+warmup: false
+answer_source: generated
+statement: Find all pairs of positive integers $(x, y)$ with $x>y$ satisfying $x^2-y^2=105$. (a) How many
+  pairs are there for a general odd positive integer $N$ in place of 105? (b) What changes if $N$ is even?
+stages:
+- goal: Find all positive integer pairs (x,y) with x>y and x²−y²=105.
+  expected: (x,y) = (11,4), (13,8), (19,16), (53,52).
+  solution: Write $(x-y)(x+y)=105$. Let $d=x-y$ and $e=x+y$ with $d<e$, $de=105$. Since 105 is odd, both
+    d and e are odd, so $x=(d+e)/2$ and $y=(e-d)/2$ are integers. The factor pairs are (1,105), (3,35),
+    (5,21), (7,15). This gives (53,52), (19,16), (13,8), (11,4). Each has $y>0$ because $e>d$.
+  common_errors:
+  - Missing the pair (1,105), which gives the large solution (53,52).
+  - Allowing d=e, which gives y=0.
+  - Forgetting that x and y must be integers, so d and e must have the same parity.
+  hints:
+    rephrase: Write the difference of two squares as a product of two factors.
+    smaller_case: Try N=15 and find all solutions to x²−y²=15.
+    key_idea: Set u=x−y and v=x+y. Then uv=105, and u and v must have the same parity.
+  check: sorted(answer) == [(11,4),(13,8),(19,16),(53,52)]
+  check_ok: null
+- goal: (a) For a general odd positive N, count the pairs (x,y) with x>y positive integers and x²−y²=N.
+  expected: floor(τ(N)/2), where τ(N) is the number of positive divisors of N. Equivalently, τ(N)/2 if
+    N is not a perfect square, and (τ(N)−1)/2 if it is.
+  solution: Solutions correspond to factorisations $N=de$ with $d<e$, because N is odd so all factors
+    are odd and give integer x,y. The divisors of N pair up as $d \leftrightarrow N/d$. The pair is a
+    fixed point only when $d=\sqrt N$, which is excluded because it gives y=0. So the number of pairs
+    with d<e is floor(τ(N)/2). For N=105, τ=8, giving 4 solutions, which matches part 1.
+  common_errors:
+  - Counting ordered pairs (d,e), which double counts.
+  - Forgetting the perfect square case.
+  - Confusing τ(N) with the number of distinct prime factors.
+  hints:
+    rephrase: How does each valid (x,y) correspond to a divisor of N?
+    smaller_case: Take N=15 and list all divisors and their pairings d·e=15.
+    key_idea: Each solution is a factorisation N=de with d<e, and divisors pair up as d and N/d.
+  check: null
+- goal: (b) Describe the solutions when N is even.
+  expected: If N≡2 (mod 4), there are no solutions. If 4∣N, the number of solutions is floor(τ(N/4)/2).
+  solution: If N is even, d and e have the same parity, so both must be even. Write $d=2d'$ and $e=2e'$.
+    Then $N=4d'e'$, and $x=d'+e'$, $y=e'-d'$. So solutions with $d'<e'$ and $d'e'=N/4$ correspond exactly
+    to solutions for N. If N≡2 (mod 4), N/4 is not an integer, so there are no solutions. For N=8, N/4=2
+    gives exactly one solution, (x,y)=(3,1).
+  common_errors:
+  - Assuming the odd-case count still applies to even N.
+  - Forgetting that N≡2 mod 4 gives no solutions.
+  - Forgetting that d and e must both be even.
+  hints:
+    rephrase: Consider the parity of d and e when their product is even.
+    smaller_case: Take N=8 and find all factorisations of 8 into d·e with d and e of the same parity.
+    key_idea: If d and e have the same parity and the product is even, both must be even.
+  check: null
+extensions:
+  '3':
+  - Find all positive integer pairs (x,y) with x²−y²=2024.
+  '4':
+  - Show that x²−y²=N has no integer solutions when N≡2 (mod 4).
+  '5':
+  - Show that N is a difference of two squares of integers (allowing y=0) exactly when N is not congruent
+    to 2 mod 4.
+spoken_vocab:
+- x squared minus y squared
+- '105'
+- odd
+- even
+- divisors
+- factor pairs
+- tau of N
+- perfect square
+- parity
+- floor
+- modulo 4
+- N over 4
+- x plus y
+- x minus y
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Factor-pair enumeration that generalises to divisor counting and an even-N parity case.
+  priority: 81
+  rank: 242
+  tier: B
+  category: juan
+  d10: 6.0
+  real: 7.5
+  by: deepseek-v4.1-flash-free
+tags:
+- number_theory
+- algebra_and_functions

@@ -1,0 +1,112 @@
+id: am-gm-from-exp-inequality
+title: AM-GM from e^x >= 1+x
+topics:
+- inequalities
+- calculus
+- convexity
+- exponential function
+- AM-GM inequality
+- proof
+warmup: false
+answer_source: generated
+statement: 'Show that $e^x\ge 1+x$ for all real $x$, with equality only at $x=0$. (a) Use this inequality
+  to prove the AM–GM inequality for $n$ positive reals $x_1,\dots,x_n$. (Hint: apply the inequality to
+  $x_i/\bar{x}-1$, where $\bar{x}$ is the arithmetic mean.)'
+stages:
+- goal: Prove e^x >= 1+x for all real x, with equality only at x=0.
+  expected: Let g(x) = e^x - 1 - x. Then g'(x) = e^x - 1, which is negative for x<0 and positive for x>0.
+    So g has a strict global minimum at x=0 where g(0)=0. Hence g(x) > 0 for x != 0, giving e^x >= 1+x
+    with equality only at x=0.
+  solution: g'(x)=e^x-1. For x<0, e^x<1 so g is strictly decreasing on (-infinity,0]; for x>0, e^x>1 so
+    g is strictly increasing on [0,infinity). Thus g attains its unique minimum at 0, where g(0)=1-1-0=0.
+    Therefore g(x)>0 for x!=0.
+  common_errors:
+  - Showing only that x=0 is a critical point without checking it is a minimum.
+  - Concluding g(x) >= 0 without proving the equality case.
+  - Using the second derivative test incorrectly at a point where it gives zero information.
+  hints:
+    rephrase: Study the function g(x) = e^x - 1 - x and where its derivative changes sign.
+    smaller_case: Check the inequality at x = 1, x = -1 and x = 0.
+    key_idea: A function that strictly decreases then strictly increases around a single point has a unique
+      minimum there.
+  check: simplify(diff(exp(x) - 1 - x, x) - (exp(x) - 1))
+  check_ok: true
+- goal: Apply the inequality to t_i = x_i/m - 1 (m the arithmetic mean) and combine the results to get
+    a product inequality.
+  expected: With m = (x_1+...+x_n)/n and t_i = x_i/m - 1, we have sum of t_i = 0 and e^{t_i} >= x_i/m.
+    Multiplying gives e^0 = 1 >= (x_1...x_n)/m^n, so x_1 ... x_n <= m^n.
+  solution: Since e^{t_i} >= 1 + t_i = x_i/m, and all quantities are positive, multiplying the n inequalities
+    gives prod e^{t_i} >= prod(x_i/m). The left side is e^{sum t_i} = e^0 = 1 because sum t_i = (sum x_i)/m
+    - n = 0. So prod x_i <= m^n.
+  common_errors:
+  - Forgetting that sum of t_i equals zero.
+  - Multiplying inequalities whose terms can be negative, which is invalid.
+  - Writing e^{sum t_i} as sum of e^{t_i}.
+  hints:
+    rephrase: Define t_i = x_i/m - 1 and apply the inequality from part one to each t_i.
+    smaller_case: Take n = 2 and compute t_1 + t_2 directly.
+    key_idea: Exponentials turn sums into products, so summing the t_i to zero makes the product of the
+      exponentials equal to 1.
+  check: simplify(((x1/m-1)+(x2/m-1)+(x3/m-1)).subs(m, (x1+x2+x3)/3))
+  check_ok: true
+- goal: Conclude the AM-GM inequality and identify when equality holds.
+  expected: Taking n-th roots gives (x_1...x_n)^{1/n} <= (x_1+...+x_n)/n. Equality holds exactly when
+    all x_i are equal, because equality in e^{t_i} >= 1+t_i forces t_i = 0, i.e. x_i = m for all i.
+  solution: From prod x_i <= m^n with x_i > 0, take the n-th root. Equality in the product step requires
+    each e^{t_i} = 1 + t_i, which by part one holds only when t_i = 0, so every x_i equals the mean m.
+    Conversely if all x_i are equal, both sides are equal.
+  common_errors:
+  - Stating equality holds whenever the sum is fixed rather than when all x_i are equal.
+  - Forgetting to take the n-th root to recover the geometric mean.
+  - Not justifying why equality in the product forces equality in each factor.
+  hints:
+    rephrase: Take the n-th root of your product inequality, then ask what makes each factor an equality.
+    smaller_case: Look at the case n = 2 with x_1 = x_2 and with x_1 != x_2.
+    key_idea: Each individual inequality e^{t_i} >= 1+t_i is strict unless t_i = 0.
+  check: simplify(exp(0) - 1)
+  check_ok: true
+extensions:
+  '3':
+  - Use e^x >= 1+x to show (1 + x/n)^n <= e^x for x>=0 and for all x with 1+x/n >= 0.
+  '4':
+  - Deduce that ln y <= y - 1 for all y > 0.
+  '5':
+  - Prove directly that for two positive reals sqrt(ab) <= (a+b)/2 with equality iff a=b, and check your
+    argument matches the general case.
+spoken_vocab:
+- e to the x
+- greater than or equal to
+- one plus x
+- equality at x equals zero
+- AM-GM inequality
+- arithmetic mean
+- geometric mean
+- x bar
+- x sub i
+- n positive reals
+- product
+- n-th root
+- sum of t i
+- e to the sum
+- strictly decreasing
+- strictly increasing
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 2
+  minutes: 15
+  flags: []
+  tagline: Classic exp-inequality route to AM-GM; well-structured proof with hint.
+  priority: 81
+  rank: 253
+  tier: B
+  category: juan
+  d10: 5.5
+  real: 6.5
+  by: deepseek-v4.1-flash-free
+tags:
+- proof
+- inequalities
+- exponentials_and_logarithms

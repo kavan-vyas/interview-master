@@ -1,0 +1,99 @@
+id: cos-line-two-roots-sin-solvable
+title: Two roots of cos x = αx + β force sin x = −α to be solvable
+topics:
+- calculus
+- monotonicity
+- trigonometry
+- intermediate value theorem
+warmup: true
+answer_source: generated
+statement: Given $\cos x - x\alpha - \beta = 0$ has 2 solutions, show that $\sin x = -\alpha$ has a solution.
+stages:
+- goal: Let $g(x)=\cos x - \alpha x - \beta$. Show that if $|\alpha|>1$ then $g$ is strictly monotone,
+    so the equation has at most one solution.
+  expected: $g'(x) = -\sin x - \alpha$. If $\alpha>1$, then $g'(x)\le 1-\alpha<0$ for all $x$, so $g$
+    is strictly decreasing. If $\alpha<-1$, then $g'(x)\ge -1-\alpha>0$ for all $x$, so $g$ is strictly
+    increasing. Either way $g$ has at most one zero.
+  solution: 'Differentiate: $g''(x) = -\sin x - \alpha$. Since $-1\le\sin x\le 1$: if $\alpha>1$ then
+    $g''(x)\le 1-\alpha<0$ everywhere, so $g$ is strictly decreasing. If $\alpha<-1$ then $g''(x)\ge -1-\alpha>0$
+    everywhere, so $g$ is strictly increasing. A strictly monotone function takes each value at most once,
+    so $g(x)=0$ has at most one solution when $|\alpha|>1$.'
+  common_errors:
+  - Dropping the $-\alpha$ term when differentiating $\alpha x$
+  - Using the bound on $\sin$ incorrectly, e.g. treating $-\sin x-\alpha$ as having a sign change when
+    $|\alpha|>1$
+  - Concluding monotonicity from $|\alpha|\le 1$ instead of $|\alpha|>1$
+  - Forgetting that a strictly monotone function has at most one zero
+  hints:
+    rephrase: Let g be the left-hand side. Ask how fast g changes and whether that rate can ever switch
+      sign.
+    smaller_case: Take alpha = 2 and picture how many times the straight line can meet the cosine curve.
+    key_idea: A continuous function whose derivative never changes sign is strictly monotone, so it crosses
+      zero at most once.
+  check: diff(cos(x) - a*x - b, x) - (-sin(x) - a)
+  check_ok: true
+- goal: Conclude that $|\alpha|\le 1$ and hence that $\sin x=-\alpha$ has a solution.
+  expected: Two solutions exist, so $|\alpha|\le 1$ (contrapositive of stage 1). Then $-\alpha\in[-1,1]$,
+    and since $\sin$ is continuous and takes the values $-1$ and $1$ on $\mathbb{R}$, the intermediate
+    value theorem gives $x$ with $\sin x=-\alpha$.
+  solution: By stage 1, $|\alpha|>1$ would give at most one solution, contradicting the two given solutions.
+    So $|\alpha|\le 1$, i.e. $-1\le -\alpha\le 1$. The function $\sin$ is continuous with $\sin(-\pi/2)=-1$
+    and $\sin(\pi/2)=1$. By the intermediate value theorem on $[-\pi/2,\pi/2]$, every value in $[-1,1]$
+    is attained, so $\sin x=-\alpha$ has a solution.
+  common_errors:
+  - Writing $\sin x = \alpha$ instead of $\sin x = -\alpha$
+  - Stating only that $\alpha = 0$ works, instead of all $|\alpha|\le 1$
+  - Claiming $\sin$ takes every real value
+  - Not justifying that $\sin$ attains all values in $[-1,1]$
+  hints:
+    rephrase: If the equation cannot have two solutions when |alpha| is large, what does the two-solution
+      assumption force about alpha? Which values must -alpha lie in for sine to hit it?
+    smaller_case: 'Check alpha = 0: does sin x = 0 have a solution? Then check alpha = 1.5: can sin x
+      equal -1.5?'
+    key_idea: The sine function takes exactly the values in [-1, 1], and continuity lets it reach every
+      value in between.
+  check: sin(asin(-a)) + a
+  check_ok: true
+extensions:
+  '3':
+  - 'Show that the conclusion can fail for a single solution: find a line with $|\alpha|>1$ meeting $y=\cos
+    x$ exactly once and check that $\sin x=-\alpha$ has no solution.'
+  '4':
+  - Explain why the two-solution hypothesis is needed by finding $\alpha,\beta$ where $\cos x=\alpha x+\beta$
+    has exactly one solution with $|\alpha|\le 1$.
+  '5':
+  - Determine all $(\alpha,\beta)$ for which $\cos x=\alpha x+\beta$ has exactly two solutions and describe
+    the set in the $(\alpha,\beta)$ plane.
+spoken_vocab:
+- cosine x minus x alpha minus beta equals zero
+- two solutions
+- sine x equals minus alpha
+- alpha
+- beta
+- absolute value of alpha
+- derivative
+- monotone
+- intermediate value theorem
+- contrapositive
+- greater than one
+- less than or equal to one
+source: past-interviews/Actual Past Interview Questions/G1.jpg
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 2
+  minutes: 12
+  flags: []
+  tagline: Monotonicity via the derivative forces |α|≤1, elegantly linking two roots to sin's range.
+  priority: 75
+  rank: 275
+  tier: B
+  category: past-interviews
+  d10: 5.0
+  real: 5.5
+  by: deepseek-v4.1-flash-free
+tags:
+- proof
+- trigonometry
+- differentiation

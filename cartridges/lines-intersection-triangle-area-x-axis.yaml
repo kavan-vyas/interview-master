@@ -1,0 +1,100 @@
+id: lines-intersection-triangle-area-x-axis
+title: Triangle bounded by two lines and the x-axis
+topics:
+- straight lines
+- intersection
+- area
+- coordinate geometry
+warmup: true
+answer_source: pdf
+statement: The lines $y = 2x + 1$ and $y = -x + 7$ meet at the point $P$. What is the area of the triangle
+  bounded by the two lines and the $x$-axis?
+stages:
+- goal: Find the coordinates of the intersection point P.
+  expected: (2, 5)
+  solution: Set 2x + 1 = -x + 7, so 3x = 6 and x = 2. Then y = 2(2) + 1 = 5. So P = (2, 5).
+  common_errors:
+  - Making a sign error when moving the x terms across, e.g. 3x = 8.
+  - Finding x correctly but substituting into the wrong line to get y (fine if consistent, but check both).
+  hints:
+    rephrase: At P both equations hold at once. What can you set equal to what?
+    smaller_case: 'Try a simpler pair: y = x and y = 1. Where do they meet?'
+    key_idea: Equate the two expressions for y, solve for x, then substitute back.
+  check: (x-2)**2 + (y-5)**2
+  check_ok: false
+- goal: Find where each line meets the x-axis. Give x = the x-intercept of y = 2x + 1, and y = the x-intercept
+    of y = -x + 7.
+  expected: (-1/2, 7)
+  solution: 'On the x-axis y = 0. For y = 2x + 1: 0 = 2x + 1 gives x = -1/2. For y = -x + 7: 0 = -x +
+    7 gives x = 7. So the x-intercepts are -1/2 and 7.'
+  common_errors:
+  - Solving 0 = 2x + 1 and getting x = 1/2 (sign error).
+  - Reading the y-intercepts (1 and 7) instead of the x-intercepts.
+  - Mixing up which intercept belongs to which line.
+  hints:
+    rephrase: What is y equal to at every point on the x-axis?
+    smaller_case: For a line y = mx + c, how do you find where it crosses the x-axis?
+    key_idea: Set y = 0 in each line's equation and solve for x.
+  check: (2*x+1)**2 + (y-7)**2
+  check_ok: false
+- goal: Find the area of the triangle with vertices at the two x-intercepts and P.
+  expected: 75/4
+  solution: The base lies on the x-axis from -1/2 to 7, so its length is 7 - (-1/2) = 15/2. The height
+    is the y-coordinate of P, which is 5. Area = (1/2)(15/2)(5) = 75/4 square units.
+  common_errors:
+  - Forgetting the factor 1/2 in the triangle area formula, giving 75/2.
+  - Using the x-coordinate of P (2) as the height.
+  - Using the base 7 instead of 7 - (-1/2) = 15/2.
+  hints:
+    rephrase: What is the base of this triangle, and how far is the opposite vertex from it?
+    smaller_case: Suppose the base were 4 units and the height 5. What would the area be?
+    key_idea: The base is the segment of the x-axis between the two intercepts. The height is the perpendicular
+      distance from P to the x-axis.
+  check: 4*x - 75
+  check_ok: false
+extensions:
+  '3':
+  - Find the area of the triangle bounded by the two lines and the y-axis.
+  - Find the perpendicular distance from P to the x-axis.
+  '4':
+  - Find the area of the triangle with vertices at P and the points where the two lines meet the line
+    y = x.
+  - Find the coordinates of the point where y = 2x + 1 meets y = x.
+  '5':
+  - Find the acute angle between the two lines y = 2x + 1 and y = -x + 7, giving your answer as arctan
+    of a number.
+  - Find the equation of the line through P that is perpendicular to y = 2x + 1.
+spoken_vocab:
+- y equals two x plus one
+- y equals minus x plus seven
+- point P
+- x axis
+- y axis
+- intercept
+- triangle
+- area
+- square units
+- base
+- height
+- half
+- minus one half
+- seven
+- three x equals six
+source: kclms/kclms-specimen-mcq-4.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 2
+  parts: 3
+  minutes: 5
+  flags: []
+  tagline: Clean coordinate-geometry steps, but mostly routine computation with little discussion.
+  priority: 41
+  rank: 573
+  tier: D
+  category: kclms
+  d10: 2.0
+  real: 3.0
+  by: haiku
+tags:
+- coordinate_geometry

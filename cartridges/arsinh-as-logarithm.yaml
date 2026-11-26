@@ -1,0 +1,96 @@
+id: arsinh-as-logarithm
+title: Inverse hyperbolic sine as a logarithm
+topics:
+- inverse hyperbolic functions
+- logarithms
+- quadratic equations
+- exponentials
+warmup: false
+answer_source: generated
+statement: Prove that $\sinh^{-1}x = \ln\left(x+\sqrt{1+x^2}\right)$.
+stages:
+- goal: Let $y=\sinh^{-1}x$, so $\sinh y=x$. Write this equation in terms of $e^{y}$ and form a quadratic
+    in $e^{y}$.
+  expected: $e^{2y}-2x\,e^{y}-1=0$.
+  solution: From $\frac{e^{y}-e^{-y}}{2}=x$, multiply both sides by $2e^{y}$ to get $e^{2y}-1=2xe^{y}$,
+    so $e^{2y}-2xe^{y}-1=0$.
+  common_errors:
+  - Multiplying by $e^{y}$ instead of $2e^{y}$, which gives the wrong coefficients.
+  - Writing $e^{-y}\cdot e^{y}=e^{y}$ instead of $1$.
+  hints:
+    rephrase: Name the inverse function's value $y$, turn $\sinh y=x$ into an equation in exponentials,
+      then clear the negative power of $e$.
+    smaller_case: Try $x=0$. What does $\sinh y=0$ force $e^{y}$ to be? Check your quadratic against that
+      case.
+    key_idea: Multiply by $e^{y}$ (times 2) to turn $e^{-y}$ into a constant, which gives a quadratic
+      in $e^{y}$.
+  check: simplify(2*exp(y)*((exp(y)-exp(-y))/2 - x) - (exp(2*y) - 2*x*exp(y) - 1))
+  check_ok: true
+- goal: Solve the quadratic for $e^{y}$ and choose the valid root.
+  expected: $e^{y}=x\pm\sqrt{x^{2}+1}$. Since $e^{y}>0$ and $x-\sqrt{x^{2}+1}<0$ for all real $x$, reject
+    the minus root, giving $e^{y}=x+\sqrt{x^{2}+1}$.
+  solution: By the quadratic formula, $e^{y}=\frac{2x\pm\sqrt{4x^{2}+4}}{2}=x\pm\sqrt{x^{2}+1}$. Because
+    $\sqrt{x^{2}+1}>|x|$, we have $x-\sqrt{x^{2}+1}<0$, which is impossible for $e^{y}>0$.
+  common_errors:
+  - Keeping both roots without checking their sign.
+  - Miscalculating the discriminant as $4x^{2}-4$ instead of $4x^{2}+4$.
+  hints:
+    rephrase: Apply the quadratic formula to the equation in $e^{y}$, then use the fact that an exponential
+      is always positive.
+    smaller_case: Take $x=0$. Solve the quadratic and check which root is positive.
+    key_idea: Compare $\sqrt{x^{2}+1}$ with $|x|$ to determine the sign of $x-\sqrt{x^{2}+1}$.
+  check: simplify((x+sqrt(1+x**2))**2 - 2*x*(x+sqrt(1+x**2)) - 1)
+  check_ok: true
+- goal: Take logarithms to find $y$ and state the result for all real $x$.
+  expected: $y=\ln\left(x+\sqrt{1+x^{2}}\right)$, so $\sinh^{-1}x=\ln\left(x+\sqrt{1+x^{2}}\right)$ for
+    every real $x$, since $x+\sqrt{1+x^{2}}>0$.
+  solution: Since $e^{y}=x+\sqrt{1+x^{2}}>0$, take the natural logarithm of both sides to get $y=\ln(x+\sqrt{1+x^{2}})$.
+    The argument of the logarithm is positive for all real $x$, so the expression is defined everywhere.
+  common_errors:
+  - Failing to check that the argument of the logarithm is positive for all real $x$.
+  - Taking the logarithm of the wrong root, $x-\sqrt{1+x^{2}}$, which is negative.
+  hints:
+    rephrase: Undo the exponential to solve for $y$, and check that the expression you take the log of
+      is positive for every real $x$.
+    smaller_case: Pick $x=-5$ and check the sign of both $x+\sqrt{1+x^2}$ and $x-\sqrt{1+x^2}$.
+    key_idea: Use $\sqrt{1+x^{2}}>|x|$ to show the positive root is always positive, so the logarithm
+      is defined.
+  check: null
+extensions:
+  '3':
+  - Prove that $\cosh^{-1}x=\ln\left(x+\sqrt{x^{2}-1}\right)$ for $x\ge 1$.
+  '4':
+  - Show that $\frac{d}{dx}\sinh^{-1}x=\frac{1}{\sqrt{1+x^{2}}}$ using the logarithmic form.
+  '5':
+  - Prove that $\tanh^{-1}x=\frac{1}{2}\ln\frac{1+x}{1-x}$ for $|x|<1$.
+spoken_vocab:
+- inverse hyperbolic sine
+- arsinh
+- natural logarithm
+- square root of one plus x squared
+- quadratic formula
+- discriminant
+- positive root
+- e to the y
+- e to the minus y
+- reject the negative root
+source: past-interviews/Actual Past Interview Questions/Maths Trinity Hall Cambridge 2005.doc
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 3
+  minutes: 10
+  flags: []
+  tagline: Quadratic in e^y with root choice; domain and inverse discussion.
+  priority: 71
+  rank: 362
+  tier: C
+  category: past-interviews
+  d10: 3.5
+  real: 4.5
+  by: deepseek-v4.1-flash-free
+tags:
+- hyperbolic_functions
+- exponentials_and_logarithms
+- algebra_and_functions

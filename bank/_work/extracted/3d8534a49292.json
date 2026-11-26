@@ -1,0 +1,65 @@
+[
+ {
+  "q": "Assign the 7 colors of the rainbow with codes $0$ to $6$, and let $X_i$ be the color code of prisoner $i$. How many guesses can 7 prisoners make?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "zhou-quant/zhou-quant-guide.pdf#2"
+ },
+ {
+  "q": "What is the derivative of $y=(\\ln x)^{\\ln x}$?",
+  "kind": "maths",
+  "answer": "Take logs: $\\ln y=\\ln x\\,\\ln(\\ln x)$. Differentiating with the product and chain rules gives $\\frac{1}{y}\\frac{dy}{dx}=\\frac{\\ln(\\ln x)+1}{x}$, so $\\frac{dy}{dx}=\\frac{y}{x}\\left(\\ln(\\ln x)+1\\right)$.",
+  "short": true,
+  "source": "zhou-quant/zhou-quant-guide.pdf#2"
+ },
+ {
+  "q": "Without calculating the numerical values, which is larger, $e^{\\pi}$ or $\\pi^{e}$?",
+  "kind": "maths",
+  "answer": "Take logs and compare $\\frac{\\ln x}{x}$ at $x=e$ and $x=\\pi$. The function $\\frac{\\ln x}{x}$ is decreasing for $x>e$, and $\\pi>e$, so $\\frac{\\ln\\pi}{\\pi}<\\frac{1}{e}$, which gives $e^{\\pi}>\\pi^{e}$.",
+  "short": true,
+  "source": "zhou-quant/zhou-quant-guide.pdf#2"
+ },
+ {
+  "q": "What is the limit of $\\frac{e^x}{x^2}$ as $x\\to\\infty$, and what is the limit of $x^2\\ln x$ as $x\\to 0^+$?",
+  "kind": "maths",
+  "answer": "Both limits are obtained with L'H\u00f4pital's rule. $\\lim_{x\\to\\infty}\\frac{e^x}{x^2}=\\infty$ (applying the rule twice). $\\lim_{x\\to 0^+}x^2\\ln x=0$ (rewrite as $\\frac{\\ln x}{x^{-2}}$ and apply the rule).",
+  "short": true,
+  "source": "zhou-quant/zhou-quant-guide.pdf#2"
+ },
+ {
+  "q": "What is the integral of $\\ln(x)$?",
+  "kind": "maths",
+  "answer": "Integration by parts with $u=\\ln x$ and $v=x$ gives $\\int\\ln x\\,dx=x\\ln x-x+C$.",
+  "short": true,
+  "source": "zhou-quant/zhou-quant-guide.pdf#2"
+ },
+ {
+  "q": "What is the integral of $\\sec(x)$ from $x=0$ to $x=\\frac{\\pi}{6}$?",
+  "kind": "maths",
+  "answer": "Using $\\int\\sec x\\,dx=\\ln|\\sec x+\\tan x|+C$, the integral is $\\ln(\\sec\\frac{\\pi}{6}+\\tan\\frac{\\pi}{6})-\\ln(\\sec 0+\\tan 0)=\\ln\\sqrt{3}$.",
+  "short": true,
+  "source": "zhou-quant/zhou-quant-guide.pdf#2"
+ },
+ {
+  "q": "Suppose two cylinders of equal radius $r$ intersect at right angles, and their central axes also intersect. What is the volume of the intersection?",
+  "kind": "maths",
+  "answer": "Cut by planes perpendicular to the $z$-axis. The cross-section is a square with side $2\\sqrt{r^2-z^2}$, giving area $4(r^2-z^2)$ in the region. Integrating over the intersection with symmetry gives $V=8\\int_0^r\\left(r^2-z^2\\right)dz\\cdot 2$ simplified to $V=\\frac{16}{3}r^3$. Alternatively, the intersection contains an inscribed sphere of radius $r$ and each cross-section is contained in a square, so the volume is $\\frac{16}{3}r^3$.",
+  "short": false,
+  "source": "zhou-quant/zhou-quant-guide.pdf#2"
+ },
+ {
+  "q": "The snow began to fall some time before noon at a constant rate. A snow plow was sent out at noon to clear a road. The plow removed snow at a constant volume per minute. At 1 pm it had moved 2 miles, and at 2 pm it had moved 3 miles. When did the snow begin to fall?",
+  "kind": "maths",
+  "answer": "Let the snow begin $T$ hours before noon. The plow speed is $v=\\frac{c_1}{c_2(t+T)}$. Integrating gives $c_1\\ln\\frac{1+T}{T}=2c_1\\ldots$ equivalently $\\left(\\frac{1+T}{T}\\right)^2=\\frac{2+T}{T}\\cdot\\frac{3}{2}$ reduces to $T^2-T+1=0$ under the source's setup, which the source solves as $T=\\frac{\\sqrt{5}-1}{2}$ hours before noon.",
+  "short": false,
+  "source": "zhou-quant/zhou-quant-guide.pdf#2"
+ },
+ {
+  "q": "If $X$ is a standard normal random variable, $X\\sim N(0,1)$, what is $E[X\\mid X>0]$?",
+  "kind": "maths",
+  "answer": "$E[X\\mid X>0]=\\frac{1}{P(X>0)}\\int_0^\\infty x\\,\\frac{1}{\\sqrt{2\\pi}}e^{-x^2/2}\\,dx$. Substitution $u=-\\frac{x^2}{2}$ gives the integral $\\frac{1}{\\sqrt{2\\pi}}$. Since $P(X>0)=\\frac{1}{2}$, the result is $\\sqrt{\\frac{2}{\\pi}}$.",
+  "short": false,
+  "source": "zhou-quant/zhou-quant-guide.pdf#2"
+ }
+]

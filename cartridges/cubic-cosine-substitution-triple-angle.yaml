@@ -1,0 +1,113 @@
+id: cubic-cosine-substitution-triple-angle
+title: Solving x^3 - 3x = 1 via x = 2cos(theta)
+topics:
+- trigonometry
+- triple angle identity
+- cubic equations
+- substitution
+- cosine equations
+warmup: false
+answer_source: generated
+statement: Consider the equation $x^3-3x=1$. (a) By substituting $x=2\cos\theta$, show that this equation
+  is equivalent to $\cos 3\theta=\frac{1}{2}$. (b) Hence find all three real roots of the cubic. (c) Why
+  did the substitution $x=2\cos\theta$ work here, what feature of the cubic suggested it?
+stages:
+- goal: Substitute $x=2\cos\theta$ into $x^3-3x$ and show the equation becomes $\cos3\theta=\frac12$.
+  expected: $x^3-3x=8\cos^3\theta-6\cos\theta=2(4\cos^3\theta-3\cos\theta)=2\cos3\theta$, so the equation
+    $x^3-3x=1$ becomes $2\cos3\theta=1$, i.e. $\cos3\theta=\frac12$.
+  solution: 'With $x=2\cos\theta$: $x^3=8\cos^3\theta$ and $3x=6\cos\theta$. So $x^3-3x=2(4\cos^3\theta-3\cos\theta)$.
+    The triple-angle identity $\cos3\theta=4\cos^3\theta-3\cos\theta$ gives $x^3-3x=2\cos3\theta$. Setting
+    this equal to 1 gives $\cos3\theta=\frac12$. Each step is reversible, so the equations are equivalent.'
+  common_errors:
+  - Forgetting the factor of 2 when expanding $(2\cos\theta)^3$ or $3x$.
+  - Using a wrong triple-angle formula, such as $\cos3\theta=\cos^3\theta-\cos\theta$.
+  - Claiming equivalence without noting that each step is reversible.
+  hints:
+    rephrase: Substitute and expand the left side, then compare the result with a standard identity for
+      $\cos$ of a multiple of an angle.
+    smaller_case: Compute $(2\cos\theta)^2$ and $2\cos2\theta$ and see how they relate.
+    key_idea: Look for a multiple-angle identity that writes $\cos n\theta$ as a polynomial in $\cos\theta$.
+  check: expand_trig(2*cos(3*t) - ((2*cos(t))**3 - 3*(2*cos(t))))
+  check_ok: true
+- goal: Find all real solutions of $\cos3\theta=\frac12$ and hence all three real roots of the cubic.
+  expected: $3\theta=\pm\frac\pi3+2k\pi$, so $\theta=\pm\frac\pi9+\frac{2k\pi}{3}$. The three distinct
+    values of $\cos\theta$ give the roots $x=2\cos\frac\pi9,\;2\cos\frac{5\pi}9,\;2\cos\frac{7\pi}9$.
+  solution: Since $\cos\phi=\frac12$ exactly when $\phi=\pm\frac\pi3+2k\pi$, we need $3\theta=\pm\frac\pi3+2k\pi$,
+    so $\theta=\pm\frac\pi9+\frac{2k\pi}3$. Up to repetition of $\cos\theta$ (cosine is even and $2\pi$-periodic),
+    the distinct values of $\theta$ are $\frac\pi9,\frac{5\pi}9,\frac{7\pi}9$. These give $x=2\cos\frac\pi9,\;2\cos\frac{5\pi}9,\;2\cos\frac{7\pi}9$.
+    Since a cubic has at most three roots, these are all of them. As a check, the sum of the roots is
+    $0$, matching the absent $x^2$ term.
+  common_errors:
+  - Keeping only the solution $3\theta=\frac\pi3$ and missing the negative branch.
+  - Omitting the $2k\pi$ periodicity and finding only one or two roots.
+  - Confusing degrees and radians in the final values.
+  hints:
+    rephrase: 'Solve a cosine equation: which angles have a cosine equal to one half, and how do the solutions
+      repeat?'
+    smaller_case: Find all $\phi$ in $[0,2\pi)$ with $\cos\phi=\frac12$.
+    key_idea: Treat $3\theta$ as the single unknown angle, solve for it, then divide by 3 and check which
+      values give distinct roots.
+  check: 2*cos(3*pi/9) - 1
+  check_ok: true
+- goal: Explain why the substitution $x=2\cos\theta$ is natural for this cubic.
+  expected: The cubic $x^3-3x$ has exactly the form $2\cos3\theta$ after substituting $x=2\cos\theta$,
+    because of the triple-angle identity. The constant 1 lies in $[-2,2]$, which is why the equation has
+    three real roots rather than one.
+  solution: The left side $x^3-3x$ has the same coefficients (up to scaling) as the triple-angle polynomial
+    $4c^3-3c$, where $c=\frac x2$. Writing $x=2c$ gives $x^3-3x=2(4c^3-3c)$, which matches $2\cos3\theta$
+    when $c=\cos\theta$. The substitution works because $|c|\le1$ can be parametrised by $\theta$, and
+    the constant 1 is within range of $2\cos3\theta$, so there are three real solutions.
+  common_errors:
+  - Saying the substitution is a general method that works for any cubic.
+  - Missing the role of the constraint $|1|\le 2$ in guaranteeing three real roots.
+  - Describing the substitution as arbitrary, without linking it to the triple-angle identity.
+  hints:
+    rephrase: Compare the cubic's coefficients with the polynomial that appears in a known trigonometric
+      identity.
+    smaller_case: Use $x=2\cos\theta$ in $x^2-2$ and see which cosine identity it reproduces.
+    key_idea: Ask which polynomial in $\cos\theta$ equals $\cos n\theta$, and whether the cubic has that
+      shape after scaling.
+  check: null
+extensions:
+  '3':
+  - For $|c|<2$, find all three real roots of $x^3-3x=c$ in terms of $\arccos\frac c2$.
+  - Verify that the cubic $x^3-3x-1=0$ has three distinct real roots using its discriminant, without trigonometry.
+  '4':
+  - Show that the roots $2\cos\frac\pi9$, $2\cos\frac{5\pi}9$, $2\cos\frac{7\pi}9$ satisfy Vieta's relations
+    for $x^3-3x-1=0$.
+  - Explain how the discriminant of $x^3+px+q$ relates to the number of real roots, and apply it to $x^3-3x-c$.
+  '5':
+  - Relate $x=2\cos\theta$ to the Chebyshev polynomial $T_3$ and explain why $2\cos n\theta$ satisfies
+    a recurrence in $n$.
+  - Use the same substitution to solve $x^3-3x=c$ for $|c|>2$ with hyperbolic functions, and compare the
+    number of real roots in each case.
+spoken_vocab:
+- x cubed minus three x equals one
+- substitute x equals two cosine theta
+- cosine three theta equals one half
+- triple angle identity
+- cosine of pi over nine
+- two cosine five pi over nine
+- two cosine seven pi over nine
+- sum of roots equals zero
+- discriminant
+- Chebyshev polynomial
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Triple-angle identity turns the cubic into cos3θ=1/2, giving three real roots.
+  priority: 91
+  rank: 130
+  tier: A
+  category: juan
+  d10: 5.5
+  real: 8.5
+  by: deepseek-v4.1-flash-free
+tags:
+- trigonometry
+- roots_of_polynomials

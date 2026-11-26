@@ -1,0 +1,75 @@
+id: product-rule-x-sin-2x
+title: Differentiate x sin 2x
+topics:
+- differentiation
+- product rule
+- chain rule
+warmup: true
+answer_source: generated
+statement: Differentiate $\frac{d}{dx}\left(x\sin 2x\right)$.
+stages:
+- goal: Differentiate the inner factor $\sin 2x$ on its own.
+  expected: $2\cos 2x$
+  solution: Let $u=2x$. Then $\frac{d}{dx}\sin u=\cos u\cdot\frac{du}{dx}=\cos(2x)\cdot 2=2\cos 2x$.
+  common_errors:
+  - Dropping the factor 2 from the chain rule and giving $\cos 2x$.
+  - Writing $2\cos x$ instead of $2\cos 2x$.
+  - Writing $-2\cos 2x$ by confusing sine with cosine.
+  hints:
+    rephrase: What is the derivative of a sine of some expression, multiplied by the derivative of that
+      expression?
+    smaller_case: Differentiate $\sin 3x$ on its own.
+    key_idea: 'Chain rule: outer derivative evaluated at the inner function, times the derivative of the
+      inner function.'
+  check: sp.diff(sp.sin(2*x), x) - 2*sp.cos(2*x)
+  check_ok: null
+- goal: Apply the product rule to $x\sin 2x$ using the result from the previous stage.
+  expected: $\sin 2x + 2x\cos 2x$
+  solution: With $u=x$ and $v=\sin 2x$, $(uv)'=u'v+uv'=1\cdot\sin 2x+x\cdot 2\cos 2x=\sin 2x+2x\cos 2x$.
+  common_errors:
+  - Multiplying the two derivatives together, giving $2\cos 2x$.
+  - Omitting the $\sin 2x$ term, giving only $2x\cos 2x$.
+  - Forgetting that $\frac{d}{dx}x=1$ and writing $x\cos 2x$ for the first term.
+  hints:
+    rephrase: Two functions are multiplied together. Which rule applies, and what do you differentiate
+      first?
+    smaller_case: Differentiate $x e^{x}$.
+    key_idea: 'Product rule: differentiate one factor while keeping the other fixed, do that twice, then
+      add the two results.'
+  check: sp.diff(x*sp.sin(2*x), x) - (sp.sin(2*x) + 2*x*sp.cos(2*x))
+  check_ok: null
+extensions:
+  '3':
+  - Differentiate $x^{2}\sin 2x$.
+  '4':
+  - Differentiate $x\cos(x^{2})$.
+  '5':
+  - Differentiate $x^{x}$ for $x>0$.
+spoken_vocab:
+- d by d x
+- x times sine of two x
+- sine two x
+- two x
+- cosine
+- product rule
+- chain rule
+- derivative
+source: past-interviews/Actual Past Interview Questions/G4.jpg
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 2
+  minutes: 3
+  flags:
+  - trivial
+  tagline: Routine chain and product rule; recall-level, no depth.
+  priority: 17
+  rank: 681
+  tier: D
+  category: past-interviews
+  d10: 1.5
+  real: 2.0
+  by: haiku
+tags:
+- differentiation

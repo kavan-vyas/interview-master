@@ -1,0 +1,86 @@
+id: sqrt2-irrational
+title: Irrationality of root 2
+topics:
+- irrationality
+- proof by contradiction
+- parity
+- number theory
+warmup: true
+answer_source: generated
+statement: Prove that $\sqrt{2}$ is irrational.
+stages:
+- goal: Set up a proof by contradiction and derive a relation between integers.
+  expected: Assume sqrt(2) = p/q with integers p, q, q not 0 and gcd(p,q) = 1. Then p^2 = 2q^2.
+  solution: Suppose sqrt(2) is rational. Write it in lowest terms as p/q with gcd(p,q) = 1. Squaring gives
+    2 = p^2/q^2, so p^2 = 2q^2.
+  common_errors:
+  - Forgetting to assume the fraction is in lowest terms
+  - Writing sqrt(2) = p/q without stating that p and q are integers
+  hints:
+    rephrase: Start by assuming the opposite of what you want to prove. Then pick a suitable form for
+      the rational number.
+    smaller_case: Could sqrt(4) = 2 be proved irrational by the same method? What goes wrong?
+    key_idea: Any rational number can be written in lowest terms, so p and q cannot both be even.
+- goal: Show that p is even.
+  expected: p^2 is even, so p is even. Write p = 2k for an integer k.
+  solution: Since p^2 = 2q^2 is even, p^2 is even. If p were odd then p^2 would be odd, so p is even.
+    Thus p = 2k with k an integer.
+  common_errors:
+  - Asserting p is even without justifying it
+  - Confusing the parity of p with the parity of p^2
+  hints:
+    rephrase: Consider the parity of p itself. What is the square of an odd number?
+    smaller_case: 'Check p=3: is 3^2 odd? Check p=4: is 4^2 even?'
+    key_idea: The square of an odd number is odd, so an even square forces an even base.
+- goal: Derive a contradiction with lowest terms.
+  expected: q^2 = 2k^2, so q is even. Both p and q are even, contradicting gcd(p,q) = 1. Hence sqrt(2)
+    is irrational.
+  solution: Substitute p = 2k into p^2 = 2q^2 to get 4k^2 = 2q^2, so q^2 = 2k^2. Then q^2 is even, so
+    q is even. Both p and q are even, which contradicts gcd(p,q) = 1. The assumption was false, so sqrt(2)
+    is irrational.
+  common_errors:
+  - Failing to state the contradiction explicitly
+  - Dividing incorrectly when simplifying 4k^2 = 2q^2
+  hints:
+    rephrase: Substitute p = 2k back into the equation and simplify.
+    smaller_case: If 4k^2 = 2q^2, what is q^2 in terms of k?
+    key_idea: Show q is also even, then compare with the assumption that p/q is in lowest terms.
+extensions:
+  '3':
+  - Prove that sqrt(3) is irrational.
+  '4':
+  - Prove that sqrt(2) + sqrt(3) is irrational.
+  '5':
+  - Prove that log base 2 of 3 is irrational.
+spoken_vocab:
+- square root of two
+- irrational
+- rational
+- proof by contradiction
+- lowest terms
+- gcd
+- integers
+- p over q
+- squared
+- even
+- odd
+source: past-interviews/Actual Past Interview Questions/H1.jpg
+verified: false
+rating:
+  quality: 2
+  difficulty: 3
+  parts: 3
+  minutes: 5
+  flags:
+  - trivial
+  tagline: Duplicate of the root-two proof; recall of a standard template.
+  priority: 23
+  rank: 655
+  tier: D
+  category: past-interviews
+  d10: 2.0
+  real: 5.0
+  by: haiku
+tags:
+- proof
+- number_theory

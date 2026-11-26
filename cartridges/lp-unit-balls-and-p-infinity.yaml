@@ -1,0 +1,94 @@
+id: lp-unit-balls-and-p-infinity
+title: Unit balls |x|^p+|y|^p=1 and the limit p to infinity
+topics:
+- p-norms
+- sketching curves
+- limits
+- inequalities
+- sequences of curves
+warmup: false
+answer_source: generated
+statement: Sketch $|x|^p+|y|^p=1$ for $p=\frac12,1,2,4$. What happens as $p\to\infty$?
+stages:
+- goal: Sketch the curves for p=1/2, 1, 2, 4 and describe how they change with p.
+  expected: 'p=1: the diamond with vertices (+-1,0),(0,+-1). p=2: the unit circle. p=4: a rounded square
+    lying between the circle and the square with corners (+-1,+-1). p=1/2: an astroid-like star with cusps
+    at (+-1,0),(0,+-1), concave towards the origin and lying inside the diamond. For example, (1/4,1/4)
+    lies on p=1/2 because sqrt(1/4)+sqrt(1/4)=1. The curves nest and move outward as p increases.'
+  solution: 'For each p, find intercepts: setting y=0 gives |x|^p=1, so x=+-1 for every p. On the diagonal
+    x=y the equation is 2x^p=1, so x=2^(-1/p). This is 1/4 when p=1/2... more precisely (1/4)^(1/2)*2=1
+    checks (1/4,1/4). For p=1 the diagonal point is 1/2, for p=2 it is 1/sqrt(2), for p=4 it is 2^(-1/4).
+    Since 1/2 < 0.707 < 0.841 the diagonal points increase with p. Curves for p<1 are concave, p=1 gives
+    straight edges, and p>1 gives convex curves.'
+  common_errors:
+  - Drawing the p=1/2 curve as bulging outwards, like an ellipse.
+  - Confusing the p=2 curve with a square, or the p=4 curve with a circle.
+  - Missing that the intercepts (+-1,0),(0,+-1) are the same for every p.
+  hints:
+    rephrase: Find where each curve meets the axes, then compare where each curve crosses the diagonal
+      y=x.
+    smaller_case: Take p=2 and p=1 and compare the points where x=y.
+    key_idea: Compare |x|^p+|y|^p with |x|+|y| for points with 0<|x|,|y|<1. The sign of the difference
+      depends on whether p is greater or less than 1.
+  check: sqrt(Rational(1,4))+sqrt(Rational(1,4))-1
+  check_ok: true
+- goal: State what the curves approach as p tends to infinity and justify it.
+  expected: As p tends to infinity the curves tend to the square with corners (+-1,+-1), that is the set
+    max(|x|,|y|)=1 from the warm-up. For any point with max(|x|,|y|)=M, (|x|^p+|y|^p)^(1/p) tends to M,
+    so the level set tends to max(|x|,|y|)=1.
+  solution: Let M=max(|x|,|y|), with the other coordinate at most M in absolute value. Then M^p <= |x|^p+|y|^p
+    <= 2M^p, so M <= (|x|^p+|y|^p)^(1/p) <= 2^(1/p)*M. As p tends to infinity, 2^(1/p) tends to 1, so
+    the (1/p)-power tends to M. Hence the limiting curve is max(|x|,|y|)=1.
+  common_errors:
+  - Claiming the limit is the diamond, which is the case p=1.
+  - Forgetting the bound involving 2^(1/p) and missing that the corners converge correctly.
+  - Saying the limit is the circle because p=2 is a circle.
+  hints:
+    rephrase: Consider what happens to a number like 2^(1/p) as p grows.
+    smaller_case: Test the corner (1,1) for large p and see what the expression approaches.
+    key_idea: The p-th root of a sum of p-th powers behaves like the largest term when p is large.
+  check: Limit(2**(1/p),p,oo)-1
+  check_ok: true
+extensions:
+  '3':
+  - Sketch |x|^p+|y|^p=1 for p=1/3 and explain why the region it bounds is not convex.
+  '4':
+  - Show that for p>1 the unit ball of |x|^p+|y|^p is convex, and for p<1 it is not.
+  '5':
+  - Find the area enclosed by |x|^p+|y|^p=1 for p=1 and p=2, and compare with the limit as p tends to
+    infinity.
+spoken_vocab:
+- absolute x to the power p plus absolute y to the power p equals one
+- half
+- infinity
+- p tends to infinity
+- diamond
+- circle
+- square
+- astroid
+- cusp
+- two to the power one over p
+- root two
+- one over p
+- convex
+- concave
+source: jaymin/Jaymin Interview (1).pdf#p57
+verified: false
+rating:
+  quality: 6
+  difficulty: 3
+  parts: 2
+  minutes: 8
+  flags:
+  - needs_diagram
+  tagline: Geometry and limit intuition; p<1 non-convex shapes invite discussion.
+  priority: 72
+  rank: 308
+  tier: B
+  category: jaymin
+  d10: 2.5
+  real: 6.5
+  by: haiku
+tags:
+- curve_sketching
+- limits_and_approximation

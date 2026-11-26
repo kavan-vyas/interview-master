@@ -1,0 +1,117 @@
+id: tortoise-hare-patch
+title: Tortoise and hare race to the vegetable patch
+topics:
+- kinematics
+- simultaneous equations
+- quadratics
+- speed distance time
+warmup: false
+answer_source: pdf
+statement: A tortoise and a hare race to a vegetable patch a distance $X$ km from the starting post and
+  back. The tortoise sets off immediately at a steady $v$ km/h. The hare sleeps for half an hour, then
+  sets off at a steady $V$ km/h. The hare overtakes the tortoise half a kilometre from the starting post,
+  then sleeps for half an hour at the patch and returns at pace $V$. One and a quarter kilometres from
+  the patch she passes the tortoise on her return journey, while the tortoise is still heading towards
+  the patch. (i) Show that $V=\dfrac{10}{4X-9}$ and find $v$ in terms of $X$. (ii) Find $X$ if the hare
+  arrives back at the starting post one and a half hours after the start. (iii) How long does the tortoise
+  take to reach the vegetable patch?
+stages:
+- goal: Set up the meeting equations, eliminate the unknown times, and show that V = 10/(4X - 9) and v
+    = 10/(4X + 1).
+  expected: V = 10/(4X - 9) and v = 10/(4X + 1)
+  solution: 'Let T1 and T2 be the times of the two overtakings, measured from the start. Tortoise at 1/2
+    km: v T1 = 1/2. Hare at 1/2 km (her running time is T1 - 1/2): V(T1 - 1/2) = 1/2. Tortoise at X -
+    5/4 km: v T2 = X - 5/4. On the return, the hare has run X out and 5/4 back, a total of X + 5/4 km
+    in running time T2 - 1 (she sleeps one hour in total), so V(T2 - 1) = X + 5/4. From the first two
+    equations 1/v = 2T1 and 1/V = 2T1 - 1, so 1/v = 1/V + 1, i.e. v = V/(V + 1). Then T2 = (X - 5/4)(V
+    + 1)/V, and substituting into the last equation gives (X - 5/4)(V + 1) - V = X + 5/4, so V(X - 9/4)
+    = 5/2, i.e. V = 10/(4X - 9). Then v = V/(V + 1) = 10/(4X + 1).'
+  common_errors:
+  - Forgetting the hare's half-hour initial sleep when writing her running time
+  - Using only the outward distance X for the second meeting instead of the total running distance X +
+    5/4
+  - Sign slip when eliminating v from the reciprocal relations
+  hints:
+    rephrase: 'Track the hare''s running time, not the clock time: her sleeps add up to one hour in total.'
+    smaller_case: Find the tortoise's time to reach the 1/2 km mark alone, then write the hare's equation
+      for the same overtaking.
+    key_idea: Each meeting gives two equations of the form distance = speed x time for both runners. Eliminate
+      the unknown meeting times, then the tortoise's speed.
+  check: (V*(4*X-9)-10)**2 + (v*(4*X+1)-10)**2
+  check_ok: false
+- goal: Use the hare's total journey time of 1.5 hours to find X, rejecting any non-physical root.
+  expected: X = 5/2 km (the root X = -1/4 is rejected)
+  solution: The hare's total time is 1/2 (initial sleep) + X/V (outward) + 1/2 (patch sleep) + X/V (return)
+    = 3/2, so 2X/V = 1/2 and V = 4X. Substituting into V = 10/(4X - 9) gives 4X(4X - 9) = 10, i.e. 8X^2
+    - 18X - 5 = 0, so X = (18 +/- 22)/16, giving X = 5/2 or X = -1/4. A distance must be positive, so
+    X = 5/2 (with V = 10 and v = 10/11).
+  common_errors:
+  - Omitting one of the two half-hour sleeps from the total time
+  - Accepting X = -1/4 as a physical answer
+  - Using V from part (i) without linking it to the time condition
+  hints:
+    rephrase: 'Add up every segment of the hare''s trip: the initial sleep, the outward run, the patch
+      sleep and the return run.'
+    smaller_case: Suppose the total time were 2 hours instead of 1.5 hours. Which equation would change,
+      and how?
+    key_idea: The hare's running time for the round trip is 2X/V. Use the total-time condition to link
+      V and X, then combine with part (i).
+  check: X - sp.Rational(5,2)
+  check_ok: null
+- goal: Find how long the tortoise takes to reach the vegetable patch.
+  expected: 11/4 hours (2 hours 45 minutes)
+  solution: The tortoise covers X = 5/2 km at v = 10/11 km/h, so the time is (5/2)/(10/11) = 11/4 hours,
+    which is 2 hours 45 minutes.
+  common_errors:
+  - Using the hare's speed V instead of the tortoise's speed v
+  - Using X + 5/4 or X - 5/4 as the tortoise's distance
+  - Giving the time in hours without converting to hours and minutes when asked
+  hints:
+    rephrase: Which runner's speed governs when the tortoise arrives at the patch?
+    smaller_case: A runner going 2 km/h covers 6 km. How long does that take? Apply the same reasoning
+      to the tortoise.
+    key_idea: Time = distance / speed, using the tortoise's own speed v from part (i) and the value of
+      X from part (ii).
+  check: sp.Rational(5,2)/sp.Rational(10,11) - sp.Rational(11,4)
+  check_ok: null
+extensions:
+  '3':
+  - Explain why no race of this form can have X = 2 km, using the result from part (i).
+  '4':
+  - If the tortoise's speed were fixed at 3 km/h, what would X have to be for the hare's total time to
+    be 2 hours?
+  '5':
+  - Find the time at which the tortoise reaches the patch if the hare sleeps for one hour at the patch
+    instead of half an hour.
+spoken_vocab:
+- X
+- V
+- v
+- T one
+- T two
+- four X minus nine
+- ten over four X minus nine
+- four X plus one
+- eight X squared minus eighteen X minus five equals zero
+- two X over V
+- half
+- one and a quarter
+- eleven over four
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#16
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Multi-part meeting-point modelling with consistency checks and a quadratic root.
+  priority: 81
+  rank: 203
+  tier: B
+  category: siklos
+  d10: 4.0
+  real: 3.0
+  by: haiku
+tags:
+- algebra_and_functions

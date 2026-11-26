@@ -1,0 +1,100 @@
+id: ode-nonhomogeneous-undetermined-coefficients
+title: Non-homogeneous ODE with constant and linear forcing
+topics:
+- ordinary differential equations
+- non-homogeneous equations
+- method of undetermined coefficients
+- particular solution
+warmup: false
+answer_source: pdf
+statement: What are the solutions of the ODEs $y''+y'+y=1$ and $y''+y'+y=x$? What is a particular solution
+  in each case?
+stages:
+- goal: Find a particular solution of $y''+y'+y=1$.
+  expected: $y_p=1$
+  solution: Try a constant $y_p=k$. Then $y_p'=y_p''=0$, so $k=1$. Thus $y_p=1$ is a particular solution.
+  common_errors:
+  - Trying a more complicated form such as $A\cos x$ when a constant suffices.
+  - Forgetting that $y$ itself contributes to the left-hand side.
+  - Solving $y''+y'+y=1$ as if it were homogeneous and writing $y=0$.
+  hints:
+    rephrase: If the right-hand side is constant, what form should the particular solution take?
+    smaller_case: Consider $y''+y=k$. Which constant $y$ makes the left-hand side equal to $k$?
+    key_idea: 'Undetermined coefficients: match the form of the forcing term with an unknown-coefficient
+      guess and substitute it into the ODE.'
+  check: simplify(diff(ans,x,2)+diff(ans,x)+ans-1)
+  check_ok: false
+- goal: Find a particular solution of $y''+y'+y=x$.
+  expected: $y_p=x-1$
+  solution: Try $y_p=mx+n$. Then $y_p'=m$ and $y_p''=0$, so $m+mx+n=x$. Comparing coefficients gives $m=1$
+    and $m+n=0$, so $n=-1$. Thus $y_p=x-1$.
+  common_errors:
+  - Forgetting that $y_p'=m$ contributes to the constant term.
+  - Getting $n=+1$ from a sign error in $m+n=0$.
+  - Using $y_p=mx$ with no constant term, which cannot work.
+  hints:
+    rephrase: The forcing is linear in $x$. What do the derivatives of a linear guess contribute, and
+      which terms must match?
+    smaller_case: Consider $y''+y=x$. Which linear guess works there?
+    key_idea: Compare coefficients of $x$ and of the constant term separately after substituting the guess
+      into the ODE.
+  check: simplify(diff(ans,x,2)+diff(ans,x)+ans-x)
+  check_ok: false
+- goal: Write the general solution of $y''+y'+y=x$ (and state the corresponding form for the right-hand
+    side $1$).
+  expected: $y=e^{-x/2}\left(c_1\cos\frac{\sqrt{3}}{2}x+c_2\sin\frac{\sqrt{3}}{2}x\right)+x-1$. For the
+    right-hand side $1$, the general solution is $y=e^{-x/2}\left(c_1\cos\frac{\sqrt{3}}{2}x+c_2\sin\frac{\sqrt{3}}{2}x\right)+1$.
+  solution: General solution = homogeneous solution + particular solution. The homogeneous solution is
+    $e^{-x/2}\left(c_1\cos\frac{\sqrt{3}}{2}x+c_2\sin\frac{\sqrt{3}}{2}x\right)$. Adding $x-1$ for the
+    right-hand side $x$, or $1$ for the right-hand side $1$, gives the general solution.
+  common_errors:
+  - Omitting the homogeneous part.
+  - Adding the particular solution to only one of the two terms in the homogeneous part.
+  - Using the particular solution from the wrong right-hand side.
+  hints:
+    rephrase: What is the general structure of the solution to a linear non-homogeneous ODE?
+    smaller_case: Suppose $y_h$ solves the homogeneous equation and $y_p$ solves the non-homogeneous one.
+      What solves the sum of the two equations?
+    key_idea: 'Superposition: solutions of a linear ODE add the homogeneous solution to any particular
+      solution.'
+  check: simplify(diff(ans,x,2)+diff(ans,x)+ans-x)
+  check_ok: false
+extensions:
+  '3':
+  - Find the general solution of $y''+y'+y=e^{x}$.
+  '4':
+  - Find a particular solution of $y''+y'+y=\cos x$.
+  '5':
+  - Show that if $y_1$ and $y_2$ both solve $y''+y'+y=x$, then $y_1-y_2$ solves the homogeneous equation,
+    and explain why the general solution is a particular solution plus the homogeneous solution.
+spoken_vocab:
+- y double prime plus y prime plus y equals one
+- y double prime plus y prime plus y equals x
+- particular solution
+- homogeneous part
+- undetermined coefficients
+- try a constant
+- try m x plus n
+- m
+- n
+- e to the minus x over two
+- square root of three over two
+- superposition
+source: zhou-quant/zhou-quant-guide.pdf#4
+verified: false
+rating:
+  quality: 4
+  difficulty: 4
+  parts: 3
+  minutes: 10
+  flags: []
+  tagline: Standard undetermined-coefficients practice; the linear forcing adds a small twist.
+  priority: 51
+  rank: 527
+  tier: C
+  category: zhou-quant
+  d10: 3.5
+  real: 3.0
+  by: haiku
+tags:
+- differential_equations

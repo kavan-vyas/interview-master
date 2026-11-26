@@ -1,0 +1,83 @@
+id: zero-point-nine-recurring
+title: Is 0.9 recurring equal to 1?
+topics:
+- geometric progressions
+- infinite series
+- convergence
+warmup: true
+answer_source: generated
+statement: What is $0.\dot{9}$? Prove it using the geometric progression formula.
+stages:
+- goal: Write $0.\dot{9}$ as an infinite geometric series and identify its first term and common ratio.
+  expected: $0.\dot{9}=\frac{9}{10}+\frac{9}{100}+\frac{9}{1000}+\cdots=\sum_{n=1}^{\infty}9\cdot 10^{-n}$,
+    with first term $a=\frac{9}{10}$ and common ratio $r=\frac{1}{10}$.
+  solution: Each digit 9 sits in a place value 10^{-n}, so the decimal is the sum of 9/10, 9/100, 9/1000,
+    and so on. Each term is the previous term multiplied by 1/10, so this is geometric with a = 9/10 and
+    r = 1/10.
+  common_errors:
+  - Using $r=\frac{9}{10}$ instead of the ratio between consecutive terms.
+  - Forgetting that the series starts at n=1, so the first term is 9/10 and not 9/100.
+  hints:
+    rephrase: Split the decimal into its digits by place value and look at how each term relates to the
+      one before it.
+    smaller_case: Write out only the first two terms, 0.9 and 0.09. What do you multiply the first by
+      to get the second?
+    key_idea: A series whose consecutive terms have a constant ratio is geometric. Identify the first
+      term and that ratio.
+  check: null
+- goal: Apply the sum formula for a geometric series with $|r|<1$ and conclude the value of $0.\dot{9}$.
+  expected: $S=\frac{a}{1-r}=\frac{9/10}{1-1/10}=\frac{9/10}{9/10}=1$, so $0.\dot{9}=1$.
+  solution: With a = 9/10 and r = 1/10, |r|<1 so the formula applies. S = (9/10)/(9/10) = 1. Hence 0.999...
+    = 1.
+  common_errors:
+  - Computing $1-r$ incorrectly as $\frac{1}{10}$ or $\frac{9}{10}$.
+  - Concluding only that $0.\dot{9}$ is close to 1 rather than exactly equal to 1.
+  hints:
+    rephrase: Once you have a and r, which formula gives the sum of the whole infinite series, and when
+      is it valid?
+    smaller_case: Find the sum of the partial sums 9/10 + 9/100 by the finite formula first, and see whether
+      the pattern approaches the infinite formula.
+    key_idea: The sum of an infinite geometric series with first term a and common ratio |r|<1 is a/(1-r).
+  check: Rational(9,10)/(1-Rational(1,10)) - 1
+  check_ok: true
+extensions:
+  '3':
+  - Use the geometric formula to find the rational value of $0.\dot{3}$.
+  - Show that $0.\dot{1}\dot{2}$ (the block 12 repeating) equals $\frac{4}{33}$.
+  '4':
+  - Explain why the geometric sum formula fails when $|r|\ge 1$, for example for $1+2+4+\cdots$.
+  - Explain why $0.\dot{9}=1$ is consistent with the partial sums $0.9,\,0.99,\,0.999,\ldots$ approaching
+    1.
+  '5':
+  - Argue carefully, using epsilon-N, that the limit of the partial sums of $0.\dot{9}$ is 1.
+spoken_vocab:
+- zero point nine recurring
+- dot nine
+- sigma from n equals one to infinity
+- geometric progression
+- common ratio
+- first term
+- one tenth
+- nine tenths
+- partial sum
+- modulus of r less than one
+source: past-interviews/Actual Past Interview Questions/Maths Trinity Hall Cambridge 2005.doc
+verified: false
+rating:
+  quality: 2
+  difficulty: 1
+  parts: 2
+  minutes: 3
+  flags:
+  - trivial
+  tagline: Recall-level geometric series exercise; little discussion or extension.
+  priority: 17
+  rank: 668
+  tier: D
+  category: past-interviews
+  d10: 1.5
+  real: 4.5
+  by: haiku
+tags:
+- sequences_and_series
+- proof

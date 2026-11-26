@@ -1,0 +1,51 @@
+[
+ {
+  "q": "Prove that $n^5 - n$ is divisible by 30 for every integer $n$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p1"
+ },
+ {
+  "q": "Find all integer solutions of $x^2 + y^2 = 3z^2$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p1"
+ },
+ {
+  "q": "Find the last two digits of $7^{2026}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p1"
+ },
+ {
+  "q": "Prove that $\\sqrt{2} + \\sqrt{3}$ is irrational.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p1"
+ },
+ {
+  "q": "Given any $n$ integers $a_1, a_2, \\ldots, a_n$ (not necessarily distinct), prove that some non-empty collection of them has a sum divisible by $n$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p1"
+ },
+ {
+  "q": "Find all integers $n$ such that $n+1$ divides $n^2+7$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p1"
+ },
+ {
+  "q": "How many zeros are there at the end of $100!$?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p1"
+ }
+]

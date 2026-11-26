@@ -1,0 +1,159 @@
+id: primitive-pythagorean-triples
+title: Primitive Pythagorean triples and the hypotenuse 65
+topics:
+- Pythagorean triples
+- parity and squares mod 4
+- coprimality
+- unique factorisation
+- parametrisation
+- sums of two squares
+warmup: false
+answer_source: pdf
+statement: 'A primitive Pythagorean triple is a triple of positive integers $(a,b,c)$ with $a^2+b^2=c^2$
+  and $\gcd(a,b,c)=1$.
+
+
+  (i) Show that exactly one of $a$ and $b$ is even, and that $c$ is odd.
+
+
+  (ii) Suppose $b$ is even. Show that $\frac{c+a}{2}$ and $\frac{c-a}{2}$ are coprime positive integers
+  whose product is $\left(\frac{b}{2}\right)^2$.
+
+
+  (iii) Deduce that $a=m^2-n^2$, $b=2mn$, $c=m^2+n^2$ for some coprime integers $m>n>0$ of opposite parity.
+
+
+  (iv) Find all primitive triples with $c=65$.'
+stages:
+- goal: Show that exactly one of $a,b$ is even and that $c$ is odd.
+  expected: Rules out both even (then $c$ is even too, so $2\mid\gcd(a,b,c)$) and both odd (then $c^2\equiv
+    2 \pmod 4$, impossible since squares are $0$ or $1 \pmod 4$). Hence exactly one of $a,b$ is even,
+    so $c^2=a^2+b^2$ is odd and $c$ is odd.
+  solution: If $a,b$ are both even, then $c^2=a^2+b^2$ is even, so $c$ is even and $2\mid\gcd(a,b,c)$,
+    contradicting primitivity. If $a,b$ are both odd, then $a^2\equiv b^2\equiv 1 \pmod 4$, so $c^2\equiv
+    2 \pmod 4$, but every square is $0$ or $1 \pmod 4$. So exactly one of $a,b$ is even. Then $c^2=a^2+b^2$
+    is odd, so $c$ is odd.
+  common_errors:
+  - Forgetting to rule out both even
+  - Using $\gcd(a,b)$ instead of $\gcd(a,b,c)$ when ruling out both even
+  - Claiming both odd is fine because $1+1=2$ is a legitimate sum, without checking mod $4$
+  - Assuming $c$ odd without using that exactly one of $a,b$ is even
+  hints:
+    rephrase: List the four parity cases for $(a,b)$ and see which survive $\gcd(a,b,c)=1$ and the equation.
+    smaller_case: Look at $(3,4,5)$ and $(5,12,13)$. Which entries are even, and what is the parity of
+      $c$?
+    key_idea: Both even forces $c$ even, breaking primitivity. For both odd, compute $a^2+b^2$ modulo
+      $4$ and compare with the possible values of a square.
+- goal: Show that $u=\frac{c+a}{2}$ and $v=\frac{c-a}{2}$ are coprime positive integers with $uv=\left(\frac{b}{2}\right)^2$.
+  expected: Uses $b$ even $\Rightarrow$ $a,c$ odd so $u,v$ are integers; $c>a$ gives positivity; $uv=\frac{c^2-a^2}{4}=\frac{b^2}{4}$;
+    and a prime $p\mid u,v$ divides $c=u+v$ and $a=u-v$, hence $b^2$ and so $b$, contradicting $\gcd(a,b,c)=1$.
+  solution: Since $b$ is even, (i) gives $a$ and $c$ odd, so $c\pm a$ are even and $u,v$ are integers.
+    Since $c^2=a^2+b^2>a^2$ we have $c>a>0$, so $u,v>0$. Then $uv=\frac{c^2-a^2}{4}=\frac{b^2}{4}=\left(\frac
+    b2\right)^2$. Suppose a prime $p$ divides both $u$ and $v$. Then $p\mid u+v=c$ and $p\mid u-v=a$,
+    so $p\mid c^2-a^2=b^2$, hence $p\mid b$. Then $p\mid\gcd(a,b,c)=1$, a contradiction. So $\gcd(u,v)=1$.
+  check: (64*1-8**2)**2+(gcd(64,1)-1)**2
+  common_errors:
+  - Not explaining why $u,v$ are integers (needs $a,c$ both odd)
+  - Not noting $c>a$ to get $v>0$
+  - Claiming $\gcd(u,v)$ divides $b$ without a prime-by-prime argument
+  - Concluding $\gcd(u,v)=1$ from $\gcd(a,c)=1$ without justification
+  hints:
+    rephrase: Write $c=u+v$ and $a=u-v$, then ask what a common prime factor of $u$ and $v$ would force
+      on $a$, $b$ and $c$.
+    smaller_case: For $(3,4,5)$ compute $u=\frac{c+a}{2}$ and $v=\frac{c-a}{2}$ and check their product
+      against $(b/2)^2$ and their gcd.
+    key_idea: If $p\mid u$ and $p\mid v$, then $p$ divides $c$ and $a$, and $b^2=c^2-a^2$, so $p$ divides
+      all three of $a,b,c$.
+  check_ok: true
+- goal: Deduce the parametrisation $a=m^2-n^2$, $b=2mn$, $c=m^2+n^2$ with $m>n>0$ coprime of opposite
+    parity.
+  expected: 'Coprime positive integers with square product are each squares: $u=m^2$, $v=n^2$. Then $m>n>0$
+    from $a>0$, $\gcd(m,n)=1$, $c=m^2+n^2$, $a=m^2-n^2$, $b=2mn$, and opposite parity because $c$ is odd.'
+  solution: '$u,v$ are coprime positive integers with $uv=(b/2)^2$ a perfect square. By unique factorisation,
+    each prime appears in $uv$ to an even power and appears in only one of $u,v$, so each of $u,v$ is
+    a perfect square: $u=m^2$, $v=n^2$ with $m,n>0$. Since $a=u-v>0$, $m>n$. Any common prime of $m,n$
+    would divide $u,v$, so $\gcd(m,n)=1$. Then $c=u+v=m^2+n^2$, $a=u-v=m^2-n^2$, and $b^2=4uv=(2mn)^2$
+    gives $b=2mn$. As $c$ is odd, $m^2+n^2$ is odd, so $m,n$ have opposite parity.'
+  check: (8**2-1**2-63)**2+(2*8*1-16)**2+(8**2+1**2-65)**2
+  common_errors:
+  - Asserting that a product being a square makes each factor a square without using coprimality
+  - Forgetting to deduce $m>n$ from $a>0$
+  - Forgetting to deduce $\gcd(m,n)=1$
+  - Not deducing opposite parity from $c$ odd
+  hints:
+    rephrase: Use the fact that coprime positive integers whose product is a perfect square must each
+      be perfect squares, then translate back into $a,b,c$.
+    smaller_case: For $(3,4,5)$ compute $u$ and $v$ and take square roots to find $m,n$.
+    key_idea: 'Look at the prime factorisation of $uv$: each prime has even exponent, and by coprimality
+      each prime lies wholly in $u$ or wholly in $v$.'
+  check_ok: true
+- goal: Find all primitive triples with $c=65$.
+  expected: Writes $65=m^2+n^2$ with $m>n>0$ coprime of opposite parity, finds $(m,n)=(8,1)$ and $(7,4)$,
+    giving the triples $(63,16,65)$ and $(33,56,65)$ (taking $b$ even), and verifies them.
+  solution: 'We need $65=m^2+n^2$ with $m>n>0$, coprime, of opposite parity. Testing $n=1,\dots,5$: $65-1=64=8^2$,
+    $65-4=61$, $65-9=56$, $65-16=49=7^2$, $65-25=40$ are the cases, so the only representations are $65=8^2+1^2=7^2+4^2$.
+    Both pairs are coprime with opposite parity. For $(m,n)=(8,1)$: $a=63$, $b=16$. For $(m,n)=(7,4)$:
+    $a=33$, $b=56$. Check: $63^2+16^2=3969+256=4225=65^2$ and $33^2+56^2=1089+3136=4225=65^2$. So, up
+    to swapping $a$ and $b$, the primitive triples with $c=65$ are $(63,16,65)$ and $(33,56,65)$.'
+  check: (63**2+16**2-65**2)**2+(33**2+56**2-65**2)**2+(gcd(63,16)-1)**2+(gcd(33,56)-1)**2
+  common_errors:
+  - Missing the representation $16+49$
+  - Not checking coprimality or opposite parity of $(m,n)$
+  - Stopping the search too early, e.g. not testing $n$ up to $\sqrt{65/2}$
+  - Reporting triples inconsistently or including non-primitive multiples such as $(39,52,65)$ or $(25,60,65)$
+  hints:
+    rephrase: 'Use the parametrisation: find all ways to write $65$ as $m^2+n^2$ with $m>n>0$, then check
+      the conditions.'
+    smaller_case: 'Try $c=13$ or $c=25$ first: which $n$ make $c-n^2$ a perfect square?'
+    key_idea: Only $n<\sqrt{65/2}$ needs testing, i.e. $n\le 5$. For each candidate pair, check coprimality
+      and opposite parity before forming $(m^2-n^2,2mn,65)$.
+  check_ok: true
+extensions:
+  '3':
+  - Find all primitive triples with hypotenuse $c=85$.
+  - Using the parametrisation, find a primitive triple with $b=2mn$ equal to $40$.
+  '4':
+  - Find all primitive triples with $c=25$ and explain why there is only one up to swapping $a$ and $b$.
+  - Show that in any primitive triple, exactly one of $a,b,c$... more precisely, exactly one of $a,b$
+    is divisible by $3$ (and $c$ is not).
+  '5':
+  - Prove that every primitive triple arises from exactly one pair $(m,n)$ with $m>n>0$ coprime of opposite
+    parity, up to swapping $a$ and $b$.
+  - Prove that if $m>n>0$ are coprime of opposite parity, then $(m^2-n^2,2mn,m^2+n^2)$ is a primitive
+    triple.
+spoken_vocab:
+- primitive Pythagorean triple
+- hypotenuse
+- sixty five
+- sixty three
+- sixteen
+- thirty three
+- fifty six
+- gcd of a b c
+- coprime
+- opposite parity
+- m squared minus n squared
+- two m n
+- m squared plus n squared
+- unique factorisation
+- perfect square
+source: jaymin/Jaymin Interview (1).pdf#p9
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 4
+  minutes: 25
+  flags: []
+  tagline: Full parametrisation proof, then a concrete search for c=65.
+  priority: 110
+  rank: 29
+  tier: S
+  category: jaymin
+  d10: 6.0
+  real: 6.5
+  by: haiku
+refined: true
+tags:
+- number_theory
+- proof

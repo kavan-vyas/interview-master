@@ -1,0 +1,111 @@
+id: circle-chord-regions
+title: 'Chords of a circle: counting regions'
+topics:
+- combinatorics
+- counting
+- general position
+- induction
+- binomial coefficients
+warmup: false
+answer_source: generated
+statement: If $n$ points are distributed around the circumference of a circle and each point is joined
+  to every other point by a chord of the circle (assuming that no three chords intersect at a point inside
+  the circle), into how many regions is the circle divided?
+stages:
+- goal: Count the chords and the interior crossing points.
+  expected: There are $\binom{n}{2}$ chords. Each set of four points on the circle gives exactly one interior
+    crossing, so there are $\binom{n}{4}$ interior intersection points.
+  solution: Each chord is determined by a choice of two of the $n$ points, giving $\binom{n}{2}$ chords.
+    Two chords cross inside the circle exactly when their endpoints are four distinct points that alternate
+    around the circle. Any four points on the circle produce exactly one such crossing, so the number
+    of interior crossings is $\binom{n}{4}$.
+  common_errors:
+  - Counting pairs of chords instead of crossings, which gives $\binom{\binom{n}{2}}{2}$ rather than $\binom{n}{4}$.
+  - Counting a crossing for chords sharing an endpoint; those meet on the circle, not inside it.
+  hints:
+    rephrase: How many chords does each pair of points determine? For crossings, think about which groups
+      of points produce two chords that intersect inside.
+    smaller_case: With 4 points on the circle, how many chords are there and how many of them cross inside?
+    key_idea: Two chords cross inside exactly when their four endpoints are all different and interleave
+      around the circle.
+  check: null
+- goal: Count the regions by adding chords one at a time.
+  expected: The number of regions is $1+\binom{n}{2}+\binom{n}{4}$. Start with one region. Each new chord
+    crossing $j$ earlier chords is cut into $j+1$ pieces, each adding a region.
+  solution: Start with 1 region. Add chords one at a time. A new chord that crosses $j$ earlier chords
+    (no three concurrent) is split into $j+1$ arcs, and each arc splits an existing region into two, adding
+    $j+1$ regions. Summing over all chords gives $1+\sum (1+j_i)=1+\binom{n}{2}+\sum j_i$. Each interior
+    crossing is counted once, by the later of its two chords, so $\sum j_i=\binom{n}{4}$.
+  common_errors:
+  - Forgetting the initial region, which gives an off-by-one error.
+  - Counting each crossing twice, once by each chord.
+  - Assuming each chord adds exactly one region regardless of its crossings.
+  hints:
+    rephrase: Build the picture one chord at a time. How many new pieces does a chord create when it passes
+      through existing crossings?
+    smaller_case: For n=3 the three chords form a triangle. Count the regions directly, then check your
+      general count against it.
+    key_idea: Each chord adds one region for each crossing it makes, plus one more. Add these contributions
+      over all chords.
+  check: null
+- goal: Express the count as a single polynomial in $n$.
+  expected: The number of regions is $\frac{n^4-6n^3+23n^2-18n+24}{24}$.
+  solution: 'Expand $\binom{n}{4}=\frac{n(n-1)(n-2)(n-3)}{24}=\frac{n^4-6n^3+11n^2-6n}{24}$ and $\binom{n}{2}=\frac{12n^2-12n}{24}$.
+    Adding $1=\frac{24}{24}$ gives $\frac{n^4-6n^3+23n^2-18n+24}{24}$. Checks: $n=1,2,3,4$ give $1,2,4,8$.'
+  common_errors:
+  - Arithmetic errors when expanding the product $n(n-1)(n-2)(n-3)$.
+  - Forgetting to put $1$ over the common denominator 24.
+  hints:
+    rephrase: Write the two binomial coefficients as polynomials over a common denominator and add them.
+    smaller_case: Substitute n=4 into your polynomial and compare with the region count you can see directly
+      in the picture.
+    key_idea: Put all three terms over the common denominator $4!$ and combine them.
+  check: expand_func(1 + binomial(n,2) + binomial(n,4) - (n**4 - 6*n**3 + 23*n**2 - 18*n + 24)/24)
+  check_ok: true
+extensions:
+  '3':
+  - If one interior point has three chords through it, how does the region count change? Explain your
+    reasoning.
+  - Explain why each set of four points produces exactly one crossing under the no-three-concurrent assumption.
+  '4':
+  - Adding a new point on the circle, how many new regions appear? Express your answer in terms of the
+    current number of points.
+  - Check the formula by counting regions for a regular hexagon with all its diagonals, after noting where
+    three diagonals meet.
+  '5':
+  - Prove the formula by induction on n. What does adding the (n+1)-th point contribute to the count?
+  - Compare with the number of regions formed when $n$ lines are drawn in general position in the plane.
+spoken_vocab:
+- circle
+- points on circumference
+- chords
+- regions
+- binomial n choose 2
+- binomial n choose 4
+- intersection
+- general position
+- n to the fourth
+- over twenty four
+- induction
+- inside the circle
+- concurrent
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Counting regions builds to Moser's formula, with rich extension via interior crossings.
+  priority: 91
+  rank: 132
+  tier: A
+  category: tbo
+  d10: 4.5
+  real: 5.5
+  by: deepseek-v4.1-flash-free
+tags:
+- combinatorics
+- sequences_and_series
+- geometry

@@ -1,0 +1,100 @@
+id: tbo-consecutive-integers-factorial-divisor
+title: Product of Consecutive Integers Divisible by n!
+topics:
+- number theory
+- factorials
+- binomial coefficients
+- divisibility
+- combinatorics
+warmup: false
+answer_source: generated
+statement: Given $n$ consecutive positive integers, show that $n!$ is a factor of their product.
+stages:
+- goal: Write the product of n consecutive positive integers in factorial form.
+  expected: If the first integer is k, the product is P = k(k+1)...(k+n-1) = (k+n-1)!/(k-1)!.
+  solution: The integers are k, k+1, ..., k+n-1. The product of all integers from 1 to k+n-1 is (k+n-1)!.
+    Removing the factors 1 through k-1, whose product is (k-1)!, leaves P = (k+n-1)!/(k-1)!.
+  common_errors:
+  - Off-by-one errors in the upper or lower limit of the factorial, such as writing (k+n)!/k! for the
+    product.
+  - Writing the product as n! times something without identifying that something first.
+  hints:
+    rephrase: Name the smallest of your integers and see which factorial contains the whole product.
+    smaller_case: Take n=2. What do the integers k and k+1 multiply to, as a ratio of factorials?
+    key_idea: 'A run of consecutive integers is a partial factorial: the product from k to k+n-1 is what
+      remains when you cancel the initial segment from a larger factorial.'
+  check: null
+- goal: Rewrite the product as n! times a binomial coefficient.
+  expected: P = n! * C(k+n-1, n), where C(k+n-1, n) = (k+n-1)!/(n! (k-1)!).
+  solution: Start from P = (k+n-1)!/(k-1)!. Multiply and divide by n! to get P = n! * (k+n-1)!/(n! (k-1)!),
+    which is n! times the binomial coefficient C(k+n-1, n).
+  common_errors:
+  - Dividing by n! on the wrong factorial, so the binomial coefficient comes out with the wrong bottom
+    arguments.
+  - Concluding divisibility here without justifying that the binomial coefficient is an integer.
+  hints:
+    rephrase: Try to force an n! into the expression without changing its value.
+    smaller_case: For n=2 and k=3, compute 3*4 and compare it with 2! times a fraction built from factorials.
+    key_idea: Multiply and divide by n!, then recognise the leftover ratio as a standard combinatorial
+      object.
+  check: null
+- goal: Justify that the binomial coefficient is an integer, and conclude.
+  expected: C(k+n-1, n) counts the n-element subsets of a set of k+n-1 elements (or follows from Pascal's
+    rule by induction), so it is an integer. Hence P = n! * (integer), so n! divides P.
+  solution: C(m, n) counts the n-element subsets of an m-element set, which is a nonnegative integer whenever
+    0 <= n <= m. With m = k+n-1 and k>=1, we have m>=n. So C(k+n-1, n) is an integer, and P = n! times
+    that integer is divisible by n!.
+  common_errors:
+  - Assuming a fraction of factorials is an integer without a reason.
+  - Forgetting to check that the binomial coefficient is defined, that is, that k+n-1 >= n, which holds
+    because k>=1.
+  hints:
+    rephrase: What do you know about the number of ways to choose n items out of a bigger collection?
+    smaller_case: Is C(4,2) an integer? Why must it be, whatever the numbers?
+    key_idea: Interpret the binomial coefficient as a count of subsets; a count is always an integer,
+      which gives the divisibility at once.
+  check: null
+extensions:
+  '3':
+  - Show that k(k+1)(k+2) is always divisible by 6 for positive integers k.
+  '4':
+  - Find the quotient when the product n(n+1)...(2n) is divided by n!, and express it in terms of a binomial
+    coefficient.
+  '5':
+  - Show that the product of any n consecutive integers, including those that are zero or negative, is
+    divisible by n!.
+spoken_vocab:
+- n factorial
+- consecutive integers
+- product
+- divides
+- binomial coefficient
+- n choose k
+- choose
+- subsets
+- Pascal's rule
+- induction
+- k plus n minus one
+- factorial of k minus one
+- integer
+- factor
+- divisible by six
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 3
+  minutes: 10
+  flags: []
+  tagline: Standard binomial-coefficient proof; good for combinatorial discussion
+  priority: 61
+  rank: 435
+  tier: C
+  category: tbo
+  d10: 3.5
+  real: 8.0
+  by: haiku
+tags:
+- number_theory
+- combinatorics

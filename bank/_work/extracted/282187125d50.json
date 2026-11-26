@@ -1,0 +1,16 @@
+[
+ {
+  "q": "Which is bigger as $n \\to \\infty$, $2^{2^{n}}$ or $100^{100^{n}}$? Justify your answer.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.36.11.png"
+ },
+ {
+  "q": "i) Graph $f(x)=\\frac{\\sin(x)}{x}$. What is the limit of $f(x)$ as $x$ tends to $0$?\n\nii) Evaluate the following limit: $\\lim_{x\\to 0} x\\ln(x)$ (Hint: You may use l'H\u00f4pital's rule.)\n\niii) Hence or otherwise graph $x^{x}$. Mark all intersections with the axis.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.36.11.png"
+ }
+]

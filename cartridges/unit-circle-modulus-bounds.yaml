@@ -1,0 +1,102 @@
+id: unit-circle-modulus-bounds
+title: Modulus bounds for z on the unit circle
+topics:
+- complex numbers
+- triangle inequality
+- unit circle
+- range of a continuous function
+warmup: false
+answer_source: generated
+statement: Let $z$ be a complex number with $|z|=1$. (a) Show that $|z+1|\le 2$, and determine when equality
+  holds. (b) Find the range of possible values of $|z^2+z+1|$ as $z$ varies over the unit circle.
+stages:
+- goal: Prove |z+1| <= 2 for |z|=1 and identify the equality case.
+  expected: '|z+1| <= |z|+|1| = 2, with equality iff z = 1.'
+  solution: 'By the triangle inequality, $|z+1|\le |z|+|1| = 1+1 = 2$. Equality in the triangle inequality
+    holds iff $z$ and $1$ are nonnegative real multiples of each other. With $|z|=1$, this forces $z=1$.
+    Check: $|1+1|=2$.'
+  common_errors:
+  - Claiming equality at z = -1, which gives |z+1| = 0
+  - Forgetting to use |z| = 1 when applying the triangle inequality
+  - Saying equality holds iff z is real, without the same-direction condition
+  hints:
+    rephrase: Think of z+1 as adding two vectors, one of length |z| and one of length 1. When is the length
+      of the sum as large as possible?
+    smaller_case: Compute |z+1| for z = i and for z = -1 and compare the two values.
+    key_idea: Equality in the triangle inequality requires the two vectors to point in the same direction.
+  check: sp.simplify(sp.Abs(1+1) - 2)
+  check_ok: null
+- goal: Rewrite z^2+z+1 on the unit circle so its modulus is easy to read off.
+  expected: For |z|=1, z^2+z+1 = z(1+2cos(theta)) when z = e^{i theta}, so |z^2+z+1| = |1+2cos(theta)|.
+  solution: Since $|z|=1$, $\bar z = 1/z$, so $z + 1/z = z + \bar z = 2\cos\theta$ when $z=e^{i\theta}$.
+    Then $z^2+z+1 = z\,(z + 1 + 1/z) = z\,(1+2\cos\theta)$. Taking moduli, $|z^2+z+1| = |z|\cdot|1+2\cos\theta|
+    = |1+2\cos\theta|$.
+  common_errors:
+  - Writing |z^2+z+1| = |z|^2+|z|+1 = 3 by misapplying the triangle inequality
+  - Forgetting that 1/z equals the conjugate of z on the unit circle
+  - Dropping the absolute value when simplifying |1+2cos(theta)|
+  hints:
+    rephrase: On the unit circle, what is the conjugate of z written in terms of z alone?
+    smaller_case: Take z = i and check whether z^2+z+1 equals z times a real number.
+    key_idea: Factor z out of z^2+z+1 and pair the leftover z with 1/z.
+  check: sp.simplify((z**2 + z + 1 - z*(1 + 2*sp.cos(t))).subs(z, sp.exp(sp.I*t)).rewrite(sp.cos))
+  check_ok: null
+- goal: Find the range of |1+2cos(theta)| as theta varies, and justify that every value in it is attained.
+  expected: The range is the closed interval [0, 3].
+  solution: Since $\cos\theta\in[-1,1]$, $1+2\cos\theta\in[-1,3]$, so $|1+2\cos\theta|\in[0,3]$. The value
+    3 is attained at $\cos\theta=1$ (z = 1). The value 0 is attained at $\cos\theta=-1/2$ (z = e^{2 pi
+    i/3}). The unit circle is connected and the map is continuous, so the image is an interval, and the
+    range is exactly $[0,3]$.
+  common_errors:
+  - Giving an interval without checking that both endpoints are attained
+  - Ignoring that 1+2cos(theta) can be negative before taking the absolute value
+  - Using a crude bound from the triangle inequality as the exact range
+  hints:
+    rephrase: As theta runs over a full turn, what values can cos(theta) take? What does that make 1+2cos(theta)?
+    smaller_case: Find |1+2cos(theta)| at theta = 0 and at theta = pi.
+    key_idea: Find the range of the inner expression 1+2cos(theta) first, then take the absolute value.
+      Continuity on a connected set fills in the values between the endpoints.
+  check: sp.simplify(sp.Abs(1+2*sp.cos(0)) - 3 + sp.Abs(1+2*sp.cos(2*sp.pi/3)))
+  check_ok: null
+extensions:
+  '3':
+  - Find all z on the unit circle with z^2+z+1 = 0.
+  - For |z|=1, find the set of z with |z^2+z+1| = 1.
+  '4':
+  - For |z|=1, show that |z^3 - 1| <= 2 and find all z where equality holds.
+  '5':
+  - For |z|=1 and real a, find the maximum of |z^2 + a z + 1| over the unit circle, in terms of a.
+spoken_vocab:
+- z
+- modulus of z
+- absolute value of z
+- unit circle
+- z squared plus z plus one
+- cosine theta
+- e to the i theta
+- conjugate of z
+- triangle inequality
+- equality case
+- range
+- one plus two cosine theta
+- two pi i over three
+- pi
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 2
+  minutes: 10
+  flags: []
+  tagline: Factorising z(1+2cosθ) turns the modulus into a clean range question.
+  priority: 71
+  rank: 319
+  tier: B
+  category: juan
+  d10: 3.5
+  real: 4.5
+  by: haiku
+tags:
+- complex_numbers
+- inequalities

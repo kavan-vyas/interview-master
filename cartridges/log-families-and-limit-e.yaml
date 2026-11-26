@@ -1,0 +1,132 @@
+id: log-families-and-limit-e
+title: Logarithm families, log_x e, and the limit of (1+1/n)^n
+topics:
+- logarithms
+- change of base
+- curve sketching
+- limits
+- the number e
+warmup: false
+answer_source: generated
+statement: '(a) On the same set of axes, sketch the graphs of: i. $y=\ln x$ ii. $y=\log_{10} x$ iii. $y=\log_2
+  x$. (b) Why do they look the way they do? (c) Now sketch $y=\log_x e$ on a new set of axes and reason
+  what you do. (d) Hence compute $\lim_{n\to\infty}\left(1 + \frac{1}{n}\right)^n$.'
+stages:
+- goal: Describe the features common to all three graphs (domain, intercepts, asymptotes, monotonicity)
+    and how they differ.
+  expected: All three have domain x > 0 and pass through (1, 0). Each has the vertical asymptote x = 0,
+    with y → −∞ as x → 0⁺. All are increasing and unbounded above. For x > 1 the order is log₂x > ln x
+    > log₁₀x. For 0 < x < 1 the order reverses. Each curve is a vertical stretch of ln x.
+  solution: log_b 1 = 0 for every base, so all pass through (1, 0). For base b > 1, log_b x → −∞ as x
+    → 0⁺, and log_b x is increasing. Since log_b x = ln x / ln b, the curves differ by the constant factor
+    1/ln b. Because ln 2 ≈ 0.693 and ln 10 ≈ 2.303, log₂x is about 1.44 times ln x and log₁₀x is about
+    0.43 times ln x. Multiplying by a positive constant preserves the order for x > 1 and reverses it
+    for 0 < x < 1.
+  common_errors:
+  - Claiming the graphs cross the x-axis at different points.
+  - Getting the order wrong for x > 1, for example thinking base 10 is steepest.
+  - Drawing a horizontal asymptote instead of a vertical asymptote at x = 0.
+  hints:
+    rephrase: Find where each graph crosses the x-axis, then look at what happens near x = 0 and for large
+      x.
+    smaller_case: Compare the values of the three functions at x = 2 and at x = 1/2 only.
+    key_idea: Changing the base only multiplies the graph by a constant. Comparing those constants tells
+      you which curve is steeper.
+  check: sp.limit(sp.log(x,10), x, 0, dir='+') == -sp.oo and sp.log(1,10) == 0
+  check_ok: null
+- goal: Explain why the three shapes are the same up to vertical scaling, using the change of base formula.
+  expected: 'log_b x = ln x / ln b. Each graph is the graph of ln x multiplied by 1/ln b, a fixed constant
+    for each base. Factors: 1/ln 2 ≈ 1.44 for base 2, 1/ln 10 ≈ 0.43 for base 10, and 1 for the natural
+    log. A larger base gives a flatter curve for x > 1.'
+  solution: Change of base gives log_b x = ln x / ln b. Since ln b is a fixed constant for each b, each
+    curve is a vertical scaling of ln x by the factor 1/ln b. Since ln b increases with b, 1/ln b decreases
+    with b, so larger bases give flatter curves for x > 1.
+  common_errors:
+  - Thinking the base changes the shape, rather than scaling it.
+  - Inverting the constant, using ln b instead of 1/ln b.
+  - Forgetting that the scaling factor depends only on the base.
+  hints:
+    rephrase: Use the change of base formula to rewrite log_2 x in terms of natural logarithms.
+    smaller_case: Compute log_2 8 and ln 8, and compare their ratio.
+    key_idea: Write everything in terms of ln x. The base only appears as a constant multiplier.
+  check: sp.simplify(sp.log(x,2) - sp.log(x)/sp.log(2)) == 0
+  check_ok: null
+- goal: Rewrite y = log_x e in terms of ln x, then sketch it, listing its asymptotes, its zeros (if any),
+    and the points where y = ±1.
+  expected: 'y = 1/ln x for x > 0, x ≠ 1. Vertical asymptote at x = 1: y → +∞ as x → 1⁺ and y → −∞ as
+    x → 1⁻. Horizontal asymptote y = 0 as x → ∞ (approached from above) and as x → 0⁺ (approached from
+    below). The curve never meets the x-axis. It passes through (e, 1) and (1/e, −1). It is decreasing
+    on each of (0, 1) and (1, ∞).'
+  solution: log_x e = ln e / ln x = 1/ln x. As x → 1⁺, ln x → 0⁺ so y → +∞, and as x → 1⁻, y → −∞. For
+    x > 1, ln x increases from 0 to ∞, so y decreases from +∞ to 0⁺. For 0 < x < 1, ln x runs from −∞
+    up to 0⁻, so y runs from 0⁻ down to −∞, which is also decreasing. At x = e, ln x = 1 and y = 1. At
+    x = 1/e, ln x = −1 and y = −1.
+  common_errors:
+  - Writing log_x e as ln x instead of 1/ln x.
+  - Missing the vertical asymptote at x = 1, or forgetting that x = 1 is excluded from the domain.
+  - Saying y → +∞ as x → 0⁺ rather than y → 0⁻.
+  hints:
+    rephrase: Apply the change of base formula to log_x e, with e as the argument and x as the base.
+    smaller_case: Evaluate the expression at x = 2 and at x = 1/2, and note its sign.
+    key_idea: Where ln x is zero the reciprocal blows up. Where ln x is very large in size, the reciprocal
+      is small.
+  check: sp.simplify(sp.log(sp.E, x) - 1/sp.log(x)) == 0
+  check_ok: null
+- goal: Compute the limit of (1 + 1/n)^n as n → ∞ by taking logarithms and interpreting the resulting
+    limit as a derivative of ln.
+  expected: The limit is e.
+  solution: Let L_n = n ln(1 + 1/n), so (1 + 1/n)^n = e^{L_n}. Put t = 1/n, so L = ln(1 + t)/t. Since
+    ln 1 = 0, this is (ln(1 + t) − ln 1)/t, the difference quotient of ln at x = 1. As t → 0⁺ it tends
+    to d/dx (ln x) at x = 1, which is 1. So L_n → 1 and the limit is e¹ = e.
+  common_errors:
+  - Concluding the limit is 1 by replacing (1 + 1/n)^n with 1^n.
+  - Forgetting to take logs, or dropping the factor n.
+  - Evaluating the limit of ln(1 + t)/t as ln 1 = 0 instead of recognising a derivative.
+  hints:
+    rephrase: Take the natural log of the expression and find what it tends to.
+    smaller_case: Evaluate the expression numerically for n = 1000 on a calculator and look at the result.
+    key_idea: Look at ln(1 + t)/t as t → 0 and interpret it as a difference quotient of the natural log.
+  check: sp.simplify(sp.limit((1+1/x)**x, x, sp.oo) - sp.E) == 0
+  check_ok: null
+extensions:
+  '3':
+  - Show that log_b x and log_c x differ by a constant factor for any bases b, c > 1, and find that factor.
+  '4':
+  - Show that (1 + 1/n)^n is increasing in n and bounded above, so the limit exists without assuming its
+    value.
+  '5':
+  - Find the first correction term in the expansion of (1 + 1/n)^n in powers of 1/n.
+spoken_vocab:
+- natural log of x
+- log base ten of x
+- log base two of x
+- log base x of e
+- change of base
+- vertical asymptote
+- x tends to zero from above
+- limit as n tends to infinity
+- one plus one over n, all to the power n
+- e
+- y equals one over ln x
+- ln one equals zero
+source: waleed/Curve Sketching Questions - Waleed.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 5
+  parts: 4
+  minutes: 15
+  flags:
+  - needs_diagram
+  tagline: Log families and log_x e lead naturally to deriving the limit e via a derivative.
+  priority: 84
+  rank: 166
+  tier: B
+  category: waleed
+  d10: 4.5
+  real: 5.0
+  by: haiku
+tags:
+- exponentials_and_logarithms
+- curve_sketching
+- limits_and_approximation

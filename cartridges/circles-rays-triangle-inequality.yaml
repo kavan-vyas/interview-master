@@ -1,0 +1,154 @@
+id: circles-rays-triangle-inequality
+title: Loci in the Argand diagram and the triangle inequality
+topics:
+- complex numbers
+- loci
+- circles
+- Argand diagram
+- triangle inequality
+- modulus
+- argument
+warmup: false
+answer_source: generated
+statement: (i) Show by transforming to cartesian coordinates that $|z-c|=r$, where $c$ is a complex number,
+  describes a circle or a point. (ii) Show that $\arg z=\alpha$, where $\alpha$ is a constant, describes
+  a line segment. (iii) Show by means of a diagram that $|z_1+z_2|\le|z_1|+|z_2|$ for any two complex
+  numbers. Deduce that $|z_1-z_3|\le|z_1|+|z_3|$ and $|z_4-z_2|\ge|z_4|-|z_2|$ for any complex numbers
+  $z_1,z_2,z_3,z_4$. Under what circumstances does $|z_1+z_2|=|z_1|+|z_2|$ hold?
+stages:
+- goal: Show that $|z-c|=r$ with $c=a+ib$ describes a circle (or a point) in the Argand diagram (part
+    i).
+  expected: $|z-c|^2=(x-a)^2+(y-b)^2=r^2$, which is a circle with centre $(a,b)$ and radius $r$ when $r>0$,
+    and the single point $c$ when $r=0$. There are no solutions when $r<0$.
+  solution: Let $z=x+iy$ and $c=a+ib$. Then $|z-c|^2=(z-c)(\bar z-\bar c)=(x-a)^2+(y-b)^2$. Setting this
+    equal to $r^2$ gives the equation of a circle with centre $(a,b)$ and radius $r$ for $r>0$. If $r=0$
+    the only solution is $z=c$. Since a modulus is never negative, $r<0$ gives no solutions.
+  common_errors:
+  - Forgetting that $|z-c|^2$ must be expanded using the conjugate, not by squaring $x-a$ and $y-b$ as
+    separate complex numbers
+  - Omitting the degenerate cases $r=0$ and $r<0$
+  hints:
+    rephrase: Write $z$ and $c$ in real-imaginary form, then take squared moduli of $z-c$.
+    smaller_case: Take $c=0$ and describe $|z|=2$ in words.
+    key_idea: The squared modulus of $w=p+iq$ is $p^2+q^2$, so turn the modulus equation into a Cartesian
+      equation.
+  check: expand(((x+I*y)-(a+I*b))*((x-I*y)-(a-I*b)) - ((x-a)**2+(y-b)**2))
+  check_ok: true
+- goal: Show that $\arg z=\alpha$ with $\alpha$ constant describes a half-line (ray) from the origin,
+    and comment on the 'line segment' description (part ii).
+  expected: 'The locus is the ray from the origin at angle $\alpha$, excluding the origin: $\{t(\cos\alpha+i\sin\alpha):
+    t>0\}$. This is a half-line, not a line segment, because it is unbounded.'
+  solution: Write $z=r(\cos\theta+i\sin\theta)$ with $r>0$ and $\theta=\alpha$ for points on this locus,
+    since the argument of $z$ is $\alpha$. So $z=r(\cos\alpha+i\sin\alpha)$ with $r>0$, which is a ray
+    from $0$ in direction $\alpha$, with the origin itself excluded because $\arg 0$ is undefined. In
+    Cartesian form, $x=r\cos\alpha$ and $y=r\sin\alpha$, so $y\cos\alpha=x\sin\alpha$ with $x\cos\alpha+y\sin\alpha>0$.
+    A line segment has two endpoints, but this set has only one endpoint at $0$, which is excluded, and
+    extends to infinity. So 'line segment' in the question should be read as 'half-line'.
+  common_errors:
+  - Calling the locus a line segment, when it is an unbounded half-line
+  - Including the origin in the locus
+  - Forgetting the condition $x\cos\alpha+y\sin\alpha>0$ that selects one half of the full line through
+    the origin
+  hints:
+    rephrase: Write $z$ in modulus-argument form using $\arg z=\alpha$. What values can the modulus take?
+    smaller_case: Take $\alpha=\pi/4$ and find which points satisfy $\arg z=\pi/4$.
+    key_idea: Fixing the argument fixes the direction from the origin, but not the distance, so the modulus
+      is free to vary over positive values.
+- goal: Show by a diagram that $|z_1+z_2|\le|z_1|+|z_2|$ (part iii).
+  expected: Plot $0$, $z_1$ and $z_1+z_2$. The triangle with vertices $0$, $z_1$ and $z_1+z_2$ has sides
+    $|z_1|$, $|z_2|$ and $|z_1+z_2|$, and the third side of a triangle is at most the sum of the other
+    two. Algebraically, $|z_1+z_2|^2=|z_1|^2+|z_2|^2+2\operatorname{Re}(z_1\bar z_2)\le(|z_1|+|z_2|)^2$.
+  solution: In the Argand diagram, the vector from $0$ to $z_1$ has length $|z_1|$, and the vector from
+    $z_1$ to $z_1+z_2$ is $z_2$, with length $|z_2|$. The third side, from $0$ to $z_1+z_2$, has length
+    $|z_1+z_2|$. The triangle inequality says the direct side is no longer than the path through $z_1$.
+    For an algebraic version, $|z_1+z_2|^2=(z_1+z_2)(\bar z_1+\bar z_2)=|z_1|^2+|z_2|^2+2\operatorname{Re}(z_1\bar
+    z_2)$. Since $\operatorname{Re}(w)\le|w|$ and $|z_1\bar z_2|=|z_1||z_2|$, the right side is at most
+    $(|z_1|+|z_2|)^2$.
+  common_errors:
+  - Asserting $|z_1+z_2|=|z_1|+|z_2|$ in general, which is false
+  - Confusing $|z_1+z_2|$ with $|z_1-z_2|$ when drawing the triangle
+  hints:
+    rephrase: Draw $z_1$ as an arrow from the origin, then draw $z_2$ as an arrow starting from the tip
+      of $z_1$. What is the third side of the resulting triangle?
+    smaller_case: Take $z_1=1$ and $z_2=i$ and compare $|z_1+z_2|$ with $|z_1|+|z_2|$.
+    key_idea: Place the vectors head to tail so that $z_1+z_2$ is the third side of a triangle.
+- goal: Deduce $|z_1-z_3|\le|z_1|+|z_3|$ and $|z_4-z_2|\ge|z_4|-|z_2|$ from part (iii).
+  expected: For the first, apply part (iii) with $z_2$ replaced by $-z_3$, giving $|z_1-z_3|\le|z_1|+|-z_3|=|z_1|+|z_3|$.
+    For the second, write $z_4=(z_4-z_2)+z_2$ and apply part (iii) to get $|z_4|\le|z_4-z_2|+|z_2|$.
+  solution: Apply the inequality $|u+v|\le|u|+|v|$ with $u=z_1$ and $v=-z_3$. Since $|-z_3|=|z_3|$, this
+    gives $|z_1-z_3|\le|z_1|+|z_3|$. For the second, set $u=z_4-z_2$ and $v=z_2$, so $u+v=z_4$. Then $|z_4|\le|z_4-z_2|+|z_2|$,
+    and rearranging gives $|z_4-z_2|\ge|z_4|-|z_2|$.
+  common_errors:
+  - Using $|-z_3|=-|z_3|$
+  - Rearranging the second inequality with the wrong sign
+  hints:
+    rephrase: Substitute a suitable expression for $z_2$ in part (iii). For the second inequality, what
+      is the sum of the two pieces?
+    smaller_case: Take $z_3=1$ and check what $|z_1-1|$ is bounded by.
+    key_idea: Replace one of the summands in the triangle inequality by its negative, or split $z_4$ as
+      a sum.
+- goal: Determine when $|z_1+z_2|=|z_1|+|z_2|$ holds (equality case of part iii).
+  expected: Equality holds exactly when $z_1=0$ or $z_2=0$, or when $z_1$ and $z_2$ are non-zero and have
+    the same argument, equivalently $z_2=tz_1$ for some real $t>0$. In other words, $z_1$ and $z_2$ lie
+    on the same ray from the origin.
+  solution: Equality in the algebraic argument requires $\operatorname{Re}(z_1\bar z_2)=|z_1\bar z_2|$,
+    i.e. $z_1\bar z_2$ is real and non-negative. If $z_1,z_2\ne0$ this means $\arg z_1=\arg z_2$, so $z_2=tz_1$
+    with $t=|z_2|/|z_1|>0$. If $z_1=0$ or $z_2=0$, equality holds trivially. Conversely, if $z_2=tz_1$
+    with $t\ge 0$, then $|z_1+z_2|=(1+t)|z_1|=|z_1|+|z_2|$.
+  common_errors:
+  - Stating the condition as $z_1=z_2$ only, which misses the case $z_2=tz_1$ with $t>0$
+  - Forgetting the zero cases
+  hints:
+    rephrase: Look at when the inequality step $\operatorname{Re}(w)\le|w|$ becomes an equality, where
+      $w=z_1\bar z_2$.
+    smaller_case: Take $z_1=1$ and find all $z_2$ for which $|1+z_2|=1+|z_2|$.
+    key_idea: Equality in the triangle inequality means the two vectors point in the same direction, so
+      the triangle collapses to a straight line.
+extensions:
+  '3':
+  - Show that $|z-c|=r$ with $r<0$ has no solutions, and explain why this case is excluded.
+  '4':
+  - Show that $|z_1-z_2|\ge\big||z_1|-|z_2|\big|$ for all complex $z_1,z_2$.
+  '5':
+  - Describe the locus $|z-1|=|z+1|$ and the locus $\arg(z-1)=\pi/4$ in the Argand diagram.
+spoken_vocab:
+- modulus of z minus c
+- circle
+- centre
+- radius
+- argument of z equals alpha
+- half line
+- ray from the origin
+- Argand diagram
+- triangle inequality
+- modulus of z one plus z two
+- modulus of z one minus z three
+- modulus of z four minus z two
+- equality case
+- same argument
+- real and non-negative
+- conjugate of z one
+- real part of z one z two bar
+- head to tail
+- modulus of minus z three
+source: step-workbook/Cambridge STEP Short Workbook.pdf#0
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 5
+  minutes: 15
+  flags:
+  - wrong_or_unclear_solution
+  tagline: Mostly bookwork; part (ii) wrongly says 'line segment' for what is a ray.
+  priority: 45
+  rank: 554
+  tier: C
+  category: step-workbook
+  d10: 3.5
+  real: 3.0
+  by: deepseek-v4.1-flash-free
+tags:
+- complex_numbers
+- geometry
+- inequalities

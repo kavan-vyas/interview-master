@@ -1,0 +1,93 @@
+id: infinite-product-one-minus-one-over-n-squared
+title: Infinite product of one minus one over n squared
+topics:
+- infinite products
+- telescoping
+- limits
+warmup: false
+answer_source: generated
+statement: Evaluate $\prod_{n=2}^{\infty}\left(1-\frac{1}{n^2}\right)$.
+stages:
+- goal: Factor each term using a difference of squares and rewrite the partial product.
+  expected: 1 - 1/n^2 = ((n-1)/n)((n+1)/n). The partial product from n=2 to N is the product of (n-1)/n
+    times the product of (n+1)/n.
+  solution: 1 - 1/n^2 = (n^2-1)/n^2 = (n-1)(n+1)/n^2 = ((n-1)/n)((n+1)/n). Hence the partial product P_N
+    = prod_{n=2}^{N} (n-1)/n * prod_{n=2}^{N} (n+1)/n.
+  common_errors:
+  - Trying to expand the product directly without factoring.
+  - Mixing up the numerator and denominator in the factors.
+  - Starting the partial product at the wrong index.
+  hints:
+    rephrase: Factor the difference of squares in each term.
+    smaller_case: Write out the first two factors for n=2 and n=3 in factored form.
+    key_idea: Each term is a product of two simple fractions, so the partial product splits into two products.
+  check: sp.product(1 - sp.Integer(1)/sp.Symbol('k')**2, (sp.Symbol('k'),2,10)) - sp.Rational(11,20)
+  check_ok: null
+- goal: Evaluate the partial product P_N in closed form by telescoping.
+  expected: P_N = (N+1)/(2N).
+  solution: 'prod_{n=2}^{N} (n-1)/n = 1/N, and prod_{n=2}^{N} (n+1)/n = (N+1)/2. Multiplying gives P_N
+    = (N+1)/(2N). Check: P_3 = (3/4)(8/9) = 2/3 = 4/6.'
+  common_errors:
+  - Miscounting the telescoped numerator or denominator, giving 1/N or (N+1)/N instead.
+  - Forgetting the factor 2 in the denominator.
+  - Assuming the product is 1 because each factor is near 1.
+  hints:
+    rephrase: Write the first product out term by term and see what cancels.
+    smaller_case: Compute P_3 directly and compare with your formula at N=3.
+    key_idea: In a telescoping product, most numerators cancel the denominators of neighbouring factors.
+  check: sp.product(1 - sp.Integer(1)/sp.Symbol('k')**2, (sp.Symbol('k'),2,10)) - sp.Rational(11,20)
+  check_ok: null
+- goal: Take the limit as N tends to infinity and state the value of the infinite product.
+  expected: The limit of (N+1)/(2N) is 1/2, so the product equals 1/2.
+  solution: As N tends to infinity, (N+1)/(2N) tends to 1/2. So the infinite product equals 1/2.
+  common_errors:
+  - Answering 1 because each factor tends to 1, ignoring the telescoped product.
+  - Answering 2 by inverting the limit.
+  - Reporting the limit of the partial product at the wrong index.
+  hints:
+    rephrase: Take the limit of the closed form for the partial product.
+    smaller_case: Evaluate (N+1)/(2N) at N=1000 and see what it approaches.
+    key_idea: The infinite product is the limit of its partial products.
+  check: sp.limit((sp.Symbol('N')+1)/(2*sp.Symbol('N')), sp.Symbol('N'), sp.oo) - sp.Rational(1,2)
+  check_ok: null
+extensions:
+  '3':
+  - Evaluate the product from n=1 to infinity of (1 + 1/(n(n+2))).
+  '4':
+  - 'Evaluate the product from n=2 to infinity of (1 - 1/n^4). Hint: use the known identity for the product
+    from n=1 to infinity of (1 + 1/n^2).'
+  '5':
+  - Does the product from n=2 to infinity of (1 - 1/n) converge to a positive number? Explain.
+spoken_vocab:
+- product from n equals two to infinity
+- one minus one over n squared
+- difference of squares
+- telescoping product
+- partial product
+- P N
+- n plus one over n
+- limit as N tends to infinity
+- one half
+- factor
+- numerator
+- denominator
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 1
+  minutes: 6
+  flags: []
+  tagline: Elegant telescoping product; quick but limited follow-up.
+  priority: 51
+  rank: 531
+  tier: C
+  category: tbo
+  d10: 4.5
+  real: 6.0
+  by: big-pickle
+tags:
+- sequences_and_series
+- algebra_and_functions
+- limits_and_approximation

@@ -1,0 +1,144 @@
+id: difference-of-squares
+title: Difference of two squares
+topics:
+- factorising
+- difference of two squares
+- number properties
+- parity
+- proof
+warmup: false
+answer_source: pdf
+statement: Using the factorisation $m^2-n^2=(m-n)(m+n)$, (a) use it to work out $87^2-13^2$. (b) Adapt
+  it to work out $998 \times 1002$. (c) Show that the difference between the squares of two consecutive
+  whole numbers is always an odd number. (d) Write 15 and 16 each as a difference of two squares of whole
+  numbers. (e) Explain why 18 cannot be written as $m^2-n^2$ for whole numbers $m$ and $n$.
+stages:
+- goal: (a) Evaluate 87^2 - 13^2 using the factorisation.
+  expected: '7400'
+  solution: 87^2-13^2=(87-13)(87+13)=74 x 100=7400.
+  common_errors:
+  - Computing 87-13 or 87+13 incorrectly
+  - Squaring both numbers and subtracting without using the factorisation, then making an arithmetic slip
+  - Multiplying the factors incorrectly as 74 x 10
+  hints:
+    rephrase: 'Identify the two brackets: one has the numbers subtracted, the other has them added.'
+    smaller_case: Try the same idea on 5^2 - 3^2 and compare the two ways of computing it.
+    key_idea: A difference of two squares can be rewritten as the product of the difference and the sum
+      of the two numbers.
+  check: (87**2-13**2)-7400==0
+  check_ok: true
+- goal: (b) Adapt the factorisation to evaluate 998 x 1002.
+  expected: '999996'
+  solution: Write 998 = 1000-2 and 1002 = 1000+2. Then 998 x 1002 = (1000-2)(1000+2) = 1000^2 - 2^2 =
+    1000000 - 4 = 999996.
+  common_errors:
+  - Writing the factors as (1000-2)^2 instead of a sum and difference
+  - Sign error giving 1000000 + 4
+  - Arithmetic slip subtracting 4 from 1000000
+  hints:
+    rephrase: Find a round number that sits midway between 998 and 1002, and write each number as that
+      round number plus or minus a small amount.
+    smaller_case: Try 9 x 11 by writing both as 10 plus or minus 1.
+    key_idea: Make the two factors a sum and a difference of the same number so the middle terms cancel.
+  check: 998*1002-999996==0
+  check_ok: true
+- goal: (c) Show that the difference between the squares of two consecutive whole numbers is always odd.
+  expected: (n+1)^2 - n^2 = 2n+1, which is odd for every whole number n.
+  solution: Let the numbers be n and n+1. Then (n+1)^2 - n^2 = ((n+1)-n)((n+1)+n) = 1 x (2n+1) = 2n+1.
+    Since 2n+1 is one more than an even number, it is odd.
+  common_errors:
+  - Checking a few examples and concluding without a general argument
+  - Expanding (n+1)^2 incorrectly as n^2+1
+  - Stating the result is odd without showing the form 2n+1
+  hints:
+    rephrase: Represent the two consecutive whole numbers with a letter, then apply the factorisation
+      with the larger number as m.
+    smaller_case: Compute 4^2 - 3^2 directly and see whether the result matches the factorisation.
+    key_idea: Use the factorisation so that one of the two factors is a simple difference of consecutive
+      numbers.
+  check: expand((n+1)**2-n**2-(2*n+1))==0
+  check_ok: true
+- goal: (d) Write 15 and 16 each as a difference of two squares of whole numbers.
+  expected: 15 = 4^2 - 1^2 (or 8^2 - 7^2); 16 = 5^2 - 3^2.
+  solution: 'For 15, take the factor pair 1 x 15 for (m-n)(m+n): m=8, n=7 gives 8^2-7^2=15. Also 3 x 5
+    gives m=4, n=1, so 4^2-1^2=15. For 16, the pair 2 x 8 gives m=5, n=3, so 5^2-3^2=16.'
+  common_errors:
+  - Using a factor pair with different parity, which gives non-integer m and n
+  - Setting m-n equal to m+n
+  - Giving a pair that does not actually produce the number when squared and subtracted
+  hints:
+    rephrase: Split the number into two factors of the same parity, then solve for m and n from the sum
+      and difference of those factors.
+    smaller_case: Try 8 = 2 x 4. Find the m and n that these factors give, then verify the result.
+    key_idea: Set m-n and m+n equal to two factors of the target number, then add and halve to find m
+      and then n.
+  check: any(m*m-n*n==15 for m in range(50) for n in range(50)) and any(m*m-n*n==16 for m in range(50)
+    for n in range(50))
+  check_ok: null
+- goal: (e) Explain why 18 cannot be written as m^2 - n^2 for whole numbers m and n.
+  expected: m-n and m+n have the same parity, so their product is odd or divisible by 4. 18 is even but
+    not divisible by 4, so no such m and n exist.
+  solution: If m^2-n^2=18 then (m-n)(m+n)=18. The two factors differ by 2n, so they have the same parity.
+    If both are odd, the product is odd. If both are even, the product is divisible by 4. But 18 is even
+    and 18 = 2 mod 4, so it is neither odd nor divisible by 4. Hence 18 cannot be a difference of two
+    squares.
+  common_errors:
+  - Testing a few values and concluding impossibility without a proof
+  - Claiming all even numbers are impossible, which is false since 16 works
+  - Asserting that m-n and m+n are both even without justification
+  hints:
+    rephrase: Consider whether m-n and m+n are odd or even, and what that means for their product.
+    smaller_case: Factorise 16 = 5^2 - 3^2 and look at the parity and size of the two factors.
+    key_idea: Study the parity of the two factors and whether their product is a multiple of 4.
+  check: not any(m*m-n*n==18 for m in range(200) for n in range(200))
+  check_ok: null
+extensions:
+  '3':
+  - Evaluate 123^2 - 122^2 without a calculator.
+  - Show that m^2 - n^2 is divisible by m - n for any whole numbers m and n.
+  '4':
+  - Show that the difference of squares of two consecutive odd numbers is always divisible by 8.
+  - Find all whole numbers less than 30 that cannot be written as a difference of two squares of whole
+    numbers.
+  '5':
+  - Find all ways to write 2024 as m^2 - n^2 with whole numbers m and n, and justify that your list is
+    complete.
+  - Prove that a number of the form 4k+2 can never be written as a difference of two squares of integers,
+    and explain what happens for 4k and 4k+1.
+spoken_vocab:
+- eighty seven squared minus thirteen squared
+- nine hundred and ninety eight times one thousand and two
+- m squared minus n squared
+- equals m minus n times m plus n
+- consecutive
+- parity
+- odd
+- even
+- multiple of four
+- fifteen
+- sixteen
+- eighteen
+- whole numbers
+- factorisation
+- difference of two squares
+source: kclms/kclms-specimen-questions-3.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 3
+  parts: 5
+  minutes: 12
+  flags: []
+  tagline: Scaffolded factorisation exercises; useful warm-up but largely routine, with a mod-4 idea at
+    the end.
+  priority: 63
+  rank: 421
+  tier: C
+  category: kclms
+  d10: 3.5
+  real: 5.0
+  by: deepseek-v4.1-flash-free
+tags:
+- number_theory
+- algebra_and_functions
+- proof

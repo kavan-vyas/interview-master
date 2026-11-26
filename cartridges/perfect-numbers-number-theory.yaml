@@ -1,0 +1,161 @@
+id: perfect-numbers-number-theory
+title: Perfect numbers
+topics:
+- number theory
+- divisors
+- perfect numbers
+- sum of divisors
+warmup: false
+answer_source: generated
+statement: (a) Prove $6$ is a perfect number. (What is the next perfect number? ($<30$)) (b) Can a perfect
+  number be prime? (c) Is there a perfect number of the form $p^n$? (d) Can a perfect number be of the
+  form $pq$, where $p, q$ are both prime? (e) Is there a perfect number of the form $pq^2$? (f) Prove
+  that a perfect number can be of the form $2^{p-1}(2^p-1)$, where $p$ is prime, and prove that it is
+  perfect (always). (g) Prove that the sum of the reciprocals of the proper divisors of a perfect number
+  is equal to $2$.
+stages:
+- goal: (a) Show 6 is perfect and find the next perfect number below 30.
+  expected: Proper divisors of 6 are 1, 2, 3 and 1+2+3=6, so 6 is perfect. The next perfect number below
+    30 is 28 (proper divisors 1, 2, 4, 7, 14 sum to 28).
+  solution: 'Proper divisors of 6 are 1, 2, 3, which sum to 6, so 6 is perfect. Checking n from 7 to 29:
+    12 has proper sum 16, 18 has 21, 20 has 22, 24 has 36, and the others also fail. 28 = 2^2 * 7 has
+    proper divisors 1, 2, 4, 7, 14 with sum 28, so 28 is the next perfect number.'
+  common_errors:
+  - Including n itself among the proper divisors
+  - Confusing perfect (proper sum equals n) with abundant (proper sum exceeds n)
+  - Forgetting 1 as a divisor
+  hints:
+    rephrase: A perfect number equals the sum of its divisors other than itself. Test that condition for
+      6 first.
+    smaller_case: 'Take n = 4: list its proper divisors and add them. Is the sum equal to 4?'
+    key_idea: Only candidates need checking. For each n, list the divisors smaller than n and compare
+      their sum with n.
+  check: sum(d for d in divisors(28) if d < 28) - 28
+  check_ok: null
+- goal: (b) and (c) Can a perfect number be prime? Can it be of the form p^n?
+  expected: No to both. A prime p has proper-divisor sum 1, which is not p. For p^n with n >= 1, the proper-divisor
+    sum is (p^n-1)/(p-1), and setting this equal to p^n forces p to divide 1, which is impossible.
+  solution: (b) For prime p the divisors are 1 and p, so the proper-divisor sum is 1, which is not p for
+    p > 1. Not perfect. (c) For N = p^n with n >= 1, the proper divisors are 1, p, ..., p^(n-1), summing
+    to (p^n-1)/(p-1). Perfect means this equals p^n, so p^n - 1 = p^(n+1) - p^n, i.e. 2p^n - 1 = p^(n+1).
+    Then p divides 2p^n and p^(n+1), so p divides 1, a contradiction. No perfect number is of the form
+    p^n.
+  common_errors:
+  - Calling a prime perfect because 1+p is the divisor sum (forgetting that proper excludes p)
+  - Treating 1 as not a divisor
+  - Checking only small examples like 4 and 9 instead of giving a general argument
+  hints:
+    rephrase: List the proper divisors of a prime and compare their sum with the prime. Then do the same
+      for a prime power.
+    smaller_case: Take p = 3 and the powers 3 and 9. What are the proper divisors of each?
+    key_idea: Write the sum of the proper divisors of p^n as a geometric series and set it equal to p^n.
+  check: Not(Eq(sum(d for d in divisors(7) if d < 7), 7)) & Not(Eq(sum(d for d in divisors(9) if d < 9),
+    9))
+  check_ok: null
+- goal: (d) and (e) Can a perfect number be pq (p, q distinct primes)? Can it be pq^2?
+  expected: (d) Only N = 6 = 2*3. (e) Only N = 28 = 7*2^2, where the squared prime is 2 and p = 7.
+  solution: (d) Let N = pq with p != q. Proper divisors are 1, p, q, so perfect means 1+p+q = pq, i.e.
+    (p-1)(q-1) = 2. Hence {p,q} = {2,3} and N = 6. (e) Let N = pq^2 with p != q. Then sigma(N) = (p+1)(q^2+q+1)
+    = 2pq^2. Since gcd(q, q^2+q+1) = 1, q^2 divides p+1, so p+1 = m q^2 for some m >= 1. Substituting
+    gives 2p = m(q^2+q+1) and p = mq^2 - 1, so m(q^2-q-1) = 2. Then q^2-q-1 is 1 or 2. It equals 1 only
+    for q = 2, giving m = 2 and p = 7, so N = 28. It equals 2 for no integer q. So 28 is the only one.
+  common_errors:
+  - Assuming p and q are both odd and missing 6 = 2*3
+  - Forgetting the case q = 2 in pq^2 and so missing 28
+  - Forgetting that p and q must be distinct; p = q gives p^3, not pq^2
+  hints:
+    rephrase: For N = pq write the divisor sum as (1+p)(1+q), set it equal to 2N, and simplify.
+    smaller_case: Test N = 2*5 = 10 and N = 3*5 = 15. Do their proper divisors sum to the number?
+    key_idea: For pq^2 the divisor sum is (1+p)(1+q+q^2). Compare it with 2N, then use divisibility by
+      q^2 to pin down p.
+  check: (divisor_sigma(6)-12)*(divisor_sigma(28)-56)
+  check_ok: true
+- goal: (f) Prove that 2^(p-1)(2^p-1) is perfect whenever 2^p-1 is prime.
+  expected: Let M = 2^p - 1 be prime and N = 2^(p-1) M. Then sigma(2^(p-1)) = 2^p - 1 = M and sigma(M)
+    = M + 1 = 2^p. Since the factors are coprime, sigma(N) = 2^p M = 2N, so N is perfect.
+  solution: The divisor function sigma is multiplicative over coprime factors. M is odd, so gcd(2^(p-1),
+    M) = 1. sigma(2^(p-1)) = 1 + 2 + ... + 2^(p-1) = 2^p - 1 = M. Since M is prime, its divisors are 1
+    and M, so sigma(M) = M + 1 = 2^p. Therefore sigma(N) = M * 2^p = 2 * (2^(p-1) M) = 2N, so N is perfect.
+  common_errors:
+  - Forgetting that M prime is needed so that M has only the divisors 1 and M
+  - Writing sigma(2^(p-1)) as 2^(p-1) instead of the geometric sum
+  - Multiplying sigma values without checking gcd(2^(p-1), 2^p-1) = 1
+  hints:
+    rephrase: Find sigma of each factor separately, then use that sigma is multiplicative for coprime
+      factors.
+    smaller_case: Take p = 2, so the number is 2^1 * 3. Find sigma(2) and sigma(3) and multiply them.
+    key_idea: Use the geometric series for sigma(2^(p-1)), and the fact that a prime M has only the divisors
+      1 and M.
+  check: divisor_sigma(2**4*(2**5-1)) - 2*2**4*(2**5-1)
+  check_ok: true
+- goal: (g) Prove that the sum of the reciprocals of the divisors of a perfect number is 2.
+  expected: For perfect N, the sum of 1/d over all divisors d of N, including N itself, equals sigma(N)/N
+    = 2. If N itself is excluded the sum is 2 - 1/N, so the intended statement counts N among its divisors.
+  solution: 'The map d -> N/d permutes the divisors of N, so the sum of 1/d over d | N equals the sum
+    of (N/d)/N over d | N, which is sigma(N)/N. For perfect N this is 2N/N = 2. Example: for N = 6, 1
+    + 1/2 + 1/3 + 1/6 = 2. If N is excluded, the sum is 2 - 1/N; for 6 this is 11/6. So the statement
+    is true when N counts among its own divisors.'
+  common_errors:
+  - Forgetting that the sum includes N itself and so does not match 2 without it
+  - Summing d instead of 1/d
+  - Claiming the sum over strictly proper divisors is exactly 2, when it is 2 - 1/N
+  hints:
+    rephrase: Write each 1/d as (N/d)/N and think about what the map d -> N/d does to the divisors.
+    smaller_case: Check the identity for N = 28 by listing its divisors and summing their reciprocals.
+    key_idea: Relate the sum of reciprocals to the sum of divisors, then use the definition of a perfect
+      number.
+  check: sum(Rational(1,d) for d in divisors(28)) - 2
+  check_ok: null
+extensions:
+  '3':
+  - 'Explain Euler''s theorem: every even perfect number has the form 2^(p-1)(2^p-1) with 2^p-1 prime.
+    Sketch the argument.'
+  - Show that if 2^p-1 is prime then p must be prime.
+  '4':
+  - Is any odd perfect number known to exist? What is the status of this question?
+  - Show that the sum of reciprocals of the proper divisors of a deficient number is less than 2.
+  '5':
+  - Verify that the sum of reciprocals of the proper divisors of 28 is 2 - 1/28, and explain why the formula
+    holds in general.
+  - Show that every even perfect number is a triangular number.
+spoken_vocab:
+- perfect number
+- sigma of n
+- sum of proper divisors
+- proper divisor
+- p
+- q
+- p to the n
+- p q squared
+- p q
+- two to the p minus one
+- Mersenne prime
+- six
+- twenty eight
+- reciprocal
+- prime power
+- multiplicative
+- divisor sum
+- Euler
+- Euclid
+source: past-interviews/Actual Past Interview Questions/F2u.jpg
+verified: false
+rating:
+  quality: 6
+  difficulty: 6
+  parts: 5
+  minutes: 30
+  flags:
+  - garbled
+  - wrong_or_unclear_solution
+  tagline: Rich multi-part arc, but garbled parenthetical and wrong proper-divisor reciprocal sum.
+  priority: 57
+  rank: 465
+  tier: C
+  category: past-interviews
+  d10: 6.5
+  real: 7.0
+  by: haiku
+tags:
+- number_theory
+- proof

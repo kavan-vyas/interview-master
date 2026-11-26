@@ -1,0 +1,115 @@
+id: two-pipes-one-drain-fill-time
+title: Filling a tank with two inlets and one outlet
+topics:
+- rates
+- work problems
+- linear equations
+warmup: false
+answer_source: pdf
+statement: Pipe A fills an empty tank in 6 hours. Pipe B fills an empty tank in 4 hours. Pipe C empties
+  a full tank in 3 hours. Pipes A and B are opened at the same time with the tank empty. One hour later,
+  pipe C is also opened. How many hours after pipes A and B were opened is the tank full? a) 7 b) 8 c)
+  9 d) 10 e) 12
+stages:
+- goal: Find the combined filling rate of pipes A and B.
+  expected: Pipes A and B together fill $\frac{5}{12}$ of the tank per hour.
+  solution: 'Pipe A fills $\frac{1}{6}$ of the tank per hour and pipe B fills $\frac{1}{4}$ per hour.
+    Together: $\frac{1}{6}+\frac{1}{4}=\frac{2}{12}+\frac{3}{12}=\frac{5}{12}$ per hour.'
+  common_errors:
+  - Adding the times, 6+4=10, instead of the rates.
+  - Adding fractions without a common denominator.
+  hints:
+    rephrase: Work in fractions of the tank per hour. What fraction does each pipe fill in one hour?
+    smaller_case: Find the rate of pipe A alone, then add the rate of pipe B.
+    key_idea: Rates add when pipes work together; times do not.
+  check: Rational(5,12) - (Rational(1,6)+Rational(1,4))
+  check_ok: true
+- goal: Find how much of the tank is full after the first hour, and the net rate once pipe C opens.
+  expected: After 1 hour the tank is $\frac{5}{12}$ full. With C open the net rate is $\frac{1}{12}$ per
+    hour.
+  solution: In the first hour only A and B work, filling $\frac{5}{12}$. Pipe C drains $\frac{1}{3}$ per
+    hour, so the net rate is $\frac{5}{12}-\frac{4}{12}=\frac{1}{12}$ per hour.
+  common_errors:
+  - Applying pipe C's rate during the first hour before it is opened.
+  - Using $\frac{1}{3}+\frac{5}{12}$ instead of subtracting, as if C filled the tank.
+  - Forgetting that pipe C empties rather than fills.
+  hints:
+    rephrase: 'Split the process into two phases: before C opens and after C opens. What is happening
+      in each?'
+    smaller_case: Compute the fraction filled in the first hour, then the net rate during the next phase.
+    key_idea: Net rate equals inflow rate minus outflow rate.
+  check: Rational(5,12) - Rational(1,3) - Rational(1,12)
+  check_ok: true
+- goal: Find the total time from when A and B were opened until the tank is full.
+  expected: The tank is full 8 hours after pipes A and B were opened.
+  solution: After the first hour, $\frac{7}{12}$ of the tank remains empty. At a net rate of $\frac{1}{12}$
+    per hour this takes $\frac{7}{12}\div\frac{1}{12}=7$ more hours. Total time $=1+7=8$ hours.
+  common_errors:
+  - Answering 7, the time after C opens, instead of the total time from the start.
+  - Dividing the remaining fraction by the wrong rate, such as $\frac{5}{12}$.
+  - Forgetting to add the initial hour.
+  hints:
+    rephrase: Find the fraction still empty after the first hour, then how long it takes at the net rate.
+    smaller_case: Check that 1 hour at rate 5/12 plus some time at rate 1/12 gives a full tank.
+    key_idea: Add the initial hour to the time in the second phase.
+  check: 1 + (1-Rational(5,12))/Rational(1,12) - 8
+  check_ok: true
+extensions:
+  '3':
+  - Pipe A fills a tank in 5 hours and pipe B fills it in 5 hours. Both open together and pipe C empties
+    the full tank in 2 hours. How long until the tank is empty?
+  '4':
+  - Pipe D empties a full tank in 5 hours and is opened 2 hours after A and B. When is the tank full,
+    measured from when A and B were opened?
+  '5':
+  - Pipe A fills in $a$ hours and pipe B in $b$ hours. Pipe C empties in $c$ hours and opens $t$ hours
+    after A and B. Find the time from opening A and B until the tank is full, in terms of $a$, $b$, $c$
+    and $t$, assuming $\frac{1}{a}+\frac{1}{b}>\frac{1}{c}$.
+  - If a tank is filled by A and B and drained by C with C opened later, under what condition on rates
+    does the tank eventually fill?
+spoken_vocab:
+- pipe A
+- pipe B
+- pipe C
+- six hours
+- four hours
+- three hours
+- one hour later
+- one sixth
+- one quarter
+- one third
+- five twelfths
+- one twelfth
+- seven twelfths
+- tank
+- fills
+- empties
+- net rate
+- eight hours
+- seven hours
+- nine hours
+- ten hours
+- twelve hours
+- a
+- b
+- c
+- d
+- e
+source: kclms/kclms-specimen-mcq-2.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 3
+  parts: 3
+  minutes: 5
+  flags: []
+  tagline: Routine rate-combining exercise in multiple-choice form.
+  priority: 31
+  rank: 619
+  tier: D
+  category: kclms
+  d10: 2.0
+  real: 2.0
+  by: haiku
+tags:
+- algebra_and_functions

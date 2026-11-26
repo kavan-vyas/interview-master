@@ -1,0 +1,30 @@
+[
+ {
+  "q": "A fair six-sided die, with faces numbered $1$ to $6$, is rolled $n$ times. What is the probability that the smallest number rolled is exactly $3$? What is the expected value of the highest score obtained after $n$ rolls?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 7 (anonymous).pdf#0"
+ },
+ {
+  "q": "Calculate $\\int_0^{\\pi}\\cos^4\\theta\\,d\\theta$. What about $\\int_0^{\\pi}\\cos^5\\theta\\,d\\theta$?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 7 (anonymous).pdf#0"
+ },
+ {
+  "q": "How many anagrams, or arrangements of the letters, of $\\text{Gauss}$ are there? What about $\\text{Ramanujan}$?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 7 (anonymous).pdf#0"
+ },
+ {
+  "q": "A projectile is fired from a point on the ground with speed $v$ at an angle $\\frac{\\pi}{4}$ above the horizontal. Later, a second projectile is fired from the same point with speed $2v$. What is the latest time at which the second projectile can be fired so that the two projectiles intersect? You may assume that they are considered to intersect if they meet when they hit the ground.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 7 (anonymous).pdf#0"
+ }
+]

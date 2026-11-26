@@ -1,0 +1,96 @@
+id: coin-streak-stopping-game
+title: Heads streak betting game
+topics:
+- probability
+- expected value
+- decision making
+warmup: false
+answer_source: generated
+statement: If I said that when I tossed this coin and every time it said heads you have to give me 50p
+  but every time it showed a tails I give you a pound, how many times would you let me flip it and the
+  coin show heads in a row before you would stop playing the game?
+stages:
+- goal: Compute your expected net gain per flip, assuming a fair coin, where heads costs you 50p and tails
+    pays you £1.
+  expected: '+£0.25 per flip: 0.5 × (−£0.50) + 0.5 × (+£1) = £0.25.'
+  solution: Each flip has probability 1/2 of heads (you lose 50p) and 1/2 of tails (you gain £1). The
+    expected value is −0.25 + 0.5 = 0.25 pounds per flip, which is positive for you.
+  common_errors:
+  - Reversing the sign so the game looks unfavourable.
+  - Forgetting to weight each outcome by its probability.
+  hints:
+    rephrase: For each flip, what do you win or lose in each case, and how likely is each case?
+    smaller_case: Work out the average outcome of a single flip if heads and tails were equally likely.
+    key_idea: Expected value is the probability-weighted average of the payoffs.
+  check: Rational(1,2)*Rational(-1,2) + Rational(1,2)*1 == Rational(1,4)
+  check_ok: true
+- goal: Find the probability of n heads in a row and state whether a streak changes the next flip.
+  expected: P(n heads in a row) = (1/2)^n, so P(5 heads) = 1/32. Each flip is independent, so the next
+    flip is still 1/2 regardless of past streaks.
+  solution: Independent fair flips give (1/2)^n for a streak of length n. Past results do not change future
+    probabilities, so believing a head is 'due' after a streak is the gambler's fallacy.
+  common_errors:
+  - Thinking tails becomes more likely after a run of heads.
+  - Computing (1/2)·n instead of (1/2)^n.
+  hints:
+    rephrase: If the flips are independent, what is the chance that the first two are both heads?
+    smaller_case: Find the probability of two heads in a row.
+    key_idea: Independence multiplies probabilities; the coin has no memory.
+  check: Rational(1,2)**5 == Rational(1,32)
+  check_ok: true
+- goal: Decide when you would stop, and justify it.
+  expected: 'Expected value never tells you to stop, since each flip is favourable on average. Stopping
+    must come from a risk rule: stop when the cumulative loss, which is 50p per head, reaches an amount
+    you can afford to lose. A run of n heads costs 50n pence.'
+  solution: Because the game has positive expected value, a rational player with unlimited bankroll plays
+    forever. In practice you set a loss limit based on bankroll and risk tolerance, and the streak length
+    at which you stop is the limit divided by 0.5 pounds per head.
+  common_errors:
+  - Choosing a fixed number of heads based on the gambler's fallacy.
+  - Ignoring bankroll or variance and answering purely from expected value.
+  hints:
+    rephrase: If each flip helps you on average, what could make you want to stop?
+    smaller_case: Suppose you can only afford to lose £2. How many heads in a row could you absorb?
+    key_idea: Separate expected value from how much risk you can bear.
+extensions:
+  '3':
+  - If the coin has P(heads) = p, for what p is the game fair for you?
+  '4':
+  - Show that the expected number of flips until the first head is 2.
+  '5':
+  - Explain why doubling your stake after each loss (a martingale strategy) fails with a finite bankroll.
+spoken_vocab:
+- fifty pence
+- one pound
+- heads
+- tails
+- fair coin
+- expected value
+- probability
+- one half
+- one over thirty-two
+- independence
+- gambler's fallacy
+- bankroll
+- martingale
+- streak
+source: oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 3
+  minutes: 8
+  flags:
+  - missing_info
+  tagline: Expected-value setup, but stopping criterion is undefined and conversational.
+  priority: 43
+  rank: 563
+  tier: C
+  category: oxbridge-random
+  d10: 4.0
+  real: 5.5
+  by: deepseek-v4.1-flash-free
+tags:
+- probability
+- sequences_and_series

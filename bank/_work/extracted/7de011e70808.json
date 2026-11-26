@@ -1,0 +1,79 @@
+[
+ {
+  "q": "Find the minimum value of $x^2+y^2$ subject to $x+2y=5$. Give as many different methods as you can.",
+  "kind": "maths",
+  "answer": "The minimum is 5, attained at $(x,y)=(1,2)$. Algebra: substitute $x=5-2y$ to get $x^2+y^2=5(y-2)^2+5\\geq 5$. Geometry: $x^2+y^2$ is the squared distance from the origin, and the closest point on the line is the foot of the perpendicular $t(1,2)$ with $5t=5$, at distance $\\sqrt{5}$, so the squared distance is 5. Cauchy-Schwarz: $(x+2y)^2\\leq(1^2+2^2)(x^2+y^2)$, so $x^2+y^2\\geq \\frac{25}{5}=5$.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p17"
+ },
+ {
+  "q": "(i) Prove that for $a,b\\geq 0$, $\\frac{a+b}{2}\\geq\\sqrt{ab}$, with equality if and only if $a=b$. (ii) Deduce that for $a,b,c,d\\geq 0$, $\\frac{a+b+c+d}{4}\\geq\\sqrt[4]{abcd}$. (iii) By choosing $d$ suitably in (ii), deduce that for $a,b,c\\geq 0$, $\\frac{a+b+c}{3}\\geq\\sqrt[3]{abc}$. (iv) A square of card of side 12 has a square of side $x$ cut from each corner, and the sides are folded up to make an open box. Using (iii) and no calculus, find the largest possible volume.",
+  "kind": "maths",
+  "answer": "(i) $\\frac{a+b}{2}-\\sqrt{ab}=\\frac12(\\sqrt a-\\sqrt b)^2\\geq 0$, with equality exactly when $a=b$. (ii) Apply (i) twice: $\\frac{a+b+c+d}{4}=\\frac12\\left(\\frac{a+b}{2}+\\frac{c+d}{2}\\right)\\geq\\sqrt{\\frac{a+b}{2}\\cdot\\frac{c+d}{2}}\\geq\\sqrt[4]{abcd}$. (iii) Let $m=\\frac{a+b+c}{3}$ and take $d=m$ in (ii): $m\\geq\\sqrt[4]{abcm}$, so $m^4\\geq abcm$, giving $m^3\\geq abc$. (iv) $V=x(12-2x)^2$ for $0<x<6$. Since $4x+(12-2x)+(12-2x)=24$ is constant, $4V=(4x)(12-2x)(12-2x)\\leq\\left(\\frac{24}{3}\\right)^3=512$, so $V\\leq 128$, with equality at $x=2$. The maximum volume is 128.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p17"
+ },
+ {
+  "q": "Let $\\alpha,\\beta,\\gamma$ be the roots of $x^3+px+q=0$, where $p$ and $q$ are real. (i) Write down $\\alpha+\\beta+\\gamma$, $\\alpha\\beta+\\beta\\gamma+\\gamma\\alpha$ and $\\alpha\\beta\\gamma$. Deduce that $\\alpha^2+\\beta^2+\\gamma^2=-2p$. (ii) Show that $\\alpha^3+\\beta^3+\\gamma^3=-3q$. (iii) Find $\\alpha^4+\\beta^4+\\gamma^4$ in terms of $p$. (iv) Deduce that for every real $q$, the equation $x^3+x+q=0$ has exactly one real root.",
+  "kind": "maths",
+  "answer": "(i) By Vieta: $\\alpha+\\beta+\\gamma=0$, $\\alpha\\beta+\\beta\\gamma+\\gamma\\alpha=p$, $\\alpha\\beta\\gamma=-q$. Then $\\alpha^2+\\beta^2+\\gamma^2=(\\alpha+\\beta+\\gamma)^2-2(\\alpha\\beta+\\beta\\gamma+\\gamma\\alpha)=-2p$. (ii) Each root satisfies $\\alpha^3=-p\\alpha-q$; summing gives $\\sum\\alpha^3=-3q$. (iii) Multiply $\\alpha^3=-p\\alpha-q$ by $\\alpha$: $\\alpha^4=-p\\alpha^2-q\\alpha$, so $\\sum\\alpha^4=-p\\sum\\alpha^2-q\\sum\\alpha=2p^2$. (iv) With $p=1$, $\\alpha^2+\\beta^2+\\gamma^2=-2<0$ if all three roots were real, which is impossible. A real cubic has one or three real roots, so there is exactly one real root. Alternatively, $\\frac{d}{dx}(x^3+x+q)=3x^2+1>0$, so the function is strictly increasing.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p17"
+ },
+ {
+  "q": "Let $f:\\mathbb{Q}\\to\\mathbb{Q}$ satisfy $f(x+y)=f(x)+f(y)$ for all rational $x,y$. (i) Show that $f(0)=0$ and $f(-x)=-f(x)$. (ii) Show that $f(nx)=nf(x)$ for every integer $n$. (iii) Deduce that $f(x)=cx$ for all rational $x$, where $c=f(1)$. (iv) Now let $g:\\mathbb{R}\\to\\mathbb{R}$ satisfy $g(x+y)=g(x)+g(y)$ for all real $x,y$, and suppose also that $g$ is increasing. Show that $g(x)=cx$ for all real $x$.",
+  "kind": "maths",
+  "answer": "(i) $x=y=0$ gives $f(0)=2f(0)$, so $f(0)=0$; then $y=-x$ gives $f(-x)=-f(x)$. (ii) By induction, $f((n+1)x)=f(nx)+f(x)=(n+1)f(x)$ for $n\\geq 0$; negative $n$ follows from (i). (iii) For integers $p$ and $q>0$, $qf(p/q)=f(p)=pf(1)$, so $f(p/q)=\\frac{p}{q}c$. (iv) The same argument gives $g(r)=cr$ for rational $r$. For real $x$, choose rationals $r_n\\leq x\\leq s_n$ with $r_n\\to x$ and $s_n\\to x$. Since $g$ is increasing, $cr_n\\leq g(x)\\leq cs_n$. Letting $n\\to\\infty$ gives $g(x)=cx$. Without monotonicity or continuity, non-linear solutions exist on $\\mathbb{R}$ (their construction uses the axiom of choice).",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p17"
+ },
+ {
+  "q": "(i) Show that $\\ln x\\leq x-1$ for all $x>0$, with equality only at $x=1$. (ii) Let $a_1,\\ldots,a_n>0$ have arithmetic mean $A$. By applying (i) to each $a_i/A$, prove the AM-GM inequality $A\\geq\\sqrt[n]{a_1a_2\\cdots a_n}$. (iii) Show that $\\left(1+\\frac1n\\right)^n<e$ for every positive integer $n$. (iv) By applying (i) to $1/x$, show that $\\left(1+\\frac1n\\right)^{n+1}>e$. Deduce that $\\left(1+\\frac1n\\right)^n\\to e$.",
+  "kind": "maths",
+  "answer": "(i) $h(x)=x-1-\\ln x$ has $h'(x)=1-\\frac1x$, so $h$ has a strict global minimum $h(1)=0$. (ii) Summing (i) over $x=a_i/A$: $\\sum\\ln\\frac{a_i}{A}\\leq\\sum\\left(\\frac{a_i}{A}-1\\right)=0$, so $\\ln\\frac{a_1\\cdots a_n}{A^n}\\leq 0$, i.e. $a_1\\cdots a_n\\leq A^n$. (iii) By (i) with $x=1+\\frac1n\\neq 1$: $\\ln\\left(1+\\frac1n\\right)<\\frac1n$, so $n\\ln\\left(1+\\frac1n\\right)<1$. (iv) (i) applied to $1/x$ gives $\\ln x\\geq 1-\\frac1x$, strictly unless $x=1$. With $x=1+\\frac1n$, $(n+1)\\ln\\left(1+\\frac1n\\right)>1$. Combining, $\\frac{e}{1+\\frac1n}<\\left(1+\\frac1n\\right)^n<e$, and the left side tends to $e$, so the squeeze gives the limit.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p17"
+ },
+ {
+  "q": "Consider the equation $x^2-kx+k+3=0$, where $k$ is real. (i) For which $k$ does the equation have real roots? (ii) For which $k$ are both roots real and positive? (iii) For which $k$ do the roots differ by exactly 1? (iv) Find all $k$ for which both roots are integers.",
+  "kind": "maths",
+  "answer": "Let the roots be $\\alpha,\\beta$, so $\\alpha+\\beta=k$ and $\\alpha\\beta=k+3$. (i) The discriminant $k^2-4k-12=(k-6)(k+2)\\geq 0$, so $k\\leq -2$ or $k\\geq 6$. (ii) Both roots are positive exactly when the sum and product are positive: $k>0$ and $k>-3$. Combined with (i), $k\\geq 6$ (at $k=6$ the repeated root is 3). (iii) $(\\alpha-\\beta)^2=k^2-4k-12=1$, so $k^2-4k-13=0$ and $k=2\\pm\\sqrt{17}$. (iv) $\\alpha\\beta=\\alpha+\\beta+3$ gives $(\\alpha-1)(\\beta-1)=4$. The factor pairs of 4 give $\\{\\alpha,\\beta\\}\\in\\{\\{2,5\\},\\{3,3\\},\\{0,-3\\},\\{-1,-1\\}\\}$, so $k\\in\\{7,6,-3,-2\\}$.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p17"
+ },
+ {
+  "q": "Prove that for every positive integer $n$, $1+\\frac{1}{2^2}+\\frac{1}{3^2}+\\cdots+\\frac{1}{n^2}<2$.",
+  "kind": "maths",
+  "answer": "For $k\\geq 2$, $\\frac{1}{k^2}<\\frac{1}{k(k-1)}=\\frac{1}{k-1}-\\frac1k$. Summing from $k=2$ to $n$ telescopes to $1-\\frac1n$. Adding the first term gives $\\sum_{k=1}^n\\frac1{k^2}<2-\\frac1n<2$. Interview point: induction directly on $S_n<2$ fails, so prove the stronger $S_n\\leq 2-\\frac1n$, which works by induction. (The infinite sum is $\\pi^2/6\\approx 1.645$.)",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p17"
+ },
+ {
+  "q": "Prove that $1+\\frac12+\\frac13+\\frac14+\\cdots$ diverges.",
+  "kind": "maths",
+  "answer": "Group the terms into blocks: $\\frac12$, then $\\frac13+\\frac14$, then $\\frac15+\\cdots+\\frac18$, and so on. The block $\\frac{1}{2^{j-1}+1}+\\cdots+\\frac{1}{2^j}$ contains $2^{j-1}$ terms, each at least $\\frac1{2^j}$, so each block is at least $\\frac12$. Hence $H_{2^m}\\geq 1+\\frac m2$, which is unbounded. Since the partial sums increase, the series diverges. Extension: show $H_n$ is never an integer for $n\\geq 2$ (multiply $H_n$ by $2^{k-1}M$, where $2^k\\leq n$ and $M$ is the product of odd numbers up to $n$; every term becomes an integer except $\\frac{1}{2^k}$, which becomes $\\frac M2$, not an integer).",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p17"
+ },
+ {
+  "q": "Evaluate $\\sum_{k=1}^n k\\cdot k!=1\\cdot 1!+2\\cdot 2!+\\cdots+n\\cdot n!$.",
+  "kind": "maths",
+  "answer": "The first sums are $1,5,23,119$, one less than $2!,3!,4!,5!$, so conjecture $(n+1)!-1$. To prove it, note $k\\cdot k!=(k+1)!-k!$, so the sum telescopes to $(n+1)!-1$.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p17"
+ },
+ {
+  "q": "Evaluate $\\sum_{k=1}^\\infty\\frac{1}{k(k+1)(k+2)}=\\frac{1}{1\\cdot 2\\cdot 3}+\\frac{1}{2\\cdot 3\\cdot 4}+\\cdots$. Extension: generalise to $\\sum_{k\\geq 1}\\frac{1}{k(k+1)\\cdots(k+r)}$.",
+  "kind": "maths",
+  "answer": "Since $\\frac{1}{k(k+1)}-\\frac{1}{(k+1)(k+2)}=\\frac{2}{k(k+1)(k+2)}$, we have $\\sum_{k=1}^n\\frac{1}{k(k+1)(k+2)}=\\frac12\\left(\\frac{1}{1\\cdot 2}-\\frac{1}{(n+1)(n+2)}\\right)\\to\\frac14$. Extension: the general sum equals $\\frac{1}{r\\cdot r!}$.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p17"
+ },
+ {
+  "q": "There are three pegs and $n$ discs of different sizes, initially stacked on the first peg with the largest at the bottom. A move takes the top disc from one peg to another, and a disc may never be placed on a smaller one. Let $M_n$ be the least number of moves needed to transfer the stack to the third peg. (i) Show that $M_n=2M_{n-1}+1$, explaining both why this many moves suffice and why fewer will not do. (ii) Deduce that $M_n=2^n-1$. (iii) Now suppose discs may only move between adjacent pegs (first and second, or second and third). Describe a recursive strategy using $T_n$ moves, where $T_n=3T_{n-1}+2$, and solve this recurrence. (iv) How many legal arrangements of the $n$ discs are there? What does this suggest about the strategy in (iii)?",
+  "kind": "maths",
+  "answer": "(i) Suffice: move the top $n-1$ discs to the middle peg ($M_{n-1}$ moves), move the largest disc to the third peg (1 move), then move the $n-1$ discs onto it ($M_{n-1}$ moves). Necessary: the largest disc must move at least once. Before its first move, the other $n-1$ discs must all be on the remaining peg, taking at least $M_{n-1}$ moves; after its last move they must all be moved onto it, taking at least $M_{n-1}$ more. (ii) $M_1=1$ and $M_n+1=2(M_{n-1}+1)$, so $M_n+1=2^n$. (iii) Move the top $n-1$ discs from peg 1 to peg 3 ($T_{n-1}$), the largest from 1 to 2 (1), the $n-1$ discs from 3 to 1 ($T_{n-1}$), the largest from 2 to 3 (1), then the $n-1$ discs from 1 to 3 ($T_{n-1}$). So $T_n=3T_{n-1}+2$ with $T_1=2$, giving $T_n+1=3(T_{n-1}+1)$, so $T_n=3^n-1$. (iv) Each disc can be on any of 3 pegs and the order on each peg is forced, so there are $3^n$ arrangements. The strategy makes $3^n-1$ moves and so passes through all $3^n$ arrangements, suggesting it visits every legal arrangement exactly once.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p17"
+ }
+]

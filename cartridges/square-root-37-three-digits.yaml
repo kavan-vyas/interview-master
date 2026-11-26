@@ -1,0 +1,77 @@
+id: square-root-37-three-digits
+title: Square root of 37 to three decimal places
+topics:
+- numerical methods
+- Newton's method
+- approximation
+warmup: true
+answer_source: pdf
+statement: Solve $x^2=37$ to the third digit.
+stages:
+- goal: Apply one Newton step to $f(x)=x^2-37$ starting from $x_0=6$.
+  expected: $x_1=\frac{73}{12}\approx 6.0833$.
+  solution: Newton's update is $x_1=x_0-\frac{f(x_0)}{f'(x_0)}=6-\frac{6^2-37}{2\cdot 6}=6-\frac{-1}{12}=\frac{73}{12}$.
+  common_errors:
+  - Sign error in computing $6^2-37$
+  - Using $f'(x)=x$ instead of $f'(x)=2x$
+  - Writing $6+\frac{1}{12}$ and then making an arithmetic slip
+  hints:
+    rephrase: Draw the tangent line to $y=x^2$ at $x=6$. Where does this line cross the height 37?
+    smaller_case: Apply the same update to $x^2=4$ starting from $x_0=2$. Does the first step already
+      land on the exact answer?
+    key_idea: Newton's update is $x-f(x)/f'(x)$, and for $f(x)=x^2-37$ the derivative is $2x$.
+  check: candidate - (6 - (6**2-37)/(2*6))
+  check_ok: false
+- goal: Round the approximation to three decimal places and justify the rounding.
+  expected: $x\approx 6.083$, because $\left|\frac{73}{12}-6.083\right|\approx 0.00033<0.0005$.
+  solution: '$\frac{73}{12}=6.08\overline{3}$. Rounding to three decimal places gives $6.083$, since the
+    next digit is 3 and the error $0.00033$ is less than half a unit in the third place. Check: $\sqrt{37}\approx
+    6.08276$, so $|6.083-\sqrt{37}|\approx 0.00024<0.001$.'
+  common_errors:
+  - Rounding $6.0833$ to $6.08$, which gives only two decimal places
+  - Claiming that $6.083$ is exact
+  - Rounding in the wrong direction
+  hints:
+    rephrase: Look at the digit after the third decimal place of your Newton estimate. What rounding rule
+      does it trigger?
+    smaller_case: Round $1.2349$ to three decimal places and see what the fourth digit tells you.
+    key_idea: A single Newton step from a good starting point already gives many correct digits, so only
+      the rounding needs care.
+  check: Abs(candidate - sqrt(37)) < Rational(1,1000)
+  check_ok: null
+extensions:
+  '3':
+  - Apply Newton's method again starting from $x_1=\frac{73}{12}$ to find $x_2$, and compare it with $\sqrt{37}$.
+  '4':
+  - Set $\sqrt{37}=6+y$ and show that $y$ satisfies $y^2+12y-1=0$. Solve for $y$ and compare with the
+    Newton estimate.
+  '5':
+  - Explain why Newton's method for $\sqrt{a}$ coincides with the Babylonian method.
+spoken_vocab:
+- solve x squared equals thirty seven
+- to the third digit
+- Newton's method
+- x zero equals six
+- x one
+- seventy three over twelve
+- six point zero eight three
+- square root of thirty seven
+source: zhou-quant/zhou-quant-guide.pdf#3
+verified: false
+rating:
+  quality: 3
+  difficulty: 2
+  parts: 2
+  minutes: 4
+  flags:
+  - trivial
+  tagline: One Newton step gives 6.0833; rounding justification needs error bound.
+  priority: 27
+  rank: 625
+  tier: D
+  category: zhou-quant
+  d10: 2.0
+  real: 4.0
+  by: haiku
+tags:
+- numerical_methods

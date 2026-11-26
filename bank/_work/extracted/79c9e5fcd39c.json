@@ -1,0 +1,58 @@
+[
+ {
+  "q": "Roughly how many people must be in a room for it to be more likely than not that two share a birthday? Ignore leap years, and estimate without a calculator.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p49"
+ },
+ {
+  "q": "A prize is behind one of 100 doors. You pick a door. The host, who knows where the prize is, then opens 98 of the other doors, all empty, and offers you the chance to switch to the one remaining closed door. Should you?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p49"
+ },
+ {
+  "q": "A point is chosen uniformly at random in a square. What is the probability that it is closer to the centre of the square than to the nearest edge?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p49"
+ },
+ {
+  "q": "A fair die is rolled until every face has appeared at least once. What is the expected number of rolls?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p49"
+ },
+ {
+  "q": "A deck of $n$ cards numbered 1 to $n$ is shuffled uniformly at random. What is the expected number of cards that end up in their original position?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p49"
+ },
+ {
+  "q": "Three points are chosen independently and uniformly at random on a circle. What is the probability that the triangle they form contains the centre?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p49"
+ },
+ {
+  "q": "A fair coin is tossed repeatedly. (i) Find the expected number of tosses up to and including the first head. (ii) Find the expected number of tosses until the pattern $HH$ (two consecutive heads) first appears. (iii) Find the expected number of tosses until the pattern $HT$ first appears. (iv) Explain, without calculation, why the answers to (ii) and (iii) are different. (v) Alice and Bob watch the same sequence of tosses. Alice wins if $HH$ appears before $HT$, and Bob wins if $HT$ appears before $HH$. Who is more likely to win?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p49"
+ },
+ {
+  "q": "A gambler starts with \u00a3$k$ and repeatedly bets \u00a31, winning each bet with probability $p$ and losing with probability $q = 1 - p$. She stops on reaching \u00a3$N$ or \u00a30. Let $p_k$ be the probability she reaches \u00a3$N$. (i) Show that $p_k = p\\,p_{k+1} + q\\,p_{k-1}$ for $0 < k < N$, with $p_0 = 0$ and $p_N = 1$. (ii) For a fair game ($p = \\frac{1}{2}$) show that $p_k = \\frac{k}{N}$. (iii) For $p \\ne \\frac{1}{2}$ show that $p_k = \\frac{1 - r^k}{1 - r^N}$, where $r = \\frac{q}{p}$. (iv) In roulette, a bet on red wins with probability $\\frac{18}{38}$. Estimate the probability of turning \u00a310 into \u00a320 by betting \u00a31 at a time. (v) For the fair game, show that the expected number of bets is $k(N - k)$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p49"
+ }
+]

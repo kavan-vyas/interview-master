@@ -1,0 +1,143 @@
+id: quadratic-k-roots
+title: 'Roots of x^2 - kx + k + 3 = 0: real, positive, unit gap, integer'
+topics:
+- quadratics
+- discriminant
+- Vieta's formulas
+- integer roots
+- Simon's factoring trick
+- algebra
+warmup: false
+answer_source: pdf
+statement: 'Consider the equation $x^2-kx+k+3=0$, where $k$ is a real number.
+
+
+  (i) For which values of $k$ does the equation have real roots?
+
+
+  (ii) For which values of $k$ are both roots real and positive?
+
+
+  (iii) For which values of $k$ do the two roots differ by exactly $1$?
+
+
+  (iv) Find all values of $k$ for which both roots are integers.'
+stages:
+- goal: Find all real k for which the quadratic has real roots.
+  expected: Discriminant $k^2-4(k+3)=k^2-4k-12=(k-6)(k+2)$. Real roots need this to be $\ge 0$, so $k\le
+    -2$ or $k\ge 6$.
+  solution: The discriminant is $\Delta=k^2-4(k+3)=k^2-4k-12=(k-6)(k+2)$. Real roots require $\Delta\ge
+    0$. The product $(k-6)(k+2)$ is non-negative exactly when $k\le -2$ or $k\ge 6$.
+  common_errors:
+  - Solving the inequality as $-2\le k\le 6$, reversing the sign condition for an upward parabola.
+  - Forgetting to multiply the constant term $k+3$ by 4 when forming the discriminant.
+  - Writing $k<-2$ or $k>6$, which excludes the repeated-root case.
+  - Factorising $k^2-4k-12$ with wrong signs, e.g. $(k+6)(k-2)$.
+  hints:
+    rephrase: What condition on the coefficients guarantees a quadratic has real roots? Then substitute
+      $a=1$, $b=-k$, $c=k+3$.
+    smaller_case: Test $k=0$ and $k=7$ in the discriminant and see which gives real roots.
+    key_idea: Real roots if and only if $b^2-4ac\ge 0$; then factorise the resulting quadratic in $k$
+      and read off the sign.
+  check: expand(k**2-4*(k+3)-(k-6)*(k+2))
+  check_ok: true
+- goal: Find all k for which both roots are real and positive.
+  expected: Sum $k>0$ and product $k+3>0$, combined with the discriminant condition from (i), gives $k\ge
+    6$. At $k=6$ the repeated root is $3>0$.
+  solution: Let the roots be $\alpha,\beta$, so $\alpha+\beta=k$ and $\alpha\beta=k+3$. Both roots positive
+    requires sum $>0$ and product $>0$, i.e. $k>0$ and $k>-3$, so $k>0$. Intersecting with $k\le -2$ or
+    $k\ge 6$ from (i) leaves $k\ge 6$. At $k=6$ the equation is $(x-3)^2=0$ with repeated root $3>0$,
+    so $k=6$ is included.
+  common_errors:
+  - Forgetting to intersect with the discriminant condition and answering $k>0$.
+  - Excluding $k=6$ because the root is repeated, although the question only asks for real positive roots.
+  - Using only the sum condition and ignoring the product condition.
+  - Using sum and product conditions without real roots first, so wrongly accepting $0<k<6$.
+  hints:
+    rephrase: Write the sum and product of the roots in terms of $k$. What signs must they have for both
+      roots to be positive?
+    smaller_case: 'Try $k=3$: sum and product are positive, but are the roots real? Then try $k=6$.'
+    key_idea: Two real numbers are both positive iff their sum and product are both positive, but you
+      must also ensure they are real.
+  check: expand((x-3)**2-(x**2-6*x+6+3))
+  check_ok: true
+- goal: Find all k for which the roots differ by exactly 1.
+  expected: $(\alpha-\beta)^2=(\alpha+\beta)^2-4\alpha\beta=k^2-4k-12$. Setting this to $1$ gives $k^2-4k-13=0$,
+    so $k=2\pm\sqrt{17}$.
+  solution: By Vieta, $(\alpha-\beta)^2=(\alpha+\beta)^2-4\alpha\beta=k^2-4(k+3)=k^2-4k-12$. The roots
+    differ by exactly 1 when $(\alpha-\beta)^2=1$, so $k^2-4k-13=0$ and $k=2\pm\sqrt{17}$. Both are valid
+    since $2-\sqrt{17}\approx-2.12\le -2$ and $2+\sqrt{17}\approx 6.12\ge 6$ (equivalently, the discriminant
+    equals $1>0$, so the roots are real).
+  common_errors:
+  - Setting $\alpha-\beta=1$ only and ignoring the other ordering (using $(\alpha-\beta)^2=1$ avoids this).
+  - Expanding $(\alpha-\beta)^2$ incorrectly, e.g. as $\alpha^2-\beta^2$ or forgetting the factor 4.
+  - Not noting that the difference squared equals the discriminant, then making an arithmetic slip solving
+    $k^2-4k-13=0$.
+  - Forgetting to check that the solutions give real roots.
+  hints:
+    rephrase: Express the square of the difference of the roots using only their sum and product.
+    smaller_case: Take a quadratic with roots 0 and 1 and verify the identity you are using.
+    key_idea: $(\alpha-\beta)^2=(\alpha+\beta)^2-4\alpha\beta$, which here is exactly the discriminant.
+  check: expand(((2+sqrt(17))**2-4*(2+sqrt(17))-12-1)**2+((2-sqrt(17))**2-4*(2-sqrt(17))-12-1)**2)
+  check_ok: true
+- goal: Find all k for which both roots are integers.
+  expected: From $\alpha\beta=\alpha+\beta+3$ get $(\alpha-1)(\beta-1)=4$. Integer factorisations give
+    $\{\alpha,\beta\}=\{2,5\},\{3,3\},\{0,-3\},\{-1,-1\}$, so $k=7,6,-3,-2$.
+  solution: 'Vieta gives $\alpha\beta=k+3=\alpha+\beta+3$, so $\alpha\beta-\alpha-\beta+1=4$, i.e. $(\alpha-1)(\beta-1)=4$.
+    For integer roots, $(\alpha-1,\beta-1)$ is an ordered integer factorisation of 4: $(1,4),(4,1),(2,2),(-1,-4),(-4,-1),(-2,-2)$.
+    These give $\{\alpha,\beta\}=\{2,5\},\{3,3\},\{0,-3\},\{-1,-1\}$ with sums $7,6,-3,-2$. Checks: $x^2-7x+10=(x-2)(x-5)$,
+    $x^2-6x+9=(x-3)^2$, $x^2+3x=x(x+3)$, $x^2+2x+1=(x+1)^2$. So $k\in\{-3,-2,6,7\}$.'
+  common_errors:
+  - Listing only positive factor pairs of 4 and missing the negative ones.
+  - Forgetting the repeated-root cases $(2,2)$ and $(-2,-2)$.
+  - Factoring $\alpha\beta-\alpha-\beta+1$ incorrectly, e.g. as $(\alpha+1)(\beta+1)$.
+  - Not checking that each candidate $k$ really gives the claimed integer roots.
+  hints:
+    rephrase: Rewrite the relation between sum and product as a single factorised equation in $\alpha$
+      and $\beta$.
+    smaller_case: Try the case $\alpha=\beta$ and see which $k$ it forces.
+    key_idea: Add a constant to both sides of $\alpha\beta-\alpha-\beta=3$ so the left side factorises,
+      then list integer factor pairs.
+  check: (7**2-4*10-9)+(6**2-4*9)+((-3)**2-4*0-9)+((-2)**2-4*1)
+  check_ok: true
+extensions:
+  '3':
+  - Show that there is no real $k$ for which the two roots are negatives of each other.
+  - Show that $x=1$ is never a root of the equation, for any real $k$.
+  '4':
+  - Find all $k$ for which one root is exactly twice the other.
+  - Find all $k$ for which both roots lie strictly between $0$ and $3$.
+  '5':
+  - Among the four values of $k$ found in part (iv), find the one for which the sum of squares of the
+    two roots is largest.
+spoken_vocab:
+- x squared minus k x plus k plus three equals zero
+- discriminant
+- alpha and beta
+- Vieta's formulas
+- sum of roots
+- product of roots
+- square root of seventeen
+- two plus or minus root seventeen
+- factor pairs of four
+- integer roots
+source: jaymin/Jaymin Interview (1).pdf#p17
+verified: false
+rating:
+  quality: 8
+  difficulty: 5
+  parts: 4
+  minutes: 20
+  flags: []
+  tagline: Four-part ladder ending in neat (a-1)(b-1)=4 integer factoring trick.
+  priority: 110
+  rank: 28
+  tier: S
+  category: jaymin
+  d10: 3.5
+  real: 5.0
+  by: haiku
+refined: true
+tags:
+- algebra_and_functions
+- number_theory

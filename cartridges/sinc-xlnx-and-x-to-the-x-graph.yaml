@@ -1,0 +1,120 @@
+id: sinc-xlnx-and-x-to-the-x-graph
+title: Limits of sin(x)/x and x ln x, and the graph of x^x
+topics:
+- limits
+- L'Hopital's rule
+- indeterminate forms
+- graph sketching
+- intercepts
+warmup: false
+answer_source: generated
+statement: 'i) Graph $f(x)=\frac{\sin(x)}{x}$. What is the limit of $f(x)$ as $x$ tends to $0$?
+
+
+  ii) Evaluate the following limit: $\lim_{x\to 0} x\ln(x)$ (Hint: You may use l''Hôpital''s rule.)
+
+
+  iii) Hence or otherwise graph $x^{x}$. Mark all intersections with the axis.'
+stages:
+- goal: Find $\lim_{x\to 0}\dfrac{\sin x}{x}$ and explain why it is not simply $0/0$.
+  expected: $\lim_{x\to 0}\dfrac{\sin x}{x}=1$.
+  solution: Direct substitution gives $0/0$, an indeterminate form. By l'Hôpital's rule, $\lim_{x\to0}\dfrac{\sin
+    x}{x}=\lim_{x\to0}\dfrac{\cos x}{1}=\cos 0=1$. Equivalently, the squeeze $\cos x\le \dfrac{\sin x}{x}\le
+    1$ for small $x>0$ gives the same answer. The graph has a removable discontinuity at $x=0$ with the
+    hole at $(0,1)$.
+  common_errors:
+  - Substituting x=0 and writing the answer as 0.
+  - Claiming the limit does not exist because the expression is undefined at x=0.
+  - Using the wrong derivative, e.g. differentiating sin x as -cos x.
+  hints:
+    rephrase: Substituting x = 0 gives 0 over 0. What tool handles an indeterminate form of this type?
+    smaller_case: Evaluate sin(x)/x on a calculator for x = 0.1 and x = 0.01 and see what value the ratio
+      approaches.
+    key_idea: This is a 0/0 form, so differentiate the numerator and denominator separately, or squeeze
+      the ratio between cos x and 1.
+  check: sp.limit(sp.sin(x)/x, x, 0) - 1
+  check_ok: null
+- goal: Evaluate $\lim_{x\to 0^+} x\ln x$.
+  expected: $\lim_{x\to 0^+}x\ln x=0$.
+  solution: As $x\to0^+$, $x\to0$ and $\ln x\to-\infty$, giving the form $0\cdot(-\infty)$. Rewrite as
+    $\dfrac{\ln x}{1/x}$, which is $\dfrac{-\infty}{\infty}$. By l'Hôpital, $\lim \dfrac{\ln x}{1/x}=\lim\dfrac{1/x}{-1/x^2}=\lim(-x)=0$.
+  common_errors:
+  - Concluding the limit is $-\infty$ because $\ln x\to-\infty$, ignoring the factor $x\to0$.
+  - Writing $0\cdot(-\infty)$ as undefined and stopping.
+  - Forgetting that ln x is only defined for x > 0, so the limit must be one-sided from the right.
+  - Applying l'Hôpital to the product $x\ln x$ directly rather than rewriting it as a quotient.
+  hints:
+    rephrase: The product has the form $0\cdot(-\infty)$. Can you rewrite it as a quotient so that l'Hôpital's
+      rule applies?
+    smaller_case: Compute $x\ln x$ for $x=0.01$ and $x=0.0001$ and see whether the values approach 0 or
+      grow.
+    key_idea: Turn the product into $\infty/\infty$ by writing it as $\ln x$ divided by $1/x$, then apply
+      l'Hôpital's rule.
+  check: sp.limit(x*sp.log(x), x, 0, '+')
+  check_ok: null
+- goal: Sketch $y=x^x$, state its domain, and identify all intersections with the axes.
+  expected: 'Domain $x>0$. The curve never meets the x-axis, since $x^x=e^{x\ln x}>0$. It does not meet
+    the y-axis either: as $x\to0^+$, $x^x\to1$, so the curve approaches $(0,1)$ but the point is not on
+    the graph. The graph has a minimum at $x=1/e$ with value $e^{-1/e}\approx 0.692$.'
+  solution: Write $x^x=e^{x\ln x}$ for $x>0$. From part ii, $x\ln x\to0$ as $x\to0^+$, so $x^x\to e^0=1$.
+    Since $e^{(\cdot)}>0$, $x^x$ is never zero, so there is no x-intercept. The y-axis is $x=0$, outside
+    the domain, so there is no y-intercept; the value 1 is only a limit, giving a hole at $(0,1)$ if extended.
+    Setting $\frac{d}{dx}x^x=x^x(\ln x+1)=0$ gives $x=1/e$, a minimum with value $e^{-1/e}$. As $x\to\infty$,
+    $x^x\to\infty$, so the graph rises steeply on the right.
+  common_errors:
+  - Claiming there is a y-intercept at (0,0) or (0,1) without noting that x=0 is outside the domain.
+  - Claiming an x-intercept exists because the curve dips near the origin.
+  - Forgetting the minimum at x=1/e when sketching.
+  - Using $x^x=e^{x}$ or $x^x=x e^{x}$ by mistake.
+  hints:
+    rephrase: Where is $x^x$ defined as a real number for the standard reading? Use part ii to find the
+      behaviour near the boundary of the domain.
+    smaller_case: Evaluate $x^x$ at x = 1, 0.5 and 0.1, and decide whether it can ever equal zero.
+    key_idea: Write $x^x = e^{x\ln x}$. Positivity of the exponential settles the x-axis; the limit from
+      part ii settles the boundary.
+  check: sp.limit(x**x, x, 0, '+') - 1
+  check_ok: null
+extensions:
+  '3':
+  - Evaluate $\lim_{x\to0}\dfrac{1-\cos x}{x^2}$ and justify your method.
+  - Show that $\lim_{x\to 0^+} x^{k}\ln x = 0$ for any constant $k>0$.
+  '4':
+  - Evaluate $\lim_{x\to0^+}x^{x}$ and explain why substituting $x=0$ is not the right method.
+  - Find all $x>0$ at which the tangent to $y=x^{x}$ is horizontal.
+  '5':
+  - Find the minimum value of $x^{x}$ on $x>0$ and the point where it occurs.
+  - Prove that $x^{x}\ge e^{-1/e}$ for all $x>0$ without using calculus.
+spoken_vocab:
+- sine x over x
+- limit as x tends to zero
+- x ln x
+- L'Hopital's rule
+- indeterminate form
+- zero over zero
+- x to the power x
+- e to the x ln x
+- minimum at one over e
+- intercept with the x axis
+- intercept with the y axis
+- removable discontinuity
+source: screenshots/Screenshot 2026-11-19 at 14.36.11.png
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 3
+  minutes: 15
+  flags:
+  - needs_diagram
+  tagline: Links x ln x limit to x^x via logs; the axis-intersection answer is subtle.
+  priority: 73
+  rank: 295
+  tier: B
+  category: screenshots
+  d10: 3.5
+  real: 5.0
+  by: haiku
+tags:
+- limits_and_approximation
+- curve_sketching
+- differentiation

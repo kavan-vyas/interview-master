@@ -1,0 +1,87 @@
+id: euler-formula-platonic-solids
+title: Euler's formula for the Platonic solids
+topics:
+- geometry
+- polyhedra
+- Euler characteristic
+- counting
+warmup: true
+answer_source: generated
+statement: Given the 3 Platonic solids, find a relationship between the edges, vertices and faces. (Euler
+  formula.)
+stages:
+- goal: For the tetrahedron (4 vertices, 6 edges, 4 faces), compute V - E + F.
+  expected: '2'
+  solution: V - E + F = 4 - 6 + 4 = 2.
+  common_errors:
+  - Using V + E - F instead of V - E + F.
+  - Mixing up vertices and faces when counting the tetrahedron.
+  - Miscounting edges as 4 instead of 6.
+  hints:
+    rephrase: Look for one combination of vertices, edges and faces, with plus and minus signs, that you
+      can compute for the simplest solid.
+    smaller_case: Try a triangular pyramid built from a triangle with one apex, and count each element
+      carefully.
+    key_idea: Look for a single combination of V, E and F that comes out the same for every convex polyhedron.
+  check: 4 - 6 + 4 - 2
+  check_ok: true
+- goal: Check V - E + F for the cube, octahedron, dodecahedron and icosahedron, and state the relationship
+    that holds for all of them.
+  expected: Cube (8, 12, 6), octahedron (6, 12, 8), dodecahedron (20, 30, 12) and icosahedron (12, 30,
+    20) each give V - E + F = 2. The relationship is V - E + F = 2.
+  solution: 'Cube: 8 - 12 + 6 = 2. Octahedron: 6 - 12 + 8 = 2. Dodecahedron: 20 - 30 + 12 = 2. Icosahedron:
+    12 - 30 + 20 = 2. So V - E + F = 2 for every Platonic solid. Note that there are five Platonic solids,
+    not three; the statement''s count is most likely a typo, and the relationship holds for all five.'
+  common_errors:
+  - Swapping the vertex and face counts for the octahedron or dodecahedron.
+  - Stating the result as an inequality or as V + E - F = 2.
+  - Checking only one solid and concluding the formula holds in general.
+  hints:
+    rephrase: Use the same combination from the previous stage and test it on the other solids one at
+      a time.
+    smaller_case: Recall the vertex, edge and face counts for the cube and check them against your earlier
+      calculation.
+    key_idea: Count the number of solids in the list you were given and make sure each one gives the same
+      result under V - E + F.
+  check: (8-12+6-2)**2 + (6-12+8-2)**2 + (20-30+12-2)**2 + (12-30+20-2)**2
+  check_ok: true
+extensions:
+  '3':
+  - Using only V - E + F = 2 and the fact that each face has at least 3 edges and each vertex has at least
+    3 edges, argue that there are at most five Platonic solids.
+  '4':
+  - Let every face be a regular p-gon and every vertex have degree q. Express E in terms of p and q.
+  '5':
+  - Show that for a surface of genus g, V - E + F = 2 - 2g. What value does this give for a torus?
+spoken_vocab:
+- Euler formula
+- Platonic solids
+- vertices
+- edges
+- faces
+- tetrahedron
+- cube
+- octahedron
+- dodecahedron
+- icosahedron
+- V minus E plus F
+- equals two
+- genus
+source: past-interviews/Actual Past Interview Questions/B1.pdf#p1
+verified: false
+rating:
+  quality: 5
+  difficulty: 3
+  parts: 2
+  minutes: 8
+  flags: []
+  tagline: Checking V−E+F across the Platonic solids leads to Euler's formula naturally.
+  priority: 55
+  rank: 480
+  tier: C
+  category: past-interviews
+  d10: 2.0
+  real: 3.0
+  by: deepseek-v4.1-flash-free
+tags:
+- geometry

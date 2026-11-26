@@ -1,0 +1,78 @@
+id: height-of-triangular-prism
+title: Height of a triangular prism
+topics:
+- volume
+- prisms
+- area
+- rearranging formulae
+warmup: true
+answer_source: generated
+statement: Find the height of a triangular prism. (The interviewer gives the volume V and the area A of
+  the triangular cross-section, then a numerical case.)
+stages:
+- goal: Write the height h in terms of the volume V and the cross-section area A.
+  expected: h = V / A
+  solution: A prism has volume equal to cross-sectional area times length. Here the length is the height
+    h, so V = A h, and dividing by A gives h = V / A.
+  common_errors:
+  - Using the perimeter of the triangle instead of its area
+  - Writing h = A / V by swapping the roles of V and A
+  hints:
+    rephrase: What is the formula for the volume of any prism, and which measurement is the length?
+    smaller_case: Find the height of a cuboid with volume 24 and base area 6.
+    key_idea: Volume of a prism equals cross-section area times length. Then rearrange for the unknown
+      length.
+  check: (V/A)*A - V
+  check_ok: true
+- goal: A prism has a triangular base with base 6 cm and perpendicular height 4 cm, and its volume is
+    72 cm^3. Find the height of the prism.
+  expected: 6 cm
+  solution: 'The triangle''s area is one half times base times height: 1/2 x 6 x 4 = 12 cm^2. Then h =
+    V / A = 72 / 12 = 6 cm.'
+  common_errors:
+  - Forgetting the one half in the triangle area
+  - Using 6 x 4 = 24 as the cross-section area
+  hints:
+    rephrase: What is the area of the triangular face, and what does the volume formula need?
+    smaller_case: Find the area of a triangle with base 6 and height 4 on its own.
+    key_idea: Compute the cross-section area first, then apply h = V / A from the previous stage.
+  check: 72/(Rational(1,2)*6*4) - 6
+  check_ok: true
+extensions:
+  '3':
+  - Find the height if the triangle has sides 3, 4, 5 and the volume is 60.
+  '4':
+  - Explain how the answer changes if the prism is lying on a different face.
+  '5':
+  - Derive the formula for the volume of a prism from the volume of a cylinder.
+spoken_vocab:
+- triangular prism
+- height
+- volume
+- cross section
+- base area
+- triangle area
+- one half
+- base times height
+- cubic centimetres
+- divide
+- rearrange
+source: past-interviews/Actual Past Interview Questions/Maths & Philosophy Oxford Interview.doc
+verified: false
+rating:
+  quality: 2
+  difficulty: 1
+  parts: 2
+  minutes: 3
+  flags:
+  - trivial
+  tagline: Single-step formula substitution; pure arithmetic recall.
+  priority: 17
+  rank: 691
+  tier: D
+  category: past-interviews
+  d10: 2.0
+  real: 3.5
+  by: deepseek-v4.1-flash-free
+tags:
+- geometry

@@ -1,0 +1,97 @@
+id: party-friends-same-degree
+title: Two people at a party have the same number of friends
+topics:
+- combinatorics
+- graph theory
+- pigeonhole principle
+warmup: true
+answer_source: generated
+statement: '$N$ people at a party. If $A$ is friends with $B$, then $B$ is friends with $A$. Claim: at
+  least 2 people have the same amount of friends. Is this true?'
+stages:
+- goal: Determine the possible numbers of friends each person can have.
+  expected: Each person's friend count lies in $\{0,1,\dots,N-1\}$ (nobody is friends with themselves,
+    so there are $N-1$ others). This assumes $N\ge 2$.
+  solution: Nobody is friends with themselves, so each person has at most $N-1$ friends from the other
+    people. A friend count is a non-negative integer, so each count lies in $\{0,1,\dots,N-1\}$.
+  common_errors:
+  - Allowing a count of $N$, forgetting that a person cannot be friends with themselves
+  - Forgetting the case count $0$
+  - Not stating the $N\ge 2$ assumption
+  hints:
+    rephrase: For one person, how many other people could they possibly be friends with?
+    smaller_case: Take N = 3 and list every count a single person could have.
+    key_idea: Count the other people, excluding the person themselves.
+- goal: Show that the counts $0$ and $N-1$ cannot both occur at the same party.
+  expected: If someone has $N-1$ friends, they are friends with everyone, so every other person has at
+    least 1 friend, and nobody has 0. Symmetrically, if someone has 0 friends, nobody can have $N-1$.
+  solution: Suppose person $P$ has $N-1$ friends. Then $P$ is friends with every other person. By the
+    symmetry of friendship, each other person is friends with $P$, so each has at least one friend. Hence
+    no one has $0$ friends. So the values $0$ and $N-1$ never both appear.
+  common_errors:
+  - Assuming all values $0,\dots,N-1$ can occur together
+  - Forgetting that friendship is symmetric when reasoning about $P$'s friends
+  - Treating the argument as needing $N-1$ to appear, rather than checking both extremes
+  hints:
+    rephrase: If one person knows everyone else, what does that say about the people who know nobody?
+    smaller_case: With N = 4, suppose one person has 3 friends. Who can have 0 friends?
+    key_idea: Symmetry of friendship links the extreme counts to each other.
+  check: N - (N-1) - 1
+  check_ok: null
+- goal: Use the pigeonhole principle to show two people share a friend count.
+  expected: 'In either case the possible values form a set of size $N-1$: either $\{1,\dots,N-1\}$ (if
+    someone has $N-1$ friends) or $\{0,\dots,N-2\}$ (otherwise). With $N$ people and only $N-1$ possible
+    values, two people must share a count. The claim is true.'
+  solution: If some person has $N-1$ friends, stage 2 means no one has 0, so all counts lie in $\{1,\dots,N-1\}$,
+    which has $N-1$ values. Otherwise no one has $N-1$ friends, so all counts lie in $\{0,\dots,N-2\}$,
+    which also has $N-1$ values. Either way $N$ people map into a set of $N-1$ values, so by pigeonhole
+    two people have the same count.
+  common_errors:
+  - Forgetting the case where no one has $N-1$ friends
+  - Miscounting the size of the value set
+  - Concluding the claim fails for $N=1$ without noting the $N\ge 2$ assumption
+  hints:
+    rephrase: Compare the number of people with the number of different values the friend counts can take.
+    smaller_case: Take N = 3 and check that the friend counts cannot all be different.
+    key_idea: 'Pigeonhole: if there are more objects than boxes, some box holds two. Here the boxes are
+      the possible friend counts.'
+  check: N - (N-1) - 1
+  check_ok: null
+extensions:
+  '3':
+  - Prove that for $N\ge 2$ at least two people share a friend count by using only stage 3 without the
+    case split, if you can find a way to use a single bound.
+  '4':
+  - Show that for each $N\ge 2$ there is a party where exactly two people share a friend count and no
+    other pair does.
+  '5':
+  - 'Prove the stronger statement: any graph on $N\ge 2$ vertices has two vertices with the same degree.'
+spoken_vocab:
+- N people at a party
+- friends
+- symmetric friendship
+- at least two people
+- same amount of friends
+- pigeonhole principle
+- zero friends
+- N minus one friends
+- is this true
+source: past-interviews/Actual Past Interview Questions/G1.jpg
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Classic handshake-lemma pigeonhole; excluding the extremes is the crux.
+  priority: 71
+  rank: 334
+  tier: B
+  category: past-interviews
+  d10: 4.5
+  real: 8.0
+  by: haiku
+tags:
+- combinatorics
+- proof

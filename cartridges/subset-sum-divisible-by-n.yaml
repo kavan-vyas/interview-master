@@ -1,0 +1,76 @@
+id: subset-sum-divisible-by-n
+title: A subset sum divisible by n
+topics:
+- pigeonhole principle
+- residues
+- prefix sums
+warmup: false
+answer_source: pdf
+statement: Given any $n$ integers $a_1,a_2,\ldots,a_n$ (not necessarily distinct), prove that some non-empty
+  collection of them has a sum divisible by $n$.
+stages:
+- goal: Apply the pigeonhole principle to the prefix sums.
+  expected: Either some prefix sum $S_k\equiv0\pmod n$, or there exist $1\le i<j\le n$ with $S_i\equiv
+    S_j\pmod n$, where $S_k=a_1+\cdots+a_k$.
+  solution: Let $S_k=a_1+\cdots+a_k$. If some $S_k\equiv0\pmod n$, the collection $a_1,\ldots,a_k$ works.
+    Otherwise all $n$ prefix sums lie in the $n-1$ nonzero residue classes mod $n$, so by pigeonhole two
+    of them, $S_i$ and $S_j$ with $i<j$, are congruent mod $n$.
+  common_errors:
+  - Forgetting the case where some prefix sum is already $0\pmod n$.
+  - Applying pigeonhole with $n$ boxes instead of the $n-1$ nonzero residue classes.
+  - Stating the pigeonhole conclusion without checking that the indices are distinct.
+  hints:
+    rephrase: Consider the running totals of the list and the residues they can occupy.
+    smaller_case: 'Take $n=3$ and $a=(1,1,1)$: which running total is divisible by $3$?'
+    key_idea: 'Pigeonhole: a residue class must be reserved for zero, which shrinks the number of boxes.'
+- goal: Produce the non-empty block whose sum is divisible by $n$.
+  expected: The collection $a_{i+1},\ldots,a_j$ is non-empty and its sum $S_j-S_i\equiv0\pmod n$.
+  solution: Since $i<j$, the block $a_{i+1},\ldots,a_j$ is non-empty. Its sum is $a_{i+1}+\cdots+a_j=S_j-S_i\equiv0\pmod
+    n$. In the other case, $a_1,\ldots,a_k$ already works.
+  common_errors:
+  - Reversing the difference, giving $S_i-S_j$ instead of $S_j-S_i$.
+  - Allowing $i=j$, which gives an empty block.
+  - Forgetting to check that the chosen block is non-empty.
+  hints:
+    rephrase: Subtract the two congruent running totals and interpret the result.
+    smaller_case: With running totals $S_2$ and $S_5$, which terms does $S_5-S_2$ sum?
+    key_idea: The difference of two congruent integers is divisible by $n$.
+extensions:
+  '3':
+  - 'Prove the Erdős–Ginzburg–Ziv theorem: among any $2n-1$ integers, some $n$ of them have a sum divisible
+    by $n$.'
+  '4':
+  - Prove the Erdős–Ginzburg–Ziv theorem in the case where $n$ is prime.
+  '5':
+  - 'Show the bound is sharp: for $n\ge2$, give $n-1$ integers with no non-empty subcollection whose sum
+    is divisible by $n$.'
+spoken_vocab:
+- any n integers
+- non-empty collection
+- sum divisible by n
+- pigeonhole principle
+- prefix sums
+- residue classes
+- congruent modulo n
+- consecutive block
+- a sub one plus a sub two
+- S sub j minus S sub i
+source: jaymin/Jaymin Interview (1).pdf#p1
+verified: false
+rating:
+  quality: 8
+  difficulty: 5
+  parts: 2
+  minutes: 12
+  flags: []
+  tagline: Classic prefix-sum pigeonhole proof with rich extension discussion.
+  priority: 100
+  rank: 46
+  tier: A
+  category: jaymin
+  d10: 4.0
+  real: 8.0
+  by: haiku
+tags:
+- proof
+- number_theory

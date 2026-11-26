@@ -1,0 +1,150 @@
+id: ln-inequality-agm-e-limit
+title: Log bound, AM-GM and the limit defining e
+topics:
+- inequalities
+- logarithms
+- AM-GM
+- limits
+- the number e
+- squeeze theorem
+warmup: false
+answer_source: pdf
+statement: '(i) Show that $\ln x\leq x-1$ for all $x>0$, with equality only at $x=1$.
+
+
+  (ii) Let $a_1,\ldots,a_n>0$ have arithmetic mean $A$. By applying (i) to each $a_i/A$, prove the AM-GM
+  inequality $A\geq\sqrt[n]{a_1a_2\cdots a_n}$.
+
+
+  (iii) Show that $\left(1+\frac1n\right)^n<e$ for every positive integer $n$.
+
+
+  (iv) By applying (i) to $1/x$, show that $\left(1+\frac1n\right)^{n+1}>e$. Deduce that $\left(1+\frac1n\right)^n\to
+  e$ as $n\to\infty$.'
+stages:
+- goal: Prove that ln x <= x - 1 for all x > 0, with equality only at x = 1.
+  expected: Let h(x) = x - 1 - ln x. Then h'(x) = 1 - 1/x, so h is strictly decreasing on (0,1) and strictly
+    increasing on (1,infinity). Hence h has a unique global minimum at x = 1 where h(1) = 0, so h(x) >=
+    0 with equality only at x = 1.
+  solution: Define $h(x)=x-1-\ln x$ on $(0,\infty)$. Then $h'(x)=1-\frac1x$, which is negative on $(0,1)$
+    and positive on $(1,\infty)$. So $h$ is strictly decreasing on $(0,1]$ and strictly increasing on
+    $[1,\infty)$, and its unique minimum is $h(1)=0$. Therefore $h(x)>0$ for $x\neq 1$ and $h(1)=0$, which
+    gives $\ln x\le x-1$ for all $x>0$, with equality only at $x=1$.
+  common_errors:
+  - Showing only that the derivative changes sign, without stating that the minimum is strict and unique.
+  - Forgetting that the argument is only valid on the domain x > 0.
+  - Concluding from h(1)=0 alone that h is non-negative, without checking the monotonicity on both sides
+    of 1.
+  - Sign slip in h'(x), e.g. writing h'(x) = 1 + 1/x, so no turning point is found.
+  hints:
+    rephrase: Move everything to one side and study the resulting function on x > 0.
+    smaller_case: Check numerically at x = 1/2, x = 1 and x = 2 to see which direction the inequality
+      goes and where equality occurs.
+    key_idea: 'Study h(x) = x - 1 - ln x: find where its derivative is negative and where it is positive,
+      and locate its minimum.'
+  check: diff(Symbol('x') - 1 - log(Symbol('x')), Symbol('x')).subs(Symbol('x'), 1) == 0
+  check_ok: true
+- goal: Prove AM-GM, A >= (a_1 a_2 ... a_n)^(1/n), by applying (i) to a_i/A.
+  expected: Sum ln(a_i/A) <= sum (a_i/A - 1) = 0. The left side equals ln(a_1...a_n) - n ln A, so a_1...a_n
+    <= A^n. Taking the nth root gives A >= GM.
+  solution: 'Since $A>0$, apply (i) to $x=a_i/A$: $\ln\frac{a_i}{A}\le\frac{a_i}{A}-1$. Summing over $i=1,\ldots,n$,
+    the right side is $\frac{\sum a_i}{A}-n=\frac{nA}{A}-n=0$. The left side is $\ln(a_1\cdots a_n)-n\ln
+    A=\ln\frac{a_1\cdots a_n}{A^n}$. So $\ln\frac{a_1\cdots a_n}{A^n}\le 0$, i.e. $a_1\cdots a_n\le A^n$.
+    Taking the $n$th root (all quantities are positive, and the root is increasing) gives $\sqrt[n]{a_1\cdots
+    a_n}\le A$.'
+  common_errors:
+  - Summing the right-hand side incorrectly, for example getting sum a_i/A = 1 instead of n.
+  - Dropping the -n terms when summing the right-hand side.
+  - Using the wrong direction when exponentiating or taking the nth root.
+  - Applying (i) to a_i rather than to the ratio a_i/A, so the sum does not collapse to 0.
+  hints:
+    rephrase: Apply the inequality from part (i) to each ratio a_i divided by the mean, then add the n
+      inequalities.
+    smaller_case: Try n = 2 with a_1 = 1, a_2 = 3, so A = 2, and see what the summed inequality says.
+    key_idea: The logarithm of a product becomes a sum of logarithms, and the sum of the ratios a_i/A
+      is fixed by the definition of A.
+  check: sqrt(3) < 2
+  check_ok: true
+- goal: Show that (1 + 1/n)^n < e for every positive integer n.
+  expected: 'Put x = 1 + 1/n in ln x < x - 1, which gives ln(1 + 1/n) < 1/n. Multiply by n and exponentiate:
+    (1 + 1/n)^n < e.'
+  solution: Since $1+\frac1n\neq1$, part (i) gives the strict inequality $\ln\left(1+\frac1n\right)<\left(1+\frac1n\right)-1=\frac1n$.
+    Multiplying by $n>0$ gives $n\ln\left(1+\frac1n\right)<1$, that is $\ln\left(1+\frac1n\right)^n<1$.
+    Since $\exp$ is increasing, $\left(1+\frac1n\right)^n<e$.
+  common_errors:
+  - Forgetting that the strict inequality needs x not equal to 1, which holds here because n >= 1 gives
+    x > 1.
+  - Multiplying by n incorrectly, or dropping the factor n.
+  - Exponentiating the wrong side, so that the direction of the inequality is lost.
+  hints:
+    rephrase: Choose x so that x - 1 becomes exactly 1/n, then take logarithms of the target expression.
+    smaller_case: Compare (1 + 1/2)^2 with e numerically to see the claimed direction.
+    key_idea: Set x = 1 + 1/n in part (i), then multiply through by n.
+  check: (1 + Rational(1,2))**2 < E
+  check_ok: true
+- goal: Show that (1 + 1/n)^(n+1) > e, then deduce that the limit of (1 + 1/n)^n is e.
+  expected: Applying (i) to 1/x gives ln x >= 1 - 1/x, strictly for x != 1. With x = 1 + 1/n this is (n+1)
+    ln(1 + 1/n) > 1, so (1 + 1/n)^(n+1) > e. Then e n/(n+1) < (1+1/n)^n < e, and e n/(n+1) tends to e,
+    so the squeeze gives the limit e.
+  solution: 'Part (i) applied to $1/x$ gives $\ln\frac1x\le\frac1x-1$, i.e. $\ln x\ge 1-\frac1x$, strictly
+    unless $x=1$. Put $x=1+\frac1n$, so $1-\frac1x=1-\frac{n}{n+1}=\frac{1}{n+1}$. This gives $\ln\left(1+\frac1n\right)>\frac1{n+1}$,
+    so $(n+1)\ln\left(1+\frac1n\right)>1$, i.e. $\left(1+\frac1n\right)^{n+1}>e$. Dividing by $1+\frac1n$:
+    $\left(1+\frac1n\right)^n>\frac{e}{1+\frac1n}=\frac{en}{n+1}$. Combined with (iii), $\frac{en}{n+1}<\left(1+\frac1n\right)^n<e$.
+    Since $\frac{en}{n+1}\to e$, the squeeze theorem gives $\left(1+\frac1n\right)^n\to e$.'
+  common_errors:
+  - Computing 1 - 1/x wrongly, for example as 1/n instead of 1/(n+1).
+  - Forgetting to divide by (1 + 1/n) when turning the bound on (1+1/n)^(n+1) into a bound on (1+1/n)^n.
+  - Claiming a limit from a strict inequality alone, without the two-sided squeeze.
+  - Assuming the limit is e because the expression is 'defined to be e', which is circular here.
+  hints:
+    rephrase: Apply the logarithm bound to the reciprocal of 1 + 1/n, then clear the logarithm and rearrange.
+    smaller_case: Write the reciprocal of 1 + 1/n in simplest form when n = 1, then apply the bound.
+    key_idea: Get a lower bound and an upper bound for (1 + 1/n)^n that both tend to e, then use the squeeze
+      theorem.
+  check: limit((1 + 1/Symbol('n', positive=True))**Symbol('n', positive=True), Symbol('n', positive=True),
+    oo) - E
+  check_ok: true
+extensions:
+  '3':
+  - Show that equality in AM-GM holds exactly when all the a_i are equal.
+  - Check numerically how close (1 + 1/n)^n and (1 + 1/n)^(n+1) are to e for n = 10, and say which side
+    of e each lies on.
+  '4':
+  - Prove that (1 + 1/n)^n is strictly increasing in n, using AM-GM on n copies of (1 + 1/n) and one copy
+    of 1.
+  '5':
+  - Show that (1 + 1/n)^(n+1) is strictly decreasing in n, using AM-GM on n+1 copies of n/(n+1) and one
+    copy of 1, and explain what this and part (iv) say about its limit.
+  - Use part (iii) to prove that n! > (n/e)^n for every positive integer n, by multiplying the bounds
+    for k = 1, ..., n-1.
+spoken_vocab:
+- ln x less than or equal to x minus one
+- arithmetic mean
+- AM-GM
+- nth root
+- one plus one over n, all to the power n
+- e
+- squeeze theorem
+- limit as n tends to infinity
+- strict inequality
+source: jaymin/Jaymin Interview (1).pdf#p17
+verified: false
+rating:
+  quality: 8
+  difficulty: 7
+  parts: 4
+  minutes: 25
+  flags: []
+  tagline: Builds ln inequality into AM-GM and the limit defining e, with rich proof structure.
+  priority: 110
+  rank: 30
+  tier: S
+  category: jaymin
+  d10: 5.5
+  real: 6.0
+  by: haiku
+refined: true
+tags:
+- proof
+- inequalities
+- exponentials_and_logarithms

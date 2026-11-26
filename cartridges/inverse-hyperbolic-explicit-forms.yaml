@@ -1,0 +1,101 @@
+id: inverse-hyperbolic-explicit-forms
+title: Explicit forms of the inverse hyperbolic functions
+topics:
+- hyperbolic functions
+- inverse functions
+- logarithms
+- algebra
+warmup: false
+answer_source: generated
+statement: Find explicit expressions for i) $\sinh^{-1}(x)$ ii) $\cosh^{-1}(x)$ iii) $\tanh^{-1}(x)$.
+stages:
+- goal: Find an explicit expression for $y=\sinh^{-1}x$ by writing $x$ in terms of exponentials and solving
+    for $e^y$.
+  expected: $\sinh^{-1}x=\ln\left(x+\sqrt{x^2+1}\right)$ for all real $x$
+  solution: Let $x=\sinh y=\frac{e^y-e^{-y}}{2}$. Multiply by $2e^y$ to get $e^{2y}-2xe^y-1=0$, a quadratic
+    in $e^y$. Then $e^y=x\pm\sqrt{x^2+1}$. Since $e^y>0$ and $x-\sqrt{x^2+1}<0$, we take $e^y=x+\sqrt{x^2+1}$,
+    so $y=\ln\left(x+\sqrt{x^2+1}\right)$.
+  common_errors:
+  - Taking the negative root $x-\sqrt{x^2+1}$, which is negative and cannot equal $e^y$.
+  - Forgetting to multiply through by $e^y$ and trying to solve the exponential equation directly.
+  - Writing the answer without stating that it holds for all real $x$.
+  hints:
+    rephrase: Write $\sinh y$ using exponentials, then multiply through to get an equation that is quadratic
+      in $e^y$.
+    smaller_case: 'Check your method with $x=0$: what value must $e^y$ take?'
+    key_idea: Solving $\sinh y=x$ for $y$ reduces to a quadratic in $e^y$, and positivity of $e^y$ selects
+      one root.
+  check: sp.simplify(sp.sinh(sp.log(x+sp.sqrt(x**2+1)))-x)
+  check_ok: null
+- goal: Find an explicit expression for $y=\cosh^{-1}x$ for $x\ge 1$, using the same method.
+  expected: $\cosh^{-1}x=\ln\left(x+\sqrt{x^2-1}\right)$ for $x\ge 1$
+  solution: Let $x=\cosh y=\frac{e^y+e^{-y}}{2}$. Multiply by $2e^y$ to get $e^{2y}-2xe^y+1=0$, so $e^y=x\pm\sqrt{x^2-1}$.
+    Both roots are positive when $x\ge 1$, and they are reciprocals of each other. The function $\cosh^{-1}$
+    is defined to be non-negative, so $y\ge 0$ requires $e^y\ge 1$, which selects $e^y=x+\sqrt{x^2-1}$.
+  common_errors:
+  - Forgetting that $\cosh y\ge 1$, so the expression is only valid for $x\ge 1$.
+  - Choosing $x-\sqrt{x^2-1}$ without justifying the choice with $y\ge 0$.
+  - Writing a sign error in the quadratic, for example $e^{2y}-2xe^y-1=0$.
+  hints:
+    rephrase: Repeat the first method with $\cosh$ in place of $\sinh$. Which sign changes in the quadratic?
+    smaller_case: 'Check $x=1$: what is $\cosh^{-1}1$?'
+    key_idea: Both roots of the quadratic are reciprocal positive numbers, so the choice of root is determined
+      by requiring the output to be non-negative.
+  check: sp.simplify(sp.cosh(sp.log(x+sp.sqrt(x**2-1)))-x)
+  check_ok: null
+- goal: Find an explicit expression for $y=\tanh^{-1}x$ for $|x|<1$.
+  expected: $\tanh^{-1}x=\frac{1}{2}\ln\frac{1+x}{1-x}$ for $|x|<1$
+  solution: Let $x=\tanh y=\frac{e^{2y}-1}{e^{2y}+1}$. Solving for $e^{2y}$ gives $e^{2y}=\frac{1+x}{1-x}$,
+    which is positive for $|x|<1$. Taking logarithms and halving gives $y=\frac{1}{2}\ln\frac{1+x}{1-x}$.
+  common_errors:
+  - Forgetting the factor $\frac{1}{2}$ in front of the logarithm.
+  - Writing $\ln\frac{1-x}{1+x}$, which is the negative of the correct value.
+  - Omitting the restriction $|x|<1$.
+  hints:
+    rephrase: Write $\tanh y$ in terms of $e^{2y}$, then solve for $e^{2y}$.
+    smaller_case: 'Check $x=0$: what is $e^{2y}$ when $y=0$?'
+    key_idea: Rewriting $\tanh y$ with $e^{2y}$ gives a simple rational equation, and the logarithm of
+      that rational expression gives $y$.
+  check: sp.simplify(sp.tanh(sp.log((1+x)/(1-x))/2)-x)
+  check_ok: null
+extensions:
+  '3':
+  - Show that $\frac{d}{dx}\sinh^{-1}x=\frac{1}{\sqrt{x^2+1}}$ using your expression.
+  - Explain why $\cosh^{-1}x$ has only one non-negative branch on $x\ge 1$.
+  '4':
+  - Show that $\tanh^{-1}x=x+\frac{x^3}{3}+\frac{x^5}{5}+\cdots$ for $|x|<1$ by using the logarithmic
+    form.
+  - Find the explicit form of $\coth^{-1}x$ and state its domain.
+  '5':
+  - Show that $\sinh^{-1}x$ can be written as an integral $\int_0^x \frac{dt}{\sqrt{t^2+1}}$, and explain
+    how this relates to the logarithmic form.
+spoken_vocab:
+- sinh inverse of x
+- cosh inverse of x
+- tanh inverse of x
+- natural log of x plus square root of x squared plus one
+- natural log of x plus square root of x squared minus one
+- one half natural log of one plus x over one minus x
+- e to the y
+- quadratic in e to the y
+- square root
+- modulus of x less than one
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 4
+  difficulty: 4
+  parts: 3
+  minutes: 10
+  flags: []
+  tagline: Mechanical exponential algebra; little beyond the routine method to discuss.
+  priority: 51
+  rank: 529
+  tier: C
+  category: tbo
+  d10: 3.0
+  real: 3.0
+  by: haiku
+tags:
+- hyperbolic_functions
+- exponentials_and_logarithms

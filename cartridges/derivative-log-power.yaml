@@ -1,0 +1,76 @@
+id: derivative-log-power
+title: Derivative of (ln x) to the power ln x
+topics:
+- calculus
+- differentiation
+- logarithmic differentiation
+- chain rule
+- product rule
+warmup: true
+answer_source: pdf
+statement: What is the derivative of $y=(\ln x)^{\ln x}$?
+stages:
+- goal: Take logarithms to turn the variable exponent into a product.
+  expected: $\ln y=\ln x\,\ln(\ln x)$
+  solution: Take the natural log of $y=(\ln x)^{\ln x}$ and use $\ln(a^{b})=b\ln a$ with $a=b=\ln x$.
+    This gives $\ln y=\ln x\cdot\ln(\ln x)$.
+  common_errors:
+  - Leaving the expression as $\ln y=(\ln x)^{\ln x}$ without applying the power rule for logs
+  - Treating the exponent $\ln x$ as a constant when differentiating later
+  hints:
+    rephrase: The base and the exponent both depend on $x$. Which trick turns a variable exponent into
+      something easier?
+    smaller_case: Apply the same first step to $y=x^{x}$.
+    key_idea: Logarithmic differentiation.
+  check: sympy.expand_log(sympy.log(sympy.log(x)**sympy.log(x)), force=True) - sympy.log(x)*sympy.log(sympy.log(x))
+  check_ok: null
+- goal: Differentiate both sides with respect to $x$ and solve for $dy/dx$.
+  expected: $\frac{dy}{dx}=\frac{y}{x}\left(\ln(\ln x)+1\right)=(\ln x)^{\ln x}\,\frac{\ln(\ln x)+1}{x}$
+  solution: 'Differentiate $\ln x\,\ln(\ln x)$ with the product rule: $\frac{1}{x}\ln(\ln x)+\ln x\cdot\frac{1}{\ln
+    x}\cdot\frac{1}{x}=\frac{\ln(\ln x)+1}{x}$. Since $\frac{1}{y}\frac{dy}{dx}$ equals this, $\frac{dy}{dx}=\frac{y}{x}\left(\ln(\ln
+    x)+1\right)$.'
+  common_errors:
+  - Forgetting the $\frac{1}{x}$ factor from differentiating $\ln x$
+  - Differentiating $\ln(\ln x)$ as $\frac{1}{\ln x}$ without the chain rule factor $\frac{1}{x}$
+  - Forgetting to multiply back by $y$ to get $dy/dx$
+  hints:
+    rephrase: After taking logs, you have a product of two functions of $x$. What rule differentiates
+      a product, and what does the chain rule add?
+    smaller_case: Differentiate $\ln x$ times $x$ and check the result.
+    key_idea: Differentiate $\ln y$ implicitly, then multiply by $y$.
+  check: sympy.simplify(sympy.diff(sympy.log(x)**sympy.log(x), x) - sympy.log(x)**sympy.log(x)*(sympy.log(sympy.log(x))+1)/x)
+  check_ok: null
+extensions:
+  '3':
+  - Differentiate $y=x^{x}$ using logarithmic differentiation.
+  '4':
+  - Find $\frac{dy}{dx}$ for $y=x^{\sqrt{x}}$.
+  '5':
+  - Find $\frac{dy}{dx}$ for $y=(\sin x)^{x}$.
+spoken_vocab:
+- y equals open paren ln x close paren to the ln x
+- d y d x
+- natural log of x
+- log of log x
+- product rule
+- chain rule
+- logarithmic differentiation
+source: zhou-quant/zhou-quant-guide.pdf#2
+verified: false
+rating:
+  quality: 3
+  difficulty: 4
+  parts: 2
+  minutes: 4
+  flags: []
+  tagline: Single-technique logarithmic differentiation; quick warm-up with little discussion.
+  priority: 35
+  rank: 606
+  tier: D
+  category: zhou-quant
+  d10: 3.5
+  real: 4.5
+  by: deepseek-v4.1-flash-free
+tags:
+- differentiation
+- exponentials_and_logarithms

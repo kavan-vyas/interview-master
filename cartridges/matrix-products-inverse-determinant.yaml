@@ -1,0 +1,150 @@
+id: matrix-products-inverse-determinant
+title: Matrix products, inverse and determinant
+topics:
+- matrices
+- matrix multiplication
+- non-commutativity
+- associativity
+- inverse matrix
+- transpose
+- determinant
+warmup: false
+answer_source: pdf
+statement: Let $A=\begin{pmatrix}1&2\\1&3\end{pmatrix}$, $B=\begin{pmatrix}1&0\\-1&1\end{pmatrix}$, $C=\begin{pmatrix}2&1\\1&2\end{pmatrix}$
+  and $I=\begin{pmatrix}1&0\\0&1\end{pmatrix}$. (i) Show that $AB\neq BA$. (ii) Show that $(AB)C=A(BC)$.
+  (iii) Without using any formulae, find a matrix $D=\begin{pmatrix}a&b\\c&d\end{pmatrix}$ such that $AD=I$.
+  (iv) Show that $(AB)^T=B^TA^T$. (v) Show that $\det AB=\det A\det B$.
+stages:
+- goal: Show that AB ≠ BA.
+  expected: AB = [[-1,2],[-2,3]] and BA = [[1,2],[0,1]]. They differ (the (1,1) entries are -1 and 1),
+    so AB ≠ BA.
+  solution: 'AB: row1·col1 = 1·1+2·(-1) = -1; row1·col2 = 1·0+2·1 = 2; row2·col1 = 1·1+3·(-1) = -2; row2·col2
+    = 0+3 = 3. BA: row1·col1 = 1; row1·col2 = 2; row2·col1 = 0; row2·col2 = 1. The (1,1) entries differ,
+    so AB ≠ BA.'
+  common_errors:
+  - Assuming matrix multiplication commutes like ordinary numbers
+  - Multiplying entries position by position instead of row by column
+  - Sign slip when using the -1 entry of B
+  hints:
+    rephrase: Compute AB and BA completely, then compare them entry by entry.
+    smaller_case: Take two 2x2 matrices with a single nonzero entry each, e.g. E=[[0,1],[0,0]] and F=[[0,0],[1,0]],
+      and compare EF with FE.
+    key_idea: Each entry of a product is a row-times-column sum, and swapping the order changes which
+      rows meet which columns.
+  check: Matrix([[1,2],[1,3]])*Matrix([[1,0],[-1,1]]) != Matrix([[1,0],[-1,1]])*Matrix([[1,2],[1,3]])
+  check_ok: true
+- goal: Show that (AB)C = A(BC).
+  expected: Both (AB)C and A(BC) equal [[0,3],[-1,4]].
+  solution: AB = [[-1,2],[-2,3]], so (AB)C = [[-1·2+2·1, -1·1+2·2],[-2·2+3·1, -2·1+3·2]] = [[0,3],[-1,4]].
+    BC = [[2,1],[-1,1]], so A(BC) = [[1·2+2·(-1), 1·1+2·1],[1·2+3·(-1), 1·1+3·1]] = [[0,3],[-1,4]]. Equal.
+  common_errors:
+  - Computing only one bracketing and declaring equality
+  - Arithmetic slips in the second row
+  - Confusing the order of multiplication when forming BC
+  hints:
+    rephrase: Form each bracketed product first and then multiply by the remaining matrix.
+    smaller_case: Try the same check using only the 1x1 matrices 2, 3 and 4 and reason about why it always
+      works for scalars.
+    key_idea: Matrix multiplication is associative; both bracketings compute the same sum over all paths
+      through the three matrices.
+  check: Matrix([[1,2],[1,3]])*Matrix([[1,0],[-1,1]])*Matrix([[2,1],[1,2]]) == Matrix([[0,3],[-1,4]])
+  check_ok: true
+- goal: Without formulae, find D = [[a,b],[c,d]] with AD = I.
+  expected: D = [[3,-2],[-1,1]].
+  solution: 'AD = [[a+2c, b+2d],[a+3c, b+3d]] = I gives a+2c=1, a+3c=0, b+2d=0, b+3d=1. From the first
+    pair c=-1, a=3. From the second pair d=1, b=-2. So D = [[3,-2],[-1,1]]. Check: AD = I.'
+  common_errors:
+  - Solving the system for the wrong entries
+  - Using a formula for the inverse, which the question forbids
+  - Sign error when solving for c or b
+  hints:
+    rephrase: Write out AD entry by entry and equate each entry with the matching entry of I.
+    smaller_case: Find the number x with 2x = 1, then find the number y with 2y = 0 and 3y = 1 simultaneously,
+      to see why the columns must be found separately.
+    key_idea: The first column of D and the second column of D each solve their own pair of linear equations.
+  check: Matrix([[1,2],[1,3]])*Matrix([[3,-2],[-1,1]]) == eye(2)
+  check_ok: true
+- goal: Show that (AB)^T = B^T A^T.
+  expected: (AB)^T = [[-1,-2],[2,3]] and B^T A^T = [[1,-1],[0,1]]·[[1,1],[2,3]] = [[-1,-2],[2,3]]. Equal.
+  solution: Transposing AB = [[-1,2],[-2,3]] gives [[-1,-2],[2,3]]. B^T = [[1,-1],[0,1]] and A^T = [[1,1],[2,3]];
+    their product is [[1-2, 1-3],[2, 3]] = [[-1,-2],[2,3]]. Equal.
+  common_errors:
+  - Writing (AB)^T = A^T B^T, the wrong order
+  - Forgetting to swap rows and columns when transposing
+  - Mistakes when multiplying B^T and A^T
+  hints:
+    rephrase: Transpose AB first, then compute the product of the transposes in the reverse order and
+      compare.
+    smaller_case: Take two 2x2 matrices with a single nonzero entry each and check how transposing and
+      multiplying interact.
+    key_idea: The transpose swaps entry (i,j) with entry (j,i), and a product's transpose reverses the
+      order of the factors.
+  check: (Matrix([[1,2],[1,3]])*Matrix([[1,0],[-1,1]])).T == Matrix([[1,-1],[0,1]])*Matrix([[1,1],[2,3]])
+  check_ok: true
+- goal: Show that det(AB) = det A · det B.
+  expected: det(AB) = (-1)(3) - (2)(-2) = 1; det A = 3 - 2 = 1; det B = 1 - 0 = 1; so det A · det B =
+    1 = det(AB).
+  solution: For a 2x2 matrix [[p,q],[r,s]], det = ps - qr. det(AB) = (-1)(3) - (2)(-2) = -3 + 4 = 1. det
+    A = 3 - 2 = 1, det B = 1 - 0 = 1. Product is 1, so det(AB) = det A det B.
+  common_errors:
+  - Using the wrong sign in ps - qr
+  - Computing det(AB) from the wrong product
+  - Stopping after checking one numerical example, which does not prove the general identity
+  hints:
+    rephrase: Write down the determinant formula for a general 2x2 matrix and apply it to AB, A and B.
+    smaller_case: Take the 2x2 matrices I and the matrix [[2,0],[0,1]] and compare determinants of their
+      products.
+    key_idea: Expand both sides symbolically in the entries of A and B; the two expressions should agree
+      as polynomials.
+  check: (Matrix([[1,2],[1,3]])*Matrix([[1,0],[-1,1]])).det() == Matrix([[1,2],[1,3]]).det()*Matrix([[1,0],[-1,1]]).det()
+  check_ok: true
+extensions:
+  '3':
+  - Show that det(A^{-1}) = 1/det A using only the multiplicative property of determinants.
+  '4':
+  - For arbitrary 2x2 matrices P and Q, prove det(PQ) = det P det Q by writing out all entries.
+  '5':
+  - Show that (ABC)^T = C^T B^T A^T and hence that (AB)^{-1} = B^{-1} A^{-1} for invertible A and B.
+spoken_vocab:
+- A
+- B
+- C
+- I
+- A B
+- B A
+- A B C
+- A D equals I
+- D
+- transpose
+- B transpose
+- A transpose
+- determinant
+- det A
+- det B
+- det A B
+- not equal
+- matrix
+- row
+- column
+- two by two
+- bracket
+source: step-workbook/Cambridge STEP Short Workbook.pdf#1
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 5
+  minutes: 10
+  flags:
+  - trivial
+  tagline: Routine matrix arithmetic checks; little discussion beyond computation
+  priority: 25
+  rank: 648
+  tier: D
+  category: step-workbook
+  d10: 2.0
+  real: 3.0
+  by: haiku
+tags:
+- matrices
+- proof

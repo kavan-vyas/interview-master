@@ -1,0 +1,97 @@
+id: parabola-equilateral-triangle
+title: Equilateral triangle on the parabola y = x^2 with vertex at the origin
+topics:
+- coordinate geometry
+- parabola
+- equilateral triangles
+- symmetry
+- distance formula
+warmup: true
+answer_source: pdf
+statement: Three points $A$, $B$, $C$ all lie on the parabola $y = x^2$. $B = (0,0)$ is the origin. $A$
+  is another point on the curve to the left of $B$, and $C$ is another point on the curve to the right.
+  I'd like triangle $ABC$ to be equilateral. Where should I put $A$ and $C$?
+stages:
+- goal: Write $A=(a,a^2)$ and $C=(c,c^2)$ with $a<0<c$. Use the condition $|BA|=|BC|$ to relate $a$ and
+    $c$.
+  expected: $a=-c$
+  solution: $|BA|^2=a^2+a^4$ and $|BC|^2=c^2+c^4$. Equal lengths give $a^2+a^4=c^2+c^4$. The function
+    $t\mapsto t+t^2$ is strictly increasing for $t\ge 0$, so $a^2=c^2$. Since $a<0<c$, $a=-c$. So $A$
+    and $C$ are mirror images in the y-axis.
+  common_errors:
+  - Concluding $a=c$, ignoring the sign constraint from the left/right placement
+  - Only checking $a^2=c^2$ and forgetting the sign to reach $a=-c$
+  hints:
+    rephrase: Equal distances from the origin are required. Write both squared distances as functions
+      of the coordinate and compare them.
+    smaller_case: Take $C=(1,1)$. Which point $A$ on the left branch is the same distance from $B$ as
+      $C$?
+    key_idea: Use the squared distances. Compare the two sides, then use the sign of $a$ and $c$ to choose
+      between the two roots.
+  check: a + c
+  check_ok: false
+- goal: Use the equilateral condition $|AC|=|BC|$ with $a=-c$ and find $c>0$. Give $A$ and $C$.
+  expected: $c=\sqrt{3}$, so $C=(\sqrt{3},3)$ and $A=(-\sqrt{3},3)$
+  solution: 'With $a=-c$, the side $|AC|=2c$. The condition $|AC|=|BC|$ gives $4c^2=c^2+c^4$, so $c^2(c^2-3)=0$.
+    Since $c\neq 0$ for a non-degenerate triangle, $c^2=3$ and $c=\sqrt{3}$. Then $C=(\sqrt{3},3)$ and
+    $A=(-\sqrt{3},3)$. Check: $|BC|^2=3+9=12$ and $|AC|^2=(2\sqrt{3})^2=12$.'
+  common_errors:
+  - Using $|AC|=c$ instead of $|AC|=2c$
+  - Dropping the factor $c^2$ and then missing that $c=0$ is degenerate
+  - Writing $c=\pm\sqrt{3}$ and not using the constraint $c>0$
+  hints:
+    rephrase: With the symmetry from the last step, the base $AC$ is horizontal. Find its length in terms
+      of $c$ and set it equal to the length of a side from $B$.
+    smaller_case: Write down the horizontal distance between $A$ and $C$ when $c=1$, then compare it with
+      $|BC|$ at $c=1$.
+    key_idea: Equating two squared side lengths gives a polynomial in $c^2$. Factor out the degenerate
+      root.
+  check: c - sqrt(3)
+  check_ok: false
+extensions:
+  '3':
+  - Suppose A is on the right branch and C on the left. Does your answer change? Why or why not?
+  '4':
+  - For the parabola $y = kx^2$ with $k>0$, find the equilateral triangle with $B$ at the origin and $A$,
+    $C$ on the curve. How does $c$ depend on $k$?
+  '5':
+  - Show that the base $AC$ of your equilateral triangle lies on the line $y=3$, and explain why this
+    height is forced by the equal sides.
+spoken_vocab:
+- A
+- B
+- C
+- x
+- y
+- y equals x squared
+- origin
+- equilateral
+- minus a equals c
+- c squared
+- square root of three
+- root three
+- c cubed
+- parabola
+- distance
+- mirror image
+- y-axis
+- a less than zero less than c
+source: past-interviews/Actual Past Interview Questions/Oxford Maths Interview Question 2019 James Munroe.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 2
+  minutes: 8
+  flags: []
+  tagline: Neat symmetry argument forces a=-c, then equilateral condition gives c=√3.
+  priority: 55
+  rank: 475
+  tier: C
+  category: past-interviews
+  d10: 3.0
+  real: 7.0
+  by: haiku
+tags:
+- coordinate_geometry
+- geometry

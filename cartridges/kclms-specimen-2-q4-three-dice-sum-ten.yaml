@@ -1,0 +1,109 @@
+id: kclms-specimen-2-q4-three-dice-sum-ten
+title: Probability that three dice sum to 10
+topics:
+- probability
+- counting
+- stars and bars
+- complementary counting
+warmup: true
+answer_source: pdf
+statement: Three fair six-sided dice are rolled. What is the probability that the sum of the three scores
+  is 10? a) $\frac{1}{6}$ b) $\frac{1}{8}$ c) $\frac{1}{9}$ d) $\frac{5}{36}$ e) $\frac{1}{12}$
+stages:
+- goal: Count the ordered triples of positive integers (a,b,c) with a+b+c = 10, ignoring the upper limit
+    of 6.
+  expected: '36'
+  solution: 'Stars and bars: the number of positive integer solutions to a+b+c = 10 is C(9,2) = 36.'
+  common_errors:
+  - Using C(10,2) = 45, which allows zero values.
+  - Using C(10,3) = 120, which mixes up the formula.
+  hints:
+    rephrase: How many ways can you split 10 into three positive parts, with order mattering?
+    smaller_case: How many ordered pairs of positive integers sum to 4?
+    key_idea: 'Stars and bars: n positive parts summing to N have C(N-1, n-1) solutions.'
+  check: binomial(9,2) - 36
+  check_ok: true
+- goal: Count the outcomes in which at least one die shows 7 or more.
+  expected: '9'
+  solution: 'Suppose a >= 7. Write a = a'' + 6 with a'' >= 1, so a'' + b + c = 4 with all parts positive:
+    C(3,2) = 3 solutions. Multiply by 3 for the choice of die. Two dice cannot both reach 7 since 7 +
+    7 > 10, so there is no double counting. Total 3 * 3 = 9.'
+  common_errors:
+  - Forgetting to multiply by 3 for the choice of which die is large.
+  - Subtracting cases where some die is 0 instead of above 6.
+  - Miscounting the shifted equation as a'+b+c = 3.
+  hints:
+    rephrase: Which outcomes break the 1-to-6 limit, and how many of them are there for one die?
+    smaller_case: Two dice sum to 4. How many outcomes have the first die showing 3 or more?
+    key_idea: Shift the variable that exceeds the limit, then count with stars and bars; check whether
+      two dice can exceed the limit together.
+  check: 3*binomial(3,2) - 9
+  check_ok: true
+- goal: Find the number of favourable outcomes.
+  expected: '27'
+  solution: Favourable outcomes = 36 - 9 = 27.
+  common_errors:
+  - Adding the 9 instead of subtracting.
+  - Subtracting 9 twice or missing the overlap check.
+  hints:
+    rephrase: Take the total from the first stage and remove the bad outcomes from the second.
+    smaller_case: If there are 5 outcomes in total and 2 are bad, how many are good?
+    key_idea: 'Complementary counting: good = total minus bad.'
+  check: 36 - 9 - 27
+  check_ok: true
+- goal: Divide by the total number of equally likely outcomes to find the probability.
+  expected: 1/8
+  solution: There are 6^3 = 216 equally likely outcomes, so the probability is 27/216 = 1/8. This is option
+    b.
+  common_errors:
+  - Dividing by 36 instead of 216.
+  - Failing to simplify 27/216 to 1/8.
+  - Choosing 5/36 by treating the count 9 as favourable.
+  hints:
+    rephrase: How many equally likely outcomes are there for three dice in total?
+    smaller_case: What is the probability that two dice sum to 2?
+    key_idea: Probability = favourable outcomes / total outcomes, and total outcomes count ordered rolls.
+  check: Rational(27,216) - Rational(1,8)
+  check_ok: true
+extensions:
+  '3':
+  - What is the probability that three dice sum to 11?
+  - What is the probability that two dice sum to 7?
+  '4':
+  - Use the generating function (x + x^2 + ... + x^6)^3 and read off the coefficient of x^10.
+  - What is the probability that three dice sum to at least 15?
+  '5':
+  - Show that the distribution of the sum of three dice is symmetric about 10.5.
+  - Find the variance of the sum of three dice.
+spoken_vocab:
+- three fair six-sided dice
+- probability
+- sum of the three scores
+- ten
+- stars and bars
+- binomial coefficient
+- complementary counting
+- total outcomes six cubed
+- two hundred and sixteen
+- favourable outcomes
+- one eighth
+- option b
+source: kclms/kclms-specimen-mcq-2.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 5
+  parts: 4
+  minutes: 7
+  flags: []
+  tagline: Complementary counting with stars and bars; the method is worth discussing.
+  priority: 62
+  rank: 426
+  tier: C
+  category: kclms
+  d10: 4.0
+  real: 3.0
+  by: haiku
+tags:
+- probability
+- combinatorics

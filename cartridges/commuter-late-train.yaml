@@ -1,0 +1,147 @@
+id: commuter-late-train
+title: 'Henry the commuter: lateness, expected count and estimating p'
+topics:
+- normal distribution
+- sums of independent normals
+- total probability
+- linear functions and bounds
+- estimation
+warmup: false
+answer_source: pdf
+statement: Henry the commuter lives in Cambridge and his working day starts at his office in London at
+  0900. He catches the 0715 train to King's Cross with probability $p$, or the 0720 to Liverpool Street
+  with probability $1-p$. Measured in minutes, journey times for the first train are $N(55,25)$ and for
+  the second are $N(65,16)$. Journey times from King's Cross and Liverpool Street to his office are $N(30,144)$
+  and $N(25,9)$, respectively. Show that Henry is more likely to be late for work if he catches the first
+  train. Henry makes $M$ journeys, where $M$ is large. Writing $A$ for $1-\Phi(20/13)$ and $B$ for $1-\Phi(2)$,
+  find, in terms of $A$, $B$, $M$ and $p$, the expected number, $L$, of times that Henry will be late
+  and show that for all possible values of $p$, $BM\le L\le AM$. Henry noted that in $3/5$ of the occasions
+  when he was late, he had caught the King's Cross train. Obtain an estimate of $p$ in terms of $A$ and
+  $B$.
+stages:
+- goal: 'Show that lateness is more likely on the King''s Cross route: find the late probability for each
+    route and compare.'
+  expected: 'Late via King''s Cross: $P(T_1>105)=A=1-\Phi(20/13)$. Late via Liverpool Street: $P(T_2>100)=B=1-\Phi(2)$.
+    Since $\Phi(20/13)<\Phi(2)$, we have $A>B$.'
+  solution: 'Route 1: $T_1=N(55,25)+N(30,144)\sim N(85,169)$, so $T_1\sim N(85,13^2)$. Time from the 0715
+    departure to 0900 is $105$ minutes, so $P(\text{late}\mid KX)=P(T_1>105)=1-\Phi\left(\frac{20}{13}\right)=A$.
+    Route 2: $T_2=N(65,16)+N(25,9)\sim N(90,25)$, so $T_2\sim N(90,5^2)$. Time from 0720 to 0900 is $100$
+    minutes, so $P(\text{late}\mid LS)=P(T_2>100)=1-\Phi(2)=B$. Since $20/13\approx1.54<2$ and $\Phi$
+    is increasing, $\Phi(20/13)<\Phi(2)$, so $A>B$. Lateness is more likely on the first train.'
+  common_errors:
+  - Adding standard deviations instead of variances when combining the journey legs.
+  - 'Using the wrong deadline offset: 105 for the 0715 train and 100 for the 0720 train.'
+  - Comparing the probabilities of catching each train rather than the lateness probabilities.
+  hints:
+    rephrase: Lateness depends on the total time from departure, compared with the time left before 0900.
+      Work out each route separately.
+    smaller_case: For one route, treat its two legs as two independent normal times. What distribution
+      does their sum have?
+    key_idea: Sums of independent normals have means that add and variances that add. Then standardise
+      the total against the time remaining before 0900.
+  check: simplify(abs((1 - stats.cdf(stats.Normal('X',85,13))(105)) - (1 - stats.cdf(stats.Normal('Z',0,1))(Rational(20,13))))
+    + abs((1 - stats.cdf(stats.Normal('Y',90,5))(100)) - (1 - stats.cdf(stats.Normal('Z2',0,1))(2))))
+  check_ok: null
+- goal: Find the expected number of late journeys L in M journeys, in terms of A, B, M and p.
+  expected: $L=M\left[pA+(1-p)B\right]=M\left[B+(A-B)p\right]$.
+  solution: 'Each journey is late with probability $pA+(1-p)B$ by the law of total probability: with probability
+    $p$ he takes the King''s Cross train (late probability $A$), otherwise the Liverpool Street train
+    (late probability $B$). Journeys are treated as independent. By linearity of expectation, $L=M[pA+(1-p)B]=M[B+(A-B)p]$.'
+  common_errors:
+  - Forgetting to weight the two late probabilities by $p$ and $1-p$.
+  - Using $1-A$ or $1-B$ instead of $A$ and $B$.
+  - Treating $L$ as independent of $p$.
+  hints:
+    rephrase: For one journey, there are two cases for which train he takes. Write the chance of being
+      late in each case and weight them.
+    smaller_case: Suppose $p=1$ and then $p=0$. What is the late probability in each case?
+    key_idea: Condition on the train taken (total probability), then use linearity of expectation over
+      the M journeys.
+  check: simplify(M*(p*A+(1-p)*B) - M*(B+(A-B)*p))
+  check_ok: true
+- goal: Show that $BM\le L\le AM$ for all $p$ in $[0,1]$.
+  expected: $L$ is linear in $p$ with $L=BM$ at $p=0$ and $L=AM$ at $p=1$. Since $A>B$, $L$ is increasing
+    in $p$, so $BM\le L\le AM$.
+  solution: Write $L=BM+(A-B)Mp$. Since $A-B>0$ this is increasing in $p$. Setting $p=0$ gives $L=BM$
+    and setting $p=1$ gives $L=AM$. For $p\in[0,1]$, therefore, $BM\le L\le AM$.
+  common_errors:
+  - Checking only one endpoint.
+  - Forgetting to justify the sign of $A-B$, which comes from the previous stage.
+  - Claiming the inequality holds without restricting $p$ to $[0,1]$.
+  hints:
+    rephrase: L is a formula in p. What does it give at the two extreme values of p, and how does it change
+      between them?
+    smaller_case: Take $A=0.3$, $B=0.1$, $M=1$ and compare the value of $L$ at $p=0$, $p=0.5$ and $p=1$.
+    key_idea: A linear function of p on [0,1] is bounded by its endpoint values, and the direction depends
+      on the sign of its slope.
+  check: simplify((M*(p*A+(1-p)*B)).subs(p,0) - B*M + (M*(p*A+(1-p)*B)).subs(p,1) - A*M)
+  check_ok: true
+- goal: Estimate p from the observed fraction 3/5 of late occasions that involved the King's Cross train.
+  expected: $\tilde p=\frac{3B}{2A+3B}$.
+  solution: 'The probability that a late journey used King''s Cross is $\frac{pA}{pA+(1-p)B}$. Set this
+    equal to the observed fraction $\frac35$: $5pA=3pA+3(1-p)B$, so $2pA=3B-3pB$, giving $p(2A+3B)=3B$
+    and $\tilde p=\frac{3B}{2A+3B}$.'
+  common_errors:
+  - Confusing $P(\text{KX}\mid\text{late})$ with $P(\text{late}\mid\text{KX})=A$.
+  - Dropping the $(1-p)B$ term from the denominator.
+  - Solving for $1-p$ and then making an arithmetic slip.
+  hints:
+    rephrase: Among late journeys, what fraction used the King's Cross train? Write that fraction using
+      the two late probabilities and the train probabilities.
+    smaller_case: Take $A=2$, $B=1$ and try $p=\frac12$. Compute the fraction of late journeys that used
+      King's Cross.
+    key_idea: Use Bayes' rule on the late event, then equate the formula to the observed proportion and
+      solve the resulting linear equation for p.
+  check: simplify((3*B/(2*A+3*B))*A/((3*B/(2*A+3*B))*A + (1-3*B/(2*A+3*B))*B) - Rational(3,5))
+  check_ok: true
+extensions:
+  '3':
+  - Show that L/M is largest when p=1 and smallest when p=0.
+  - Explain why BM and AM are the natural bounds for L for every value of p.
+  '4':
+  - Redo the estimate of p if the observed fraction had been 2/3 instead of 3/5, in terms of A and B.
+  '5':
+  - Explain why the estimate of p from the observed late fraction is a method-of-moments style estimate,
+    and when it could be biased for finite M.
+spoken_vocab:
+- p
+- one minus p
+- A
+- B
+- M
+- L
+- phi of twenty over thirteen
+- phi of two
+- one minus phi
+- King's Cross
+- Liverpool Street
+- normal distribution
+- mean
+- variance
+- standard deviation
+- total probability
+- expected number
+- less than or equal to
+- estimate
+- three fifths
+- two A plus three B
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#21
+verified: false
+rating:
+  quality: 7
+  difficulty: 7
+  parts: 4
+  minutes: 25
+  flags:
+  - garbled
+  tagline: Rich multi-stage modelling with normal approximations and inference; text truncated.
+  priority: 74
+  rank: 288
+  tier: B
+  category: siklos
+  d10: 6.5
+  real: 3.0
+  by: deepseek-v4.1-flash-free
+tags:
+- probability
+- inequalities

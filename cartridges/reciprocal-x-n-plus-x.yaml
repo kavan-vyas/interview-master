@@ -1,0 +1,103 @@
+id: reciprocal-x-n-plus-x
+title: Integral of 1/(x^n + x)
+topics:
+- integration
+- partial fractions
+- logarithms
+- algebraic manipulation
+warmup: false
+answer_source: generated
+statement: Evaluate $I=\int\dfrac{1}{x^n+x}\,dx$.
+stages:
+- goal: Rewrite the integrand 1/(x^n + x) in a form that is easier to integrate.
+  expected: 1/(x^n + x) = 1/x - x^(n-2)/(x^(n-1) + 1)
+  solution: Factor the denominator as x(x^(n-1) + 1). Then 1/(x(x^(n-1)+1)) = (1/x)(1/(x^(n-1)+1)). Write
+    1 as (x^(n-1)+1) - x^(n-1) to get [ (x^(n-1)+1) - x^(n-1) ] / (x(x^(n-1)+1)) = 1/x - x^(n-2)/(x^(n-1)+1).
+  common_errors:
+  - Splitting the denominator as a sum of separate fractions, which is not valid.
+  - Getting the power of x in the second term wrong (it should be n-2, not n-1).
+  hints:
+    rephrase: Factor out an x from the denominator, then look for a way to write the remaining fraction
+      as a sum.
+    smaller_case: Take n = 2. What does the denominator factor into, and how would you split 1/(x^2 +
+      x)?
+    key_idea: Add and subtract the same term in the numerator so the fraction splits into two simpler
+      ones.
+  check: simplify(1/(x**n + x) - (1/x - x**(n - 2)/(x**(n - 1) + 1)))
+  check_ok: true
+- goal: Integrate the second term x^(n-2)/(x^(n-1) + 1) for n not equal to 1.
+  expected: (1/(n-1)) ln|x^(n-1) + 1| + C
+  solution: Let u = x^(n-1) + 1, so du = (n-1) x^(n-2) dx. Then integral of x^(n-2)/(x^(n-1)+1) dx = (1/(n-1))
+    integral of du/u = (1/(n-1)) ln|x^(n-1)+1| + C.
+  common_errors:
+  - Forgetting the factor 1/(n-1) that comes from the chain rule.
+  - Forgetting the absolute value, or the constant of integration.
+  hints:
+    rephrase: The numerator looks like the derivative of the denominator, up to a constant. What constant?
+    smaller_case: Take n = 3 and integrate x/(x^2 + 1) directly.
+    key_idea: A fraction of the form derivative of the denominator over the denominator integrates to
+      a logarithm.
+  check: simplify(diff(log(x**(n - 1) + 1)/(n - 1), x) - x**(n - 2)/(x**(n - 1) + 1))
+  check_ok: true
+- goal: Assemble the full integral I for n not equal to 1.
+  expected: I = ln|x| - (1/(n-1)) ln|x^(n-1) + 1| + C
+  solution: 'Integrate the two parts from stage 1: integral of 1/x dx = ln|x|, and the integral of the
+    second term from stage 2 is (1/(n-1)) ln|x^(n-1)+1|. Subtract to get I = ln|x| - (1/(n-1)) ln|x^(n-1)+1|
+    + C. This also holds for n = 0, where I = ln|1+x| + C.'
+  common_errors:
+  - Adding the two logarithms instead of subtracting.
+  - Forgetting the 1/(n-1) factor on the second logarithm.
+  - Dropping the absolute values, which matters when x is negative.
+  hints:
+    rephrase: Combine the two pieces from the previous stages, paying attention to which one is subtracted.
+    smaller_case: Check the result for n = 2 against the partial fraction 1/(x(x+1)) = 1/x - 1/(x+1).
+    key_idea: The integral of the sum is the sum of the integrals, with the same signs as in the split.
+  check: simplify(diff(log(x) - log(x**(n - 1) + 1)/(n - 1), x) - 1/(x**n + x))
+  check_ok: true
+- goal: Handle the special case n = 1.
+  expected: I = (1/2) ln|x| + C
+  solution: When n = 1 the denominator is x + x = 2x, so the integrand is 1/(2x). Its integral is (1/2)
+    ln|x| + C.
+  common_errors:
+  - Using the general formula, which has a division by zero when n = 1.
+  - Forgetting the factor 1/2 from 2x.
+  hints:
+    rephrase: What does the denominator simplify to when n = 1?
+    smaller_case: Integrate 1/(3x) as a warm-up for the idea.
+    key_idea: Some general formulas break down at special values, so check those values separately.
+  check: simplify(diff(log(x)/2, x) - 1/(x**1 + x))
+  check_ok: true
+extensions:
+  '3':
+  - Evaluate the integral of 1/(x^3 + x) dx.
+  '4':
+  - Evaluate the definite integral of 1/(x^2 + x) from 1 to 2.
+  '5':
+  - Show directly, by differentiating, that the formula for n not equal to 1 is correct when n = 0.
+spoken_vocab:
+- integral of one over x to the n plus x
+- x to the n
+- x to the n minus one
+- natural log of absolute value of x
+- n not equal to one
+- plus C
+- one over x minus x to the n minus two over x to the n minus one plus one
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 2
+  minutes: 10
+  flags: []
+  tagline: Clever split 1/(x(x^{n-1}+1)); n=1 case gives a different log.
+  priority: 72
+  rank: 306
+  tier: B
+  category: tbo
+  d10: 4.5
+  real: 4.0
+  by: haiku
+tags:
+- integration
+- algebra_and_functions

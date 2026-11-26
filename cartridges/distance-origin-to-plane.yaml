@@ -1,0 +1,90 @@
+id: distance-origin-to-plane
+title: Distance from the origin to a plane
+topics:
+- 3D geometry
+- distance from a point to a plane
+- Lagrange multipliers
+- vector normal
+warmup: true
+answer_source: pdf
+statement: What is the distance from the origin to the plane $2x+3y+4z=12$?
+stages:
+- goal: Find the distance from the origin to the plane.
+  expected: $D=\frac{12}{\sqrt{29}}$
+  solution: Use $D=\frac{|d|}{\sqrt{a^2+b^2+c^2}}$ with $ax+by+cz=d$, so $a=2$, $b=3$, $c=4$, $d=12$.
+    Then $a^2+b^2+c^2=4+9+16=29$ and $D=\frac{12}{\sqrt{29}}$. Equivalently, minimise $x^2+y^2+z^2$ subject
+    to $2x+3y+4z-12=0$ with a Lagrange multiplier.
+  common_errors:
+  - Using $|d|$ without dividing by the length of the normal vector.
+  - Computing $\sqrt{a^2+b^2+c^2}$ wrongly, e.g. as $\sqrt{2+3+4}$.
+  - Forgetting the absolute value when $d$ is negative.
+  hints:
+    rephrase: The distance from a point to a plane is measured along the perpendicular to the plane. Which
+      vector is perpendicular to this plane?
+    smaller_case: For the plane $x=3$ the distance from the origin is obvious. Which part of the general
+      formula does that simple case confirm?
+    key_idea: The coefficients $(a,b,c)$ form a normal vector. Divide the constant term by the length
+      of that normal vector.
+  check: 'simplify(D - 12/sqrt(29))  # D is the learner''s answer; zero iff correct'
+  check_ok: false
+- goal: Find the point on the plane closest to the origin.
+  expected: $\left(\frac{24}{29},\frac{36}{29},\frac{48}{29}\right)$
+  solution: 'The closest point is parallel to the normal $(2,3,4)$, so write it as $t(2,3,4)$. Substitute
+    into the plane: $2(2t)+3(3t)+4(4t)=12$, so $29t=12$ and $t=\frac{12}{29}$. The point is $\left(\frac{24}{29},\frac{36}{29},\frac{48}{29}\right)$.
+    Its distance from the origin is $\sqrt{\frac{4176}{841}}=\frac{12}{\sqrt{29}}$, which matches stage
+    1.'
+  common_errors:
+  - Picking a point on the plane that is not on the normal line through the origin.
+  - Arithmetic slip when solving $29t=12$.
+  - Confusing the foot of the perpendicular with an arbitrary intercept point such as $(6,0,0)$.
+  hints:
+    rephrase: The nearest point on a plane to the origin is where the line from the origin meets the plane
+      at a right angle. Which direction should the line point in?
+    smaller_case: For the plane $x+y+z=3$, which point on the line $t(1,1,1)$ lies on the plane?
+    key_idea: Parametrise the line through the origin along the normal vector, then impose that the point
+      satisfies the plane equation.
+  check: '2*Rational(24,29)+3*Rational(36,29)+4*Rational(48,29)-12  # zero iff the point lies on the plane'
+  check_ok: true
+extensions:
+  '3':
+  - Find the distance from the point $(1,2,3)$ to the plane $2x+3y+4z=12$.
+  - Find the distance from the origin to the plane $x-2y+2z=9$.
+  '4':
+  - Find the distance between the parallel planes $2x+3y+4z=12$ and $2x+3y+4z=24$.
+  - Find the distance from the origin to the plane through $(1,0,0)$, $(0,2,0)$ and $(0,0,3)$.
+  '5':
+  - Prove the point-to-plane distance formula by projecting a vector onto the normal direction.
+  - Show that the distance from the origin to $ax+by+cz=d$ is maximised, subject to $a^2+b^2+c^2=1$, when
+    $(a,b,c)$ is fixed and $d$ varies.
+spoken_vocab:
+- distance
+- origin
+- plane
+- two x plus three y plus four z equals twelve
+- square root of twenty nine
+- normal vector
+- foot of the perpendicular
+- Lagrange multiplier
+- absolute value of d
+- over the length of the normal
+source: zhou-quant/zhou-quant-guide.pdf#3
+verified: false
+rating:
+  quality: 3
+  difficulty: 2
+  parts: 2
+  minutes: 4
+  flags:
+  - trivial
+  tagline: Direct formula application with little room for discussion or extension.
+  priority: 27
+  rank: 645
+  tier: D
+  category: zhou-quant
+  d10: 3.5
+  real: 6.0
+  by: deepseek-v4.1-flash-free
+tags:
+- vectors
+- coordinate_geometry
+- geometry

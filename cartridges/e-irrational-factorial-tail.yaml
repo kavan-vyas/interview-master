@@ -1,0 +1,128 @@
+id: e-irrational-factorial-tail
+title: Irrationality of e via factorial tails
+topics:
+- series
+- geometric series
+- integer part
+- irrational numbers
+- proof by contradiction
+- factorials
+warmup: false
+answer_source: pdf
+statement: For each positive integer $n$, let $a_n=\frac{1}{n+1}+\frac{1}{(n+1)(n+2)}+\frac{1}{(n+1)(n+2)(n+3)}+\cdots$
+  and $b_n=\frac{1}{n+1}+\frac{1}{(n+1)^2}+\frac{1}{(n+1)^3}+\cdots$. (i) Show that $b_n=1/n$. (ii) Deduce
+  that $0<a_n<1/n$. (iii) Show that $a_n=n!e-[n!e]$, where $[x]$ is the integer part of $x$. (iv) Hence
+  show that $e$ is irrational.
+stages:
+- goal: Sum the geometric series $b_n$ and show that $b_n=1/n$.
+  expected: $b_n=\frac{1}{n+1}\cdot\frac{1}{1-1/(n+1)}=\frac{1}{n}$.
+  solution: $b_n$ is a geometric series with first term $\frac{1}{n+1}$ and common ratio $\frac{1}{n+1}$,
+    which has absolute value less than 1. Its sum is $\frac{1}{n+1}\cdot\frac{1}{1-\frac{1}{n+1}}=\frac{1}{n+1}\cdot\frac{n+1}{n}=\frac{1}{n}$.
+  common_errors:
+  - Using the first term as the ratio, or the ratio as the first term.
+  - Simplifying $1-\frac{1}{n+1}$ incorrectly as $\frac{1}{n}$.
+  - Forgetting to check that the common ratio has absolute value less than 1.
+  hints:
+    rephrase: Identify the first term and the common ratio of the series for $b_n$, then use the sum formula
+      for a convergent geometric series.
+    smaller_case: Take $n=1$. The series is $\frac12+\frac14+\frac18+\cdots$. Find its sum and compare
+      with the formula you derive.
+    key_idea: The sum of a convergent geometric series is first term divided by one minus the common ratio.
+  check: simplify((1/(n+1))/(1 - 1/(n+1)) - 1/n) == 0
+  check_ok: true
+- goal: Show that $0<a_n<1/n$ by comparing $a_n$ term by term with $b_n$.
+  expected: Every term of $a_n$ is positive, so $a_n>0$. The first terms agree, and each later term of
+    $a_n$ is strictly smaller than the corresponding term of $b_n$, so $a_n<b_n=1/n$.
+  solution: The $j$th term of $a_n$ is $\frac{1}{(n+1)(n+2)\cdots(n+j)}$, which has $j$ factors. The $j$th
+    term of $b_n$ is $\frac{1}{(n+1)^j}$, which also has $j$ factors. For $j=1$ the terms are equal. For
+    $j\geq2$, $(n+1)(n+2)\cdots(n+j)>(n+1)^j$, so the term of $a_n$ is strictly smaller. Hence $a_n<b_n=1/n$.
+    Since every term is positive, $a_n>0$.
+  common_errors:
+  - Claiming $a_n<b_n$ without noting that the first terms are equal, so the inequality comes from later
+    terms.
+  - Comparing the wrong pairs of terms.
+  - Forgetting to show $a_n>0$, which needs only that every term is positive.
+  hints:
+    rephrase: Line up the $j$th term of $a_n$ with the $j$th term of $b_n$ and compare their denominators.
+    smaller_case: Take $n=2$. Compare the second terms $\frac{1}{3\cdot4}$ and $\frac{1}{3^2}$ and say
+      which is larger.
+    key_idea: Replacing one factor in a product by a larger factor makes the product larger, so its reciprocal
+      is smaller.
+  check: null
+- goal: Write $n!e$ as an integer plus $a_n$, and deduce that $a_n=n!e-[n!e]$.
+  expected: $n!e=\sum_{k=0}^{n}\frac{n!}{k!}+a_n$, where the sum is an integer and $0<a_n<1$. Hence the
+    integer part of $n!e$ is that sum, and $a_n=n!e-[n!e]$.
+  solution: Use $e=\sum_{k=0}^\infty\frac{1}{k!}$, so $n!e=\sum_{k=0}^{n}\frac{n!}{k!}+\sum_{k>n}\frac{n!}{k!}$.
+    Each $\frac{n!}{k!}$ with $k\leq n$ is an integer. The tail is $\frac{n!}{(n+1)!}+\frac{n!}{(n+2)!}+\cdots=\frac{1}{n+1}+\frac{1}{(n+1)(n+2)}+\cdots=a_n$.
+    Since $0<a_n<1$ by part (ii) and the integer sum is an integer, the integer part of $n!e$ is that
+    sum. So $a_n=n!e-[n!e]$.
+  common_errors:
+  - Starting the sum at the wrong index, or stopping the finite sum at $n-1$.
+  - Not checking that $a_n<1$, which is needed to identify the integer part.
+  - Confusing $\frac{n!}{k!}$ with $\frac{k!}{n!}$.
+  hints:
+    rephrase: Split the series for $e$ at the term $k=n$. Then check which parts are integers and which
+      part is the tail.
+    smaller_case: Take $n=2$. Write $2!e$ as a finite sum of integers plus a remainder, and compare the
+      remainder with $a_2$.
+    key_idea: Compare the tail $\sum_{k>n}n!/k!$ term by term with $a_n$. The head $\sum_{k\leq n}n!/k!$
+      is always an integer.
+  check: simplify(factorial(n)/factorial(n+2) - 1/((n+1)*(n+2))) == 0
+  check_ok: true
+- goal: Assume $e=k/m$ for positive integers $k$ and $m$, and derive a contradiction using parts (ii)
+    and (iii).
+  expected: $m!e$ is an integer, so $[m!e]=m!e$ and $a_m=0$. This contradicts $a_m>0$, so $e$ is irrational.
+  solution: If $e=k/m$ then $m!e=m!k/m$ is an integer, because $m!/m=(m-1)!$ is an integer. So $[m!e]=m!e$,
+    and part (iii) gives $a_m=m!e-[m!e]=0$. But part (ii) gives $a_m>0$. This contradiction shows $e$
+    is not of the form $k/m$, so $e$ is irrational.
+  common_errors:
+  - Writing $m!e$ as an integer without showing that $m!/m$ is an integer.
+  - Using $a_m<1/m$ alone to get a contradiction, instead of $a_m>0$.
+  - Forgetting that the argument needs $m$ to be a positive integer.
+  hints:
+    rephrase: Assume $e$ is rational, then pick $m$ so that $m!e$ becomes an integer. Use part (iii) to
+      see what this means for $a_m$.
+    smaller_case: Try $e=2.5$, which is rational. Find $m$ so that $m!\cdot2.5$ is an integer, and check
+      the fractional part.
+    key_idea: Choose the index $m$ equal to the denominator. Then the factorial clears the denominator,
+      and the tail $a_m$ must be both zero and positive.
+  check: null
+extensions:
+  '3':
+  - Deduce from part (ii) that $a_n\to0$ as $n\to\infty$.
+  '4':
+  - Show that $n!e$ is never an integer for any positive integer $n$.
+  '5':
+  - Explain how the infinite continued fraction expansion of $e$ can also be used to show that $e$ is
+    irrational.
+spoken_vocab:
+- a sub n
+- b sub n
+- one over n plus one
+- geometric series
+- n factorial e
+- integer part of n factorial e
+- e equals k over m
+- strictly less than one over n
+- contradiction
+- e is irrational
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#12
+verified: false
+rating:
+  quality: 8
+  difficulty: 7
+  parts: 4
+  minutes: 25
+  flags: []
+  tagline: Classic irrationality proof with clear staged structure and strong discussion of the contradiction.
+  priority: 92
+  rank: 88
+  tier: A
+  category: siklos
+  d10: 6.5
+  real: 4.5
+  by: deepseek-v4.1-flash-free
+tags:
+- proof
+- sequences_and_series
+- number_theory

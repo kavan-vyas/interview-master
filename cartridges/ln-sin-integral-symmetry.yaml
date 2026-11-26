@@ -1,0 +1,100 @@
+id: ln-sin-integral-symmetry
+title: Integral of ln(sin x) from 0 to pi/2
+topics:
+- integration
+- symmetry
+- trigonometric identities
+- substitution
+warmup: false
+answer_source: generated
+statement: Sketch $y=\ln(\sin x)$ for $0<x<\pi$ and $y=\ln(\cos x)$ for $0<x<\frac{\pi}{2}$. Evaluate
+  the integral of $\ln(\sin x)$ from $0$ to $\frac{\pi}{2}$.
+stages:
+- goal: Sketch both curves and relate the integral of ln(sin x) to the integral of ln(cos x).
+  expected: Both curves are at most 0 on their intervals. ln(sin x) tends to minus infinity at 0 and pi,
+    is 0 at pi/2 and is symmetric about x = pi/2. Substituting x -> pi/2 - x shows the integral of ln(sin
+    x) over (0, pi/2) equals the integral of ln(cos x) over (0, pi/2).
+  solution: Let u = pi/2 - x. Then sin x = cos u, dx = -du, and the limits swap, so the integral of ln(sin
+    x) from 0 to pi/2 equals the integral of ln(cos u) from 0 to pi/2. Call the common value I.
+  common_errors:
+  - Claiming the two integrals are equal because the curves look similar, without a substitution or symmetry
+    argument.
+  - Forgetting that the sine curve is negative on this interval, so the integral is negative.
+  hints:
+    rephrase: Where does each curve cross zero, and how do the two curves compare at the endpoints?
+    smaller_case: Compare ln(sin x) and ln(cos x) at x = pi/4 and check what happens near x = 0.
+    key_idea: Look for a substitution that maps sine to cosine on this interval.
+  check: null
+- goal: Use a double-angle identity to write 2I as a single integral.
+  expected: 2I = integral from 0 to pi/2 of ln(sin x cos x) dx = integral from 0 to pi/2 of ln(sin 2x
+    / 2) dx.
+  solution: Add the two equal integrals and combine the logarithms. Then use sin 2x = 2 sin x cos x so
+    that sin x cos x = (1/2) sin 2x. Splitting the log gives the integral of ln(sin 2x) minus (pi/2) ln
+    2.
+  common_errors:
+  - Writing ln(sin x) + ln(cos x) as ln(sin x + cos x).
+  - Dropping the constant term from ln(1/2).
+  hints:
+    rephrase: What happens to the integral if you add the two equal integrals together?
+    smaller_case: Check the identity sin x cos x = (1/2) sin 2x at x = pi/6.
+    key_idea: Logarithms turn products into sums, so combine the two integrands into one product.
+  check: null
+- goal: Evaluate the integral of ln(sin 2x) and solve for I.
+  expected: I = -(pi/2) ln 2.
+  solution: Let u = 2x. Then the integral of ln(sin 2x) from 0 to pi/2 equals (1/2) times the integral
+    of ln(sin u) from 0 to pi, which equals the integral of ln(sin u) from 0 to pi/2 by symmetry about
+    pi/2, so it equals I. Therefore 2I = I - (pi/2) ln 2, so I = -(pi/2) ln 2.
+  common_errors:
+  - Forgetting the factor 1/2 from the substitution u = 2x.
+  - Using the symmetry about pi/2 incorrectly, which gives the integral from 0 to pi as twice the integral
+    from 0 to pi/2.
+  hints:
+    rephrase: Once you have 2I, how can you rewrite the integral of ln(sin 2x) in terms of I?
+    smaller_case: Substitute u = 2x in a simple integral such as the integral of 1 with respect to x from
+      0 to pi/2 and check the limits.
+    key_idea: A substitution that doubles the angle turns the integrand back into ln(sin u) over a longer
+      interval, which symmetry reduces to I.
+  check: sp.simplify(ans + sp.pi*sp.log(2)/2)
+  check_ok: null
+extensions:
+  '3':
+  - Evaluate the integral of ln(tan x) from 0 to pi/2.
+  '4':
+  - Evaluate the integral of x ln(sin x) from 0 to pi.
+  '5':
+  - Evaluate the integral of x cot x from 0 to pi/2.
+spoken_vocab:
+- integral
+- natural log
+- sine
+- cosine
+- tangent
+- cotangent
+- pi
+- pi over two
+- from zero to pi over two
+- minus
+- log of two
+- double angle
+- substitution
+- symmetry
+source: screenshots/Screenshot 2026-11-19 at 14.37.58.png
+verified: false
+rating:
+  quality: 7
+  difficulty: 7
+  parts: 3
+  minutes: 15
+  flags:
+  - needs_diagram
+  tagline: Elegant symmetry and double-angle trick yielding a surprising closed form.
+  priority: 73
+  rank: 297
+  tier: B
+  category: screenshots
+  d10: 6.0
+  real: 7.0
+  by: haiku
+tags:
+- integration
+- trigonometry

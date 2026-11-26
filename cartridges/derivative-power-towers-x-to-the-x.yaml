@@ -1,0 +1,100 @@
+id: derivative-power-towers-x-to-the-x
+title: Derivatives of the power towers x^x, x^(x^x), and beyond
+topics:
+- calculus
+- differentiation
+- logarithmic differentiation
+- chain rule
+- product rule
+warmup: true
+answer_source: generated
+statement: Find $\dfrac{d}{dx}x^{x}$, $\dfrac{d}{dx}x^{x^{x}}$, $\ldots$
+stages:
+- goal: Find the derivative of $y = x^{x}$.
+  expected: dy/dx = x^x (1 + ln x)
+  solution: 'Take logarithms: ln y = x ln x. Differentiate both sides: y''/y = ln x + 1, so y'' = x^x
+    (1 + ln x).'
+  common_errors:
+  - Applying the power rule as if the exponent were a constant, giving x * x^(x-1).
+  - Dropping the ln x term or the constant 1 from the product rule.
+  - Forgetting to multiply by y = x^x after finding y'/y.
+  hints:
+    rephrase: The base and the exponent both contain x, so the ordinary power rule does not apply directly.
+    smaller_case: Compare with the derivative of 2^x, where the base is a constant.
+    key_idea: Take the natural logarithm of both sides before differentiating.
+  check: simplify(diff(x**x, x) - x**x*(1 + log(x)))
+  check_ok: true
+- goal: Find the derivative of $y = x^{x^{x}}$.
+  expected: dy/dx = x^{x^x} * x^x * ((1 + ln x) ln x + 1/x)
+  solution: 'Let y = x^{x^x}. Then ln y = x^x ln x. Differentiate: y''/y = (x^x)'' ln x + x^x / x = x^x
+    (1 + ln x) ln x + x^x / x. Multiply by y = x^{x^x} to get y'' = x^{x^x} * x^x * ((1 + ln x) ln x +
+    1/x).'
+  common_errors:
+  - Forgetting the product rule when differentiating x^x ln x.
+  - Dropping the x^x / x term that comes from differentiating ln x.
+  - Treating x^{x^x} as (x^x)^x, which changes the exponent.
+  hints:
+    rephrase: Let y be the entire tower. What is ln y, and what does differentiating that give you?
+    smaller_case: Try the same logarithm-first method on y = x^c where c is a constant, then replace c
+      with x^x.
+    key_idea: Logarithmic differentiation turns the tower into a product, and the product rule handles
+      the exponent.
+  check: simplify(diff(x**(x**x), x) - x**(x**x)*x**x*((1 + log(x))*log(x) + 1/x))
+  check_ok: false
+- goal: Let $T_1 = x$, $T_2 = x^{x}$, and $T_n = x^{T_{n-1}}$. Find a recurrence for $T_n'/T_n$ in terms
+    of $T_{n-1}$ and its derivative.
+  expected: T_n'/T_n = T_{n-1}' ln x + T_{n-1}/x
+  solution: 'Take logarithms: ln T_n = T_{n-1} ln x. Differentiate: T_n''/T_n = T_{n-1}'' ln x + T_{n-1}
+    / x. For n = 3 this gives T_3''/T_3 = T_2'' ln x + T_2 / x, which agrees with the previous stage.'
+  common_errors:
+  - Forgetting the derivative of T_{n-1} in the first term.
+  - Writing T_{n-1}/x with the wrong index, so T_n is used where T_{n-1} is needed.
+  - Dropping the ln x factor on the derivative term.
+  hints:
+    rephrase: Take the logarithm of T_n. What does the exponent become?
+    smaller_case: Start with n = 2 and check your formula against x^x.
+    key_idea: Logarithmic differentiation of T_n = x^{T_{n-1}} gives ln T_n = T_{n-1} ln x, and then the
+      product rule applies.
+  check: simplify(diff(x**(x**x), x)/x**(x**x) - (diff(x**x, x)*log(x) + x**x/x))
+  check_ok: true
+extensions:
+  '3':
+  - Find the derivative of $x^{x^{x^{x}}}$ using the recurrence from the last stage.
+  '4':
+  - Let $T_n$ be the power tower of height n. Find the value of $T_n(1)$ for every n, and explain why
+    the tower's derivative at x = 1 is interesting.
+  '5':
+  - Find $\dfrac{d}{dx} x^{x}$ at x = 1 and interpret the result geometrically.
+spoken_vocab:
+- derivative
+- d d x
+- x to the x
+- x to the x to the x
+- natural logarithm
+- logarithmic differentiation
+- product rule
+- chain rule
+- one plus ln x
+- power tower
+- recurrence
+- T sub n
+source: past-interviews/Actual Past Interview Questions/B1.pdf#p1
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Power-tower derivatives leading to an open-ended recurrence for T_n.
+  priority: 81
+  rank: 244
+  tier: B
+  category: past-interviews
+  d10: 5.8
+  real: 7.4
+  by: deepseek-v4.1-flash-free
+tags:
+- differentiation
+- exponentials_and_logarithms
+- sequences_and_series

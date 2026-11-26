@@ -1,0 +1,103 @@
+id: sin-x-over-x-squeeze
+title: Geometric squeeze for sin x over x
+topics:
+- limits
+- trigonometry
+- squeeze theorem
+- geometry of the unit circle
+warmup: false
+answer_source: pdf
+statement: Show geometrically that $\sin x<x<\tan x$ for $0<x<\frac{\pi}{2}$, and deduce that $\frac{\sin
+  x}{x}\to 1$ as $x\to 0$.
+stages:
+- goal: Establish $\sin x<x<\tan x$ from areas in the unit circle.
+  expected: Triangle $OAP$ $\subset$ sector $OAP$ $\subset$ triangle $OAT$, where $P$ is on the circle
+    at angle $x$, $A=(1,0)$, and $T$ is where the tangent at $A$ meets $OP$ extended. Areas give $\frac{1}{2}\sin
+    x<\frac{1}{2}x<\frac{1}{2}\tan x$.
+  solution: Area of triangle $OAP$ is $\frac{1}{2}\sin x$. Area of sector $OAP$ is $\frac{1}{2}x$ (unit
+    radius, angle $x$). Area of triangle $OAT$ is $\frac{1}{2}\tan x$ (since $AT=\tan x$). Containment
+    gives the strict inequalities.
+  common_errors:
+  - Swapping the areas of triangle and sector, or using the wrong triangle for the tangent
+  - Writing the arc length incorrectly, forgetting that the radius is 1
+  - Stating the inequality without justifying the containment of regions
+  hints:
+    rephrase: Draw the unit circle, the angle $x$ at the origin, and the tangent line at $A=(1,0)$. Which
+      three regions are nested?
+    smaller_case: Take $x=\pi/4$ and compare the lengths $\sin x$, $x$, and $\tan x$ using the picture.
+    key_idea: Compare areas of a triangle, a circular sector, and a larger triangle that all share the
+      vertex $O$.
+  check: null
+- goal: Turn the inequality into bounds on $\frac{\sin x}{x}$.
+  expected: Dividing $\sin x<x<\tan x$ by $\sin x>0$ and inverting gives $\cos x<\frac{\sin x}{x}<1$.
+  solution: 'From $\sin x<x<\tan x$: $1<\frac{x}{\sin x}<\frac{1}{\cos x}$, using $\tan x/\sin x=1/\cos
+    x$. All quantities are positive, so taking reciprocals reverses the inequalities: $\cos x<\frac{\sin
+    x}{x}<1$.'
+  common_errors:
+  - Forgetting that inverting reverses the inequality
+  - Writing $\tan x/\sin x = \sin x/\cos x$ instead of $1/\cos x$
+  - Dividing by a quantity that could be zero or negative
+  hints:
+    rephrase: You want a bound on $\sin x/x$. Divide the chain of inequalities by a suitable positive
+      quantity, then take reciprocals.
+    smaller_case: 'Check the chain numerically at $x=0.5$: is $\cos 0.5<\sin 0.5/0.5<1$?'
+    key_idea: Divide by $\sin x$, then invert, keeping track of which inequality flips.
+  check: simplify(tan(x)*cos(x) - sin(x))
+  check_ok: true
+- goal: Use the squeeze theorem to conclude the limit, including both sides.
+  expected: Since $\cos x\to 1$ and $1\to 1$ as $x\to 0^+$, the squeeze gives $\frac{\sin x}{x}\to 1$.
+    The function $\frac{\sin x}{x}$ is even, so the same holds as $x\to 0^-$, hence $\lim_{x\to0}\frac{\sin
+    x}{x}=1$.
+  solution: By continuity of cosine, $\lim_{x\to 0}\cos x=1$. Squeezing $\frac{\sin x}{x}$ between $\cos
+    x$ and $1$ gives limit $1$ from the right. Since $\sin(-x)/(-x)=\sin x/x$, the left limit equals the
+    right limit.
+  common_errors:
+  - Using L'Hopital's rule, which is circular because the derivative of $\sin x$ depends on this limit
+  - Forgetting to check the left-hand limit
+  - Not stating that cosine is continuous at $0$
+  hints:
+    rephrase: What do the two bounding functions tend to as $x\to 0^+$?
+    smaller_case: Evaluate $\cos x$ and $\sin x/x$ at $x=0.01$.
+    key_idea: Squeeze theorem with $\cos x$ below and $1$ above, then use symmetry for the left side.
+  check: limit(cos(x), x, 0) - 1
+  check_ok: true
+extensions:
+  '3':
+  - Deduce $\lim_{x\to 0}\frac{\tan x}{x}=1$ from the same inequalities.
+  '4':
+  - Using the squeeze result, show $\lim_{x\to 0}\frac{1-\cos x}{x^2}=\frac{1}{2}$.
+  '5':
+  - Show $\lim_{x\to 0}\frac{\sin 3x}{x}=3$ using the limit just proved.
+spoken_vocab:
+- sine x over x
+- limit as x tends to 0
+- unit circle
+- sector
+- tangent
+- squeeze theorem
+- cosine
+- less than
+- greater than
+- radians
+- pi over 2
+source: jaymin/Jaymin Interview (1).pdf#p41
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 3
+  minutes: 15
+  flags:
+  - needs_diagram
+  tagline: Classic area proof of sin x < x < tan x, with squeeze and sign handling.
+  priority: 88
+  rank: 140
+  tier: A
+  category: jaymin
+  d10: 4.5
+  real: 7.5
+  by: haiku
+tags:
+- proof
+- geometry
+- limits_and_approximation

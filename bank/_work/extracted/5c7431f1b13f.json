@@ -1,0 +1,79 @@
+[
+ {
+  "q": "Why mathematics?",
+  "kind": "personal",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2012.docx"
+ },
+ {
+  "q": "Solve $2a^2-b^2=1$ for $a$ and $b$, which are both integers.",
+  "kind": "maths",
+  "answer": "First solution $a=1$, $b=1$. Rearranging shows $b$ must be odd. Writing $b=2k+1$ shows $a$ must also be odd. Trying other odd values gives a second solution $a=5$, $b=7$.",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2012.docx"
+ },
+ {
+  "q": "Given a diagram with 3 similar circles of unit radius whose centres form the corners of an equilateral triangle, find the shaded area.",
+  "kind": "maths",
+  "answer": "$\\sqrt{3}-\\frac{\\pi}{2}$",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2012.docx"
+ },
+ {
+  "q": "Same diagram, but with a circle in the shaded area touching each of the three circles. Find the radius of the small circle in the middle.",
+  "kind": "maths",
+  "answer": "$\\frac{1}{3}(2\\sqrt{3})$",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2012.docx"
+ },
+ {
+  "q": "Game: 13 sticky notes in a line, all blank except the last, which has a sad face. Players take turns taking 1, 2 or 3 notes from the end, and the aim is not to be left picking up the sad face. Then repeat with a smiley face instead, where the aim is to get it. Who picks first?",
+  "kind": "other",
+  "answer": "With the sad face, let the opponent go first and then always leave a multiple of four, forcing them to take the 13th note. With the smiley face, go first and take 1 note, leaving a multiple of four, so you can then win and take the smiley face.",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2012.docx"
+ },
+ {
+  "q": "Differentiate $x$ with respect to $x^2$.",
+  "kind": "maths",
+  "answer": "$\\frac{1}{2x}$",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2012.docx"
+ },
+ {
+  "q": "Differentiate $x^x$. Then draw a graph of $x^x$ for $x>0$.",
+  "kind": "maths",
+  "answer": "Let $y=x^x$, so $\\ln y=x\\ln x$ and $\\frac{dy}{dx}=x^x(\\ln x+1)$. The graph is similar to an exponential for $x>1$. For $0<x<1$ there is a minimum turning point, found by setting the gradient to 0.",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2012.docx"
+ },
+ {
+  "q": "How many corners and sides does a square have? How many corners and sides does a 3-dimensional square have? How many corners and sides does a 4-dimensional square have? How many corners and sides does a square in $n$ dimensions have?",
+  "kind": "maths",
+  "answer": "Corners: each extra dimension doubles the number of corners, so an $n$-dimensional square has $2^n$ corners. Sides: each corner meets $n$ sides, and each side has two corners, so the number of sides is $\\frac{2^n \\times n}{2} = n\\times 2^{n-1}$.",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2012.docx"
+ },
+ {
+  "q": "Solve $\\sin(2x)=\\cos x$ for all real numbers $x$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2012.docx"
+ },
+ {
+  "q": "Write $\\binom{n}{k}$. Then write $\\binom{n+1}{k}$ in terms of $\\binom{n}{k}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2012.docx"
+ },
+ {
+  "q": "Solve $\\sum_{k=0}^{n}\\binom{n}{k}x^k(1-x)^{n-k}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2012.docx"
+ }
+]

@@ -1,0 +1,106 @@
+id: prime-greater-than-three-always-true
+title: Which statement about primes above 3 is always true
+topics:
+- prime numbers
+- modular arithmetic
+- factorisation
+- counterexamples
+- divisibility
+warmup: true
+answer_source: pdf
+statement: $p$ is a prime number greater than $3$. Which of the following statements is always true? a)
+  $p + 2$ is prime b) $p - 1$ is a multiple of $6$ c) $p^2 - 1$ is a multiple of $24$ d) $p^2 + 1$ is
+  a multiple of $5$ e) $p - 1$ and $p + 1$ are both prime
+stages:
+- goal: Show that every prime $p > 3$ has the form $6k \pm 1$.
+  expected: $p$ is not divisible by 2 or 3, so $p = 6k+1$ or $p = 6k-1$ for some integer $k$.
+  solution: Any integer is $6k$, $6k\pm 1$, $6k+2$, $6k+3$ or $6k+4$. The even ones and multiples of 3
+    are not prime for $p > 3$, leaving $p = 6k \pm 1$.
+  common_errors:
+  - Forgetting that $6k - 1$ is needed as well as $6k+1$.
+  - Assuming all primes have a form like $6k+1$.
+  - Not justifying why $6k+2$, $6k+3$, $6k+4$ are excluded.
+  hints:
+    rephrase: Which remainders can a prime greater than 3 leave when divided by 6?
+    smaller_case: Test $p = 5$ and $p = 7$ and see which remainder each gives mod 6.
+    key_idea: A prime above 3 is not divisible by 2 or 3.
+  check: sp.expand((6*k+1)**2 - 1) - (36*k**2 + 12*k)
+  check_ok: false
+- goal: Show that $p^2 - 1$ is always a multiple of 24.
+  expected: $p^2 - 1 = (p-1)(p+1)$. $p-1$ and $p+1$ are consecutive even numbers, so one is divisible
+    by 4 and the product is divisible by 8. One of $p-1$, $p+1$ is divisible by 3, so the product is divisible
+    by 3. Since $\gcd(8,3)=1$, 24 divides $p^2-1$.
+  solution: Factor $p^2 - 1 = (p-1)(p+1)$. Both factors are even and consecutive even numbers, so one
+    of them is a multiple of 4, giving a factor of 8. Since $p$ is not a multiple of 3, $p-1$ or $p+1$
+    is a multiple of 3. Hence 24 divides the product.
+  common_errors:
+  - Checking only a few values of $p$ and concluding the result without proof.
+  - Saying the product is divisible by 2 and 4 only, so only 8.
+  - Forgetting that $p-1$ and $p+1$ share the factor 2 and each contributes one.
+  hints:
+    rephrase: Can you factor $p^2 - 1$? What do the two factors look like?
+    smaller_case: Compute $p^2 - 1$ for $p = 5$ and $p = 7$ and see what it is divisible by.
+    key_idea: Consider the two consecutive even numbers $p-1$ and $p+1$, and which of $p-1$, $p$, $p+1$
+      is a multiple of 3.
+  check: sp.Mod(29**2 - 1, 24)
+  check_ok: null
+- goal: Use counterexamples to rule out the other options.
+  expected: 'a) fails at $p=7$ since $9$ is not prime. b) fails at $p=5$ since $4$ is not a multiple of
+    6. d) fails at $p=5$ since $26$ is not a multiple of 5. e) fails at $p=5$ since $4$ and $6$ are not
+    prime. Answer: c).'
+  solution: 'Test each option with a small prime. For a) $p=7$ gives $9$, not prime. For b) $p=5$ gives
+    $p-1=4$, not a multiple of 6. For d) $p=5$ gives $26$, not a multiple of 5. For e) $p=5$ gives $4$
+    and $6$, neither prime. Only c) survives. Answer: c) $p^2-1$ is a multiple of 24.'
+  common_errors:
+  - Testing one prime only and accepting an option that happens to work for it.
+  - Miscalculating $p^2 + 1$ for $p = 5$ or $p = 7$.
+  - Treating $p+2$ as prime for all $p$ because it holds for $p=5$.
+  hints:
+    rephrase: For each option, find one prime greater than 3 that makes it false.
+    smaller_case: Try $p = 5$ on every option.
+    key_idea: One counterexample is enough to rule out a statement that claims to be always true.
+  check: sp.Mod(5**2 + 1, 5) - 1
+  check_ok: null
+extensions:
+  '3':
+  - Show that $p^2 + 1$ is never divisible by 3 for primes $p > 3$.
+  - Find a prime $p > 3$ for which $p+2$ is not prime.
+  '4':
+  - Prove that $p^2 - 1$ is divisible by 24 using the form $p = 6k \pm 1$ instead of mod arithmetic.
+  - Explain why $p^2 - 1$ is divisible by 8 even when $p$ is only odd.
+  '5':
+  - Show that 24 is the largest integer dividing $p^2 - 1$ for all primes $p > 3$.
+  - 'Generalise: for which integers $m$ is $p^2 - 1$ divisible by $m$ for all primes $p > 3$?'
+spoken_vocab:
+- p
+- prime
+- greater than three
+- p squared minus one
+- p minus one
+- p plus one
+- multiple of twenty four
+- multiple of six
+- counterexample
+- p squared plus one
+- multiple of five
+- k
+- six k plus or minus one
+source: kclms/kclms-specimen-mcq-3.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 3
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: Multiple-choice format, but the 6k±1 and mod-24 proof is useful.
+  priority: 41
+  rank: 570
+  tier: C
+  category: kclms
+  d10: 3.5
+  real: 3.0
+  by: haiku
+tags:
+- number_theory
+- proof

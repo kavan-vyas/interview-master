@@ -1,0 +1,134 @@
+id: differentiate-x-to-the-x-and-sketch
+title: Differentiate x^x and sketch it
+topics:
+- logarithmic differentiation
+- chain rule
+- stationary points
+- limits
+- curve sketching
+warmup: true
+answer_source: generated
+statement: Differentiate $x^x$ for $x>0$ and sketch the curve $y=x^x$.
+stages:
+- goal: Differentiate $y=x^x$ with respect to $x$.
+  expected: dy/dx = x^x (1 + ln x), for x > 0.
+  solution: 'Let y = x^x, with x > 0. Take natural logs: ln y = x ln x. Differentiate implicitly using
+    the product rule on the right: (1/y) dy/dx = ln x + x·(1/x) = ln x + 1. Multiply by y: dy/dx = x^x
+    (1 + ln x).'
+  common_errors:
+  - Applying the power rule as if the exponent were constant, giving x·x^(x-1).
+  - Differentiating x^x as e^x or treating the exponent as a constant of the power rule.
+  - Dropping the +1 from the product rule on x ln x.
+  - Forgetting to multiply back by y after taking logs.
+  hints:
+    rephrase: The variable is in both the base and the exponent, so the usual power or exponential rule
+      does not apply directly. What could turn the exponent into a simple multiplier?
+    smaller_case: Try differentiating 2^x by writing it as e^(x ln 2) and see what changes.
+    key_idea: 'Logarithmic differentiation: take ln of both sides, differentiate implicitly, then multiply
+      back by y.'
+  check: 'simplify(diff(x**x, x) - x**x*(1 + log(x)))  # x = Symbol(''x'', positive=True)'
+  check_ok: true
+- goal: Find the stationary point of y = x^x and state whether it is a maximum or minimum.
+  expected: Stationary point at x = 1/e, with y = (1/e)^(1/e) = e^(-1/e) ≈ 0.692. It is a minimum, since
+    dy/dx < 0 for 0 < x < 1/e and dy/dx > 0 for x > 1/e.
+  solution: 'Set dy/dx = 0: x^x (1 + ln x) = 0. Since x^x > 0 for x > 0, we need 1 + ln x = 0, so ln x
+    = -1 and x = 1/e. Then y = (1/e)^(1/e) = e^(-1/e) ≈ 0.6922. For 0 < x < 1/e, 1 + ln x < 0, so dy/dx
+    < 0 (decreasing). For x > 1/e, 1 + ln x > 0, so dy/dx > 0 (increasing). Hence the stationary point
+    is a minimum.'
+  common_errors:
+  - Setting x^x = 0 instead of the derivative = 0, or claiming there is no solution.
+  - Solving 1 + ln x = 0 incorrectly, e.g. giving x = -1 or x = e.
+  - Stating the minimum is at x = 1, which is where y = 1, not where the slope is zero.
+  - Asserting it is a minimum without checking the sign of the derivative on each side.
+  hints:
+    rephrase: Where is the slope of the curve zero? Which factor of the derivative can actually be zero?
+    smaller_case: Consider only the bracket factor. Which value of x makes that bracket equal to zero?
+    key_idea: A positive quantity raised to a power is never zero, so a stationary point must come from
+      the other factor. Check the sign of the derivative on each side to classify it.
+  check: simplify((1 + log(x)).subs(x, exp(-1)))
+  check_ok: true
+- goal: 'Describe the key features needed for a sketch: behaviour as x → 0+, the minimum, and the behaviour
+    for large x.'
+  expected: The curve exists only for x > 0. As x → 0+, x^x → 1, so the curve approaches the point (0,
+    1) (open endpoint), and its slope tends to -∞ there. It decreases to the minimum at (1/e, e^(-1/e))
+    ≈ (0.368, 0.692), then increases through (1, 1) and grows without bound as x → ∞. The curve is convex
+    throughout.
+  solution: For x > 0, write x^x = e^(x ln x). As x → 0+, x ln x → 0, so x^x → e^0 = 1. The point (0,
+    1) is not on the curve, since x = 0 is outside the domain. From the derivative, dy/dx = x^x(1 + ln
+    x) → -∞ as x → 0+, so the curve falls steeply near the origin. The minimum at (1/e, e^(-1/e)) ≈ (0.368,
+    0.692) was found in stage 2. At x = 1, y = 1 and dy/dx = 1. As x → ∞, both x^x and its derivative
+    grow without bound, so the curve rises steeply. Convexity follows from y'' = x^x[(1 + ln x)^2 + 1/x]
+    > 0 for x > 0.
+  common_errors:
+  - Saying x^x is undefined at 0 and stopping there, without taking the limit.
+  - Claiming x^x → 0 as x → 0+.
+  - Drawing the curve for negative x, which is not real-valued in general.
+  - Omitting the minimum or drawing the curve as monotonic.
+  hints:
+    rephrase: Think about what happens at the edge of the domain and at the turning point you found earlier.
+    smaller_case: Evaluate x^x numerically at x = 0.1, 0.01 and 0.001. What value does it seem to approach?
+    key_idea: Write x^x = e^(x ln x) and recall the limit of x ln x as x → 0+.
+  check: 'limit(x**x, x, 0, dir=''+'') - 1  # x = Symbol(''x'', positive=True)'
+  check_ok: true
+extensions:
+  '3':
+  - Differentiate $x^{\sin x}$ for $x>0$.
+  - Find the equation of the tangent to $y=x^x$ at $x=1$.
+  '4':
+  - Show that $x^x \ge e^{-1/e}$ for all $x>0$, and explain why equality holds at exactly one point.
+  '5':
+  - The infinite power tower $y = x^{x^{x^{\cdots}}}$ is defined as the limit of the sequence $x, x^x,
+    x^{x^x}, \ldots$. For which positive $x$ does this sequence converge? Use the fixed-point condition
+    $y = x^y$ and the shape of $y=x^x$ from this question to justify your answer.
+spoken_vocab:
+- x to the power x
+- derivative
+- d y by d x
+- natural log
+- ln x
+- e
+- one over e
+- logarithmic differentiation
+- product rule
+- chain rule
+- stationary point
+- turning point
+- minimum
+- limit
+- tends to
+- x tends to zero from above
+- infinity
+- open bracket
+- close bracket
+- plus
+- minus
+- times
+- equals
+- greater than zero
+- less than zero
+- domain
+- tangent
+- convex
+- power tower
+- e to the power minus one over e
+source: nextstepmaths/NextStepMaths Interview Questions/interview-question-12.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 5
+  parts: 3
+  minutes: 12
+  flags:
+  - needs_diagram
+  tagline: Near-duplicate of the x^x sketch problem; same content, vaguer final stage.
+  priority: 53
+  rank: 507
+  tier: C
+  category: nextstepmaths
+  d10: 4.5
+  real: 8.0
+  by: deepseek-v4.1-flash-free
+tags:
+- differentiation
+- exponentials_and_logarithms
+- curve_sketching

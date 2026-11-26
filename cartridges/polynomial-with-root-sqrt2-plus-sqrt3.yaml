@@ -1,0 +1,72 @@
+id: polynomial-with-root-sqrt2-plus-sqrt3
+title: Integer polynomial with root √2 + √3
+topics:
+- algebra
+- radicals
+- polynomials with integer coefficients
+warmup: true
+answer_source: generated
+statement: Find a polynomial with integer coefficients whose roots include $\sqrt{2}+\sqrt{3}$.
+stages:
+- goal: Compute $(\sqrt{2}+\sqrt{3})^2$ and express it in the form $a+b\sqrt{6}$.
+  expected: $(\sqrt{2}+\sqrt{3})^2 = 5+2\sqrt{6}$
+  solution: $(\sqrt{2}+\sqrt{3})^2 = 2+2\sqrt{2}\sqrt{3}+3 = 5+2\sqrt{6}$.
+  common_errors:
+  - Forgetting the cross term $2\sqrt{2}\sqrt{3}$.
+  - Writing $\sqrt{2}\sqrt{3}$ as something other than $\sqrt{6}$.
+  hints:
+    rephrase: Expand the square as you would expand $(a+b)^2$.
+    smaller_case: Expand $(\sqrt{2}+1)^2$ and see what the cross term looks like.
+    key_idea: Use $\sqrt{a}\sqrt{b}=\sqrt{ab}$ and collect the rational part separately from the radical
+      part.
+  check: sp.simplify((sp.sqrt(2)+sp.sqrt(3))**2 - (5+2*sp.sqrt(6)))
+  check_ok: null
+- goal: Eliminate all radicals to find a polynomial with integer coefficients that $\sqrt{2}+\sqrt{3}$
+    satisfies.
+  expected: $x^4-10x^2+1=0$ for $x=\sqrt{2}+\sqrt{3}$, so $x^4-10x^2+1$ is the required polynomial.
+  solution: Let $x=\sqrt{2}+\sqrt{3}$. Then $x^2-5=2\sqrt{6}$, so $(x^2-5)^2=24$, giving $x^4-10x^2+25-24=0$,
+    i.e. $x^4-10x^2+1=0$. The polynomial $x^4-10x^2+1$ has integer coefficients and root $\sqrt{2}+\sqrt{3}$.
+  common_errors:
+  - Squaring $x^2-5=2\sqrt{6}$ incorrectly, e.g. getting $x^4-25$.
+  - Stopping at a quadratic or cubic that does not vanish at $\sqrt{2}+\sqrt{3}$.
+  hints:
+    rephrase: Can you isolate the radical term and square both sides to remove it?
+    smaller_case: Repeat the squaring idea starting from $y=\sqrt{2}+1$ and find a polynomial for $y$.
+    key_idea: Isolate $\sqrt{6}$ in terms of $x^2$, then square again to remove it.
+  check: sp.simplify((sp.sqrt(2)+sp.sqrt(3))**4 - 10*(sp.sqrt(2)+sp.sqrt(3))**2 + 1)
+  check_ok: null
+extensions:
+  '3':
+  - Find a polynomial with integer coefficients having $\sqrt{2}+\sqrt{5}$ as a root.
+  '4':
+  - Find a monic polynomial with integer coefficients having $\sqrt[3]{2}+1$ as a root.
+  '5':
+  - Find a polynomial with integer coefficients having $\sqrt{2}+\sqrt[3]{5}$ as a root.
+spoken_vocab:
+- square root of two plus square root of three
+- polynomial
+- integer coefficients
+- root
+- square both sides
+- x to the fourth minus ten x squared plus one
+- cross term
+- square root of six
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 3
+  difficulty: 3
+  parts: 2
+  minutes: 5
+  flags: []
+  tagline: Standard radical elimination, but a fairly routine single-technique exercise
+  priority: 35
+  rank: 599
+  tier: D
+  category: tbo
+  d10: 3.0
+  real: 6.0
+  by: haiku
+tags:
+- roots_of_polynomials
+- algebra_and_functions

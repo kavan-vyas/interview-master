@@ -1,0 +1,88 @@
+id: bernoulli-inequality-integer-n
+title: Bernoulli's inequality for integers n at least 2
+topics:
+- inequalities
+- mathematical induction
+- Taylor expansion
+warmup: false
+answer_source: pdf
+statement: Prove $(1+x)^n \ge 1+nx$ for all $x>-1$ and all integers $n\ge 2$.
+stages:
+- goal: Verify the base case $n=2$.
+  expected: $(1+x)^2-(1+2x)=x^2\ge 0$, so $(1+x)^2\ge 1+2x$.
+  solution: Expand $(1+x)^2=1+2x+x^2$. Subtracting $1+2x$ gives $x^2$, which is nonnegative for every
+    real $x$.
+  common_errors:
+  - Expanding $(1+x)^2$ incorrectly, for example as $1+x^2$
+  - Checking the base case at $n=1$ or $n=0$ instead of $n=2$
+  hints:
+    rephrase: Write out $(1+x)^2$ in full and compare it with $1+2x$.
+    smaller_case: Compute the difference between the two sides for $x=1$ and see what it equals.
+    key_idea: Induction needs a base case at the smallest allowed $n$, which here is $n=2$.
+  check: expand((1+x)**2 - (1+2*x)) - candidate
+  check_ok: false
+- goal: Assume the claim for $n=k$ and derive the inequality for $n=k+1$ by multiplying through.
+  expected: Since $1+x>0$, $(1+x)^{k+1}\ge(1+kx)(1+x)$, and $(1+kx)(1+x)=1+(k+1)x+kx^2$.
+  solution: 'Assume $(1+x)^k\ge 1+kx$. Because $1+x>0$, multiplying both sides by $1+x$ preserves the
+    inequality: $(1+x)^{k+1}\ge(1+kx)(1+x)$. Expanding, $(1+kx)(1+x)=1+x+kx+kx^2=1+(k+1)x+kx^2$.'
+  common_errors:
+  - Multiplying the inequality by $1+x$ without checking that $1+x$ is positive
+  - Expanding $(1+kx)(1+x)$ incorrectly
+  - Writing the induction hypothesis for $n=k+1$ instead of $n=k$
+  hints:
+    rephrase: If you know $A\ge B$ and multiply both sides by a number $c$, when does the inequality survive?
+    smaller_case: Expand $(1+kx)(1+x)$ with $k=2$ and check the result against the general form.
+    key_idea: Induction passes the inequality from $k$ to $k+1$ by multiplying by a positive factor, and
+      the sign of that factor is the crucial check.
+  check: expand((1+k*x)*(1+x)) - candidate
+  check_ok: false
+- goal: Finish the induction step by bounding the leftover term, then conclude for all $n\ge 2$.
+  expected: $kx^2\ge 0$ because $k\ge 2>0$, so $1+(k+1)x+kx^2\ge 1+(k+1)x$. Hence $(1+x)^{k+1}\ge 1+(k+1)x$,
+    and by induction the inequality holds for all integers $n\ge 2$.
+  solution: The term $kx^2$ is nonnegative since $k\ge 2$. Therefore $(1+x)^{k+1}\ge(1+kx)(1+x)=1+(k+1)x+kx^2\ge
+    1+(k+1)x$. Combined with the base case $n=2$, induction gives the result for all $n\ge 2$.
+  common_errors:
+  - Claiming $kx^2\ge 0$ without using $k\ge 0$
+  - Assuming $x\ge 0$ somewhere in the argument
+  - Omitting the base case from the conclusion
+  hints:
+    rephrase: Look at the leftover term after expanding. What sign does it have, and why?
+    smaller_case: Set $x=-0.5$ and $k=2$, and check whether the leftover term is still nonnegative.
+    key_idea: The induction step reduces the problem to showing that one remaining term is nonnegative.
+extensions:
+  '3':
+  - Extend the claim to real $n\ge 1$ for $x\ge -1$ by using the convexity of $f(x)=(1+x)^n$.
+  '4':
+  - State and prove what happens to the inequality for $0<n<1$ on $x>-1$.
+  '5':
+  - Use the inequality with $x=1/n^2$ to show that $(1+1/n^2)^n\ge 1+1/n$.
+spoken_vocab:
+- one plus x to the power n
+- greater than or equal to
+- one plus n x
+- x greater than minus one
+- n greater than or equal to two
+- induction
+- base case
+- inductive step
+- Taylor expansion
+source: zhou-quant/zhou-quant-guide.pdf#3
+verified: false
+rating:
+  quality: 3
+  difficulty: 3
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: Standard induction; the key step is multiplying by 1+x positively.
+  priority: 41
+  rank: 582
+  tier: D
+  category: zhou-quant
+  d10: 3.5
+  real: 4.5
+  by: deepseek-v4.1-flash-free
+tags:
+- inequalities
+- proof
+- algebra_and_functions

@@ -1,0 +1,98 @@
+id: am-gm-product-sum-reciprocals
+title: Sum times sum of reciprocals is at least nine
+topics:
+- inequalities
+- AM-GM
+- Cauchy-Schwarz
+- algebraic manipulation
+warmup: true
+answer_source: generated
+statement: Let $a, b, c >0$. Prove that $(a+b+c)\left(\frac{1}{a}+\frac{1}{b}+\frac{1}{c}\right)\ge 9$.
+  (a) When does equality hold?
+stages:
+- goal: Expand the product $(a+b+c)\left(\frac1a+\frac1b+\frac1c\right)$ into simpler terms.
+  expected: $(a+b+c)\left(\frac1a+\frac1b+\frac1c\right)=3+\left(\frac ab+\frac ba\right)+\left(\frac
+    bc+\frac cb\right)+\left(\frac ca+\frac ac\right)$.
+  solution: 'Multiply out: $a\cdot\frac1a=1$, $b\cdot\frac1b=1$, $c\cdot\frac1c=1$, and the remaining
+    six terms pair up as $\frac ab,\frac ba,\frac bc,\frac cb,\frac ca,\frac ac$. So the product is $3+\left(\frac
+    ab+\frac ba\right)+\left(\frac bc+\frac cb\right)+\left(\frac ca+\frac ac\right)$.'
+  common_errors:
+  - Miscounting the nine terms of the product, giving a constant other than 3.
+  - Pairing terms incorrectly so that a pair is not of the form $\frac xy+\frac yx$.
+  hints:
+    rephrase: Multiply out the product term by term and see which terms simplify.
+    smaller_case: Expand $(a+b)\left(\frac1a+\frac1b\right)$ first and look at what you get.
+    key_idea: Terms of the form $x\cdot\frac1x$ simplify, and the rest come in reciprocal pairs.
+  check: (a+b+c)*(1/a+1/b+1/c) - (3 + a/b + b/a + b/c + c/b + c/a + a/c)
+  check_ok: true
+- goal: Show that $\frac xy+\frac yx\ge 2$ for any $x,y>0$.
+  expected: Multiply by $xy>0$ to get $x^2+y^2\ge 2xy$, which is $(x-y)^2\ge 0$.
+  solution: $\frac xy+\frac yx-2=\frac{x^2+y^2-2xy}{xy}=\frac{(x-y)^2}{xy}\ge 0$ since $xy>0$.
+  common_errors:
+  - Dividing by $xy$ without noting its sign, or forgetting it must be positive.
+  - Trying to prove the inequality directly without rewriting it as a square.
+  hints:
+    rephrase: Show that the difference between the sum of a ratio and its reciprocal and 2 is never negative.
+    smaller_case: Check the case $x=1$ and compare $y+\frac1y$ with 2.
+    key_idea: Clear denominators and look for a perfect square.
+  check: (a/b + b/a - 2) - (a-b)**2/(a*b)
+  check_ok: true
+- goal: Combine the previous results to prove the inequality and identify when equality holds.
+  expected: The product equals $3$ plus three terms each at least $2$, so it is at least $9$. Equality
+    holds if and only if $a=b=c$.
+  solution: By the previous stage each of the three bracketed pairs is at least 2, so the product is at
+    least $3+2+2+2=9$. Equality requires each pair to equal 2, i.e. $a=b$, $b=c$ and $c=a$, so $a=b=c$.
+    Conversely, $a=b=c$ gives $3\cdot 3=9$.
+  common_errors:
+  - Concluding equality holds when only two of the variables are equal.
+  - Stating the final bound without showing each pair is at least 2.
+  hints:
+    rephrase: Combine the pairwise bounds and ask when each individual bound is tight.
+    smaller_case: What is the value of the product when $a=b=c=1$?
+    key_idea: Equality in the pairwise bound $\frac xy+\frac yx\ge 2$ requires $x=y$.
+  check: null
+extensions:
+  '3':
+  - Prove $(a+b+c)\left(\frac1a+\frac1b+\frac1c\right)\ge 9$ using the Cauchy-Schwarz inequality applied
+    to the vectors $(\sqrt a,\sqrt b,\sqrt c)$ and $\left(\frac1{\sqrt a},\frac1{\sqrt b},\frac1{\sqrt
+    c}\right)$.
+  - Prove the same result using AM-GM directly on $a+b+c$ and $\frac1a+\frac1b+\frac1c$.
+  '4':
+  - 'Generalise to $n$ positive reals: show $(a_1+\cdots+a_n)\left(\frac1{a_1}+\cdots+\frac1{a_n}\right)\ge
+    n^2$ and find when equality holds.'
+  - Show that $\left(\sum w_i a_i\right)\left(\sum \frac{w_i}{a_i}\right)\ge\left(\sum w_i\right)^2$ for
+    positive weights $w_i$.
+  '5':
+  - Find the minimum of $(x+y)(\frac1x+\frac1y)$ over $x,y>0$ with $x\ne y$ and explain why it is never
+    attained.
+  - Explain the connection between this inequality and the harmonic-arithmetic mean inequality.
+spoken_vocab:
+- a plus b plus c
+- one over a plus one over b plus one over c
+- product is at least nine
+- a over b plus b over a
+- greater than or equal to two
+- equality holds when a equals b equals c
+- Cauchy-Schwarz
+- square root of a
+- harmonic mean
+- arithmetic mean
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 2
+  minutes: 8
+  flags: []
+  tagline: Expansion plus pairwise AM-GM; equality analysis gives good follow-up.
+  priority: 61
+  rank: 460
+  tier: C
+  category: juan
+  d10: 2.8
+  real: 6.5
+  by: deepseek-v4.1-flash-free
+tags:
+- inequalities
+- algebra_and_functions

@@ -1,0 +1,87 @@
+id: chocolate-bar-breaks-2
+title: Chocolate Bar Breaks
+topics:
+- induction
+- invariants
+- counting
+warmup: true
+answer_source: pdf
+statement: A chocolate bar has $6$ rows and $8$ columns ($48$ individual squares). You break it into two
+  smaller rectangles, and each time you break one rectangle into two smaller rectangles along a straight
+  line. What is the minimum number of breaks needed to break the chocolate bar into $48$ single squares?
+stages:
+- goal: Find the minimum number of breaks for a 2×2 bar.
+  expected: '3'
+  solution: Break the 2×2 bar along the middle line into two 1×2 dominoes (1 break). Each domino needs
+    one more break to become two single squares, so the total is 1 + 1 + 1 = 3 breaks.
+  common_errors:
+  - Answering 2, counting only the breaks needed to split the bar into two halves.
+  - Answering 4, counting one break per square.
+  hints:
+    rephrase: Each break is a straight cut along one rectangle. Count the cuts needed to reach four single
+      squares.
+    smaller_case: Try a 1×2 bar first. How many breaks does it need?
+    key_idea: Track how many pieces you have after each break.
+  check: 2*2 - 1 - 3
+  check_ok: true
+- goal: Explain why the number of breaks does not depend on the order of breaking, and find the number
+    for the 6×8 bar.
+  expected: 47. Each break increases the number of pieces by exactly one, from 1 piece to 48 pieces, so
+    47 breaks are needed.
+  solution: Each break replaces one rectangle with two rectangles, so the number of pieces increases by
+    exactly 1. The bar starts as 1 piece and must end as 6·8 = 48 single squares. Therefore exactly 48
+    − 1 = 47 breaks are needed, whatever order is used. In general, an m×n bar needs mn − 1 breaks.
+  common_errors:
+  - Giving 48 as the answer, which counts the squares rather than the breaks.
+  - Arguing that the answer depends on the cutting order without checking the piece count.
+  - Using 6+8 or another formula that does not match the piece count.
+  hints:
+    rephrase: Look at how the number of pieces changes with each break, not at the shapes of the pieces.
+    smaller_case: For the 2×2 bar, list the number of pieces after each break in your order.
+    key_idea: 'Invariant: each break adds exactly one piece.'
+  check: 6*8 - 1 - 47
+  check_ok: true
+extensions:
+  '3':
+  - How many breaks are needed for an m×n bar if you are allowed to stack pieces and cut them together
+    in one step?
+  '4':
+  - Prove that every way of breaking the bar into squares uses the same number of breaks, using strong
+    induction on the number of squares.
+  '5':
+  - Suppose each break may cut through several layers stacked on top of each other. What is the minimum
+    number of cuts for a 6×8 bar?
+spoken_vocab:
+- chocolate bar
+- six rows
+- eight columns
+- forty eight squares
+- break
+- straight line
+- two by two
+- minimum number of breaks
+- pieces
+- invariant
+- m by n
+- m times n minus one
+- forty seven
+source: zhou-quant/zhou-quant-guide.pdf#1
+verified: false
+rating:
+  quality: 3
+  difficulty: 2
+  parts: 2
+  minutes: 6
+  flags:
+  - trivial
+  tagline: Each break adds one piece, so the answer is fixed at 47
+  priority: 27
+  rank: 646
+  tier: D
+  category: zhou-quant
+  d10: 3.0
+  real: 6.5
+  by: deepseek-v4.1-flash-free
+tags:
+- combinatorics
+- proof

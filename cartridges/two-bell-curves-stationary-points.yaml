@@ -1,0 +1,132 @@
+id: two-bell-curves-stationary-points
+title: Stationary points of two exponential-gradient curves
+topics:
+- calculus
+- integration
+- stationary points
+- second derivative
+- comparison of curves
+warmup: false
+answer_source: pdf
+statement: The curve $C_1$ passes through the origin in the $x$-$y$ plane and its gradient is given by
+  $\frac{dy}{dx} = x(1 - x^2)e^{-x^2}$. Show that $C_1$ has a minimum point at the origin and a maximum
+  point at $\left(1, \frac{1}{2}e^{-1}\right)$. Find the coordinates of the other stationary point. Give
+  a rough sketch of $C_1$. The curve $C_2$ passes through the origin and its gradient is given by $\frac{dy}{dx}
+  = x(1 - x^2)e^{-x^3}$. Show that $C_2$ has a minimum point at the origin and a maximum point at $(1,
+  k)$, where $k > \frac{1}{2}e^{-1}$. (You need not find $k$.)
+stages:
+- goal: Integrate the gradient of $C_1$ and fix the constant using the origin.
+  expected: $y = \frac{1}{2}x^2 e^{-x^2}$
+  solution: Note that $\frac{d}{dx}\left(\frac{1}{2}x^2e^{-x^2}\right) = xe^{-x^2} - x^3e^{-x^2} = x(1-x^2)e^{-x^2}$,
+    which is the given gradient. So $y = \frac{1}{2}x^2e^{-x^2} + c$. The curve passes through the origin,
+    so $0 = 0 + c$ and $c = 0$.
+  common_errors:
+  - Forgetting the constant of integration, or fixing it incorrectly.
+  - Getting the factor $\frac{1}{2}$ wrong, e.g. $x^2 e^{-x^2}$ with no $\frac{1}{2}$.
+  - Attempting integration by parts incorrectly and losing the $x^3$ term.
+  hints:
+    rephrase: Look for a function whose derivative has the form $x(1-x^2)e^{-x^2}$, perhaps involving
+      $x^2$ and $e^{-x^2}$.
+    smaller_case: Use the substitution $u = x^2$, which turns $x\,dx$ into $\frac{1}{2}du$.
+    key_idea: The factor $x$ in the gradient is a clue that $x^2$ is the natural variable.
+  check: simplify(diff(x**2*exp(-x**2)/2, x) - x*(1 - x**2)*exp(-x**2))
+  check_ok: true
+- goal: Show that $C_1$ has a minimum at the origin and a maximum at $\left(1, \frac{1}{2}e^{-1}\right)$.
+  expected: Stationary points are at $x = 0$ and $x = \pm 1$. The second derivative is $(1 - 5x^2 + 2x^4)e^{-x^2}$,
+    which is positive at $x = 0$ (minimum) and negative at $x = 1$ (maximum).
+  solution: $\frac{dy}{dx} = 0$ requires $x(1-x^2)=0$, since $e^{-x^2} \neq 0$. So $x = 0, \pm 1$. Differentiating
+    $x(1-x^2)e^{-x^2}$ gives $\frac{d^2y}{dx^2} = (1 - 5x^2 + 2x^4)e^{-x^2}$. At $x = 0$ this is $1 >
+    0$, so minimum. At $x = 1$ it is $(1 - 5 + 2)e^{-1} = -2e^{-1} < 0$, so maximum. The height is $y(1)
+    = \frac{1}{2}e^{-1}$.
+  common_errors:
+  - Dropping the $-2x \cdot x(1-x^2)$ term when differentiating the gradient.
+  - Using $-2e^{-1}$ as the height instead of $\frac{1}{2}e^{-1}$.
+  - Concluding from the gradient sign alone without checking both sides.
+  hints:
+    rephrase: Find where the gradient is zero, then decide the nature of each point by differentiating
+      the gradient.
+    smaller_case: Check the second derivative at $x = 0$ before the general case.
+    key_idea: The product rule applied to $x(1-x^2)$ and $e^{-x^2}$ gives the second derivative. Only
+      the sign of the bracket matters at each point.
+  check: simplify(diff(x*(1 - x**2)*exp(-x**2), x).subs(x, 1) + 2*exp(-1))
+  check_ok: true
+- goal: Find the other stationary point of $C_1$ and sketch $C_1$.
+  expected: The other stationary point is $\left(-1, \frac{1}{2}e^{-1}\right)$, a maximum. The curve is
+    even, with $y \geq 0$, a minimum at the origin, maxima at $(\pm 1, \frac{1}{2}e^{-1})$, and $y \to
+    0$ as $x \to \pm\infty$.
+  solution: 'At $x = -1$, $y = \frac{1}{2}(-1)^2e^{-1} = \frac{1}{2}e^{-1}$. Since $\frac{dy}{dx} = 0$
+    there, $(-1, \frac{1}{2}e^{-1})$ is stationary. Its second derivative is $(1 - 5 + 2)e^{-1} < 0$,
+    so it is a maximum. For the sketch: $y = \frac{1}{2}x^2e^{-x^2}$ is even and never negative, equals
+    $0$ at the origin, peaks at $\pm 1$, then decays to zero. The graph looks like an ''M'' shape with
+    the central dip at the origin.'
+  common_errors:
+  - Giving $(-1, -\frac{1}{2}e^{-1})$ as the height.
+  - Sketching $C_1$ as a single bump with a maximum at the origin.
+  - Forgetting that the curve is symmetric about the $y$-axis.
+  hints:
+    rephrase: Use the symmetry of $x^2$ to find the second stationary point from the first.
+    smaller_case: Evaluate the curve at $x = -1$ and compare with $x = 1$.
+    key_idea: The formula for $y$ depends only on $x^2$, so the graph is symmetric in the $y$-axis.
+  check: simplify(x**2*exp(-x**2)/2).subs(x, -1) - exp(-1)/2
+  check_ok: true
+- goal: Show that $C_2$ has a maximum at $(1, k)$ with $k > \frac{1}{2}e^{-1}$.
+  expected: For $0 < x < 1$, the gradient of $C_2$ exceeds that of $C_1$, so $C_2$ lies above $C_1$ and
+    $k > \frac{1}{2}e^{-1}$.
+  solution: For $C_2$, the second derivative is $(1 - 3x^2 - 3x^3 + 3x^5)e^{-x^3}$. This is $1 > 0$ at
+    $x = 0$ (minimum) and $-2e^{-1} < 0$ at $x = 1$ (maximum). For $0 < x < 1$, $x^3 < x^2$ so $e^{-x^3}
+    > e^{-x^2}$. Since $x(1 - x^2) > 0$ there, the gradient of $C_2$ exceeds that of $C_1$. Both curves
+    pass through the origin, so $C_2(x) - C_1(x) = \int_0^x (\text{gradient difference}) > 0$ for $0 <
+    x \leq 1$. Hence $k > \frac{1}{2}e^{-1}$.
+  common_errors:
+  - Reversing the inequality, claiming $e^{-x^3} < e^{-x^2}$ on $(0,1)$.
+  - Forgetting that both curves start at the origin, which the integral argument needs.
+  - Asserting $k > \frac{1}{2}e^{-1}$ without justification from the gradient comparison.
+  hints:
+    rephrase: Compare the gradients of the two curves on $0 < x < 1$, and use the fact that they start
+      at the same point.
+    smaller_case: Compare $x^3$ and $x^2$ for a particular $x$ in $(0, 1)$, such as $x = \frac{1}{2}$.
+    key_idea: If one curve has a larger gradient everywhere on an interval starting from the same point,
+      it lies above the other there.
+  check: (exp(-Rational(1,8)) - exp(-Rational(1,4))) > 0
+  check_ok: true
+extensions:
+  '3':
+  - Classify the stationary point of $C_2$ at $x = -1$.
+  '4':
+  - Show that $C_1$ is an even function and state the symmetry of its graph.
+  '5':
+  - Explain why $C_1$ satisfies $y \geq 0$ for all $x$.
+spoken_vocab:
+- C one
+- C two
+- dy by dx
+- x times one minus x squared
+- e to the minus x squared
+- e to the minus x cubed
+- half e to the minus one
+- stationary point
+- second derivative
+- minimum point
+- maximum point
+- k greater than half e to the minus one
+- integrating factor
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#15
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 4
+  minutes: 25
+  flags:
+  - needs_diagram
+  tagline: Integration then integrand comparison bounds k without computing it.
+  priority: 84
+  rank: 161
+  tier: B
+  category: siklos
+  d10: 4.5
+  real: 3.5
+  by: haiku
+tags:
+- curve_sketching
+- integration

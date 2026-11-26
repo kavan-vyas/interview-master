@@ -1,0 +1,92 @@
+id: symmetry-trig-integral
+title: Symmetry trick on a sine-cosine integral
+topics:
+- definite integrals
+- substitution
+- symmetry
+- trigonometric integrals
+warmup: false
+answer_source: generated
+statement: Show that $\int_{\frac{\pi}{2}}^{\pi}\dfrac{x\sin(x)}{1+\cos^2(x)}\,dx=\int_0^{\frac{\pi}{2}}\dfrac{(\pi-x)\sin(x)}{1+\cos^2(x)}\,dx$.
+  Hence find $I=\int_0^{\pi}\dfrac{x\sin(x)}{1+\cos^2(x)}\,dx$.
+stages:
+- goal: Show the two integrals are equal.
+  expected: Substitute $x=\pi-u$ in the left integral. The bounds change from $u=\pi/2$ to $u=0$, and
+    $dx=-du$ reverses them back to $0$ to $\pi/2$. Also $\sin(\pi-u)=\sin u$ and $\cos^2(\pi-u)=\cos^2
+    u$, so the integral becomes $\int_0^{\pi/2}\frac{(\pi-u)\sin u}{1+\cos^2 u}\,du$, which is the right-hand
+    side.
+  solution: Let $x=\pi-u$, so $dx=-du$. When $x=\pi/2$, $u=\pi/2$. When $x=\pi$, $u=0$. Then $\int_{\pi/2}^{\pi}\frac{x\sin
+    x}{1+\cos^2x}dx=\int_{\pi/2}^{0}\frac{(\pi-u)\sin(\pi-u)}{1+\cos^2(\pi-u)}(-du)=\int_0^{\pi/2}\frac{(\pi-u)\sin
+    u}{1+\cos^2 u}du$, using $\sin(\pi-u)=\sin u$ and $\cos^2(\pi-u)=\cos^2u$. Renaming $u$ to $x$ gives
+    the result.
+  common_errors:
+  - Forgetting the sign from $dx=-du$, or not swapping the limits to compensate
+  - Replacing $\pi-x$ with $-x$ when substituting, so the $\pi$ is lost
+  - Changing $\sin$ or $\cos^2$ incorrectly under $x\mapsto\pi-x$ (for example $\cos(\pi-x)=\cos x$ instead
+    of $-\cos x$, then squaring)
+  hints:
+    rephrase: Look at what happens to the integrand when you replace $x$ by $\pi-x$, and track where the
+      limits go.
+    smaller_case: Try the same substitution on $\int_{\pi/2}^{\pi}x\,dx$ alone and check where the bounds
+      end up.
+    key_idea: A reflection about $x=\pi/2$ maps one half-interval onto the other, and sine and $\cos^2$
+      are unchanged by that reflection.
+  check: null
+- goal: Find $I$ in closed form.
+  expected: $I=\frac{\pi^2}{4}$
+  solution: Split $I=\int_0^{\pi/2}+\int_{\pi/2}^{\pi}$. By the first part, the second piece equals $\int_0^{\pi/2}\frac{(\pi-x)\sin
+    x}{1+\cos^2x}dx$. Adding the two pieces gives $I=\int_0^{\pi/2}\frac{\pi\sin x}{1+\cos^2x}dx=\pi\int_0^{\pi/2}\frac{\sin
+    x}{1+\cos^2x}dx$. With $u=\cos x$, $du=-\sin x\,dx$ and the limits become $1$ to $0$, so the integral
+    is $\int_0^1\frac{du}{1+u^2}=\frac{\pi}{4}$. Hence $I=\frac{\pi^2}{4}$.
+  common_errors:
+  - Leaving a bare $x$ in the integrand after combining the two halves, so the $\pi$ is never factored
+    out
+  - Using $u=\sin x$, which does not simplify $1+\cos^2x$
+  - Integrating $\frac{1}{1+u^2}$ as a logarithm instead of $\arctan u$
+  - Dropping the sign from $du=-\sin x\,dx$ and not reversing the limits
+  hints:
+    rephrase: Use the identity from part one to rewrite the second half over $[0,\pi/2]$, then add the
+      two halves together.
+    smaller_case: Evaluate $\int_0^{\pi/2}\frac{\sin x}{1+\cos^2x}dx$ on its own. Which substitution makes
+      it elementary?
+    key_idea: Once the integrand no longer contains $x$, the integral is standard after $u=\cos x$.
+  check: simplify(pi*Integral(sin(u)/(1+cos(u)**2),(u,0,pi/2)).doit() - pi**2/4)
+  check_ok: true
+extensions:
+  '3':
+  - Use the same symmetry to evaluate $\int_0^{\pi}\frac{x}{1+\sin^2x}dx$.
+  '4':
+  - Find a general rule for $\int_0^{\pi}x\,f(\sin x)\,dx$ in terms of $\int_0^{\pi}f(\sin x)\,dx$.
+  '5':
+  - Explain why the same trick fails for $\int_0^{\pi}x\,\sin x\,\cos x\,dx$ with a non-symmetric weight,
+    and find a substitute method.
+spoken_vocab:
+- integral
+- from pi over two to pi
+- x sine x over one plus cosine squared x
+- d x
+- pi minus x
+- integral from zero to pi over two
+- cosine squared
+- substitute u equals pi minus x
+- sine of pi minus u
+- I equals pi squared over four
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 2
+  minutes: 10
+  flags: []
+  tagline: Classic reflection trick giving a closed form; a clean two-part integral.
+  priority: 65
+  rank: 376
+  tier: C
+  category: tbo
+  d10: 4.0
+  real: 6.0
+  by: haiku
+tags:
+- integration
+- trigonometry

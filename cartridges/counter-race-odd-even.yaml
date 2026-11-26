@@ -1,0 +1,139 @@
+id: counter-race-odd-even
+title: Counter race on points 1 to 30
+topics:
+- combinatorial game theory
+- invariants
+- parity
+- modular arithmetic
+- strategy
+warmup: false
+answer_source: pdf
+statement: The points $1,2,\ldots,30$ lie in a row. Player A has a counter on point 1 and player B has
+  a counter on point 30. The players take turns, and on each turn a player must move their own counter
+  1, 2 or 3 places towards the other counter. A counter may not land on, or jump over, the other counter.
+  The game ends as soon as the two counters are on neighbouring points, and the player whose counter is
+  then on an odd-numbered point wins. Who wins with best play, and does it matter who moves first?
+stages:
+- goal: Show that exactly one counter ends on an odd point, and that A ends on an odd point exactly when
+    A's total distance moved is even.
+  expected: The total distances satisfy $d_A+d_B=28$, so they have the same parity. A ends on an odd point
+    exactly when $d_A$ is even. Exactly one of the two counters ends on an odd point.
+  solution: If the counters finish on $a$ (A) and $b=a+1$ (B), then $d_A=a-1$ and $d_B=30-b$, so $d_A+d_B=28$.
+    A is on an odd point iff $a-1$ is even iff $d_A$ is even. Since $d_A+d_B=28$ is even, $d_B$ has the
+    same parity as $d_A$. B's final point $b=30-d_B$ is odd iff $d_B$ is odd. So A is odd exactly when
+    B is even, and as $a$ and $b$ are consecutive, exactly one of them is odd.
+  common_errors:
+  - Using a gap of 30 instead of 28 empty points between the counters at the start.
+  - Assuming the winner depends on who is on an odd point at the start rather than at the end.
+  - Forgetting that the total distance parity links the two players' final points.
+  hints:
+    rephrase: Track how far each counter travels in total. What do the two distances add up to?
+    smaller_case: Take a short row, say points 1 to 5, and follow the total distances of the two counters
+      when they meet.
+    key_idea: Find a fixed quantity that both players' moves must sum to, then read off the parity of
+      each final position from it.
+  check: Mod(28, 2)
+  check_ok: true
+- goal: Describe the positions, with A to move, from which B can force A to end on an even point. Use
+    the gap $g$ (the number of empty points between the counters) and A's parity.
+  expected: With A to move, the position is safe for B (B wins with best play) iff either A is on an odd
+    point and $g\equiv 1$ or $4\pmod 8$, or A is on an even point and $g\equiv 0$ or $5\pmod 8$.
+  solution: 'Let $p$ be the parity of A''s position and $g$ the gap. A''s move of $m$ changes $p$ by $m\bmod
+    2$ and reduces $g$ by $m$. B''s reply of $r$ reduces $g$ by $r$ and leaves $p$ unchanged. The game
+    ends at $g=0$, and then A wins iff A is on an odd point, so the terminal positions with A even are
+    safe for B. The strategy is: if A moves 1, B moves 3; if A moves 3, B moves 1; if A moves 2, B replies
+    3 when $g\equiv 1$ or $5\pmod 8$ and replies 1 when $g\equiv 0$ or $4\pmod 8$. Each reply returns
+    the position to the safe set, so B always has a legal reply, and the game ends at $g=0$ with A on
+    an even point. Checking each case confirms that the set is closed under these replies.'
+  common_errors:
+  - Describing the safe set only for small gaps and not justifying it for all $g$ modulo 8.
+  - Checking that a reply exists but not that it returns the position to the safe set.
+  - Confusing whose turn it is when the position is described.
+  hints:
+    rephrase: Let $g$ be the number of empty points between the counters. Which quantities change when
+      A moves, and which change when B moves?
+    smaller_case: Play through the positions with a gap of at most 3, for each parity of A's position,
+      and see who is forced onto the wrong parity.
+    key_idea: Look for a reply that keeps a pair of quantities (A's parity and the gap modulo 8) inside
+      a fixed set, so B can always answer.
+  check: null
+- goal: Show that B wins if A moves first.
+  expected: B wins. The start has $g=28\equiv 4\pmod 8$ with A on point 1 (odd), which is a safe position
+    for B.
+  solution: Initially A is on point 1 and B is on point 30, so the gap is $30-1-1=28$. A is on an odd
+    point and $28\equiv 4\pmod 8$, which is in the safe set from the previous stage. So B wins with best
+    play.
+  common_errors:
+  - Miscounting the gap as 29 or 30.
+  - Concluding that A wins because A moves first and so has the initiative.
+  hints:
+    rephrase: Count the empty points between the two counters at the start, then compare that number with
+      the safe set.
+    smaller_case: Work out the outcome when the counters start on points 1 and 4, with A to move.
+    key_idea: The safe-set description depends on the gap modulo 8 and on A's parity, so compute both
+      for the starting position.
+  check: Mod(28, 8) - 4
+  check_ok: true
+- goal: Show that B also wins if B moves first.
+  expected: B wins. B moves 3, giving $g=25\equiv 1\pmod 8$ with A on point 1 (odd), which is safe for
+    B.
+  solution: If B moves first, B moves 3 (legal, since $3\le 28$). The gap becomes $28-3=25$ and A is still
+    on point 1, which is odd. Since $25\equiv 1\pmod 8$, the position is in the safe set with A to move,
+    so B wins with best play.
+  common_errors:
+  - Choosing a move for B that leaves A in a safe-for-A position, such as B moving 1 or 2.
+  - Forgetting that A's counter does not move during B's turn, so A stays odd.
+  hints:
+    rephrase: After B's first move, which counter has moved? What is the new gap and A's parity?
+    smaller_case: Try the opening move of 1 and check whether the new position is in the safe set.
+    key_idea: B wants a first move that puts the gap into a residue class in the safe set, using the same
+      modulo-8 information.
+  check: Mod(28 - 3, 8) - 1
+  check_ok: true
+extensions:
+  '3':
+  - Repeat the game with moves of 1 or 2 only, and say who wins from points 1 and 30.
+  - Change the winning rule to the player on the even point and see whether the winner changes.
+  '4':
+  - For $n$ points in a row, with A on 1 and B on $n$, which player wins as a function of $n$?
+  - Find the safe positions for general move sets $\{1,2,\ldots,k\}$.
+  '5':
+  - Analyse a three-counter version where each player must choose which counter to move.
+  - Find an invariant that explains the modulo-8 pattern without a full table of cases.
+spoken_vocab:
+- counter
+- player A
+- player B
+- points one to thirty
+- neighbouring points
+- gap
+- empty points
+- odd
+- even
+- total distance
+- parity
+- modulo eight
+- safe position
+- round
+- reply
+- who moves first
+- best play
+source: jzmaths/JZMaths Interview Questions from the website trial.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 4
+  minutes: 25
+  flags: []
+  tagline: Parity invariant and gap-based strategy give rich, multi-step discussion with extensions.
+  priority: 92
+  rank: 91
+  tier: A
+  category: jzmaths
+  d10: 7.0
+  real: 6.0
+  by: deepseek-v4.1-flash-free
+tags:
+- combinatorics
+- proof

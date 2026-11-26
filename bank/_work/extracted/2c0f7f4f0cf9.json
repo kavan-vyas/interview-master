@@ -1,0 +1,44 @@
+[
+ {
+  "q": "Sketch $y=\\frac{1}{x}$ and $y=\\frac{1}{\\sqrt{x}}$. Consider their integrals between $0$ and $1$. More generally, for what values of $n$ does $\\int_0^1 \\frac{1}{x^n}\\,dx$ have a finite value?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 6 (anonymous).pdf#0"
+ },
+ {
+  "q": "Consider the graph consisting of one central vertex joined to three outer vertices. In how many ways can its vertices be coloured using two colours so that no two adjacent vertices have the same colour? What happens with three colours? With $n$ colours? Find an expression $f(n)$ for the number of valid colourings. Now consider a different graph obtained by adding another vertex and edge. How does the number of valid colourings change? Does your expression $f(n)$ work for all graphs? More generally, if a new vertex is added and joined to every existing vertex, how does this affect the number of colourings?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 6 (anonymous).pdf#0"
+ },
+ {
+  "q": "Solve the inequality $x^2-3x+2\\ge 0$. Now solve $x^2-5x+6\\ge 0$. Consider also $25^x+25\\cdot 5^{x-1}+6\\ge 0$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 6 (anonymous).pdf#0"
+ },
+ {
+  "q": "Write down the first ten Fibonacci numbers. Write down the first six partial sums of the Fibonacci sequence. Find a formula for the $n$th partial sum $S_n$, and prove your formula for all $n$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 6 (anonymous).pdf#0"
+ },
+ {
+  "q": "Choose distinct numbers from the Fibonacci sequence whose sum is $50$. Can the same method be used for any positive integer?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 6 (anonymous).pdf#0"
+ },
+ {
+  "q": "A curve is defined parametrically by coordinates $(x(t), y(t))$. Sketch the curves described by the following parametrisations: $x(t)=t$, $y(t)=t^2$; $x(t)=\\sin t$, $y(t)=\\cos t$; and $x(t)=e^{-2t}\\sin t$, $y(t)=e^{-2t}\\cos t$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 6 (anonymous).pdf#0"
+ }
+]

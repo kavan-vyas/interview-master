@@ -1,0 +1,120 @@
+id: non-crossing-red-blue-matching
+title: Non-crossing red-blue matching
+topics:
+- geometry
+- extremal argument
+- triangle inequality
+- matchings
+- plane geometry
+warmup: false
+answer_source: generated
+statement: $2n$ points are chosen in the plane such that no 3 are collinear, $n$ are coloured blue and
+  $n$ are coloured red. Prove that it is always possible to join the $n$ red points to the $n$ blue points
+  by line segments, such that no two line segments cross.
+stages:
+- goal: Choose a matching to optimise over.
+  expected: Consider all perfect matchings pairing each red point with a blue point. There are finitely
+    many, at least one exists, so one minimising the total length of the segments exists.
+  solution: A matching is a bijection between the $n$ red points and the $n$ blue points, so there are
+    $n!$ of them, a finite nonempty set. The total length of a matching is a real number. Among the finitely
+    many matchings, one has the smallest total length.
+  common_errors:
+  - Choosing a matching greedily (for example, by repeatedly joining the nearest pair) without proving
+    that the result is non-crossing.
+  - Forgetting that the matching must be between red and blue points, not any two points.
+  hints:
+    rephrase: Among all valid ways to pair the red points with the blue points, is there a way to measure
+      the total length of a pairing?
+    smaller_case: With n=2, list the two possible red-blue pairings and compare their total lengths.
+    key_idea: Consider the total length of each pairing and select a pairing that cannot be made shorter
+      by a small local change.
+  check: null
+- goal: Show that a minimal-length matching has no crossing segments.
+  expected: Suppose red $R$ joined to blue $B$ and red $R'$ joined to blue $B'$ cross at a point $P$.
+    Swapping to $RB'$ and $R'B$ gives strictly smaller total length by the triangle inequality, contradicting
+    minimality. Strictness follows from the no-three-collinear hypothesis.
+  solution: Let $P$ be the crossing point. Then $|RB'|\le |RP|+|PB'|$ and $|R'B|\le |R'P|+|PB|$. Adding
+    gives $|RB'|+|R'B|\le |RB|+|R'B'|$. Equality would need $P$ to lie on segment $RB'$ and on segment
+    $R'B$, so $R$, $P$ and $B'$ would be collinear, together with $R$, $P$ and $B$, which puts $R$, $B$
+    and $B'$ on one line. This contradicts no three points being collinear. If $P$ coincided with an endpoint,
+    three of the points would again be collinear, which is also excluded. So the swapped matching is strictly
+    shorter, a contradiction.
+  common_errors:
+  - Using the triangle inequality without checking when equality can hold.
+  - Ignoring the case where the crossing point is an endpoint, or treating it as impossible without justification.
+  - Swapping segments in the wrong way, so that the new pairs are not red-blue.
+  hints:
+    rephrase: Suppose two of your segments cross. Can you exchange their endpoints so that the new segments
+      have a smaller total length?
+    smaller_case: Take four points forming a quadrilateral with two crossing diagonals. Which pairing
+      of the endpoints gives shorter segments?
+    key_idea: Use the triangle inequality on the two paths through the crossing point, and watch carefully
+      for when it becomes an equality.
+  check: null
+- goal: Conclude that a non-crossing red-blue matching exists.
+  expected: The minimal matching is a perfect red-blue matching. By stage two, no two of its segments
+    cross. Hence the required non-crossing matching exists.
+  solution: Stage one gives a perfect red-blue matching of minimal total length. Stage two shows no two
+    of its segments intersect at a point, and since no three points are collinear, segments cannot meet
+    at an endpoint except through a shared endpoint, which a matching forbids. So its segments pairwise
+    do not cross, as required.
+  common_errors:
+  - Concluding without checking that the minimal matching is still a valid red-blue pairing.
+  - Overlooking that two segments may share an endpoint, which a matching rules out.
+  hints:
+    rephrase: 'Check that the matching you chose satisfies every requirement: each red point appears once,
+      each blue point appears once, and no two segments cross.'
+    smaller_case: Apply the argument to the smallest case, n=1, and see what the conclusion says.
+    key_idea: The minimal matching satisfies all requirements, so it is the answer.
+  check: null
+extensions:
+  '3':
+  - Where exactly is the no-three-collinear hypothesis used? Construct an example with collinear points
+    where the minimal matching still has overlapping segments.
+  - Does the same argument work if the numbers of red and blue points are unequal? Explain what changes.
+  '4':
+  - Give an inductive proof of the same result by splitting the plane with a suitable line, using a ham-sandwich-style
+    idea.
+  - Show that a minimal matching can be found by an algorithm that repeatedly swaps crossing pairs, and
+    explain why the process terminates.
+  '5':
+  - Replace total length by a different measure, such as the sum of squared lengths. Does the non-crossing
+    argument still work? Justify.
+  - Is it always possible to join the points by a non-crossing polygonal path alternating red and blue?
+    Discuss.
+spoken_vocab:
+- red points
+- blue points
+- two n points
+- no three collinear
+- line segments
+- matching
+- bijection
+- total length
+- triangle inequality
+- crossing point
+- segment RB
+- segment R prime B prime
+- minimal matching
+- perfect matching
+- n factorial
+- plane geometry
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 9
+  difficulty: 6
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Minimal-length matching argument is a classic with rich extensions and discussion.
+  priority: 101
+  rank: 45
+  tier: A
+  category: tbo
+  d10: 5.5
+  real: 8.0
+  by: haiku
+tags:
+- proof
+- geometry

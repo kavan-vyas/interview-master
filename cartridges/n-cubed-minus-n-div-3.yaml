@@ -1,0 +1,80 @@
+id: n-cubed-minus-n-div-3
+title: n cubed minus n is divisible by 3
+topics:
+- divisibility
+- factorisation
+- modular arithmetic
+- proof
+warmup: true
+answer_source: generated
+statement: Prove that $n^3 - n$ is divisible by $3$.
+stages:
+- goal: Rewrite $n^3 - n$ as a product of simpler factors.
+  expected: (n-1)n(n+1), the product of three consecutive integers.
+  solution: n^3 - n = n(n^2 - 1) = n(n-1)(n+1). This is the product of the three consecutive integers
+    n-1, n and n+1.
+  common_errors:
+  - Factorising as n(n^2 - 1) and then stopping without writing n^2 - 1 = (n-1)(n+1).
+  - Writing (n-1)(n+1) without the factor n.
+  - Making a sign error, for example writing (n+1)(n+1) or (n-1)^2.
+  hints:
+    rephrase: Can you take out a common factor from n cubed minus n, and then factor what remains?
+    smaller_case: Compute n cubed minus n for n = 2. What number do you get, and which three numbers multiply
+      to give it?
+    key_idea: Look for a common factor first, then use a difference of squares.
+  check: n**3 - n - (n-1)*n*(n+1)
+  check_ok: true
+- goal: Explain why the product is always divisible by 3.
+  expected: Among any three consecutive integers exactly one is a multiple of 3, so the product is divisible
+    by 3.
+  solution: Any integer n leaves remainder 0, 1 or 2 when divided by 3. If n has remainder 0, then n is
+    a multiple of 3. If n has remainder 1, then n-1 has remainder 0. If n has remainder 2, then n+1 has
+    remainder 0. In every case one of the three factors is a multiple of 3, so their product is divisible
+    by 3.
+  common_errors:
+  - Checking only a few values of n and claiming the result holds in general.
+  - Saying 'one factor is even, so the product is divisible by 3' instead of checking multiples of 3.
+  - Forgetting that the case analysis must cover all three remainders.
+  hints:
+    rephrase: Think about what n leaves as a remainder when divided by 3, and what that means for n-1
+      and n+1.
+    smaller_case: Take n = 4. Which of 3, 4 and 5 is a multiple of 3?
+    key_idea: Split into cases by the remainder of n modulo 3.
+extensions:
+  '3':
+  - Prove that n^5 - n is divisible by 5 for every integer n.
+  '4':
+  - Prove that n^3 - n is divisible by 6 for every integer n.
+  '5':
+  - Prove that n^5 - n is divisible by 30 for every integer n.
+spoken_vocab:
+- n cubed minus n
+- divisible by three
+- factorise
+- consecutive integers
+- difference of squares
+- remainder
+- modulo three
+- case analysis
+- multiple of three
+- proof
+source: past-interviews/Actual Past Interview Questions/Maths & Philosophy Oxford Interview.doc
+verified: false
+rating:
+  quality: 3
+  difficulty: 2
+  parts: 2
+  minutes: 4
+  flags:
+  - trivial
+  tagline: Factorising into three consecutive integers is standard; useful only as a warm-up.
+  priority: 27
+  rank: 636
+  tier: D
+  category: past-interviews
+  d10: 1.5
+  real: 7.0
+  by: haiku
+tags:
+- proof
+- number_theory

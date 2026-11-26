@@ -1,0 +1,97 @@
+id: pentagon-equilateral-outside-angles
+title: 'Equilateral triangle on a pentagon side: angles EAF and AEF'
+topics:
+- angles
+- regular polygons
+- isosceles triangles
+- angles at a point
+warmup: false
+answer_source: pdf
+statement: $ABCDE$ is a regular pentagon. $ABF$ is an equilateral triangle drawn outside the pentagon
+  on the side $AB$. Find angles (i) $\angle EAF$ and (ii) $\angle AEF$, showing and explaining each step
+  in your working.
+stages:
+- goal: Find the angle EAF at vertex A between AE and AF.
+  expected: 168 degrees
+  solution: 'Each interior angle of a regular pentagon is (5 - 2) x 180 / 5 = 108 degrees, so angle EAB
+    = 108 degrees. Triangle ABF is equilateral, so angle BAF = 60 degrees. AB lies between AE and AF on
+    the outside, so the two angles add: angle EAF = 108 + 60 = 168 degrees. The value 360 - 108 - 60 =
+    192 degrees is the reflex angle, not the required angle.'
+  common_errors:
+  - Using 360 - 108 - 60 = 192 degrees, which is the reflex angle
+  - Using 108 degrees or 60 degrees alone
+  - Subtracting the two angles instead of adding them, since they lie on either side of AB
+  hints:
+    rephrase: Which two angles sit on either side of the shared ray AB at vertex A, and what do they add
+      up to?
+    smaller_case: Take a square ABCD with an equilateral triangle ABF drawn outside on AB. What is the
+      interior angle at A of the square, and how would you combine it with the triangle's angle?
+    key_idea: Angles on opposite sides of a shared ray at a point add together. Use the interior angle
+      formula (n - 2) x 180 / n for the pentagon and the known angle of an equilateral triangle.
+  check: ans - 168
+  check_ok: false
+- goal: Find the angle AEF at vertex E in triangle AEF.
+  expected: 6 degrees
+  solution: AE is a side of the pentagon and AB is a side of the pentagon, so AE = AB. AF is a side of
+    the equilateral triangle, so AF = AB. Therefore AE = AF and triangle AEF is isosceles with apex A.
+    Its base angles are equal, and the angles sum to 180 degrees, so each base angle is (180 - 168) /
+    2 = 6 degrees.
+  common_errors:
+  - Using 168 degrees as the base angle
+  - Not justifying why AE equals AF
+  - Halving 180 degrees without first subtracting the apex angle
+  hints:
+    rephrase: Which two sides of triangle AEF are equal, and why are they equal?
+    smaller_case: In an isosceles triangle whose apex angle is 60 degrees, what do the base angles add
+      up to, and what is each one?
+    key_idea: The angles of a triangle sum to 180 degrees. In an isosceles triangle the two base angles
+      are equal, so subtract the apex angle from 180 and split the remainder.
+  check: ans - 6
+  check_ok: false
+extensions:
+  '3':
+  - Repeat the problem for a regular hexagon ABCDEF with an equilateral triangle ABG drawn outside AB,
+    where F is the other neighbour of A. Find angle FAG and explain what this means for the shape of triangle
+    AFG.
+  '4':
+  - For a regular n-gon with an equilateral triangle drawn outside side AB, show that angle AEF = 180/n
+    - 30 degrees, where E is the other neighbour of A. Check your formula for n = 3, n = 4 and n = 5.
+  '5':
+  - Explain why the angle EAF cannot be found by the method above when n is 6 or more. What happens to
+    the angle at A, and what is the correct apex angle to use?
+spoken_vocab:
+- regular pentagon
+- pentagon A B C D E
+- equilateral triangle A B F
+- angle E A F
+- angle A E F
+- one hundred and sixty-eight degrees
+- one hundred and eight degrees
+- sixty degrees
+- six degrees
+- isosceles triangle
+- interior angle
+- angles round a point
+- three hundred and sixty
+- reflex angle
+- apex
+- base angles
+source: kclms/kclms-specimen-questions-3.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 3
+  parts: 2
+  minutes: 8
+  flags:
+  - needs_diagram
+  tagline: 'Classic geometry: outside equilateral gives reflex-free 168° apex and 6° base angles.'
+  priority: 47
+  rank: 539
+  tier: C
+  category: kclms
+  d10: 3.0
+  real: 4.5
+  by: haiku
+tags:
+- geometry

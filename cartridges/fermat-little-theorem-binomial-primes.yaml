@@ -1,0 +1,171 @@
+id: fermat-little-theorem-binomial-primes
+title: Binomial lemma to Fermat's little theorem, then $3^{2026}$ mod 7 and $n^{13}-n$
+topics:
+- Fermat's little theorem
+- binomial theorem
+- modular arithmetic
+- prime numbers
+- proof by induction
+warmup: false
+answer_source: pdf
+statement: 'Let $p$ be a prime.
+
+
+  (i) Show that $p$ divides $\binom{p}{k}$ for $1\le k\le p-1$.
+
+
+  (ii) Deduce that $(a+1)^p\equiv a^p+1 \pmod p$ for every integer $a\ge 0$.
+
+
+  (iii) Prove that $a^p\equiv a \pmod p$ for every integer $a\ge 0$.
+
+
+  (iv) Deduce that if $p\nmid a$ then $a^{p-1}\equiv 1 \pmod p$. Hence find the remainder when $3^{2026}$
+  is divided by $7$.
+
+
+  (v) Show that $n^{13}-n$ is divisible by $2730$ for every integer $n$.'
+stages:
+- goal: Prove that $p$ divides $\binom{p}{k}$ for $1\le k\le p-1$, and check the case $p=7$, $k=3$.
+  expected: '$\binom{p}{k}\,k!\,(p-k)! = p!$. The prime $p$ divides $p!$ but divides neither $k!$ nor
+    $(p-k)!$, since all their factors are less than $p$. So $p$ must divide $\binom{p}{k}$. For $p=7,k=3$:
+    $\binom{7}{3}=35=7\cdot 5$.'
+  solution: 'Write $\binom{p}{k}\,k!\,(p-k)! = p!$. Since $p$ divides $p!$, $p$ divides the product $\binom{p}{k}\,k!\,(p-k)!$.
+    For $1\le k\le p-1$, every factor of $k!$ and of $(p-k)!$ lies between $1$ and $p-1$, so $p$ divides
+    none of them. As $p$ is prime, it must divide the remaining factor $\binom{p}{k}$. Example: $\binom{7}{3}=\frac{7!}{3!\,4!}=35=7\cdot5$.'
+  common_errors:
+  - Arguing that $p\mid\binom{p}{k}$ just because it is 'large' or 'looks like' a multiple of $p$
+  - Claiming $p$ divides $k!$ or $(p-k)!$ for some $k$ in range
+  - 'Not using primality: the claim fails for composite $n$, e.g. $4\nmid\binom{4}{2}=6$'
+  - Cancelling the $p$ in $p!$ with a factor in the denominator
+  check: binomial(7,3) - 35
+  hints:
+    rephrase: Write the binomial coefficient as a quotient of factorials, or as a product equation with
+      no division, and see which factors can contain $p$.
+    smaller_case: 'Take $p=5$, $k=2$: compute $\binom{5}{2}$ and see where the factor $5$ comes from.'
+    key_idea: A prime dividing a product divides one of the factors. $p\mid p!$, but $p$ cannot divide
+      $k!\,(p-k)!$, so it must divide $\binom{p}{k}$.
+  check_ok: true
+- goal: Deduce that $(a+1)^p\equiv a^p+1\pmod p$, and verify with $p=5$, $a=2$.
+  expected: 'Binomial theorem: $(a+1)^p=\sum_{k=0}^{p}\binom{p}{k}a^k$. The $k=0$ and $k=p$ terms are
+    $1$ and $a^p$; all middle terms are divisible by $p$ by (i). Check: $3^5-(2^5+1)=210$, divisible by
+    $5$.'
+  solution: By the binomial theorem, $(a+1)^p=\sum_{k=0}^{p}\binom{p}{k}a^k = 1 + a^p + \sum_{k=1}^{p-1}\binom{p}{k}a^k$.
+    By (i) each $\binom{p}{k}$ with $1\le k\le p-1$ is divisible by $p$, so the whole middle sum is divisible
+    by $p$. Therefore $(a+1)^p\equiv a^p+1\pmod p$.
+  common_errors:
+  - Forgetting the $k=0$ term, which contributes $1$
+  - Dropping the coefficient $\binom{p}{k}$ from the middle terms instead of using that it is divisible
+    by $p$
+  - Claiming $(a+1)^p=a^p+1$ as an equality rather than a congruence
+  - Using the result for composite moduli, where (i) fails
+  check: ((2+1)**5 - (2**5 + 1)) % 5
+  hints:
+    rephrase: Expand $(a+1)^p$ with the binomial theorem and separate the first and last terms from the
+      rest.
+    smaller_case: 'Take $p=3$, $a=1$: compare $2^3=8$ with $1^3+1=2$ modulo $3$.'
+    key_idea: Part (i) kills every middle term modulo $p$.
+  check_ok: true
+- goal: Prove that $a^p\equiv a\pmod p$ for every integer $a\ge 0$, by induction.
+  expected: 'Base case $a=0$: $0^p=0$. Step: if $a^p\equiv a$ then by (ii) $(a+1)^p\equiv a^p+1\equiv
+    a+1$. Check $p=7$, $a=3$: $3^7-3=2184=7\cdot312$.'
+  solution: Induct on $a\ge0$. For $a=0$, both sides are $0$. Assume $a^p\equiv a\pmod p$. By (ii), $(a+1)^p\equiv
+    a^p+1$, and by the hypothesis this is $\equiv a+1\pmod p$. So the statement holds for $a+1$, hence
+    for all $a\ge0$.
+  common_errors:
+  - Omitting the base case
+  - Assuming the result for $a+1$ while proving it (circular use of the hypothesis)
+  - Expanding $(a+1)^p$ again from scratch instead of quoting (ii)
+  - Forgetting to state that the congruence is modulo $p$ in each step
+  check: (3**7 - 3) % 7
+  hints:
+    rephrase: Use induction on $a$, going from $a$ to $a+1$.
+    smaller_case: Check directly that $a^p\equiv a$ for $a=0$ and $a=1$, then for $a=2$ using $p=3$.
+    key_idea: Assume $a^p\equiv a$ and apply the identity from (ii) to turn $(a+1)^p$ into $a^p+1$, then
+      into $a+1$.
+  check_ok: true
+- goal: Deduce $a^{p-1}\equiv1\pmod p$ when $p\nmid a$, then find the remainder of $3^{2026}$ on division
+    by $7$.
+  expected: 'From (iii), $p\mid a(a^{p-1}-1)$; since $p\nmid a$, $p\mid a^{p-1}-1$. For $p=7$: $3^6\equiv1$,
+    and $2026=6\cdot337+4$, so $3^{2026}\equiv3^4=81\equiv4\pmod 7$. Remainder $4$.'
+  solution: 'By (iii), $p\mid a^p-a=a(a^{p-1}-1)$. Since $p$ is prime and $p\nmid a$, $p\mid a^{p-1}-1$,
+    i.e. $a^{p-1}\equiv1\pmod p$. (For negative $a$ use $a\equiv$ a non-negative residue.) With $p=7$,
+    $a=3$: $3^6\equiv1\pmod7$. As $2026=6\cdot337+4$, $3^{2026}=(3^6)^{337}\cdot3^4\equiv3^4=81=77+4\equiv4\pmod7$.
+    The remainder is $4$.'
+  common_errors:
+  - Reducing the exponent $2026$ modulo $7$ instead of modulo $6$
+  - Arithmetic slip in $81 \bmod 7$ (it is $4$ since $81-77=4$)
+  - Cancelling $a$ from $a^p\equiv a$ without checking $p\nmid a$
+  - Miscomputing $2026 \bmod 6$ (it is $4$, since $6\cdot337=2022$)
+  check: 3**2026 % 7 - 4
+  hints:
+    rephrase: Factor $a^p-a$ and use that $p$ is prime. Then reduce the exponent using the resulting power-of-$(p-1)$
+      identity.
+    smaller_case: Compute $3^1,3^2,\dots$ modulo $7$ and look for when the powers return to $1$.
+    key_idea: 'Since $3^6\equiv1\pmod7$, only the exponent modulo $6$ matters: reduce $2026$ modulo $6$.'
+  check_ok: true
+- goal: Show that $n^{13}-n$ is divisible by $2730$ for every integer $n$.
+  expected: $2730=2\cdot3\cdot5\cdot7\cdot13$. For each such prime $p$, $p-1\mid12$, so if $p\nmid n$
+    then $n^{12}\equiv1$ and $n^{13}\equiv n\pmod p$; if $p\mid n$ both sides are $0$. Distinct primes
+    all divide $n^{13}-n$, so their product $2730$ does.
+  solution: Factor $2730=2\cdot3\cdot5\cdot7\cdot13$. For $p\in\{2,3,5,7,13\}$, $p-1\in\{1,2,4,6,12\}$,
+    each dividing $12$. If $p\mid n$, then $p\mid n^{13}-n$ trivially. If $p\nmid n$, Fermat gives $n^{p-1}\equiv1$,
+    hence $n^{12}=(n^{p-1})^{12/(p-1)}\equiv1$, so $n^{13}\equiv n\pmod p$. Thus each of the five distinct
+    primes divides $n^{13}-n$, so their product $2730$ divides it.
+  common_errors:
+  - Checking only some primes, or omitting $p=2$ or $p=13$
+  - Using '$p-1$ divides $13$' instead of '$p-1$ divides $12$'
+  - Forgetting the case $p\mid n$, where Fermat's $a^{p-1}\equiv1$ does not apply
+  - Not noting that the primes are distinct, so divisibility by each implies divisibility by the product
+  check: igcd(*[n**13 - n for n in range(2, 30)]) - 2730
+  hints:
+    rephrase: Factor $2730$ into primes and prove that each prime divides $n^{13}-n$ separately.
+    smaller_case: 'Test $p=7$: for $n=2$, is $2^{13}-2$ divisible by $7$? Why does $6\mid12$ help?'
+    key_idea: For a prime $p$ with $(p-1)\mid12$, write $n^{13}=n\cdot(n^{p-1})^{k}$ and use Fermat.
+  check_ok: null
+extensions:
+  '3':
+  - Prove that $2^p\equiv2\pmod p$ for every prime $p$.
+  - Does $p\mid\binom{n}{k}$ for all $1\le k\le n-1$ hold when $n$ is composite? Test $n=4$ and $n=6$.
+  '4':
+  - Find the remainder when $5^{2026}$ is divided by $13$.
+  - Find all primes $p$ for which $p\mid n^{p+1}-n^2$ is guaranteed for every integer $n$.
+  '5':
+  - Prove that $p^2-1$ is divisible by $24$ for every prime $p\ge5$.
+  - Find the largest integer dividing $n^{k}-n$ for all integers $n$ when $k=7$, and explain which primes
+    appear.
+spoken_vocab:
+- prime p
+- binomial coefficient
+- p choose k
+- congruent modulo p
+- Fermat's little theorem
+- binomial theorem
+- a to the power p
+- three to the power two thousand twenty six
+- modulo seven
+- remainder
+- n to the power thirteen minus n
+- two thousand seven hundred thirty
+- induction
+source: jaymin/Jaymin Interview (1).pdf#p9
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 5
+  minutes: 25
+  flags: []
+  tagline: Chains binomial lemma to Fermat and 2730 divisibility; excellent multi-step structure.
+  priority: 111
+  rank: 20
+  tier: S
+  category: jaymin
+  d10: 6.0
+  real: 5.0
+  by: deepseek-v4.1-flash-free
+refined: true
+tags:
+- number_theory
+- proof
+- combinatorics

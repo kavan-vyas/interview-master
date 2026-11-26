@@ -1,0 +1,99 @@
+id: lockers-divisor-parity
+title: '100 lockers: toggling by divisors'
+topics:
+- number theory
+- divisors
+- parity
+- perfect squares
+warmup: true
+answer_source: pdf
+statement: A corridor has 100 closed lockers. Student 1 opens every locker. Student 2 toggles (opens if
+  closed, closes if open) every second locker, student 3 toggles every third locker, and so on up to student
+  100. Which lockers end up open?
+stages:
+- goal: Find how many times locker 12 is toggled and state the general rule for locker n.
+  expected: Locker 12 is toggled 6 times, by students 1, 2, 3, 4, 6 and 12. Locker n is toggled by student
+    d exactly when d divides n.
+  solution: Student d toggles locker n when d divides n. The divisors of 12 are 1, 2, 3, 4, 6, 12, so
+    there are 6 toggles.
+  common_errors:
+  - Counting only the prime divisors
+  - Counting students up to 12 rather than the divisors of 12
+  - Forgetting that student 1 and student 12 also toggle
+  hints:
+    rephrase: Which students visit a locker? Ask which numbers divide it exactly.
+    smaller_case: Take locker 6. Which students toggle it?
+    key_idea: A student d visits locker n exactly when n is a multiple of d, which is the same as d dividing
+      n.
+  check: divisor_count(12)-6
+  check_ok: true
+- goal: Determine which lockers are toggled an odd number of times.
+  expected: Exactly the lockers with an odd number of divisors, which are the perfect squares.
+  solution: Each toggle flips the state, so a locker ends open exactly when it is toggled an odd number
+    of times, that is, when n has an odd number of divisors. Divisors pair up as d and n/d, with d different
+    from n/d except when d = sqrt(n). So an odd number of divisors happens exactly when n is a perfect
+    square.
+  common_errors:
+  - Concluding that open lockers are the odd-numbered lockers
+  - Forgetting that a toggle flips the state, so only the parity of toggles matters
+  - Overlooking the case d = n/d in the pairing
+  hints:
+    rephrase: Each toggle changes the state of a locker. What decides whether it is open at the end?
+    smaller_case: Look at locker 36 and locker 35. Which one has an odd number of divisors?
+    key_idea: Think about when a divisor can be paired with itself.
+  check: divisor_count(36)%2 - 1 + divisor_count(35)%2
+  check_ok: true
+- goal: State which lockers are open at the end and how many there are.
+  expected: The open lockers are 1, 4, 9, ..., 100, which is 10 lockers.
+  solution: The perfect squares up to 100 are 1^2, 2^2, ..., 10^2, giving 10 open lockers.
+  common_errors:
+  - Listing only the squares up to 81
+  - Reporting 9 open lockers, forgetting 100 = 10^2
+  - Confusing the count with the number of non-squares
+  hints:
+    rephrase: Using your rule, list the lockers that ended up open and count them.
+    smaller_case: Take lockers 1 to 10. Which of these are open?
+    key_idea: Compare the squares up to 100 with the list of open lockers.
+  check: sum(1 for n in range(1,101) if divisor_count(n)%2==1)-10
+  check_ok: null
+extensions:
+  '3':
+  - There are 1000 lockers and the same toggling rule. How many lockers end open?
+  '4':
+  - Now all 100 lockers start open. Which lockers remain open at the end?
+  '5':
+  - Show that a positive integer has an odd number of divisors if and only if it is a perfect square,
+    using its prime factorisation.
+spoken_vocab:
+- locker
+- student
+- toggle
+- open
+- closed
+- divisor
+- divides
+- perfect square
+- pairing
+- odd number of divisors
+- one hundred
+- ten
+- corridor
+source: jaymin/Jaymin Interview (1).pdf#p73
+verified: false
+rating:
+  quality: 6
+  difficulty: 3
+  parts: 3
+  minutes: 10
+  flags: []
+  tagline: Classic divisor-parity puzzle that leads naturally to the perfect-squares insight.
+  priority: 86
+  rank: 148
+  tier: B
+  category: jaymin
+  d10: 4.0
+  real: 8.0
+  by: haiku
+tags:
+- number_theory
+- combinatorics

@@ -1,0 +1,104 @@
+id: power-sums-no-sequence
+title: Infinite nonzero sequence with power sums equal to m
+topics:
+- sequences
+- convergence
+- asymptotic growth
+- power sums
+warmup: true
+answer_source: generated
+statement: Is there an infinite sequence of non-zero real numbers $a_1, a_2, \ldots$ such that $a_1^m
+  + a_2^m + \ldots = m$ for every positive integer $m$?
+stages:
+- goal: Show the largest absolute value among the terms exists and is attained by only finitely many terms.
+  expected: Since the sum of squares converges to 2, the terms tend to zero. So r = max |a_i| exists,
+    r > 0, and only finitely many a_i have |a_i| = r.
+  solution: The case m=2 gives sum of a_i^2 = 2 with non-negative terms, so a_i^2 tends to 0. For any
+    t > 0, at most 2/t^2 terms have |a_i| >= t. Fix any nonzero term; the finite set of terms with |a_i|
+    at least its absolute value is non-empty, and its maximum absolute value r is attained. Let p be the
+    number of terms equal to r and q the number equal to -r, so p+q >= 1.
+  common_errors:
+  - Assuming the terms are bounded away from zero
+  - Treating the infinite series as if it were a finite sum when comparing terms
+  - Forgetting that m=2 gives absolute convergence of the series
+  hints:
+    rephrase: What does the case m=2 tell you about the terms a_i, and what does it force about their
+      size?
+    smaller_case: Think about how many terms can have absolute value at least 1/10.
+    key_idea: Only finitely many terms can exceed any fixed positive size, so a largest absolute size
+      exists.
+- goal: Isolate the terms of largest absolute size for large m and bound the remaining terms.
+  expected: For m >= 3, sum of a_i^m = r^m (p + (-1)^m q) + R_m, where |R_m| <= 2 s^(m-2) and s < r is
+    the largest absolute value among the remaining terms (take s = 0 if there are none).
+  solution: Split the absolutely convergent series into the terms with |a_i| = r and the rest. The top
+    terms contribute r^m (p + (-1)^m q). For the rest, |a_i|^m = |a_i|^(m-2) a_i^2 <= s^(m-2) a_i^2, so
+    |R_m| <= s^(m-2) times the sum of a_i^2, which is 2 s^(m-2). Only finitely many terms have |a_i| >=
+    r/2, so the remaining absolute values have a maximum s strictly less than r.
+  common_errors:
+  - Bounding the remainder using r instead of the smaller value s
+  - Forgetting the sign (-1)^m for the terms equal to -r
+  - Using |a_i|^m <= |a_i| for all m
+  hints:
+    rephrase: Separate the terms into the top size and everything smaller, then estimate the smaller ones
+      using the m=2 information again.
+    smaller_case: Ignore the smaller terms completely and see what the top-size terms alone predict for
+      large m.
+    key_idea: Powers of a strictly smaller base are negligible compared with powers of the largest base.
+- goal: Compare both sides for large m and decide whether such a sequence can exist.
+  expected: 'No such sequence exists: the answer is no.'
+  solution: The condition becomes m = r^m c_m + R_m, where c_m = p+q for even m and c_m = p-q for odd
+    m. The integers p+q and p-q cannot both be zero, since that would force p = q = 0, contradicting p+q
+    >= 1, so for one parity |c_m| >= 1. If r > 1, then along that parity the right side grows like r^m,
+    far faster than m, while R_m tends to 0, a contradiction. If r < 1, the right side tends to 0 while
+    m tends to infinity, a contradiction. If r = 1, the right side is bounded since c_m and R_m are bounded,
+    again contradicting m tending to infinity. Hence no sequence exists.
+  common_errors:
+  - Concluding from a single parity without considering both parities
+  - Claiming a sequence exists because the top-size terms could cancel
+  - Forgetting the case r < 1 or the case r = 1 separately
+  hints:
+    rephrase: Compare how fast m grows with how fast r^m grows, considering r below one, equal to one,
+      and above one.
+    smaller_case: Pretend only the top-size terms exist and examine what happens for large m.
+    key_idea: Exponential behaviour cannot match linear growth unless the base is exactly one, and then
+      boundedness conflicts with m tending to infinity.
+extensions:
+  '3':
+  - Show the conclusion still holds if the condition is only required for all m >= 2.
+  '4':
+  - Explain why the case m=2 is essential to bounding the remainder terms.
+  '5':
+  - Show that no infinite sequence of nonzero reals satisfies sum of a_i^m = m^2 for all positive integers
+    m.
+spoken_vocab:
+- infinite sequence
+- non-zero real numbers
+- a sub i
+- sum of a sub i to the m
+- equals m
+- positive integer m
+- absolute value
+- largest absolute value
+- tends to zero
+- convergent series
+- exponential growth
+source: screenshots/Screenshot 2026-11-19 at 14.38.02.png
+verified: false
+rating:
+  quality: 7
+  difficulty: 7
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Maximum-term and convergence argument leads to a contradiction for large m.
+  priority: 81
+  rank: 222
+  tier: B
+  category: screenshots
+  d10: 8.0
+  real: 5.5
+  by: haiku
+tags:
+- sequences_and_series
+- inequalities
+- proof

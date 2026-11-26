@@ -1,0 +1,138 @@
+id: step-unit-fraction-two-term-decompositions
+title: Unit fractions as sums of two unit fractions
+topics:
+- number theory
+- algebra
+- factorisation
+- unit fractions
+- prime numbers
+warmup: false
+answer_source: pdf
+statement: Show that every unit fraction $\frac{1}{N}$ can be written as the sum of two unit fractions.
+  For prime $N$, show that this decomposition is unique. For prime $N>2$, show that $\frac{2}{N}=\frac{1}{a}+\frac{1}{b}$
+  for integers $a\neq b$, and that this decomposition is also unique.
+stages:
+- goal: Show that $\frac{1}{N}$ can be written as the sum of two unit fractions for any positive integer
+    $N$.
+  expected: $\frac{1}{N}=\frac{1}{N+1}+\frac{1}{N(N+1)}$
+  solution: Since $\frac{1}{N+1}=\frac{N}{N(N+1)}$, we have $\frac{1}{N+1}+\frac{1}{N(N+1)}=\frac{N+1}{N(N+1)}=\frac{1}{N}$.
+    Both denominators are positive integers, so this is a valid decomposition.
+  common_errors:
+  - Checking a few numerical values of N and generalising without the algebraic identity.
+  - Mis-adding the fractions, for example by not writing $\frac{1}{N+1}$ over the common denominator $N(N+1)$.
+  hints:
+    rephrase: Choose a first denominator larger than N, then work out what the second unit fraction must
+      be.
+    smaller_case: 'Take N=2: which two unit fractions add to 1/2? Look at how the denominators relate
+      to 2.'
+    key_idea: Write the difference 1/N minus 1/a over a common denominator and ask when its numerator
+      equals 1.
+  check: 1/N - 1/(N+1) - 1/(N*(N+1))
+  check_ok: null
+- goal: For prime $N$, show that the decomposition of $\frac{1}{N}$ into two unit fractions with distinct
+    denominators is unique (positive integer denominators).
+  expected: The only solution with $a\neq b$ is $\{a,b\}=\{N+1,\,N(N+1)\}$.
+  solution: Suppose $\frac{1}{N}=\frac{1}{a}+\frac{1}{b}$ with positive integers $a,b$. Multiplying by
+    $Nab$ gives $ab=N(a+b)$, which rearranges to $(a-N)(b-N)=N^2$. Since $\frac{1}{a}<\frac{1}{N}$, we
+    have $a>N$, and likewise $b>N$. So $a-N$ and $b-N$ are positive divisors of $N^2$ with product $N^2$.
+    As $N$ is prime, the positive divisors of $N^2$ are $1,N,N^2$, giving the pairs $(1,N^2)$, $(N,N)$,
+    $(N^2,1)$. The pair $(N,N)$ gives $a=b=2N$, which is excluded by $a\neq b$. Hence $\{a,b\}=\{N+1,\,N^2+N\}$,
+    and this is the only decomposition.
+  common_errors:
+  - Forgetting that $a=b=2N$ is also a decomposition, since $\frac{1}{2N}+\frac{1}{2N}=\frac{1}{N}$. The
+    source answer's uniqueness claim only holds once $a\neq b$ is imposed, and this cartridge follows
+    that reading.
+  - Using only the divisors 1 and N instead of all divisors of $N^2$.
+  - Dropping the $-N$ terms when factorising $ab-Na-Nb$.
+  hints:
+    rephrase: Clear the fractions and rearrange so that both sides can be factorised.
+    smaller_case: 'Try N=3: list all ways to write 1/3 as 1/a+1/b with positive integers a and b, and
+      count them.'
+    key_idea: After factorising, the two brackets are divisors of a square. Use that N is prime to list
+      all the divisors of N squared.
+  check: 1/(N+1) + 1/(N**2+N) - 1/N
+  check_ok: null
+- goal: For prime $N>2$, find integers $a\neq b$ with $\frac{2}{N}=\frac{1}{a}+\frac{1}{b}$.
+  expected: $a=\frac{N+1}{2}$ and $b=\frac{N^2+N}{2}$ (in either order). Both are integers because $N$
+    is odd.
+  solution: 'Multiplying by $Nab$ gives $2ab=N(a+b)$. Then $4ab-2Na-2Nb=0$, so $(2a-N)(2b-N)=N^2$. Take
+    $2a-N=1$ and $2b-N=N^2$, giving $a=\frac{N+1}{2}$ and $b=\frac{N^2+N}{2}$. Since $N$ is odd, $N+1$
+    is even, so $a$ is an integer, and $N(N+1)$ is even, so $b$ is an integer. Check: $\frac{1}{a}+\frac{1}{b}=\frac{2}{N+1}+\frac{2}{N(N+1)}=\frac{2N+2}{N(N+1)}=\frac{2}{N}$.
+    Also $a<N<b$ for $N>1$, so $a\neq b$.'
+  common_errors:
+  - Not showing that both denominators are integers, which is where oddness of N is used.
+  - Assuming $a=b$ is allowed, which would give the trivial $a=b=N$.
+  - Forgetting to check the expansion $(2a-N)(2b-N)=4ab-2N(a+b)+N^2$.
+  hints:
+    rephrase: Write both sides of the equation as single fractions and compare the numerators.
+    smaller_case: Try N=3 and N=5 and look for a pattern in the denominators you find.
+    key_idea: Rearrange into a product of two linear brackets in a and b. Think about which factor pairs
+      of a square can occur, and what parity they must have.
+  check: 2/N - 1/((N+1)/2) - 1/((N**2+N)/2)
+  check_ok: null
+- goal: Show that the decomposition in the previous stage is unique when $a$ and $b$ are required to be
+    positive integers with $a\neq b$, and note what happens if negative integers are allowed.
+  expected: The only solution with positive integers and $a\neq b$ is $\{a,b\}=\{\frac{N+1}{2},\frac{N^2+N}{2}\}$.
+    With negative integers allowed there are further solutions.
+  solution: From $(2a-N)(2b-N)=N^2$ and $\frac{1}{a}<\frac{2}{N}$ (since $\frac{1}{b}>0$), we get $a>\frac{N}{2}$,
+    so $2a-N>0$. Likewise $2b-N>0$. So $2a-N$ and $2b-N$ are positive divisors of $N^2$ with product $N^2$.
+    These are the pairs $(1,N^2)$, $(N,N)$, $(N^2,1)$. The pair $(N,N)$ gives $a=b=N$, which is excluded.
+    This leaves only $\{\frac{N+1}{2},\frac{N^2+N}{2}\}$. If negative integers are allowed, the pairs
+    $(-1,-N^2)$ and $(-N^2,-1)$ give $a=\frac{N-1}{2}$, $b=\frac{N-N^2}{2}$, which is a further valid
+    decomposition. For example, $N=3$ gives $1+\frac{1}{-3}=\frac{2}{3}$. So uniqueness needs positivity.
+  common_errors:
+  - Claiming uniqueness over all integers and missing the negative-factor solutions, such as $1+\frac{1}{-3}=\frac{2}{3}$
+    for N=3.
+  - Forgetting to exclude $a=b=N$.
+  - Not using the inequality to fix the sign of the factors before listing them.
+  hints:
+    rephrase: Think about the sign of each bracket before you list factor pairs.
+    smaller_case: For N=5, list all factor pairs of 25 and see which ones give positive a and b.
+    key_idea: Use the inequality from $\frac{1}{a}<\frac{2}{N}$ to decide the sign of $2a-N$ before listing
+      divisors.
+  check: ((N+1)/2*2 - N)*((N**2+N)/2*2 - N) - N**2
+  check_ok: null
+extensions:
+  '3':
+  - For $N=p^2$ with $p$ prime, how many unordered pairs $\{a,b\}$ of distinct positive integers satisfy
+    $\frac{1}{N}=\frac{1}{a}+\frac{1}{b}$?
+  '4':
+  - For general $N>1$, show that $\frac{1}{N}=\frac{1}{a}+\frac{1}{b}$ has a solution with positive integers
+    and $a\neq b$. Find the number of unordered solutions in terms of the number of divisors of $N^2$.
+  '5':
+  - Determine all positive integer solutions of $\frac{1}{x}+\frac{1}{y}+\frac{1}{z}=1$.
+spoken_vocab:
+- unit fraction
+- one over N
+- N plus one
+- N times N plus one
+- N squared
+- two over N
+- a not equal to b
+- factorise
+- prime
+- positive integers
+- divisors of N squared
+- one over a plus one over b
+- negative integers
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#14
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 4
+  minutes: 15
+  flags:
+  - missing_info
+  - garbled
+  tagline: Elegant prime-based uniqueness; the 2/N case needs positivity to be unique.
+  priority: 56
+  rank: 468
+  tier: C
+  category: siklos
+  d10: 5.0
+  real: 7.5
+  by: haiku
+tags:
+- number_theory
+- proof

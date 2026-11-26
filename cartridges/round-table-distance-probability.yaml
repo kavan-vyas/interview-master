@@ -1,0 +1,99 @@
+id: round-table-distance-probability
+title: Probability that two people sit k seats apart at a round table
+topics:
+- probability
+- circular arrangements
+- symmetry
+- casework
+warmup: true
+answer_source: generated
+statement: If a round table has $n$ people sitting around it, what is the probability of person A sitting
+  exactly $k$ seats away from person B?
+stages:
+- goal: 'Identify the sample space: given A''s seat, which seats could B occupy, and with what probability?'
+  expected: Each of the n-1 other seats has probability 1/(n-1).
+  solution: Assume everyone is seated uniformly at random. Conditioned on A's seat, B is equally likely
+    to occupy any of the n-1 seats other than A's own, so each has probability 1/(n-1).
+  common_errors:
+  - Using 1/n, which counts A's own seat as a possibility
+  - Using 1/n! for the whole seating arrangement when only B's seat matters
+  hints:
+    rephrase: Once A's seat is fixed, how many seats are left for B, and are they equally likely?
+    smaller_case: Four people sit at a round table and A is seated. How many seats could B take?
+    key_idea: Condition on A's seat; only the other seats matter for the question.
+  check: ans - 1/(n-1)
+  check_ok: false
+- goal: Find the probability that A and B are exactly k seats apart, for 1 <= k < n/2.
+  expected: 2/(n-1)
+  solution: Measure distance the shorter way round the table, so k ranges over 1 to floor(n/2). There
+    are two seats k steps away from A, one going clockwise and one anticlockwise, and these are different
+    seats whenever k is not n/2. Each has probability 1/(n-1), so the total is 2/(n-1).
+  common_errors:
+  - Answering 1/(n-1) and forgetting the second direction round the table
+  - Answering k/(n-1) or some other function of k
+  hints:
+    rephrase: Going round the table from A, how many seats are exactly k steps away in each direction?
+    smaller_case: With n = 6 and k = 1, which seats are exactly one step from A?
+    key_idea: Distance can be measured in two directions around the circle, so count the seats reached
+      from each direction.
+  check: ans - 2/(n-1)
+  check_ok: false
+- goal: Handle the special case where k = n/2, with n even.
+  expected: 1/(n-1)
+  solution: 'When k = n/2, going k steps clockwise and k steps anticlockwise reach the same seat, the
+    one directly opposite A. Only one seat is favourable, so the probability is 1/(n-1). Overall: 2/(n-1)
+    for 1 <= k < n/2, and 1/(n-1) for k = n/2, with probability 0 for k = 0 or k > n/2 in the shorter-way
+    convention.'
+  common_errors:
+  - Doubling to 2/(n-1) and counting the same seat twice
+  - Claiming the case is impossible
+  hints:
+    rephrase: When you go k steps clockwise and k steps anticlockwise, do you always land on two different
+      seats?
+    smaller_case: At a table of 4 people, which seat is directly opposite A?
+    key_idea: Check when the two directions around the circle coincide.
+  check: ans - 1/(n-1)
+  check_ok: false
+extensions:
+  '3':
+  - What is the probability that A and B sit next to each other?
+  - What is the probability that A and B are not seated opposite each other?
+  '4':
+  - Answer the question if the people sit in a row instead of around a table.
+  - What is the expected number of people sitting exactly k seats from A?
+  '5':
+  - Find the probability that some pair of people among m people are exactly k seats apart at a round
+    table.
+  - How does the answer change if the table has a fixed seat assigned to A and B sits on a random seat
+    chosen uniformly among all n seats including A?
+spoken_vocab:
+- round table
+- n people
+- person A
+- person B
+- exactly k seats away
+- probability
+- shorter way round
+- directly opposite
+- n minus one
+- two over n minus one
+- one over n minus one
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 3
+  parts: 3
+  minutes: 10
+  flags: []
+  tagline: Clean symmetry argument; the k=n/2 case adds a satisfying twist.
+  priority: 61
+  rank: 438
+  tier: C
+  category: tbo
+  d10: 2.5
+  real: 5.0
+  by: haiku
+tags:
+- probability
+- combinatorics

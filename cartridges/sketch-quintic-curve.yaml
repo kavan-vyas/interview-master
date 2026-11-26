@@ -1,0 +1,99 @@
+id: sketch-quintic-curve
+title: Sketch a quintic curve
+topics:
+- polynomials
+- graph sketching
+- roots
+- symmetry
+warmup: true
+answer_source: generated
+statement: Draw a quintic curve.
+stages:
+- goal: Say what a quintic is and how its two ends behave when the leading coefficient is positive.
+  expected: 'A quintic is a polynomial of degree 5: y = a_5 x^5 + a_4 x^4 + ... + a_0 with a_5 not 0.
+    If a_5 > 0, y goes to minus infinity as x goes to minus infinity, and y goes to plus infinity as x
+    goes to plus infinity.'
+  solution: Degree 5 means the highest power of x is 5 with a nonzero coefficient. Because 5 is odd, the
+    two ends point in opposite directions. For large |x| the leading term dominates. With a_5 > 0, x^5
+    is negative for negative x and positive for positive x.
+  common_errors:
+  - Saying both ends go up (that is the behaviour of even degree)
+  - Ignoring the sign of the leading coefficient
+  hints:
+    rephrase: What is the highest power in a quintic, and which way do the two ends go when that power
+      is odd?
+    smaller_case: Think about y = x^3 first. Where do its two ends go?
+    key_idea: For large |x| the highest-power term decides the overall shape of the curve.
+  check: degree(x**5 - 5*x**3 + 4*x, x) - 5
+  check_ok: true
+- goal: Pick a concrete quintic, y = x^5 - 5x^3 + 4x. Factor it and read off the x-intercepts.
+  expected: y = x(x-1)(x+1)(x-2)(x+2). The x-intercepts are at x = -2, -1, 0, 1, 2.
+  solution: 'Take out the common factor x: y = x(x^4 - 5x^2 + 4). Put u = x^2, so the bracket is u^2 -
+    5u + 4 = (u-1)(u-4) = (x^2-1)(x^2-4). Each linear factor gives one intercept: x = 0, +-1, +-2.'
+  common_errors:
+  - Missing the root at x = 0 by not taking out the common factor
+  - Factoring x^2 - 4 as (x-4)(x+1)
+  hints:
+    rephrase: Can you take out a common factor first? After that, what does the rest look like in terms
+      of x^2?
+    smaller_case: Factor the quadratic u^2 - 5u + 4 on its own, then think about what u stands for.
+    key_idea: Substituting u = x^2 turns a quartic in x into a quadratic in u. Every linear factor of
+      the polynomial gives one x-intercept.
+  check: expand(x*(x-1)*(x+1)*(x-2)*(x+2) - (x**5 - 5*x**3 + 4*x))
+  check_ok: true
+- goal: Using the same curve, state its turning points (at most how many) and its symmetry.
+  expected: 'At most 4 turning points, since a quintic has degree minus 1 turning points at most. The
+    curve is odd, so it has rotational symmetry about the origin: y(-x) = -y(x).'
+  solution: Turning points are where the derivative is zero. The derivative is degree 4, so it has at
+    most 4 real roots. Every power of x in the curve is odd, so replacing x by -x changes the sign of
+    every term, giving y(-x) = -y(x).
+  common_errors:
+  - Saying a quintic has 5 turning points
+  - Claiming reflection symmetry in the y-axis
+  hints:
+    rephrase: What is the degree of the derivative, and how many roots can it have?
+    smaller_case: Count the turning points of a cubic, such as y = x^3 - x.
+    key_idea: Turning points are roots of the derivative. Odd powers only give odd symmetry.
+  check: (5 - 1) - 4
+  check_ok: true
+extensions:
+  '3':
+  - Why can a quintic never have 6 real roots?
+  '4':
+  - Sketch x^5 + x and explain why it has exactly one real root.
+  '5':
+  - Prove that every real quintic has at least one real root.
+spoken_vocab:
+- quintic
+- degree five
+- x to the power five
+- leading coefficient
+- turning point
+- intercept
+- root
+- factorise
+- odd function
+- symmetry about the origin
+- minus infinity
+- plus infinity
+- derivative
+source: past-interviews/Actual Past Interview Questions/Maths & Philosophy Oxford Interview.doc
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 3
+  minutes: 8
+  flags:
+  - missing_info
+  tagline: Open-ended prompt; stages supply factorisation, turning-point count, and odd symmetry.
+  priority: 43
+  rank: 560
+  tier: C
+  category: past-interviews
+  d10: 2.5
+  real: 5.0
+  by: haiku
+tags:
+- curve_sketching
+- algebra_and_functions

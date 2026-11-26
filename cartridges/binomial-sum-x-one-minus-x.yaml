@@ -1,0 +1,78 @@
+id: binomial-sum-x-one-minus-x
+title: Binomial sum with x and 1-x
+topics:
+- binomial theorem
+- algebra
+- probability
+warmup: true
+answer_source: generated
+statement: Solve $\sum_{k=0}^{n}\binom{n}{k}x^k(1-x)^{n-k}$.
+stages:
+- goal: Evaluate the sum in closed form.
+  expected: The sum equals 1 for every n and every x.
+  solution: Recognise the binomial theorem $(a+b)^n=\sum_{k=0}^{n}\binom{n}{k}a^k b^{n-k}$ with $a=x$
+    and $b=1-x$. Then the sum is $(x+(1-x))^n=1^n=1$.
+  common_errors:
+  - Expanding the terms by hand instead of spotting the binomial theorem pattern.
+  - Pairing the exponents wrongly, for example using $x^{n-k}$ with $(1-x)^k$.
+  - Concluding the sum depends on x or n when it does not.
+  - Forgetting that $x+(1-x)=1$ simplifies the base.
+  hints:
+    rephrase: Each term has the form (binomial coefficient) times (first quantity) to a power times (second
+      quantity) to the complementary power. Which known expansion has this shape?
+    smaller_case: Write out the terms for n=1 or n=2 and add them. What do you notice about the total?
+    key_idea: Compare the summand with the general expansion of a power of a sum of two quantities, and
+      check what those two quantities add up to.
+  check: expand(sum(binomial(5,k)*x**k*(1-x)**(5-k) for k in range(0,6)) - 1)
+  check_ok: null
+- goal: Explain why the result holds for every x, not just special values.
+  expected: Because $x+(1-x)=1$ for every real x, the base of the power is always 1, so its power is 1
+    regardless of x and n.
+  solution: The identity $x+(1-x)=1$ holds for all x. Raising 1 to any power gives 1, so the binomial
+    expansion of $(x+(1-x))^n$ equals 1 for all x and all non-negative integers n.
+  common_errors:
+  - Saying the result holds only for 0 <= x <= 1 without justification (it holds for all x).
+  - Failing to note that the base simplifies to exactly 1.
+  hints:
+    rephrase: What does the base of the power equal, whatever value x takes?
+    smaller_case: Pick x=3 and n=2 and check the sum directly.
+    key_idea: Look at what the two quantities being added always sum to.
+extensions:
+  '3':
+  - Interpret the sum as the total probability of a Binomial(n, x) random variable taking values 0 to
+    n, and explain why this gives 1.
+  '4':
+  - Differentiate the identity with respect to x to find the mean $\sum_{k=0}^{n}k\binom{n}{k}x^k(1-x)^{n-k}$,
+    and state the result.
+  '5':
+  - Use the identity for the first two factorial moments to show that the variance of a Binomial(n, x)
+    random variable is $nx(1-x)$.
+spoken_vocab:
+- sum from k equals zero to n
+- n choose k
+- x to the power k
+- one minus x to the power n minus k
+- binomial theorem
+- x plus one minus x
+- one to the power n
+- equals one
+source: past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2012.docx
+verified: false
+rating:
+  quality: 3
+  difficulty: 2
+  parts: 2
+  minutes: 5
+  flags:
+  - trivial
+  tagline: Binomial theorem gives the answer at once; limited depth beyond recall.
+  priority: 27
+  rank: 647
+  tier: D
+  category: past-interviews
+  d10: 2.5
+  real: 3.0
+  by: deepseek-v4.1-flash-free
+tags:
+- algebra_and_functions
+- sequences_and_series

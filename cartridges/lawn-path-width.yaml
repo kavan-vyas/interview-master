@@ -1,0 +1,116 @@
+id: lawn-path-width
+title: Lawn and path
+topics:
+- quadratic equations
+- algebraic modelling
+- factorising
+- area
+warmup: false
+answer_source: pdf
+statement: A rectangular lawn measures $12$ m by $5$ m. It is surrounded by a path of the same width all
+  the way round. The area of the path is equal to the area of the lawn. How wide is the path?
+stages:
+- goal: Set up an equation in the path width x.
+  expected: (12+2x)(5+2x)=120
+  solution: The lawn has area 60 m^2. The path adds x on each side, so each dimension grows by 2x, giving
+    an outer rectangle of (12+2x) by (5+2x). The path area equals the lawn area, so the outer area is
+    2 x 60 = 120, giving (12+2x)(5+2x)=120.
+  common_errors:
+  - Growing each dimension by x instead of 2x, since the path is on both sides
+  - Setting the outer area equal to 60 rather than 120, i.e. equating the path to the total
+  - Writing (12+x)(5+x)
+  hints:
+    rephrase: Picture the path as a border around the lawn. How much does each side grow, and how does
+      the total area compare with the lawn area?
+    smaller_case: Suppose the path were 1 m wide. What would the outer dimensions be, and what would the
+      outer area be?
+    key_idea: The path area equals the lawn area, so the region including the path is double the lawn
+      area.
+  check: expand(((12+2*x)*(5+2*x)-120)-(4*x**2+34*x-60))==0
+  check_ok: true
+- goal: Reduce to a quadratic, factorise and solve for x.
+  expected: 2x^2+17x-30=0 factorises as (2x-3)(x+10)=0, so x=3/2 or x=-10.
+  solution: 'Expand: (12+2x)(5+2x)=60+24x+10x+4x^2=4x^2+34x+60. Setting this equal to 120 gives 4x^2+34x-60=0,
+    and dividing by 2 gives 2x^2+17x-30=0. Then (2x-3)(x+10)=2x^2+20x-3x-30=2x^2+17x-30, so x=3/2 or x=-10.'
+  common_errors:
+  - Dropping the constant 60 or a cross term when expanding the brackets
+  - Dividing incorrectly, for example 4x^2+34x-60 becoming 2x^2+17x-60
+  - Wrong factor pair, such as (2x+3)(x-10)
+  hints:
+    rephrase: Expand both brackets carefully, collect like terms, then simplify by a common factor before
+      factorising.
+    smaller_case: 'Check your expansion at x=0: what should (12+2x)(5+2x) equal there?'
+    key_idea: A quadratic equal to zero can be factorised into two brackets whose product gives the leading
+      coefficient and the constant term.
+  check: expand((2*x-3)*(x+10)-(2*x**2+17*x-30))==0
+  check_ok: true
+- goal: Choose the physically valid root and state the width with units.
+  expected: 'Reject x=-10 because a width cannot be negative. The path is 1.5 m wide. Check: outer 15
+    m by 8 m has area 120 m^2, so the path area is 60 m^2, equal to the lawn.'
+  solution: Width is a length, so the negative root x=-10 is rejected. For x=3/2, the outer dimensions
+    are 15 by 8, area 120. Subtracting the lawn (60) leaves a path of 60, which equals the lawn area.
+    So the path is 1.5 m wide.
+  common_errors:
+  - Giving both roots as answers without rejecting the negative one
+  - Omitting units or giving the answer as 1.5 cm
+  - Not checking the answer against the original area condition
+  hints:
+    rephrase: Think about what a negative length would mean in this situation, then test your value in
+      the original condition.
+    smaller_case: Substitute x=1 into the outer dimensions. What is the path area in that case compared
+      with the lawn?
+    key_idea: Always test roots against the context and the original equation.
+  check: x - Rational(3,2)
+  check_ok: false
+extensions:
+  '3':
+  - A rectangular lawn measures 10 m by 4 m, surrounded by a path of uniform width x whose area equals
+    the lawn area. Set up the equation for x.
+  - A rectangular lawn is surrounded by a path of uniform width 1 m. Show that the path area is 2(a+b)+4
+    in terms of the lawn dimensions a and b.
+  '4':
+  - A lawn 12 m by 5 m is surrounded by a path of uniform width x whose area is half the lawn area. Find
+    x.
+  - A lawn is surrounded by a path of uniform width x. The lawn is square of side s. Show that the path
+    area is 4sx + 4x^2 and hence find the width when the path area equals the lawn area.
+  '5':
+  - For a lawn of dimensions a by b, with a uniform path of width x whose area equals the lawn area, show
+    that x satisfies a quadratic. Find a general formula for x and state when a real positive solution
+    exists.
+  - A rectangular lawn with a path of uniform width x has outer area k times the lawn area. Find x in
+    terms of a, b and k, and explain why k must exceed 1.
+spoken_vocab:
+- twelve metres by five metres
+- lawn
+- path
+- uniform width
+- x
+- two x
+- open bracket
+- close bracket
+- squared
+- equals
+- times
+- minus ten
+- three halves
+- one point five
+- quadratic
+- factorise
+source: kclms/kclms-specimen-questions-3.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 3
+  parts: 3
+  minutes: 6
+  flags: []
+  tagline: Standard area-equation exercise with one quadratic and a physical root check.
+  priority: 41
+  rank: 577
+  tier: D
+  category: kclms
+  d10: 2.5
+  real: 3.0
+  by: haiku
+tags:
+- algebra_and_functions

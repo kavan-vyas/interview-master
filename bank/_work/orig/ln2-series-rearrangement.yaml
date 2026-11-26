@@ -1,0 +1,109 @@
+id: ln2-series-rearrangement
+title: Logarithm series and a rearrangement giving half ln 2
+topics:
+- geometric series
+- integration
+- alternating harmonic series
+- rearrangement of series
+- conditional convergence
+warmup: false
+answer_source: pdf
+statement: (i) Show that $\frac{1}{1+x}=\sum_{k=0}^{n-1}(-x)^k+\frac{(-x)^n}{1+x}$ for $x\ne -1$. (ii)
+  By integrating from 0 to 1, show that $\ln 2=\sum_{k=1}^{n}\frac{(-1)^{k+1}}{k}+(-1)^nR_n$, where $R_n=\int_0^1\frac{x^n}{1+x}\,dx$.
+  (iii) Show that $\frac{1}{2(n+1)}\le R_n\le\frac{1}{n+1}$. Deduce that $1-\frac12+\frac13-\frac14+\cdots=\ln
+  2$. (iv) Show that the rearranged series $1-\frac12-\frac14+\frac13-\frac16-\frac18+\frac15-\frac1{10}-\frac1{12}+\cdots$
+  (one odd term followed by two even terms) has sum $\frac12\ln 2$.
+stages:
+- goal: Prove the finite geometric identity for $\frac{1}{1+x}$.
+  expected: $\sum_{k=0}^{n-1}(-x)^k=\frac{1-(-x)^n}{1+x}$, so adding $\frac{(-x)^n}{1+x}$ gives $\frac{1}{1+x}$.
+  solution: With $r=-x$, $\sum_{k=0}^{n-1}r^k=\frac{1-r^n}{1-r}=\frac{1-(-x)^n}{1+x}$. Adding $\frac{(-x)^n}{1+x}$
+    gives $\frac{1-(-x)^n+(-x)^n}{1+x}=\frac{1}{1+x}$.
+  common_errors:
+  - Using $\frac{1-r^n}{1-r}$ with $1-r=1-x$ instead of $1+x$
+  - Sign error in $r=-x$
+  hints:
+    rephrase: Treat the sum as a geometric series with ratio $-x$.
+    smaller_case: 'Try $n=1$: what does the right-hand side give?'
+    key_idea: The finite geometric sum formula applies to any ratio $r\ne1$.
+  check: Sum((-2)**k,(k,0,2)).doit() + (-2)**3/(1+2) - Rational(1,3)
+  check_ok: true
+- goal: Integrate the identity from 0 to 1 to get the formula for $\ln2$ with remainder $R_n$.
+  expected: $\ln2=\sum_{k=1}^n\frac{(-1)^{k+1}}{k}+(-1)^nR_n$.
+  solution: Integrate both sides over $[0,1]$. The left side gives $\ln 2$. The first term on the right
+    gives $\int_0^1(-x)^k\,dx=\frac{(-1)^k}{k+1}$, and reindexing $j=k+1$ gives $\sum_{j=1}^n\frac{(-1)^{j+1}}{j}$.
+    The last term gives $(-1)^n\int_0^1\frac{x^n}{1+x}\,dx=(-1)^nR_n$.
+  common_errors:
+  - Off-by-one error when reindexing the sum
+  - Losing the sign $(-1)^n$ on $R_n$
+  hints:
+    rephrase: Integrate each term of the identity from the previous stage over $[0,1]$.
+    smaller_case: For $n=2$, what does $\int_0^1\frac{1}{1+x}\,dx$ equal, and what is the partial sum?
+    key_idea: The integral of $\frac{1}{1+x}$ over $[0,1]$ is $\ln 2$, and each power term integrates
+      separately.
+  check: Sum((-1)**(k+1)/k,(k,1,2)).doit() + Integral(x**2/(1+x),(x,0,1)).doit() - log(2)
+  check_ok: true
+- goal: Bound $R_n$ and deduce the sum of the alternating harmonic series.
+  expected: $\frac{1}{2(n+1)}\le R_n\le\frac{1}{n+1}$, so $R_n\to0$ and $1-\frac12+\frac13-\cdots=\ln2$.
+  solution: On $[0,1]$, $1\le1+x\le2$, so $\frac12x^n\le\frac{x^n}{1+x}\le x^n$. Integrating, $\frac{1}{2(n+1)}\le
+    R_n\le\frac{1}{n+1}$. Hence $R_n\to0$, so the partial sums tend to $\ln2$.
+  common_errors:
+  - Using $\frac{1}{1+x}\ge\frac{1}{2}$ with the wrong direction
+  - Concluding $R_n\to0$ without the squeeze
+  hints:
+    rephrase: Bound $\frac{1}{1+x}$ between two constants on $[0,1]$, then multiply by $x^n$.
+    smaller_case: Check the bound at $n=1$ using $R_1=\int_0^1\frac{x}{1+x}\,dx$.
+    key_idea: Squeeze the integrand between two multiples of $x^n$, then integrate.
+  check: And(Rational(1,4)<=1-log(2), 1-log(2)<=Rational(1,2))
+  check_ok: true
+- goal: Show that the rearranged series, grouped in threes, sums to $\frac12\ln2$.
+  expected: Each group equals $\frac{1}{2k-1}-\frac{1}{2(2k-1)}-\frac{1}{4k}=\frac12\left(\frac{1}{2k-1}-\frac{1}{2k}\right)$,
+    so the sum is half the $2N$th partial sum of the alternating harmonic series, which tends to $\frac12\ln2$.
+    Rearranging changed the sum.
+  solution: The $k$th group is $\frac{1}{2k-1}-\frac{1}{2(2k-1)}-\frac{1}{4k}=\frac{1}{2(2k-1)}-\frac{1}{4k}=\frac12\left(\frac{1}{2k-1}-\frac{1}{2k}\right)$.
+    Summing over $k=1,\dots,N$ gives half the $2N$th partial sum of the alternating harmonic series, which
+    tends to $\frac12\ln2$ by (iii). The original series converges conditionally, so rearranging changed
+    its sum from $\ln2$ to $\frac12\ln2$.
+  common_errors:
+  - Miscounting the terms in each group of three
+  - Algebra slip in combining $\frac{1}{2k-1}$ and $\frac{1}{2(2k-1)}$
+  - Claiming the sum is unchanged because the terms are the same
+  hints:
+    rephrase: Group the terms in threes and simplify each group.
+    smaller_case: 'Simplify the first group: $1-\frac12-\frac14$. Then do the second group.'
+    key_idea: Each group reduces to a half of an alternating harmonic difference, so the grouped sum is
+      a scaled partial sum of a known series.
+  check: Rational(1,3)-Rational(1,6)-Rational(1,8)-Rational(1,2)*(Rational(1,3)-Rational(1,4))
+  check_ok: true
+extensions:
+  '3':
+  - Show that the alternating harmonic partial sums $S_{2N}$ bracket $\ln2$.
+  '4':
+  - Rearrange the alternating harmonic series so that two odd terms are followed by one even term, and
+    find the sum.
+  '5':
+  - Explain why a rearrangement of a conditionally convergent series can be made to converge to any real
+    number.
+spoken_vocab:
+- one over one plus x
+- sum from k equals zero to n minus one of minus x to the k
+- remainder R sub n
+- integral from zero to one
+- natural log of two
+- alternating harmonic series
+- one half natural log of two
+- rearrangement
+- conditionally convergent
+- reindex
+- squeeze
+source: jaymin/Jaymin Interview (1).pdf#p49
+verified: false
+rating:
+  score: 9
+  difficulty: 5
+  parts: 4
+  minutes: 35
+  flags: []
+  tagline: Alternating harmonic series rearranged to half ln2; striking, multi-step, extendable.
+  priority: 130
+  rank: 17
+  tier: S

@@ -1,0 +1,133 @@
+id: doctors-waiting-room-seating
+title: Doctor's Waiting Room Seating
+topics:
+- permutations
+- counting with restrictions
+- probability
+- block arrangements
+warmup: false
+answer_source: generated
+statement: In a doctor's waiting room there are $14$ seats in a row, and $8$ people are waiting to be
+  seen. (i) In how many ways can they be seated? (ii) Three of the people are in the same family and want
+  to sit together. In how many ways can this now happen? (iii) The family no longer must sit together,
+  but one person with a very bad cough must sit at least one seat away from anyone else. If all arrangements
+  are equally likely, what is the probability that this happens?
+stages:
+- goal: Count the seating arrangements for all $8$ people in $14$ seats (part i).
+  expected: $\frac{14!}{6!}=121080960$
+  solution: Choose a seat for the first person in $14$ ways, the second in $13$ ways, and so on, down
+    to $7$ ways for the eighth person. This gives $14\cdot13\cdot12\cdot11\cdot10\cdot9\cdot8\cdot7=\frac{14!}{6!}=121{,}080{,}960$
+    ordered arrangements. Order matters because each person occupies a distinct seat.
+  common_errors:
+  - Using $\binom{14}{8}$ alone and forgetting that the $8$ people can be ordered in $8!$ ways.
+  - Using $14^8$, which wrongly allows two people in the same seat.
+  - Off-by-one in the product, stopping at $8$ or running down to $6$.
+  hints:
+    rephrase: How many seats are there, and how many of them can the first person choose? What is left
+      for the second person?
+    smaller_case: Try $3$ people in $5$ seats. List how many choices the first person has, then how many
+      the second has, then the third, and multiply.
+    key_idea: Each person needs their own seat, so every placement removes one seat from the pool. This
+      is counting ordered selections without repetition.
+  check: ff(14, 8) - 121080960
+  check_ok: true
+- goal: Count the arrangements in which the three family members sit in three consecutive seats (part
+    ii).
+  expected: $12\cdot 3!\cdot P(11,5)=3991680$
+  solution: 'Treat the family as a single block of three consecutive seats. The block can start in any
+    of seats $1$ to $12$, giving $12$ positions. The three family members can be ordered inside the block
+    in $3!=6$ ways. The other $5$ people fill $5$ of the remaining $11$ seats in order, giving $\frac{11!}{6!}=55440$
+    ways. Total: $12\cdot6\cdot55440=3{,}991{,}680$.'
+  common_errors:
+  - Forgetting to order the three family members within their block.
+  - Using $13$ or $14$ block positions instead of $12$.
+  - Multiplying by $8!$ for the others, rather than choosing which seats they take from the remaining
+    $11$.
+  hints:
+    rephrase: Imagine the three family members glued together as one block of three seats. In how many
+      places can that block go in a row of $14$? Then ask how the block's own members can be arranged.
+    smaller_case: In a row of $4$ seats, a pair must sit together. Count the possible starting positions
+      for the pair and then the ways the pair can be ordered.
+    key_idea: Count the positions for the block, the internal order of the block, and the seats for everyone
+      else. These are independent choices, so you multiply them.
+  check: 12*6*ff(11, 5) - 3991680
+  check_ok: true
+- goal: Find the probability that the coughing person has no one in an adjacent seat (part iii).
+  expected: $\frac{3}{13}$
+  solution: 'Let the coughing person sit in seat $s$. If $s$ is an end seat (seat $1$ or $14$), only one
+    neighbouring seat must be empty, leaving $12$ seats for the other $7$ people. If $s$ is one of the
+    $12$ middle seats, two neighbouring seats must be empty, leaving $11$ seats. The favourable arrangements
+    number $2\cdot P(12,7)+12\cdot P(11,7)=2\cdot3991680+12\cdot1663200=27{,}941{,}760$. Dividing by the
+    total from part i: $\frac{27941760}{121080960}=\frac{3}{13}\approx0.231$.'
+  common_errors:
+  - Treating an end seat as if it had two neighbours.
+  - Using combinations instead of permutations for the other $7$ people, which ignores their order.
+  - Using a different denominator, such as $\binom{14}{8}$, instead of the total number of ordered arrangements.
+  - Misreading 'at least one seat away' as requiring only one empty seat on one side.
+  hints:
+    rephrase: The coughing person needs an empty seat on each side wherever a side exists. Does the choice
+      of seat change how many seats are blocked?
+    smaller_case: Take $3$ people in $5$ seats and make the middle-seat person the one who must have empty
+      neighbours. Work out how many seats remain for the other two people when the coughing person sits
+      in seat $1$, then in seat $3$.
+    key_idea: Split into cases by whether the coughing person sits in an end seat or a middle seat. Count
+      the favourable arrangements in each case, add them, and divide by the total from part i.
+  check: Rational(3,13) - (2*ff(12, 7) + 12*ff(11, 7))/ff(14, 8)
+  check_ok: true
+extensions:
+  '3':
+  - How many ways can $3$ people be seated in $5$ seats in a row?
+  - If two specific people must sit next to each other among $5$ seats, how many arrangements of $3$ people
+    are possible?
+  '4':
+  - In how many arrangements do the $8$ people sit so that no two members of the three-person family are
+    adjacent?
+  - If the coughing person must sit at one end of the row, how many arrangements satisfy the distancing
+    rule?
+  '5':
+  - 'Generalise: with $n$ seats and $k$ people, what is the probability that one specified person has
+    both neighbouring seats empty?'
+  - How does the probability change if the row is circular rather than linear?
+spoken_vocab:
+- fourteen seats
+- eight people
+- fourteen factorial over six factorial
+- P fourteen eight
+- P eleven five
+- P twelve seven
+- three factorial
+- six
+- twelve positions
+- block of three
+- family members together
+- adjacent seats
+- at least one seat away
+- end seat
+- middle seat
+- coughing person
+- permutations
+- ordered arrangements
+- probability
+- three over thirteen
+- zero point two three one
+- falling factorial
+source: nextstepmaths/NextStepMaths Interview Questions/interview-question-29.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: 'Three linked counts: permutations, block arrangements, and adjacency probability with a clear
+    model.'
+  priority: 81
+  rank: 239
+  tier: B
+  category: nextstepmaths
+  d10: 5.0
+  real: 5.5
+  by: deepseek-v4.1-flash-free
+tags:
+- combinatorics
+- probability

@@ -1,0 +1,100 @@
+id: exponential-equation-monotone-uniqueness
+title: Uniqueness of the root of 2^x + 3^x = 5^x
+topics:
+- exponential functions
+- monotonicity
+- functional equations
+- uniqueness of solutions
+- analysis
+warmup: false
+answer_source: generated
+statement: Provide a solution to the equation $2^x+3^x=5^x$. (a) By considering the function $f(x)=\left(\frac{2}{5}\right)^x+\left(\frac{3}{5}\right)^x$,
+  show that $x=1$ is the only real solution. (b) What property of $f$ did you use?
+stages:
+- goal: Rewrite the equation $2^x+3^x=5^x$ as $f(x)=1$ for the given function $f$.
+  expected: Divide both sides by $5^x>0$ to get $\left(\frac25\right)^x+\left(\frac35\right)^x=1$, i.e.
+    $f(x)=1$.
+  solution: Since $5^x>0$ for all real $x$, the equation is equivalent to $\frac{2^x}{5^x}+\frac{3^x}{5^x}=1$,
+    and $\frac{2^x}{5^x}=\left(\frac25\right)^x$, $\frac{3^x}{5^x}=\left(\frac35\right)^x$. So solutions
+    of the original equation are exactly the solutions of $f(x)=1$.
+  common_errors:
+  - Dividing by the wrong power, for example by $2^x$, and so getting a different function.
+  - Forgetting that $5^x$ is positive, so the division is always valid.
+  hints:
+    rephrase: Turn the three-term exponential equation into one function that is set equal to a constant.
+    smaller_case: Look at $\frac{2^x}{5^x}$ and $\frac{3^x}{5^x}$ separately and simplify each.
+    key_idea: Divide by the largest base raised to $x$, which is always positive.
+  check: simplify(expand_power_base(Rational(2,5)**x + Rational(3,5)**x - 1 - (2**x + 3**x - 5**x)/5**x,
+    force=True))
+  check_ok: true
+- goal: Show that $x=1$ is a solution.
+  expected: $f(1)=\frac25+\frac35=1$, so $x=1$ satisfies the equation.
+  solution: $f(1)=\frac25+\frac35=1$. Equivalently $2+3=5$.
+  common_errors:
+  - Checking $x=1$ in the original equation but making an arithmetic slip, for example $2+3\ne5$ in the
+    wrong base.
+  - Concluding uniqueness from this stage alone.
+  hints:
+    rephrase: Substitute the simplest integer value into the rewritten equation.
+    smaller_case: Evaluate $f(0)$ and see whether it equals 1.
+    key_idea: Check a value that makes both exponents equal to one.
+  check: Rational(2,5) + Rational(3,5) - 1
+  check_ok: true
+- goal: Prove that $x=1$ is the only real solution, using a property of $f$.
+  expected: Each term $b^x$ with $0<b<1$ is strictly decreasing in $x$, so $f$ is strictly decreasing.
+    A strictly decreasing function takes the value 1 at most once, so $f(x)=1$ only at $x=1$.
+  solution: For $0<b<1$, $b^x$ is strictly decreasing, so $f(x)=\left(\frac25\right)^x+\left(\frac35\right)^x$
+    is strictly decreasing as a sum of strictly decreasing functions. If $x<1$ then $f(x)>f(1)=1$, and
+    if $x>1$ then $f(x)<f(1)=1$. Hence $x=1$ is the only solution.
+  common_errors:
+  - Claiming uniqueness from $f(1)=1$ alone without a monotonicity argument.
+  - Asserting $f$ is monotone without checking the bases $\frac25$ and $\frac35$ lie in $(0,1)$.
+  - Stating monotonicity but not using it to exclude other values.
+  hints:
+    rephrase: Once you know one solution, what property of the function would rule out any other solution?
+    smaller_case: Consider the single term $\left(\frac12\right)^x$ and decide whether it is increasing
+      or decreasing.
+    key_idea: Determine whether each base is above or below 1, since that controls the direction of growth
+      as $x$ increases.
+  check: null
+extensions:
+  '3':
+  - Solve $3^x+4^x=5^x$ using the same method and verify your answer.
+  - Show that $2^x+3^x>5^x$ for $x<1$ and $2^x+3^x<5^x$ for $x>1$, using the function $f$.
+  '4':
+  - Explain why a monotonicity argument would fail for an equation such as $\sin x=0$, which has infinitely
+    many solutions.
+  - Explain why the uniqueness argument needs both bases to be less than 1 rather than just one of them.
+  '5':
+  - Let $a,b<c$ with $a+b>c$. Prove that $a^x+b^x=c^x$ has exactly one real solution, and that it satisfies
+    $x>1$. Then consider the case $a+b<c$.
+  - Give a general argument that $a^x+b^x=c^x$ with $0<a,b<c$ always has exactly one real solution.
+spoken_vocab:
+- two to the x plus three to the x equals five to the x
+- f of x equals two fifths to the x plus three fifths to the x
+- f of one equals one
+- strictly decreasing
+- base between zero and one
+- x equals one is the only solution
+- monotone function
+- uniqueness
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 2
+  minutes: 8
+  flags: []
+  tagline: Divide by 5^x and exploit strict monotonicity to prove uniqueness.
+  priority: 81
+  rank: 237
+  tier: B
+  category: juan
+  d10: 4.5
+  real: 8.5
+  by: deepseek-v4.1-flash-free
+tags:
+- exponentials_and_logarithms
+- proof
+- algebra_and_functions

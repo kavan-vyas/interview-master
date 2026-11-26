@@ -1,0 +1,133 @@
+id: random-point-closer-to-centre
+title: Point closer to centre than to edge
+topics:
+- geometry
+- integration
+- geometric probability
+- symmetry
+warmup: false
+answer_source: pdf
+statement: A point is chosen uniformly at random in a square. What is the probability that it is closer
+  to the centre of the square than to the nearest edge?
+stages:
+- goal: Use symmetry to reduce the problem to one triangle and find its area.
+  expected: Use centred coordinates with the square $[-\frac12,\frac12]^2$ of area $1$. The triangle $0\le
+    y\le x\le\frac12$ has area $\frac18$.
+  solution: The square has eight congruent triangles related by reflections and rotations about its diagonals
+    and axes. Each is a triangle with legs $\frac12$ and area $\frac12\cdot\frac12\cdot\frac12=\frac18$.
+    Within this triangle the nearest edge is $x=\frac12$.
+  common_errors:
+  - Using corner coordinates in $[0,1]^2$ and then mixing up the centre position.
+  - Taking the triangle area as $\frac14$ or $\frac1{16}$.
+  - Forgetting to use the full symmetry, which would give the wrong normalising area.
+  hints:
+    rephrase: Place the centre at the origin. Which of the eight symmetric pieces can you use, and which
+      edge is nearest inside it?
+    smaller_case: Consider a unit square and draw the two diagonals and the two midlines. How many congruent
+      pieces do you get?
+    key_idea: Choose a fundamental piece of the square under its symmetries and keep track of its area
+      relative to the whole square.
+  check: Rational(1,2)*Rational(1,2)*Rational(1,2) - Rational(1,8)
+  check_ok: true
+- goal: Write the condition for the point to be closer to the centre than to the edge $x=\frac12$, and
+    simplify it.
+  expected: Within the triangle, the condition is $\sqrt{x^2+y^2}<\frac12-x$, which simplifies to $x<\frac14-y^2$.
+  solution: Distance to the centre is $\sqrt{x^2+y^2}$ and distance to the edge $x=\frac12$ is $\frac12-x$.
+    Squaring $\sqrt{x^2+y^2}<\frac12-x$ gives $x^2+y^2<\frac14-x+x^2$, so $y^2<\frac14-x$, i.e. $x<\frac14-y^2$.
+  common_errors:
+  - Using the distance to the wrong edge, such as $y=\frac12$.
+  - Forgetting to square both sides correctly and losing the $x^2$ terms.
+  - Writing $x>\frac14-y^2$, which reverses the inequality.
+  hints:
+    rephrase: Write both distances as expressions in $x$ and $y$, then set up the inequality. Simplify
+      by cancelling terms that appear on both sides.
+    smaller_case: 'Check your inequality at the point $(0,0)$: it should be favourable there.'
+    key_idea: Squaring the distances turns the comparison into a simpler polynomial inequality.
+  check: null
+- goal: Find the point where the parabola boundary meets the diagonal $y=x$.
+  expected: $y_0=\frac{\sqrt2-1}{2}$
+  solution: On the diagonal $x=y$, the boundary $x=\frac14-y^2$ becomes $y^2+y-\frac14=0$. The positive
+    root is $y_0=\frac{-1+\sqrt{2}}{2}$.
+  common_errors:
+  - Using the quadratic formula with the wrong sign on the constant term.
+  - Taking the negative root, which lies outside the triangle.
+  - Substituting $x=\frac12$ instead of $x=y$.
+  hints:
+    rephrase: On the diagonal, $x$ and $y$ are equal. Substitute into the boundary curve and solve the
+      quadratic in $y$.
+    smaller_case: Check whether $y=0$ satisfies $y^2+y-\frac14=0$; it does not, so which side of the boundary
+      is $(0,0)$ on?
+    key_idea: Solve a quadratic for the intersection, then keep the root inside the triangle.
+  check: ((sqrt(2)-1)/2)**2 + (sqrt(2)-1)/2 - Rational(1,4)
+  check_ok: true
+- goal: Compute the favourable area inside the triangle.
+  expected: $\frac{4\sqrt2-5}{24}$
+  solution: For $0\le y\le y_0$, the favourable $x$ runs from $y$ to $\frac14-y^2$. So the area is $\int_0^{y_0}\left(\frac14-y^2-y\right)dy$.
+    Using $y_0^2=\frac14-y_0$ to simplify the antiderivative gives $\frac{y_0}{3}-\frac1{24}=\frac{4\sqrt2-5}{24}$.
+  common_errors:
+  - Integrating from $0$ to $\frac12$ instead of stopping at $y_0$, which includes unfavourable points.
+  - Dropping the lower bound $x=y$ from the favourable region.
+  - Arithmetic slips when expanding $\left(\frac{\sqrt2-1}{2}\right)^3$.
+  hints:
+    rephrase: For each fixed $y$, what range of $x$ lies inside the triangle and is also favourable? Then
+      integrate over $y$.
+    smaller_case: Set $y=0$ and find the favourable range of $x$ by hand, then compare with the general
+      formula.
+    key_idea: Integrate the length of the favourable $x$-interval over the range of $y$ where that interval
+      is non-empty.
+  check: integrate(Rational(1,4)-y**2-y,(y,0,(sqrt(2)-1)/2)) - (4*sqrt(2)-5)/24
+  check_ok: true
+- goal: Give the probability that a uniform random point is closer to the centre than to the nearest edge.
+  expected: $\frac{4\sqrt2-5}{3}\approx 0.219$
+  solution: The favourable area in the triangle is $\frac{4\sqrt2-5}{24}$, and the triangle has area $\frac18$
+    of the square. So the probability is $\frac{(4\sqrt2-5)/24}{1/8}=\frac{4\sqrt2-5}{3}$.
+  common_errors:
+  - Dividing by the triangle area and forgetting that the triangle is one of eight pieces, so the probability
+    for the full square equals the ratio inside the triangle.
+  - Reporting the favourable area $\frac{4\sqrt2-5}{24}$ without normalising.
+  - Multiplying by $8$ when the ratio is already the correct probability.
+  hints:
+    rephrase: Since the symmetric pieces all look the same, what fraction of one piece is favourable?
+    smaller_case: Compare the triangle area to the full square and check that your normalisation is consistent.
+    key_idea: By symmetry, the probability equals the favourable fraction of one fundamental triangle.
+  check: (4*sqrt(2)-5)/24/Rational(1,8) - (4*sqrt(2)-5)/3
+  check_ok: true
+extensions:
+  '3':
+  - Repeat the problem for a rectangle with side ratio $2:1$. Does the same symmetry argument still work?
+  '4':
+  - Find the probability that a uniform random point in an equilateral triangle is closer to the centroid
+    than to the nearest side.
+  '5':
+  - 'Generalise to a cube in three dimensions: what is the probability that a uniform random point is
+    closer to the centre than to the nearest face?'
+spoken_vocab:
+- point
+- uniform random
+- square
+- centre
+- nearest edge
+- closer than
+- symmetry
+- triangle
+- area
+- square root of two
+- four root two minus five over three
+- parabola
+- integral
+- y naught
+- x less than one quarter minus y squared
+- probability
+source: jaymin/Jaymin Interview (1).pdf#p33
+verified: false
+rating:
+  quality: 8
+  difficulty: 7
+  parts: 5
+  minutes: 20
+  flags: []
+  tagline: Parabolic boundary, symmetry reduction, exact answer (4√2−5)/3 ≈ 0.219.
+  priority: 108
+  rank: 24
+  tier: S
+  category: jaymin

@@ -1,0 +1,103 @@
+id: pizza-cuts-max-pieces
+title: Maximum Pizza Pieces from n Straight Cuts
+topics:
+- combinatorics
+- recurrence
+- induction
+- geometry of lines
+- counting regions
+warmup: false
+answer_source: generated
+statement: What is the most pieces of pizza I can get from $n$ cuts?
+stages:
+- goal: Count the maximum number of pieces for 0, 1, 2 and 3 straight cuts.
+  expected: 1, 2, 4, 7 pieces respectively.
+  solution: 'With no cuts there is 1 piece. One straight cut gives 2 pieces. A second cut that crosses
+    the first gives 4. A third line that crosses both earlier lines at two distinct points, and avoids
+    their intersection point, gives 7. The increments are 1, 2, 3, so the total is 1 + 1 + 2 + 3 = 7.
+    Check: 1 + 1 + 2 + 3 - 7 = 0.'
+  common_errors:
+  - Assuming n cuts always give 2n pieces, which is the answer for cuts that all pass through the same
+    point.
+  - Forgetting that the first cut creates 2 pieces, not 1.
+  - Placing the third cut parallel to an earlier one, which loses a piece.
+  hints:
+    rephrase: How many pieces does each new cut add to the pizza?
+    smaller_case: Start with 1 cut and count the pieces. Then add a second cut that crosses the first.
+    key_idea: Each new cut adds as many pieces as the number of distinct places it crosses the earlier
+      cuts, plus one.
+  check: 1 + 1 + 2 + 3 - 7
+  check_ok: true
+- goal: Derive a formula for the maximum number of pieces p(n) from n cuts.
+  expected: p(n) = 1 + n(n+1)/2 = (n^2 + n + 2)/2.
+  solution: 'The k-th cut is placed to cross all k-1 previous cuts at distinct points, which divides it
+    into k segments. Each segment splits a region in two, so the k-th cut adds k pieces. Hence p(n) =
+    1 + (1 + 2 + ... + n) = 1 + n(n+1)/2. Check at n = 4: 1 + 10 = 11, and 4*5/2 + 1 - 11 = 0. Induction:
+    p(n) - p(n-1) = n, which holds identically as shown in the check below.'
+  common_errors:
+  - Using the increment as k-1 instead of k.
+  - Forgetting the constant 1 for the uncut pizza.
+  - Giving a formula that only matches the first few values.
+  hints:
+    rephrase: When the k-th cut is made, how many segments does it split into?
+    smaller_case: Find the number of pieces for n = 4 by adding the increments from the previous stage.
+    key_idea: 'Maximise the number of crossings: every new line should meet every earlier line at a different
+      point. Sum the increments.'
+  check: 4*(4+1)/2 + 1 - 11
+  check_ok: true
+- goal: Use your formula to find the maximum number of pieces from 10 cuts.
+  expected: 56 pieces.
+  solution: 'p(10) = 1 + 10*11/2 = 1 + 55 = 56. Check: (10^2 + 10 + 2)/2 - 56 = 0.'
+  common_errors:
+  - Arithmetic slip in 10*11/2.
+  - Using 2^n, which gives 1024 and grossly overcounts.
+  - Forgetting the +1.
+  hints:
+    rephrase: Substitute n = 10 into the formula you derived.
+    smaller_case: Check your formula at n = 2 against the value 4 found earlier.
+    key_idea: The sum 1 + 2 + ... + n equals n(n+1)/2.
+  check: (10**2 + 10 + 2)/2 - 56
+  check_ok: true
+extensions:
+  '3':
+  - Why must the cuts be in general position (no three meeting at one point, no two parallel) for the
+    maximum to be reached? Show what happens when they are not.
+  '4':
+  - Cut a cake with planes instead of lines. Show that the maximum number of pieces from n plane cuts
+    is (n^3 + 5n + 6)/6.
+  '5':
+  - 'Generalise to cutting a d-dimensional space with n hyperplanes: give the maximum number of regions
+    as a sum of binomial coefficients.'
+spoken_vocab:
+- pizza
+- straight cuts
+- n cuts
+- pieces
+- maximum
+- triangular number
+- n choose two
+- plus one
+- n squared plus n plus two over two
+- general position
+- induction
+- crossing
+- intersection points
+source: oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 3
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: Lazy caterer formula, with good discussion of general-position assumptions
+  priority: 71
+  rank: 331
+  tier: B
+  category: oxbridge-random
+  d10: 3.0
+  real: 8.0
+  by: haiku
+tags:
+- combinatorics
+- proof

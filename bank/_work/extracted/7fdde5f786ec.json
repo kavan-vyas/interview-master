@@ -1,0 +1,58 @@
+[
+ {
+  "q": "Sketch the curve $y^2 = x^3 - x$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p73"
+ },
+ {
+  "q": "How many real solutions does $e^x = x^2$ have?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p73"
+ },
+ {
+  "q": "Sketch the sets of points satisfying (a) $|x| + |y| = 1$, (b) $\\max(|x|,|y|) = 1$, and (c) $|x - y| + |x + y| = 2$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p73"
+ },
+ {
+  "q": "Let $f(x) = x^x$ for $x > 0$. (i) By writing $x^x = e^{x\\ln x}$, find the limit of $f(x)$ as $x \\to 0^+$, justifying your answer. (ii) Find $f'(x)$, and find the coordinates and nature of the stationary point of $f$. (iii) Sketch the graph of $y = f(x)$. (iv) For each real number $k$, find the number of positive solutions of $x^x = k$. (v) Show that $x = \\frac{1}{4}$ and $x = \\frac{1}{2}$ both satisfy $x^x = \\frac{1}{\\sqrt{2}}$, and explain how this is consistent with your answer to (iv).",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p73"
+ },
+ {
+  "q": "Let $f(x) = \\frac{x}{x^2 + 1}$. (i) By considering for which $y$ the equation $y = \\frac{x}{x^2+1}$ has a real solution $x$, find the range of $f$ without calculus. (ii) Find the stationary points using calculus, and check they agree with (i). (iii) Sketch $y = f(x)$. (iv) On the same axes, sketch $y = \\frac{1}{f(x)} = x + \\frac{1}{x}$, and explain how its features follow from those of $f$. (v) Find the range of $f(f(x))$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p73"
+ },
+ {
+  "q": "Consider the curve $x^3 + y^3 = 3xy$. (i) By substituting $y = tx$, show that apart from the origin the curve is given by $x = \\frac{3t}{1+t^3}$, $y = \\frac{3t^2}{1+t^3}$ with $t \\neq -1$. (ii) Show that the curve is symmetric in the line $y = x$, and find where it crosses this line. (iii) Show that $x + y \\to -1$ as $t \\to -1$. What does this say about the curve? (iv) Sketch the curve.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p73"
+ },
+ {
+  "q": "Let $f(x) = x^2 - 2x$ for $x \\geq 1$. (i) Find $f^{-1}(x)$ and its domain. (ii) Solve $f(x) = f^{-1}(x)$. (iii) Prove that if $f$ is strictly increasing, every solution of $f(x) = f^{-1}(x)$ satisfies $f(x) = x$. (iv) Show that (iii) can fail for decreasing functions, by solving $g(x) = g^{-1}(x)$ for $g(x) = -x^3$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p73"
+ },
+ {
+  "q": "A ladder of length 2 stands against a vertical wall on horizontal ground, and slides down until it lies flat. What path does its midpoint follow?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p73"
+ }
+]

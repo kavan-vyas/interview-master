@@ -1,0 +1,108 @@
+id: exp-reciprocal-sketch
+title: Sketch y = e^{1/x}
+topics:
+- curve sketching
+- asymptotes
+- differentiation
+- inflection points
+- limits
+warmup: false
+answer_source: pdf
+statement: Sketch the graph of $y = e^{1/x}$.
+stages:
+- goal: Find the domain, intercepts and asymptotes of $y=e^{1/x}$, including the behaviour at $x\to0^{\pm}$
+    and $x\to\pm\infty$.
+  expected: 'Domain: $x\neq0$. No intercepts, since $e^{1/x}>0$ always. Vertical asymptote $x=0$: $y\to\infty$
+    as $x\to0^+$ and $y\to0$ as $x\to0^-$. Horizontal asymptote $y=1$: $y\to1$ from above as $x\to+\infty$
+    and from below as $x\to-\infty$.'
+  solution: The function is undefined at $x=0$. Since $1/x\to+\infty$ as $x\to0^+$, $y\to\infty$. Since
+    $1/x\to-\infty$ as $x\to0^-$, $y\to0^+$. As $x\to\pm\infty$, $1/x\to0$, so $y\to e^0=1$. Also $e^{1/x}>0$,
+    so the curve never meets the $x$-axis.
+  common_errors:
+  - Saying $y\to0$ as $x\to0^+$ (the sign of the limit is reversed).
+  - Forgetting that the horizontal asymptote is approached from different sides as $x\to\pm\infty$.
+  - Claiming there is a $y$-intercept, when $x=0$ is not in the domain.
+  hints:
+    rephrase: What does $1/x$ do as $x$ approaches 0 from above, and from below?
+    smaller_case: Evaluate the limits at $x=1$ and $x=-1$ first, then push $|x|$ large or small.
+    key_idea: Consider the exponent $1/x$ separately on each side of 0 and as $x$ grows in size.
+  check: limit(exp(1/x), x, oo) - 1
+  check_ok: true
+- goal: Find $dy/dx$, determine its sign, and state where the function is increasing or decreasing and
+    whether it has turning points.
+  expected: $\dfrac{dy}{dx}=-\dfrac{e^{1/x}}{x^2}$. This is negative for every $x\neq0$, so the curve
+    is strictly decreasing on $x<0$ and on $x>0$. There are no stationary points.
+  solution: By the chain rule, $\frac{d}{dx}e^{1/x}=e^{1/x}\cdot\left(-\frac{1}{x^2}\right)$. The exponential
+    is positive and $x^2>0$, so $dy/dx<0$ everywhere in the domain.
+  common_errors:
+  - Writing $dy/dx=e^{1/x}/x^2$ and missing the minus sign from the chain rule.
+  - Claiming there is a turning point at $x=0$, which is not in the domain.
+  - Saying the function is increasing on one branch.
+  hints:
+    rephrase: Use the chain rule on the exponent $1/x$. What is the derivative of $1/x$?
+    smaller_case: Check the sign of the derivative at $x=1$ and at $x=-1$.
+    key_idea: An exponential is always positive, so the sign of $dy/dx$ depends only on the sign of the
+      derivative of the exponent.
+  check: simplify(diff(exp(1/x), x) + exp(1/x)/x**2)
+  check_ok: true
+- goal: Find the second derivative, locate the point of inflection, and sketch the curve using all the
+    information.
+  expected: $\dfrac{d^2y}{dx^2}=\dfrac{e^{1/x}(2x+1)}{x^4}$. The concavity changes at $x=-\tfrac12$, giving
+    the inflection point $\left(-\tfrac12,\,e^{-2}\right)$. The curve is concave down for $x<-\tfrac12$
+    and concave up for $-\tfrac12<x<0$ and $x>0$.
+  solution: 'Differentiate $y''=-x^{-2}e^{1/x}$: $y''''=2x^{-3}e^{1/x}+x^{-4}e^{1/x}=e^{1/x}\dfrac{2x+1}{x^4}$.
+    Since $e^{1/x}/x^4>0$, the sign of $y''''$ is the sign of $2x+1$, which changes at $x=-\tfrac12$.
+    There $y=e^{-2}$.'
+  common_errors:
+  - Forgetting the product or chain rule when differentiating $y'$.
+  - Concluding the inflection is at $x=0$.
+  - Sketching the curve as concave up everywhere, ignoring the sign change at $x=-\tfrac12$.
+  hints:
+    rephrase: Differentiate $y'=-x^{-2}e^{1/x}$ using the product rule.
+    smaller_case: Find where $y''$ is zero on the negative $x$-axis, by checking one sample point on each
+      side.
+    key_idea: The sign of $y''$ is set by the factor that is not part of the positive quantity $e^{1/x}/x^4$.
+  check: simplify(diff(exp(1/x), x, 2)).subs(x, -Rational(1,2))
+  check_ok: true
+extensions:
+  '3':
+  - Sketch $y=e^{-1/x}$ and say how it differs from $e^{1/x}$.
+  '4':
+  - Sketch $y=x\,e^{1/x}$, giving its asymptotes.
+  '5':
+  - Sketch $y=e^{1/x^2}$ and describe its behaviour near $x=0$.
+spoken_vocab:
+- y equals e to the power of one over x
+- e to the power of one over x
+- vertical asymptote
+- horizontal asymptote
+- x equals zero
+- limit as x tends to zero from above
+- limit as x tends to infinity
+- dy by dx
+- second derivative
+- point of inflection
+- concave up
+- concave down
+- chain rule
+source: waleed/Curve Sketching Questions - Waleed.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 3
+  minutes: 15
+  flags:
+  - needs_diagram
+  tagline: Full sketch with asymptotes, monotonic behaviour, and an inflection point
+  priority: 63
+  rank: 416
+  tier: C
+  category: waleed
+  d10: 5.5
+  real: 4.0
+  by: deepseek-v4.1-flash-free
+tags:
+- curve_sketching
+- exponentials_and_logarithms
+- differentiation

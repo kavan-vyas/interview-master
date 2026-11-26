@@ -1,0 +1,16 @@
+# personal data: interview recordings, transcripts, reports, mic choice, remote key
+sessions/*
+!sessions/.keep
+# downloaded models (setup script fetches them)
+models/
+# build / env / caches
+__pycache__/
+*.pyc
+.claude_sandbox/
+node_modules/
+tts/.venv/
+.venv/
+venv/
+*.log
+.DS_Store
+.env

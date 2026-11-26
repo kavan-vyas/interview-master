@@ -1,0 +1,111 @@
+id: differentiate-x-to-the-x-and-sketch-2
+title: Differentiate x^x and sketch its graph for x > 0
+topics:
+- calculus
+- differentiation
+- logarithmic differentiation
+- stationary points
+- graph sketching
+warmup: false
+answer_source: pdf
+statement: Differentiate $x^x$. Then draw a graph of $x^x$ for $x>0$.
+stages:
+- goal: Differentiate $y = x^x$ with respect to $x$.
+  expected: $\frac{dy}{dx} = x^x(\ln x + 1)$
+  solution: 'Let $y=x^x$. Take natural logs: $\ln y = x\ln x$. Differentiate implicitly using the product
+    rule: $\frac{1}{y}\frac{dy}{dx} = \ln x + x\cdot\frac{1}{x} = \ln x + 1$. So $\frac{dy}{dx} = x^x(\ln
+    x + 1)$.'
+  common_errors:
+  - Differentiating as if it were a power rule, giving $x\cdot x^{x-1}$, which ignores the variable exponent.
+  - Differentiating as if it were an exponential, giving $x^x\ln x$ and dropping the $+1$ from the product
+    rule.
+  - Forgetting to multiply by $y$ when differentiating $\ln y$ implicitly.
+  hints:
+    rephrase: The variable appears in both the base and the exponent. What operation would turn the exponent
+      into something you can differentiate with the product rule?
+    smaller_case: Try the same method on $y = 2^x$ first. Which form of $\ln y$ makes its derivative easy?
+    key_idea: 'Logarithmic differentiation: take the natural log of both sides, differentiate implicitly,
+      then multiply back by $y$.'
+  check: simplify(diff(x**x, x) - x**x*(log(x) + 1))
+  check_ok: true
+- goal: Find the stationary point of $x^x$ for $x > 0$ and state whether it is a maximum or minimum.
+  expected: Stationary point at $x = 1/e$, which is a minimum. The value there is $y = (1/e)^{1/e} \approx
+    0.692$.
+  solution: 'Set $\frac{dy}{dx}=0$. Since $x^x>0$ for $x>0$, we need $\ln x + 1 = 0$, so $x = e^{-1} =
+    1/e$. Second derivative: $\frac{d^2y}{dx^2} = x^x\left[(\ln x+1)^2 + \frac{1}{x}\right]$, which is
+    positive for all $x>0$, so the point is a minimum. Its value is $(1/e)^{1/e} = e^{-1/e}\approx 0.692$.'
+  common_errors:
+  - Solving $\ln x + 1 = 0$ and getting $x = e$ instead of $x = 1/e$.
+  - Assuming the stationary point is a maximum without checking the sign of the second derivative.
+  - Forgetting that the domain is $x>0$ and that the minimum lies in $0<x<1$.
+  hints:
+    rephrase: A stationary point occurs where the derivative is zero. Since $x^x$ is always positive,
+      which factor in your derivative must be zero?
+    smaller_case: Solve $\ln x = -1$ on its own. What is $x$ when $\ln x$ equals $-1$?
+    key_idea: The sign of the second derivative tells you whether a stationary point is a maximum or minimum.
+      Check its sign at the stationary point.
+  check: simplify(log(1/E) + 1)
+  check_ok: true
+- goal: Describe the shape of the graph of $x^x$ for $x>0$, including the behaviour as $x\to0^+$, the
+    minimum, and the behaviour for large $x$.
+  expected: As $x\to0^+$, $x^x\to1$, so the curve approaches the point $(0,1)$. It decreases to a minimum
+    at $(1/e,\ (1/e)^{1/e})\approx(0.368,\ 0.692)$, then increases through $(1,1)$. For $x>1$ it grows
+    rapidly, faster than any polynomial and similar in shape to an exponential curve.
+  solution: 'Limit: $\ln(x^x)=x\ln x\to0$ as $x\to0^+$, so $x^x\to e^0=1$. Derivative is negative for
+    $0<x<1/e$ and positive for $x>1/e$, so there is a single minimum at $x=1/e$ with value $\approx 0.692$.
+    At $x=1$, $y=1$. As $x\to\infty$, $x^x\to\infty$, growing faster than $e^{x}$ since $\ln(x^x)=x\ln
+    x > x$ for $x>e$.'
+  common_errors:
+  - Claiming $x^x\to0$ as $x\to0^+$. The limit is $1$.
+  - Missing the minimum and drawing a monotonic curve.
+  - Saying the graph is exactly exponential, when it grows faster than any exponential $e^{cx}$.
+  hints:
+    rephrase: What happens to $x^x$ as $x$ gets very close to zero from above? Use the logarithm $x\ln
+      x$ to help you find out.
+    smaller_case: Compute $x^x$ at $x=1$ and at $x=0.5$. Does the value go up or down between them?
+    key_idea: Combine the sign of the first derivative, the limit at the endpoint $x\to0^+$, and the behaviour
+      as $x\to\infty$.
+  check: simplify(exp(-1/E) - (1/E)**(1/E))
+  check_ok: true
+extensions:
+  '3':
+  - For which $x>0$ does $x^x = 1$?
+  '4':
+  - Differentiate $x^{\sin x}$ for $x>0$.
+  '5':
+  - Show that the stationary point of $x^x$ at $x=1/e$ is a global minimum on $x>0$, and find the second
+    derivative there.
+spoken_vocab:
+- x to the power x
+- derivative
+- d y by d x
+- natural log
+- ln x
+- e
+- one over e
+- stationary point
+- minimum
+- second derivative
+- limit as x tends to zero from above
+- exponential
+source: past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2012.docx
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 3
+  minutes: 12
+  flags:
+  - needs_diagram
+  tagline: Logarithmic differentiation leading to a stationary minimum and a full sketch analysis.
+  priority: 63
+  rank: 420
+  tier: C
+  category: past-interviews
+  d10: 4.5
+  real: 7.0
+  by: deepseek-v4.1-flash-free
+tags:
+- differentiation
+- exponentials_and_logarithms
+- curve_sketching

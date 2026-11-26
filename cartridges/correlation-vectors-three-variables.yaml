@@ -1,0 +1,92 @@
+id: correlation-vectors-three-variables
+title: Correlation range for three random variables
+topics:
+- correlation
+- vectors and angles
+- trigonometry
+- random variables
+- positive semidefinite matrices
+warmup: false
+answer_source: pdf
+statement: There are three random variables $x$, $y$ and $z$. The correlation between $x$ and $y$ is $0.8$,
+  and the correlation between $x$ and $z$ is $0.8$. What are the maximum and minimum possible correlations
+  between $y$ and $z$?
+stages:
+- goal: Find the maximum possible correlation between $y$ and $z$.
+  expected: $1$
+  solution: Treat the random variables as vectors, so correlation is the cosine of the angle between them.
+    Let $\theta$ be the angle between $x$ and $y$, with $\cos\theta=0.8$. The angle between $x$ and $z$
+    is also $\theta$. Placing $y$ and $z$ on the same side of $x$ makes the angle between them $0$, so
+    their correlation is $\cos 0=1$. Correlation cannot exceed $1$.
+  common_errors:
+  - Answering $0.8$ by copying a given value.
+  - Multiplying the two given correlations to get $0.64$.
+  - Forgetting that the maximum occurs when $y$ and $z$ point in the same direction.
+  hints:
+    rephrase: What is the largest value a correlation can take, and can $y$ and $z$ be arranged to lie
+      in the same direction while keeping their angles to $x$ equal?
+    smaller_case: Suppose $z=2y$. What is the correlation between $y$ and $z$?
+    key_idea: Correlation is the cosine of the angle between the two vectors. Cosine is bounded by $-1$
+      and $1$, and reaches the upper bound when the angle is zero.
+  check: simplify(ans-1)
+  check_ok: false
+- goal: Find the minimum possible correlation between $y$ and $z$.
+  expected: $\cos 2\theta=0.28=\frac{7}{25}$
+  solution: With $\cos\theta=0.8$ and $\sin\theta=0.6$, the largest angle between $y$ and $z$ is $2\theta$,
+    obtained when they lie on opposite sides of $x$. The minimum correlation is $\cos 2\theta=2\cos^2\theta-1=2(0.8)^2-1=0.28=\frac{7}{25}$.
+  common_errors:
+  - Using $\cos^2\theta+\sin^2\theta$ or $\cos\theta-\sin\theta$ in place of the double-angle formula.
+  - Getting $-0.28$ from a sign error in $2\cos^2\theta-1$.
+  - Claiming the minimum is $-1$ without checking the angle constraint.
+  hints:
+    rephrase: If $y$ and $z$ are each at angle $\theta$ from $x$, what is the largest angle they can make
+      with each other?
+    smaller_case: If $\cos\theta=0$, what is the largest possible angle between $y$ and $z$, and what
+      is their correlation?
+    key_idea: Use a double-angle formula for cosine in terms of $\cos\theta$, since $\cos\theta$ is given.
+  check: ans-Rational(7,25)
+  check_ok: false
+extensions:
+  '3':
+  - Given $\operatorname{corr}(x,y)=a$ and $\operatorname{corr}(x,z)=b$ with $|a|,|b|\le 1$, find the
+    range of $\operatorname{corr}(y,z)$.
+  '4':
+  - Can three random variables have pairwise correlations $0.8$, $0.8$ and $-0.8$? Justify your answer.
+  '5':
+  - Show that the correlation matrix $\begin{pmatrix}1&0.8&0.8\\0.8&1&\rho\\0.8&\rho&1\end{pmatrix}$ is
+    positive semidefinite exactly when $0.28\le\rho\le 1$.
+spoken_vocab:
+- correlation
+- random variables x y and z
+- zero point eight
+- maximum
+- minimum
+- cosine of the angle
+- theta
+- cosine two theta
+- double angle formula
+- seven over twenty five
+- sine theta
+- vectors
+- positive semidefinite
+- determinant
+source: zhou-quant/zhou-quant-guide.pdf#4
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 2
+  minutes: 12
+  flags: []
+  tagline: Geometric vector view gives sharp bounds 0.28 and 1, with rich discussion of positive semidefiniteness.
+  priority: 75
+  rank: 276
+  tier: B
+  category: zhou-quant
+  d10: 6.2
+  real: 5.5
+  by: deepseek-v4.1-flash-free
+tags:
+- probability
+- inequalities
+- matrices

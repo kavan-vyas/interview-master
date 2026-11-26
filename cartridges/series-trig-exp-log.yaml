@@ -1,0 +1,128 @@
+id: series-trig-exp-log
+title: Series of trig, exponential and log functions
+topics:
+- Maclaurin series
+- trigonometric series
+- exponential series
+- logarithm series
+- series arithmetic
+warmup: false
+answer_source: pdf
+statement: 'Using only the series expansions of $\sin x$, $\cos x$, $e^x$ and $\ln(1+x)$, find the series
+  expansions of: (i) $\tan x$ (up to the $x^5$ term); (ii) $\sin x\cos x$ (up to the $x^5$ term); (iii)
+  $\frac{e^x+e^{-x}}{2}$ (up to the $x^5$ term); (iv) $\ln(e^x)$ (up to the $x^3$ term); (v) $\frac{1-\cos^2
+  x}{x^2}$ (up to the $x^2$ term).'
+stages:
+- goal: (i) Find the series of $\tan x$ up to $x^5$.
+  expected: $\tan x=x+\frac{x^3}{3}+\frac{2x^5}{15}+\cdots$
+  solution: 'Assume $\tan x=x+ax^3+bx^5+\cdots$ and use $\sin x=\tan x\cos x$. With $\cos x=1-\frac{x^2}{2}+\frac{x^4}{24}-\cdots$,
+    the product $(x+ax^3+bx^5)(1-\frac{x^2}{2}+\frac{x^4}{24})$ must match $\sin x=x-\frac{x^3}{6}+\frac{x^5}{120}$.
+    Comparing $x^3$: $a-\frac12=-\frac16$, so $a=\frac13$. Comparing $x^5$: $b-\frac a2+\frac1{24}=\frac1{120}$,
+    so $b=\frac{2}{15}$.'
+  common_errors:
+  - Using only the first two terms of cos x, which loses the x^5 coefficient.
+  - Sign errors when comparing coefficients of x^3 and x^5.
+  - Dividing series naively without matching coefficients.
+  hints:
+    rephrase: Write tan x as a ratio of two series and match coefficients.
+    smaller_case: Find only the x^3 coefficient first.
+    key_idea: Multiply the assumed series for tan x by cos x and compare the result with sin x.
+  check: sympy.expand(sympy.series(sympy.tan(x),x,0,6).removeO() - (x+x**3/3+2*x**5/15))==0
+  check_ok: null
+- goal: (ii) Find the series of $\sin x\cos x$ up to $x^5$.
+  expected: $x-\frac{2x^3}{3}+\frac{2x^5}{15}+\cdots$
+  solution: Multiply $(x-\frac{x^3}{6}+\frac{x^5}{120})(1-\frac{x^2}{2}+\frac{x^4}{24})$. The $x$ term
+    is $x$. The $x^3$ term is $-\frac12-\frac16=-\frac23$. The $x^5$ term is $\frac1{24}+\frac1{12}+\frac1{120}=\frac{2}{15}$.
+  common_errors:
+  - Missing one of the cross terms when multiplying the series.
+  - Sign errors from multiplying a negative term by a negative term.
+  - Stopping at x^3 when the x^5 term was requested.
+  hints:
+    rephrase: Multiply the two series term by term and collect like powers.
+    smaller_case: Find only the x^3 coefficient of the product.
+    key_idea: As a check, rewrite sin x cos x using a double-angle identity and expand that instead.
+  check: sympy.expand(sympy.series(sympy.sin(x)*sympy.cos(x),x,0,6).removeO() - (x-2*x**3/3+2*x**5/15))==0
+  check_ok: null
+- goal: (iii) Find the series of $\frac{e^x+e^{-x}}{2}$ up to $x^5$.
+  expected: $1+\frac{x^2}{2}+\frac{x^4}{24}+\cdots$ (the $x^5$ coefficient is 0)
+  solution: Use $e^{-x}=1-x+\frac{x^2}{2}-\frac{x^3}{6}+\frac{x^4}{24}-\frac{x^5}{120}+\cdots$. Adding
+    to $e^x$ cancels the odd powers, and the sum is $2\left(1+\frac{x^2}{2}+\frac{x^4}{24}+\cdots\right)$.
+    Dividing by 2 gives $1+\frac{x^2}{2}+\frac{x^4}{24}$, with no $x^5$ term.
+  common_errors:
+  - Forgetting that the odd powers cancel in the sum.
+  - Keeping the odd terms in the answer.
+  - Dividing by 2 only for some of the terms.
+  hints:
+    rephrase: Write the series for e^{-x} and add it to the series for e^x.
+    smaller_case: Add the constant and x terms of e^x and e^{-x} and see what remains.
+    key_idea: Replacing x by -x changes the sign of every odd power term.
+  check: sympy.expand(sympy.series((sympy.exp(x)+sympy.exp(-x))/2,x,0,6).removeO() - (1+x**2/2+x**4/24))==0
+  check_ok: null
+- goal: (iv) Find the series of $\ln(e^x)$ up to $x^3$ using the series for $\ln(1+u)$.
+  expected: $x+0\cdot x^2+0\cdot x^3$, that is, $x$
+  solution: Let $u=e^x-1=x+\frac{x^2}{2}+\frac{x^3}{6}+\cdots$. Then $\ln(e^x)=\ln(1+u)=u-\frac{u^2}{2}+\frac{u^3}{3}-\cdots$.
+    Using $u^2=x^2+x^3+\cdots$ and $u^3=x^3+\cdots$, the $x^2$ coefficient is $\frac12-\frac12=0$ and
+    the $x^3$ coefficient is $\frac16-\frac12+\frac13=0$. So the series is $x$.
+  common_errors:
+  - Using ln(1+x) directly with x in place of u, which gives the wrong answer.
+  - Missing the cross term in u^2 when expanding.
+  - Dropping the u^3 term needed for the x^3 coefficient.
+  hints:
+    rephrase: Let u equal e^x minus 1 and substitute into the series for ln(1+u).
+    smaller_case: Compute the series for ln(1+u) keeping only terms up to x^2.
+    key_idea: Use the series ln(1+u)=u-u^2/2+u^3/3-... and collect powers of x.
+  check: sympy.expand(sympy.series(sympy.log(sympy.exp(x)),x,0,4).removeO() - x)==0
+  check_ok: null
+- goal: (v) Find the series of $\frac{1-\cos^2 x}{x^2}$ up to $x^2$.
+  expected: $1-\frac{x^2}{3}+\cdots$
+  solution: Since $1-\cos^2x=\sin^2x$, first compute $\sin^2 x=\left(x-\frac{x^3}{6}\right)^2+\cdots=x^2-\frac{x^4}{3}+\cdots$.
+    Dividing by $x^2$ gives $1-\frac{x^2}{3}+\cdots$.
+  common_errors:
+  - Dividing by x^2 before having the full x^4 term of the numerator.
+  - Using cos^2 x expansions with the wrong coefficients.
+  - Stopping the series at the constant term.
+  hints:
+    rephrase: Simplify the numerator with a trig identity first.
+    smaller_case: Expand cos x to x^4 and then square it.
+    key_idea: After dividing by x^2, the x^2 term of the answer needs the x^4 term of the numerator.
+  check: sympy.expand(sympy.series((1-sympy.cos(x)**2)/x**2,x,0,3).removeO() - (1-x**2/3))==0
+  check_ok: null
+extensions:
+  '3':
+  - Find the series of $\sec x$ up to $x^4$.
+  '4':
+  - Find the series of $\cot x$ up to $x^3$ by writing $\cot x=\frac{\cos x}{\sin x}$.
+  '5':
+  - Find the series of $\frac{\sin x}{x}$ up to $x^4$.
+spoken_vocab:
+- tan x
+- sine x
+- cosine x
+- e to the x
+- e to the minus x
+- ln of one plus x
+- ln of e to the x
+- x cubed over three
+- x to the fifth
+- one minus cos squared x over x squared
+- Maclaurin series
+- coefficient
+source: step-workbook/Cambridge STEP Short Workbook.pdf#0
+verified: false
+rating:
+  quality: 4
+  difficulty: 4
+  parts: 5
+  minutes: 20
+  flags: []
+  tagline: Routine series manipulation across five parts; mostly mechanical.
+  priority: 53
+  rank: 501
+  tier: C
+  category: step-workbook
+  d10: 3.0
+  real: 2.0
+  by: haiku
+tags:
+- sequences_and_series
+- trigonometry

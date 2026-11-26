@@ -1,0 +1,111 @@
+id: identify-function-from-graph
+title: Identify the function from the graph
+topics:
+- functions
+- asymptotes
+- odd functions
+- minimisation
+- square roots
+warmup: false
+answer_source: generated
+statement: What function represents this graph? (The graph shows a curve with a vertical asymptote on
+  the y-axis, a second branch on the other side of the y-axis with a vertical asymptote, and two dashed
+  oblique asymptotes.)
+stages:
+- goal: Identify the vertical asymptote and the structure of the two branches.
+  expected: Vertical asymptote x = 0 (the y-axis). The right branch (x > 0) tends to plus infinity as
+    x tends to 0 from the right, and the left branch (x < 0) tends to minus infinity as x tends to 0 from
+    the left. So f(x) behaves like 1/x near 0, i.e. f(x) = g(x)/x with g(0) not equal to 0.
+  solution: 'A vertical asymptote at x = 0 with branches going to opposite infinities on each side means
+    f(x) ~ c/x near 0 with c nonzero. Assumed answer: f(x) = sqrt(x^4+1)/x, which near 0 is 1/x times
+    a function tending to 1, so x*f(x) tends to 1 as x tends to 0.'
+  common_errors:
+  - Proposing a rational function with two different oblique asymptotes (a rational function has one oblique
+    asymptote at each end, with the same slope only if degrees match the pattern)
+  - Missing that the two branches go to opposite infinities
+  - Forgetting the image itself must be checked against the description
+  hints:
+    rephrase: Which x value is the vertical asymptote, and how does the function behave on each side of
+      it?
+    smaller_case: 'Compare 1/x and 1/(x-2): where does each blow up and on which side is it positive?'
+    key_idea: A vertical asymptote at x = c comes from a factor 1/(x - c) while the rest of the expression
+      stays nonzero there.
+  check: sp.limit(x*sp.sqrt(x**4+1)/x, x, 0) - 1
+  check_ok: null
+- goal: Find the oblique asymptotes at each end.
+  expected: y = x as x tends to plus infinity and y = -x as x tends to minus infinity. These are the two
+    dashed oblique lines.
+  solution: 'For x > 0, f(x) = sqrt(x^4+1)/x. Writing sqrt(x^4+1) = x^2 sqrt(1 + 1/x^4) gives f(x) = x
+    sqrt(1 + 1/x^4), so f(x) - x tends to 0 as x tends to plus infinity: asymptote y = x. For x < 0, f
+    is odd, so the asymptote is y = -x as x tends to minus infinity.'
+  common_errors:
+  - Giving y = x for both ends
+  - Forgetting to check the sign of x when x is negative
+  - Using the wrong leading term of the square root
+  hints:
+    rephrase: Divide the function by x and see what is left as x goes to plus infinity and to minus infinity.
+    smaller_case: Compare sqrt(x^2+1) with x for x = 10 and x = 100.
+    key_idea: An oblique asymptote y = mx + c comes from the limit of f(x) - mx; for a square root, factor
+      out the leading term.
+  check: sp.limit(sp.sqrt(x**4+1)/x - x, x, sp.oo)
+  check_ok: null
+- goal: Confirm the function fits the picture by finding the turning point of the right branch.
+  expected: On x > 0 the minimum is sqrt(2) at x = 1, so the point (1, sqrt(2)) lies on the right branch.
+    By oddness the left branch has maximum -sqrt(2) at x = -1.
+  solution: 'Let f(x)^2 = (x^4+1)/x^2 = x^2 + 1/x^2. This is minimised for x > 0 when x^2 = 1 (AM-GM:
+    x^2 + 1/x^2 >= 2, equality at x^2 = 1), so f has minimum sqrt(2) at x = 1. Since f is odd, f(-1) =
+    -sqrt(2).'
+  common_errors:
+  - Minimising f instead of f squared (fine, but the algebra must be consistent)
+  - Getting the minimum at x = sqrt(2)
+  - Forgetting the left branch point at (-1, -sqrt(2))
+  hints:
+    rephrase: Write f(x) squared as a sum of simpler terms and think about where that sum is smallest.
+    smaller_case: Find the minimum of t + 1/t over t > 0 with a derivative.
+    key_idea: Compute f(x) squared first; the problem then reduces to minimising x^2 + 1/x^2.
+  check: sp.simplify((sp.sqrt(x**4+1)/x).subs(x,1) - sp.sqrt(2))
+  check_ok: null
+extensions:
+  '3':
+  - Show that the function you chose is odd, and explain what that says about the two branches.
+  '4':
+  - 'Show that f(x) - x > 0 for x > 0, so the right branch approaches its asymptote from above. Hint:
+    compare f(x)^2 with x^2.'
+  '5':
+  - For f_c(x) = sqrt(x^4+c)/x with c > 0, find the minimum value of f_c on x > 0 and describe how the
+    graph changes as c changes.
+spoken_vocab:
+- square root of x to the fourth plus one, over x
+- vertical asymptote
+- oblique asymptote
+- y equals x
+- y equals minus x
+- odd function
+- minimum
+- branch
+- y-axis
+- limit
+- plus infinity
+- minus infinity
+- square root of two
+source: past-interviews/Actual Past Interview Questions/F1u.jpg
+verified: false
+rating:
+  quality: 4
+  difficulty: 4
+  parts: 3
+  minutes: 10
+  flags:
+  - needs_diagram
+  - missing_info
+  tagline: Reconstructing a function from asymptotes, but the graph itself is missing.
+  priority: 35
+  rank: 603
+  tier: D
+  category: past-interviews
+  d10: 5.0
+  real: 3.0
+  by: big-pickle
+tags:
+- curve_sketching
+- algebra_and_functions

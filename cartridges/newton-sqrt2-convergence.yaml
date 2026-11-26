@@ -1,0 +1,175 @@
+id: newton-sqrt2-convergence
+title: 'Newton''s method for $\sqrt{2}$: bounds, error squaring, tangents'
+topics:
+- sequences
+- AM-GM inequality
+- monotone convergence theorem
+- Newton-Raphson method
+- tangent lines
+- error recursion
+warmup: false
+answer_source: pdf
+statement: 'Define $a_1 = 1$ and $a_{n+1} = \frac{1}{2}\left(a_n + \frac{2}{a_n}\right)$ for $n \geq 1$.
+
+
+  (i) Show that $a_n \geq \sqrt{2}$ for $n \geq 2$.
+
+
+  (ii) Show that $(a_n)$ is decreasing from $n = 2$ onwards. Deduce that it converges, and find its limit.
+
+
+  (iii) Show that $a_{n+1} - \sqrt{2} = \dfrac{(a_n - \sqrt{2})^2}{2a_n}$.
+
+
+  (iv) Compute $a_2, a_3, a_4$ as fractions. Roughly how many decimal places of $\sqrt{2}$ does $a_5$
+  give?
+
+
+  (v) Explain the construction geometrically, using tangent lines to $y = x^2 - 2$.'
+stages:
+- goal: (i) Show that $a_n \geq \sqrt{2}$ for $n \geq 2$.
+  expected: All terms are positive. AM-GM applied to $a_{n-1}$ and $2/a_{n-1}$ gives $a_n = \frac{1}{2}(a_{n-1}
+    + 2/a_{n-1}) \geq \sqrt{2}$ for $n \geq 2$.
+  solution: 'By induction every $a_n > 0$: $a_1 = 1 > 0$, and if $a_n > 0$ then $a_{n+1}$ is half the
+    sum of two positive numbers. For $n \geq 2$, AM-GM applied to the positive numbers $a_{n-1}$ and $2/a_{n-1}$
+    gives $a_n = \frac{1}{2}\left(a_{n-1} + \frac{2}{a_{n-1}}\right) \geq \sqrt{a_{n-1} \cdot \frac{2}{a_{n-1}}}
+    = \sqrt{2}$. Hence $a_n \geq \sqrt{2}$ for all $n \geq 2$. (Note $a_1 = 1 < \sqrt{2}$, so the bound
+    starts at $n = 2$.)'
+  common_errors:
+  - Applying AM-GM to $a_n$ and $2/a_n$ rather than to $a_{n-1}$ and $2/a_{n-1}$
+  - Forgetting that AM-GM needs both quantities to be positive
+  - Claiming $a_1 \geq \sqrt{2}$ too, which is false since $a_1 = 1$
+  hints:
+    rephrase: Apply the AM-GM inequality to the two terms that appear inside the bracket defining $a_n$.
+    smaller_case: Evaluate $\frac{1}{2}(x + 2/x)$ at $x = 1$ and at $x = 2$, and compare each value with
+      $\sqrt{2}$.
+    key_idea: The product of the two numbers in AM-GM is constant, and that constant fixes the lower bound.
+  check: simplify((sqrt(2) + 2/sqrt(2))/2 - sqrt(2)) == 0
+  check_ok: true
+- goal: (ii) Show that $(a_n)$ is decreasing from $n = 2$ onwards, deduce that it converges, and find
+    the limit.
+  expected: $a_{n+1} - a_n = \frac{2 - a_n^2}{2a_n} \leq 0$ for $n \geq 2$ since $a_n^2 \geq 2$. The sequence
+    is decreasing and bounded below by $\sqrt{2}$, so it converges to some $L \geq \sqrt{2}$. Taking limits
+    gives $L = \frac{1}{2}(L + 2/L)$, so $L^2 = 2$ and $L = \sqrt{2}$.
+  solution: Compute $a_{n+1} - a_n = \frac{1}{2}\left(a_n + \frac{2}{a_n}\right) - a_n = \frac{2 - a_n^2}{2a_n}$.
+    For $n \geq 2$, $a_n^2 \geq 2$ by (i) and $a_n > 0$, so this is $\leq 0$. Thus $(a_n)$ is decreasing
+    from $n = 2$ and bounded below by $\sqrt{2}$, so by the monotone convergence theorem it converges
+    to some $L \geq \sqrt{2}$. Letting $n \to \infty$ in the recurrence gives $L = \frac{1}{2}(L + 2/L)$,
+    so $L = 2/L$ and $L^2 = 2$. Since $L \geq \sqrt{2} > 0$, $L = \sqrt{2}$.
+  common_errors:
+  - Claiming the sequence is decreasing from $n = 1$, when in fact $a_2 = 3/2 > a_1 = 1$
+  - Concluding convergence without citing both monotonicity and a bound
+  - Getting $L = \pm\sqrt{2}$ and not discarding the negative root, although all terms are positive
+  hints:
+    rephrase: Compare $a_{n+1}$ with $a_n$ using part (i), then use the fact that a monotone sequence
+      bounded below converges.
+    smaller_case: Take $a_n = 2$ and compute $a_{n+1}$ directly. Is it smaller than $a_n$?
+    key_idea: The limit of a convergent sequence defined by a recurrence must be a fixed point of the
+      update rule.
+  check: simplify((a + 2/a)/2 - a - (2 - a**2)/(2*a)) == 0
+  check_ok: true
+- goal: (iii) Show that $a_{n+1} - \sqrt{2} = \dfrac{(a_n - \sqrt{2})^2}{2a_n}$.
+  expected: $a_{n+1} - \sqrt{2} = \frac{a_n^2 + 2 - 2\sqrt{2}\,a_n}{2a_n} = \frac{(a_n - \sqrt{2})^2}{2a_n}$.
+  solution: $a_{n+1} - \sqrt{2} = \frac{1}{2}\left(a_n + \frac{2}{a_n}\right) - \sqrt{2} = \frac{a_n^2
+    + 2 - 2\sqrt{2}\,a_n}{2a_n}$. The numerator equals $(a_n - \sqrt{2})^2$ because $(a_n - \sqrt{2})^2
+    = a_n^2 - 2\sqrt{2}\,a_n + 2$. Hence $a_{n+1} - \sqrt{2} = \frac{(a_n - \sqrt{2})^2}{2a_n}$.
+  common_errors:
+  - Dropping the factor of 2 in the denominator
+  - Expanding $(a_n - \sqrt{2})^2$ with the wrong middle term, e.g. $-\sqrt{2}\,a_n$ instead of $-2\sqrt{2}\,a_n$
+  - Forgetting to put all terms over the common denominator $2a_n$
+  hints:
+    rephrase: Put everything over the common denominator $2a_n$, then compare the numerator with a perfect
+      square.
+    smaller_case: Set $a_n = 1$ and compare both sides of the identity numerically.
+    key_idea: Expand $(a_n - \sqrt{2})^2$ and match it with the numerator term by term.
+  check: simplify((a + 2/a)/2 - sqrt(2) - (a - sqrt(2))**2/(2*a)) == 0
+  check_ok: true
+- goal: (iv) Compute $a_2, a_3, a_4$ as fractions, then estimate how many decimal places of $\sqrt{2}$
+    the value $a_5$ gives.
+  expected: $a_2 = 3/2$, $a_3 = 17/12$, $a_4 = 577/408$. The errors are about $0.0858$, $0.00245$ and
+    $2.12 \times 10^{-6}$. By (iii), the error in $a_5$ is about $1.6 \times 10^{-12}$, so $a_5$ agrees
+    with $\sqrt{2}$ to roughly 11 decimal places.
+  solution: $a_2 = \frac{1}{2}(1 + 2) = \frac{3}{2}$. $a_3 = \frac{1}{2}\left(\frac{3}{2} + \frac{4}{3}\right)
+    = \frac{17}{12}$. $a_4 = \frac{1}{2}\left(\frac{17}{12} + \frac{24}{17}\right) = \frac{289 + 288}{2
+    \cdot 204} = \frac{577}{408}$. Numerically $a_2 - \sqrt{2} \approx 0.0858$, $a_3 - \sqrt{2} \approx
+    0.00245$, $a_4 - \sqrt{2} \approx 2.12 \times 10^{-6}$. By (iii), $a_5 - \sqrt{2} \approx \frac{(2.12
+    \times 10^{-6})^2}{2\sqrt{2}} \approx 1.6 \times 10^{-12}$. So $a_5$ is correct to roughly 11 decimal
+    places, and the number of correct digits roughly doubles at each step.
+  common_errors:
+  - Making an arithmetic slip when adding the fractions for $a_3$ or $a_4$
+  - Reading the error in $a_5$ as about $10^{-6}$, which is the error in $a_4$
+  - Stating the wrong number of decimal places, e.g. 6 instead of about 11
+  hints:
+    rephrase: Apply the recurrence to each previous fraction in turn, keeping numerator and denominator
+      exact.
+    smaller_case: Compute $a_2$ exactly first, then use it to find $a_3$.
+    key_idea: 'Use (iii) to turn the error at one step into the error at the next: it is roughly squared
+      each time.'
+  check: Rational(577,408) - (Rational(17,12) + 2/Rational(17,12))/2 == 0
+  check_ok: true
+- goal: (v) Explain the construction geometrically using tangent lines to $y = x^2 - 2$.
+  expected: 'The tangent to $y = x^2 - 2$ at $x = a$ is $y = 2a(x - a) + a^2 - 2$. It meets the $x$-axis
+    at $x = \frac{a^2 + 2}{2a} = \frac{1}{2}(a + 2/a)$. So each step replaces the curve by its tangent
+    at the current point and takes the $x$-intercept: this is Newton-Raphson for $f(x) = x^2 - 2$.'
+  solution: The derivative of $x^2 - 2$ at $x = a$ is $2a$, so the tangent at $(a, a^2 - 2)$ is $y = 2a(x
+    - a) + a^2 - 2$. Setting $y = 0$ gives $x = a - \frac{a^2 - 2}{2a} = \frac{a^2 + 2}{2a} = \frac{1}{2}\left(a
+    + \frac{2}{a}\right)$. With $a = a_n$ this is exactly $a_{n+1}$. So each step replaces the curve by
+    its tangent line at the current approximation and moves to where that tangent crosses the $x$-axis.
+    This is the Newton-Raphson method applied to $f(x) = x^2 - 2$, whose positive root is $\sqrt{2}$.
+  common_errors:
+  - Writing the tangent slope as $a$ instead of $2a$
+  - Confusing the $x$-intercept of the tangent with its $y$-intercept
+  - Not identifying the method as Newton-Raphson applied to $f(x) = x^2 - 2$
+  hints:
+    rephrase: Write the equation of the tangent at $x = a$, then find where it crosses the $x$-axis.
+    smaller_case: Take $a = 4$. Find the tangent to $y = x^2 - 2$ at $x = 4$ and its $x$-intercept.
+    key_idea: The $x$-intercept of the tangent line is the next iterate in Newton's method for $f(x) =
+      x^2 - 2$.
+  check: simplify(a - (a**2-2)/(2*a) - (a+2/a)/2) == 0
+  check_ok: true
+extensions:
+  '3':
+  - Apply the same iteration $a_{n+1} = \frac{1}{2}(a_n + c/a_n)$ to approximate $\sqrt{c}$ for a positive
+    constant $c$. What changes in parts (i) and (ii)?
+  - Show that the iteration for $\sqrt{c}$ converges for any positive starting value $a_1$.
+  '4':
+  - Using (iii), show that the errors $e_n = a_n - \sqrt{2}$ satisfy $e_{n+1} \leq \frac{e_n^2}{2\sqrt{2}}$
+    for $n \geq 2$.
+  - Explain why the number of correct decimal digits roughly doubles at each step.
+  '5':
+  - Compare the number of steps needed by bisection and by this iteration to reach 11 correct decimal
+    places.
+  - Apply Newton's method to $f(x) = x^3 - 2$ and find the update formula. Does the error recursion still
+    square?
+spoken_vocab:
+- a sub n
+- square root of two
+- two over a sub n
+- one half times a sub n plus two over a sub n
+- AM-GM
+- monotone convergence theorem
+- Newton-Raphson
+- tangent line
+- x squared minus two
+- quadratic convergence
+- decimal places
+source: jaymin/Jaymin Interview (1).pdf#p25
+verified: false
+rating:
+  quality: 8
+  difficulty: 5
+  parts: 5
+  minutes: 20
+  flags: []
+  tagline: Newton's sqrt2 with AM-GM, error recursion, fractions, and geometric tangent view.
+  priority: 111
+  rank: 18
+  tier: S
+  category: jaymin
+  d10: 4.5
+  real: 5.5
+  by: haiku
+refined: true
+tags:
+- sequences_and_series
+- numerical_methods

@@ -1,0 +1,527 @@
+[
+ {
+  "q": "How many ways can you arrange each of the digits 1 to 6 to create distinct 6 digit numbers? How many of these contain the digits 1, 2 and 3 next to each other and in that order? In how many arrangements does 5 occur before 1? How many distinct 6 digit numbers are there in which all of the digits 1 to 5 appear?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "The Power Set is formed from all subsets of a given set. If a set contains $n$ elements what is the cardinality of its Power Set? How many subsets contain a given element $x_1$?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "If a round table has $n$ people sitting around it, what is the probability of person A sitting exactly $k$ seats away from person B?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "How can you maximise the number of regions $n$ straight lines will divide the plane in to? What is this maximum in terms of $n$? What if we replace lines with circles? What does this tell you about Venn Diagrams?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "How many vertices and edges does a line segment have? A square? A cube? A tesseract? Can you conjecture formulae for the number of edges and vertices of an $n$ dimensional hypercube? Can you give the coordinates of the vertices of a tesseract (where 4 edges coincide with the coordinate axes)? What would the longest length between two vertices be?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "In a football competition where every round played is a knockout match (i.e. a draw leading to a replay is not an option), how many matches will be played in the competition in total if there are $n$ teams?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "In how many ways can $2n$ opponents be paired in the first round of a tennis competition? Can you come up with a more succinct expression for your previous solution (i.e. if I gave you a large value for $n$ you could then use your calculator to calculate the answer quickly)?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "How many distinct tessellations of the plane use only one regular polygon? Why are there only five platonic solids? Using Euler's Polyhedron Formula $V-E+F=2$ show that a platonic solid made of triangles must have 4, 8 or 20 faces.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "The numbers 1 to 1000 are written on a blackboard. You randomly choose two numbers $a$ and $b$ from among them and replace them with their difference. You continue this process until you are left with a single number on the board, is it possible for you to be left with the number 1?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "If I colour three faces of a cube red and the other faces blue, how many distinguishable colourings are there?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Every subset of the set $(1, 2, 3, \\ldots, n)$ either contains the element 1 or it does not. By considering these two possibilities, show that $\\binom{n-1}{r-1} + \\binom{n-1}{r} = \\binom{n}{r}$. Explain why $\\binom{n-2}{r-2} + 2\\binom{n-2}{r-1} + \\binom{n-2}{r} = \\binom{n}{r}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "10 distinct points lie within a unit square, prove at least two of the points lie within $\\frac{\\sqrt{2}}{3}$ units of each other.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Consider an infinite chessboard, the squares of which have been filled with positive integers. Each of these integers is the arithmetic mean of four of its neighbours (above, below, left, right). Show that all the integers are equal to each other.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Two full decks of cards are shuffled and placed side by side. I take the top card from each pile and pair them up. What is the probability I have: i) 52 matching pairs? ii) 51 matching pairs? iii) 50 matching pairs? iv) 49 matching pairs? v) $k$ matching pairs?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "If $n$ points are distributed around the circumference of a circle and each point is joined to every other point by a chord of the circle (assuming that no three chords intersect at a point inside the circle) in to how many regions is the circle divided?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "$2n$ points are chosen in the plane such that no 3 are collinear, $n$ are coloured blue and $n$ are coloured red. Prove that it is always possible to join the $n$ red points to the $n$ blue points by line segments, such that no two line segments cross.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "For $n>1$, the integers from 1 to $n^2$ are placed in the cells of an $n\\times n$ chessboard. Show that there is a pair of horizontally, vertically, or diagonally adjacent cells whose value differs by at least $n+1$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Say you have finitely many red and blue points on a plane with the interesting property: every line segment that joins two points of the same colour contains a point of the other colour. Prove that all the points lie on a single straight line.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "$n$ students are standing in a field such that the distance between each pair is distinct. Each student is holding a ball, and when the teacher blows a whistle, each student throws their ball to the nearest student. Prove that there is a pair of students that throw their balls to each other.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "A longevity chain is a sequence of consecutive integers, whose digit sums are never a multiple of 9. What is the longest possible length of a longevity chain?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "The T-tetromino is the shape made by joining four $1\\times1$ squares edge to edge, as shown. A rectangle R has dimensions $(2a)\\times(2b)$ where $a$ and $b$ are integers. The expression 'R can be tiled by T' means that R can be covered exactly by copies of T without gaps or overlaps. i) Can R be tiled by T when both $a$ and $b$ are even? ii) Can R be tiled by T when both $a$ and $b$ are odd?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "I have a large supply of counters which I place in each of the $1\\times1$ squares of an $8\\times8$ chessboard (1 counter on each square). Each counter is red, white or blue. A particular pattern of coloured counters is called an arrangement. Determine whether there are more arrangements which contain an even number of red counters or more arrangements which contain an odd number of red counters.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Prove that it is impossible to have a cuboid for which the volume, the surface area and the perimeter are numerically equal (the perimeter of a cuboid is the sum of the lengths of all its twelve edges).",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "A two player game is played on a $5\\times5$ grid. A token starts in the bottom left corner of the grid. On each turn, a player can move the token one or two units to the right, or to the leftmost square of the above row. The last player who is able to move wins. Determine which positions of the token are winning positions and which are losing. Generalize this problem to larger grids. How many winning positions are there on an $m\\times n$ grid?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Two people play a game: There are $n$ sweets in a pile and they each take it in turns to remove at least one sweet from the pile whilst ensuring they take no more than half of what remains. The person who removes the last sweet is the loser. Are there values of $n$ for which the second player has a winning strategy?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Show that the family of concentric circles which have centre $\\left(\\frac{1}{3}, \\sqrt{2}\\right)$ are such that each circle has exactly 1 lattice point on its boundary, and each lattice point is on a circle.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "There are 6 ropes in a bag. In each step, two rope ends are picked at random, tied together and put back into a bag. The process is repeated until there are no free ends. What is the expected number of loops $e_n$ at the end of the process? (Hint: Find a formula linking $e_n$ and $e_{n-1}$)",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "For each non-empty subset of integers $(1, 2, 3, \\ldots, n)$ consider the reciprocal of the product of the elements. Let $S_n$ denote the sum of these products. Conjecture and prove a formula for $S_n$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "A thin rod is broken into three pieces. What is the probability that a triangle can be formed from the three pieces?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Given $n$ consecutive positive integers, show that $n!$ is a factor of their product.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "The lengths of the sides of a triangle are in geometric progression with common ratio $r$. Prove that $\\frac{2}{1+\\sqrt{5}} < r < \\frac{1+\\sqrt{5}}{2}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Find the number of integer solutions the equation $|x|+|y|\\leq 100$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Are there any integer solutions to the equation $x^2+y^2=3z^2$ where $x, y, z$ are co-prime? Are there any integer solutions at all?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Sketch $x^2-ny^2=0$ where $n$ is a natural number. Find all natural solution pairs $(x,y)$ in the case $n=9$. Find all natural solution pairs $(x,y)$ in the case $n=10$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "How many natural number solutions are there to the equation $\\frac{1}{a}+\\frac{1}{b}+\\frac{1}{c}=1$ where $a<b<c$?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Find all positive integer solutions $(x,y)$ to $x^2+y^2=2015$. Will the following equation have any positive integer solutions $x^2+33y^2=555555555$?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "If $n, x, y, z$ are all positive integers, find all solutions of the equation $n^x+n^y=n^z$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Use algebraic techniques to determine whether the following equation has any real solutions: $x^4+2x^3+3x^2+2x+1=0$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "How many solutions are there to the equation $|x|+|x-1|=0$? How many solutions are there to the equation $|27x^2-48|+|6x^2-5x-4|=0$? What are the solutions of the equation $|\\sin(2x)|+|\\cos(0.5x)|=0$?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "If three positive real numbers $a, b, c$ satisfy the following equations show that at least one of them must be 1 and hence deduce all solutions: $abc = 1$ and $a+b+c = 3 = \\frac{1}{a}+\\frac{1}{b}+\\frac{1}{c}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Prove that the only solution to the equation $x^2+y^2+z^2=2xyz$ for integers $x, y, z$ is $x=y=z=0$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Show that no three real numbers $a, b, c$ satisfy the equations $a+b+c=0=\\frac{1}{a}+\\frac{1}{b}+\\frac{1}{c}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "If $x$ and $y$ are positive integers, find all solutions of the equation $2xy-4x^2+12x-5y=11$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "A right angled triangle has all of its sides an integer length. If the length of the perimeter equals the area, find all such triangles.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Prove that $n^2(n^2-1)(n^2-4)$ is divisible by 360 whenever $n$ is a natural number.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Find the last two digits of $99^n$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Which will be larger as $n\\to\\infty$: $2^{2n}$ or $100^{100n}$?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Do you know a solution to the equation $5^x=4^x+3^x$? Are there any more? Prove it.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Prove that $n^2-1$ is divisible by 8 when $n$ is odd. Prove that $n^5-n$ is divisible by 6 whenever $n$ is a natural number. Prove that $n^5-n$ is divisible by 30 whenever $n$ is a natural number.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Simplify $1^2-2^2+3^2-4^2+\\cdots+(2n-1)^2-(2n)^2$. Find $21^2-22^2+23^2-24^2+\\cdots+39^2-40^2$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Construct a counter example to the statement: When written in decimal notation, every square number has at most 1000 digits that are not 0 or 1.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Prove that $4^n-1$ is divisible by 3 whenever $n$ is a natural number.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "A natural number from 1 to 1000000 is selected at random, what is the probability its cube ends in 11?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Given that $8<\\pi^2<10$, show that $\\frac{1}{\\log_2 \\pi}+\\frac{1}{\\log_5 \\pi} > 2$ and $\\frac{1}{\\log_2 \\pi}+\\frac{1}{\\log_\\pi 2} > 2$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Prove that there are infinitely many primes.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Prove that there are infinitely many primes of the form $4n+3$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Is $\\log_2 3$ rational? Prove it.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Prove that $14n+11$ is never prime.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Let $n$ be a natural number. Suppose $a^n-1$ is prime. Show that $a=2$ and that $n$ must be prime (Mersenne Primes). Comment on primes of the form $2^n+1$ (Fermat Numbers).",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Find all prime numbers $p$ such that $2p-1$ and $2p+1$ are also prime.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Show that $3<\\pi<4$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "If the ratio of consecutive Fibonacci numbers approaches a limit what must this limit be?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Find the exact value of $\\cos^2(1^\\circ) + \\cos^2(2^\\circ) + \\cos^2(3^\\circ) + \\cdots + \\cos^2(89^\\circ)$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "If a natural number $n$ has $N$ digits how many digits can $n^2$ have? What about $n^n$? How would you write a formula for the number of digits of $n$?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Given that $\\sum_{r=1}^{\\infty} \\frac{1}{r^2}=\\frac{\\pi^2}{6}$ find the exact value of $\\sum_{r=1}^{\\infty} \\frac{1}{(2r-1)^2}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Prove that if $a, b, c$ are all odd then the quadratic equation $ax^2+bx+c=0$ cannot have rational roots.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Is $\\tan(1^\\circ)$ irrational? What about $\\cos(1^\\circ)$?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Find $\\lim_{n\\to\\infty}\\left(\\frac{1}{n}+\\frac{(n-1)^2}{n^3}+\\frac{(n-2)^2}{n^3}+\\cdots+\\frac{1}{n^3}\\right)$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Evaluate $\\prod_{n=2}^{\\infty}\\left(1-\\frac{1}{n^2}\\right)$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Conjecture and prove a formula for $1\\times1!+2\\times2!+3\\times3!+\\cdots+n\\times n!$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Is $1234567891011$ a square number? Is $24681012141618202224$?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Let $f(x,y)$ be a function of two real variables which is not identically zero. If $f(x,y)=k\\,f(y,x)$ for all values of $x$ and $y$, what are the possible values of $k$?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Let $h(x)=x^3+ax$, where $a$ is a constant. When will an inverse to $h(x)$ exist for all $x$?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Suppose that $f(0)=0$ and that, for $x\\neq0$, $0<\\frac{f(x)}{x}<1$. i) Show that $-\\frac{1}{2}<\\int_{-1}^{1}f(x)\\,dx<\\frac{1}{2}$. ii) How does the above inequality change if $0<\\frac{f(x)}{x^2}<1$ instead?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ },
+ {
+  "q": "Show that $\\cos(n\\theta)=f_n(\\cos\\theta)$ for polynomials $f_n(x)$ satisfying $f_{n+1}(x)=2xf_n(x)-f_{n-1}(x)$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#0"
+ }
+]

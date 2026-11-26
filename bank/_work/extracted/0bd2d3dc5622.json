@@ -1,0 +1,23 @@
+[
+ {
+  "q": "Let $x_1,x_2,\\ldots,x_n$ be positive real numbers satisfying $x_1 = 1+\\frac{1}{x_2}$, $x_2 = 1+\\frac{1}{x_3}$, $\\ldots$, $x_n = 1+\\frac{1}{x_1}$. (i) Show that $x_i > 1$ for each $i$. (ii) Show that $x_1 - x_2 = \\frac{x_3 - x_2}{x_2x_3}$. (iii) Hence show that $x_1 = x_2 = \\cdots = x_n$ and find the value of $x_1$.",
+  "kind": "maths",
+  "answer": "(i) Since $x_2>0$, $1/x_2>0$, so $x_1 = 1+1/x_2 > 1$; the same holds for every $x_i$. (ii) Subtract the equations for $x_1$ and $x_2$: $x_1-x_2 = \\frac{1}{x_2}-\\frac{1}{x_3} = \\frac{x_3-x_2}{x_2x_3}$. Repeating the cyclic step gives $(x_1-x_2)\\left(1\\mp\\frac{1}{x_2^2x_3^2\\cdots x_n^2 x_1^2}\\right)=0$ (sign depending on $n$). (i) gives $x_1^2x_2^2\\cdots x_n^2\\neq\\pm1$, so $x_1=x_2$, and by symmetry all $x_i$ are equal. (iii) With $x_i=x$, $x = 1+1/x$, so $x^2-x-1=0$, giving $x=\\frac{1\\pm\\sqrt{5}}{2}$. The negative root is rejected since $x_i>0$, so $x=\\frac{1+\\sqrt{5}}{2}$.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#3"
+ },
+ {
+  "q": "Find all the solutions of the equation $|x+1| - |x| + 3|x-1| - 2|x-2| = x+2$.",
+  "kind": "maths",
+  "answer": "$x=-2$ or $x\\geq 2$. Case analysis over the regions $x\\leq -1$, $-1\\leq x\\leq 0$, $0\\leq x\\leq 1$, $1\\leq x\\leq 2$, $x\\geq 2$ gives the solutions $x=-2$ and every $x\\geq 2$.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#3"
+ },
+ {
+  "q": "Find the coefficient of $x^6$ in $(1-2x+3x^2-4x^3+5x^4)^3$. (ii) By considering the binomial expansions of $(1+x)^{-2}$ and $(1+x)^{-6}$, or otherwise, find the coefficient of $x^6$ in $(1-2x+3x^2-4x^3+5x^4-6x^5+7x^6)^3$.",
+  "kind": "maths",
+  "answer": "(i) 369. (ii) 462, since the cube of the series for $(1+x)^{-2}$ is the series for $(1+x)^{-6}$, whose $x^6$ coefficient is $\\frac{11!}{6!\\,5!}=462$.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#3"
+ }
+]

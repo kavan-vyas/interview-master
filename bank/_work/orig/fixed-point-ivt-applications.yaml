@@ -1,0 +1,120 @@
+id: fixed-point-ivt-applications
+title: Fixed points, monk, odd polynomials and the runner via IVT
+topics:
+- intermediate value theorem
+- fixed points
+- continuity
+- polynomials
+warmup: false
+answer_source: pdf
+statement: 'You may assume the intermediate value theorem: a continuous function on $[a,b]$ takes every
+  value between $f(a)$ and $f(b)$. (i) Show that every continuous $f:[0,1]\to[0,1]$ has a fixed point.
+  (ii) A monk climbs a mountain from 8am to 6pm one day, and descends by the same path from 8am to 6pm
+  the next day. Show that there is a time of day at which he is at the same place on both days. (iii)
+  Show that every polynomial of odd degree has a real root. (iv) A runner covers 10 km in exactly one
+  hour, at varying speed. Show that there is some 5 km stretch that took exactly 30 minutes.'
+stages:
+- goal: Prove that every continuous $f:[0,1]\to[0,1]$ has a fixed point.
+  expected: Some $x\in[0,1]$ satisfies $f(x)=x$.
+  solution: Let $g(x)=f(x)-x$, which is continuous on $[0,1]$. Since $f(0)\in[0,1]$, $g(0)=f(0)\ge 0$.
+    Since $f(1)\le 1$, $g(1)=f(1)-1\le 0$. If $g(0)=0$ then 0 is a fixed point, and if $g(1)=0$ then 1
+    is. Otherwise $g(0)>0>g(1)$, and the intermediate value theorem gives $x$ with $g(x)=0$, i.e. $f(x)=x$.
+  common_errors:
+  - Applying the IVT to f itself, which gives values rather than fixed points
+  - Forgetting the endpoint cases $g(0)=0$ or $g(1)=0$
+  - Assuming the fixed point is unique
+  hints:
+    rephrase: Introduce a function that measures how far f(x) is from x, and check its sign at the endpoints.
+    smaller_case: Take $f(x)=\frac{x}{2}$ and find where its graph meets the diagonal $y=x$.
+    key_idea: Compare f(0) with 0 and f(1) with 1. A sign change forces a zero.
+  check: null
+- goal: Show that the monk is at the same place at the same time of day on both walks.
+  expected: Yes. The difference of the two height functions is continuous, negative at 8am and positive
+    at 6pm, so it vanishes at some time.
+  solution: Let $u(t)$ be his height on the ascent and $d(t)$ his height on the descent, for times $t\in[8,18]$
+    in hours. Both are continuous. At 8am on the ascent he is at the base and on the descent at the summit,
+    so $u-d<0$. At 6pm on the ascent he is at the summit and on the descent at the base, so $u-d>0$. The
+    IVT gives a time $t$ with $u(t)=d(t)$.
+  common_errors:
+  - Comparing the two heights at one fixed time instead of as functions of time
+  - Getting the sign of the endpoints wrong
+  - Requiring the two walks to have the same speed
+  hints:
+    rephrase: Turn the two walks into functions of time and subtract them.
+    smaller_case: What is the difference of the two heights at the start of the day?
+    key_idea: Reduce the problem to one continuous function whose sign at the two ends is opposite.
+  check: null
+- goal: Show that every polynomial of odd degree has a real root.
+  expected: Yes. The polynomial takes values of opposite sign for very negative and very positive x, so
+    by the IVT it has a zero.
+  solution: Let $p(x)=a_nx^n+\dots+a_0$ with $n$ odd and $a_n\ne 0$. Without loss of generality $a_n>0$,
+    since negating $p$ keeps the roots. The leading term dominates, so $p(x)\to+\infty$ as $x\to+\infty$
+    and $p(x)\to-\infty$ as $x\to-\infty$, because $x^n$ changes sign at the two ends when n is odd. Choose
+    $m<0<M$ with $p(m)<0<p(M)$ and apply the IVT on $[m,M]$.
+  common_errors:
+  - Applying the same argument to even degree, where it fails (for example $x^2+1$)
+  - Asserting the signs at infinity without saying why the leading term dominates
+  - Choosing bounds m and M without justifying that they exist
+  hints:
+    rephrase: Look at the sign of the polynomial when x is very large and positive, and when x is very
+      large and negative.
+    smaller_case: Try $x^3-2$. What are its signs at $x=10$ and $x=-10$?
+    key_idea: The leading term controls behaviour at infinity. For an odd power, the sign flips between
+      the two ends.
+  check: null
+- goal: Show that some 5 km stretch was covered in exactly 30 minutes.
+  expected: Yes. With $D(t)$ the distance covered by time $t$ hours, the function $g(t)=D(t+\frac{1}{2})-D(t)$
+    takes the value 5 for some $t\in[0,\frac{1}{2}]$.
+  solution: Let $D(t)$ be the distance covered in the first $t$ hours. It is continuous, with $D(0)=0$
+    and $D(1)=10$. Define $g(t)=D(t+\frac{1}{2})-D(t)$ for $t\in[0,\frac{1}{2}]$, which is continuous.
+    Then $g(0)+g(\frac{1}{2})=D(1)-D(0)=10$. So one of $g(0)$ and $g(\frac{1}{2})$ is at least 5 and the
+    other is at most 5. By the IVT there is $t$ with $g(t)=5$, meaning the 30-minute window starting at
+    $t$ covers exactly 5 km.
+  common_errors:
+  - Assuming the runner has constant speed
+  - Letting the window extend beyond the hour
+  - Concluding that the 5 km stretch must start at time 0
+  hints:
+    rephrase: Let a 30-minute window slide along the hour and track the distance it covers.
+    smaller_case: Consider the two adjacent half-hour windows. What do their distances add up to?
+    key_idea: Two complementary distances add up to a fixed total, so the sliding distance must pass through
+      the average value.
+  check: null
+extensions:
+  '3':
+  - 'Generalise part (i): show that every continuous $g:[a,b]\to[a,b]$ has a fixed point.'
+  '4':
+  - Give an example of a discontinuous $f:[0,1]\to[0,1]$ with no fixed point, and identify which step
+    of the argument in part (i) fails.
+  '5':
+  - Prove that for any continuous $f:[0,1]\to\mathbb{R}$ with $f(0)=f(1)$, there exists $t\in[0,\frac{1}{2}]$
+    with $f(t)=f(t+\frac{1}{2})$.
+spoken_vocab:
+- f of x
+- from zero to one
+- fixed point
+- f of x equals x
+- intermediate value theorem
+- g of x equals f of x minus x
+- monk
+- eight am
+- six pm
+- polynomial of odd degree
+- leading coefficient
+- runner
+- ten kilometres
+- five kilometres
+- thirty minutes
+source: jaymin/Jaymin Interview (1).pdf#p49
+verified: false
+rating:
+  quality: 8
+  difficulty: 5
+  parts: 4
+  minutes: 25
+  flags: []
+  tagline: Four IVT classics, from fixed points to a runner's 30-minute stretch.
+  priority: 107
+  rank: 34
+  tier: S
+  category: jaymin

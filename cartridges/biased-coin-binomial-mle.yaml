@@ -1,0 +1,105 @@
+id: biased-coin-binomial-mle
+title: 'Biased coin: most likely bias'
+topics:
+- probability
+- binomial distribution
+- optimisation
+- maximum likelihood
+warmup: false
+answer_source: generated
+statement: A biased coin has $P(\text{heads})=p$. It is tossed $n$ times. (a) Write down the probability
+  of exactly $k$ heads. (b) For fixed $n$ and $k$, find the value of $p$ that maximises this probability.
+  (c) Does your answer to (b) match what you would intuitively guess?
+stages:
+- goal: Give the probability of exactly k heads in n tosses.
+  expected: $\binom{n}{k}p^k(1-p)^{n-k}$
+  solution: Any particular sequence with k heads and n-k tails has probability $p^k(1-p)^{n-k}$ by independence.
+    There are $\binom{n}{k}$ such sequences, and they are mutually exclusive, so add them up.
+  common_errors:
+  - Forgetting the binomial coefficient.
+  - Writing $(1-p)^k$ instead of $(1-p)^{n-k}$.
+  - Treating the k heads as a single fixed arrangement.
+  hints:
+    rephrase: How many different sequences of H and T contain exactly k heads, and what is the probability
+      of any one such sequence?
+    smaller_case: Take n=2 and k=1. List every outcome and its probability.
+    key_idea: Multiply the number of arrangements by the probability of one arrangement.
+  check: simplify(answer - binomial(n,k)*p**k*(1-p)**(n-k))
+  check_ok: false
+- goal: For fixed n and k, find the p that maximises the probability from part (a).
+  expected: p = k/n (for k=0 the maximiser is p=0, and for k=n it is p=1, which still equals k/n).
+  solution: Let $f(p)=\binom{n}{k}p^k(1-p)^{n-k}$. Since log is increasing, maximise $\log f = \text{const}
+    + k\ln p + (n-k)\ln(1-p)$. For $0<k<n$ the derivative is $k/p-(n-k)/(1-p)$. Setting it to zero gives
+    $k(1-p)=(n-k)p$, so $p=k/n$. The second derivative $-k/p^2-(n-k)/(1-p)^2$ is negative, so this is
+    a maximum. For k=0, $f=(1-p)^n$ is largest at p=0. For k=n, $f=p^n$ is largest at p=1. Both boundary
+    cases agree with k/n.
+  common_errors:
+  - Differentiating $f$ directly and making messy algebra without using the logarithm.
+  - Assuming the maximiser is p=1/2 without checking.
+  - Ignoring the boundary cases k=0 and k=n.
+  hints:
+    rephrase: For which value of p would the observed number of heads be the most likely outcome?
+    smaller_case: Take n=2 and k=1. Write the probability as a function of p and find where it peaks.
+    key_idea: Maximise the logarithm of the probability, since log is increasing and has the same maximiser.
+  check: simplify(answer - k/n)
+  check_ok: false
+- goal: Say whether the answer to (b) matches intuition, and explain why.
+  expected: Yes. The maximiser k/n is the observed fraction of heads, which is the natural estimate of
+    p. It is not p=1/2 unless k=n/2.
+  solution: After seeing k heads in n tosses, the most sensible estimate of the bias is the observed frequency
+    k/n. The maximum-likelihood estimate of p is exactly this frequency. The answer depends on the data,
+    not on a fixed assumption that the coin is fair.
+  common_errors:
+  - Saying p=1/2 is the answer because the coin is 'random'.
+  - Failing to link the maximiser to the observed frequency.
+  hints:
+    rephrase: After seeing this data, what should an observer believe about the coin?
+    smaller_case: Think about n=1 with k=1, then about n=1 with k=0.
+    key_idea: Relate the maximising value to the fraction of tosses that came up heads.
+  check: null
+extensions:
+  '3':
+  - Assume a uniform prior on p. Show that the posterior mode after k heads in n tosses is still at k/n.
+  '4':
+  - For k distributed as Binomial(n,p), compute the expected value of the estimator k/n and say whether
+    it is unbiased.
+  '5':
+  - For fixed n and p, find the most likely value of k. Explain why it is floor((n+1)p), and when there
+    are two modes.
+spoken_vocab:
+- p
+- n
+- k
+- binomial
+- n choose k
+- p to the power k
+- one minus p
+- to the power n minus k
+- heads
+- tails
+- maximise
+- k over n
+- derivative
+- log
+- likelihood
+- estimator
+- unbiased
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 3
+  parts: 3
+  minutes: 10
+  flags: []
+  tagline: Classic MLE with a good intuition-check question at the end.
+  priority: 61
+  rank: 459
+  tier: C
+  category: juan
+  d10: 4.5
+  real: 8.0
+  by: deepseek-v4.1-flash-free
+tags:
+- probability
+- differentiation

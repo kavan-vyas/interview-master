@@ -1,0 +1,51 @@
+[
+ {
+  "q": "You have $n$ coins $C_1, C_2, \\ldots, C_n$. Each coin $C_k$ is biased so that tossing a heads with coin $C_k$ has a probability of $\\frac{1}{2k+1}$. If all $n$ coins are tossed, what is the probability that the number of heads is odd?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.38.02.png"
+ },
+ {
+  "q": "Is there an infinite sequence of non-zero real numbers $a_1, a_2, \\ldots$ such that $a_1^m + a_2^m + \\ldots = m$ for every positive integer $m$?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.38.02.png"
+ },
+ {
+  "q": "Find a positive integer $a$ such that $n^4 + a$ isn't prime for all integers $n$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.38.02.png"
+ },
+ {
+  "q": "Seven different real numbers are chosen. Prove that there are two of them, $a$ and $b$, such that $\\frac{a-b}{1+ab} < \\frac{1}{\\sqrt{3}}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.38.02.png"
+ },
+ {
+  "q": "Let $n > 6$ be an integer such that $n-1$ and $n+1$ are prime. Prove that $720 \\mid n^2(n^2+16)$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.38.02.png"
+ },
+ {
+  "q": "What is the expected number of rolls of a 6-sided die for all faces to appear at least once? What about an $n$-sided die?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.38.02.png"
+ },
+ {
+  "q": "You play a game with a biased coin. If you get a head, you get a pound and the game continues; if you get a tails, the game ends (you keep your money from any past heads). What is the expected value? Can you do it with conditional expectation?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.38.02.png"
+ }
+]

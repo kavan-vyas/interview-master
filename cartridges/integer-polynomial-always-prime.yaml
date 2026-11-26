@@ -1,0 +1,86 @@
+id: integer-polynomial-always-prime
+title: Integer Polynomial Always Prime?
+topics:
+- number theory
+- polynomials
+- primes
+- counterexamples
+warmup: true
+answer_source: generated
+statement: Consider a polynomial with integer coefficients. Is it always prime for every positive integer
+  input?
+stages:
+- goal: Decide whether every integer-coefficient polynomial must be prime at every positive integer, and
+    give a counterexample.
+  expected: No. For example f(x) = x^2 gives f(2) = 4, which is not prime (and every square of a positive
+    integer is not prime).
+  solution: 'The answer is no, since one counterexample suffices. f(x) = x^2 has integer coefficients,
+    and f(n) = n^2 is never prime for a positive integer n: for n = 1 it is 1, and for n >= 2 it is a
+    square with factor n. So f is not prime at every positive integer input.'
+  common_errors:
+  - Answering yes because some polynomial like x^2+x+41 gives many primes.
+  - Thinking a counterexample must be a non-constant polynomial, when a constant polynomial also works.
+  - Checking only one input and concluding the polynomial is always prime.
+  hints:
+    rephrase: Can you find a polynomial whose values are always perfect squares, or otherwise always composite?
+    smaller_case: Try the polynomial f(x) = x^2 at x = 2.
+    key_idea: One counterexample suffices. Look for a value with a factor other than 1 and itself.
+  check: Eq(isprime(2**2), False)
+  check_ok: true
+- goal: For f(x) = x^2 + x + 41 (integer coefficients), find the smallest positive integer n at which
+    f(n) is not prime.
+  expected: n = 40, where f(40) = 1681 = 41^2.
+  solution: 'Check the values: f(40) = 1600 + 40 + 41 = 1681 = 41 * 41, which is not prime. The polynomial
+    gives primes for x = 0, 1, ..., 39 (a known fact), so 40 is the first failure. The check here confirms
+    that f(40) is not prime.'
+  common_errors:
+  - Answering n = 41, since the constant term is 41.
+  - Miscomputing f(40) by dropping a term in x^2 + x + 41.
+  - Claiming the polynomial is prime at every input because it is prime for many small inputs.
+  hints:
+    rephrase: Compute f(n) for increasing n and look for the first value with a nontrivial factor.
+    smaller_case: Compute f(0), f(1), f(2) and check which are prime.
+    key_idea: Look for a value of x where f(x) is divisible by the constant term 41.
+  check: Eq(isprime(40**2 + 40 + 41), False)
+  check_ok: true
+extensions:
+  '3':
+  - Prove that no non-constant polynomial with integer coefficients is prime for every positive integer
+    input.
+  '4':
+  - Show that f(x) = x^2 + x + 41 is prime for x = 0, 1, ..., 39 by evaluating f(x) - 41 = x(x+1) and
+    reasoning about the values.
+  '5':
+  - Does every non-constant integer-coefficient polynomial take composite values at infinitely many positive
+    integers?
+spoken_vocab:
+- integer coefficients
+- polynomial
+- always prime
+- positive integer input
+- counterexample
+- x squared
+- x squared plus x plus forty one
+- forty squared plus forty plus forty one
+- forty one squared
+- composite
+source: screenshots/Screenshot 2026-11-19 at 14.37.58.png
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 2
+  minutes: 8
+  flags:
+  - trivial
+  tagline: Euler's x²+x+41 counterexample is nice, but the first part is trivial.
+  priority: 37
+  rank: 586
+  tier: D
+  category: screenshots
+  d10: 5.0
+  real: 6.0
+  by: big-pickle
+tags:
+- number_theory
+- algebra_and_functions

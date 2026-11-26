@@ -1,0 +1,110 @@
+id: unit-square-five-points
+title: Five points in a unit square are within root two over two
+topics:
+- pigeonhole principle
+- geometry
+- extremal combinatorics
+warmup: false
+answer_source: generated
+statement: Five points are chosen anywhere inside or on the boundary of a unit square (a square of side
+  length $1$). (a) Prove that some two of the points must be at most $\frac{\sqrt{2}}{2}$ apart. (b) Does
+  the same argument, adapted appropriately, work for $n^2+1$ points in a unit square?
+stages:
+- goal: Partition the unit square into smaller regions and find the largest distance possible inside one
+    region.
+  expected: Cut the unit square into four squares of side 1/2 using the midlines. Within any one of these
+    closed squares, the largest distance between two points is its diagonal, sqrt(2)/2.
+  solution: 'Use coordinates: if two points in a square of side 1/2 have coordinate differences at most
+    1/2 each, their distance is at most sqrt((1/2)^2+(1/2)^2)=sqrt(2)/2. The four small closed squares
+    cover the unit square, so every point lies in at least one of them.'
+  common_errors:
+  - Using the side length 1/2 as the bound instead of the diagonal.
+  - Computing the diagonal of the unit square (sqrt(2)) rather than the half-size square.
+  - Ignoring points on the midlines, which belong to more than one small square.
+  - Claiming the four squares do not cover the whole unit square.
+  hints:
+    rephrase: What is the greatest possible distance between two points in a small square?
+    smaller_case: Consider a square of side 1/2 and two of its opposite corners. How far apart are they?
+    key_idea: Cut the big square into equal smaller pieces, then bound the distance between two points
+      within one piece.
+  check: sp.sqrt(sp.Rational(1,2)**2 + sp.Rational(1,2)**2) - sp.sqrt(2)/2
+  check_ok: null
+- goal: Apply the pigeonhole principle to the five points and conclude part (a).
+  expected: 'Five points and four small squares: assign each point to one small square containing it.
+    Two points share a square, and their distance is at most sqrt(2)/2.'
+  solution: Each point lies in at least one of the four closed squares, so assign each point to one such
+    square. Five points into four squares means some square receives at least two points. Any two points
+    in that square are within its diagonal, sqrt(2)/2, of each other.
+  common_errors:
+  - Forgetting that a boundary point can belong to several squares, and not assigning it to exactly one.
+  - Using only four points, which does not force a collision.
+  - Stating the pigeonhole principle without a clear conclusion about distance.
+  - Claiming two points in the same square are at most the side length apart.
+  hints:
+    rephrase: Five objects go into four boxes. What must happen?
+    smaller_case: Place three objects into two boxes. What must happen?
+    key_idea: The pigeonhole principle forces two points into the same region, and that region limits
+      their distance.
+  check: sp.Integer(5) > sp.Integer(4)
+  check_ok: null
+- goal: Generalise the argument to n^2+1 points in a unit square and state the resulting bound.
+  expected: Yes. Divide the unit square into n^2 squares of side 1/n. Each has diagonal sqrt(2)/n. With
+    n^2+1 points, two lie in the same small square, so some two points are at most sqrt(2)/n apart. For
+    n=2 this gives sqrt(2)/2.
+  solution: A grid of n by n equal squares, each of side 1/n, covers the unit square. Within a square
+    of side 1/n, two points differ by at most 1/n in each coordinate, so their distance is at most sqrt(2)/n.
+    With n^2+1 points and n^2 squares, pigeonhole gives two points in one square, hence at most sqrt(2)/n
+    apart. The argument adapts, though the bound becomes sqrt(2)/n.
+  common_errors:
+  - Using n^2 points instead of n^2+1, which does not force a collision.
+  - Keeping the bound sqrt(2)/2 for general n instead of rescaling to sqrt(2)/n.
+  - Using a grid of n squares instead of n^2 squares.
+  - Claiming the argument fails for n>2 without checking the rescaling.
+  hints:
+    rephrase: How many small squares does an n-by-n grid create, and how big is each one?
+    smaller_case: Set n=3. How many small squares do you get and what is their diagonal?
+    key_idea: 'Rescale the grid: each cell''s side and diagonal scale with 1/n, and the pigeonhole count
+      becomes n^2 cells.'
+  check: sp.simplify(sp.sqrt(2*sp.Symbol('n',positive=True)**-2) - sp.sqrt(2)/sp.Symbol('n',positive=True))
+  check_ok: null
+extensions:
+  '3':
+  - Find four points in the unit square whose pairwise distances are all at least 1.
+  '4':
+  - Is sqrt(2)/2 the best possible constant for five points? Explore configurations that keep all pairwise
+    distances large.
+  '5':
+  - Generalise the pigeonhole bound to k points in a d-dimensional unit cube and state the resulting distance
+    bound.
+spoken_vocab:
+- unit square
+- side length one
+- square root of two over two
+- n squared plus one
+- pigeonhole
+- subsquare
+- diagonal
+- at most
+- midline
+- grid
+- five points
+- boundary
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Classic pigeonhole with a clean generalisation to n²+1 points.
+  priority: 81
+  rank: 201
+  tier: B
+  category: juan
+  d10: 4.0
+  real: 8.0
+  by: haiku
+tags:
+- proof
+- geometry

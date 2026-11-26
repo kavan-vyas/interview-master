@@ -1,0 +1,109 @@
+id: step-curve-stationary-point-sketch
+title: Curve with a unique stationary point and two sketches
+topics:
+- differentiation
+- stationary points
+- curve sketching
+- asymptotes
+- quadratics
+warmup: false
+answer_source: pdf
+statement: The curve $C$ has equation $y=\frac{x}{\sqrt{x^2-2x+a}}$, where the square root is positive.
+  Show that, if $a>1$, then $C$ has exactly one stationary point. Sketch $C$ when (i) $a=2$ and (ii) $a=1$.
+stages:
+- goal: Differentiate and show that, for $a>1$, there is exactly one stationary point.
+  expected: $\frac{dy}{dx}=\frac{a-x}{(x^2-2x+a)^{3/2}}$. For $a>1$ the quadratic has no real roots (discriminant
+    $4-4a<0$), so the denominator is positive for all $x$, and $y'=0$ only at $x=a$.
+  solution: 'Let $S=\sqrt{x^2-2x+a}$, so $S^2=x^2-2x+a$ and $\frac{dS}{dx}=\frac{x-1}{S}$. Then $y''=\frac{S-x(x-1)/S}{S^2}=\frac{S^2-x^2+x}{S^3}=\frac{a-x}{S^3}$.
+    Since $a>1$ the quadratic is always positive, so $S^3>0$ everywhere and $y''=0$ exactly when $x=a$.
+    Note on the printed statement: it reads $y=x\sqrt{x^2-2x+a}$, but that gives $y''=(2x^2-3x+a)/S$,
+    which does not match the source. The source''s derivative and its stationary point $(2,\sqrt2)$ are
+    correct for the quotient $y=x/\sqrt{x^2-2x+a}$, which is the curve used here.'
+  common_errors:
+  - Using the product rule on $x\sqrt{\cdots}$, which is the printed form and not the intended quotient.
+  - Concluding that the stationary point is at $x=1$ from the factor $x-1$ in the chain rule.
+  - Forgetting to check that the denominator is nonzero everywhere when $a>1$.
+  hints:
+    rephrase: Write $y=x\,(x^2-2x+a)^{-1/2}$ and differentiate it with the product and chain rules.
+    smaller_case: With $a=2$, differentiate and evaluate $y'$ at $x=0$ and at $x=1$.
+    key_idea: A quotient is zero only where its numerator is zero, provided the denominator is finite
+      and nonzero.
+  check: simplify(diff(x/sqrt(x**2-2*x+a), x) - (a-x)/(x**2-2*x+a)**Rational(3,2))
+  check_ok: true
+- goal: Sketch $C$ when $a=2$.
+  expected: The stationary point $(2,\sqrt2)$ is a maximum. The curve passes through $(0,0)$, is increasing
+    for $x<2$ and decreasing for $x>2$, is negative for $x<0$ and positive for $x>0$, and has horizontal
+    asymptotes $y=-1$ as $x\to-\infty$ and $y=1$ as $x\to+\infty$.
+  solution: For $a=2$, $y'=\frac{2-x}{S^3}$, which is positive for $x<2$ and negative for $x>2$. So there
+    is a maximum at $x=2$, where $y=\frac{2}{\sqrt2}=\sqrt2$. As $|x|\to\infty$, $x^2-2x+2\sim x^2$, so
+    $y\to\pm1$ with the sign of $x$. Since $S>0$, $y$ has the sign of $x$, so the curve passes through
+    the origin.
+  common_errors:
+  - Thinking $y\to0$ at infinity; the limits are $\pm1$.
+  - Treating the curve as symmetric about the origin; the limits at the two ends differ in value but the
+    curve is odd only in sign pattern.
+  - Putting the maximum at $(2,2\sqrt2)$ by evaluating $y$ incorrectly.
+  hints:
+    rephrase: Evaluate the curve at $x=2$ and examine the behaviour as $x$ tends to plus and minus infinity.
+    smaller_case: With $a=2$, find $y$ at $x=0$ and at $x=1$, and say whether it is positive or negative
+      there.
+    key_idea: As $|x|$ grows, compare the leading terms of the numerator and the denominator.
+  check: simplify(2/sqrt(2**2-2*2+2) - sqrt(2))
+  check_ok: true
+- goal: Sketch $C$ when $a=1$.
+  expected: With $a=1$, $y=\frac{x}{|x-1|}$ for $x\neq1$. There is a vertical asymptote $x=1$ and no stationary
+    points. On $x<1$, $y=\frac{x}{1-x}$ increases from $-1$ (as $x\to-\infty$) through $(0,0)$ to $+\infty$
+    (as $x\to1^-$). On $x>1$, $y=\frac{x}{x-1}$ decreases from $+\infty$ (as $x\to1^+$) towards $1$ (as
+    $x\to+\infty$).
+  solution: When $a=1$, $x^2-2x+1=(x-1)^2$, so $S=|x-1|$ and $y=x/|x-1|$. For $x<1$, $y=-1+\frac{1}{1-x}$,
+    so $y'=\frac{1}{(1-x)^2}>0$. For $x>1$, $y=1+\frac{1}{x-1}$, so $y'=-\frac{1}{(x-1)^2}<0$. The maximum
+    from part (i) has become the asymptote at $x=1$.
+  common_errors:
+  - Dropping the modulus and writing $y=x/(x-1)$ for all $x$.
+  - Placing the asymptote at $x=0$.
+  - Drawing a continuous branch through $x=1$.
+  hints:
+    rephrase: When $a=1$, simplify the denominator before doing anything else.
+    smaller_case: Evaluate the curve at $x=-1$, $x=\frac12$ and $x=2$, and watch where the denominator
+      vanishes.
+    key_idea: A perfect-square denominator gives a modulus, so the curve has two separate pieces.
+  check: (x/sqrt(x**2-2*x+1)).subs(x,-1) - (-1)/Abs(-1-1)
+  check_ok: true
+extensions:
+  '3':
+  - Show that the stationary value at $x=a$ is $\sqrt{\frac{a}{a-1}}$ and deduce the range of $y$ for
+    $a>1$.
+  '4':
+  - For general $a$, find the limits of $y$ as $x\to\pm\infty$.
+  '5':
+  - For $a<1$, find the domain of $C$ and decide whether the stationary point at $x=a$ lies in it.
+spoken_vocab:
+- y equals x over the square root of x squared minus two x plus a
+- stationary point
+- d y d x
+- a greater than one
+- vertical asymptote
+- horizontal asymptote
+- modulus of x minus one
+- root two
+- discriminant four minus four a
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#11
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 3
+  minutes: 12
+  flags:
+  - needs_diagram
+  tagline: Derivative numerator simplifies to a−x, so a>1 gives one stationary point.
+  priority: 63
+  rank: 413
+  tier: C
+  category: siklos
+  d10: 3.5
+  real: 4.5
+  by: haiku
+tags:
+- differentiation
+- curve_sketching

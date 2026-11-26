@@ -1,0 +1,189 @@
+id: fibonacci-binet-cassini
+title: 'Fibonacci: Binet''s formula, Cassini''s identity and the 8x8 paradox'
+topics:
+- recurrences
+- Binet formula
+- limits
+- induction
+- algebraic identities
+- Fibonacci numbers
+warmup: false
+answer_source: pdf
+statement: 'Let $F_0 = 0$, $F_1 = 1$ and $F_{n+2} = F_{n+1} + F_n$ for $n \geq 0$. Let $\varphi = \frac{1+\sqrt{5}}{2}$
+  and $\psi = \frac{1-\sqrt{5}}{2}$ be the roots of $x^2 = x + 1$.
+
+
+  (i) Show that $u_n = A\varphi^n + B\psi^n$ satisfies the same recurrence $u_{n+2} = u_{n+1} + u_n$ for
+  any constants $A, B$. Deduce that $F_n = \dfrac{\varphi^n - \psi^n}{\sqrt{5}}$.
+
+
+  (ii) Show that $F_n$ is the integer nearest to $\dfrac{\varphi^n}{\sqrt{5}}$.
+
+
+  (iii) Show that $\dfrac{F_{n+1}}{F_n} \to \varphi$ as $n \to \infty$.
+
+
+  (iv) Prove Cassini''s identity $F_{n+1}F_{n-1} - F_n^2 = (-1)^n$ for $n \geq 1$.
+
+
+  (v) An $8 \times 8$ square is cut into four pieces which appear to rearrange into a $5 \times 13$ rectangle,
+  of area $65$. Use (iv) to explain what is going on.'
+stages:
+- goal: (i) Show that $u_n = A\varphi^n + B\psi^n$ satisfies the recurrence for any $A, B$, then use $F_0
+    = 0$ and $F_1 = 1$ to deduce Binet's formula $F_n = (\varphi^n - \psi^n)/\sqrt{5}$.
+  expected: Both $\varphi$ and $\psi$ satisfy $x^2 = x + 1$, so $\varphi^{n+2} = \varphi^{n+1} + \varphi^n$
+    and likewise for $\psi$. Multiplying by $A$ and $B$ and adding gives $u_{n+2} = u_{n+1} + u_n$. Matching
+    $u_0 = A + B = 0$ gives $B = -A$. Matching $u_1 = A(\varphi - \psi) = A\sqrt{5} = 1$ gives $A = 1/\sqrt{5}$.
+    So $F_n = (\varphi^n - \psi^n)/\sqrt{5}$.
+  solution: Since $\varphi^2 = \varphi + 1$, multiplying by $\varphi^n$ gives $\varphi^{n+2} = \varphi^{n+1}
+    + \varphi^n$. The same holds for $\psi$. Hence $u_{n+2} = A\varphi^{n+2} + B\psi^{n+2} = (A\varphi^{n+1}
+    + B\psi^{n+1}) + (A\varphi^n + B\psi^n) = u_{n+1} + u_n$, for any $A, B$. Now choose $A, B$ to match
+    the initial values. $u_0 = A + B = 0$ gives $B = -A$. Then $u_1 = A\varphi + B\psi = A(\varphi - \psi)
+    = A\sqrt{5} = 1$, so $A = 1/\sqrt{5}$ and $B = -1/\sqrt{5}$. The sequence $u_n$ and $F_n$ satisfy
+    the same recurrence and agree at $n = 0, 1$, so by induction they agree for all $n$. Therefore $F_n
+    = (\varphi^n - \psi^n)/\sqrt{5}$.
+  common_errors:
+  - Checking that $\varphi$ satisfies the quadratic but forgetting $\psi$
+  - Matching only $u_0$ and not $u_1$, which leaves $A$ and $B$ undetermined
+  - Computing $u_1 = A(\varphi + \psi)$ instead of $A(\varphi - \psi)$ after substituting $B = -A$, so
+    $A$ comes out wrong
+  - Not saying why matching two initial values forces $u_n = F_n$ for all $n$ (induction on the recurrence)
+  hints:
+    rephrase: What quadratic do $\varphi$ and $\psi$ satisfy? Multiply it by $\varphi^n$ and by $\psi^n$
+      and see what that says about the sequences $\varphi^n$ and $\psi^n$.
+    smaller_case: Take $A = 1$, $B = 0$ and check directly that $u_2 = u_1 + u_0$ holds for the sequence
+      $\varphi^n$.
+    key_idea: Linear combinations of solutions of a linear recurrence are again solutions. Then choose
+      the two constants to match the two initial values.
+  check: simplify((((1+sqrt(5))/2)**10 - ((1-sqrt(5))/2)**10)/sqrt(5) - 55) == 0
+  check_ok: true
+- goal: (ii) Show that $F_n$ is the integer nearest to $\varphi^n/\sqrt{5}$.
+  expected: $\varphi^n/\sqrt{5} - F_n = \psi^n/\sqrt{5}$, so $|F_n - \varphi^n/\sqrt{5}| = |\psi|^n/\sqrt{5}
+    \leq 1/\sqrt{5} < 1/2$, because $|\psi| < 1$ and $\sqrt{5} > 2$.
+  solution: From Binet's formula, $\varphi^n/\sqrt{5} - F_n = \psi^n/\sqrt{5}$. So the distance from $\varphi^n/\sqrt{5}$
+    to the integer $F_n$ is $|\psi|^n/\sqrt{5}$. Since $|\psi| = (\sqrt{5}-1)/2 \approx 0.618 < 1$, we
+    have $|\psi|^n \leq 1$ for all $n \geq 0$, so the distance is at most $1/\sqrt{5} < 1/2$ (as $\sqrt{5}
+    > 2$). An integer within distance less than $1/2$ of a real number is the nearest integer to it, so
+    $F_n$ is the nearest integer to $\varphi^n/\sqrt{5}$.
+  common_errors:
+  - Claiming $|\psi| > 1$, which reverses the inequality
+  - Bounding by $1/\sqrt{5}$ without checking it is below $1/2$
+  - Concluding only for large $n$, when the bound actually holds for all $n \geq 0$
+  - Forgetting the case that nearest-integer needs strict inequality $< 1/2$ so the integer is unique
+  hints:
+    rephrase: How large can $|\psi|^n$ be, and how does $1/\sqrt{5}$ compare with $1/2$?
+    smaller_case: 'Check $n = 3$ numerically: compute $\varphi^3/\sqrt{5}$ and compare with $F_3$.'
+    key_idea: Use the closed form from (i) to write the difference between $\varphi^n/\sqrt{5}$ and $F_n$
+      as a single small term.
+  check: Abs(N(((1+sqrt(5))/2)**10/sqrt(5)) - 55) < Rational(1,2)
+  check_ok: true
+- goal: (iii) Show that $F_{n+1}/F_n \to \varphi$ as $n \to \infty$.
+  expected: $F_{n+1}/F_n = \varphi\,\dfrac{1 - (\psi/\varphi)^{n+1}}{1 - (\psi/\varphi)^n}$. Since $|\psi/\varphi|
+    = 1/\varphi^2 < 1$, the powers tend to $0$, so the ratio tends to $\varphi$.
+  solution: By Binet, $F_{n+1}/F_n = (\varphi^{n+1} - \psi^{n+1})/(\varphi^n - \psi^n)$. Factor $\varphi^{n+1}$
+    from the numerator and $\varphi^n$ from the denominator to get $\varphi\,\dfrac{1 - r^{n+1}}{1 - r^n}$
+    where $r = \psi/\varphi$. Now $|r| = |\psi|/\varphi = 1/\varphi^2 < 1$ (using $\varphi\psi = -1$),
+    so $r^n \to 0$ and $r^{n+1} \to 0$. The fraction tends to $1$, and the ratio tends to $\varphi$.
+  common_errors:
+  - Concluding the limit is $\psi$, or $1$, instead of $\varphi$
+  - Not showing $|\psi/\varphi| < 1$, which is the step that makes the powers vanish
+  - Assuming the limit exists and solving $L = 1 + 1/L$ without proving convergence (this finds the candidate,
+    not a proof)
+  hints:
+    rephrase: Factor the largest power of $\varphi$ out of the numerator and the denominator.
+    smaller_case: Compute $F_{n+1}/F_n$ for $n = 5$ and $n = 6$ and see what value they approach.
+    key_idea: Express everything in terms of $r = \psi/\varphi$ and ask what happens to $r^n$.
+  check: simplify(((1-sqrt(5))/2)/((1+sqrt(5))/2) + 1/((1+sqrt(5))/2)**2) == 0
+  check_ok: true
+- goal: (iv) Prove Cassini's identity $F_{n+1}F_{n-1} - F_n^2 = (-1)^n$ for $n \geq 1$.
+  expected: Let $D_n = F_{n+1}F_{n-1} - F_n^2$. Then $D_{n+1} = -D_n$, and $D_1 = F_2F_0 - F_1^2 = -1$.
+    Hence $D_n = (-1)^n$ by induction.
+  solution: Let $D_n = F_{n+1}F_{n-1} - F_n^2$. Then $D_{n+1} = F_{n+2}F_n - F_{n+1}^2 = (F_{n+1} + F_n)F_n
+    - F_{n+1}^2 = F_{n+1}(F_n - F_{n+1}) + F_n^2 = -F_{n+1}F_{n-1} + F_n^2 = -D_n$, using $F_n - F_{n+1}
+    = -F_{n-1}$. Also $D_1 = F_2F_0 - F_1^2 = 0 - 1 = -1$. So $D_n = (-1)^n$ for all $n \geq 1$, by induction.
+  common_errors:
+  - Getting the sign wrong at the base case, e.g. $D_1 = +1$
+  - Treating $F_0$ as undefined or forgetting $F_0 = 0$ in the base case
+  - Writing $F_{n+2} = F_{n+1} - F_n$ with the wrong sign
+  - Proving $D_{n+1} = D_n$ by an algebra slip instead of $D_{n+1} = -D_n$
+  hints:
+    rephrase: Write $D_{n+1}$ and use the recurrence to replace $F_{n+2}$, then try to rewrite the result
+      as a multiple of $D_n$.
+    smaller_case: Compute $D_2$ and $D_3$ directly from the Fibonacci numbers and look at the pattern.
+    key_idea: Substitute $F_{n+2} = F_{n+1} + F_n$ and collapse the expression back into $D_n$ to find
+      how $D_{n+1}$ relates to $D_n$.
+  check: 8*3 - 5**2 - (-1)**5 == 0
+  check_ok: true
+- goal: (v) Use Cassini's identity to explain the $8 \times 8$ square versus $5 \times 13$ rectangle paradox.
+  expected: 'With $n = 6$: $F_7F_5 - F_6^2 = 13\cdot 5 - 8^2 = 65 - 64 = 1 = (-1)^6$. The rectangle has
+    area $65$ but the pieces only have total area $64$, so they cannot tile it exactly; the apparent fit
+    hides a thin sliver of area $1$ along the diagonal.'
+  solution: 'The square has area $8 \cdot 8 = 64$, so the four pieces have total area $64$. By (iv) with
+    $n = 6$, $F_7F_5 - F_6^2 = 13 \cdot 5 - 8^2 = 1 = (-1)^6$, so the rectangle has area $65 = 64 + 1$.
+    The pieces therefore cannot fill the rectangle: along the long diagonal there is a very thin parallelogram-shaped
+    gap of area exactly $1$. It is hard to see because the edge slopes $3/8$ and $2/5$ are close, which
+    makes the gap thin. The same construction with consecutive Fibonacci numbers $F_{n-1}, F_n, F_{n+1}$
+    always has area discrepancy $1$, with sign $(-1)^n$ (gap or overlap alternating).'
+  common_errors:
+  - Saying the pieces overlap; the rectangle is larger, so there is a gap
+  - Blaming drawing or measurement error instead of the area mismatch
+  - Not linking the discrepancy to $F_7F_5 - F_6^2$, or using the wrong $n$ (should be $n = 6$)
+  hints:
+    rephrase: Compare the total area of the four pieces with the area of the rectangle they are supposed
+      to form.
+    smaller_case: Repeat the area calculation with $n = 5$ using $F_6$, $F_4$ and $F_5$, and see which
+      way the sign goes.
+    key_idea: The numbers $5, 8, 13$ are consecutive Fibonacci numbers, so Cassini's identity predicts
+      an area mismatch of exactly one unit.
+  check: 13*5 - 8**2 - 1 == 0
+  check_ok: true
+extensions:
+  '3':
+  - Check Cassini's identity numerically for $n = 1, \dots, 6$, then show that $F_{n+1}^2 - F_nF_{n+2}
+    = (-1)^n$ follows from it.
+  - Show that $F_{n+2} = 1 + F_1 + F_2 + \dots + F_n$ for all $n \geq 0$.
+  '4':
+  - Show that $\sum_{k=1}^n F_k^2 = F_nF_{n+1}$.
+  - Show that $F_n^2 + F_{n+1}^2 = F_{2n+1}$ using Binet's formula.
+  '5':
+  - Show that $\varphi^n = F_n\varphi + F_{n-1}$ for all $n \geq 1$.
+  - Let $M = \begin{pmatrix}1&1\\1&0\end{pmatrix}$. Show that $M^n = \begin{pmatrix}F_{n+1}&F_n\\F_n&F_{n-1}\end{pmatrix}$
+    and deduce Cassini's identity by taking determinants.
+spoken_vocab:
+- F sub n
+- phi
+- psi
+- square root of five
+- A phi to the n
+- B psi to the n
+- Binet's formula
+- Cassini's identity
+- minus one to the n
+- eight by eight
+- five by thirteen
+- area sixty five
+- nearest integer
+- ratio tends to phi
+- telescoping
+- induction
+source: jaymin/Jaymin Interview (1).pdf#p25
+verified: false
+rating:
+  quality: 9
+  difficulty: 6
+  parts: 5
+  minutes: 30
+  flags: []
+  tagline: Binet, rounding, ratio limit, Cassini, then explaining the 8x8 paradox.
+  priority: 121
+  rank: 2
+  tier: S
+  category: jaymin
+  d10: 6.5
+  real: 6.5
+  by: deepseek-v4.1-flash-free
+refined: true
+tags:
+- sequences_and_series
+- proof
+- number_theory

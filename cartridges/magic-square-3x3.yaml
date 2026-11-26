@@ -1,0 +1,92 @@
+id: magic-square-3x3
+title: Magic square total and centre
+topics:
+- magic squares
+- sums
+- counting
+- algebra
+warmup: false
+answer_source: pdf
+statement: In a $3 \times 3$ magic square the numbers $1$ to $9$ are each used once, and every row, every
+  column and both diagonals add up to the same total. Find that total, and show that the number in the
+  centre must be $5$.
+stages:
+- goal: Find the magic total $T$.
+  expected: $T=15$
+  solution: The numbers 1 to 9 sum to $45$. The three rows together use each number exactly once, so $3T=45$,
+    giving $T=15$.
+  common_errors:
+  - Using the formula for $1+\dots+10$ (55) instead of $1+\dots+9$.
+  - Dividing the total 45 by 2 rather than by 3 (the number of rows).
+  - Confusing the magic total with the sum of all nine numbers.
+  hints:
+    rephrase: Which set of three lines uses every cell exactly once, and what does that tell you about
+      their combined total?
+    smaller_case: In a 2 by 2 grid holding 1 to 4, two rows must have equal sums. What must each row add
+      to?
+    key_idea: The three rows together contain each of the nine numbers exactly once.
+  check: Eq(answer, 15)
+  check_ok: null
+- goal: Show that the centre number $c$ must be 5.
+  expected: $c=5$, from $4\times 15=45+3c$.
+  solution: The four lines through the centre (middle row, middle column and the two diagonals) each total
+    15, so their combined total is $4\times 15=60$. Those lines contain the eight non-centre cells once
+    each and the centre four times. The nine numbers sum to 45, so the combined total is $45+3c$. Hence
+    $45+3c=60$ and $c=5$.
+  common_errors:
+  - Counting the centre only once in the four lines, which gives $45+c=60$ and a wrong answer.
+  - Using only three lines (for example the middle row and column) rather than the four lines through
+    the centre.
+  - Forgetting that the diagonals also pass through the centre.
+  hints:
+    rephrase: Add up only the four lines that pass through the centre, and count each cell as many times
+      as it appears in those lines.
+    smaller_case: In a 3 by 3 grid, which lines pass through the centre cell?
+    key_idea: Count how often the centre appears in the four lines, and compare the total with the sum
+      of all nine numbers.
+  check: Eq(answer, 5)
+  check_ok: null
+extensions:
+  '3':
+  - Show that the magic constant of any $n\times n$ magic square using the numbers $1$ to $n^2$ is $\frac{n(n^2+1)}{2}$,
+    and find it for $n=4$.
+  '4':
+  - 'Show that the four corner cells of any $3\times 3$ magic square using $1$ to $9$ add up to $20$.
+    Hint: consider the middle row and middle column.'
+  '5':
+  - Nine distinct numbers $a, a+d, \dots, a+8d$ fill a $3\times 3$ magic square. Show that the centre
+    is $a+4d$ and that the magic total is $3(a+4d)$.
+spoken_vocab:
+- magic square
+- three by three
+- row
+- column
+- diagonal
+- total
+- centre
+- fifteen
+- forty five
+- four times
+- one to nine
+- c
+- T
+- times
+- plus
+source: kclms/kclms-specimen-questions-4.pdf#0
+verified: false
+rating:
+  quality: 4
+  difficulty: 2
+  parts: 2
+  minutes: 6
+  flags: []
+  tagline: Simple total via averages; centre argument from summing three lines is neat.
+  priority: 45
+  rank: 547
+  tier: C
+  category: kclms
+  d10: 2.5
+  real: 7.0
+  by: haiku
+tags:
+- combinatorics

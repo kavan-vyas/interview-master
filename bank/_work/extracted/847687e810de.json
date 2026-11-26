@@ -1,0 +1,100 @@
+[
+ {
+  "q": "Why Maths?",
+  "kind": "personal",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2009.doc"
+ },
+ {
+  "q": "Each card has a letter on one side and a number on the other side. Someone says: \"Is it true that a card with an even number on it has a vowel on the other side?\" How many cards do you need to turn over to prove or disprove the statement? The cards shown are E, 9 and P.",
+  "kind": "other",
+  "answer": "Only one card: the P card. The question concerns only the three cards displayed.",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2009.doc"
+ },
+ {
+  "q": "Here are three cards: $x^2 + 2px + 1 = 0$. For what value of $p$ does $x$ have real values? Find an expression for $x$ in terms of $p$. Draw $x$ against $p$.",
+  "kind": "maths",
+  "answer": "Use the discriminant, then the quadratic formula. For the graph, use the result from the first part and consider what happens as $p \\to \\pm\\infty$.",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2009.doc"
+ },
+ {
+  "q": "Prove that for every even-sided polygon with a circle inscribed inside it, the sum of the alternate sides are equal. For this hexagon (not necessarily regular), prove the sum of the red sides equals the sum of the blue sides. Now prove it for all even-sided shapes.",
+  "kind": "maths",
+  "answer": "Hint given: What do you know about tangents to a circle?",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2009.doc"
+ },
+ {
+  "q": "What is Pi Club? What is $\\pi$? What is an irrational number?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2009.doc"
+ },
+ {
+  "q": "Here is a watch. Let's pretend it is midnight right now. The two hands are on top of each other. When is the next time this will happen?",
+  "kind": "maths",
+  "answer": "Hint given: treat it as a speed/time/distance problem, form an equation, and draw a diagram if helpful.",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2009.doc"
+ },
+ {
+  "q": "Ah, so you're one of the applicants taking Latin. Did you ever consider an Arts degree?",
+  "kind": "personal",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2009.doc"
+ },
+ {
+  "q": "What's your favourite topic in Maths?",
+  "kind": "personal",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2009.doc"
+ },
+ {
+  "q": "Say you have the letters A to J. How many different ways are there of arranging them? What if we swapped them with 5 A's and 5 B's?",
+  "kind": "maths",
+  "answer": "For ten distinct letters, $10!$ arrangements. With 5 A's and 5 B's, divide out the repetitions: $\\frac{10!}{5!\\,5!}$.",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2009.doc"
+ },
+ {
+  "q": "Here is a map of New York. You can only travel horizontally and vertically. What is the shortest distance from start to finish? Why? How many different ways are there to get from start to finish using the shortest route possible?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2009.doc"
+ },
+ {
+  "q": "Draw $|x|^2 + |y|^2 = 1$. Draw $|x| + |y| = 1$. Draw $|x|^3 + |y|^3 = 1$. What would $|x|^{100} + |y|^{100} = 1$ look like?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2009.doc"
+ },
+ {
+  "q": "For $(x - a)^2 + (x - b)^2 = 0$ with $a \\neq b$, how many roots are there?",
+  "kind": "maths",
+  "answer": "No roots. Both squares are non-negative, so they can only sum to zero if both are zero, which requires $a = b$. Since $a \\neq b$, there are no roots.",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2009.doc"
+ },
+ {
+  "q": "Draw $y = e^{1/x}$. Find the gradient close to 0 in the second quadrant.",
+  "kind": "maths",
+  "answer": "Hint given: use $\\frac{dy}{dx}$ and consider what happens as $x$ gets very small.",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2009.doc"
+ },
+ {
+  "q": "I have 100 light bulbs and there are 100 people. The first person switches on every light bulb. The second person turns off every second light bulb (2nd, 4th, 6th, ...). The third person turns on every third light bulb, and so on. How many light bulbs are off when the 100th person has passed through?",
+  "kind": "maths",
+  "answer": "Hint given: consider whether each number has an even or odd number of factors.",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2009.doc"
+ }
+]

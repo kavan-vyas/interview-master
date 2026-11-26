@@ -1,0 +1,145 @@
+id: cylinder-in-sphere-max-volume-and-area
+title: 'Cylinder inscribed in a sphere: maximum volume vs maximum surface area'
+topics:
+- calculus
+- optimisation
+- solids of revolution
+- implicit constraints
+warmup: false
+answer_source: generated
+statement: A right circular cylinder is inscribed in a sphere of fixed radius $R$. (a) Find the height
+  and radius of the cylinder of maximum volume. (b) Now maximise the total surface area of the cylinder
+  instead. Do you get the same shape?
+stages:
+- goal: Write the volume as a function of a single variable.
+  expected: Let the cylinder have radius r and half-height h, so the sphere constraint gives r^2 + h^2
+    = R^2, i.e. h = sqrt(R^2 - r^2). Then V = pi r^2 (2h) = 2 pi r^2 sqrt(R^2 - r^2).
+  solution: The cylinder's top and bottom rim lie on the sphere, so a corner point (r, h) satisfies r^2
+    + h^2 = R^2. Volume is base area times full height 2h, giving V(r) = 2 pi r^2 sqrt(R^2 - r^2) for
+    0 < r < R.
+  common_errors:
+  - Using the full height H as h in the constraint, which gives r^2 + H^2 = R^2 instead of r^2 + (H/2)^2
+    = R^2.
+  - Forgetting that the height is twice the half-height when writing V.
+  hints:
+    rephrase: 'Draw the cross-section through the axis: the cylinder''s corners touch the great circle
+      of the sphere.'
+    smaller_case: Take a cylinder with radius equal to R/2 and work out where its top rim must sit on
+      the sphere.
+    key_idea: Eliminate the height using the constraint that the rim lies on the sphere, then the problem
+      is one-variable calculus.
+  check: simplify(h**2 - (R**2 - r**2))
+  check_ok: false
+- goal: Find the radius that maximises volume.
+  expected: Maximise V^2 proportional to u^2 (R^2 - u) where u = r^2. Setting the derivative to zero gives
+    2 u R^2 - 3 u^2 = 0, so u = 2R^2/3, i.e. r^2 = 2R^2/3 and r = R sqrt(2/3).
+  solution: Since V is positive, maximising V is equivalent to maximising V^2 = 4 pi^2 u^2 (R^2 - u).
+    Its derivative in u is 4 pi^2 (2 u R^2 - 3 u^2) = 0, so u = 2R^2/3 (u = 0 is a minimum). This is a
+    maximum since V = 0 at both ends.
+  common_errors:
+  - Differentiating V with respect to r without the product rule, or dropping the square root term.
+  - Solving 2uR^2 - 3u^2 = 0 and reporting u = 0 as the maximum.
+  hints:
+    rephrase: Volume vanishes at both r = 0 and r = R, so there is a maximum in between.
+    smaller_case: Try substituting u = r^2 so the function is polynomial times a square root of a linear
+      term.
+    key_idea: Squaring the volume removes the square root and does not move the maximum.
+  check: simplify(r**2 - 2*R**2/3)
+  check_ok: false
+- goal: State the height and the maximum volume.
+  expected: Height H = 2h = 2R/sqrt(3) (equivalently 2R sqrt(3)/3), with h = R/sqrt(3). Maximum volume
+    V = 4 sqrt(3) pi R^3 / 9.
+  solution: From h^2 = R^2 - 2R^2/3 = R^2/3, so h = R/sqrt(3) and H = 2R/sqrt(3). Then V = 2 pi (2R^2/3)(R/sqrt(3))
+    = 4 pi R^3/(3 sqrt(3)) = 4 sqrt(3) pi R^3/9.
+  common_errors:
+  - Giving the half-height as the answer to 'height'.
+  - Simplifying 4/(3 sqrt(3)) incorrectly as 4/9 without the square root.
+  hints:
+    rephrase: Use the constraint again to get the height from the radius you have found.
+    smaller_case: With r^2 = 2R^2/3 in the constraint, what is h^2 in terms of R?
+    key_idea: Remember the height is twice the half-height you used in the constraint.
+  check: simplify(4*sqrt(3)*pi*R**3/9 - 2*pi*(2*R**2/3)*(R/sqrt(3)))
+  check_ok: true
+- goal: Set up and solve the surface-area maximisation.
+  expected: S = 2 pi r^2 + 2 pi r H = 2 pi r^2 + 4 pi r sqrt(R^2 - r^2). Setting dS/dr = 0 and simplifying
+    gives 5 r^4 - 5 R^2 r^2 + R^4 = 0, and the root with r^2 >= R^2/2 is r^2 = R^2 (5 + sqrt(5))/10.
+  solution: Let h = sqrt(R^2 - r^2). Then dS/dr = 4 pi (r + h - r^2/h) = 0 gives rh = 2r^2 - R^2 (with
+    R^2 scaling). Squaring gives r^2(R^2 - r^2) = (2r^2 - R^2)^2, i.e. 5r^4 - 5R^2 r^2 + R^4 = 0. The
+    roots are r^2 = R^2(5 pm sqrt(5))/10. We need 2r^2 >= R^2 so only the + root is valid. Then r = R
+    sqrt((5+sqrt(5))/10), roughly 0.851R, and h = R sqrt((5-sqrt(5))/10), roughly 0.526R.
+  common_errors:
+  - Keeping the spurious root with r^2 = R^2(5 - sqrt(5))/10, which violates rh = 2r^2 - R^2.
+  - Forgetting that squaring can introduce extraneous solutions and not checking the sign condition.
+  - Dropping the lateral-area term or the end caps when writing the total surface area.
+  hints:
+    rephrase: Total surface area includes both circular caps and the curved side; write all three pieces.
+    smaller_case: Check your derivative at r = R and r close to 0 to see where the maximum should lie.
+    key_idea: After squaring, test each root against the unsquared equation.
+  check: simplify(5*(R**2*(5+sqrt(5))/10)**2 - 5*R**2*(R**2*(5+sqrt(5))/10) + R**4)
+  check_ok: true
+- goal: Compare the two optimal shapes and answer whether they are the same.
+  expected: No. For maximum volume the height-to-radius ratio is H/r = sqrt(2). For maximum surface area
+    it is H/r = sqrt(5) - 1 (approximately 1.236). The shapes differ, so the optimal cylinders are not
+    the same.
+  solution: 'Volume case: H/r = (2R/sqrt(3)) / (R sqrt(2/3)) = sqrt(2). Area case: H/r = 2h/r = 2 sqrt((5-sqrt(5))/(5+sqrt(5)))
+    = sqrt(5) - 1. Since sqrt(2) is about 1.414 and sqrt(5) - 1 is about 1.236, the shapes differ. The
+    maximum surface area is S = pi (1 + sqrt(5)) R^2, which is 2 pi R^2 times the golden ratio.'
+  common_errors:
+  - Concluding the shapes match because both have H = 2r or H = 2R.
+  - Miscalculating the surface-area ratio by mixing up half-height and height.
+  hints:
+    rephrase: Compare the ratio of height to radius for each optimum, not the absolute sizes.
+    smaller_case: Compute the ratio for a cylinder of radius 1 and height 1 for comparison.
+    key_idea: 'Scale-free comparisons: check whether the ratio H/r agrees between the two optima.'
+  check: simplify(sqrt(5) - 1 - 2*sqrt((5-sqrt(5))/(5+sqrt(5))))
+  check_ok: true
+extensions:
+  '3':
+  - 'Repeat for a cone inscribed in the same sphere with its apex at the top and find the maximum volume
+    (answer: height 4R/3).'
+  - Show the maximum surface area is pi (1 + sqrt(5)) R^2 using the golden ratio.
+  '4':
+  - Explain why the volume-optimal cylinder has H/r = sqrt(2) while the area-optimal one has H/r = sqrt(5)
+    - 1.
+  - Find the maximum lateral (curved) area alone and compare with the total-area optimum.
+  '5':
+  - Generalise to a cylinder inscribed in an ellipsoid with semi-axes a, a, c, and state how the optimal
+    shape changes.
+  - Discuss whether the volume optimum always has H/r = sqrt(2) for any convex body of revolution.
+spoken_vocab:
+- cylinder
+- sphere
+- radius R
+- height
+- half-height
+- maximum volume
+- surface area
+- r squared plus h squared equals R squared
+- square root of R squared minus r squared
+- derivative equals zero
+- r squared equals two R squared over three
+- height equals two R over root three
+- five r to the fourth minus five R squared r squared plus R to the fourth equals zero
+- root five plus one
+- golden ratio
+- same shape
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 7
+  parts: 5
+  minutes: 25
+  flags:
+  - needs_diagram
+  tagline: Max volume and max area give different shapes, inviting rich comparison and proof.
+  priority: 85
+  rank: 159
+  tier: B
+  category: juan
+  d10: 5.0
+  real: 6.5
+  by: deepseek-v4.1-flash-free
+tags:
+- differentiation
+- geometry

@@ -1,0 +1,93 @@
+[
+ {
+  "q": "(i) Show that every square is congruent to 0 or 1 modulo 4. Deduce that no integer of the form $4k+3$ can be written as a sum of two squares. (ii) Verify that $(a^2+b^2)(c^2+d^2)=(ac-bd)^2+(ad+bc)^2$. Deduce that the product of two sums of two squares is itself a sum of two squares. (iii) Hence, or otherwise, write 65 as a sum of two squares in two essentially different ways. (iv) Prove that there are infinitely many primes of the form $4k+3$.",
+  "kind": "maths",
+  "answer": "(i) If $n=2m$ then $n^2\\equiv 0$, and if $n=2m+1$ then $n^2\\equiv 1 \\pmod 4$, so a sum of two squares is $0$, $1$ or $2 \\pmod 4$, never $3$. (ii) Expanding the right-hand side gives $(a^2+b^2)(c^2+d^2)$, so the product is a sum of two squares. (iii) $65=5\\times 13=(1^2+2^2)(2^2+3^2)$ gives $65=4^2+7^2$; replacing $d$ by $-d$ gives $65=8^2+1^2$. (iv) Suppose $p_1,\\ldots,p_m$ are all primes $\\equiv 3 \\pmod 4$ and let $N=4p_1\\cdots p_m-1$. Then $N\\equiv 3 \\pmod 4$, so $N$ has a prime factor $q\\equiv 3 \\pmod 4$, but $q$ divides neither $4p_1\\cdots p_m$ nor their difference 1, a contradiction.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p9"
+ },
+ {
+  "q": "Fermat proved that every prime $p\\equiv 1 \\pmod 4$ is a sum of two squares. Combined with (ii) of Problem 10, which integers are sums of two squares?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p9"
+ },
+ {
+  "q": "Let $m$ and $n$ be positive integers. (i) Write $m=qn+r$ with $0\\le r<n$. Show that $2^m-1=2^r(2^{qn}-1)+(2^r-1)$, and deduce that $2^m-1\\equiv 2^r-1 \\pmod{2^n-1}$. (ii) Show that $\\gcd(a,b)=\\gcd(b,a-kb)$ for any integer $k$. Hence show that $\\gcd(2^m-1,2^n-1)=\\gcd(2^n-1,2^r-1)$. (iii) Deduce that $\\gcd(2^m-1,2^n-1)=2^{\\gcd(m,n)}-1$. (iv) Find $\\gcd(2^{91}-1,2^{35}-1)$, and deduce that $2^{91}-1$ is not prime.",
+  "kind": "maths",
+  "answer": "(i) Since $x-1\\mid x^q-1$, putting $x=2^n$ gives $2^n-1\\mid 2^{qn}-1$, so $2^m-1\\equiv 2^r-1 \\pmod{2^n-1}$. (ii) Common divisors of $a$ and $b$ are exactly the common divisors of $b$ and $a-kb$, so the gcds are equal; with (i) this gives the result. (iii) Step (ii) replaces $(m,n)$ by $(n,r)$ exactly as Euclid's algorithm does, ending at $(d,0)$ with $d=\\gcd(m,n)$, so the gcd is $2^d-1$. (iv) $91=2\\times 35+21$, $35=21+14$, $21=14+7$, $14=2\\times 7$, so $\\gcd(91,35)=7$ and $\\gcd(2^{91}-1,2^{35}-1)=2^7-1=127$. Since $127\\mid 2^{91}-1$ and $1<127<2^{91}-1$, $2^{91}-1$ is composite.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p9"
+ },
+ {
+  "q": "A primitive Pythagorean triple is a triple of positive integers $(a,b,c)$ with $a^2+b^2=c^2$ and $\\gcd(a,b,c)=1$. (i) Show that exactly one of $a$ and $b$ is even, and that $c$ is odd. (ii) Suppose $b$ is even. Show that $\\frac{c+a}{2}$ and $\\frac{c-a}{2}$ are coprime positive integers whose product is $\\left(\\frac{b}{2}\\right)^2$. (iii) Deduce that $a=m^2-n^2$, $b=2mn$, $c=m^2+n^2$ for some coprime integers $m>n>0$ of opposite parity. (iv) Find all primitive triples with $c=65$.",
+  "kind": "maths",
+  "answer": "(i) If $a,b$ were both even, so would $c$ be, contradicting $\\gcd=1$; if both were odd, $c^2\\equiv 2 \\pmod 4$, impossible. So exactly one is even and $c$ is odd. (ii) $u=\\frac{c+a}{2}$ and $v=\\frac{c-a}{2}$ are integers with $uv=\\left(\\frac{b}{2}\\right)^2$; any common divisor of $u,v$ divides $c$ and $a$, and hence $b$, so by primitivity $\\gcd(u,v)=1$. (iii) Since $u,v$ are coprime and multiply to a square, $u=m^2$, $v=n^2$ with $m>n>0$ coprime and of opposite parity, giving $c=m^2+n^2$, $a=m^2-n^2$, $b=2mn$. (iv) $m^2+n^2=65$ with $m>n>0$ gives $(m,n)=(8,1)$ and $(7,4)$, so the triples are $(63,16,65)$ and $(33,56,65)$.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p9"
+ },
+ {
+  "q": "(i) Show that every positive integer is congruent modulo 9 to the sum of its digits. (ii) Show that every positive integer is congruent modulo 11 to its alternating digit sum (units digit, minus tens digit, plus hundreds digit, and so on). (iii) Show that every six-digit number of the form $\\overline{abcabc}$ is divisible by 7, 11 and 13. (iv) Show that no perfect square has digit sum 2027. (v) Find the smallest positive multiple of 99 whose digits are all 0 or 1.",
+  "kind": "maths",
+  "answer": "(i) Since $10\\equiv 1 \\pmod 9$, $N=\\sum d_i10^i\\equiv\\sum d_i \\pmod 9$. (ii) Since $10\\equiv -1 \\pmod{11}$, $N\\equiv\\sum(-1)^i d_i \\pmod{11}$. (iii) $\\overline{abcabc}=\\overline{abc}\\times 1001$ and $1001=7\\times 11\\times 13$. (iv) Squares are $0,1,4,7 \\pmod 9$, while a digit sum of 2027 gives $2027\\equiv 2 \\pmod 9$. (v) Let there be $x$ ones in odd positions and $y$ in even positions; we need $9\\mid x+y$ and $11\\mid x-y$. Since $|x-y|\\le 9$ when $x+y=9$, we need $x+y\\ge 18$, and eighteen 1s works: $111\\ldots1$ (eighteen 1s).",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p9"
+ },
+ {
+  "q": "Let $p$ be a prime. (i) Show that $p$ divides $\\binom{p}{k}$ for $1\\le k\\le p-1$. (ii) Deduce that $(a+1)^p\\equiv a^p+1 \\pmod p$ for every integer $a$. (iii) Prove that $a^p\\equiv a \\pmod p$ for every integer $a\\ge 0$. (iv) Deduce that if $p\\nmid a$ then $a^{p-1}\\equiv 1 \\pmod p$. Find the remainder when $3^{2026}$ is divided by 7. (v) Show that $n^{13}-n$ is divisible by 2730 for every integer $n$.",
+  "kind": "maths",
+  "answer": "(i) $\\binom{p}{k}=\\frac{p!}{k!(p-k)!}$: $p$ divides the numerator but not the denominator, since all its factors are less than $p$. (ii) By the binomial theorem, all middle terms are divisible by $p$. (iii) Induction on $a$ using (ii). (iv) $p\\mid a(a^{p-1}-1)$ with $p\\nmid a$ gives $a^{p-1}\\equiv 1$. Since $3^6\\equiv 1 \\pmod 7$ and $2026=6\\times 337+4$, $3^{2026}\\equiv 3^4=81\\equiv 4 \\pmod 7$, so the remainder is 4. (v) $2730=2\\times 3\\times 5\\times 7\\times 13$, and $p-1\\mid 12$ for each such prime $p$, so $p\\mid n^{13}-n$ for each; since these primes are distinct, their product divides $n^{13}-n$.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p9"
+ },
+ {
+  "q": "Without a calculator, decide which is larger: $31^{11}$ or $17^{14}$.",
+  "kind": "maths",
+  "answer": "$17^{14}$ is larger. Since $31<32=2^5$, $31^{11}<2^{55}$; since $17>16=2^4$, $17^{14}>2^{56}$. So $31^{11}<2^{55}<2^{56}<17^{14}$.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p9"
+ },
+ {
+  "q": "Prove that for all positive real numbers $a,b,c$, $(a+b)(b+c)(c+a)\\ge 8abc$. When does equality hold?",
+  "kind": "maths",
+  "answer": "By AM-GM, $a+b\\ge 2\\sqrt{ab}$, $b+c\\ge 2\\sqrt{bc}$, $c+a\\ge 2\\sqrt{ca}$. All quantities are positive, so multiplying gives $(a+b)(b+c)(c+a)\\ge 8\\sqrt{a^2b^2c^2}=8abc$. Equality holds iff $a=b=c$.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p9"
+ },
+ {
+  "q": "Solve $x^4-10x^3+26x^2-10x+1=0$.",
+  "kind": "maths",
+  "answer": "Dividing by $x^2$ and setting $t=x+\\frac{1}{x}$ gives $t^2-10t+24=0$, so $t=4$ or $t=6$. Then $x^2-4x+1=0$ gives $x=2\\pm\\sqrt{3}$, and $x^2-6x+1=0$ gives $x=3\\pm 2\\sqrt{2}$.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p9"
+ },
+ {
+  "q": "Find all functions $f:\\mathbb{R}\\to\\mathbb{R}$ such that for every real $x$, $f(x)+2f(1-x)=x^2$.",
+  "kind": "maths",
+  "answer": "Replacing $x$ by $1-x$ gives $f(1-x)+2f(x)=(1-x)^2$. Solving the two linear equations gives $f(x)=\\frac{x^2-4x+2}{3}$. Checking, this satisfies the original equation, so it is the unique solution.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p9"
+ },
+ {
+  "q": "Find all functions $f:\\mathbb{R}\\to\\mathbb{R}$ such that for all real $x,y$, $f(x)f(y)-f(xy)=x+y$.",
+  "kind": "maths",
+  "answer": "Putting $y=0$ gives $f(0)(f(x)-1)=x$, so $f(0)\\neq 0$. Putting $x=0$ gives $f(0)(f(0)-1)=0$, so $f(0)=1$ and $f(x)=x+1$. Check: $(x+1)(y+1)-(xy+1)=x+y$, so $f(x)=x+1$ is the unique solution.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p9"
+ },
+ {
+  "q": "Given that $x+\\frac{1}{x}=3$, find $x^5+\\frac{1}{x^5}$ without solving for $x$.",
+  "kind": "maths",
+  "answer": "Let $s_n=x^n+x^{-n}$. Then $s_{n+1}=3s_n-s_{n-1}$ with $s_0=2$, $s_1=3$, giving $s_2=7$, $s_3=18$, $s_4=47$, $s_5=123$.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p9"
+ },
+ {
+  "q": "These are every other Lucas number. Explain why, given that the roots of $x+\\frac{1}{x}=3$ are $\\varphi^{\\pm 2}$ where $\\varphi$ is the golden ratio.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p9"
+ }
+]

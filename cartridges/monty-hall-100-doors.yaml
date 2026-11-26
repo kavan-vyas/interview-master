@@ -1,0 +1,101 @@
+id: monty-hall-100-doors
+title: Monty Hall with 100 doors
+topics:
+- probability
+- conditional probability
+- decision making
+warmup: true
+answer_source: pdf
+statement: A prize is behind one of 100 doors. You pick a door. The host, who knows where the prize is,
+  then opens 98 of the other doors, all empty, and offers you the chance to switch to the one remaining
+  closed door. Should you?
+stages:
+- goal: Find the probability that your first pick is correct.
+  expected: $\frac{1}{100}$
+  solution: The prize is equally likely to be behind any of the 100 doors, and your pick is independent
+    of its location, so the chance your door has the prize is $\frac{1}{100}$.
+  common_errors:
+  - Assuming $\frac12$ because two doors remain at the end.
+  - Assuming the host's action changes the probability of your original door.
+  hints:
+    rephrase: Before the host does anything, where is the prize, and how likely is it to be behind the
+      door you chose?
+    smaller_case: With 3 doors, what is the chance your first pick is correct before anything is opened?
+    key_idea: Your first choice is made before any new information arrives.
+  check: Rational(1,100) - 1/100
+  check_ok: true
+- goal: Find the probability that the single remaining closed door hides the prize.
+  expected: $\frac{99}{100}$
+  solution: The prize lies behind your door with probability $\frac{1}{100}$, so it lies somewhere among
+    the other 99 doors with probability $\frac{99}{100}$. The host never opens the prize door and opens
+    98 empty doors, so all of that probability sits on the one remaining closed door.
+  common_errors:
+  - Concluding both doors are $\frac12$ after the reveal.
+  - Treating the host's opening as random, which breaks the link to the prize's location.
+  hints:
+    rephrase: The prize is somewhere among the 100 doors. What is the total probability of the doors other
+      than yours?
+    smaller_case: With 3 doors and the host opening one empty door, what is the probability that the other
+      closed door hides the prize?
+    key_idea: Probabilities must sum to 1, and the host's knowledge keeps the prize away from the door
+      they open.
+  check: Rational(99,100) - (1 - Rational(1,100))
+  check_ok: true
+- goal: Decide whether to switch and justify the choice.
+  expected: Yes, switch. Your original door stays at $\frac{1}{100}$ and the remaining door has $\frac{99}{100}$.
+  solution: Switching wins exactly when your first pick was wrong, which has probability $\frac{99}{100}$.
+    The host's knowledge means their opening reveals nothing about your door, so you should switch.
+  common_errors:
+  - Saying it does not matter because two doors remain.
+  - Ignoring the host's knowledge of where the prize is.
+  - Confusing this with a random host, where switching only wins half the time when no prize is revealed.
+  hints:
+    rephrase: Ask what happens to your first choice when the host opens empty doors, and what happens
+      to the others.
+    smaller_case: Compare the two-door case with a host who always knows and always reveals an empty door.
+    key_idea: Switching wins exactly when your first guess was wrong.
+  check: null
+extensions:
+  '3':
+  - 'With 3 doors, a host who opens a random door and happens to reveal no prize: what is the probability
+    that switching wins?'
+  - Explain why the host's knowledge is essential to the 100-door result.
+  '4':
+  - Repeat the problem with 1000 doors and the host opening 998 empty doors. What is the probability switching
+    wins?
+  '5':
+  - Suppose the host opens doors in a random order and stops early if they reveal the prize. Recompute
+    the switching probability.
+spoken_vocab:
+- prize
+- one hundred doors
+- pick
+- host
+- opens
+- ninety eight doors
+- empty
+- switch
+- remaining door
+- one over one hundred
+- ninety nine over one hundred
+- probability
+- conditional probability
+source: jaymin/Jaymin Interview (1).pdf#p33
+verified: false
+rating:
+  quality: 8
+  difficulty: 4
+  parts: 3
+  minutes: 10
+  flags: []
+  tagline: Classic counterintuitive probability; invites justification, generalisation, and conditional-probability
+    discussion.
+  priority: 106
+  rank: 41
+  tier: A
+  category: jaymin
+  d10: 3.0
+  real: 8.0
+  by: haiku
+tags:
+- probability

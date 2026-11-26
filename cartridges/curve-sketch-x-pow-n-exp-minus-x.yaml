@@ -1,0 +1,108 @@
+id: curve-sketch-x-pow-n-exp-minus-x
+title: Sketch y = x^n e^{-x} for n even and n odd
+topics:
+- curve sketching
+- stationary points
+- asymptotes
+- exponential functions
+warmup: false
+answer_source: generated
+statement: 'Sketch the graph of $y = x^n e^{-x}$ for: (a) $n$ even (b) $n$ odd.'
+stages:
+- goal: Find dy/dx and the stationary points for general positive integer n.
+  expected: dy/dx = e^{-x} x^{n-1} (n - x). Stationary points at x = n (for all n ≥ 1) and at x = 0 (when
+    n ≥ 2).
+  solution: 'Product rule: y'' = n x^{n-1} e^{-x} - x^n e^{-x} = e^{-x} x^{n-1} (n - x). Setting y'' =
+    0 gives x^{n-1} = 0, so x = 0 when n ≥ 2, or x = n. For n = 1 the factor x^{n-1} is 1, so the only
+    stationary point is x = 1 = n.'
+  common_errors:
+  - Forgetting the x = 0 stationary point when n ≥ 2, or wrongly including it when n = 1.
+  - Treating e^{-x} as a constant when differentiating.
+  - Losing the common factor x^{n-1} when factoring.
+  hints:
+    rephrase: Differentiate using the product rule, then factor out the part that appears in every term.
+    smaller_case: Differentiate the cases n = 2 and n = 3 separately and compare the two results.
+    key_idea: Both terms share e^{-x} and a power of x. Factor out the common exponential and the smallest
+      common power of x, then read off the zeros.
+  check: sp.simplify(sp.diff(x**n*sp.exp(-x), x) - sp.exp(-x)*x**(n-1)*(n-x)) == 0
+  check_ok: null
+- goal: Describe the behaviour as x → −∞ and x → +∞, and the sign of y, for n even and for n odd.
+  expected: 'n even: y ≥ 0 everywhere; y → +∞ as x → −∞; y → 0⁺ as x → +∞ (x-axis is an asymptote on the
+    right). n odd: y < 0 for x < 0 and y > 0 for x > 0; y → −∞ as x → −∞; y → 0⁺ as x → +∞.'
+  solution: On the right, the exponential decay e^{-x} beats any power of x, so y → 0. On the left, e^{-x}
+    grows without bound, so |y| → ∞, and the sign of y is the sign of x^n, which is (−1)^n. So n even
+    gives +∞ on the left and n odd gives −∞ on the left.
+  common_errors:
+  - Saying y → 0 as x → −∞ (confusing e^{-x} with e^{x}).
+  - Ignoring the sign of x^n when n is odd.
+  - Claiming a vertical asymptote exists.
+  hints:
+    rephrase: Ask what e^{-x} does on each side of the origin, then what x^n does on each side.
+    smaller_case: Compare the sign and rough size of y at x = −10 and x = 10 for n = 2 and for n = 3.
+    key_idea: 'Consider which factor wins on each side: exponential growth or decay against a polynomial,
+      and what sign x^n carries.'
+  check: (sp.limit(x**2*sp.exp(-x), x, sp.oo) == 0) and (sp.limit(x**2*sp.exp(-x), x, -sp.oo) == sp.oo)
+    and (sp.limit(x**3*sp.exp(-x), x, -sp.oo) == -sp.oo)
+  check_ok: null
+- goal: Classify the stationary points at x = n and x = 0, and find the maximum value. Say what happens
+    at the origin for n odd.
+  expected: 'x = n is a maximum with value n^n e^{-n} (all n). For n even, x = 0 is a minimum with value
+    0, where the curve touches the x-axis. For n = 1, the curve passes through the origin with slope 1.
+    For odd n ≥ 3, x = 0 is a stationary (horizontal) point of inflection: the curve flattens there and
+    keeps increasing.'
+  solution: y' = e^{-x} x^{n-1}(n - x). Near x = n, y' changes from + to −, so this is a maximum, with
+    value y(n) = n^n e^{-n}. Near x = 0, the sign of y' is the sign of x^{n-1}. For n even, n - 1 is odd,
+    so y' changes from − to +, a minimum. For n odd, n - 1 is even, so y' does not change sign. For n
+    = 1, y'(0) = 1 ≠ 0. For odd n ≥ 3, y'(0) = 0 with no sign change, a horizontal inflection.
+  common_errors:
+  - Calling x = 0 a maximum when n is even (it is a minimum).
+  - Treating x = 0 as a turning point for n odd.
+  - Giving the maximum value as n e^{-n} rather than n^n e^{-n}.
+  hints:
+    rephrase: Look at the sign of the first derivative on either side of each stationary point.
+    smaller_case: Take n = 2 and check the sign of y' just to the left and right of x = 0.
+    key_idea: The sign of x^{n-1} depends on whether n - 1 is odd or even. That decides whether the sign
+      of y' changes at x = 0.
+  check: sp.simplify((x**n*sp.exp(-x)).subs(x, n) - n**n*sp.exp(-n)) == 0
+  check_ok: null
+extensions:
+  '3':
+  - Find the inflection points of y = x e^{-x} and check them against the sign of y''.
+  '4':
+  - Relate the maximum value n^n e^{-n} to Stirling's approximation for n!.
+  '5':
+  - Evaluate the area under y = x^n e^{-x} for x ≥ 0 and explain its link to n!.
+spoken_vocab:
+- x to the power n times e to the power minus x
+- n even
+- n odd
+- y prime
+- stationary point
+- x equals n
+- x equals zero
+- maximum
+- minimum
+- horizontal inflection
+- limit as x tends to minus infinity
+- n to the power n times e to the power minus n
+source: waleed/Curve Sketching Questions - Waleed.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 3
+  minutes: 15
+  flags:
+  - needs_diagram
+  tagline: Edge cases at n=1 and origin reward careful classification; rich sketch discussion.
+  priority: 63
+  rank: 422
+  tier: C
+  category: waleed
+  d10: 5.0
+  real: 6.0
+  by: deepseek-v4.1-flash-free
+tags:
+- curve_sketching
+- differentiation
+- exponentials_and_logarithms

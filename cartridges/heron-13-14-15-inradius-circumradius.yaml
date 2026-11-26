@@ -1,0 +1,168 @@
+id: heron-13-14-15-inradius-circumradius
+title: 'The 13-14-15 triangle: r, R and Euler''s formula'
+topics:
+- triangle area
+- inradius
+- circumradius
+- incentre and circumcentre
+- Euler's formula
+- coordinate geometry
+warmup: false
+answer_source: pdf
+statement: 'A triangle has sides $13$, $14$ and $15$.
+
+
+  (i) Find its area without using Heron''s formula.
+
+
+  (ii) Show that any triangle has area $rs$, where $r$ is the inradius and $s$ is the semi-perimeter.
+  Hence find $r$ for this triangle.
+
+
+  (iii) Show that any triangle has area $\frac{abc}{4R}$, where $a,b,c$ are the side lengths and $R$ is
+  the circumradius. Hence find $R$ for this triangle.
+
+
+  (iv) Place $B$ at the origin and $C$ at $(14,0)$, with $A$ above the $x$-axis. Find the coordinates
+  of the incentre $I$ and the circumcentre $O$, and verify Euler''s formula $OI^2=R(R-2r)$.'
+stages:
+- goal: Find the area of the triangle with sides 13, 14, 15 without using Heron's formula.
+  expected: Area $=84$. Taking the side of length 14 as base, the altitude is $12$ and its foot splits
+    the base into segments $5$ and $9$.
+  solution: 'Let the altitude to the side of length 14 have length $h$, with its foot splitting that side
+    into $x$ and $14-x$, where $x$ is adjacent to the side of length 13. Pythagoras gives $13^2-x^2=h^2=15^2-(14-x)^2$.
+    Expanding: $169-x^2=225-196+28x-x^2$, so $169=29+28x$ and $x=5$. Then $h^2=169-25=144$, so $h=12$.
+    The area is $\frac{1}{2}\cdot14\cdot12=84$.'
+  common_errors:
+  - Pairing the segment $x$ with the wrong slanted side, e.g. using $15^2-x^2$ and $13^2-(14-x)^2$ inconsistently.
+  - Writing the second Pythagoras equation with $x$ instead of $14-x$.
+  - Forgetting the factor $\frac{1}{2}$ in the area formula.
+  - Not checking that the foot lies inside the base, or that $h$ satisfies both equations.
+  hints:
+    rephrase: Drop a perpendicular from the vertex opposite the side of length 14 onto that side. Use
+      Pythagoras on both right-angled triangles, with the foot at distance $x$ from one end.
+    smaller_case: Try the same method on a triangle with sides 5, 5, 6. The altitude onto the side of
+      length 6 splits it into two equal pieces; see how the two equations behave.
+    key_idea: Both Pythagoras equations contain the same $h^2$. Equate them, and the $x^2$ terms cancel,
+      leaving a linear equation for $x$.
+  check: (13**2-5**2-12**2)**2 + (15**2-9**2-12**2)**2 + (Rational(1,2)*14*12-84)**2
+  check_ok: true
+- goal: Show that the area equals $rs$ and hence find the inradius $r$.
+  expected: Area $=rs$ with $s=\frac{13+14+15}{2}=21$, so $r=\frac{84}{21}=4$.
+  solution: Join the incentre $I$ to the three vertices. This splits the triangle into three triangles.
+    Each has one side of the original triangle as base and height $r$, since $I$ is at distance $r$ from
+    every side. Their areas sum to $\frac{1}{2}r(a+b+c)=rs$, where $s=\frac{a+b+c}{2}$. Here $s=21$, so
+    $r=\frac{84}{21}=4$.
+  common_errors:
+  - Using the perimeter $42$ instead of the semi-perimeter $21$, giving $r=2$.
+  - Writing $r$ as area divided by perimeter.
+  - Dropping the factor $\frac{1}{2}$ when summing the three small triangles.
+  - Asserting the formula without justifying that the distance from $I$ to each side is $r$.
+  hints:
+    rephrase: Split the triangle into three smaller triangles using the incentre. What is the height of
+      each one?
+    smaller_case: For an equilateral triangle of side 2, compute the area directly and compare it with
+      the product of the inradius and the semi-perimeter.
+    key_idea: Each small triangle has a side of the original triangle as base and the inradius as height.
+      Add the three areas and factor out $\frac{1}{2}r$.
+  check: 84/((13+14+15)/2) - 4
+  check_ok: true
+- goal: Show that the area equals $\frac{abc}{4R}$ and hence find the circumradius $R$.
+  expected: Area $=\frac{abc}{4R}$, so $R=\frac{13\cdot14\cdot15}{4\cdot84}=\frac{65}{8}$.
+  solution: The area is $\frac{1}{2}bc\sin A$. By the extended law of sines, $\frac{a}{\sin A}=2R$, so
+    $\sin A=\frac{a}{2R}$ and the area is $\frac{1}{2}bc\cdot\frac{a}{2R}=\frac{abc}{4R}$. Hence $R=\frac{abc}{4\cdot\text{Area}}=\frac{13\cdot14\cdot15}{4\cdot84}=\frac{2730}{336}=\frac{65}{8}$.
+  common_errors:
+  - Using $\frac{abc}{2R}$ instead of $\frac{abc}{4R}$.
+  - Using the law of sines with a side and the sine of a non-opposite angle.
+  - Dividing $2730$ by $84$ and forgetting the factor $4$ in the denominator.
+  - Quoting $\frac{a}{\sin A}=R$ instead of $2R$.
+  hints:
+    rephrase: Start from the area as half the product of two sides and the sine of the included angle.
+      Then bring in the circumradius using the law of sines.
+    smaller_case: Check the formula on the right-angled triangle with legs 3 and 4. Where is the circumcentre,
+      and what is $R$?
+    key_idea: The extended law of sines says each side divided by the sine of its opposite angle equals
+      $2R$. Use it to replace $\sin A$.
+  check: 13*14*15/(4*84) - Rational(65,8)
+  check_ok: true
+- goal: Place $B=(0,0)$ and $C=(14,0)$. Find the incentre $I$ and circumcentre $O$, and verify Euler's
+    formula $OI^2=R(R-2r)$.
+  expected: $A=(5,12)$, $I=(6,4)$ and $O=\left(7,\frac{33}{8}\right)$. Then $OI^2=\frac{65}{64}$ and $R(R-2r)=\frac{65}{8}\cdot\frac{1}{8}=\frac{65}{64}$,
+    so Euler's formula holds.
+  solution: 'From part (i), $A=(5,12)$. Let $a=BC=14$, $b=CA=15$, $c=AB=13$. The incentre is the weighted
+    average of the vertices with weights the opposite side lengths: $I=\frac{aA+bB+cC}{a+b+c}=\frac{14(5,12)+15(0,0)+13(14,0)}{42}=\frac{(252,168)}{42}=(6,4)$.
+    Its $y$-coordinate $4$ agrees with $r$. For $O$: it is equidistant from $B$ and $C$, so its $x$-coordinate
+    is $7$. Write $O=(7,y)$. Then $OB^2=OA^2$ gives $49+y^2=(5-7)^2+(12-y)^2=148-24y+y^2$, so $24y=99$
+    and $y=\frac{33}{8}$. Check: $OB^2=49+\frac{1089}{64}=\frac{4225}{64}=\left(\frac{65}{8}\right)^2$,
+    consistent with $R=\frac{65}{8}$. Now $OI^2=(7-6)^2+\left(\frac{33}{8}-4\right)^2=1+\frac{1}{64}=\frac{65}{64}$.
+    Also $R(R-2r)=\frac{65}{8}\left(\frac{65}{8}-8\right)=\frac{65}{8}\cdot\frac{1}{8}=\frac{65}{64}$.
+    The two agree, so Euler''s formula is verified.'
+  common_errors:
+  - Taking the centroid (equal weights) for the incentre.
+  - Weighting each vertex by an adjacent side length instead of the opposite side length.
+  - Using $x=6$ (the incentre's coordinate) for $O$ instead of the perpendicular bisector $x=7$ of $BC$.
+  - Writing $(5-0)^2$ instead of $(5-7)^2$ when equating $OA^2$ and $OB^2$.
+  - Computing $R-2r$ with the wrong $R$ or $r$.
+  hints:
+    rephrase: For $I$, use a weighted average of the vertices and decide which side length weights which
+      vertex. For $O$, first find its $x$-coordinate from the symmetry of $B$ and $C$, then use $OA=OB$.
+    smaller_case: For the right-angled triangle with vertices $(0,0)$, $(3,0)$, $(0,4)$, find the incentre
+      by the weighting idea and check it is equidistant from all three sides. Find the circumcentre by
+      the two-step method.
+    key_idea: The weight on each vertex for the incentre is the length of the opposite side. For the circumcentre,
+      take the perpendicular bisector of the horizontal side $BC$ and then solve $OA^2=OB^2$ for the remaining
+      coordinate.
+  check: ((14*5+13*14)/42-6)**2 + ((14*12)/42-4)**2 + (49+Rational(33,8)**2-Rational(65,8)**2)**2 + (((7-6)**2+(Rational(33,8)-4)**2)-Rational(65,8)*(Rational(65,8)-2*4))**2
+  check_ok: true
+extensions:
+  '3':
+  - Find the exradius $r_a$ of the excircle opposite $A$ using area $=r_a(s-a)$. What are $r_b$ and $r_c$?
+  '4':
+  - Prove Euler's formula $OI^2=R(R-2r)$ for a general triangle using the power of the point $I$ with
+    respect to the circumcircle.
+  '5':
+  - For this triangle find the orthocentre $H$ and the nine-point centre $N$ (the midpoint of $OH$). Show
+    that the nine-point circle (radius $R/2$) is tangent to the incircle, i.e. $NI=\frac{R}{2}-r$, and
+    explain why this is Feuerbach's theorem.
+spoken_vocab:
+- thirteen
+- fourteen
+- fifteen
+- semi-perimeter
+- Heron's formula
+- inradius
+- circumradius
+- incentre
+- circumcentre
+- Euler's formula
+- O I squared
+- R times R minus 2r
+- a b c over 4 R
+- law of sines
+- sine of A
+- altitude
+- foot of the altitude
+- Pythagoras
+- weighted average
+- perpendicular bisector
+source: jaymin/Jaymin Interview (1).pdf#p65
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 4
+  minutes: 25
+  flags: []
+  tagline: Four connected parts linking area, inradius, circumradius and Euler's formula.
+  priority: 110
+  rank: 31
+  tier: S
+  category: jaymin
+  d10: 5.8
+  real: 6.5
+  by: deepseek-v4.1-flash-free
+refined: true
+tags:
+- geometry
+- proof
+- coordinate_geometry

@@ -1,0 +1,88 @@
+id: step-log-substitution-integral
+title: Integral with a logarithm after substituting t = z^(-1/2)
+topics:
+- integration
+- substitution
+- logarithms
+- fractional powers
+warmup: false
+answer_source: pdf
+statement: Find an antiderivative with respect to $z$ of $\frac{25}{9}\left(2z^{-3/2}-5z^{-2}\right)\ln\left(2-5z^{-1/2}\right)$.
+  The source fragment gives no limits; its stated value for the definite version is $\frac{1}{45}\ln 3-\frac{4}{45}$
+  (see the note in stage 2).
+stages:
+- goal: Substitute to remove the fractional powers of $z$, using $t=z^{-1/2}$.
+  expected: $z=t^{-2}$, $dz=-2t^{-3}\,dt$, and the integral becomes $\int -\frac{50}{9}(2-5t)\ln(2-5t)\,dt$.
+  solution: 'With $t=z^{-1/2}$: $z^{-3/2}=t^{3}$, $z^{-2}=t^{4}$ and $z=t^{-2}$, so $dz=-2t^{-3}\,dt$.
+    Then $(2t^{3}-5t^{4})(-2t^{-3})=-4+10t=-2(2-5t)$, so the integrand becomes $\frac{25}{9}\cdot(-2)(2-5t)\ln(2-5t)\,dt=-\frac{50}{9}(2-5t)\ln(2-5t)\,dt$.'
+  common_errors:
+  - Forgetting the factor $dz=-2t^{-3}\,dt$, or dropping its sign.
+  - Writing $z^{-3/2}$ as $t^{-3}$ instead of $t^{3}$.
+  hints:
+    rephrase: Write every power of $z$ as a power of $z^{-1/2}$.
+    smaller_case: Apply the same substitution to $\int 2z^{-3/2}\,dz$ alone and see what it becomes.
+    key_idea: Choose the new variable so that the expression inside the logarithm becomes simple and the
+      remaining factors combine into a polynomial.
+  check: null
+- goal: Integrate in the new variable, then write the antiderivative back in terms of $z$.
+  expected: $\int \frac{25}{9}\left(2z^{-3/2}-5z^{-2}\right)\ln\left(2-5z^{-1/2}\right)dz=\frac{5}{9}v^{2}\ln
+    v-\frac{5}{18}v^{2}+C$, where $v=2-5z^{-1/2}$.
+  solution: 'With $v=2-5t$ we have $dv=-5\,dt$, so $-\frac{50}{9}\int v\ln v\,dt=\frac{10}{9}\int v\ln
+    v\,dv$. Integrating by parts with $u=\ln v$ gives $\frac{10}{9}\left(\frac{v^{2}}{2}\ln v-\frac{v^{2}}{4}\right)=\frac{5}{9}v^{2}\ln
+    v-\frac{5}{18}v^{2}$. Substitute back $v=2-5z^{-1/2}$. Check: the $z$-derivative of this is $\frac{25}{9}z^{-3/2}v\ln
+    v$, and $z^{-3/2}v=2z^{-3/2}-5z^{-2}$. Note on the source: $\frac{1}{45}\ln 3-\frac{4}{45}$ is the
+    value for a definite integral with limits that are not in the fragment, so it cannot be reproduced
+    from the text given here.'
+  common_errors:
+  - Differentiating $v^{2}\ln v$ without the product rule.
+  - Forgetting the factor $\frac15$ when changing from $t$ to $v$.
+  - Quoting the source's numerical value as if the limits were known.
+  hints:
+    rephrase: In the new variable the integrand is a constant times $v\ln v$.
+    smaller_case: First find $\int v\ln v\,dv$, ignoring all constants.
+    key_idea: Integration by parts, with the logarithm as the part you differentiate.
+  check: simplify(diff(Rational(5,9)*(2-5/sqrt(z))**2*log(2-5/sqrt(z)) - Rational(5,18)*(2-5/sqrt(z))**2,
+    z) - Rational(25,9)*(2*z**Rational(-3,2)-5*z**(-2))*log(2-5/sqrt(z)))
+  check_ok: true
+extensions:
+  '3':
+  - Evaluate the integral from $z=25$ to $z=\infty$ using your antiderivative.
+  '4':
+  - Explain why the lower limit must satisfy $z>\frac{25}{4}$ for the logarithm to be defined.
+  '5':
+  - Replace the constants 2 and 5 by general $\alpha$ and $\beta$ in $\ln(\alpha-\beta z^{-1/2})$ and
+    find when the same substitution still reduces the integral to a polynomial times a logarithm.
+spoken_vocab:
+- integral
+- z to the power minus three halves
+- z to the power minus two
+- natural log
+- two minus five z to the power minus a half
+- substitute t equals z to the power minus a half
+- d z
+- minus two t cubed
+- v equals two minus five t
+- integration by parts
+- antiderivative
+- plus C
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#11
+verified: false
+rating:
+  quality: 2
+  difficulty: 4
+  parts: 2
+  minutes: 6
+  flags:
+  - garbled
+  - missing_info
+  tagline: Substitution works, but limits are missing and the stated value is unsupported.
+  priority: 9
+  rank: 706
+  tier: D
+  category: siklos
+  d10: 4.5
+  real: 2.5
+  by: haiku
+tags:
+- integration
+- algebra_and_functions

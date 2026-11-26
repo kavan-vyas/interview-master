@@ -1,0 +1,107 @@
+id: elliptic-curve-y2-x3-minus-x-sketch
+title: Sketch y^2 = x^3 - x
+topics:
+- algebraic curves
+- real geometry
+- factorisation
+- implicit differentiation
+- asymptotics
+warmup: true
+answer_source: pdf
+statement: Sketch the curve $y^2=x^3-x$.
+stages:
+- goal: Factorise the right-hand side and find all real x for which the curve has real points.
+  expected: $x^3-x=x(x-1)(x+1)$. Real points need $x^3-x \ge 0$, which holds exactly for $-1 \le x \le
+    0$ or $x \ge 1$.
+  solution: 'Factor $x^3-x=x(x-1)(x+1)$. Sign analysis of the product: it is $\ge 0$ on $[-1,0]$ (two
+    factors change sign, leaving the product non-negative), negative on $(0,1)$, and $\ge 0$ on $[1,\infty)$,
+    and negative for $x<-1$. So real points exist only for $x\in[-1,0]\cup[1,\infty)$.'
+  common_errors:
+  - Forgetting that $y^2 \ge 0$ forces $x^3-x \ge 0$, and instead considering all real x.
+  - Getting the sign pattern wrong on $(-1,0)$ (the product is positive there, e.g. at $x=-1/2$ it is
+    $3/8$).
+  - Including the open interval $(0,1)$ where the product is negative.
+  hints:
+    rephrase: For which x is the right-hand side allowed to be a square of a real number?
+    smaller_case: Test a single point in each interval cut out by the roots of the cubic, such as $x=-2$,
+      $x=-0.5$, $x=0.5$, $x=2$.
+    key_idea: Factor the cubic, then track the sign of each linear factor across its root.
+  check: expand(x*(x-1)*(x+1) - (x**3 - x))
+  check_ok: true
+- goal: Describe the symmetry, the points on the x-axis, and the tangent behaviour at those points.
+  expected: The curve is symmetric about the x-axis because y appears only as $y^2$. It meets the x-axis
+    at $x=-1,0,1$. There the tangents are vertical, since implicit differentiation gives $\frac{dy}{dx}=\frac{3x^2-1}{2y}$
+    and the numerator $3x^2-1$ is non-zero at each of these points.
+  solution: 'If $(x,y)$ is on the curve then so is $(x,-y)$, so the curve is symmetric in the x-axis.
+    Setting $y=0$ gives $x^3-x=0$, so $x=-1,0,1$. Differentiating implicitly: $2y\,y''=3x^2-1$. At those
+    points $y=0$ and $3x^2-1 \ne 0$ (values $2$, $-1$, $2$), so $y''$ is infinite and the tangent is vertical.'
+  common_errors:
+  - Claiming the curve is symmetric in the y-axis or origin.
+  - Missing one of the three intercepts, usually $x=0$.
+  - Saying the tangent is horizontal at the intercepts (it is vertical).
+  hints:
+    rephrase: If y is replaced by -y, does the equation change? Where does the curve touch the x-axis?
+    smaller_case: 'Look at the curve''s points on the x-axis only: set y to zero and solve for x.'
+    key_idea: 'Implicit differentiation: a tangent is vertical where the slope formula has zero denominator
+      in dx/dy, i.e. where dy/dx blows up.'
+  check: (3*x**2 - 1).subs(x, 0) + 1
+  check_ok: true
+- goal: Describe the two components and the large-|x| behaviour of the unbounded branch.
+  expected: There is a closed oval over $[-1,0]$ and an unbounded branch over $x \ge 1$. For large x,
+    $y \approx \pm x^{3/2}$.
+  solution: 'The oval is the region $-1\le x\le 0$ with $y=\pm\sqrt{x^3-x}$, which is closed since both
+    endpoints are intercepts. For $x\ge 1$, $y=\pm\sqrt{x^3-x}$ is unbounded with two arms. Since $\sqrt{x^3-x}/x^{3/2}\to
+    1$ as $x\to\infty$, the arms behave like $\pm x^{3/2}$. Maximum of $|y|$ on the oval: $x^3-x$ has
+    a turning point at $x=-1/\sqrt3$ with value $2/(3\sqrt3)\approx 0.385$, giving $|y|\approx 0.62$.'
+  common_errors:
+  - Treating the oval and the unbounded branch as one connected curve.
+  - Writing the asymptotic as $\pm x$ or $\pm x^3$ instead of $\pm x^{3/2}$.
+  - Forgetting the oval is closed (it does not extend to infinity).
+  hints:
+    rephrase: Are there two separate pieces of the curve, and does each one run off to infinity?
+    smaller_case: Compute $y^2$ for a large value like $x=100$ and compare with $x^3$ and $x^2$.
+    key_idea: The leading term of $x^3-x$ dominates, so $y^2 \sim x^3$, which gives $|y|\sim x^{3/2}$.
+  check: limit(sqrt(x**3 - x)/x**Rational(3,2), x, oo) - 1
+  check_ok: true
+extensions:
+  '3':
+  - Find the exact coordinates of the points on the oval where |y| is maximal.
+  - Sketch $y^2=x^3+x$ and explain how the number of real components changes.
+  '4':
+  - Show that the curve $y^2=x^3-x$ has a group law on its points with the point at infinity as identity.
+  - Describe how the sketch changes for $y^2=x^3+ax$ as a varies over the reals.
+  '5':
+  - Show that the discriminant $-16(4a^3+27b^2)$ of $y^2=x^3+ax+b$ is non-zero for $y^2=x^3-x$, so the
+    curve is non-singular.
+  - Explain why the real locus of $y^2=x^3-x$ has exactly two connected components.
+spoken_vocab:
+- y squared equals x cubed minus x
+- x cubed
+- x times x minus one times x plus one
+- closed oval
+- unbounded branch
+- vertical tangent
+- implicit differentiation
+- three over two
+- square root
+- point at infinity
+source: jaymin/Jaymin Interview (1).pdf#p49
+verified: false
+rating:
+  quality: 8
+  difficulty: 5
+  parts: 3
+  minutes: 15
+  flags:
+  - needs_diagram
+  tagline: Factorising reveals roots, symmetry, vertical tangents and two components to sketch.
+  priority: 98
+  rank: 50
+  tier: A
+  category: jaymin
+  d10: 5.6
+  real: 5.5
+  by: deepseek-v4.1-flash-free
+tags:
+- curve_sketching
+- algebra_and_functions

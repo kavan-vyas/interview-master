@@ -1,0 +1,90 @@
+id: integral-sin-over-sin-plus-cos-symmetry
+title: Integral of sin x over (sin x + cos x) on [0, pi/2] by symmetry
+topics:
+- calculus
+- integration
+- symmetry
+- trigonometry
+warmup: true
+answer_source: pdf
+statement: Evaluate $\int_0^{\pi/2}\frac{\sin x}{\sin x+\cos x}\,dx$.
+stages:
+- goal: Use the substitution u = pi/2 - x to rewrite the integral.
+  expected: With u = pi/2 - x, sin x becomes cos u and cos x becomes sin u, and the limits 0 to pi/2 are
+    preserved. So I = integral from 0 to pi/2 of cos u / (cos u + sin u) du.
+  solution: Set u = pi/2 - x. Then sin x = cos u and cos x = sin u, dx = -du, and the limits swap back,
+    giving I = integral_0^{pi/2} cos u/(cos u + sin u) du.
+  common_errors:
+  - Forgetting the sign change when reversing limits, or forgetting to swap the limits back
+  - Replacing sin with sin of the wrong angle
+  - Writing the new integrand in the wrong form
+  hints:
+    rephrase: Try the substitution that exchanges the two trigonometric functions, and check the limits.
+    smaller_case: Verify what sin(pi/2 - u) and cos(pi/2 - u) equal.
+    key_idea: The interval [0, pi/2] is symmetric under x maps to pi/2 minus x.
+  check: simplify(sin(pi/2-u)/(sin(pi/2-u)+cos(pi/2-u)) - cos(u)/(cos(u)+sin(u)))
+  check_ok: true
+- goal: Add the two expressions for I and simplify the integrand.
+  expected: Adding the original and substituted integrals gives 2I = integral from 0 to pi/2 of (sin x
+    + cos x)/(sin x + cos x) dx = integral from 0 to pi/2 of 1 dx.
+  solution: Both integrands have the same denominator, and their numerators sum to sin x + cos x, which
+    cancels the denominator. So 2I = integral_0^{pi/2} 1 dx.
+  common_errors:
+  - Adding the integrands but not the denominators correctly
+  - Ending with an integral that still depends on x
+  - Forgetting the factor 2 on the left
+  hints:
+    rephrase: Write both integrals over the same interval and combine their integrands.
+    smaller_case: Add two fractions that share the same denominator.
+    key_idea: When the numerators add to the denominator, the integrand becomes constant.
+  check: simplify(sin(x)/(sin(x)+cos(x)) + cos(x)/(sin(x)+cos(x)) - 1)
+  check_ok: true
+- goal: Compute I and give its exact value.
+  expected: 2I = pi/2, so I = pi/4.
+  solution: The integral of 1 over [0, pi/2] is pi/2, so 2I = pi/2 and I = pi/4.
+  common_errors:
+  - Forgetting to divide by 2
+  - Writing the answer as pi/2 instead of pi/4
+  - Miscalculating the length of the interval
+  hints:
+    rephrase: Solve the equation you obtained in stage 2 for I.
+    smaller_case: Compute the integral of the constant 1 over [0, pi/2].
+    key_idea: The integral of a constant over an interval equals the constant times the length of the
+      interval.
+  check: pi/4 - (pi/2)/2
+  check_ok: true
+extensions:
+  '3':
+  - Show that the integral of cos x over (sin x + cos x) on [0, pi/2] is also pi/4, using the same trick.
+  '4':
+  - For continuous positive f, show that the integral from 0 to a of f(x)/(f(x)+f(a-x)) dx equals a/2.
+  '5':
+  - Evaluate the integral from 0 to pi/2 of sqrt(sin x)/(sqrt(sin x)+sqrt(cos x)) dx.
+spoken_vocab:
+- integral from zero to pi over two
+- sine x over sine x plus cosine x
+- pi over four
+- substitute u equals pi over two minus x
+- add the two integrals
+- symmetry
+- integrand
+- the integral equals pi over four
+source: jaymin/Jaymin Interview (1).pdf#p41
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 3
+  minutes: 6
+  flags: []
+  tagline: Elegant symmetry trick, but essentially a single-idea problem.
+  priority: 76
+  rank: 263
+  tier: B
+  category: jaymin
+  d10: 3.0
+  real: 6.5
+  by: haiku
+tags:
+- integration
+- trigonometry

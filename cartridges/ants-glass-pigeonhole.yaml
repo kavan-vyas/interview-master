@@ -1,0 +1,92 @@
+id: ants-glass-pigeonhole
+title: Ants and a glass of radius one seventh
+topics:
+- pigeonhole principle
+- geometry of circles and squares
+- inequalities with surds
+warmup: true
+answer_source: pdf
+statement: There are $51$ ants on a square with side length $1$. If you have a glass with a radius of
+  $\frac{1}{7}$, can you put your glass at a position on the square to guarantee that the glass encompasses
+  at least $3$ ants?
+stages:
+- goal: Show that some region of the square must contain at least $3$ ants.
+  expected: Split the square into a $5\times5$ grid of cells of side $\frac15$ (25 cells). Since $51>2\cdot25$,
+    some cell contains at least $3$ ants.
+  solution: Split the square into a $5\times5$ grid of cells of side $\frac15$, giving 25 cells. If every
+    cell held at most 2 ants, there would be at most $2\cdot25=50<51$ ants in total. So by the generalised
+    pigeonhole principle some cell contains at least 3 ants.
+  common_errors:
+  - Using the bound $50$ but concluding only $2$ ants per cell, forgetting that $51>50$ forces a third
+    ant somewhere.
+  - Choosing a grid with the wrong number of cells, such as $4\times4$, which does not give the required
+    count.
+  hints:
+    rephrase: If every region held at most two ants, how many ants could there be in total? Compare that
+      with the number you are given.
+    smaller_case: Put $5$ ants into $2$ boxes. What is the guaranteed maximum in some box?
+    key_idea: Compare the number of ants with twice the number of regions.
+  check: sympy.ceiling(sympy.Rational(51,25)) - 3
+  check_ok: null
+- goal: Decide whether a glass of radius $\frac17$ centred in that cell covers the whole cell, and so
+    its ants.
+  expected: Yes. Centre the glass at the centre of the cell. Its half-diagonal is $\frac{\sqrt2}{10}\approx0.1414<\frac17\approx0.1429$,
+    so every point of the cell, including its ants, lies within the glass.
+  solution: A cell of side $\frac15$ has half-diagonal $\frac15\cdot\frac{\sqrt2}{2}=\frac{\sqrt2}{10}$,
+    which is the largest distance from the centre to any point of the cell. Since $\frac{\sqrt2}{10}<\frac17
+    \iff 7\sqrt2<10 \iff 98<100$, the glass covers the cell and its at least 3 ants.
+  common_errors:
+  - Comparing the radius with half the side, $\frac1{10}$, instead of the half-diagonal, which wrongly
+    suggests the glass cannot cover the cell.
+  - Making an arithmetic slip when comparing $7\sqrt2$ with $10$.
+  hints:
+    rephrase: Which point of the small cell is furthest from the cell's centre? How far is that point
+      from the centre?
+    smaller_case: For a unit square, compare the distance from its centre to a corner with the distance
+      from its centre to a side.
+    key_idea: Compare the distance from the centre of the cell to its farthest corner with the radius
+      of the glass.
+  check: sympy.Rational(1,7) > sympy.sqrt(2)/10
+  check_ok: null
+extensions:
+  '3':
+  - Replace the $51$ ants with $50$. Does the grid argument still guarantee $3$ ants in one cell?
+  '4':
+  - What is the smallest number of ants that guarantees $4$ ants in some cell of the $5\times5$ grid?
+  '5':
+  - Prove that the $5\times5$ grid argument cannot give a radius smaller than $\frac{\sqrt2}{10}$ for
+    a glass centred on a cell.
+spoken_vocab:
+- ants
+- square
+- side length one
+- glass
+- radius one seventh
+- pigeonhole principle
+- generalised pigeonhole
+- five by five grid
+- fifty one
+- root two over ten
+- at least three
+- circle
+- centre
+- cell
+source: zhou-quant/zhou-quant-guide.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 2
+  minutes: 10
+  flags: []
+  tagline: 'Tight 5x5 grid: half-diagonal just beats the glass radius.'
+  priority: 75
+  rank: 280
+  tier: B
+  category: zhou-quant
+  d10: 5.0
+  real: 6.5
+  by: deepseek-v4.1-flash-free
+tags:
+- combinatorics
+- geometry

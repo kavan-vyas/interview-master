@@ -1,0 +1,114 @@
+id: newton-raphson-geometric-proof
+title: 'Newton-Raphson: geometric derivation, failure, and monotone functions'
+topics:
+- calculus
+- numerical-methods
+- geometry
+- root-finding
+warmup: false
+answer_source: generated
+statement: Prove geometrically the Newton-Raphson method of finding approximations to roots. Show a case
+  where this method fails. Does this method work with all functions that are increasing throughout?
+stages:
+- goal: Derive the Newton-Raphson update geometrically using the tangent at the current approximation.
+  expected: The tangent at (x_n, f(x_n)) meets the x-axis at x_{n+1} = x_n - f(x_n)/f'(x_n).
+  solution: The tangent at (x_n, f(x_n)) has equation y - f(x_n) = f'(x_n)(x - x_n). Setting y = 0 gives
+    x = x_n - f(x_n)/f'(x_n). Geometrically, the tangent is a good local model of the curve, so its x-intercept
+    is a better approximation to the root than x_n when the curve is close to linear near the root.
+  common_errors:
+  - Using a secant line through two points instead of the tangent.
+  - Sign error, writing x_{n+1} = x_n + f(x_n)/f'(x_n).
+  - Confusing the derivative f' with f in the formula.
+  hints:
+    rephrase: Write the equation of the tangent line at the current point and find where it crosses the
+      horizontal axis.
+    smaller_case: Take f(x) = x^2 - 2 and x_n = 2. Find the x-intercept of the tangent line at that point.
+    key_idea: The slope of the tangent is the derivative, so the line is fixed by one point and one slope.
+  check: (2 - (2**2-2)/(2*2)) - Rational(3,2)
+  check_ok: true
+- goal: Show that Newton-Raphson can fail by computing the first iterates for f(x) = x^3 - 2x + 2 starting
+    at x_0 = 0.
+  expected: x_1 = 1 and x_2 = 0, so the iterates cycle between 0 and 1 and never converge to the real
+    root (about -1.77).
+  solution: f(0) = 2 and f'(0) = -2, so x_1 = 0 - 2/(-2) = 1. Then f(1) = 1 and f'(1) = 1, so x_2 = 1
+    - 1/1 = 0. The iteration returns to 0 forever, so it does not converge.
+  common_errors:
+  - Miscalculating f'(0) as 0 or as 2.
+  - Concluding that the method converges because the iterates stay bounded.
+  hints:
+    rephrase: Compute f and f' at x = 0, substitute into the update, and then repeat the process at the
+      new point.
+    smaller_case: For f(x) = x - a, does Newton's method reach the root in one step from any starting
+      point?
+    key_idea: Watch whether the iterates ever return to a value already visited, which would show a cycle.
+  check: (0 - (0**3-2*0+2)/(3*0**2-2)) - 1
+  check_ok: true
+- goal: Decide whether Newton-Raphson works for every function that is increasing throughout its domain,
+    with a justification.
+  expected: No. Being increasing is not sufficient. For example f(x) = arctan(x) is increasing on the
+    whole real line with root 0, but the iteration diverges for any starting point with |x_0| greater
+    than about 1.39.
+  solution: Because arctan is increasing, it has one root at 0. But f'(x) = 1/(1+x^2) is small for large
+    |x|, so the tangent is nearly horizontal and sends the next iterate far away. Starting at x_0 = 1.5
+    gives x_1 is about -1.69, then x_2 is about 2.29, and the iterates grow in magnitude. Newton-Raphson
+    needs more than monotonicity, such as a suitable starting point close enough to the root, or conditions
+    like convexity together with sign conditions at the endpoints.
+  common_errors:
+  - Answering yes because the function is monotone and so has only one root.
+  - Claiming that monotone functions with nonzero derivative always converge.
+  hints:
+    rephrase: Ask what happens to the tangent line where the slope is very small, and where the next iterate
+      lands.
+    smaller_case: Pick a starting point far from the root for a function that is increasing but flattens
+      out, and compute one iteration.
+    key_idea: Monotonicity guarantees a unique root but says nothing about where the tangent sends the
+      next iterate.
+  check: null
+extensions:
+  '3':
+  - Show that Newton-Raphson converges quadratically near a simple root, using a Taylor expansion of f.
+  - Show that Newton's method for sqrt(a) reduces to the Babylonian iteration.
+  '4':
+  - Explain what goes wrong when f'(x_n) = 0 at an iterate, both geometrically and algebraically.
+  - Give sufficient conditions on f (such as convexity and sign at endpoints) that guarantee convergence
+    from a chosen starting point.
+  '5':
+  - Analyse the basins of attraction of Newton's method for z^3 - 1 = 0 in the complex plane and describe
+    the fractal boundary.
+  - Prove a convergence theorem for Newton's method using the mean value theorem and a Lipschitz bound
+    on f'.
+spoken_vocab:
+- Newton-Raphson
+- tangent
+- x sub n
+- x sub n plus one
+- f of x over f prime of x
+- f prime of x
+- x-axis
+- iteration
+- root
+- x cubed minus two x plus two
+- arctan
+- increasing
+- converge
+- diverge
+- cycle
+source: past-interviews/Actual Past Interview Questions/Maths Trinity Hall Cambridge 2005.doc
+verified: false
+rating:
+  quality: 8
+  difficulty: 5
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Geometric derivation, cycling counterexample, and open-ended monotone-function question.
+  priority: 91
+  rank: 115
+  tier: A
+  category: past-interviews
+  d10: 4.0
+  real: 6.5
+  by: haiku
+tags:
+- numerical_methods
+- differentiation

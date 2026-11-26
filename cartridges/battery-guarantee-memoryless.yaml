@@ -1,0 +1,93 @@
+id: battery-guarantee-memoryless
+title: Car Battery Guarantee and the Memoryless Counterclaim
+topics:
+- exponential distribution
+- memoryless property
+- conditional expectation
+- modelling
+warmup: true
+answer_source: generated
+statement: Suppose your car battery has a guarantee of three years, and your car is completely destroyed
+  after two years. Your insurance company offers to give you one third of the price of the battery. What
+  do you think they would say to your counterclaim for the full price, based on the fact that, given it
+  had lasted two years, the exponential model says that it would have had an expected further three years
+  life in it?
+stages:
+- goal: Work out what fraction of the battery's value the guarantee supports, and explain the insurer's
+    offer.
+  expected: $\frac{1}{3}$ of the price, since one year of the three-year guarantee remains
+  solution: The guarantee promises three years of cover. After two years, one of the three guaranteed
+    years remains, so the guarantee's remaining value is $\frac{1}{3}$ of the price. The insurer's offer
+    is consistent with pro-rata compensation for the unused part of the guarantee.
+  common_errors:
+  - Treating the offer as the fraction of the battery's life that has passed rather than the fraction
+    of the guarantee that remains.
+  - Thinking the answer must be $\frac{2}{3}$ because two years of life have been used.
+  hints:
+    rephrase: Compare what the guarantee promised with what the battery has already delivered.
+    smaller_case: 'Imagine a one-year guarantee and a battery that fails after half a year: what fraction
+      of the guarantee remains?'
+    key_idea: Compensation under a guarantee is measured against the guaranteed term, not against the
+      battery's expected total life.
+  check: Rational(3-2,3) - Rational(1,3)
+  check_ok: true
+- goal: Explain why the counterclaim based on the exponential model does not justify the full price.
+  expected: The memoryless property describes the random failure model; it does not change what the guarantee
+    promises, so the claim for full price is unjustified.
+  solution: The exponential model implies $E[T-2\mid T>2]=3$, which is a statement about the failure distribution's
+    mean, not a term of the contract. The guarantee defines the compensation, and it covers only the remaining
+    guaranteed year. Using the model to claim the full price would ignore the contractual basis of the
+    offer. Also, the exponential model is only an assumption about how the battery fails, so it cannot
+    override the terms of the guarantee.
+  common_errors:
+  - Accepting that a memoryless expected remaining life automatically equals the value of the battery.
+  - Confusing the probability model with the contractual terms.
+  hints:
+    rephrase: Separate what a probability model says about the battery's lifetime from what the guarantee
+      says the insurer must pay.
+    smaller_case: Ask whether the same memoryless argument would give full price if the guarantee were
+      only one year long.
+    key_idea: A model describes uncertainty about the future; a contract defines obligations.
+extensions:
+  '3':
+  - Explain why the exponential model gives the same expected further life at any age.
+  - State the memoryless property in terms of $P(T>s+t\mid T>s)$.
+  '4':
+  - Show that for an exponential lifetime with mean 3, $E[T-2\mid T>2]=3$.
+  - Discuss whether a guarantee of three years is consistent with an exponential model of mean three years.
+  '5':
+  - Suggest a fair compensation rule that uses the exponential model's expected remaining life and the
+    guarantee together.
+  - Discuss how an insurer might price a warranty for a battery whose lifetime is modelled as exponential.
+spoken_vocab:
+- battery
+- guarantee
+- three years
+- two years
+- one third
+- insurance company
+- counterclaim
+- exponential model
+- memoryless
+- expected further life
+- full price
+- conditional expectation
+- pro rata
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#20
+verified: false
+rating:
+  quality: 7
+  difficulty: 4
+  parts: 2
+  minutes: 8
+  flags: []
+  tagline: Memoryless-property counterclaim; contract value versus expected lifetime debate.
+  priority: 75
+  rank: 278
+  tier: B
+  category: siklos
+  d10: 5.5
+  real: 6.0
+  by: deepseek-v4.1-flash-free
+tags:
+- probability

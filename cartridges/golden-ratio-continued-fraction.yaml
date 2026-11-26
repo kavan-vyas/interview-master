@@ -1,0 +1,81 @@
+id: golden-ratio-continued-fraction
+title: Infinite nested fraction 1 + 1/(1 + 1/(1 + ...))
+topics:
+- algebra
+- continued fractions
+- quadratic equations
+- limits
+- self-similarity
+warmup: true
+answer_source: generated
+statement: Find $x$ if $x = 1 + \frac{1}{1 + \frac{1}{1 + \frac{1}{1 + \cdots}}}$.
+stages:
+- goal: Use the self-similar structure to write an equation for x.
+  expected: x = 1 + 1/x, because the tail of the nested fraction is the same as the whole expression.
+  solution: The expression under the first 1/ is the same nested fraction as the whole thing, so it equals
+    x. Hence x = 1 + 1/x.
+  common_errors:
+  - Writing x = 1 + 1/1 or stopping at a finite depth.
+  - Writing x = 1 + 1/(1+x), which is the wrong level of nesting.
+  hints:
+    rephrase: Look at the part of the expression after the first plus one and fraction. What does it look
+      like compared with the whole?
+    smaller_case: Look at the expression truncated after the first 1/ and ask what it would give if you
+      replaced the tail by the whole expression.
+    key_idea: Repeated structure means the tail equals the whole, so the expression satisfies an equation.
+  check: null
+- goal: Solve the equation and choose the correct root.
+  expected: x = (1 + sqrt(5))/2, the positive root of x^2 - x - 1 = 0. The other root is negative and
+    is rejected because the nested fraction is at least 1.
+  solution: 'Multiply x = 1 + 1/x by x to get x^2 = x + 1, so x^2 - x - 1 = 0. The roots are (1 ± sqrt(5))/2.
+    The expression is a sum of positive terms that is at least 1, so x is positive and x >= 1. Taking
+    the root (1 + sqrt(5))/2, which is about 1.618, gives the answer. Check: 1 + 1/1.618 is about 1.618.'
+  common_errors:
+  - Keeping both roots without discarding the negative one.
+  - Algebra slip when multiplying by x, for example writing x = 1 + x.
+  - Using the approximation x = 1 + 1/x evaluated at x = 1 and claiming convergence without justification.
+  hints:
+    rephrase: Clear the fraction in the equation by multiplying through by x, then solve the quadratic.
+    smaller_case: Check which of the two roots is consistent with the nested expression being at least
+      1.
+    key_idea: Use the quadratic formula. Decide which root is valid by considering the sign and size of
+      the nested expression.
+  check: sympy.simplify(((1+sqrt(5))/2)**2 - (1+sqrt(5))/2 - 1) == 0
+  check_ok: null
+extensions:
+  '3':
+  - Show that the nested fraction converges, by considering the sequence of truncations and their behaviour.
+  '4':
+  - Generalise to x = a + 1/x and find the conditions on a under which the nested fraction has a positive
+    root.
+  '5':
+  - Express the nested fraction as a continued fraction, and find its convergents. Compare them with the
+    Fibonacci ratios.
+spoken_vocab:
+- x equals one plus one over one plus one over one plus dot dot dot
+- nested fraction
+- continued fraction
+- quadratic equation
+- golden ratio
+- square root of five
+- x squared minus x minus one equals zero
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 3 (anonymous).pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 2
+  minutes: 6
+  flags: []
+  tagline: Self-similar equation, root choice, and discussion of convergence and Fibonacci links.
+  priority: 55
+  rank: 478
+  tier: C
+  category: past-interviews
+  d10: 2.5
+  real: 6.5
+  by: deepseek-v4.1-flash-free
+tags:
+- algebra_and_functions
+- sequences_and_series
+- limits_and_approximation

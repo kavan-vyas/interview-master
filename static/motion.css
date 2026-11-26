@@ -1,0 +1,38 @@
+/* header cube word */
+.brand { perspective: 400px; }
+.brand .kin.cube { display: inline-block; transform-origin: 50% 50% -.5em; backface-visibility: hidden; }
+
+/* section signatures: hidden until .m-in, each section its own move */
+.m { --d: calc(var(--mi, 0) * 45ms); }
+.m { opacity: 1 !important; }
+.m-in { animation-delay: 0s !important; animation-fill-mode: none !important; }
+.m-deal.m-in   { animation: mDeal .7s cubic-bezier(.2, 1.2, .4, 1); }
+.m-unfold.m-in { animation: mUnfold .6s cubic-bezier(.2, 1, .3, 1); transform-origin: left center; }
+.m-type.m-in   { animation: mType .55s steps(14, end); }
+.m-pop.m-in    { animation: mPop .8s cubic-bezier(.3, 1.8, .5, 1); }
+.m-rise.m-in   { animation: mRise .9s cubic-bezier(.2, .9, .1, 1); }
+.m-slice.m-in  { animation: mSlice .65s cubic-bezier(.5, 0, .2, 1); }
+.m-ink.m-in    { animation: mInk .6s cubic-bezier(.6, 0, .2, 1); }
+.m-print.m-in  { animation: mPrint .5s cubic-bezier(.2, .9, .3, 1); }
+.m-skew.m-in   { animation: mSkew .55s cubic-bezier(.2, 1.2, .4, 1); }
+@keyframes mDeal { from { opacity: 0; transform: perspective(800px) translate(-60px, 80px) rotateY(-70deg) rotateZ(-8deg); } to { opacity: 1; transform: none; clip-path: none; filter: none; } }
+@keyframes mUnfold { from { opacity: 0; transform: perspective(900px) rotateY(75deg); } to { opacity: 1; transform: none; clip-path: none; filter: none; } }
+@keyframes mType { from { clip-path: inset(0 100% 0 0); } to { opacity: 1; transform: none; clip-path: none; filter: none; } }
+@keyframes mPop { from { opacity: 0; transform: scale(.3) rotate(-25deg); } to { opacity: 1; transform: none; clip-path: none; filter: none; } }
+@keyframes mRise { from { opacity: 0; transform: translateY(70px); clip-path: inset(100% 0 0 0 round 22px); } to { opacity: 1; transform: none; clip-path: none; filter: none; } }
+@keyframes mSlice { 0% { clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); transform: translateX(-12px) skewX(-6deg); } 60% { clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%); } to { opacity: 1; transform: none; clip-path: none; filter: none; } }
+@keyframes mInk { from { clip-path: inset(0 100% 0 0 round 8px); opacity: .3; } to { opacity: 1; transform: none; clip-path: none; filter: none; } }
+@keyframes mPrint { from { opacity: 0; transform: translateY(14px) scaleY(.6); transform-origin: top; } to { opacity: 1; transform: none; clip-path: none; filter: none; } }
+@keyframes mSkew { from { opacity: 0; transform: translateX(-50px) skewX(18deg); } to { opacity: 1; transform: none; clip-path: none; filter: none; } }
+/* Begin showpiece overlay */
+.sp { position: fixed; inset: 0; z-index: 90; pointer-events: none; overflow: hidden; background: radial-gradient(circle at 50% 50%, rgba(10, 22, 12, .9), #020403 70%); animation: spIn .4s ease-out both; }
+@keyframes spIn { from { opacity: 0; } }
+.sp b { position: fixed; color: #061001; background: #b6ff3b; padding: 0 .08em; border-radius: 6px; }
+.sp i { position: fixed; font-style: normal; font-family: "Fraunces", serif; will-change: transform, opacity; }
+.sp .sp-orb { position: fixed; left: 50%; top: 50%; width: 220px; height: 220px; margin: 0; }
+.sp u { position: fixed; left: 50%; top: 50%; width: 120px; height: 120px; border-radius: 50%; border: 2px solid #4de2ff; }
+.sp u:nth-of-type(2) { border-color: #b6ff3b; } .sp u:nth-of-type(3) { border-color: #b58cff; }
+.sp h2 { position: fixed; left: 50%; top: 50%; margin: 0; text-align: center; width: min(90vw, 1100px); font: 800 clamp(36px, 6vw, 92px)/1 "Syne", sans-serif; color: #e8f3ea; text-transform: capitalize; }
+.sp h2 small { display: block; font: 600 13px "Unbounded", sans-serif; letter-spacing: .5em; color: #b6ff3b; margin-bottom: 18px; }
+body[data-motion="calm"] .m:not(.m-in) { opacity: 1; }
+body[data-motion="calm"] .sp { display: none; }

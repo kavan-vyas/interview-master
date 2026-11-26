@@ -1,0 +1,101 @@
+id: poisson-plates-mathematician
+title: Broken Plates and the Mathematician
+topics:
+- Poisson distribution
+- binomial distribution
+- conditional probability
+- independence
+warmup: false
+answer_source: pdf
+statement: Four students, one of whom is a mathematician, take turns at washing up over a long period
+  of time. The number of plates broken by any student in this time obeys a Poisson distribution, the probability
+  of any given student breaking $n$ plates being $e^{-\lambda}\lambda^n/n!$ for some fixed constant $\lambda$,
+  independent of the number of breakages by other students. Given that five plates are broken, find the
+  probability that three or more were broken by the mathematician.
+stages:
+- goal: Show that, given five plates are broken in total, the number broken by the mathematician has a
+    binomial distribution, and identify its parameters.
+  expected: Binomial with $n=5$ and $p=\frac{1}{4}$
+  solution: Each student's count is an independent Poisson($\lambda$) variable, so the total $T$ is Poisson($4\lambda$).
+    Given $T=5$, each broken plate is equally likely to come from any of the four students, independently
+    of the rest, so the mathematician's count is Binomial(5, $\frac{1}{4}$). Equivalently, $P(M=k\mid
+    T=5)=\frac{e^{-\lambda}\lambda^k/k!\cdot e^{-3\lambda}(3\lambda)^{5-k}/(5-k)!}{e^{-4\lambda}(4\lambda)^5/5!}=\binom{5}{k}\left(\frac{1}{4}\right)^k\left(\frac{3}{4}\right)^{5-k}$.
+  common_errors:
+  - Treating the mathematician's count as Poisson($\lambda$) rather than conditioning on the total of
+    five.
+  - Using a parameter other than $\frac{1}{4}$, such as $\frac{1}{3}$ (ignoring the mathematician's share
+    among four students).
+  - Believing that the answer depends on $\lambda$.
+  hints:
+    rephrase: Think about where each of the five broken plates came from, given that there were exactly
+      five in total.
+    smaller_case: Consider two plates instead of five and ask which student each one came from if each
+      student is equally likely.
+    key_idea: Conditioning independent Poisson counts on their total gives a multinomial split, so the
+      rate $\lambda$ cancels.
+  check: Rational(1,4)*4 - 1
+  check_ok: true
+- goal: Find the probability that three or more of the five broken plates were broken by the mathematician.
+  expected: $\frac{106}{1024}=\frac{53}{512}$
+  solution: $P(M\ge 3)=\sum_{k=3}^{5}\binom{5}{k}\left(\frac{1}{4}\right)^k\left(\frac{3}{4}\right)^{5-k}=\frac{90}{1024}+\frac{15}{1024}+\frac{1}{1024}=\frac{106}{1024}=\frac{53}{512}$.
+  common_errors:
+  - Summing from $k=2$ or $k=4$ instead of $k=3$ to $5$.
+  - Arithmetic slips in the powers of $\frac{1}{4}$ and $\frac{3}{4}$ (for example $\binom{5}{3}(\frac{1}{4})^3(\frac{3}{4})^2$).
+  - Forgetting to add all three terms.
+  hints:
+    rephrase: Write down the probability that exactly $k$ of the five plates were broken by the mathematician,
+      for each relevant $k$, and then combine them.
+    smaller_case: Compute the probability of exactly five plates being broken by the mathematician, then
+      of exactly four.
+    key_idea: The event 'three or more' is a disjoint union of the events 'exactly three', 'exactly four'
+      and 'exactly five', so add their probabilities.
+  check: Rational(106,1024)-Rational(53,512)
+  check_ok: true
+extensions:
+  '3':
+  - Find the probability that exactly two of the five plates were broken by the mathematician.
+  - Find the conditional probability that the mathematician broke at least one plate, given that five
+    were broken.
+  '4':
+  - Find the expected number of plates broken by the mathematician, given that five plates were broken
+    in total.
+  - Show that the joint distribution of the four students' counts given the total is multinomial.
+  '5':
+  - Explain why the answer does not depend on $\lambda$, and say what would change if the four students
+    had different breakage rates.
+  - Find the probability that the mathematician breaks all five plates, given that five plates were broken,
+    when there are $m$ students with equal rates.
+spoken_vocab:
+- Poisson
+- lambda
+- e to the minus lambda
+- factorial
+- binomial
+- mathematician
+- four students
+- five plates
+- three or more
+- one quarter
+- three quarters
+- fifty three over five hundred and twelve
+- one hundred and six over one thousand and twenty four
+- independent
+- conditional probability
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#20
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 2
+  minutes: 6
+  flags: []
+  tagline: Poisson splitting gives a binomial; a short, clean conditional probability
+  priority: 45
+  rank: 546
+  tier: C
+  category: siklos
+  d10: 3.5
+  real: 6.0
+  by: haiku
+tags:
+- probability

@@ -1,0 +1,101 @@
+id: tbo-rod-triangle-probability
+title: 'Rod Broken Into Three Pieces: Triangle Probability'
+topics:
+- probability
+- geometric probability
+- triangle inequality
+- complementary counting
+warmup: false
+answer_source: generated
+statement: A thin rod is broken into three pieces. What is the probability that a triangle can be formed
+  from the three pieces?
+stages:
+- goal: Model the random break and state exactly when three lengths form a triangle.
+  expected: Take the rod to have length 1 and break it at two points chosen uniformly at random. The pieces
+    a, b, c satisfy a+b+c=1 with a,b,c>0, and (a,b,c) is uniform on this simplex. Three lengths form a
+    non-degenerate triangle iff each one is strictly less than the sum of the other two, which is equivalent
+    to each piece being strictly less than 1/2.
+  solution: Let the cut points be X<Y, uniform on (0,1). Then a=X, b=Y-X, c=1-Y. Since a+b+c=1, the triangle
+    condition a+b>c, b+c>a, a+c>b becomes a<1/2, b<1/2, c<1/2. The sample space is the simplex a+b+c=1
+    with a,b,c>0, and the random point is uniform on it.
+  common_errors:
+  - Picking the two cut points from a sample space that is not uniform (for example, cutting at lengths
+    chosen independently rather than at uniform positions).
+  - Forgetting that the triangle inequality must hold strictly for all three sides, not just one.
+  - Checking only that the longest piece is less than the sum of the other two without noting that this
+    is equivalent to it being less than 1/2.
+  hints:
+    rephrase: Think about what must be true of the longest piece for the three pieces to close up into
+      a triangle.
+    smaller_case: Suppose one piece is 0.6 of the rod. Can it be a side of a triangle with the other two
+      pieces?
+    key_idea: A set of three lengths forms a triangle exactly when no single length is at least the sum
+      of the other two; compare each piece against the total length.
+  check: null
+- goal: Compute the probability that a triangle forms.
+  expected: 1/4
+  solution: Count the bad event. Let E_a be the event a>=1/2, and similarly E_b and E_c. Since a+b+c=1,
+    at most one of these can occur (two of them would force the third to be 0, a measure-zero case). So
+    the events are disjoint. The region a>=1/2 in the simplex is a scaled copy of the simplex with side
+    ratio 1/2, so its probability is (1/2)^2 = 1/4. Thus P(bad)=3/4 and P(triangle)=1-3/4=1/4.
+  common_errors:
+  - Adding the three events' probabilities without checking they are disjoint, or subtracting overlaps
+    that do not exist.
+  - Using the wrong scale factor for the sub-simplex (it is 1/2 in side length, so the area ratio is 1/4,
+    not 1/2).
+  - Computing P(a>=1/2) as 1/2 by symmetry arguments that ignore the simplex geometry.
+  hints:
+    rephrase: It can be easier to count the outcomes that fail rather than the ones that succeed.
+    smaller_case: Ask how many pieces can be at least half the rod at the same time.
+    key_idea: Look at the region where one particular piece is at least half the rod. What shape does
+      it form inside the sample space, and how large is it compared with the whole sample space?
+  check: Eq(p, Rational(1,4))
+  check_ok: null
+extensions:
+  '3':
+  - Use a geometric picture in the unit square of cut points (X,Y) to re-derive the answer 1/4.
+  '4':
+  - Repeat the problem for a rod broken into four pieces. Can the four pieces always form a quadrilateral,
+    and with what probability?
+  '5':
+  - Show that for a rod broken into n pieces, the probability that the pieces form an n-gon is 1 - n/2^{n-1}.
+    Check your formula against n=3.
+spoken_vocab:
+- rod
+- three pieces
+- triangle
+- probability
+- uniform
+- cut points
+- a plus b plus c equals one
+- simplex
+- strictly less than
+- one half
+- complement
+- disjoint events
+- one quarter
+- side ratio
+- quadrilateral
+- n-gon
+- two to the power n minus one
+- unit square
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 2
+  minutes: 20
+  flags:
+  - missing_info
+  tagline: Classic geometric probability; model of random break must be specified
+  priority: 67
+  rank: 369
+  tier: C
+  category: tbo
+  d10: 6.0
+  real: 8.5
+  by: haiku
+tags:
+- probability
+- geometry

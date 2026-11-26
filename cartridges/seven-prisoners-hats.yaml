@@ -1,0 +1,123 @@
+id: seven-prisoners-hats
+title: Seven Prisoners and Hats
+topics:
+- modular arithmetic
+- combinatorics
+- logic and strategy
+- residues mod n
+warmup: false
+answer_source: pdf
+statement: Seven prisoners are given the chance to be set free tomorrow. An executioner puts a hat on
+  each prisoner's head. Each hat can be one of the seven colours of the rainbow, assigned at the executioner's
+  discretion. Every prisoner can see the hat colours of the other six prisoners but not his own. They
+  cannot communicate in any form, or else they are executed. Each prisoner then writes down a guess of
+  his own hat colour. If at least one prisoner correctly guesses his hat colour, they all go free; otherwise
+  they are all executed. They have one night to devise a strategy. Is there a strategy that guarantees
+  they will be set free?
+stages:
+- goal: Code the seven colours as $0,\dots,6$ and label the prisoners $i=0,\dots,6$. Let $T$ be the sum
+    of all seven hat codes mod $7$. How many prisoners have label $i$ with $i\equiv T \pmod 7$, for a
+    given $T$?
+  expected: Exactly one. The labels $0,\dots,6$ are the seven distinct residues mod $7$, so exactly one
+    label matches any given residue $T$.
+  solution: $T$ reduces to a residue in $\{0,\dots,6\}$. Each residue appears exactly once among the labels
+    $0,\dots,6$, so exactly one prisoner has $i\equiv T \pmod 7$.
+  common_errors:
+  - Thinking several prisoners might share a label, forgetting that the labels are all distinct residues.
+  - Forgetting to reduce $T$ mod $7$ before comparing it with the labels.
+  hints:
+    rephrase: Ask how many of the labels $0$ to $6$ can equal any one fixed residue mod $7$.
+    smaller_case: With two prisoners labelled $0$ and $1$ and codes mod $2$, how many labels match a given
+      total mod $2$?
+    key_idea: Count how many labels from $0$ to $6$ fall in each residue class mod $7$.
+  check: Integer(len([i for i in range(7) if (i - 4) % 7 == 0])) - 1
+  check_ok: null
+- goal: Prisoner $i$ sees the other six codes; let $S$ be their sum mod $7$. He guesses $g$ with $g+S\equiv
+    i \pmod 7$. Find his guess when $i=5$ and $S=6$.
+  expected: $g=6$, since $6+6=12\equiv 5 \pmod 7$.
+  solution: '$g\equiv i-S = 5-6 = -1 \equiv 6 \pmod 7$. Check: $6+6=12\equiv 5 \pmod 7$.'
+  common_errors:
+  - Answering $-1$, which is not a valid colour code; the result must be reduced mod $7$.
+  - Using $g = i + S$ instead of $g \equiv i - S$, which gives $11 \equiv 4$.
+  hints:
+    rephrase: Prisoner $i$ wants his own guess plus the sum he can already see to land on his label mod
+      $7$. What must his guess be?
+    smaller_case: With labels $0$ and $1$ and codes mod $2$, suppose the other prisoner's code sums to
+      $1$. Which guess makes the total match label $0$?
+    key_idea: 'Use only the sum he can see: choose his guess so that the total of all seven codes is forced
+      to equal his own label mod $7$.'
+  check: Mod(6 + 6, 7) - 5
+  check_ok: true
+- goal: Suppose the prisoner with label $i\equiv T$ uses the rule above. Take his own hat $x=2$ and the
+    others' sum $S=4$, so $T\equiv 6 \pmod 7$ and $i=6$. Show that his guess equals his own hat colour.
+  expected: His guess is $2$, which equals his own hat $x=2$, since $6-4=2$.
+  solution: Since $T=S+x$, the guess is $g\equiv i-S\equiv T-S\equiv x \pmod 7$ whenever $i\equiv T$.
+    Numerically, $g\equiv 6-4=2=x$.
+  common_errors:
+  - Confusing $S$ (sum of the other six codes) with $T$ (the total including his own hat).
+  - Making an arithmetic slip with $6-4$ and getting a guess other than $2$.
+  hints:
+    rephrase: Which label matches the true total $T$, and what does the guess formula give for that prisoner?
+    smaller_case: Suppose every hat is colour $0$, so $T=0$. Which prisoner's guess is then guaranteed
+      to match his own hat?
+    key_idea: Substitute the matching label into the guess formula and simplify mod $7$, using that the
+      total equals the others' sum plus his own hat.
+  check: Mod(6 - 4, 7) - 2
+  check_ok: true
+extensions:
+  '3':
+  - Replace the seven prisoners with three prisoners and three colours. Write the mod $3$ strategy explicitly
+    and check it against all $27$ hat configurations.
+  '4':
+  - Generalise to $n$ prisoners and $n$ colours. Show that the mod $n$ sum strategy works for every $n$,
+    and explain why $n$ does not need to be prime.
+  '5':
+  - Adapt the mod $7$ strategy to seven prisoners but only six colours, and state exactly which step of
+    the proof breaks.
+  - Explain why the strategy fails if two prisoners share a label, and prove that every label $0,\dots,6$
+    must be used exactly once.
+spoken_vocab:
+- seven prisoners
+- hat
+- hat colour
+- colour
+- rainbow
+- code
+- mod seven
+- modulo seven
+- T
+- sum of codes
+- label i
+- guess g
+- congruent
+- residue
+- x sub i
+- zero to six
+- i congruent to T
+- S
+- prisoner
+- executioner
+- strategy
+- two to the power
+- mod three
+- mod n
+source: zhou-quant/zhou-quant-guide.pdf#1
+verified: false
+rating:
+  quality: 5
+  difficulty: 5
+  parts: 3
+  minutes: 15
+  flags:
+  - garbled
+  tagline: Classic hat puzzle with modular elegance; final stage is truncated.
+  priority: 53
+  rank: 500
+  tier: C
+  category: zhou-quant
+  d10: 5.5
+  real: 5.0
+  by: haiku
+tags:
+- number_theory
+- combinatorics

@@ -1,0 +1,125 @@
+id: e-pi-vs-pi-e-2
+title: e^pi versus pi^e without a calculator
+topics:
+- inequalities
+- logarithms
+- calculus
+- monotonicity
+warmup: true
+answer_source: generated
+statement: 'Without using a calculator, decide which is larger: $e^{\pi}$ or $\pi^{e}$.'
+stages:
+- goal: Reduce the comparison of $e^{\pi}$ and $\pi^{e}$ to a comparison of simpler quantities by taking
+    natural logarithms.
+  expected: Since ln is strictly increasing, compare $\ln(e^{\pi}) = \pi$ with $\ln(\pi^{e}) = e\ln\pi$.
+    So $e^{\pi} > \pi^{e}$ exactly when $\pi > e\ln\pi$, i.e. when $\dfrac{\ln\pi}{\pi} < \dfrac{1}{e}$.
+  solution: 'Take logs: $\ln(e^{\pi}) = \pi$ and $\ln(\pi^{e}) = e\ln\pi$. Because ln is strictly increasing,
+    $e^{\pi} > \pi^{e} \iff \pi > e\ln\pi \iff \frac{\ln\pi}{\pi} < \frac{1}{e}$ (dividing by $e\pi>0$).'
+  common_errors:
+  - Taking logs of only one side or forgetting that ln is applied to both sides.
+  - Dividing by the wrong quantity, e.g. obtaining $\ln\pi/e$ instead of $\ln\pi/\pi$ versus $1/e$.
+  - Reversing the inequality when dividing by a positive number.
+  hints:
+    rephrase: Both numbers are positive, so you can compare their natural logarithms instead. What does
+      ln do to a power?
+    smaller_case: Compare $2^{3}$ and $3^{2}$ by taking logs. Which log expression appears, and how do
+      you compare it?
+    key_idea: Use $\ln(a^{b}) = b\ln a$ and $\ln(e^{x}) = x$, then rearrange so both sides are in the
+      form $\frac{\ln x}{x}$.
+  check: sp.simplify(sp.log(sp.E**sp.pi) - sp.pi)
+  check_ok: null
+- goal: Show that $f(x)=\dfrac{\ln x}{x}$ is decreasing for $x\ge e$, and use it to locate $\dfrac{\ln\pi}{\pi}$
+    relative to $\dfrac{1}{e}$.
+  expected: $f'(x) = \dfrac{1-\ln x}{x^{2}}$. For $x>e$ we have $\ln x>1$, so $f'(x)<0$ and $f$ is strictly
+    decreasing there. Since $\pi>e$ and $f(e)=\dfrac{1}{e}$, we get $f(\pi)<\dfrac{1}{e}$, i.e. $\dfrac{\ln\pi}{\pi}<\dfrac{1}{e}$.
+  solution: 'By the quotient rule, $f''(x) = \frac{\frac{1}{x}\cdot x - \ln x}{x^2} = \frac{1-\ln x}{x^2}$.
+    For $x>e$, $\ln x>1$, so $f''(x)<0$: $f$ is strictly decreasing on $[e,\infty)$. As $\pi>e$, $f(\pi)<f(e)=\frac{\ln
+    e}{e}=\frac{1}{e}$.'
+  common_errors:
+  - Differentiating incorrectly, e.g. dropping the $-\ln x$ term.
+  - Concluding monotonicity on all of $(0,\infty)$ rather than on $[e,\infty)$; $f$ is increasing for
+    $x<e$.
+  - Stating $f(e)$ incorrectly, e.g. as $e$ or $\frac{1}{\pi}$.
+  hints:
+    rephrase: Consider the function $f(x)=\frac{\ln x}{x}$ and ask where it is increasing and where it
+      is decreasing.
+    smaller_case: Find the sign of the derivative of $\frac{\ln x}{x}$ at $x=2$ and at $x=10$. What changes
+      between them?
+    key_idea: Differentiate $\frac{\ln x}{x}$ with the quotient rule. The sign of the derivative depends
+      on whether $\ln x$ is above or below a particular value; find that value and compare it with $\pi$
+      and $e$.
+  check: x = sp.Symbol('x'); sp.simplify(sp.diff(sp.log(x)/x, x) - (1 - sp.log(x))/x**2)
+  check_ok: null
+- goal: State which of $e^{\pi}$ and $\pi^{e}$ is larger and justify it from the previous stages.
+  expected: $e^{\pi}$ is larger. From stage 2, $\dfrac{\ln\pi}{\pi}<\dfrac{1}{e}$, which by stage 1 gives
+    $\pi>e\ln\pi$, hence $\ln(e^{\pi})>\ln(\pi^{e})$ and $e^{\pi}>\pi^{e}$.
+  solution: From $\frac{\ln\pi}{\pi}<\frac{1}{e}$ we get $e\ln\pi<\pi$, i.e. $\ln(\pi^{e})<\ln(e^{\pi})$.
+    Since exp is strictly increasing, $\pi^{e}<e^{\pi}$.
+  common_errors:
+  - Stating the answer without linking it back to the inequality established earlier.
+  - Flipping the inequality when moving between $\frac{\ln\pi}{\pi}<\frac{1}{e}$ and $e\ln\pi<\pi$.
+  - Claiming the answer from a numerical estimate rather than the argument (the question asks for no calculator).
+  hints:
+    rephrase: Go back to the inequality you got in the last stage. Which side is $\pi$ on, and which is
+      $e\ln\pi$?
+    smaller_case: Using the same logic, decide whether $2^{3}$ or $3^{2}$ is larger by checking the sign
+      of $3\ln 2 - 2\ln 3$ in the form $\frac{\ln 2}{2}$ versus $\frac{\ln 3}{3}$.
+    key_idea: Translate the inequality $\frac{\ln\pi}{\pi}<\frac{1}{e}$ back through the logarithm step,
+      then use that the exponential is increasing.
+  check: sp.Gt(sp.E**sp.pi, sp.pi**sp.E)
+  check_ok: null
+extensions:
+  '3':
+  - Without a calculator, decide whether $2^{\pi}$ or $\pi^{2}$ is larger.
+  - Explain why $3^{4}$ and $4^{3}$ can be compared using the same function $\frac{\ln x}{x}$ and say
+    which is larger.
+  '4':
+  - For which positive real $x$ is $x^{1/x}$ maximal, and why does this give a general comparison of $a^{b}$
+    and $b^{a}$?
+  - Show that $\sqrt[n]{n}$ is largest at $n=3$ among positive integers $n$.
+  '5':
+  - Prove that $a^{b}>b^{a}$ whenever $e\le a<b$.
+  - For which pairs of positive integers $(a,b)$ with $a<b$ does $a^{b}>b^{a}$ hold, and how does your
+    analysis of $\frac{\ln x}{x}$ explain the answer?
+spoken_vocab:
+- e to the pi
+- pi to the e
+- e
+- pi
+- natural log
+- ln
+- log of e to the pi
+- log of pi to the e
+- derivative
+- f prime of x
+- quotient rule
+- strictly decreasing
+- strictly increasing
+- greater than
+- less than
+- divide by e pi
+- one over e
+- ln pi over pi
+- e ln pi
+- exponential
+- monotone
+source: jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p57
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 1
+  minutes: 10
+  flags: []
+  tagline: Log reduction and monotonicity of ln x/x give a clean, well-scaffolded comparison.
+  priority: 71
+  rank: 350
+  tier: B
+  category: jshah-workbook
+  d10: 4.0
+  real: 8.0
+  by: deepseek-v4.1-flash-free
+tags:
+- exponentials_and_logarithms
+- differentiation
+- inequalities

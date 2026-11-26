@@ -1,0 +1,116 @@
+id: cubic-sum-unique-root
+title: 'Sum of two cubes with distinct shifts: one real root, no turning points'
+topics:
+- algebra
+- cubic equations
+- factorisation
+- calculus
+- stationary points
+- monotonicity
+warmup: false
+answer_source: generated
+statement: Let $a\ne b$ and $a, b>0$. How many real solutions are there to $(x-a)^3+(x-b)^3=0$? Find the
+  real solution and prove that the equation has only one real solution. Find the turning points of the
+  corresponding curve.
+stages:
+- goal: Count the real solutions of (x-a)^3 + (x-b)^3 = 0 and find the solution.
+  expected: Exactly one real solution, x = (a+b)/2.
+  solution: 'Put u = x - a and v = x - b. Then u^3 + v^3 = 0 means u^3 = -v^3. Real cube roots are one-to-one,
+    so u = -v. This gives x - a = -(x - b), so 2x = a + b, and x = (a+b)/2. The equation is cubic, but
+    the factor u^2 - uv + v^2 is positive whenever u and v are not both zero, so no other real roots arise.
+    Check: at x = (a+b)/2, we have x - a = (b-a)/2 and x - b = (a-b)/2, whose cubes cancel.'
+  common_errors:
+  - Claiming three roots because the equation is cubic, without checking which are real.
+  - Forgetting that real cube roots are one-to-one, and inventing extra roots from complex cube roots
+    of unity.
+  - Making an algebra slip in the midpoint, for example writing (a-b)/2 instead of (a+b)/2.
+  hints:
+    rephrase: Write the equation as the sum of two cubes equal to zero. What must be true of the two bases?
+    smaller_case: Try a small example with concrete positive numbers for a and b, and find the x that
+      works.
+    key_idea: A sum of two real cubes is zero exactly when the two bases are negatives of each other,
+      because the real cube function is one-to-one.
+  check: sympy.simplify(((x-a)**3 + (x-b)**3).subs(x, (a+b)/2)) == 0
+  check_ok: null
+- goal: Prove that the equation has only one real solution.
+  expected: Only one. The curve y = (x-a)^3 + (x-b)^3 is strictly increasing, so it crosses zero at most
+    once. Since a, b > 0 and a is not b, the derivative is strictly positive everywhere.
+  solution: Let y(x) = (x-a)^3 + (x-b)^3. Then y'(x) = 3(x-a)^2 + 3(x-b)^2. Since a is not b, the points
+    x = a and x = b are different, so at every real x at least one of the two squares is strictly positive.
+    Hence y'(x) > 0 for all real x, so y is strictly increasing. A strictly increasing function takes
+    the value zero at most once. Together with stage 1, the equation has exactly one real solution.
+  common_errors:
+  - Arguing that a cubic has at most one real root because it has an odd degree, which is not a valid
+    argument on its own.
+  - Forgetting that a is not b is needed. If a = b, the derivative vanishes at x = a and the equation
+    has a triple root.
+  - Computing the derivative incorrectly, for example dropping the factor 3 or the square.
+  hints:
+    rephrase: Find the derivative of the left-hand side. Is it ever zero or negative?
+    smaller_case: Consider the simpler function t^3 with t running over the reals. Why is it strictly
+      increasing?
+    key_idea: A strictly monotone function meets any horizontal line at most once. Show that the derivative
+      is a sum of squares, and use a != b to see that it never vanishes.
+  check: sympy.simplify(sympy.diff((x-a)**3 + (x-b)**3, x) - 3*((x-a)**2 + (x-b)**2)) == 0
+  check_ok: null
+- goal: Find the turning points of the curve y = (x-a)^3 + (x-b)^3.
+  expected: There are no turning points. The derivative 3((x-a)^2 + (x-b)^2) is strictly positive everywhere
+    when a is not b.
+  solution: A turning point occurs where y' = 0. We have y' = 3((x-a)^2 + (x-b)^2). This is a sum of two
+    squares, which is zero only if x = a and x = b simultaneously. Since a is not b, this never happens.
+    So y' is strictly positive for all real x, the curve is strictly increasing, and it has no stationary
+    points and no turning points. Its only point of interest is the crossing with the x-axis at x = (a+b)/2.
+  common_errors:
+  - Solving y' = 0 incorrectly by expanding and getting a quadratic with a spurious root.
+  - Concluding that the turning point is at x = (a+b)/2. That is where y = 0, not where y' = 0.
+  - Claiming turning points at x = a and x = b, where y is not stationary (y' is positive there).
+  hints:
+    rephrase: Find the derivative of the curve and set it equal to zero. Which real numbers make the result
+      vanish?
+    smaller_case: Set a = 1 and b = 2 in the derivative and check whether it can be zero for any real
+      x.
+    key_idea: A sum of two squares is zero only when both squares are zero. Ask whether x can equal both
+      a and b at once.
+  check: sympy.simplify(sympy.diff((x-a)**3 + (x-b)**3, x) - 3*((x-a)**2 + (x-b)**2)) == 0
+  check_ok: null
+extensions:
+  '3':
+  - Show that the curve y = (x-a)^3 + (x-b)^3 has an inflection point, and find it.
+  '4':
+  - What happens to the number of real solutions and the turning points when a = b? Explain why the argument
+    above fails in that case.
+  '5':
+  - Generalise to (x-a)^(2n+1) + (x-b)^(2n+1) = 0 with a not equal to b, and decide the number of real
+    roots and turning points.
+spoken_vocab:
+- a not equal to b
+- a and b greater than zero
+- x minus a
+- x minus b
+- cubed
+- sum of cubes
+- real solutions
+- turning points
+- derivative
+- stationary point
+- strictly increasing
+- inflection point
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 3 (anonymous).pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Unique real root, then the surprise that the curve has no turning points.
+  priority: 71
+  rank: 354
+  tier: B
+  category: past-interviews
+  d10: 4.0
+  real: 7.0
+  by: deepseek-v4.1-flash-free
+tags:
+- algebra_and_functions
+- curve_sketching

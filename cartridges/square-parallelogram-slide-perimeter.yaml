@@ -1,0 +1,87 @@
+id: square-parallelogram-slide-perimeter
+title: Perimeter after sliding a parallelogram out of a square
+topics:
+- perimeter
+- composite shapes
+- area and perimeter
+warmup: true
+answer_source: pdf
+statement: "A square of side $a$ cm has a parallelogram-shaped section slid out of it, creating a new\
+  \ shape. The parallelogram's sides are labelled $b$ and $c$ in the diagram. What is the perimeter of\
+  \ the new shape?\n a) Need more information\n b) $4a+2c$\n c) $4a$\n d) $4a+2b$\n e) $4a+4b$"
+stages:
+- goal: Identify which edges form the outline of the new shape and how sliding the section changes their
+    total length.
+  expected: The outer edges of the square are kept. Sliding the parallelogram out creates extra outline
+    on both sides of the gap, and these extra lengths depend only on the slide distance b.
+  solution: The outline is the original square boundary plus the two notches opened by the slide. Each
+    notch adds two lengths of b to the outline, so the two notches add 4b in total. The perimeter is therefore
+    4a + 4b.
+  common_errors:
+  - Assuming the perimeter is unchanged at 4a because the same pieces are still present.
+  - Counting the slide distance only once instead of once for each notch edge.
+  hints:
+    rephrase: Picture the section pulled sideways. Which new edges appear on the outline that were not
+      there before?
+    smaller_case: Consider just one notch first. How many new edges of length b does it add to the outline?
+    key_idea: Sliding a piece out creates new boundary edges. Count every new edge on the outline, not
+      only the pieces that moved.
+  check: candidate_perimeter - (4*a + 4*b)
+  check_ok: false
+- goal: State the perimeter of the new shape in terms of a and b, and pick the matching option.
+  expected: 4a + 4b, which is option e.
+  solution: Perimeter = 4a + 4b, so the answer is option e.
+  common_errors:
+  - Choosing option d (4a + 2b) because only one notch's contribution was included.
+  - Choosing option c (4a) because the slide was treated as not changing the outline.
+  hints:
+    rephrase: Write the total outline length as the original square's perimeter plus the extra edges you
+      found.
+    smaller_case: If the slide distance were 0, what would the perimeter be? Then consider how each unit
+      of slide adds to it.
+    key_idea: Add the new boundary lengths to the original perimeter rather than replacing it.
+  check: candidate_perimeter - (4*a + 4*b)
+  check_ok: false
+extensions:
+  '3':
+  - If the slide distance is doubled from b to 2b, what is the new perimeter in terms of a and b?
+  '4':
+  - Explain why the answer depends on the slide distance and not on the slanted side c.
+  '5':
+  - A square of side a has a rectangular section of width b removed from the middle and slid out. Compare
+    the new perimeter with 4a+4b and justify your answer.
+spoken_vocab:
+- square
+- side a
+- centimetres
+- parallelogram
+- slide
+- perimeter
+- new shape
+- sides b and c
+- four a plus four b
+- four a plus two b
+- four a plus two c
+- four a
+- need more information
+- option e
+source: kclms/kclms-mcq-specimen-questions-answers-included.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 2
+  minutes: 3
+  flags:
+  - needs_diagram
+  - missing_info
+  tagline: Depends on a diagram not provided; answer ambiguous from text alone.
+  priority: 9
+  rank: 707
+  tier: D
+  category: kclms
+  d10: 2.0
+  real: 2.5
+  by: haiku
+tags:
+- geometry

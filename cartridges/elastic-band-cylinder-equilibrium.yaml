@@ -1,0 +1,126 @@
+id: elastic-band-cylinder-equilibrium
+title: Elastic band over a smooth cylinder
+topics:
+- elastic energy
+- equilibrium
+- geometry
+- trigonometry
+warmup: false
+answer_source: pdf
+statement: A smooth cylinder with circular cross-section of radius $a$ is held with its axis horizontal.
+  A light elastic band of unstretched length $2\pi a$ and modulus of elasticity $\lambda$ is wrapped round
+  the circumference of the cylinder, so that it forms a circle in a plane perpendicular to the axis of
+  the cylinder. A particle of mass $m$ is then attached to the rubber band at its lowest point and released
+  from rest. (i) Given that the particle falls to a distance $2a$ below the axis of the cylinder, but
+  no further, show that $\lambda=\dfrac{9\pi mg}{(3\sqrt3-\pi)^2}$. (ii) Given instead that the particle
+  reaches its maximum speed at a distance $2a$ below the axis of the cylinder, find a similar expression
+  for $\lambda$.
+stages:
+- goal: Find the extension of the band when the particle is at distance $2a$ below the axis.
+  expected: $e=2a\left(\sqrt3-\dfrac{\pi}{3}\right)$.
+  solution: Let the particle be at distance $D$ below the axis. Each tangent from the particle to the
+    cylinder has length $\sqrt{D^2-a^2}$. Let $\alpha$ be the angle at the axis between the downward vertical
+    and a tangent point, so $\cos\alpha=a/D$. The band is in contact with the cylinder over an arc of
+    angle $2\pi-2\alpha$. So the band length is $L=2\sqrt{D^2-a^2}+a(2\pi-2\alpha)$ and $e=L-2\pi a=2\sqrt{D^2-a^2}-2a\arccos(a/D)$.
+    At $D=2a$ this gives $e=2\sqrt3a-\dfrac{2\pi a}{3}$.
+  common_errors:
+  - Using the contact arc as $2\alpha$ instead of $2\pi-2\alpha$
+  - Taking the tangent length as $D$ rather than $\sqrt{D^2-a^2}$
+  - Forgetting to subtract the unstretched length $2\pi a$
+  hints:
+    rephrase: Break the band into two straight tangent segments and one arc in contact with the cylinder.
+    smaller_case: Check your formula at $D=a$. The band should have its unstretched length $2\pi a$.
+    key_idea: Use the right triangle formed by the axis, the particle and a tangent point to find the
+      tangent length and the angle $\alpha$.
+  check: 2*sqrt((2*a)**2 - a**2) - 2*a*acos(a/(2*a)) - 2*a*(sqrt(3) - pi/3)
+  check_ok: false
+- goal: 'Part (i): use energy conservation from release to the lowest point to show $\lambda=\dfrac{9\pi
+    mg}{(3\sqrt3-\pi)^2}$.'
+  expected: $\lambda=\dfrac{9\pi mg}{(3\sqrt3-\pi)^2}$.
+  solution: The particle falls a distance $2a-a=a$ and is at rest at both ends. Gravitational energy lost
+    is $mga$. The elastic energy stored is $\dfrac{\lambda e^2}{2L_0}$ with $L_0=2\pi a$ and $e=2a(\sqrt3-\pi/3)$.
+    So $mga=\dfrac{\lambda\cdot4a^2(\sqrt3-\pi/3)^2}{4\pi a}$, which gives $\lambda=\dfrac{\pi mg}{(\sqrt3-\pi/3)^2}=\dfrac{9\pi
+    mg}{(3\sqrt3-\pi)^2}$.
+  common_errors:
+  - Using the fall distance $2a$ instead of $a$
+  - Using $\lambda e/(2L_0)$ instead of $\lambda e^2/(2L_0)$ for the elastic energy
+  - Losing the factor of 9 when converting $(\sqrt3-\pi/3)^2$ to $(3\sqrt3-\pi)^2$
+  hints:
+    rephrase: Use energy conservation between two points where the particle is at rest.
+    smaller_case: Find the distance the particle falls. It is not the same as its distance below the axis.
+    key_idea: Equate gravitational energy lost to elastic energy stored, using $\lambda e^2/(2L_0)$.
+  check: 2*(2*pi*a)*m*g*a/(2*a*(sqrt(3) - pi/3))**2 - 9*pi*m*g/(3*sqrt(3) - pi)**2
+  check_ok: true
+- goal: 'Part (ii): at maximum speed the acceleration is zero. Find the band tension at distance $2a$
+    below the axis.'
+  expected: $T=\dfrac{mg}{\sqrt3}$.
+  solution: At $D=2a$, the tangent segment makes angle $\psi$ with the vertical at the particle where
+    $\sin\psi=a/D=\tfrac12$, so $\psi=\pi/6$ and $\cos\psi=\sqrt3/2$. The band is smooth, so its tension
+    is the same everywhere. Zero acceleration gives $2T\cos\psi=mg$, so $T=\dfrac{mg}{\sqrt3}$.
+  common_errors:
+  - Using $\cos\psi=\tfrac12$ instead of $\sin\psi=\tfrac12$
+  - Forgetting that there are two band segments pulling upwards
+  - Using $T=mg$ rather than $2T\cos\psi=mg$
+  hints:
+    rephrase: At maximum speed the net force on the particle is zero. Which forces act upwards on it?
+    smaller_case: Draw the particle and the two tangent segments and mark the angle at the particle.
+    key_idea: Use $\sin\psi=a/D$ from the right triangle, then resolve the two tensions vertically.
+  check: 2*(m*g/sqrt(3))*cos(pi/6) - m*g
+  check_ok: true
+- goal: 'Part (ii): use Hooke''s law to find $\lambda$ in terms of $m$ and $g$.'
+  expected: $\lambda=\dfrac{\sqrt3\,\pi mg}{3\sqrt3-\pi}$.
+  solution: Hooke's law gives $T=\dfrac{\lambda e}{2\pi a}$, so $\lambda=\dfrac{2\pi aT}{e}$. Substituting
+    $T=\dfrac{mg}{\sqrt3}$ and $e=2a(\sqrt3-\pi/3)$ gives $\lambda=\dfrac{\pi mg}{\sqrt3(\sqrt3-\pi/3)}$.
+    Multiplying top and bottom by $\sqrt3$ gives $\lambda=\dfrac{\sqrt3\,\pi mg}{3\sqrt3-\pi}$.
+  common_errors:
+  - Using $T=\lambda e/L_0$ with $L_0$ wrong
+  - Forgetting to simplify $\sqrt3(\sqrt3-\pi/3)$ correctly
+  - Losing a factor of $a$ in the extension
+  hints:
+    rephrase: Use Hooke's law in the form tension equals modulus times extension over natural length.
+    smaller_case: Check that the units of $\lambda$ are force, as they should be.
+    key_idea: Rearrange $T=\lambda e/(2\pi a)$ and substitute the values from the previous stages.
+  check: sqrt(3)*pi*m*g/(3*sqrt(3) - pi) - 2*pi*a*(m*g/sqrt(3))/(2*a*(sqrt(3) - pi/3))
+  check_ok: true
+extensions:
+  '3':
+  - Explain why the tension in the band is the same at every point of the band.
+  '4':
+  - Find the work done by gravity on the particle from release to the lowest point in part (i), and check
+    that it equals the elastic energy stored.
+  '5':
+  - Explain why the smooth cylinder's reaction does no work on the particle.
+spoken_vocab:
+- lambda
+- modulus of elasticity
+- cylinder radius a
+- unstretched length two pi a
+- particle mass m
+- distance two a below the axis
+- pi over three
+- three root three minus pi
+- root three
+- maximum speed
+- tension T
+- extension e
+- smooth band
+- tangent segment
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#18
+verified: false
+rating:
+  quality: 8
+  difficulty: 7
+  parts: 2
+  minutes: 25
+  flags: []
+  tagline: Geometry, energy and equilibrium combined, with two linked parts and rich discussion of modelling.
+  priority: 92
+  rank: 87
+  tier: A
+  category: siklos
+  d10: 8.0
+  real: 3.5
+  by: deepseek-v4.1-flash-free
+tags:
+- mechanics
+- geometry

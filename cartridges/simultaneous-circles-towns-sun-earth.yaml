@@ -1,0 +1,166 @@
+id: simultaneous-circles-towns-sun-earth
+title: Two Circles, Two Towns, Two Stars
+topics:
+- coordinate geometry
+- circles
+- simultaneous equations
+- loci
+- 3D geometry
+warmup: false
+answer_source: generated
+statement: Consider the simultaneous equations $x^2+y^2=b$, $(x-a)^2+y^2=b$. Solve the equations geometrically.
+  Suppose Oxford and Cambridge are 80 miles apart. Can you be 10 miles from both? Can you be 40 miles
+  from both? If so, where? Can you be 50 miles from both? If so, where? How does this relate to the simultaneous
+  equations above? Now suppose the Sun and the Earth are 80 million miles apart. Where could you be if
+  you were 50 million miles from both? What shape does this make? How would you change the equations to
+  represent this situation? What shape does the resulting set of solutions make?
+stages:
+- goal: Solve the two equations algebraically for x and y, assuming a is nonzero.
+  expected: x = a/2 and y = ±√(b − a²/4). Real solutions exist if and only if b ≥ a²/4.
+  solution: 'Subtract the second equation from the first: x² − (x−a)² = 0, so 2ax − a² = 0, giving x =
+    a/2. Substituting into the first equation gives (a/2)² + y² = b, so y² = b − a²/4 and y = ±√(b − a²/4).
+    This is real iff b ≥ a²/4.'
+  common_errors:
+  - Forgetting the ± on y.
+  - Dividing by a without noting that a must be nonzero.
+  - Writing x = a instead of x = a/2.
+  hints:
+    rephrase: Both equations contain y² in the same way. What does subtracting one from the other remove?
+    smaller_case: Take a = 2 and b = 5. What do the two equations force x and y to be?
+    key_idea: Subtracting the equations eliminates the squared term the two circles share, leaving a linear
+      equation in x.
+  check: simplify((a/2)**2 + (b - a**2/4) - b)
+  check_ok: true
+- goal: Oxford and Cambridge are 80 miles apart. Can a point be 10 miles from both? Decide using the equations
+    with a = 80 and b = 10² = 100.
+  expected: No. x = 40 and y² = 100 − 1600 = −1500 < 0, so there are no real points. Geometrically, two
+    circles of radius 10 whose centres are 80 apart do not meet.
+  solution: 'With a = 80, b = 100: x = a/2 = 40, and y² = b − a²/4 = 100 − 1600 = −1500. A real y is impossible.
+    Geometrically, the circles meet only if the centre distance is at most twice the radius, and 80 >
+    2·10 = 20.'
+  common_errors:
+  - Substituting a instead of a/2 into the formula.
+  - Confusing the radius with the distance between the towns.
+  - Concluding that y = 0 is a solution.
+  hints:
+    rephrase: Picture a circle of radius 10 around Oxford and another around Cambridge. Do they overlap
+      when the towns are 80 miles apart?
+    smaller_case: Try towns 4 miles apart and radius 1 mile. Do the two circles meet?
+    key_idea: Two circles of equal radius r meet only if the distance between their centres is at most
+      2r.
+  check: simplify(10**2 - 40**2 - (-1500))
+  check_ok: true
+- goal: Can a point be 40 miles from both towns? If so, where?
+  expected: 'Yes, exactly one point: the midpoint of the line joining the two towns, 40 miles from each.
+    Algebraically, y = 0 and x = 40.'
+  solution: 'With a = 80 and b = 40² = 1600: x = 40 and y² = 1600 − 1600 = 0, so y = 0. The only solution
+    is (40, 0), the midpoint of the segment joining the towns.'
+  common_errors:
+  - Claiming two points because of the ± sign; when y = 0 the two solutions coincide.
+  - Placing the point off the line joining the towns.
+  - Saying there are no solutions because the circles only touch.
+  hints:
+    rephrase: Where are the points exactly 40 miles from both towns? Think about the circles touching
+      rather than overlapping.
+    smaller_case: 'Two circles of radius 1 with centres 2 apart: how many points lie on both?'
+    key_idea: Two circles touch at exactly one point when the distance between their centres equals the
+      sum of their radii.
+  check: simplify(40**2 - 40**2 - 0)
+  check_ok: true
+- goal: Can a point be 50 miles from both towns? If so, where, and how does this match the equations with
+    a = 80 and b = 2500?
+  expected: 'Yes, two points: 40 miles along the line from Oxford and 30 miles either side of it, at y
+    = ±30 in coordinates with Oxford at the origin and Cambridge at (80, 0). The equations give x = 40
+    and y = ±√(2500 − 1600) = ±30.'
+  solution: 'The equations give x = a/2 = 40 and y² = 50² − 40² = 900, so y = ±30. Geometrically, the
+    two solutions lie on the perpendicular bisector of the segment joining the towns, on opposite sides
+    of it. This matches the circle picture: the circles of radius 50 intersect in two points because 80
+    < 2·50 = 100.'
+  common_errors:
+  - Using b = 50 rather than b = 50².
+  - Forgetting the two solutions y = ±30.
+  - Placing both points on the same side of the line joining the towns.
+  hints:
+    rephrase: Put Oxford at the origin and Cambridge at (80, 0). Where do the two circles of radius 50
+      cross?
+    smaller_case: In the 40-mile case the y-value was 0. What happens to y when the radius is increased
+      a little?
+    key_idea: Subtracting the equations forces x to the midpoint, and then Pythagoras gives the perpendicular
+      offset.
+  check: simplify(50**2 - 40**2 - 30**2)
+  check_ok: true
+- goal: The Sun and Earth are 80 million miles apart. Describe the set of points 50 million miles from
+    both, and state the equations for this 3D situation.
+  expected: A circle of radius 30 million miles, centred at the midpoint of the Sun–Earth line, lying
+    in the plane perpendicular to that line. The equations are x² + y² + z² = b and (x − a)² + y² + z²
+    = b. Subtracting gives x = a/2, and then y² + z² = b − a²/4 with a = 80 and b = 2500, so y² + z² =
+    900.
+  solution: Place the Sun at the origin and the Earth at (80, 0, 0) in millions of miles. The equations
+    are x² + y² + z² = 2500 and (x − 80)² + y² + z² = 2500. Subtracting gives x = 40, and then y² + z²
+    = 2500 − 1600 = 900. This is a circle of radius 30 in the plane x = 40. Two spheres of equal radius
+    intersect in a circle, not a sphere.
+  common_errors:
+  - Saying the set is a sphere, when two spheres intersect in a circle.
+  - Keeping only the x and y equations and forgetting the z-coordinate.
+  - Using the 2D radius 30 as a 3D sphere radius.
+  hints:
+    rephrase: In three dimensions, what does the set of points exactly 50 million miles from the Sun look
+      like? What about from the Earth as well?
+    smaller_case: Start from the 2D picture of two circles. What happens when you rotate that picture
+      about the line joining the two centres?
+    key_idea: Add a z² term to both equations; the subtraction still removes the common terms and forces
+      the plane x = a/2.
+  check: simplify(sqrt(50**2 - 40**2) - 30)
+  check_ok: true
+extensions:
+  '3':
+  - Show that the two circles of radius √b with centres 0 and a are tangent exactly when a = 2√b.
+  - Find the set of points P with |PA| = |PB| in 3D, where A and B are distinct points. Describe its shape.
+  '4':
+  - 'Three non-collinear towns each 50 miles from a point: how many such points exist in the plane, and
+    why?'
+  - Two stars are 80 million miles apart. Find all points whose distance from one star is twice their
+    distance from the other. What shape is the set?
+  '5':
+  - Find the locus of points whose distance from A is k times their distance from B, for k ≠ 1. Show it
+    is a circle.
+  - Generalise the subtraction method to two spheres in 3D with different radii r₁ and r₂. What shape
+    is the intersection?
+spoken_vocab:
+- x squared plus y squared equals b
+- open bracket x minus a close bracket squared
+- a over two
+- y equals plus or minus square root of b minus a squared over four
+- Oxford
+- Cambridge
+- Sun
+- Earth
+- perpendicular bisector
+- circle
+- sphere
+- radius
+- midpoint
+- tangent
+- miles
+- million miles
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 8 (anonymous).pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 5
+  parts: 5
+  minutes: 20
+  flags:
+  - needs_diagram
+  tagline: Geometric intersection of circles extends to spheres; rich discussion of solution sets.
+  priority: 85
+  rank: 155
+  tier: B
+  category: past-interviews
+  d10: 3.0
+  real: 7.0
+  by: haiku
+tags:
+- coordinate_geometry
+- geometry
+- algebra_and_functions

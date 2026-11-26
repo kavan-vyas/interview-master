@@ -1,0 +1,88 @@
+id: primes-2p-minus-1-and-2p-plus-1
+title: Primes p with 2p-1 and 2p+1 both prime
+topics:
+- number theory
+- primality
+- modular arithmetic
+warmup: false
+answer_source: pdf
+statement: Find all prime numbers $p$ such that $2p-1$ and $2p+1$ are also prime.
+stages:
+- goal: Test small primes to find which p work.
+  expected: p=2 and p=3.
+  solution: 'p=2: 2p-1=3 and 2p+1=5, both prime. p=3: 2p-1=5 and 2p+1=7, both prime. p=5: 2p+1=11 prime
+    but 2p-1=9 is not. p=7: 2p-1=13 prime but 2p+1=15 is not. So p=2 and p=3 work among the small primes.'
+  common_errors:
+  - Testing only odd primes and forgetting p=2.
+  - Concluding from a few examples that there are infinitely many solutions.
+  - Mis-computing 2p-1 or 2p+1 for p=3 or p=5.
+  hints:
+    rephrase: Compute 2p-1 and 2p+1 for the first few primes and check each for primality.
+    smaller_case: Try p=2 and p=3 first.
+    key_idea: Check each small prime, then look for a pattern that rules out the rest.
+  check: '[p for p in primerange(2,50) if isprime(2*p-1) and isprime(2*p+1)] == [2,3]'
+  check_ok: null
+- goal: Prove that no prime p>3 works, so the answer is exactly p=2 and p=3.
+  expected: For p>3, p is congruent to 1 or 2 mod 3. If p=1 mod 3 then 2p+1 is divisible by 3; if p=2
+    mod 3 then 2p-1 is divisible by 3. Each is larger than 3 when p>3, so it is composite. Therefore the
+    only solutions are p=2 and p=3.
+  solution: Let p be prime with p>3. Then p is not divisible by 3, so p is congruent to 1 or 2 mod 3.
+    If p=1 mod 3, then 2p+1=2 mod 3 is not useful; instead 2p+1 = 2(1)+1 = 3 mod 3, so 3 divides 2p+1.
+    If p=2 mod 3, then 2p-1 = 4-1 = 3 mod 3, so 3 divides 2p-1. In each case one of 2p-1, 2p+1 is divisible
+    by 3 and exceeds 3 (since p>3 gives 2p-1>5), so it is composite. Hence no prime p>3 works. Combined
+    with stage 1, the answer is p in {2, 3}.
+  common_errors:
+  - Using the mod 3 classes incorrectly, for example claiming 2p+1 is divisible by 3 when p=2 mod 3.
+  - Forgetting that p=3 is an exception to the mod 3 argument because 3 divides p itself.
+  - Asserting the answer without checking that 3 divides the relevant expression, or checking only a handful
+    of primes.
+  hints:
+    rephrase: Consider p modulo 3 and see what 2p-1 and 2p+1 are congruent to.
+    smaller_case: Look at p=5 and p=7 and find which of 2p-1 and 2p+1 is divisible by 3 in each case.
+    key_idea: The three numbers 2p-1, p, 2p+1 cannot all be nonzero mod 3 if p is not divisible by 3.
+  check: '[p for p in primerange(2,200) if isprime(2*p-1) and isprime(2*p+1)] == [2,3]'
+  check_ok: null
+extensions:
+  '3':
+  - Find all primes p such that p-2 and p+2 are both prime.
+  - Show that for prime p>3, p^2-1 is divisible by 24.
+  '4':
+  - Find all primes p such that 2p-1, 2p+1 and 4p+1 are all prime.
+  - Determine all primes p such that p, p+2, p+6 are all prime.
+  '5':
+  - Generalise the mod 3 argument to triples of the form p, p+a, p+b for a suitable pair (a,b).
+  - Discuss the prime k-tuples conjecture and why the mod 3 argument does not extend to all such patterns.
+spoken_vocab:
+- prime p
+- two p minus one
+- two p plus one
+- modulo three
+- congruent
+- divisible by three
+- prime
+- composite
+- two
+- three
+- five
+- seven
+- thirteen
+- fifteen
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 3
+  parts: 2
+  minutes: 8
+  flags: []
+  tagline: Mod-3 argument on 2p−1, 2p, 2p+1 rules out all primes above 3.
+  priority: 65
+  rank: 379
+  tier: C
+  category: tbo
+  d10: 3.5
+  real: 7.0
+  by: haiku
+tags:
+- number_theory
+- proof

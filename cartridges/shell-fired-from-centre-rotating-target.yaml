@@ -1,0 +1,142 @@
+id: shell-fired-from-centre-rotating-target
+title: Shell fired from the centre at a rotating target
+topics:
+- projectiles
+- relative motion
+- circular motion
+- quadratic equations
+- trigonometric identities
+warmup: false
+answer_source: generated
+statement: An automated mobile dummy target for gunnery practice is moving anti-clockwise around the circumference
+  of a large circle of radius $R$ in a horizontal plane at a constant angular speed $\omega$. A shell
+  is fired from $O$, the centre of this circle, with initial speed $V$ and angle of elevation $\alpha$.
+  Show that if $V^2 < gR$, then no matter what the value of $\alpha$, or what vertical plane the shell
+  is fired in, the shell cannot hit the target. Assume now that $V^2 > gR$ and that the shell hits the
+  target, and let $\beta$ be the (positive) angle through which the target rotates between the time at
+  which the shell is fired and the time of impact. Show that $\beta$ satisfies the equation $g^2\beta^4
+  - 4\omega^2V^2\beta^2 + 4\omega^4R^2 = 0$. (The supplied question is truncated after $g^2\beta^4 - 4\omega^2V^2\beta$;
+  the equation is reconstructed here from the derivation.)
+stages:
+- goal: Show that the shell cannot hit the target when V^2 < gR.
+  expected: The shell is at ground level only at launch (at O, which is not on the circle) and at landing.
+    At landing its horizontal distance from O is V^2 sin(2 alpha)/g, which is at most V^2/g < R. So it
+    never reaches the circle, whatever alpha and the firing plane.
+  solution: The target lies in the horizontal plane through O, so the shell can only meet it at ground
+    level. The height is V sin(alpha) t - g t^2/2, which is zero at t = 0 and t = 2V sin(alpha)/g. At
+    t = 0 the shell is at O, which is not on the circle since R > 0. At the landing time the horizontal
+    distance from O is V cos(alpha) * 2V sin(alpha)/g = V^2 sin(2 alpha)/g <= V^2/g < R. Only the horizontal
+    distance from O matters for the target, so the choice of firing plane is irrelevant.
+  common_errors:
+  - Forgetting that the target is on the ground, so the shell must be at zero height when it hits.
+  - Using the horizontal distance V t instead of V cos(alpha) t.
+  - Arguing about the firing plane instead of noting that only the horizontal distance matters.
+  hints:
+    rephrase: At what times is the shell at the same height as the target, and how far from O is it then?
+    smaller_case: Take alpha = pi/4 and a small value of V. How far from O does the shell land?
+    key_idea: Compare the largest possible horizontal distance from O at the moment the shell returns
+      to ground level with R.
+  check: ''
+- goal: Write the conditions for impact in terms of alpha, beta, V, g, omega and R.
+  expected: sin(alpha) = g beta/(2 V omega) and cos(alpha) = R omega/(V beta).
+  solution: 'The flight time is T = 2V sin(alpha)/g. The target turns through beta = omega T, so T = beta/omega.
+    Equating the two expressions for T gives sin(alpha) = g beta/(2 V omega). At impact the shell is on
+    the circle, so its horizontal distance from O equals R: V cos(alpha) T = R. Substituting T = beta/omega
+    gives cos(alpha) = R omega/(V beta). The firing azimuth is chosen so that the shell''s direction matches
+    the target''s direction at impact, which imposes no further condition on alpha.'
+  common_errors:
+  - Using beta = 2 omega T or beta = T/omega.
+  - Using the horizontal distance V t instead of V cos(alpha) t.
+  - Confusing beta, which is an angle, with the flight time.
+  hints:
+    rephrase: How long is the shell in the air, and how far does the target turn in that time?
+    smaller_case: Consider alpha close to pi/2 (almost vertical firing). What does the horizontal distance
+      condition say?
+    key_idea: 'There are two separate conditions: the vertical motion fixes the flight time, and the horizontal
+      distance must equal R.'
+  check: simplify(sin(alpha) - g*beta/(2*V*omega))
+  check_ok: null
+- goal: Eliminate alpha to obtain an equation in beta.
+  expected: g^2 beta^4 - 4 omega^2 V^2 beta^2 + 4 omega^4 R^2 = 0.
+  solution: 'Use sin^2(alpha) + cos^2(alpha) = 1: (g beta/(2 V omega))^2 + (R omega/(V beta))^2 = 1. Multiply
+    by 4 V^2 omega^2 beta^2 to get g^2 beta^4 + 4 R^2 omega^4 = 4 V^2 omega^2 beta^2, which rearranges
+    to the stated quartic.'
+  common_errors:
+  - Dropping the R^2 term when squaring.
+  - Sign errors when moving terms across the equation.
+  - Multiplying by the wrong factor, so that the powers of beta do not match.
+  hints:
+    rephrase: You have expressions for sin(alpha) and cos(alpha). Which identity links them?
+    smaller_case: Set omega = 1 and V = 1 and check that each term has the expected power of beta.
+    key_idea: Use the Pythagorean identity for sine and cosine, then clear denominators.
+  check: simplify((g*beta/(2*omega*V))**2 + (R*omega/(V*beta))**2 - 1 - (g**2*beta**4 - 4*omega**2*V**2*beta**2
+    + 4*omega**4*R**2)/(4*V**2*omega**2*beta**2))
+  check_ok: null
+- goal: Solve for beta^2 and show that real solutions exist exactly when V^2 >= gR.
+  expected: beta^2 = 2 omega^2 (V^2 +/- sqrt(V^4 - g^2 R^2))/g^2. Real values exist when V^4 >= g^2 R^2,
+    that is V^2 >= gR. When V^2 > gR there are two distinct positive values of beta.
+  solution: Put u = beta^2. The equation becomes g^2 u^2 - 4 omega^2 V^2 u + 4 omega^4 R^2 = 0. Its discriminant
+    is 16 omega^4 (V^4 - g^2 R^2), which is non-negative exactly when V^2 >= gR. Solving gives u = 2 omega^2
+    (V^2 +/- sqrt(V^4 - g^2 R^2))/g^2. When V^2 > gR both values are positive, so there are two positive
+    beta values. Each gives a positive sin(alpha) and cos(alpha) within (0, pi/2), so both correspond
+    to genuine firing angles.
+  common_errors:
+  - Taking only one sign when solving for u.
+  - Taking the square root of u but forgetting the positive and negative values of beta.
+  - Miscalculating the discriminant.
+  hints:
+    rephrase: Is this equation quadratic in some simpler quantity?
+    smaller_case: Set omega = 1, g = 1, V = 2 and R = 1, and count the positive values of beta.
+    key_idea: The equation is quadratic in beta^2. Real roots need a non-negative discriminant.
+  check: simplify((g**2*u**2 - 4*omega**2*V**2*u + 4*omega**4*R**2).subs(u, 2*omega**2*(V**2 + sqrt(V**4
+    - g**2*R**2))/g**2))
+  check_ok: true
+extensions:
+  '3':
+  - Given the two roots for beta, find the corresponding elevation angles alpha and state which root gives
+    the higher trajectory.
+  '4':
+  - Show that for any omega > 0 the two roots give valid elevation angles in (0, pi/2) when V^2 > gR.
+    Does the answer change as omega tends to 0?
+  '5':
+  - Consider the case V^2 = gR exactly. Find beta and alpha, and interpret the repeated root.
+spoken_vocab:
+- alpha
+- beta
+- omega
+- V
+- R
+- g
+- O
+- anti-clockwise
+- elevation angle
+- flight time
+- beta squared
+- discriminant
+- square root
+- V squared greater than g R
+- sine two alpha
+- pi over two
+- Pythagorean identity
+- quartic
+- positive root
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#17
+verified: false
+rating:
+  quality: 8
+  difficulty: 7
+  parts: 4
+  minutes: 25
+  flags:
+  - needs_diagram
+  tagline: Projectile–target elimination gives a quartic and a sharp existence condition.
+  priority: 84
+  rank: 165
+  tier: B
+  category: siklos
+  d10: 6.5
+  real: 3.0
+  by: haiku
+tags:
+- mechanics
+- trigonometry

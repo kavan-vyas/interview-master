@@ -1,0 +1,83 @@
+id: index-comparison-sqrt-towers
+title: Comparing nested square-root powers
+topics:
+- indices
+- laws of exponents
+- inequalities
+warmup: true
+answer_source: generated
+statement: 'Compare the magnitude of the following numbers: $(\sqrt{2}^{\sqrt{3}})^{\sqrt{3}}$ and $(\sqrt{3}^{\sqrt{2}})^{\sqrt{2}}$.'
+stages:
+- goal: Simplify the first number to a single power.
+  expected: $(\sqrt{2}^{\sqrt{3}})^{\sqrt{3}}=2\sqrt{2}$, i.e. $2^{3/2}$.
+  solution: $\sqrt{2}^{\sqrt{3}}=2^{\sqrt{3}/2}$, then $(2^{\sqrt{3}/2})^{\sqrt{3}}=2^{\sqrt{3}\cdot\sqrt{3}/2}=2^{3/2}=2\sqrt{2}$.
+  common_errors:
+  - Treating $(a^{b})^{c}$ as $a^{b^{c}}$.
+  - Not rewriting $\sqrt{2}$ as $2^{1/2}$ before combining exponents.
+  hints:
+    rephrase: Rewrite the base $\sqrt{2}$ as a power of $2$ first.
+    smaller_case: Try $(4^{\sqrt{2}})^{\sqrt{2}}$. How do the exponents combine?
+    key_idea: For $a>0$, $(a^{p})^{q}=a^{pq}$. Then multiply the exponents, using $\sqrt{3}\cdot\sqrt{3}$.
+  check: sp.simplify(ans - 2*sp.sqrt(2))
+  check_ok: null
+- goal: Simplify the second number to a single power.
+  expected: $(\sqrt{3}^{\sqrt{2}})^{\sqrt{2}}=3$.
+  solution: $\sqrt{3}^{\sqrt{2}}=3^{\sqrt{2}/2}$, then $(3^{\sqrt{2}/2})^{\sqrt{2}}=3^{\sqrt{2}\cdot\sqrt{2}/2}=3^{1}=3$.
+  common_errors:
+  - Dropping the factor $\tfrac12$ from $\sqrt{3}=3^{1/2}$.
+  - Multiplying the exponents as $\sqrt{2}+\sqrt{2}$.
+  hints:
+    rephrase: 'Use the same move: write the base $\sqrt{3}$ as a power of $3$.'
+    smaller_case: Try $(9^{\sqrt{2}})^{\sqrt{2}}$ and see what the exponent becomes.
+    key_idea: Multiply the exponents, then use $\sqrt{2}\cdot\sqrt{2}=2$.
+  check: sp.simplify(ans - 3)
+  check_ok: null
+- goal: Decide which of the two numbers is larger.
+  expected: The second number, $3$, is larger than the first, $2\sqrt{2}\approx 2.83$.
+  solution: $2\sqrt{2}=\sqrt{8}<\sqrt{9}=3$, so $(\sqrt{3}^{\sqrt{2}})^{\sqrt{2}}>(\sqrt{2}^{\sqrt{3}})^{\sqrt{3}}$.
+  common_errors:
+  - Concluding from rough decimals without a justified bound.
+  - Comparing the exponents rather than the values.
+  hints:
+    rephrase: Compare the two simplified values directly.
+    smaller_case: Compare $2\sqrt{2}$ with $\sqrt{9}$ by squaring both sides.
+    key_idea: Squaring preserves order for positive numbers.
+  check: sp.Lt(2*sp.sqrt(2), 3)
+  check_ok: null
+extensions:
+  '3':
+  - 'For $a,b>1$, which is larger: $a^{b}$ or $b^{a}$? Use $\ln$ and the function $\frac{\ln x}{x}$.'
+  '4':
+  - Show that $\sqrt[n]{n}$ is maximised over positive integers $n$ at $n=3$.
+  '5':
+  - Prove that $e^{\pi}>\pi^{e}$ using the same idea.
+spoken_vocab:
+- square root of two
+- square root of three
+- to the power of square root of three
+- to the power of square root of two
+- two root two
+- three
+- magnitude
+- compare
+- greater than
+- less than
+source: screenshots/Screenshot 2026-11-19 at 14.36.02.png
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 1
+  minutes: 6
+  flags: []
+  tagline: Neat exponent-rule trick; answer hinges on comparing 2^1.5 and 3.
+  priority: 51
+  rank: 532
+  tier: C
+  category: screenshots
+  d10: 3.0
+  real: 7.0
+  by: big-pickle
+tags:
+- algebra_and_functions
+- inequalities

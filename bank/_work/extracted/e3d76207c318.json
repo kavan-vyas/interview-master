@@ -1,0 +1,37 @@
+[
+ {
+  "q": "The numbers $1, 2, 3, \\ldots, 2026$ are written on a board. A move is to erase any two numbers $a$ and $b$ and write $|a - b|$. After $2025$ moves one number remains. Show that it is odd.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p97"
+ },
+ {
+  "q": "Nine coins look identical, but one is heavier than the rest. Using a balance scale twice, find the heavy coin. What is the largest number of coins for which $n$ weighings always suffice?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p97"
+ },
+ {
+  "q": "A chocolate bar is a $6 \\times 8$ grid of squares. A move is to take one piece and break it along a straight line between squares. What is the least number of moves needed to separate all $48$ squares?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p97"
+ },
+ {
+  "q": "There is a pile of $n$ counters. Two players take turns to remove $1$, $2$ or $3$ counters from the pile. The player who takes the last counter wins. (i) For which values of $n \\le 8$ does the first player have a winning strategy? (ii) Conjecture a general rule, and prove it. (iii) Now change the rules so that the player who takes the last counter $loses$. For which $n$ does the first player lose? (iv) Return to the original winning rule, but now a player may remove $1$, $3$ or $4$ counters. For which $n$ does the second player have a winning strategy?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p97"
+ },
+ {
+  "q": "In Nim, there are several piles of counters. Players take turns to remove any positive number of counters from a single pile. Whoever takes the last counter wins. (i) With two piles, show that the second player wins exactly when the piles are equal. (ii) Write the pile sizes in binary, and let the $nim$-$sum$ be the result of adding them in binary without carrying. Show that from a position with nim-sum $0$, every move produces a non-zero nim-sum; and that from a position with non-zero nim-sum, some move produces nim-sum $0$. (iii) Deduce that the first player wins exactly when the nim-sum is non-zero. Who wins with piles of $3$, $5$ and $7$, and what is a winning first move? (iv) In Chomp, a rectangular chocolate bar has its bottom-left square poisoned. Players take turns to choose a square and eat it together with every square above and to the right of it. Whoever eats the poisoned square loses. Show that the first player has a winning strategy on any rectangle larger than $1 \\times 1$, without finding the strategy.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p97"
+ }
+]

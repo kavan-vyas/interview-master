@@ -1,0 +1,115 @@
+id: tbo-triangle-geometric-sides-ratio-bounds
+title: 'Triangle with Sides in Geometric Progression: Bounds on the Ratio'
+topics:
+- algebra
+- inequalities
+- quadratic inequalities
+- triangle inequality
+- geometric progression
+- surds
+warmup: false
+answer_source: generated
+statement: The lengths of the sides of a triangle are in geometric progression with common ratio $r$.
+  Prove that $\frac{2}{1+\sqrt{5}} < r < \frac{1+\sqrt{5}}{2}$.
+stages:
+- goal: Set up the sides and write the three triangle inequalities.
+  expected: Take the sides as a, ar, ar^2 with a>0 and r>0. The triangle inequalities are a+ar > ar^2,
+    a+ar^2 > ar, and ar+ar^2 > a. Dividing by a gives 1+r > r^2, 1+r^2 > r, and r+r^2 > 1.
+  solution: Since the sides are positive, a>0. Since a sequence of positive side lengths in geometric
+    progression needs r>0, take a>0 and r>0. The three sides are a, ar, ar^2. Each triangle inequality
+    (a sum of two sides exceeds the third) gives the displayed inequality, and dividing by a>0 removes
+    the scale.
+  common_errors:
+  - Forgetting that r must be positive, which lets the case of negative r be treated incorrectly.
+  - Writing the triangle inequalities with the wrong sides, for example comparing a+ar with ar^2 but then
+    using a+ar^2 > ar^2 in place of the correct inequality.
+  hints:
+    rephrase: Name the three sides using the ratio, then write down that each side is less than the sum
+      of the other two.
+    smaller_case: What happens if you test r=1, where all sides are equal? Does the triangle inequality
+      hold?
+    key_idea: Scaling all sides by a common factor does not change whether a triangle exists, so you can
+      set the first side to 1 before comparing.
+  check: null
+- goal: Derive the lower bound on r.
+  expected: r > 2/(1+sqrt(5)), equivalently r > (sqrt(5)-1)/2.
+  solution: The inequality r+r^2 > 1 is equivalent to r^2+r-1 > 0. Its roots are (-1 +- sqrt(5))/2. Since
+    r>0, the positive root is (sqrt(5)-1)/2 = 2/(1+sqrt(5)), and the inequality holds exactly when r is
+    greater than this root.
+  common_errors:
+  - Using the negative root instead of the positive one, or forgetting to exclude r<0 properly.
+  - Writing the lower bound as (sqrt(5)+1)/2 by mistake, which is the upper bound.
+  - Failing to rationalise 2/(1+sqrt(5)) to (sqrt(5)-1)/2 when comparing with the target.
+  hints:
+    rephrase: Rewrite the inequality involving r+r^2 as a quadratic in r and find where it is positive.
+    smaller_case: Substitute r=0.5 into r^2+r-1. Is the value positive or negative?
+    key_idea: A quadratic with positive leading coefficient is positive outside the interval between its
+      roots; use the positive root as the threshold.
+  check: simplify(p - 2/(1+sqrt(5)))
+  check_ok: false
+- goal: Derive the upper bound on r and combine the bounds.
+  expected: r < (1+sqrt(5))/2. The inequality 1+r^2 > r always holds, so it gives no restriction. Combining,
+    2/(1+sqrt(5)) < r < (1+sqrt(5))/2.
+  solution: The inequality 1+r > r^2 is equivalent to r^2-r-1 < 0. Its roots are (1 +- sqrt(5))/2. Since
+    r>0, we need r less than the positive root (1+sqrt(5))/2. The inequality 1+r^2 > r is equivalent to
+    r^2-r+1 > 0, whose discriminant is 1-4 < 0, so it holds for all real r. Together with the lower bound
+    from the previous stage, the result follows.
+  common_errors:
+  - Taking the lower root of r^2-r-1 as the upper bound.
+  - Claiming 1+r^2 > r gives a constraint on r, when its discriminant is negative and it holds for all
+    r.
+  - Writing the strict inequalities as non-strict, losing the strictness the problem requires.
+  hints:
+    rephrase: Find the inequality that restricts r from above, then check whether the remaining inequality
+      ever fails.
+    smaller_case: For r=2, does 1+r > r^2 still hold? For r=1.5?
+    key_idea: 'Compare the two quadratic inequalities: one is a quadratic that is negative between its
+      roots, the other has no real roots and is always positive.'
+  check: Eq(p, (1+sqrt(5))/2)
+  check_ok: null
+extensions:
+  '3':
+  - Show that the sides can form a triangle exactly when r lies in the interval given, by checking that
+    all three inequalities together give that interval.
+  '4':
+  - Find the common ratio r that makes the sides of the triangle form a right-angled triangle, and check
+    whether it lies in the allowed interval.
+  '5':
+  - Consider sides in geometric progression with n terms, a, ar, ..., ar^{n-1}. For which values of r
+    can these n lengths form a polygon?
+spoken_vocab:
+- triangle
+- sides
+- geometric progression
+- common ratio r
+- a
+- a r
+- a r squared
+- inequality
+- quadratic
+- roots
+- square root of five
+- two over one plus square root of five
+- one plus square root of five over two
+- strictly less than
+- discriminant
+- positive root
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Triangle inequalities on GP sides give golden-ratio bounds; clean multi-step proof.
+  priority: 81
+  rank: 205
+  tier: B
+  category: tbo
+  d10: 4.0
+  real: 7.0
+  by: haiku
+tags:
+- inequalities
+- sequences_and_series

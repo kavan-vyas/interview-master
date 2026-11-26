@@ -1,0 +1,85 @@
+id: trapezium-base-length
+title: Missing base of a trapezium
+topics:
+- area
+- trapezium
+- linear equations
+- formula rearrangement
+warmup: true
+answer_source: pdf
+statement: The area of this trapezium is 105 cm². Parallel sides are 8 cm and $x$ cm, and the perpendicular
+  height is 7 cm. What is the length $x$ cm of its base?
+stages:
+- goal: Write an equation for the area of the trapezium using the given values.
+  expected: $\frac{(8 + x)}{2} \times 7 = 105$
+  solution: Area of a trapezium = ½ × (sum of parallel sides) × height. So ½(8 + x) × 7 = 105.
+  common_errors:
+  - Using the wrong formula, e.g. (8 × x)/2 or ½ × 8 × 7 + x.
+  - Leaving out the ½ factor.
+  - Forgetting to add the two parallel sides before halving.
+  hints:
+    rephrase: Recall the formula for the area of a trapezium in terms of its two parallel sides and its
+      height.
+    smaller_case: 'A trapezium with parallel sides 4 cm and 6 cm and height 3 cm: what is its area?'
+    key_idea: Area = half the sum of the parallel sides multiplied by the perpendicular height.
+  check: null
+- goal: Solve the equation to find x.
+  expected: x = 22 cm
+  solution: 'Multiply both sides by 2: (8 + x) × 7 = 210. Divide by 7: 8 + x = 30. Subtract 8: x = 22.'
+  common_errors:
+  - Dividing by 7 before dealing with the ½ factor, or multiplying by the wrong factor.
+  - Subtracting 8 incorrectly (e.g. x = 38).
+  - Forgetting the units (cm).
+  hints:
+    rephrase: Undo the operations one at a time, in reverse order, to isolate x.
+    smaller_case: Solve $\frac{(3 + y)}{2} \times 4 = 20$ for y.
+    key_idea: Clear the fraction and the multiplication first, then subtract the known side length.
+  check: (8+Rational(22))*Rational(1,2)*7-105
+  check_ok: true
+extensions:
+  '3':
+  - A trapezium has area 105 cm² and parallel sides of 8 cm and 22 cm. Find its perpendicular height.
+  '4':
+  - A trapezium has area 105 cm² and height 7 cm, with one parallel side 8 cm. Find the other parallel
+    side as a percentage increase on 8 cm.
+  '5':
+  - A trapezium has parallel sides 8 cm and x cm, height h cm and area A cm². Express x in terms of A
+    and h, then find x when A = 105 and h = 7.
+spoken_vocab:
+- trapezium
+- area
+- parallel sides
+- perpendicular height
+- centimetres
+- centimetres squared
+- x
+- eight
+- seven
+- one hundred and five
+- half
+- times
+- plus
+- equals
+- divided by
+- twenty-two
+- thirty
+source: kclms/kclms-specimen-questions-2.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 2
+  minutes: 3
+  flags:
+  - trivial
+  tagline: One-line area equation; no real discussion or extension.
+  priority: 17
+  rank: 670
+  tier: D
+  category: kclms
+  d10: 1.5
+  real: 2.0
+  by: haiku
+tags:
+- geometry
+- algebra_and_functions

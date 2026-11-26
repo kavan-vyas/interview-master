@@ -1,0 +1,95 @@
+id: cone-cut-volume-ratio
+title: 'Cone cut parallel to the base: volume ratio and bisecting height'
+topics:
+- solid geometry
+- similar figures
+- volume scaling
+- cones
+- frustum
+warmup: false
+answer_source: generated
+statement: A cone has base radius $r$ and height $h$. A plane parallel to the base cuts the cone at height
+  $h/2$ (measured from the base). (a) Find the ratio of the volume of the small cone (top piece) to the
+  volume of the frustum (bottom piece). (b) At what height should the cut be made to bisect the volume
+  exactly?
+stages:
+- goal: Find the volume of the top cone and of the frustum when the cut is at height $h/2$, then give
+    their ratio.
+  expected: The top cone has height $h/2$ and radius $r/2$, so its volume is $\frac{\pi r^2 h}{24}$. The
+    frustum has volume $\frac{7\pi r^2 h}{24}$. The ratio is $1:7$.
+  solution: By similar triangles, the top cone has radius $r/2$ and height $h/2$, so $V_{\text{top}}=\frac{1}{3}\pi\left(\frac{r}{2}\right)^2\frac{h}{2}=\frac{\pi
+    r^2 h}{24}$. The whole cone has volume $\frac{\pi r^2 h}{3}=\frac{8\pi r^2 h}{24}$, so the frustum
+    has volume $\frac{7\pi r^2 h}{24}$. The ratio is $1:7$.
+  common_errors:
+  - Taking the top cone's radius as $r/2$ but its height as $h$.
+  - Treating the ratio as $1:8$, which is the ratio of the top cone to the whole cone.
+  - Computing the frustum volume as the whole cone minus the top cone, but using the wrong top volume.
+  hints:
+    rephrase: The top piece is a smaller cone similar to the whole cone. Work out its radius and height
+      first.
+    smaller_case: Consider a cone whose height is 2 and whose base radius is 2, cut at height 1. Find
+      the top cone's radius and volume there.
+    key_idea: Similar solids have volumes that scale with the cube of the linear scale factor. Find the
+      scale factor for the top cone.
+  check: (pi*r**2*h/24)/(7*pi*r**2*h/24) - Rational(1,7)
+  check_ok: true
+- goal: Find the height at which the cut bisects the volume, measured from the base.
+  expected: The top cone must have height $h\,2^{-1/3}$, so the cut is at height $h\left(1-2^{-1/3}\right)\approx
+    0.206h$ above the base.
+  solution: Let the top cone have height $s$. Its volume is $\left(\frac{s}{h}\right)^3$ of the whole
+    cone. Setting this to $\frac{1}{2}$ gives $s=h\,2^{-1/3}$. The cut is at height $h-s=h\left(1-2^{-1/3}\right)$
+    from the base, which is about $0.206h$. This is below $h/2$, because the top piece must be larger
+    than in part (a).
+  common_errors:
+  - Using linear scaling, so that the top piece has half the height and half the volume.
+  - Reporting the height of the top cone, $h\,2^{-1/3}$, as the height from the base.
+  - Getting the direction wrong and placing the cut above $h/2$.
+  hints:
+    rephrase: The top piece must have half the total volume. Express its volume as a fraction of the whole
+      cone using a scale factor.
+    smaller_case: Consider the top piece of a cone cut at a general height from the apex. Write its volume
+      as a fraction of the whole cone.
+    key_idea: Volume scales with the cube of the linear scale factor. Solve for the scale factor that
+      gives one half, then convert from distance from the apex to distance from the base.
+  check: ((h - h*(1 - 2**Rational(-1,3)))/h)**3 - Rational(1,2)
+  check_ok: true
+extensions:
+  '3':
+  - At what height should a cone be cut so that it splits into three pieces of equal volume?
+  '4':
+  - A sphere of radius $R$ is cut by a plane. At what distance from the centre should the plane be placed
+    to bisect the volume? Explain why the answer differs from the cone case.
+  '5':
+  - 'Generalise the cone problem: a cone is cut by $n-1$ parallel planes into $n$ pieces of equal volume.
+    Describe the cut heights.'
+spoken_vocab:
+- cone
+- base radius r
+- height h
+- similar triangles
+- frustum
+- volume ratio
+- one to seven
+- cube of the scale factor
+- two to the power minus one third
+- bisect the volume
+- h times one minus two to the minus one third
+- approximately zero point two zero six h
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 4
+  parts: 2
+  minutes: 10
+  flags: []
+  tagline: Similar-cone scaling gives a 1:7 ratio and cube-root bisection.
+  priority: 75
+  rank: 277
+  tier: B
+  category: juan
+  d10: 4.0
+  real: 7.0
+  by: deepseek-v4.1-flash-free
+tags:
+- geometry

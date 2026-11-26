@@ -1,0 +1,121 @@
+id: stm-r-tangent-growth
+title: Tangent bound and power-law and exponential growth models with conditions (∗)
+topics:
+- calculus
+- tangents
+- concavity
+- logarithmic derivative
+- integration
+warmup: false
+answer_source: pdf
+statement: Let $H(t)=\frac{R'(t)}{R(t)}$. Here the three conditions $(\ast)$ are taken to be $R(0)=0$,
+  $R'(t)>0$ and $R''(t)<0$ for $t>0$. (i) Sketch a graph of $R(t)$. By considering a tangent to the graph,
+  show that $t<\frac{1}{H(t)}$. (ii) Observations reveal that $H(t)=\frac{a}{t}$, where $a$ is constant.
+  Derive an expression for $R(t)$. What range of values of $a$ is consistent with the three conditions
+  $(\ast)$? (iii) Suppose, instead, that observations reveal that $H(t)=bt^{-2}$, where $b$ is constant.
+  Show that this is not consistent with conditions $(\ast)$ for any value of $b$.
+stages:
+- goal: Show that $t<\frac{1}{H(t)}$ using the tangent to $y=R(t)$ at the point where $t$ is the parameter.
+  expected: The tangent at $t$ crosses the $t$-axis at $s=t-\frac{1}{H(t)}$, and this is negative, so
+    $t<\frac{1}{H(t)}$.
+  solution: The tangent at $t$ is $y=R(t)+R'(t)(s-t)$. It meets $y=0$ at $s=t-\frac{R(t)}{R'(t)}=t-\frac{1}{H(t)}$.
+    Its value at $s=0$ is $R(t)-tR'(t)=R'(t)\left(\frac{1}{H(t)}-t\right)$. Since $R$ is concave, the
+    tangent lies on or above the curve, so it is above $R(0)=0$ at $s=0$. Since $R'(t)>0$, this gives
+    $\frac{1}{H(t)}-t>0$. Equivalently, the crossing point $s=t-\frac{1}{H(t)}$ is on the negative $t$-axis.
+    Hence $t<\frac{1}{H(t)}$.
+  common_errors:
+  - Forgetting that the tangent's intercept is measured from $t$, so writing $s=\frac{1}{H(t)}$ instead
+    of $t-\frac{1}{H(t)}$.
+  - Using $R'(t)<0$ and getting the inequality reversed.
+  - Arguing from the shape of the graph without linking it to $R(0)=0$ and concavity.
+  hints:
+    rephrase: Write the equation of the tangent at $t$, then find where it meets the horizontal axis.
+      Compare that position with $0$.
+    smaller_case: Take the simple concave curve $R(t)=\sqrt{t}$ scaled suitably, and compute its tangent
+      intercept at a single point $t$.
+    key_idea: A concave curve lies below its tangents, so use the value of the tangent at $t=0$ together
+      with $R(0)=0$.
+  check: simplify(t - R(t)/diff(R(t),t) - (t - 1/(diff(R(t),t)/R(t))))
+  check_ok: true
+- goal: With $H(t)=\frac{a}{t}$, derive $R(t)$ and find the range of $a$ consistent with $(\ast)$.
+  expected: $R(t)=At^a$ with $A>0$, and $0<a<1$.
+  solution: Integrate $\frac{R'}{R}=\frac{a}{t}$ to get $\ln R=a\ln t+C$, so $R(t)=At^a$ with $A=e^C>0$.
+    Then $R(0)=0$ needs $a>0$, and $R'(t)=aAt^{a-1}>0$ also needs $a>0$. For concavity, $R''(t)=a(a-1)At^{a-2}<0$
+    needs $a(a-1)<0$, so $a<1$. Hence $0<a<1$.
+  common_errors:
+  - Dropping the constant $A$ or writing $R=a\ln t$.
+  - Forgetting that $R(0)=0$ requires $a>0$.
+  - Getting $R''$ wrong, for example $R''=aAt^{a-1}$.
+  hints:
+    rephrase: Separate variables or integrate $\frac{R'}{R}$ directly. Then impose each of the three conditions
+      on the exponent in turn.
+    smaller_case: Try $a=\frac12$ and check which conditions it satisfies by computing $R'$ and $R''$
+      explicitly.
+    key_idea: Differentiate $R$ twice and read off the sign of each derivative in terms of $a$ alone.
+  check: simplify(diff(A*t**a,t)/(A*t**a) - a/t)
+  check_ok: true
+- goal: Show that $H(t)=bt^{-2}$ is inconsistent with $(\ast)$ for every value of $b$.
+  expected: $R(t)=Ae^{-b/t}$. Concavity fails for small $t$ when $b>0$, and $R'>0$ and $R(0)=0$ force
+    $b>0$ and $A>0$, so no $b$ works.
+  solution: Integrate $\frac{R'}{R}=bt^{-2}$ to get $\ln R=-\frac{b}{t}+C$, so $R=Ae^{-b/t}$ with $A>0$.
+    Then $R'(t)=\frac{Ab}{t^2}e^{-b/t}$. $R'>0$ requires $b>0$, and $R(0)=0$ also needs $b>0$ since $e^{-b/t}\to0$
+    as $t\to0^+$ only then. Next, $R''(t)=\frac{Ab}{t^4}e^{-b/t}(b-2t)$. For $b>0$ this is positive for
+    $0<t<\frac{b}{2}$, contradicting $R''<0$. So no $b$ is consistent with $(\ast)$.
+  common_errors:
+  - Computing $R''$ incorrectly; the factor $(b-2t)$ is easy to miss.
+  - Concluding that a contradiction needs $t$ to be large rather than small.
+  - Forgetting to rule out $b\le 0$, which needs the requirement $R'>0$.
+  hints:
+    rephrase: Integrate to get $R$ in closed form, then differentiate twice and look at the sign of $R''$
+      for small $t$.
+    smaller_case: Pick a specific positive value of $b$, such as $b=1$, and test the sign of $R''$ at
+      a small value of $t$.
+    key_idea: Concavity must hold for every $t>0$, so one small enough $t$ where $R''>0$ is enough to
+      rule out every $b$.
+  check: simplify(diff(A*exp(-b/t),t,2) - A*b*exp(-b/t)*(b-2*t)/t**4)
+  check_ok: true
+extensions:
+  '3':
+  - For $H(t)=\frac{a}{t}$ with $a\ge 1$, explain which of the three conditions fail and why.
+  '4':
+  - Show that $\frac{1}{H(t)}$ is the length of the subtangent of $y=R(t)$ at $t$, and find it explicitly
+    for $R(t)=At^a$.
+  '5':
+  - Show that $R(t)=At^a$ with $a\ge 1$ cannot be a concave growth curve, using $R''$ to justify your
+    answer.
+spoken_vocab:
+- R of t
+- H of t
+- R prime of t
+- H equals R prime over R
+- t less than one over H of t
+- tangent
+- a over t
+- A t to the power a
+- concave
+- R double prime
+- e to the minus b over t
+- b t to the power minus two
+- condition star
+- t axis
+- growth
+- integrate
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#8
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 3
+  minutes: 20
+  flags: []
+  tagline: Concavity tangent argument plus model consistency checks under growth conditions.
+  priority: 81
+  rank: 213
+  tier: B
+  category: siklos
+  d10: 6.0
+  real: 5.5
+  by: haiku
+tags:
+- differential_equations
+- inequalities

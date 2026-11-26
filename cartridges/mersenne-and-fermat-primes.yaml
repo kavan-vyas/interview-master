@@ -1,0 +1,106 @@
+id: mersenne-and-fermat-primes
+title: Mersenne primes a^n-1 and Fermat numbers 2^n+1
+topics:
+- number theory
+- factorisation
+- Mersenne primes
+- Fermat numbers
+- divisibility
+warmup: false
+answer_source: pdf
+statement: Let $n$ be a natural number. Suppose $a^n-1$ is prime. Show that $a=2$ and that $n$ must be
+  prime (Mersenne Primes). Comment on primes of the form $2^n+1$ (Fermat Numbers).
+stages:
+- goal: Show that a=2, assuming a>=2 and n>=2 so that a^n-1 is a genuine candidate prime.
+  expected: a=2.
+  solution: a^n-1 = (a-1)(a^{n-1}+a^{n-2}+...+a+1). If a>=3, then a-1>=2 is a divisor strictly between
+    1 and a^n-1, since the second factor is at least a+1>=4 for n>=2. So a^n-1 would be composite. Hence
+    a=2 (a=1 gives 0 and a=0 gives a non-positive value, neither prime).
+  common_errors:
+  - Forgetting the factorisation and trying to argue by parity or size alone.
+  - Applying the argument with n=1, where a^1-1=a-1 can be prime (e.g. a=3 gives 2). The conclusion a=2
+    needs n>=2.
+  - Stopping at a-1 being 1 without noting the second factor must also be non-trivial.
+  hints:
+    rephrase: Factor a^n-1 using the difference of powers identity.
+    smaller_case: Try a=3 and n=2 and factor 3^2-1 completely.
+    key_idea: Write a^n-1 as a product of two factors, and show that if a is larger than 2, one factor
+      is a nontrivial divisor.
+  check: null
+- goal: Show that n must be prime.
+  expected: n is prime. Suppose n=bc with 1<b,c<n. Then 2^b-1 divides 2^n-1 and is a nontrivial divisor,
+    so 2^n-1 is composite.
+  solution: Let a=2. If n=bc with b,c>=2, then x^b-1 divides x^{bc}-1 for any x, so 2^b-1 divides 2^n-1.
+    Since b>=2, 1<2^b-1<2^n-1 (because b<n), so 2^n-1 has a nontrivial divisor and is composite. Therefore
+    n has no factorisation with both factors at least 2, i.e. n is prime.
+  common_errors:
+  - 'Concluding that n must be prime because 2^p-1 is prime for some primes p. Primality of n is necessary,
+    not sufficient: 2^11-1=2047=23*89.'
+  - Using a^b+1 instead of a^b-1 in the divisibility argument.
+  - Forgetting to check that 2^b-1 is strictly less than 2^n-1.
+  hints:
+    rephrase: Suppose n is composite and try to find a smaller number of the form 2^k-1 dividing 2^n-1.
+    smaller_case: Take n=6=2*3 and find a divisor of 2^6-1 of the form 2^k-1 with k below 6.
+    key_idea: x^b-1 divides x^(bc)-1. Use this with x=2 and b a proper factor of n.
+  check: null
+- goal: Comment on primes of the form 2^n+1. Show that if 2^n+1 is prime then n is a power of 2.
+  expected: If 2^n+1 is prime then n is a power of 2. Such primes are Fermat primes, of the form 2^(2^k)+1.
+    F0 to F4 are prime, F5 is composite, and no more Fermat primes are known.
+  solution: Suppose n has an odd divisor m>1, and write n=mk. Put x=2^k. Since m is odd, x+1 divides x^m+1,
+    and x^m+1=2^n+1. Also 1<2^k+1<2^n+1 because m>=3. So 2^n+1 is composite. Hence n has no odd divisor
+    >1, so n=2^j. Then 2^n+1 = 2^(2^j)+1 is a Fermat number. F0=3, F1=5, F2=17, F3=257, F4=65537 are prime,
+    while F5=641*6700417 is composite. No further Fermat primes are known.
+  common_errors:
+  - Claiming all Fermat numbers are prime, which is false from F5 onwards.
+  - 'Writing the converse as ''n prime implies 2^n+1 prime'', which fails: 2^3+1=9.'
+  - Using 2^n-1 instead of 2^n+1 in the factorisation.
+  hints:
+    rephrase: Test whether 2^n+1 is prime for an n that is not a power of 2, such as n=11, and look for
+      a factor.
+    smaller_case: Take n=3 and n=6 and find a factor of 2^6+1 besides 1 and itself.
+    key_idea: If m is an odd divisor of n, then 2^(n/m)+1 divides 2^n+1.
+  check: isprime(2**11+1) == False
+  check_ok: true
+extensions:
+  '3':
+  - Show that 2^n-1 with n composite is always composite.
+  - Factor 2^11+1 completely.
+  '4':
+  - Prove that every prime divisor p of a Fermat number F_k satisfies p = 1 mod 2^(k+1).
+  - Show F_m and F_n are coprime for m not equal to n.
+  '5':
+  - Use the result above to test whether F5 is prime without a full factorisation.
+  - Discuss whether infinitely many Mersenne primes or Fermat primes are known, and what is open.
+spoken_vocab:
+- Mersenne prime
+- Fermat number
+- a to the n minus one
+- two to the n plus one
+- difference of powers
+- factorisation
+- divisor
+- power of two
+- prime
+- composite
+- two to the eleven plus one
+- sum of geometric series
+- two thousand forty nine
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 3
+  minutes: 20
+  flags: []
+  tagline: Classic prime-structure proofs with natural follow-up on Fermat primes.
+  priority: 91
+  rank: 116
+  tier: A
+  category: tbo
+  d10: 6.0
+  real: 7.5
+  by: haiku
+tags:
+- number_theory
+- proof

@@ -1,0 +1,106 @@
+id: indefinite-integrals-three-parts
+title: 'Three indefinite integrals: a trig rational, an exponential-trig product, and a square root of
+  an exponential'
+topics:
+- indefinite integrals
+- trigonometric identities
+- integration by parts
+- substitution
+- rationalising
+warmup: false
+answer_source: generated
+statement: Evaluate i) $I=\int\frac{1}{1-\sin(x)}\,dx$ ii) $J=\int e^x\sin(x)\,dx$ iii) $K=\int\sqrt{e^{2x}+1}\,dx$.
+stages:
+- goal: Evaluate I = integral of 1/(1-sin x) dx.
+  expected: I = tan(x) + sec(x) + C
+  solution: 'Multiply the numerator and denominator by (1+sin x): 1/(1-sin x) = (1+sin x)/(1-sin^2 x)
+    = (1+sin x)/cos^2 x = sec^2 x + sec x tan x. The antiderivative of sec^2 x is tan x and of sec x tan
+    x is sec x, so I = tan(x) + sec(x) + C, valid where cos x is nonzero and sin x is not 1.'
+  common_errors:
+  - Integrating 1/(1-sin x) with the wrong half-angle substitution and getting an expression that is hard
+    to simplify.
+  - Dropping the constant C.
+  - Writing 1/cos^2 x as sec x instead of sec^2 x.
+  hints:
+    rephrase: Find a multiplier that turns the denominator 1-sin x into a perfect square of cos x.
+    smaller_case: Simplify 1/(1-sin x) at x = 0, where sin 0 = 0, then check the pattern in general.
+    key_idea: Multiply by the conjugate 1+sin x and use sin^2 x + cos^2 x = 1.
+  check: diff(tan(x)+sec(x), x) - 1/(1-sin(x))
+  check_ok: true
+- goal: Evaluate J = integral of e^x sin x dx.
+  expected: J = e^x (sin x - cos x)/2 + C
+  solution: Let A = integral of e^x sin x dx. Integrating by parts with u = sin x gives A = e^x sin x
+    - integral of e^x cos x dx. Integrating by parts again with u = cos x gives integral of e^x cos x
+    dx = e^x cos x + A. So A = e^x sin x - e^x cos x - A, hence 2A = e^x (sin x - cos x), and A = e^x
+    (sin x - cos x)/2 + C.
+  common_errors:
+  - Integrating by parts once and leaving a new integral that looks like the original, then stopping.
+  - Sign errors in the second integration by parts.
+  - Forgetting the constant C.
+  hints:
+    rephrase: Integrate by parts, then do it again and see whether the original integral reappears.
+    smaller_case: Find the integral of e^x sin x over a short interval numerically to test a candidate
+      answer.
+    key_idea: Two integrations by parts give the original integral on the right-hand side, and you can
+      solve for it.
+  check: diff(exp(x)*(sin(x)-cos(x))/2, x) - exp(x)*sin(x)
+  check_ok: true
+- goal: Evaluate K = integral of sqrt(e^(2x)+1) dx.
+  expected: K = sqrt(e^(2x)+1) + x - ln(1+sqrt(e^(2x)+1)) + C
+  solution: Let u = e^x, so dx = du/u, and set s = sqrt(u^2+1). Then u du = s ds, so du = s ds / u. The
+    integral becomes integral of s^2/u^2 ds, and u^2 = s^2 - 1. So K = integral of s^2/(s^2-1) ds = integral
+    of (1 + 1/(s^2-1)) ds = s + (1/2) ln((s-1)/(s+1)). Since (s-1)/(s+1) = u^2/(s+1)^2, this equals s
+    + ln u - ln(1+s) = sqrt(e^(2x)+1) + x - ln(1+sqrt(e^(2x)+1)) + C. Differentiating confirms the result.
+  common_errors:
+  - Forgetting the chain rule factor when substituting u = e^x.
+  - Mistaking the partial fraction 1/(s^2-1) for something else, such as an arctangent.
+  - Leaving the answer in terms of u and forgetting to convert back to x.
+  hints:
+    rephrase: Use a substitution to remove the exponential, then another to remove the square root.
+    smaller_case: Try the simpler integral of sqrt(u^2+1)/u du and see what substitution rationalises
+      the square root.
+    key_idea: Set s = sqrt(e^(2x)+1), so s^2 - 1 = e^(2x), and integrate a rational function of s.
+  check: diff(sqrt(exp(2*x)+1) + x - log(1+sqrt(exp(2*x)+1)), x) - sqrt(exp(2*x)+1)
+  check_ok: true
+extensions:
+  '3':
+  - Evaluate the integral of 1/(1+cos x) dx.
+  - Evaluate the integral of x e^x cos x dx using integration by parts.
+  '4':
+  - Evaluate the integral of 1/(2 - sin x) dx using the substitution t = tan(x/2) and check your result
+    by differentiating.
+  - Evaluate the integral of sqrt(e^(2x)-1) dx for x>0 by a similar substitution.
+  '5':
+  - Evaluate the integral of e^(ax) cos(bx) dx for real a and b not both zero.
+  - Evaluate the integral of sqrt(x^2+1)/x dx and show it is the same kind of antiderivative as in part
+    iii.
+spoken_vocab:
+- integral of one over one minus sine x
+- tangent x plus secant x
+- integral of e to the x sine x
+- e to the x times sine x minus cosine x over two
+- integral of square root of e to the two x plus one
+- natural log of one plus root
+- sine squared plus cosine squared equals one
+- integration by parts
+- plus C
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 5
+  difficulty: 6
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: 'Three varied techniques: rational trig, parts, hyperbolic-style substitution.'
+  priority: 61
+  rank: 451
+  tier: C
+  category: tbo
+  d10: 5.5
+  real: 4.5
+  by: big-pickle
+tags:
+- integration
+- exponentials_and_logarithms
+- trigonometry

@@ -1,0 +1,113 @@
+id: trailing-zeros-365-factorial
+title: Trailing zeros of 365!
+topics:
+- number theory
+- prime factorisation
+- factorials
+- Legendre's formula
+warmup: true
+answer_source: pdf
+statement: How many trailing zeros does $365!$ have? (Trailing zeros are the sequence of 0's of a number
+  after which no other digits follow. For example, $14000$ has 3 trailing zeros.)
+stages:
+- goal: Identify what produces a trailing zero and which prime is the limiting factor.
+  expected: Each trailing zero needs a factor of 10 = 2 x 5. A factorial contains many more factors of
+    2 than of 5, so the number of trailing zeros equals the number of factors of 5 in 365!.
+  solution: A trailing zero means the number is divisible by 10 = 2 x 5 at the end. In n!, the factors
+    of 2 outnumber the factors of 5 (every second number is even, but only every fifth is a multiple of
+    5). So the 5s are the bottleneck and determine the count of trailing zeros.
+  common_errors:
+  - Counting factors of 2 instead of factors of 5
+  - Assuming trailing zeros come from multiples of 10 only, ignoring that 10 = 2 x 5 needs both primes
+  - Thinking the zeros are simply the digits 0 appearing anywhere in 365!
+  hints:
+    rephrase: What must a number's prime factorisation contain for it to end in a 0?
+    smaller_case: Take 10! and find its trailing zeros by listing the factors of 2 and 5 in its product.
+    key_idea: Compare how many factors of 2 and how many factors of 5 appear in the product 1 x 2 x ...
+      x 365.
+  check: null
+- goal: Count the total number of factors of 5 in 365!.
+  expected: '89'
+  solution: 'Use Legendre''s formula: the number of factors of 5 in 365! is floor(365/5) + floor(365/25)
+    + floor(365/125) + floor(365/625) + ... Multiples of 5 up to 365: 73. Multiples of 25: 14. Multiples
+    of 125: 2. Multiples of 625: 0. Total = 73 + 14 + 2 = 89.'
+  common_errors:
+  - Stopping at floor(365/5) = 73 and forgetting the higher powers of 5
+  - Counting 25 as only one factor of 5 when it contributes two
+  - Adding a term for 625 incorrectly or miscounting the multiples of 125
+  hints:
+    rephrase: How many numbers from 1 to 365 are divisible by 5, and do some of them contribute more than
+      one factor of 5?
+    smaller_case: 'Try 30!: first count multiples of 5 up to 30, then check whether any multiple of 25
+      needs an extra count.'
+    key_idea: 'Legendre''s formula: the exponent of a prime p in n! is the sum of floor(n/p^k) over k
+      = 1, 2, 3, ...'
+  check: floor(Rational(365,5)) + floor(Rational(365,25)) + floor(Rational(365,125)) + floor(Rational(365,625))
+    - 89
+  check_ok: true
+- goal: State the final number of trailing zeros of 365!.
+  expected: 89 trailing zeros.
+  solution: Since the number of trailing zeros equals the number of factors of 5 in 365!, and that count
+    is 89, 365! has 89 trailing zeros.
+  common_errors:
+  - Giving the count of factors of 5 without linking it to trailing zeros
+  - Reporting 73, the count of multiples of 5 alone
+  hints:
+    rephrase: Once you have the count of factors of 5, what does each factor of 5 pair with to make?
+    smaller_case: For 30!, you found 7 factors of 5, so how many trailing zeros would 30! have?
+    key_idea: Every trailing zero corresponds to one pair of 2 and 5, and there are always enough 2s,
+      so the count of 5s decides.
+  check: Integer(89) - (floor(Rational(365,5)) + floor(Rational(365,25)) + floor(Rational(365,125)) +
+    floor(Rational(365,625)))
+  check_ok: true
+extensions:
+  '3':
+  - How many trailing zeros does $1000!$ have?
+  '4':
+  - 'In base $6$, how many trailing zeros does $365!$ have? (Hint: $6 = 2 \cdot 3$, so count the factors
+    of 3 and 2 and take the smaller count.)'
+  '5':
+  - What is the largest $n$ such that $n!$ has exactly 89 trailing zeros?
+spoken_vocab:
+- factorial
+- three sixty five factorial
+- trailing zeros
+- zero
+- floor
+- divided by
+- five
+- twenty five
+- one hundred twenty five
+- six hundred twenty five
+- ten
+- two
+- Legendre's formula
+- prime factorisation
+- factor
+- multiples
+- eighty nine
+- seventy three
+- fourteen
+- one thousand factorial
+- base six
+- largest n
+source: nextstepmaths/NextStepMaths Interview Questions/interview-question-5.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 3
+  parts: 3
+  minutes: 4
+  flags:
+  - trivial
+  tagline: Routine Legendre-style count; mostly a quick computation check.
+  priority: 33
+  rank: 613
+  tier: D
+  category: nextstepmaths
+  d10: 2.5
+  real: 6.0
+  by: haiku
+tags:
+- number_theory
+- proof

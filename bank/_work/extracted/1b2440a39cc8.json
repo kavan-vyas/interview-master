@@ -1,0 +1,23 @@
+[
+ {
+  "q": "Compare the magnitude of the following numbers: $(\\sqrt{2}^{\\sqrt{3}})^{\\sqrt{3}}$ and $(\\sqrt{3}^{\\sqrt{2}})^{\\sqrt{2}}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.36.02.png"
+ },
+ {
+  "q": "i) Using Taylor series, prove the following when $x$ is a small number. Assume $f(x)$ is infinitely differentiable (everywhere): $\\left|\\int_0^x f(x)\\,dx - x f(0)\\right| \\leq \\frac{1}{2} C x^2$, where $|f'(x)| \\leq C$. ii) Approximate the following when $x$ is a small number: $\\int_0^{1/n} (n - n x^2) f(x)\\,dx$. iii) You are given $g_n(x)$ which satisfies: $g_n(x) = -n^2(|x| - \\frac{1}{n})$ if $|x| < \\frac{1}{n}$, and $0$ otherwise (the source notes $g_n(x) = \\delta(x)$, the Dirac delta function). What is $\\int_{-\\infty}^{\\infty} g_n(x) f(x)\\,dx$ when $n \\to 0$?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.36.02.png"
+ },
+ {
+  "q": "i) You are given 4 cards, with the front saying 1 or 2 and the back saying A or B. These happen independently and have an equal chance of occurring. What is the probability that if a card says 1 it also says A? Hence, generalize this for any $n$ cards $\\in \\mathbb{Z}^+$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.36.02.png"
+ }
+]

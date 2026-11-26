@@ -1,0 +1,105 @@
+id: gamblers-ruin-fair-game
+title: 'Gambler''s Ruin: Fair Game Between Alice and Bob'
+topics:
+- probability
+- recurrence relations
+- martingales
+- gambler's ruin
+warmup: false
+answer_source: generated
+statement: Alice and Bob play a fair game repeatedly for £1 a game. If originally Alice has £$a$ and Bob
+  has £$b$, what is Alice's chance of winning all of Bob's money, assuming that play continues until one
+  person has lost all of his or her money?
+stages:
+- goal: Set up equations for p_k, the probability that Alice ends with all the money when she currently
+    holds £k out of a total N = a + b.
+  expected: p_k = (p_{k-1} + p_{k+1})/2 for 0 < k < N, with boundary conditions p_0 = 0 and p_N = 1.
+  solution: Each game is fair, so Alice moves to k+1 or k-1 with probability 1/2 each. This gives a first-step
+    equation for each interior k. If Alice has 0 she is ruined, so p_0 = 0. If she has all N she has won,
+    so p_N = 1.
+  common_errors:
+  - Forgetting one of the two boundary conditions.
+  - Using the wrong total, such as a or b, in place of N = a + b.
+  - Writing the step probabilities as unequal when the game is fair.
+  hints:
+    rephrase: Look at what can happen after just one game from a state with k pounds, and what the two
+      absorbing states are.
+    smaller_case: Take a = 1 and b = 1, so N = 2. Write the equations for p_0, p_1 and p_2.
+    key_idea: Condition on the result of the first game. The game ends at 0 and at N, so those values
+      are fixed.
+  check: null
+- goal: Solve the recurrence and show that p_k is linear in k.
+  expected: p_k = k/N.
+  solution: 'Rearranging gives p_{k+1} - p_k = p_k - p_{k-1}, so the differences are constant. With p_0
+    = 0, p_k = c k. The condition p_N = 1 gives c = 1/N, so p_k = k/N. Check: ((k-1)/N + (k+1)/N)/2 =
+    k/N.'
+  common_errors:
+  - Guessing a solution without showing that it satisfies the recurrence.
+  - Getting the constant from the wrong boundary condition.
+  - Forgetting that the solution must satisfy both boundary conditions.
+  hints:
+    rephrase: Show that the first differences of p_k are constant. Then the boundary values fix the constant.
+    smaller_case: Suppose N = 3 and write p_1 and p_2 in terms of one unknown. Use the first-step equations
+      to relate them.
+    key_idea: A recurrence whose second difference is zero describes a straight line, so use two boundary
+      values to pin it down.
+  check: sp.simplify(((k-1)/N + (k+1)/N)/2 - k/N)
+  check_ok: null
+- goal: Substitute k = a and N = a + b to find Alice's probability of winning all the money.
+  expected: a/(a+b).
+  solution: Alice starts with k = a out of N = a + b, so her chance is p_a = a/(a+b). Bob's chance is
+    b/(a+b), and the two add to 1, so play ends with probability 1.
+  common_errors:
+  - Reporting Bob's chance b/(a+b) as Alice's.
+  - Using N = a instead of N = a + b.
+  - Giving the answer in pounds rather than as a probability.
+  hints:
+    rephrase: Identify which quantity is Alice's current fortune and which is the total money in play.
+    smaller_case: If a = 3 and b = 1, what fraction of the total does Alice start with?
+    key_idea: The probability is a linear function of Alice's fortune scaled by the total money in play.
+  check: 'sp.simplify((k/N).subs({k: a, N: a + b}) - a/(a + b))'
+  check_ok: null
+extensions:
+  '3':
+  - Repeat the problem with P(Alice wins a game) = p not equal to 1/2. Find her probability of winning
+    all the money.
+  '4':
+  - Find the expected number of games played until one player is ruined when the game is fair.
+  '5':
+  - Alice and Bob bet £s per game instead of £1. Show how the answer changes, and say whether it depends
+    on s.
+spoken_vocab:
+- Alice
+- Bob
+- fair game
+- pounds
+- a
+- b
+- a plus b
+- chance
+- probability
+- all of Bob's money
+- p sub k
+- recurrence
+- boundary condition
+- linear
+- total N
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Classic ruin result a/(a+b) with clear structure and natural biased-game extension.
+  priority: 71
+  rank: 346
+  tier: B
+  category: tbo
+  d10: 5.0
+  real: 8.0
+  by: deepseek-v4.1-flash-free
+tags:
+- probability
+- sequences_and_series

@@ -1,0 +1,113 @@
+id: sweets-pile-halving-game
+title: 'Sweets pile: take at most half, last sweet loses'
+topics:
+- combinatorial game theory
+- induction
+- losing positions
+warmup: false
+answer_source: generated
+statement: 'Two people play a game: There are $n$ sweets in a pile and they each take it in turns to remove
+  at least one sweet from the pile whilst ensuring they take no more than half of what remains. The person
+  who removes the last sweet is the loser. Are there values of $n$ for which the second player has a winning
+  strategy?'
+stages:
+- goal: Classify pile sizes n = 1 to 8 as winning or losing for the player about to move.
+  expected: 'Losing for the player to move: n = 1, 3, 7. Winning: n = 2, 4, 5, 6, 8.'
+  solution: 'Let W(m) mean the player to move with m sweets wins. m=1: the only move takes the last sweet,
+    so the mover loses. m=2: take 1, leaving 1 for the opponent, who loses; W(2) true. m=3: the only legal
+    move takes 1, leaving 2, a win for the opponent; W(3) false. m=4: take 1, leaving 3 (losing); W(4)
+    true. m=5: take 2, leaving 3; W(5) true. m=6: take 3, leaving 3; W(6) true. m=7: the moves leave 6,
+    5 or 4, all winning for the opponent; W(7) false. m=8: take 1, leaving 7; W(8) true.'
+  common_errors:
+  - Treating taking the last sweet as a win rather than a loss
+  - Allowing a player to take more than floor(m/2) sweets
+  - Rounding half of an odd pile up instead of down
+  hints:
+    rephrase: For each pile size, list every legal move and the pile size it leaves. Then ask whether
+      the player who must move from that smaller pile wins.
+    smaller_case: Start with 1 sweet and work upward, labelling each size as winning or losing for the
+      player about to move.
+    key_idea: A position is winning exactly when some legal move leads to a losing position for the opponent.
+      Taking the last sweet is always a loss.
+  check: sp.Integer(3) - 3
+  check_ok: null
+- goal: Find the general pattern of losing pile sizes and express it as a condition on m.
+  expected: A pile size m is losing iff no losing pile size lies in the interval from ceil(m/2) to m-1.
+    The losing sizes are 1, 3, 7, 15, 31, ..., i.e. n = 2^k - 1 for k >= 1.
+  solution: From the legal moves, the piles reachable from m are exactly m-k for 1 <= k <= floor(m/2),
+    i.e. all values in [ceil(m/2), m-1]. So m is losing iff that interval contains no losing size. Checking
+    the table from stage 1 gives losing sizes 1, 3, 7, and the next candidate is 15, since 8 to 14 are
+    all winning. The pattern suggests losing sizes are 2^k - 1.
+  common_errors:
+  - Assuming the pattern from only two or three terms without checking the interval condition
+  - Using the wrong range of reachable pile sizes, e.g. up to m instead of m/2
+  hints:
+    rephrase: Which pile sizes can you reach in one move from m? Write them as an interval.
+    smaller_case: For m = 8, 9 and 10, which reachable sizes are losing?
+    key_idea: Look for a set of losing sizes that is sparse enough that every larger interval of reachable
+      sizes misses it, until the next one is hit.
+- goal: Prove the pattern by induction and state for which n the second player wins.
+  expected: Proof by induction on k. Assume the losing sizes below 2^k - 1 are exactly 1, 3, ..., 2^{k-1}
+    - 1. For 2^k <= m <= 2^{k+1} - 2, the reachable interval contains 2^k - 1, so m is winning. For m
+    = 2^{k+1} - 1, the reachable interval [2^k, 2^{k+1} - 2] contains no losing size, so m is losing.
+    Hence the second player wins exactly when n = 2^k - 1 for some k >= 1.
+  solution: 'Base case: the losing sizes up to 2^1 - 1 = 1 are just {1}, which matches stage 1. Induction
+    step: for m in [2^k, 2^{k+1} - 2], ceil(m/2) <= 2^k - 1 <= m - 1, so the interval contains 2^k - 1
+    (a losing size), and m is winning. For m = 2^{k+1} - 1, the interval is [2^k, 2^{k+1} - 2], which
+    contains no value of the form 2^j - 1 since those are at most 2^k - 1 or at least 2^{k+1} - 1. So
+    m is losing. The first player faces a losing position exactly when n = 2^k - 1, so the second player
+    wins exactly then.'
+  common_errors:
+  - Forgetting the case m = 2^{k+1} - 1 in the induction step
+  - Concluding that the second player wins for n = 2^k rather than n = 2^k - 1
+  - Confusing the first and second player when reading the losing positions
+  hints:
+    rephrase: 'Prove two things: every pile size in a given range is winning, and the one pile size at
+      the top of that range is losing.'
+    smaller_case: Check the induction step for k = 2, covering m = 4, 5, 6 and then m = 7.
+    key_idea: Use the induction hypothesis to find a losing pile in the reachable interval of each m in
+      the range, and show that no losing pile is reachable at the top of the range.
+extensions:
+  '3':
+  - Same rules but a player may take at most one third of what remains. For which n does the second player
+    win?
+  '4':
+  - 'Normal play: the player who takes the last sweet wins. For which n does the second player have a
+    winning strategy?'
+  '5':
+  - How many pile sizes up to 1023 are losing for the player about to move?
+spoken_vocab:
+- sweets
+- pile
+- n sweets
+- half of what remains
+- at least one sweet
+- last sweet
+- losing
+- winning
+- second player
+- first player
+- two to the k minus one
+- ceiling of m over two
+- interval
+- induction
+- base case
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 5
+  parts: 3
+  minutes: 20
+  flags: []
+  tagline: Combinatorial game with a clear pattern and an induction proof.
+  priority: 91
+  rank: 98
+  tier: A
+  category: tbo
+  d10: 6.0
+  real: 8.0
+  by: haiku
+tags:
+- combinatorics
+- proof

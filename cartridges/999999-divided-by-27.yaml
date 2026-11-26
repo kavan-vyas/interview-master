@@ -1,0 +1,93 @@
+id: 999999-divided-by-27
+title: 999 999 divided by 27 using 37 × 27 = 999
+topics:
+- number sense
+- factorisation
+- division
+- mental arithmetic
+warmup: true
+answer_source: pdf
+statement: Given that $37 \times 27 = 999$, what is $999\,999 \div 27$? a) $3737$ b) $33\,337$ c) $370\,037$
+  d) $37\,037$ e) $37\,307$
+stages:
+- goal: Factor $999\,999$ as a multiple of $999$.
+  expected: $999\,999 = 999 \times 1001$.
+  solution: 999 999 = 999 × 1000 + 999 = 999 × (1000 + 1) = 999 × 1001.
+  common_errors:
+  - Writing $999\,999 = 999 \times 1000$ and forgetting the extra $999$.
+  - Miscounting the digits and treating $999\,999$ as $9999 \times 100$.
+  - Using the wrong second factor, such as $1002$ or $1000$.
+  hints:
+    rephrase: Can you split $999\,999$ into two blocks that each contain a $999$?
+    smaller_case: Write $99\,999$ as $999 \times$ something plus $999$ and see whether the pattern holds.
+    key_idea: Split the number into the thousands part and the units part, then take out the common factor
+      $999$.
+  check: 999*1001 - 999999
+  check_ok: true
+- goal: Write $999$ as a product involving $27$.
+  expected: $999 = 27 \times 37$.
+  solution: The question gives 37 × 27 = 999, so 999 = 27 × 37.
+  common_errors:
+  - Confusing the given product with another factorisation, such as $999 = 9 \times 111$, and not connecting
+    it to $27$.
+  - Substituting the wrong number from the given statement.
+  hints:
+    rephrase: Use the fact given in the question. Which of its two factors is the one you need?
+    smaller_case: Check that the given equation does what it says by multiplying out the two numbers on
+      the left.
+    key_idea: The given identity directly relates $999$, $27$ and $37$; no new computation is needed.
+  check: 27*37 - 999
+  check_ok: true
+- goal: Divide $999\,999$ by $27$ and choose the matching option.
+  expected: $999\,999 \div 27 = 37\,037$, which is option d.
+  solution: 999 999 ÷ 27 = (999 × 1001) ÷ 27 = (27 × 37 × 1001) ÷ 27 = 37 × 1001 = 37 037. Option d.
+  common_errors:
+  - Choosing option c ($370\,037$) from multiplying by $10$ in error, or option b from $37 \times 900$
+    slips.
+  - Choosing option a ($3737$) by multiplying $37$ by $101$ instead of $1001$.
+  - Dividing $999\,999$ by $27$ long-hand and making an arithmetic slip.
+  hints:
+    rephrase: Substitute your factorisations into the division and see which factor cancels with $27$.
+    smaller_case: Compute $999 \div 27$ using your factorisation, then multiply by $1001$.
+    key_idea: Cancel the $27$ from the factor $999$ first, then multiply the remaining factors.
+  check: 1001*37 - 37037
+  check_ok: true
+extensions:
+  '3':
+  - Use $999\,999 = 27 \times 37\,037$ to find $999\,999 \div 37$.
+  '4':
+  - Without a calculator, show that $999\,999$ is divisible by $7$, $11$, $13$, $27$ and $37$.
+  '5':
+  - Use $\frac{1}{27} = \frac{37\,037}{999\,999}$ to explain why $\frac{1}{27} = 0.\overline{037}$.
+spoken_vocab:
+- nine hundred and ninety nine thousand nine hundred and ninety nine
+- divided by
+- twenty seven
+- thirty seven
+- times
+- multiply
+- factor
+- one thousand one
+- thirty seven thousand and thirty seven
+- option d
+- three thousand seven hundred and thirty seven
+- three seven zero zero three seven
+source: kclms/kclms-specimen-mcq-3.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 1
+  minutes: 2
+  flags:
+  - trivial
+  tagline: Multiple-choice arithmetic via 999999 = 999×1001; mostly recall.
+  priority: 23
+  rank: 665
+  tier: D
+  category: kclms
+  d10: 1.5
+  real: 2.0
+  by: deepseek-v4.1-flash-free
+tags:
+- number_theory

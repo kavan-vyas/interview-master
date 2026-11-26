@@ -1,0 +1,103 @@
+id: integral-bounds-sign-ratio
+title: Bounding an integral from pointwise ratio conditions on f
+topics:
+- integration
+- inequalities
+- sign analysis
+- comparison of integrals
+warmup: false
+answer_source: generated
+statement: Suppose that $f(0)=0$ and that, for $x\neq0$, $0<\frac{f(x)}{x}<1$. i) Show that $-\frac{1}{2}<\int_{-1}^{1}f(x)\,dx<\frac{1}{2}$.
+  ii) How does the above inequality change if $0<\frac{f(x)}{x^2}<1$ instead?
+stages:
+- goal: Turn the ratio conditions into bounds on f(x) for x > 0 and for x < 0.
+  expected: 'For x > 0: 0 < f(x) < x. For x < 0: x < f(x) < 0.'
+  solution: 'For x > 0, multiply 0 < f(x)/x < 1 by x > 0 to get 0 < f(x) < x. For x < 0, multiply by x
+    < 0, which reverses both inequalities: 0 > f(x) > x, i.e. x < f(x) < 0.'
+  common_errors:
+  - Forgetting to reverse the inequalities when multiplying by a negative x.
+  - Writing f(x) < x for x < 0 instead of x < f(x).
+  - Treating f(0) as a bound when it is already given.
+  hints:
+    rephrase: Multiply through by x, paying close attention to its sign.
+    smaller_case: Take f(x) = x/2 for all x. On which side of 0 and of x does f(x) lie, for positive and
+      negative x?
+    key_idea: Multiplying by a negative number flips inequalities, so f is squeezed between 0 and x on
+      each side.
+  check: null
+- goal: 'Part (i): show -1/2 < integral of f over [-1,1] < 1/2.'
+  expected: The integral over [0,1] lies strictly in (0, 1/2) and the integral over [-1,0] lies strictly
+    in (-1/2, 0), so the total lies in (-1/2, 1/2).
+  solution: Split the integral at 0. On [0,1], 0 < f(x) < x gives 0 < integral of f over [0,1] < integral
+    of x over [0,1] = 1/2. On [-1,0], x < f(x) < 0 gives integral of x over [-1,0] = -1/2 < integral of
+    f over [-1,0] < 0. Adding the two pieces gives -1/2 < integral of f over [-1,1] < 1/2.
+  common_errors:
+  - Comparing f with x over the whole interval [-1,1], where the integral of x is 0, instead of splitting
+    at 0.
+  - Dropping the strict inequalities.
+  - Forgetting that the comparison of integrals needs the pointwise bounds to hold on each piece.
+  hints:
+    rephrase: Split the integral at 0 and bound each piece by comparing integrands.
+    smaller_case: Compute the integral of x over [0,1] and the integral of x over [-1,0] separately.
+    key_idea: If g(x) < f(x) < h(x) on an interval, then the integral of f lies strictly between the integrals
+      of g and h.
+  check: sp.integrate(x, (x, 0, 1)) == sp.Rational(1, 2) and sp.integrate(x, (x, -1, 0)) == -sp.Rational(1,
+    2)
+  check_ok: null
+- goal: 'Part (ii): find the new bounds on the integral over [-1,1] when 0 < f(x)/x^2 < 1.'
+  expected: 0 < integral of f over [-1,1] < 2/3.
+  solution: For x not equal to 0, 0 < f(x)/x^2 < 1 gives 0 < f(x) < x^2 since x^2 > 0. Integrating over
+    [-1,1] gives 0 < integral of f < integral of x^2 over [-1,1] = 2/3. The new bounds are 0 and 2/3,
+    which replace -1/2 and 1/2.
+  common_errors:
+  - Keeping the part (i) bounds unchanged.
+  - Computing only the integral of x^2 over [0,1], which is 1/3, and forgetting the negative side.
+  - Arguing that f(x) < x^2 holds only for x > 0.
+  hints:
+    rephrase: Repeat the squeeze argument with x^2 in place of x, and ask whether x^2 can ever be negative.
+    smaller_case: Compute the integral of x^2 over [0,1] and decide how to account for the other half
+      of [-1,1].
+    key_idea: Because x^2 is nonnegative, f is nonnegative and the squeeze is one-sided.
+  check: sp.integrate(x**2, (x, -1, 1)) == sp.Rational(2, 3)
+  check_ok: null
+extensions:
+  '3':
+  - 'Show the bounds in part (i) are sharp: take f(x) = (1 - e)x for x > 0 and f(x) = e x for x < 0, and
+    let e tend to 0 to see the integral approach 1/2.'
+  '4':
+  - Find an f satisfying the part (ii) hypothesis whose integral is arbitrarily close to 2/3.
+  '5':
+  - If 0 < f(x)/x^(2m) < 1 for x not equal to 0, find the supremum of the integral of f over [-1,1] over
+    all such f, for a positive integer m.
+spoken_vocab:
+- f of zero equals zero
+- f of x over x
+- integral from minus one to one
+- integral from zero to one
+- one half
+- minus one half
+- two thirds
+- x squared
+- x squared over
+- sharp bound
+- nonnegative
+- squeeze
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 2
+  minutes: 12
+  flags: []
+  tagline: Sign reasoning on f, then part (ii) changes the bounds meaningfully.
+  priority: 81
+  rank: 231
+  tier: B
+  category: tbo
+  d10: 3.5
+  real: 6.5
+  by: haiku
+tags:
+- inequalities
+- integration

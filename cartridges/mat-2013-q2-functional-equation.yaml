@@ -1,0 +1,124 @@
+id: mat-2013-q2-functional-equation
+title: 'MAT 2013 Q2: functional equation f(t) - k f(1-t) = t'
+topics:
+- functional equations
+- algebra
+- symmetry
+- substitution
+warmup: false
+answer_source: pdf
+statement: Question 2. (i) Let $k \neq \pm 1$. The function $f(t)$ satisfies $f(t) - k f(1-t) = t$ for
+  all values of $t$. By replacing $t$ with $1-t$, determine $f(t)$. (ii) Consider the new identity $f(t)
+  - f(1-t) = g(t)$ (*). (a) Show that no function $f(t)$ satisfies (*) when $g(t) = t$. (b) What condition
+  must the function $g(t)$ satisfy for there to be a solution $f(t)$ to (*)? (c) Find a solution $f(t)$
+  to (*) when $g(t) = (2t-1)^3$.
+stages:
+- goal: 'Part (i): determine f(t) by replacing t with 1-t and solving the resulting pair of linear equations.'
+  expected: f(t) = t/(1+k) + k/(1-k^2)
+  solution: 'Replacing t by 1-t in the given equation gives f(1-t) - k f(t) = 1 - t, so f(1-t) = 1 - t
+    + k f(t). Substitute into the original: f(t) - k(1 - t + k f(t)) = t, so (1 - k^2) f(t) = k + (1 -
+    k) t. Since k neq +/-1, divide to get f(t) = t/(1+k) + k/(1-k^2). Check: f(t) - k f(1-t) = t/(1+k)
+    - k(1-t)/(1+k) + (k - k^2)/(1-k^2) = t - k/(1+k) + k/(1+k) = t.'
+  common_errors:
+  - treating f(1-t) as f(t) and so not getting a second equation
+  - sign error when substituting 1 - t into k f(1-t)
+  - forgetting that division by 1 - k^2 requires k neq +/-1
+  - simplifying k/(1-k^2) incorrectly as k/(1-k)^2
+  hints:
+    rephrase: You have one equation involving f(t) and f(1-t). Make a second equation by substituting
+      1-t for t, then solve the pair for f(t).
+    smaller_case: Set k = 0 in the original equation and see what f must be.
+    key_idea: Two linear equations in the two unknowns f(t) and f(1-t). Eliminate f(1-t).
+  check: (t/(1+k) + k/(1-k**2)) - k*((1-t)/(1+k) + k/(1-k**2)) - t
+  check_ok: true
+- goal: 'Part (ii)(a): show that no f satisfies (*) when g(t) = t.'
+  expected: No such function exists. Swapping t with 1-t in (*) and adding the two equations gives g(t)
+    + g(1-t) = 0 for all t, but for g(t) = t this sum is 1, not 0.
+  solution: Replacing t by 1-t in (*) gives f(1-t) - f(t) = g(1-t). Adding this to (*), f(t) - f(1-t)
+    = g(t), gives 0 = g(t) + g(1-t). With g(t) = t, g(t) + g(1-t) = t + (1-t) = 1 neq 0. So there is a
+    contradiction for every t, and no f exists.
+  common_errors:
+  - guessing f(t) = t/2 or similar and not checking the substitution
+  - replacing t by 1-t in f but not in g, or vice versa
+  - concluding that a solution exists because (*) is satisfied at a single value of t
+  hints:
+    rephrase: Apply the substitution t to 1-t to the equation (*) itself, and add the two resulting equations.
+    smaller_case: Test whether a constant g(t) = 1 can arise, and what the sum g(t) + g(1-t) is in that
+      case.
+    key_idea: The symmetry of the left-hand side of (*) forces a condition on g that must hold for all
+      t.
+  check: null
+- goal: 'Part (ii)(b): find the condition on g for a solution f to exist.'
+  expected: g(1-t) = -g(t) for all t (g is antisymmetric about t = 1/2). This is necessary and sufficient,
+    since f(t) = g(t)/2 is then a solution.
+  solution: 'Necessity: as in (a), adding (*) to its substitute gives g(t) + g(1-t) = 0. Sufficiency:
+    if g(1-t) = -g(t), set f(t) = g(t)/2. Then f(t) - f(1-t) = g(t)/2 - g(1-t)/2 = g(t)/2 + g(t)/2 = g(t).
+    So (*) holds.'
+  common_errors:
+  - stating the symmetry g(1-t) = g(t) rather than the antisymmetry
+  - giving the necessary condition but not showing that it is also sufficient
+  - forgetting that the condition must hold for all t, not just at t = 0 or t = 1
+  hints:
+    rephrase: Work out what (*) says when t is replaced by 1-t, and combine it with (*).
+    smaller_case: Put t = 0 into the condition. What relation must g(0) and g(1) satisfy?
+    key_idea: Try a particular solution built directly from g, for example a scalar multiple of g, and
+      check whether it satisfies (*) under the symmetry.
+  check: null
+- goal: 'Part (ii)(c): find a solution f when g(t) = (2t-1)^3.'
+  expected: f(t) = (2t-1)^3 / 2 (one solution; the general solution is this plus any h(t) with h(t) =
+    h(1-t)).
+  solution: Here g(1-t) = (1-2t)^3 = -(2t-1)^3 = -g(t), so the condition from (b) holds. Take f(t) = g(t)/2
+    = (2t-1)^3/2. Then f(t) - f(1-t) = (2t-1)^3/2 - (1-2t)^3/2 = (2t-1)^3/2 + (2t-1)^3/2 = (2t-1)^3 =
+    g(t).
+  common_errors:
+  - giving f(t) = g(t) and not checking the factor of 2
+  - computing f(1-t) incorrectly by substituting 1 - t into 2t - 1 as 1 - 2t - 1
+  - checking (*) only at one value of t
+  hints:
+    rephrase: Propose an f built from g, compute f(1-t), and compare the difference f(t) - f(1-t) with
+      g(t).
+    smaller_case: Try the simpler case g(t) = 2t - 1 first. Does a multiple of g work for it?
+    key_idea: A scalar multiple of g may satisfy the difference condition, and the condition from (b)
+      tells you whether it can.
+  check: ((2*t-1)**3/2) - ((2*(1-t)-1)**3/2) - (2*t-1)**3
+  check_ok: true
+extensions:
+  '3':
+  - Decide whether a solution f exists to (*) when g(t) = t^2 - t, and justify your answer.
+  '4':
+  - Solve f(t) - k f(1-t) = g(t) for general g with k neq +/-1, and state the resulting formula for f.
+  '5':
+  - Find all f with f(t) + f(1-t) = 1, giving one solution and describing every solution.
+spoken_vocab:
+- f of t
+- g of t
+- k
+- one minus t
+- two t minus one
+- cubed
+- asterisk
+- k not equal to plus or minus one
+- functional equation
+- substitution
+- antisymmetric
+- half
+- necessary and sufficient
+source: mat/2013 MAT done again.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 4
+  minutes: 20
+  flags: []
+  tagline: Functional equation with antisymmetry condition; elegant contradiction in part (a).
+  priority: 82
+  rank: 194
+  tier: B
+  category: mat
+  d10: 4.0
+  real: 6.0
+  by: haiku
+tags:
+- functional_equations
+- algebra_and_functions

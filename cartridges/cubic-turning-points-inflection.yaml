@@ -1,0 +1,117 @@
+id: cubic-turning-points-inflection
+title: Cubic turning points and inflection
+topics:
+- calculus
+- differentiation
+- cubic curves
+- discriminant
+- stationary points
+- points of inflection
+warmup: false
+answer_source: generated
+statement: Consider the cubic curve $y=ax^3+bx^2+cx+d$. Find conditions on $a,b,c,d$ which ensure the
+  curve has a local maximum and a local minimum. Under these conditions, show that the curve has a point
+  of inflection midway between the turning points.
+stages:
+- goal: Find the conditions on a, b, c, d so that the cubic has a local maximum and a local minimum.
+  expected: a is not 0 and b^2 - 3ac > 0 (d is unrestricted). Then y' = 3ax^2 + 2bx + c has two distinct
+    real roots, at each of which y' changes sign, giving one local maximum and one local minimum.
+  solution: 'y'' = 3ax^2 + 2bx + c. If a = 0 the curve is not cubic and y'' is linear, so there is at
+    most one turning point; hence a is not 0. A local max and a local min need two distinct real roots
+    of y'' = 0. The discriminant must be positive: (2b)^2 - 4(3a)(c) = 4b^2 - 12ac > 0, i.e. b^2 > 3ac.
+    Since the roots are simple, y'' changes sign at each. For a > 0 the sign pattern of y'' is + then
+    - then +, so the smaller root is a max and the larger is a min. For a < 0 the roles reverse. d does
+    not affect the turning points.'
+  common_errors:
+  - Forgetting a is not 0 (without it the curve is not cubic).
+  - Using b^2 >= 3ac; equality gives a single stationary point of inflection, not a max and a min.
+  - Dropping the factor 4 in the discriminant, or writing b^2 > ac.
+  - Thinking d must satisfy some condition.
+  hints:
+    rephrase: Turning points are where the slope is zero. How many distinct points must the slope change
+      sign at to get one maximum and one minimum?
+    smaller_case: Take y = x^3 - 3x (a=1, b=0, c=-3, d=0). Where is the slope zero, and does the slope
+      change sign there?
+    key_idea: A quadratic has two distinct real roots exactly when its discriminant is positive.
+  check: sp.simplify(sp.discriminant(3*a*x**2+2*b*x+c, x) - 4*(b**2-3*a*c)) == 0
+  check_ok: null
+- goal: Locate the point of inflection of the cubic.
+  expected: The inflection point has x-coordinate x0 = -b/(3a).
+  solution: y'' = 6ax + 2b. Setting y'' = 0 gives x0 = -b/(3a), which is valid because a is not 0. y''
+    is linear with slope 6a, which is not 0, so y'' changes sign at x0. Concavity therefore changes there,
+    and (x0, y(x0)) is a point of inflection. It is the only one.
+  common_errors:
+  - Concluding inflection from y'' = 0 without checking that the sign changes.
+  - Sign error, e.g. writing x0 = +b/(3a).
+  - Confusing a point of inflection with a point where y = 0.
+  hints:
+    rephrase: A point of inflection is where concavity changes. Which derivative controls concavity?
+    smaller_case: For y = x^3, find where the second derivative vanishes and check whether it changes
+      sign there.
+    key_idea: A point of inflection needs the second derivative to be zero and to change sign there.
+  check: sp.simplify(sp.solve(sp.diff(a*x**3+b*x**2+c*x+d, x, 2), x)[0] + b/(3*a)) == 0
+  check_ok: null
+- goal: Show that the inflection's x-coordinate is midway between the two turning points.
+  expected: The turning points have x-coordinates x1, x2 with x1 + x2 = -2b/(3a), so their midpoint is
+    -b/(3a), which equals x0 from the previous stage.
+  solution: The turning points are the roots of 3ax^2 + 2bx + c = 0, namely x1, x2 = (-2b +/- sqrt(4b^2
+    - 12ac))/(6a). They are distinct by stage 1. Their midpoint is (x1 + x2)/2 = (-4b/(6a))/2 = -b/(3a).
+    The square-root terms cancel. This equals x0 = -b/(3a), so the inflection lies midway between the
+    turning points.
+  common_errors:
+  - Taking the midpoint as x1 + x2 rather than (x1 + x2)/2.
+  - Writing the sum of roots as -b/(3a) instead of -2b/(3a).
+  - Comparing y-values instead of x-coordinates when the question asks about position.
+  hints:
+    rephrase: Find the two turning points and average their x-coordinates. Then compare with the inflection's
+      x-coordinate.
+    smaller_case: For y = x^3 - 3x the turning points are at x = -1 and x = 1. What is their midpoint,
+      and where is the inflection?
+    key_idea: For a quadratic with roots x1 and x2, the sum of the roots is minus the ratio of the linear
+      coefficient to the leading coefficient (Vieta's formulas).
+  check: sp.simplify(((-2*b+sp.sqrt(4*b**2-12*a*c))/(6*a) + (-2*b-sp.sqrt(4*b**2-12*a*c))/(6*a))/2 + b/(3*a))
+    == 0
+  check_ok: null
+extensions:
+  '3':
+  - Show that every cubic with a not 0 is point-symmetric about its inflection point once the origin is
+    moved to that point.
+  '4':
+  - Find the slope of the curve at the inflection point in terms of a, b and c.
+  '5':
+  - Show that the inflection point is the midpoint of the segment joining the two turning points as points
+    in the plane, including their y-values.
+spoken_vocab:
+- y equals a x cubed plus b x squared plus c x plus d
+- cubic
+- derivative
+- second derivative
+- discriminant
+- b squared minus three a c
+- turning point
+- local maximum
+- local minimum
+- point of inflection
+- midpoint
+- Vieta
+- square root
+- a not equal to zero
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Discriminant condition, then the inflection at the midpoint of the turning points.
+  priority: 61
+  rank: 454
+  tier: C
+  category: tbo
+  d10: 4.5
+  real: 5.5
+  by: deepseek-v4.1-flash-free
+tags:
+- curve_sketching
+- algebra_and_functions

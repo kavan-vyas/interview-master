@@ -1,0 +1,138 @@
+id: ode-blowup-nonuniqueness-euler
+title: Blow-up, non-uniqueness and Euler's method
+topics:
+- separable ODEs
+- existence and uniqueness
+- finite-time blow-up
+- Euler's method
+- limits
+warmup: false
+answer_source: pdf
+statement: '(i) Solve $\frac{dy}{dx}=y^2$ with $y(0)=a>0$. For which $x$ does the solution exist? (ii)
+  Show that $\frac{dy}{dx}=\sqrt{y}$ with $y(0)=0$ (and $y\ge 0$) has the solutions $y=0$ and $y=\frac{x^2}{4}$
+  for $x\ge 0$. Find infinitely many more. (iii) Euler''s method for $\frac{dy}{dx}=y$, $y(0)=1$, uses
+  steps of size $h=\frac{1}{n}$: $y_{k+1}=y_k+hy_k$. Find the approximation to $y(1)$ and its limit as
+  $n\to\infty$.'
+stages:
+- goal: Solve dy/dx = y^2 with y(0)=a>0 by separation of variables.
+  expected: $y(x)=\frac{a}{1-ax}$
+  solution: 'Separate: $\frac{dy}{y^2}=dx$, so $-\frac{1}{y}=x+C$. The initial condition $y(0)=a$ gives
+    $C=-\frac{1}{a}$, so $\frac{1}{y}=\frac{1}{a}-x$ and $y=\frac{a}{1-ax}$.'
+  common_errors:
+  - Dropping the minus sign when integrating $\frac{1}{y^2}$
+  - Forgetting the constant or applying $y(0)=a$ before integrating
+  - Writing $y=ae^{x}$, which solves $y'=y$ instead
+  hints:
+    rephrase: Move every y to one side and every x to the other, then integrate both sides.
+    smaller_case: Apply the same method to dy/dx = y^2 with a=1 and check your formula at x=0.
+    key_idea: 'This is a separable equation: integrate after separating the variables and use the initial
+      condition last.'
+  check: a,x=symbols('a x',positive=True); simplify(diff(a/(1-a*x),x)-(a/(1-a*x))**2)
+  check_ok: null
+- goal: Find the interval of x on which the solution with y(0)=a exists.
+  expected: The solution exists for $x<\frac{1}{a}$, i.e. on $(-\infty,\frac{1}{a})$, and blows up as
+    $x\to\frac{1}{a}^-$ (finite-time blow-up).
+  solution: The formula is finite and continuous wherever $1-ax\ne 0$. It is positive exactly when $x<\frac{1}{a}$,
+    and $x=0$ lies in that set, so the maximal interval is $(-\infty,\frac{1}{a})$. As $x\to\frac{1}{a}^-$,
+    $y\to+\infty$, so the solution cannot be continued past $\frac{1}{a}$.
+  common_errors:
+  - Saying the solution exists for all real x
+  - Writing $x>\frac{1}{a}$, which is the side not containing x=0
+  - Calling the singularity removable
+  hints:
+    rephrase: Find where the formula for y stops being finite, then decide which side of that point x=0
+      lies on.
+    smaller_case: Take a=2 and ask what happens to y as x approaches 1/2 from below.
+    key_idea: Blow-up occurs where the denominator of the solution vanishes; the solution lives on the
+      interval that contains 0.
+  check: a,x=symbols('a x',positive=True); limit((1-a*x)/a,x,1/a)
+  check_ok: null
+- goal: Verify that $y=\frac{x^2}{4}$ solves $\frac{dy}{dx}=\sqrt{y}$ with $y(0)=0$ on $x\ge 0$.
+  expected: Yes. $\frac{dy}{dx}=\frac{x}{2}$, and $\sqrt{y}=\frac{x}{2}$ for $x\ge 0$. Also $y(0)=0$.
+  solution: Differentiating gives $y'=\frac{x}{2}$. For $x\ge 0$, $\sqrt{\frac{x^2}{4}}=\frac{x}{2}$,
+    so both sides agree. The initial value $\frac{0^2}{4}=0$ holds.
+  common_errors:
+  - Using $\sqrt{x^2}=x$ without the domain restriction $x\ge 0$
+  - Checking the differential equation but forgetting $y(0)=0$
+  - Dropping the condition $y\ge 0$ from the setup
+  hints:
+    rephrase: Substitute the candidate into both sides of the equation separately and compare them on
+      the given domain.
+    smaller_case: Check the equation numerically at x=2.
+    key_idea: Verification needs only the derivative and the square root; keep track of the domain x\ge
+      0.
+  check: x=symbols('x',positive=True); simplify(diff(x**2/4,x)-sqrt(x**2/4))
+  check_ok: null
+- goal: Produce infinitely many solutions with y(0)=0 and y\ge 0, showing non-uniqueness.
+  expected: For every $c\ge 0$, $y_c(x)=0$ for $0\le x\le c$ and $y_c(x)=\frac{(x-c)^2}{4}$ for $x\ge
+    c$. Different values of c give different solutions.
+  solution: On $0\le x\le c$, $y=0$ and $y'=0=\sqrt{0}$. For $x\ge c$, $y'=\frac{x-c}{2}=\sqrt{\frac{(x-c)^2}{4}}$
+    because $x-c\ge 0$. The pieces meet at $x=c$ with value 0 and derivative 0 from both sides, so $y_c$
+    is continuous and differentiable there, and $y_c(0)=0$. Since c ranges over a continuum, there are
+    infinitely many solutions.
+  common_errors:
+  - Using $y=\frac{(x-c)^2}{4}$ for all x, which fails $y(0)=0$ when $c>0$
+  - Gluing the pieces so that they are not continuous at the junction
+  - Concluding uniqueness from the standard existence theorem, which does not apply because $\sqrt{y}$
+    is not Lipschitz at $y=0$
+  hints:
+    rephrase: Let the solution stay at zero for a while before it starts to grow.
+    smaller_case: Start with c=0 and ask what the equation says about the solution near x=0.
+    key_idea: The right-hand side $\sqrt{y}$ is not Lipschitz at $y=0$, which is why uniqueness can fail.
+      Ask when the solution is allowed to leave zero.
+  check: x,c=symbols('x c',positive=True); simplify(diff((x-c)**2/4,x)**2-(x-c)**2/4)
+  check_ok: null
+- goal: Find the Euler approximation $y_n$ to $y(1)$ for $y'=y$, $y(0)=1$, step $h=\frac{1}{n}$, and its
+    limit.
+  expected: $y_n=\left(1+\frac{1}{n}\right)^n$, and $y_n\to e$ as $n\to\infty$, which is the true value
+    $y(1)=e$.
+  solution: Each step multiplies the current value by $1+h=1+\frac{1}{n}$. Over $[0,1]$ there are $n$
+    steps starting from $y_0=1$, so $y_n=\left(1+\frac{1}{n}\right)^n$. This is the standard sequence
+    defining $e$, so $y_n\to e$, matching the exact value $y(1)=e$.
+  common_errors:
+  - Using $y_{k+1}=y_k+y_k$ and dropping the factor h
+  - Taking n-1 or n+1 steps instead of n
+  - Reporting $1+\frac{1}{n}$ rather than its n-th power
+  hints:
+    rephrase: Write one step of the recursion, then apply it n times starting from $y_0$.
+    smaller_case: For n=2, what is the value of y after two steps?
+    key_idea: Iterating a multiplicative step n times gives a power. Recognise the standard limit that
+      defines e.
+  check: n=symbols('n',positive=True); limit((1+1/n)**n,n,oo)-E
+  check_ok: null
+extensions:
+  '3':
+  - Solve dy/dx = y^2 - 1 with y(0)=0 and find the maximal interval on which the solution exists.
+  '4':
+  - Run Euler's method for dy/dx = y^2 with y(0)=a and step h. Describe what the approximations do as
+    x approaches 1/a.
+  '5':
+  - Prove that solutions of dy/dx = f(y) are unique when f is Lipschitz, and explain why $\sqrt{y}$ does
+    not satisfy this condition at y=0.
+spoken_vocab:
+- dee y by dee x
+- y squared
+- y at zero equals a
+- a over one minus a x
+- x less than one over a
+- blow up
+- square root of y
+- x squared over four
+- c greater than or equal to zero
+- Euler's method
+- h equals one over n
+- one plus one over n to the n
+- limit as n tends to infinity
+- e
+source: jaymin/Jaymin Interview (1).pdf#p49
+verified: false
+rating:
+  score: 9
+  difficulty: 4
+  parts: 5
+  minutes: 30
+  flags: []
+  tagline: Blow-up and non-uniqueness in one problem; Euler limit gives e.
+  priority: 130
+  rank: 13
+  tier: S

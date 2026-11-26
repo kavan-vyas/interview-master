@@ -1,0 +1,103 @@
+id: coin-patterns-waiting-times
+title: Waiting for coin patterns
+topics:
+- expectation
+- geometric distribution
+- Markov chains
+- first-step analysis
+warmup: false
+answer_source: pdf
+statement: A fair coin is tossed repeatedly. (i) Find the expected number of tosses up to and including
+  the first head. (ii) Find the expected number of tosses until the pattern $HH$ (two consecutive heads)
+  first appears. (iii) Find the expected number of tosses until the pattern $HT$ first appears.
+stages:
+- goal: 'Part (i): find the expected number of tosses up to and including the first head.'
+  expected: '2'
+  solution: Each toss is a head with probability 1/2 independently, so the number of tosses until the
+    first head is geometric with p = 1/2. Its mean is 1/p = 2.
+  common_errors:
+  - Answering 1 (the number of heads needed)
+  - Answering 1/2 (the probability of a head)
+  - Answering 1/p - 1 = 1, which counts failures rather than tosses
+  hints:
+    rephrase: Each toss independently succeeds with probability 1/2. How many tosses, including the successful
+      one, does it take to get the first success on average?
+    smaller_case: Suppose the coin had heads with probability 1/4. Set up the first-step equation for
+      the expected waiting time.
+    key_idea: Condition on the first toss to form an equation for the expected number of tosses.
+  check: sympy.Integer(1)/sympy.Rational(1,2) - 2
+  check_ok: null
+- goal: 'Part (ii): find the expected number of tosses until HH first appears.'
+  expected: '6'
+  solution: 'Let a be the expected remaining tosses from the start with no progress, and b the expected
+    remaining tosses after one head. From the start: a = 1 + (1/2)b + (1/2)a. From the H state: b = 1
+    + (1/2)*0 + (1/2)a. Solving gives a = 6, b = 4.'
+  common_errors:
+  - Answering 4 by adding two independent geometric waits (2+2)
+  - Answering 2, forgetting that a tail resets progress
+  - Setting up states incorrectly, for example letting a tail after H leave the state unchanged
+  hints:
+    rephrase: 'Track the progress toward the pattern: no useful last toss, or a last toss of H. What happens
+      from each state after the next toss?'
+    smaller_case: Set up the same state equations for the pattern HT, then compare the two systems.
+    key_idea: First-step analysis with one state per prefix of the pattern gives a linear system.
+  check: sympy.solve([sympy.Symbol('a') - 1 - sympy.Symbol('b')/2 - sympy.Symbol('a')/2, sympy.Symbol('b')
+    - 1 - sympy.Symbol('a')/2], [sympy.Symbol('a'), sympy.Symbol('b')])[sympy.Symbol('a')] - 6
+  check_ok: null
+- goal: 'Part (iii): find the expected number of tosses until HT first appears.'
+  expected: '4'
+  solution: 'Let a be the expected remaining tosses with no useful progress, and b the expected remaining
+    tosses after an H. From the start: a = 1 + (1/2)a + (1/2)b. From the H state, a T finishes and an
+    H keeps us in the same state: b = 1 + (1/2)*0 + (1/2)b. So b = 2 and a = 4.'
+  common_errors:
+  - Answering 6 by copying the HH answer
+  - Answering 2 from the first-head result
+  - Forgetting that an H keeps you in the state just after H, so the H-state equation is wrong
+  hints:
+    rephrase: After an H, what toss completes the pattern, and what toss keeps you where you are?
+    smaller_case: Work out the first-step equations for the pattern HH and compare which transitions differ.
+    key_idea: Write one equation per state, using the transitions of the pattern itself.
+  check: sympy.solve([sympy.Symbol('a') - 1 - sympy.Symbol('a')/2 - sympy.Symbol('b')/2, sympy.Symbol('b')
+    - 1 - sympy.Symbol('b')/2], [sympy.Symbol('a'), sympy.Symbol('b')])[sympy.Symbol('a')] - 4
+  check_ok: null
+extensions:
+  '3':
+  - What is the expected number of tosses until the pattern HHH first appears?
+  '4':
+  - What is the expected number of tosses until the pattern HTH first appears?
+  '5':
+  - What is the expected number of tosses until the pattern TT first appears when the coin is biased with
+    probability 2/3 of heads?
+spoken_vocab:
+- fair coin
+- tosses
+- first head
+- expected number
+- HH
+- HT
+- two consecutive heads
+- first-step analysis
+- one over p
+- geometric
+- state equations
+- four
+- six
+- two
+source: jaymin/Jaymin Interview (1).pdf#p33
+verified: false
+rating:
+  quality: 6
+  difficulty: 6
+  parts: 3
+  minutes: 10
+  flags: []
+  tagline: Clean expected-waiting-time contrast; HH versus HT reveals overlap effects.
+  priority: 86
+  rank: 152
+  tier: B
+  category: jaymin
+  d10: 5.0
+  real: 4.5
+  by: deepseek-v4.1-flash-free
+tags:
+- probability

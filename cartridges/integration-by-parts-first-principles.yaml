@@ -1,0 +1,101 @@
+id: integration-by-parts-first-principles
+title: Integration by parts from first principles
+topics:
+- integration by parts
+- product rule
+- differentiation from first principles
+- definite integrals
+warmup: false
+answer_source: generated
+statement: Prove the integration by parts formula from first principles.
+stages:
+- goal: Prove the product rule $\frac{d}{dx}(uv)=u'v+uv'$ from the definition of the derivative.
+  expected: $\frac{d}{dx}(uv)=\lim_{h\to 0}\frac{u(x+h)v(x+h)-u(x)v(x)}{h}$. Add and subtract $u(x+h)v(x)$
+    in the numerator, split the fraction and take limits, giving $\frac{d}{dx}(uv)=u'v+uv'$.
+  solution: Write $u(x+h)v(x+h)-u(x)v(x)=u(x+h)[v(x+h)-v(x)]+v(x)[u(x+h)-u(x)]$. Divide by h and let $h\to
+    0$, using continuity of $u$ at $x$. The result is $u'v+uv'$.
+  common_errors:
+  - Forgetting to add and subtract the cross term, so the algebra cannot be split.
+  - Taking $\lim u(x+h)$ without justifying it from differentiability, which implies continuity.
+  hints:
+    rephrase: Start from the limit definition of the derivative of the product $uv$. Find a way to rewrite
+      the numerator so that difference quotients of $u$ and $v$ appear.
+    smaller_case: Try $u(x)=x$ and $v(x)=x$, so $uv=x^2$. Compare the difference quotient of $x^2$ with
+      the expression you are building.
+    key_idea: Add and subtract the same cross term in the numerator, then group it into difference quotients
+      of $u$ and $v$.
+  check: diff(Function('u')(x)*Function('v')(x), x) - (diff(Function('u')(x),x)*Function('v')(x) + Function('u')(x)*diff(Function('v')(x),x))
+  check_ok: true
+- goal: Integrate both sides of the product rule and rearrange to get the integration by parts formula.
+    Then test it on $\int x e^{x}\,dx$.
+  expected: '$\int u''v\,dx = uv-\int uv''\,dx$. Applied with $u=x$, $v=e^{x}$: $\int xe^{x}\,dx = xe^{x}-e^{x}+C$.'
+  solution: Integrate $(uv)'=u'v+uv'$ to get $uv=\int u'v\,dx+\int uv'\,dx$, then rearrange. For $\int
+    x e^x dx$, take $u=x$ and $v'=e^x$, so $\int x e^x dx = x e^x - \int e^x dx = xe^x - e^x + C$.
+  common_errors:
+  - Dropping the constant of integration or confusing which factor is differentiated.
+  - Writing $\int uv'\,dx = uv+\int u'v\,dx$ with the wrong sign.
+  hints:
+    rephrase: Integrate the product rule identity term by term with respect to $x$, then move one integral
+      to the other side.
+    smaller_case: Differentiate $x e^{x}-e^{x}$ and check you recover $x e^{x}$. That tells you what the
+      antiderivative must be.
+    key_idea: Identify one factor to differentiate (u) and one to integrate (v'), so that the new integral
+      $\int u'v$ is simpler.
+  check: simplify(integrate(x*exp(x),x) - (x*exp(x) - exp(x)))
+  check_ok: true
+- goal: 'Use the formula on a definite integral: evaluate $\int_0^{\pi/2} x\cos x\,dx$.'
+  expected: $\int_0^{\pi/2}x\cos x\,dx=\frac{\pi}{2}-1$.
+  solution: Take $u=x$, $v'=\cos x$, so $v=\sin x$. Then $\int_0^{\pi/2}x\cos x\,dx=\left[x\sin x\right]_0^{\pi/2}-\int_0^{\pi/2}\sin
+    x\,dx=\frac{\pi}{2}-\left[-\cos x\right]_0^{\pi/2}=\frac{\pi}{2}-1$.
+  common_errors:
+  - Using $v=-\sin x$ instead of $\sin x$ when integrating $\cos x$.
+  - Evaluating the boundary term $[x\sin x]$ incorrectly at $x=0$ or $x=\pi/2$.
+  hints:
+    rephrase: Choose which factor to differentiate. Then apply the boundary-term version of the formula.
+    smaller_case: Decide what to pick for u so that its derivative becomes simpler. Then compute the remaining
+      integral.
+    key_idea: For definite integrals the formula reads $\int_a^b u'v\,dx=[uv]_a^b-\int_a^b uv'\,dx$. Evaluate
+      the boundary term first.
+  check: integrate(x*cos(x),(x,0,pi/2)) - (pi/2 - 1)
+  check_ok: true
+extensions:
+  '3':
+  - Use integration by parts twice to find $\int x^{2}e^{x}\,dx$.
+  '4':
+  - Derive the reduction formula $I_n=\int x^n e^x\,dx = x^n e^x - nI_{n-1}$.
+  '5':
+  - Prove the formula for $\int e^{ax}\sin(bx)\,dx$ by applying integration by parts twice and solving
+    the resulting linear equation for the integral.
+spoken_vocab:
+- integration by parts
+- product rule
+- first principles
+- u prime v
+- u v prime
+- limit as h tends to zero
+- difference quotient
+- antiderivative
+- constant of integration
+- definite integral
+- boundary term
+- x e to the x
+source: past-interviews/Actual Past Interview Questions/Maths Trinity Hall Cambridge 2005.doc
+verified: false
+rating:
+  quality: 7
+  difficulty: 4
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Derives product rule from first principles, then builds and applies integration by parts.
+  priority: 81
+  rank: 230
+  tier: B
+  category: past-interviews
+  d10: 3.0
+  real: 4.5
+  by: haiku
+tags:
+- proof
+- differentiation
+- integration

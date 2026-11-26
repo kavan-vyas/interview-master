@@ -1,0 +1,124 @@
+id: inclusion-exclusion-and-derangements
+title: Coprime counting and derangements
+topics:
+- inclusion-exclusion
+- derangements
+- counting
+- permutations
+- factorials
+warmup: false
+answer_source: generated
+statement: '(i) How many of the integers $1, 2, \ldots, 1000$ are divisible by none of $2$, $3$ and $5$?
+
+
+  (ii) A derangement of $\{1, \ldots, n\}$ is a permutation with no fixed point. Show that the number
+  of derangements is $D_n = n!\sum_{k=0}^{n} \frac{(-1)^k}{k!}$.
+
+
+  (iii) Compute $D_4$ and $D_5$.'
+stages:
+- goal: (i) Count the integers from $1$ to $1000$ that are divisible by none of $2$, $3$, $5$.
+  expected: '$266$ integers, obtained by inclusion-exclusion: $1000-(500+333+200)+(166+100+66)-33$.'
+  solution: Let $A_2, A_3, A_5$ be the sets of multiples of $2, 3, 5$ in $\{1,\ldots,1000\}$. Then $|A_2|=500$,
+    $|A_3|=333$, $|A_5|=200$; $|A_2\cap A_3|=\lfloor 1000/6\rfloor=166$, $|A_2\cap A_5|=100$, $|A_3\cap
+    A_5|=\lfloor 1000/15\rfloor=66$; $|A_2\cap A_3\cap A_5|=\lfloor 1000/30\rfloor=33$. So $|A_2\cup A_3\cup
+    A_5|=1033-332+33=734$, and the number divisible by none is $1000-734=266$.
+  common_errors:
+  - Using $\lfloor 1000/3 \rfloor = 334$ instead of $333$ (rounding up rather than down)
+  - Forgetting to add back the triple-intersection term $\lfloor 1000/30 \rfloor = 33$
+  - Using $1000 \cdot \frac{1}{2}\cdot\frac{2}{3}\cdot\frac{4}{5} \approx 266.67$ and rounding without
+    justification
+  - Subtracting only the single sets and not adding back the pairwise overlaps
+  hints:
+    rephrase: Count the multiples of $2$, of $3$, and of $5$ separately, then correct for numbers that
+      were counted more than once.
+    smaller_case: In the integers $1$ to $30$, how many are divisible by none of $2$, $3$, $5$? Count
+      them directly, then see how the counts of multiples combine.
+    key_idea: Apply inclusion-exclusion to the sets of multiples of $2$, $3$, $5$, using that the intersections
+      are multiples of $6$, $10$, $15$, $30$.
+  check: 1000 - (500+333+200) + (166+100+66) - 33 - 266
+  check_ok: true
+- goal: (ii) Show that the number of derangements of $\{1,\ldots,n\}$ is $D_n = n!\sum_{k=0}^{n}\frac{(-1)^k}{k!}$.
+  expected: Inclusion-exclusion over the sets $A_i$ of permutations fixing $i$, giving $D_n = \sum_{k=0}^{n}(-1)^k\binom{n}{k}(n-k)!$,
+    then simplifying $\binom{n}{k}(n-k)!=n!/k!$.
+  solution: Let $A_i$ be the set of permutations of $\{1,\ldots,n\}$ that fix $i$. A derangement lies
+    in none of the $A_i$. For any set $S$ of $k$ indices, the permutations fixing every point of $S$ number
+    $(n-k)!$, since the other $n-k$ points can be permuted freely. There are $\binom{n}{k}$ such sets
+    $S$. By inclusion-exclusion, $D_n = n! - \binom{n}{1}(n-1)! + \binom{n}{2}(n-2)! - \cdots = \sum_{k=0}^{n}(-1)^k\binom{n}{k}(n-k)!$.
+    Since $\binom{n}{k}(n-k)! = \frac{n!}{k!(n-k)!}(n-k)! = \frac{n!}{k!}$, this equals $n!\sum_{k=0}^{n}\frac{(-1)^k}{k!}$.
+  common_errors:
+  - Dropping the alternating sign, so the sum has no $(-1)^k$
+  - Using $(n-k)$ instead of $(n-k)!$ for the number of permutations fixing $k$ given points
+  - Forgetting the factor $\binom{n}{k}$ for the number of ways to choose which $k$ points are fixed
+  - Starting the sum at $k=1$ and omitting the $k=0$ term $n!$ (all permutations)
+  hints:
+    rephrase: Count all permutations, then remove those that fix at least one point, correcting for overlaps.
+    smaller_case: For $n=2$ and $n=3$, list the permutations and identify the derangements. Then compute
+      how many fix point $1$, how many fix both $1$ and $2$, and so on.
+    key_idea: 'Inclusion-exclusion over sets of fixed points: a prescribed set of $k$ fixed points leaves
+      $(n-k)!$ permutations, and there are $\binom{n}{k}$ such sets.'
+  check: Sum((-1)**k*binomial(4,k)*factorial(4-k),(k,0,4)).doit() - (factorial(4)*Sum((-1)**k/factorial(k),(k,0,4))).doit()
+  check_ok: true
+- goal: (iii) Compute $D_4$ and $D_5$ using the formula from part (ii).
+  expected: $D_4 = 9$ and $D_5 = 44$.
+  solution: '$D_4 = 24\left(1-1+\frac{1}{2}-\frac{1}{6}+\frac{1}{24}\right) = 12-4+1 = 9$. $D_5 = 120\left(1-1+\frac{1}{2}-\frac{1}{6}+\frac{1}{24}-\frac{1}{120}\right)
+    = 60-20+5-1 = 44$. These agree with the recurrence $D_n=(n-1)(D_{n-1}+D_{n-2})$ using $D_2=1$, $D_3=2$:
+    $D_4=3\cdot 3=9$, $D_5=4\cdot 11=44$.'
+  common_errors:
+  - Arithmetic slip in the alternating fractions, such as getting $D_4=8$ or $10$
+  - Omitting the $k=n$ term of the sum
+  - Forgetting to multiply the sum by $n!$ at the end
+  hints:
+    rephrase: Substitute $n=4$ and $n=5$ into the formula, then multiply by $n!$ at the end.
+    smaller_case: Use the formula to compute $D_3$, and check it against a direct listing of the permutations
+      of $\{1,2,3\}$ with no fixed point.
+    key_idea: 'It is easiest to distribute $n!$ over the terms: $n!/k!$ is an integer for each $k\le n$,
+      so compute $\sum (-1)^k n!/k!$ directly.'
+  check: ((factorial(4)*Sum((-1)**k/factorial(k),(k,0,4))).doit() - 9)**2 + ((factorial(5)*Sum((-1)**k/factorial(k),(k,0,5))).doit()
+    - 44)**2
+  check_ok: true
+extensions:
+  '3':
+  - Show that $D_n/n! \to 1/e$ as $n \to \infty$.
+  - What is the probability that a random permutation of $\{1,\ldots,n\}$ has no fixed point, to three
+    decimal places for large $n$?
+  '4':
+  - Show that $D_n = (n-1)(D_{n-1}+D_{n-2})$ for $n \ge 3$, using the formula from part (ii).
+  - How many integers from $1$ to $1000$ are divisible by exactly one of $2$, $3$, $5$?
+  '5':
+  - Show that the number of permutations of $\{1,\ldots,n\}$ with exactly one fixed point is $n\,D_{n-1}$.
+  - Find the expected number of fixed points of a random permutation, and use it to show that $\sum_{k\ge
+    0} k\binom{n}{k}D_{n-k}=n!$.
+spoken_vocab:
+- integers one to one thousand
+- divisible by two three and five
+- inclusion exclusion
+- derangement
+- permutation with no fixed point
+- D sub n
+- factorial
+- alternating sum
+- k from zero to n
+- D four
+- D five
+source: jaymin/Jaymin Interview (1).pdf#p25
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Classic inclusion-exclusion, then derangements with extension to asymptotics.
+  priority: 89
+  rank: 139
+  tier: A
+  category: jaymin
+  d10: 5.0
+  real: 6.0
+  by: big-pickle
+refined: true
+tags:
+- combinatorics
+- number_theory
+- proof

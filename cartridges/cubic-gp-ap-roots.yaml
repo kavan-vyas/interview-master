@@ -1,0 +1,157 @@
+id: cubic-gp-ap-roots
+title: Cubic with roots in geometric or arithmetic progression
+topics:
+- algebra
+- cubic equations
+- Vieta's formulas
+- geometric progression
+- arithmetic progression
+warmup: false
+answer_source: pdf
+statement: The cubic $x^3-px^2+qx-r=0$ is given. (i) Suppose the roots are $a/k$, $a$, $ak$ (a geometric
+  progression). Show that $q/p=a$ and $q^3/p^3=r$. (ii) Show that the roots are in geometric progression
+  if and only if $r\neq 0$ and $p^3r=q^3$. (iii) Show that the roots are in arithmetic progression if
+  and only if $r=\frac{p}{3}\left(q-\frac{2p^2}{9}\right)$.
+stages:
+- goal: Given the roots $a/k$, $a$, $ak$, express $p$, $q$, $r$ in terms of $a$ and $k$, then show $q/p=a$
+    and $q^3/p^3=r$.
+  expected: $p=a\left(k^{-1}+1+k\right)$, $q=a^2\left(k^{-1}+1+k\right)$, $r=a^3$; hence $q/p=a$ and $q^3/p^3=r$.
+  solution: 'Vieta: $p$ is the sum of the roots, $a/k+a+ak=a(k^{-1}+1+k)$. $q$ is the sum of pairwise
+    products, $\frac{a}{k}\cdot a+\frac{a}{k}\cdot ak+a\cdot ak=a^2(k^{-1}+1+k)$. $r$ is the product,
+    $a^3$. For real $k\neq0$, $k^{-1}+1+k=(k^2+k+1)/k\neq0$, so $p\neq0$ and $q/p=a$. Then $q^3/p^3=a^3=r$.'
+  common_errors:
+  - 'Sign slip: for $x^3-px^2+qx-r$ the sum of roots is $+p$, the pairwise sum is $+q$ and the product
+    is $+r$.'
+  - Dividing by $p$ without checking $p\neq0$.
+  - Missing one of the three pairwise products $\frac{a}{k}\cdot a$, $\frac{a}{k}\cdot ak$, $a\cdot ak$.
+  hints:
+    rephrase: Compare the cubic with the expanded product of its linear factors and match the coefficients
+      of $x^2$, $x$ and the constant term.
+    smaller_case: Take $a=2$ and $k=3$, so the roots are $2/3$, $2$, $6$. Work out their sum, their pairwise
+      products and their product, then form $q/p$.
+    key_idea: For a monic cubic, the sum of the roots, the sum of pairwise products and the product of
+      the roots are read directly from the coefficients. Look for a common factor in each of these three
+      quantities.
+  check: simplify(a**2*(1/k+1+k)/(a*(1/k+1+k)) - a) == 0
+  check_ok: true
+- goal: Suppose $p\neq0$ and $p^3r=q^3$. Let $t=q/p$. Show that $t$ is a root of the cubic.
+  expected: $t^3=r$, and substituting $x=t$ into the cubic gives $0$.
+  solution: $t^3=q^3/p^3=r$, and $q=pt$. Then $t^3-pt^2+qt-r=t^3-pt^2+pt\cdot t-r=t^3-r=0$.
+  common_errors:
+  - Using $p/q$ rather than $q/p$ as the candidate root.
+  - Not justifying $p\neq0$, which is needed for $q/p$ to exist.
+  - Stating $t^3=r$ without using $p^3r=q^3$.
+  hints:
+    rephrase: Take a ratio of two coefficients as a candidate root, substitute it into the cubic and simplify.
+    smaller_case: Try $p=3$, $q=6$, $r=8$, so $p^3r=q^3=216$. Test $x=q/p$ in $x^3-3x^2+6x-8$.
+    key_idea: Substitute the candidate into the cubic and use the relation $q=pt$ so that the $x^2$ and
+      $x$ terms cancel against each other.
+  check: 'simplify((t**3 - p*t**2 + q*t - r).subs({q: p*t, r: t**3})) == 0'
+  check_ok: true
+- goal: Show that $t$ and the other two roots form a geometric progression. Also handle the case $p=0$.
+  expected: 'The other two roots $u,v$ satisfy $uv=t^2$. Writing $\lambda=v/t$ gives $u=t/\lambda$, so
+    the roots are $t/\lambda$, $t$, $t\lambda$: a geometric progression with ratio $\lambda$, which may
+    be complex. If $p=0$ then $q=0$, the cubic is $x^3=r$, and its roots $c$, $c\omega$, $c\omega^2$ (with
+    $c^3=r$) form a geometric progression with ratio $\omega$.'
+  solution: Since $t$ is a root and the product of all three roots is $r$, the other two roots have product
+    $r/t=t^3/t=t^2$. Here $r\neq0$, so $t\neq0$. Let $v$ be one of the two other roots and set $\lambda=v/t$.
+    The other root is $t^2/v=t/\lambda$, so the roots are $t/\lambda$, $t$, $t\lambda$. Here $\lambda$
+    satisfies $\lambda+1/\lambda=(p-t)/t$, so it need not be real. If $p=0$, then $q^3=p^3r=0$ gives $q=0$,
+    so the cubic is $x^3-r=0$, with roots $c,c\omega,c\omega^2$ where $c^3=r$.
+  common_errors:
+  - Assuming the common ratio must be real.
+  - Forgetting the case $p=0$, where $q/p$ is undefined.
+  - Forgetting that the terms of a geometric progression must be nonzero, which is why $r\neq0$ is needed
+    for $t\neq0$.
+  hints:
+    rephrase: The product of all three roots and one root are known. What does this tell you about the
+      other two roots?
+    smaller_case: With $p=3$, $q=6$, $r=8$, the root $t=2$ is known. Divide $x^3-3x^2+6x-8$ by $x-2$ and
+      check that the product of the two remaining roots equals $t^2$.
+    key_idea: Two numbers are determined by their sum and product. If their product is $t^2$, writing
+      one of them as $t/\lambda$ and the other as $t\lambda$ gives a geometric progression with ratio
+      $\lambda$.
+  check: null
+- goal: Show that if the roots are in geometric progression with nonzero terms, then $r\neq0$ and $p^3r=q^3$.
+  expected: $r=a^3\neq0$ and $p^3r=q^3$.
+  solution: Part (i) gives $p=a(k^{-1}+1+k)$, $q=a^2(k^{-1}+1+k)$ and $r=a^3$. The terms of a geometric
+    progression are nonzero, so $a\neq0$ and $r=a^3\neq0$. Then $p^3r=a^3(k^{-1}+1+k)^3\cdot a^3=a^6(k^{-1}+1+k)^3=q^3$.
+  common_errors:
+  - Treating $r\neq0$ as automatic from the form $a^3$, without noting that $a\neq0$ because the terms
+    must be nonzero.
+  - Writing $q^3=p^2r$ or another wrong power.
+  - Forgetting to clear denominators when combining $q/p=a$ with $r=a^3$.
+  hints:
+    rephrase: Substitute the expressions for $p$, $q$, $r$ from part (i) into $p^3r$ and into $q^3$.
+    smaller_case: With $a=1$ and $k=2$, the values are $p=q=7/2$ and $r=1$. Compare $p^3r$ with $q^3$.
+    key_idea: Both $p^3r$ and $q^3$ are powers of $a$ times powers of the same bracket $(k^{-1}+1+k)$.
+      Compare the powers of $a$ and of the bracket.
+  check: simplify((a*(1/k+1+k))**3*a**3 - (a**2*(1/k+1+k))**3) == 0
+  check_ok: true
+- goal: Show that the roots are in arithmetic progression if and only if $r=\frac{p}{3}\left(q-\frac{2p^2}{9}\right)$.
+  expected: 'Forward: roots $a-d$, $a$, $a+d$ give $p=3a$, $q=3a^2-d^2$, $r=a(a^2-d^2)$, which satisfy
+    the relation. Converse: $p/3$ is a root, and the other two roots have sum $2p/3$ and product $r/(p/3)$,
+    so they are $p/3\pm d$ for some (possibly complex) $d$.'
+  solution: 'Forward: for roots $a-d$, $a$, $a+d$, the sum is $3a=p$, the pairwise sum is $(a-d)a+(a-d)(a+d)+a(a+d)=3a^2-d^2=q$
+    and the product is $a(a^2-d^2)=r$. Then $\frac{p}{3}\left(q-\frac{2p^2}{9}\right)=a(3a^2-d^2-2a^2)=a(a^2-d^2)=r$.
+    Converse: put $a=p/3$. Substituting $x=a$ into the cubic gives $a^3-3a^3+qa-r=qa-2a^3-r$, which is
+    zero exactly when $r=a(q-2a^2)=\frac{p}{3}\left(q-\frac{2p^2}{9}\right)$. So $a$ is a root. If $a\neq0$,
+    the other two roots have sum $2a$ and product $r/a=q-2a^2$. With $d^2=3a^2-q$, they are $a+d$ and
+    $a-d$, since $(a+d)(a-d)=a^2-d^2=q-2a^2$. If $a=0$, the relation gives $r=0$, the roots are $0$ and
+    $\pm\sqrt{-q}$, and these form an arithmetic progression.'
+  common_errors:
+  - Using $2p/9$ instead of $2p^2/9$ when simplifying.
+  - Assuming $a\neq0$ in the converse and missing the case $p=0$.
+  - Deducing the progression before showing that $p/3$ is a root.
+  hints:
+    rephrase: Guess the middle root from the sum of the roots, then test it in the cubic.
+    smaller_case: Use the roots $-1$, $1$, $3$, which give the cubic $x^3-3x^2-x+3$. Find $p$, $q$, $r$
+      and test whether the stated relation holds.
+    key_idea: In an arithmetic progression of three terms, the middle term is the average of the three,
+      and this average is determined by $p$.
+  check: 'simplify((p/3)*(q - 2*p**2/9) - r).subs({p: 3*a, q: 3*a**2 - d**2, r: a*(a**2 - d**2)}) == 0'
+  check_ok: false
+extensions:
+  '3':
+  - Find a condition on $p$, $q$, $r$ for the roots to be in geometric progression with all roots real
+    and positive.
+  '4':
+  - Show that if the roots are in both geometric and arithmetic progression, with nonzero roots, then
+    all three roots are equal.
+  '5':
+  - Find the cubics whose roots are in both geometric and arithmetic progression, and state the relation
+    between $p$, $q$, $r$ that results.
+spoken_vocab:
+- x cubed minus p x squared plus q x minus r equals zero
+- geometric progression
+- arithmetic progression
+- a over k, a, a k
+- q over p equals a
+- q cubed over p cubed equals r
+- p cubed r equals q cubed
+- r not equal to zero
+- p over three times q minus two p squared over nine
+- Vieta
+- omega
+- d squared
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#12
+verified: false
+rating:
+  quality: 5
+  difficulty: 7
+  parts: 3
+  minutes: 25
+  flags:
+  - garbled
+  tagline: Vieta characterisations of GP and AP roots; rich, but part (iii) is truncated.
+  priority: 55
+  rank: 482
+  tier: C
+  category: siklos
+  d10: 6.0
+  real: 6.0
+  by: deepseek-v4.1-flash-free
+tags:
+- roots_of_polynomials
+- algebra_and_functions
+- proof

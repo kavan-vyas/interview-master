@@ -1,0 +1,151 @@
+id: wedge-particle-smooth-slide
+title: Particle sliding on a smooth movable wedge
+topics:
+- mechanics
+- conservation of momentum
+- conservation of energy
+- differential equations
+warmup: false
+answer_source: pdf
+statement: A particle of mass $m$ slides down the smooth face, inclined at $\alpha$ to the horizontal,
+  of a smooth wedge of mass $M$ which rests on a smooth horizontal floor. Take $m = kM$, which is the
+  convention under which the stated results hold. The particle has velocity $v$ at angle $\beta$ to the
+  horizontal, relative to the ground, and the wedge has speed $V$. Show that (i) $V\sin\alpha = v\sin(\beta-\alpha)$;
+  (ii) $\tan\beta = (1+k)\tan\alpha$; (iii) $2gy = v^2(1+k\cos^2\beta)$, where $y$ is the vertical distance
+  the particle has fallen. State the mechanical principle used in (ii) and in (iii). Write down a differential
+  equation for $y$ and hence show that $y = \tfrac12 g' t^2$, where $g' = \dfrac{g\sin^2\beta}{1+k\cos^2\beta}
+  = \dfrac{(1+k)\sin^2\alpha}{1+k\sin^2\alpha}$.
+stages:
+- goal: Relate the wedge speed V to the particle speed v using the fact that the particle stays on the
+    face.
+  expected: 'The components of the particle''s velocity and the wedge''s velocity perpendicular to the
+    face are equal: $V\sin\alpha = v\sin(\beta-\alpha)$.'
+  solution: 'Let the wedge move with velocity $(-V,0)$ and the particle move with velocity $v(\cos\beta,-\sin\beta)$.
+    The face has outward normal $n=(\sin\alpha,\cos\alpha)$. The particle stays in contact, so its normal
+    component equals the wedge''s: $v(\cos\beta\sin\alpha-\sin\beta\cos\alpha) = -V\sin\alpha$. The left
+    side is $-v\sin(\beta-\alpha)$, which gives (i). The relative velocity of the particle along the face
+    has no normal component, so this is the only constraint needed.'
+  common_errors:
+  - Equating components along the face rather than normal to it.
+  - Forgetting that the wedge's horizontal velocity has a normal component $V\sin\alpha$.
+  - Sign slips from taking the wedge and particle to move in the same horizontal direction.
+  hints:
+    rephrase: Only motion relative to the surface is free. What does it mean for the particle to stay
+      in contact with the face, in terms of the normal direction?
+    smaller_case: Take the special case of a vertical face, alpha = 90 degrees. What does the normal constraint
+      say about the wedge's horizontal velocity?
+    key_idea: Contact keeps the normal velocity components equal, while the motion along the face is unconstrained.
+  check: V*sin(a) - v*sin(b - a)
+  check_ok: null
+- goal: Use conservation of horizontal momentum to show tan(beta) = (1+k) tan(alpha).
+  expected: 'Horizontal momentum is zero, so $MV = mv\cos\beta$ with opposite directions. With $m=kM$
+    this gives $V = kv\cos\beta$. Substituting into (i): $k\cos\beta\sin\alpha = \sin\beta\cos\alpha -
+    \cos\beta\sin\alpha$, so $\tan\beta=(1+k)\tan\alpha$. Since $\alpha$ and $k$ are constant, $\beta$
+    is constant.'
+  solution: 'The floor is smooth, so there is no external horizontal force on the system of wedge plus
+    particle. The system starts from rest, so its horizontal momentum stays zero: $MV = m v\cos\beta$
+    in opposite directions. Using $m=kM$ gives $V=kv\cos\beta$. Combine with (i): $k\cos\beta\sin\alpha
+    = \sin(\beta-\alpha)$. Expanding gives $(1+k)\cos\beta\sin\alpha = \sin\beta\cos\alpha$, so $\tan\beta
+    = (1+k)\tan\alpha$.'
+  common_errors:
+  - Using $M=km$ instead of $m=kM$, which gives $\tan\beta=(1+1/k)\tan\alpha$ and contradicts the target.
+  - Using the momentum of the particle alone without the wedge's contribution.
+  - Dividing by the wrong trigonometric factor when rearranging.
+  hints:
+    rephrase: Which quantity is conserved in the horizontal direction, and what is its value at the start?
+    smaller_case: Imagine the wedge is very heavy compared with the particle. How does the wedge's horizontal
+      speed compare with the particle's?
+    key_idea: Momentum conservation links V to v cos(beta), and the result from (i) then eliminates V.
+  check: k*cos(b)*sin(a) - sin(b - a)
+  check_ok: null
+- goal: Use conservation of energy to derive (iii).
+  expected: $mgy = \tfrac12 MV^2 + \tfrac12 mv^2$. With $m=kM$ and $V=kv\cos\beta$, dividing by $kM/2$
+    gives $2gy = v^2(1+k\cos^2\beta)$.
+  solution: 'The surfaces are smooth, so no energy is lost and mechanical energy is conserved. The particle
+    has lost potential energy $mgy$ and gained kinetic energy from both bodies. Substituting: $kMgy =
+    \tfrac12 M k^2 v^2\cos^2\beta + \tfrac12 kM v^2$. Dividing by $kM/2$ gives $2gy = v^2(1+k\cos^2\beta)$.'
+  common_errors:
+  - Omitting the wedge's kinetic energy $\tfrac12 MV^2$.
+  - Using $\sin\beta$ in place of $\cos\beta$ for the horizontal velocity.
+  - Failing to substitute V from momentum before simplifying.
+  hints:
+    rephrase: Which kinetic energies appear, and what is the potential energy lost by the particle?
+    smaller_case: Set the wedge's mass to infinity (k effectively zero for the particle's energy) and
+      write down the energy equation for a particle sliding on a fixed slope. Compare with the general
+      result.
+    key_idea: Energy is conserved over the whole system, and the wedge's kinetic energy is fixed by the
+      momentum result.
+  check: null
+- goal: Write the differential equation for y, then show y = (1/2) g' t^2 with the two stated forms of
+    g'.
+  expected: $\dfrac{dy}{dt} = v\sin\beta$, so $\left(\dfrac{dy}{dt}\right)^2 = 2g'y$ with $g'=\dfrac{g\sin^2\beta}{1+k\cos^2\beta}$
+    constant. Separating gives $2\sqrt y = \sqrt{2g'}\,t + C$ with $C=0$, so $y=\tfrac12 g't^2$. Using
+    $\tan\beta=(1+k)\tan\alpha$ gives $g' = \dfrac{(1+k)\sin^2\alpha}{1+k\sin^2\alpha}$.
+  solution: 'The vertical velocity of the particle is $v\sin\beta$, so $\dot y = v\sin\beta$. By (iii),
+    $\dot y^2 = v^2\sin^2\beta = \dfrac{2gy\sin^2\beta}{1+k\cos^2\beta} = 2g''y$, and $g''$ is constant
+    because $\beta$ is constant. Then $y^{-1/2}\dot y = \sqrt{2g''}$, so $2\sqrt y = \sqrt{2g''}\,t +
+    C$. Since $y=0$ at $t=0$, $C=0$, and squaring gives $y = \tfrac12 g'' t^2$. For the second form, let
+    $s=\sin^2\alpha$ and $T=\tan\beta=(1+k)\tan\alpha$, so $T^2=(1+k)^2 s/(1-s)$. Then $g''/g = T^2/(1+T^2+k)$,
+    and $1+T^2+k = (1+k)(1+ks)/(1-s)$, giving $g''/g = (1+k)s/(1+ks)$. Note that the source''s denominator
+    $k+\sin^2\alpha$ is a slip: with $k=2$, $\alpha=30^\circ$ we get $\beta=60^\circ$, $g''=g/2$, which
+    matches $1+k\sin^2\alpha$ and not $k+\sin^2\alpha$.'
+  common_errors:
+  - Taking $\dot y = v$ rather than the vertical component $v\sin\beta$.
+  - Forgetting that $\beta$ is constant, so $g'$ can be treated as constant.
+  - Dropping the constant of integration without using $y(0)=0$.
+  - Writing the denominator as $k+\sin^2\alpha$.
+  hints:
+    rephrase: Write how fast y changes in terms of the particle's speed and direction, then square it
+      and substitute the energy result.
+    smaller_case: Take k=0, a fixed slope. Describe the particle's motion down the slope using the same
+      y and t and compare the form of the equation.
+    key_idea: Once beta is constant, the squared rate of change of y is proportional to y, which is a
+      separable equation.
+  check: sin(atan((1+k)*tan(a)))**2/(1+k*cos(atan((1+k)*tan(a)))**2) - (1+k)*sin(a)**2/(1+k*sin(a)**2)
+  check_ok: null
+extensions:
+  '3':
+  - Take alpha = 30 degrees and k = 2. Find beta, and express g' in terms of g.
+  - Show that the particle's horizontal displacement relative to the wedge is consistent with the constant
+    angle beta.
+  '4':
+  - Find the time for the particle to fall through a height h, and the wedge's speed when the particle
+    has fallen h.
+  '5':
+  - Show that as k tends to infinity (fixed wedge) the formula for g' reduces to the familiar result for
+    a particle sliding down a fixed smooth slope.
+spoken_vocab:
+- V sin alpha equals v sin open bracket beta minus alpha close bracket
+- tan beta equals one plus k tan alpha
+- two g y equals v squared open bracket one plus k cos squared beta close bracket
+- y equals a half g dash t squared
+- g dash equals g sin squared beta over one plus k cos squared beta
+- dy by dt
+- d y d t
+- wedge
+- smooth floor
+- momentum
+- energy
+- k
+- alpha
+- beta
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#19
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 5
+  minutes: 20
+  flags:
+  - needs_diagram
+  tagline: 'Classic wedge chain: momentum, geometry, energy, then a clean ODE result.'
+  priority: 85
+  rank: 154
+  tier: B
+  category: siklos
+  d10: 6.5
+  real: 3.0
+  by: haiku
+tags:
+- mechanics
+- differential_equations

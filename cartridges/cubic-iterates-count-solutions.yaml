@@ -1,0 +1,129 @@
+id: cubic-iterates-count-solutions
+title: Counting solutions of iterates of f(x) = x^3 - 3x
+topics:
+- iteration
+- Chebyshev polynomials
+- trigonometry
+- polynomials
+warmup: false
+answer_source: pdf
+statement: 'Let $f(x)=x^3-3x$. Starting from a real number $x$, apply $f$ again and again: $f^1(x)=f(x)$,
+  $f^2(x)=f(f(x))$, $f^{n+1}(x)=f(f^n(x))$. a) How many distinct real solutions does $f^3(x)=2$ have?
+  b) For every positive integer $n$ and every real number $t$, how many distinct real solutions does $f^n(x)=t$
+  have? Give a reason that works for every $n$.'
+stages:
+- goal: Factor u^3 - 3u - 2, which gives the values u with f(u) = 2.
+  expected: (u+1)^2 (u-2), so u = -1 (double root) or u = 2.
+  solution: 'Write f(u) = 2 as u^3 - 3u - 2 = 0. Check that u = 2 is a root: 8 - 6 - 2 = 0. Dividing gives
+    (u-2)(u^2 + 2u + 1) = (u-2)(u+1)^2.'
+  common_errors:
+  - Missing the double root at u = -1.
+  - Solving f(u) = -2 instead of f(u) = 2.
+  - Making an arithmetic slip when dividing the cubic.
+  hints:
+    rephrase: Set f(u) = 2 and rearrange into a polynomial equation in u, then look for an easy root.
+    smaller_case: Which values of x solve f(x) = 2 directly? (Try x = 2.)
+    key_idea: Find one root by inspection, then divide to reduce the cubic to a quadratic.
+  check: expand(answer - (u**3 - 3*u - 2))
+  check_ok: false
+- goal: Count the real solutions of f^2(x) = -1 and of f^2(x) = 2, then add them.
+  expected: 9 solutions for f^2(x) = -1 and 5 for f^2(x) = 2, so 14 in total.
+  solution: Since |-1| < 2, part (b) with n = 2 gives 3^2 = 9 solutions. Since |2| = 2, it gives (3^2+1)/2
+    = 5 solutions. The two sets are disjoint because the target values differ, so the total is 14.
+  common_errors:
+  - Counting f^2(x) = 2 as 9 solutions, ignoring the boundary case |t| = 2.
+  - Double-counting x values, which is impossible here because the targets differ.
+  - Solving f(x) = -1 instead of f^2(x) = -1.
+  hints:
+    rephrase: Each root u from the previous stage gives a separate equation f^2(x) = u. Count each one.
+    smaller_case: How many real solutions does f(x) = 2 have? (Use the factorisation from stage 1.)
+    key_idea: Count the solutions of f^2(x) = u separately for each u. Sets for different u are disjoint.
+  check: answer - 14
+  check_ok: false
+- goal: Show that f(2 cos th) = 2 cos(3 th).
+  expected: f(2 cos th) = 8 cos^3 th - 6 cos th = 2(4 cos^3 th - 3 cos th) = 2 cos 3th.
+  solution: Use the triple-angle formula cos 3th = 4 cos^3 th - 3 cos th. Then f(2 cos th) = (2 cos th)^3
+    - 3(2 cos th) = 8 cos^3 th - 6 cos th = 2 cos 3th.
+  common_errors:
+  - Using cos 3th = 3 cos th - 4 cos^3 th, which has the wrong sign.
+  - Dropping the factor 2 in 2 cos 3th.
+  - Confusing the triple-angle formula with a sine identity.
+  hints:
+    rephrase: Pick the substitution x = 2 cos th that matches the cubic, then use a trigonometric identity.
+    smaller_case: Check th = 0. What are f(2) and 2 cos 0?
+    key_idea: Use the triple-angle formula for cosine.
+  check: simplify((2*cos(th))**3 - 3*(2*cos(th)) - 2*cos(3*th))
+  check_ok: true
+- goal: For |t| < 2, count the real solutions of f^n(x) = t for every positive integer n.
+  expected: 3^n distinct real solutions.
+  solution: With x = 2 cos th and th in (0, pi), f^n(x) = 2 cos(3^n th) by induction. Solve cos(3^n th)
+    = t/2. As th runs over (0, pi), the argument 3^n th runs over (0, 3^n pi), which contains 3^n intervals
+    of length pi. On each one, cos takes the value t/2 exactly once, giving 3^n distinct th and so 3^n
+    distinct x in (-2, 2). No solution has |x| > 2, because |f| <= 2 on [-2,2] and |f| > 2 outside it.
+  common_errors:
+  - Forgetting to check that solutions with |x| > 2 are impossible.
+  - Counting only 3^n/2 solutions.
+  - Guessing a pattern such as 2^n or 2n from small cases.
+  hints:
+    rephrase: Write f^n(2 cos th) in terms of cosine, then solve the resulting cosine equation over a
+      full range of th.
+    smaller_case: For n = 1 and t = 0, how many real solutions does x^3 - 3x = 0 have?
+    key_idea: Count how many times a cosine with a fixed value in (-1, 1) is attained as its argument
+      runs over an interval of length 3^n pi.
+  check: simplify(answer - 3**n)
+  check_ok: false
+- goal: For |t| > 2, count the real solutions of f^n(x) = t.
+  expected: Exactly 1 solution for every n.
+  solution: If |x| <= 2 then |f(x)| <= 2, so every solution has |x| > 2. For x > 2, f is strictly increasing
+    with f(x) > 2, so f^n is a strictly increasing bijection from (2, infinity) onto itself. Hence there
+    is exactly one solution when t > 2. The case t < -2 follows by oddness of f.
+  common_errors:
+  - Assuming the count is 3^n for |t| > 2 too.
+  - Forgetting the case t < -2.
+  - Claiming f is increasing on all of R. It has turning points at x = -1 and x = 1.
+  hints:
+    rephrase: Where is the graph of f when |x| > 2, and does it stay in that region?
+    smaller_case: For n = 1 and t = 3, how many real solutions does x^3 - 3x = 3 have?
+    key_idea: Show that once |x| > 2, the value |f(x)| stays above 2 and f is monotone on that region.
+  check: answer - 1
+  check_ok: false
+extensions:
+  '3':
+  - For n = 4 and t = 0, how many distinct real solutions does f^4(x) = 0 have?
+  '4':
+  - Prove that for |t| < 2, all solutions of f^n(x) = t lie in (-2, 2) and are distinct.
+  '5':
+  - For n = 2 and t = 0, give all solutions of f^2(x) = 0 in closed form using 2 cos((2k+1) pi/18).
+spoken_vocab:
+- f of x equals x cubed minus three x
+- iterate
+- f cubed of x equals two
+- f squared of x
+- distinct real solutions
+- cosine
+- two cos theta
+- triple angle formula
+- three to the power n
+- Chebyshev
+- boundary case
+- disjoint
+source: jzmaths/JZMaths Interview Questions from the website trial.pdf#0
+verified: false
+rating:
+  quality: 9
+  difficulty: 8
+  parts: 2
+  minutes: 30
+  flags: []
+  tagline: Counting preimages of iterated cubics via Chebyshev substitution; deep and extendable.
+  priority: 103
+  rank: 43
+  tier: A
+  category: jzmaths
+  d10: 8.5
+  real: 8.0
+  by: deepseek-v4.1-flash-free
+tags:
+- algebra_and_functions
+- trigonometry
+- proof

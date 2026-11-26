@@ -1,0 +1,79 @@
+id: base-b-10201-composite
+title: 10201 is composite in every base
+topics:
+- number bases
+- factorisation
+- perfect squares
+warmup: true
+answer_source: generated
+statement: Prove that $10201$ is composite in any base.
+stages:
+- goal: Write the digit string 10201 in base b as a polynomial in b.
+  expected: $10201_b=b^4+2b^2+1=(b^2+1)^2$.
+  solution: The digits 1,0,2,0,1 sit in positions 4,3,2,1,0, so the value is $1\cdot b^4+0\cdot b^3+2\cdot
+    b^2+0\cdot b+1=b^4+2b^2+1=(b^2+1)^2$.
+  common_errors:
+  - Placing the digits in the wrong positions
+  - Writing the middle digit 2 as 2b instead of 2b^2
+  - Forgetting that the base must be at least 3 for the digit 2 to be valid
+  hints:
+    rephrase: Write the digit string as a sum of each digit times a power of the base.
+    smaller_case: Try base 3 and base 10 and compare the value with your formula.
+    key_idea: Digits sit in decreasing powers of the base, starting from the highest position.
+  check: simplify(b**4 + 2*b**2 + 1 - (b**2+1)**2)
+  check_ok: true
+- goal: Conclude that 10201 in base b is composite.
+  expected: The base-b number equals $(b^2+1)^2$ with $1<b^2+1<(b^2+1)^2$ for $b\ge3$, so it has a nontrivial
+    factor and is composite.
+  solution: A base must exceed every digit, so $b\ge3$. Then $b^2+1\ge10$, so $b^2+1$ is an integer with
+    $1<b^2+1<(b^2+1)^2$. The number is therefore a product of two integers greater than 1, hence composite.
+  common_errors:
+  - Concluding composite without checking that the factor is nontrivial
+  - Ignoring the constraint b>=3 from the digit 2
+  - Claiming the number is a square without showing the factors are greater than 1
+  hints:
+    rephrase: Is the factor you found proper, and what is the smallest base allowed here?
+    smaller_case: 'Test base 3: compute the base-10 value of 10201 in base 3.'
+    key_idea: A square of an integer greater than 1 cannot be prime, because it has a factor between 1
+      and itself.
+  check: null
+extensions:
+  '3':
+  - Show that 10201 in base b is a perfect square for every base b>=3 and find its square root written
+    in base 10.
+  '4':
+  - Show that the base-b numeral 121 is composite for every base b>=3.
+  '5':
+  - Prove that every base-b numeral with digits 1, 2, 1 is a perfect square in base 10 and find its square
+    root.
+spoken_vocab:
+- ten thousand two hundred one
+- base b
+- b to the fourth
+- b squared
+- perfect square
+- composite
+- factor
+- digit two
+- digit one
+- greater than one
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 6
+  difficulty: 3
+  parts: 2
+  minutes: 6
+  flags: []
+  tagline: Elegant perfect-square factorisation; base-validity subtlety invites extension.
+  priority: 65
+  rank: 398
+  tier: C
+  category: tbo
+  d10: 4.0
+  real: 6.5
+  by: deepseek-v4.1-flash-free
+tags:
+- number_theory
+- algebra_and_functions
+- proof

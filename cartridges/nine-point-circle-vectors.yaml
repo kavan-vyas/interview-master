@@ -1,0 +1,185 @@
+id: nine-point-circle-vectors
+title: Euler line and nine-point circle via vectors
+topics:
+- vectors
+- dot product
+- circumcircle
+- orthocentre
+- centroid
+- nine-point circle
+warmup: false
+answer_source: pdf
+statement: 'Triangle $ABC$ has circumcentre $O$, taken as the origin, and circumradius $R$. Its vertices
+  have position vectors $\mathbf{a},\mathbf{b},\mathbf{c}$ with $|\mathbf{a}|=|\mathbf{b}|=|\mathbf{c}|=R$.
+
+
+  (i) Let $\mathbf{h}=\mathbf{a}+\mathbf{b}+\mathbf{c}$ and let $H$ be the point with position vector
+  $\mathbf{h}$. Show that $AH$ is perpendicular to $BC$, and deduce that $H$ is the orthocentre of $ABC$.
+
+
+  (ii) The centroid $G$ has position vector $\frac{1}{3}(\mathbf{a}+\mathbf{b}+\mathbf{c})$. Deduce that
+  $O$, $G$, $H$ are collinear with $OG:GH=1:2$.
+
+
+  (iii) Let $N$ have position vector $\frac{1}{2}(\mathbf{a}+\mathbf{b}+\mathbf{c})$. Show that the midpoint
+  of $BC$ and the midpoint of $AH$ both lie at distance $\frac{R}{2}$ from $N$, at opposite ends of a
+  diameter.
+
+
+  (iv) Deduce that the circle with centre $N$ and radius $\frac{R}{2}$ passes through the midpoints of
+  the sides, the midpoints of $AH$, $BH$, $CH$, and the feet of the three altitudes.'
+stages:
+- goal: Show that $AH\perp BC$ and deduce that $H$ is the orthocentre.
+  expected: $\overrightarrow{AH}=\mathbf{h}-\mathbf{a}=\mathbf{b}+\mathbf{c}$ and $\overrightarrow{BC}=\mathbf{c}-\mathbf{b}$.
+    Then $(\mathbf{b}+\mathbf{c})\cdot(\mathbf{c}-\mathbf{b})=|\mathbf{c}|^2-|\mathbf{b}|^2=R^2-R^2=0$,
+    so $H$ lies on the altitude from $A$. The same argument with the roles of $A,B,C$ permuted puts $H$
+    on the other two altitudes, so $H$ is the orthocentre.
+  solution: We have $\overrightarrow{AH}=\mathbf{h}-\mathbf{a}=\mathbf{b}+\mathbf{c}$ and $\overrightarrow{BC}=\mathbf{c}-\mathbf{b}$.
+    Then $(\mathbf{b}+\mathbf{c})\cdot(\mathbf{c}-\mathbf{b})=\mathbf{b}\cdot\mathbf{c}-|\mathbf{b}|^2+|\mathbf{c}|^2-\mathbf{c}\cdot\mathbf{b}=|\mathbf{c}|^2-|\mathbf{b}|^2=0$,
+    because the cross terms cancel and $|\mathbf{b}|=|\mathbf{c}|=R$. So $AH\perp BC$ (or $H=A$, when
+    $\mathbf{b}+\mathbf{c}=\mathbf{0}$, which happens when $BC$ is a diameter and the angle at $A$ is
+    a right angle; then $A$ is itself on the altitude from $A$). Thus $H$ lies on the line through $A$
+    perpendicular to $BC$, the altitude from $A$. The expression $\mathbf{h}$ is symmetric in $\mathbf{a},\mathbf{b},\mathbf{c}$,
+    so the same calculation shows $H$ lies on the altitudes from $B$ and $C$. Hence all three altitudes
+    pass through $H$, and $H$ is the orthocentre.
+  common_errors:
+  - Using $\mathbf{h}$ instead of $\mathbf{h}-\mathbf{a}$ as the direction of $AH$.
+  - Not noticing that the cross terms $\mathbf{b}\cdot\mathbf{c}$ cancel, or expanding the dot product
+    wrongly.
+  - Checking only one altitude and not invoking symmetry of $\mathbf{h}$ to conclude $H$ is the orthocentre.
+  - Forgetting that $|\mathbf{b}|=|\mathbf{c}|$ is where the circumcentre being the origin is used.
+  hints:
+    rephrase: Write down the vector from $A$ to $H$ and the vector from $B$ to $C$. When is their dot
+      product zero?
+    smaller_case: Take $B$ and $C$ as mirror images in the $y$-axis, so $\mathbf{b}=(R\cos\theta,R\sin\theta)$
+      and $\mathbf{c}=(-R\cos\theta,R\sin\theta)$. What direction do $\mathbf{b}+\mathbf{c}$ and $\mathbf{c}-\mathbf{b}$
+      have?
+    key_idea: Dot the two directions. The product of a sum and a difference collapses to a difference
+      of squared lengths, and those lengths are equal.
+  check: simplify((R*cos(u)+R*cos(v))*(R*cos(v)-R*cos(u))+(R*sin(u)+R*sin(v))*(R*sin(v)-R*sin(u)))
+  check_ok: true
+- goal: Show that $O$, $G$, $H$ are collinear and that $OG:GH=1:2$.
+  expected: $\mathbf{g}=\frac{1}{3}\mathbf{h}$, so $G$ lies on line $OH$, a third of the way from $O$
+    to $H$. So $OG=\frac{1}{3}OH$, $GH=\frac{2}{3}OH$ and $OG:GH=1:2$.
+  solution: Since $\mathbf{g}=\frac{1}{3}(\mathbf{a}+\mathbf{b}+\mathbf{c})=\frac{1}{3}\mathbf{h}$ and
+    $O$ is the origin, $G$ lies on the line through $O$ in the direction $\mathbf{h}$, which is line $OH$.
+    So $O$, $G$, $H$ are collinear. Also $\overrightarrow{OG}=\frac{1}{3}\mathbf{h}$ and $\overrightarrow{GH}=\mathbf{h}-\frac{1}{3}\mathbf{h}=\frac{2}{3}\mathbf{h}$,
+    both in the same direction, so $OG:GH=1:2$. (If $\mathbf{h}=\mathbf{0}$ the triangle is equilateral
+    and $O=G=H$, a degenerate case.) The line is the Euler line.
+  common_errors:
+  - Inverting the ratio and writing $OG:GH=2:1$.
+  - Concluding collinearity without showing $\mathbf{g}$ is a scalar multiple of $\mathbf{h}$.
+  - Computing $GH$ as $\mathbf{g}-\mathbf{h}$ and then comparing the sign, or using $|\mathbf{h}|$ as
+    $GH$.
+  - Forgetting that $O$ is the origin, so $\overrightarrow{OG}=\mathbf{g}$.
+  hints:
+    rephrase: Compare the position vector of $G$ with that of $H$. Is one a scalar multiple of the other?
+    smaller_case: Suppose $\mathbf{h}=(3,0)$. Where is $G$, and what are the lengths $OG$ and $GH$?
+    key_idea: If one position vector is a scalar multiple of another, the points lie on one line through
+      the origin, and the scalar fixes the ratio of lengths.
+  check: Rational(1,3)/(1-Rational(1,3)) - Rational(1,2)
+  check_ok: true
+- goal: Show that the midpoints of $BC$ and $AH$ are each at distance $R/2$ from $N$, on opposite sides
+    of $N$.
+  expected: Midpoint of $BC$ is $\frac{1}{2}(\mathbf{b}+\mathbf{c})$, which minus $\mathbf{n}$ gives $-\frac{1}{2}\mathbf{a}$.
+    Midpoint of $AH$ is $\frac{1}{2}(\mathbf{a}+\mathbf{h})$, which minus $\mathbf{n}$ gives $+\frac{1}{2}\mathbf{a}$.
+    Both have length $\frac{R}{2}$ and are opposite, so $N$ is the midpoint of a diameter joining them.
+  solution: Let $M$ be the midpoint of $BC$ and $P$ the midpoint of $AH$. Then $\mathbf{m}=\frac{1}{2}(\mathbf{b}+\mathbf{c})$,
+    so $\mathbf{m}-\mathbf{n}=\frac{1}{2}(\mathbf{b}+\mathbf{c})-\frac{1}{2}(\mathbf{a}+\mathbf{b}+\mathbf{c})=-\frac{1}{2}\mathbf{a}$.
+    Also $\mathbf{p}=\frac{1}{2}(\mathbf{a}+\mathbf{h})=\mathbf{a}+\frac{1}{2}(\mathbf{b}+\mathbf{c})$,
+    so $\mathbf{p}-\mathbf{n}=\frac{1}{2}\mathbf{a}$. Both vectors have length $\frac{1}{2}|\mathbf{a}|=\frac{R}{2}$,
+    so $NM=NP=\frac{R}{2}$, and since $\overrightarrow{NM}=-\overrightarrow{NP}$, $N$ is the midpoint
+    of $MP$. Thus $MP$ is a diameter of the circle with centre $N$ and radius $\frac{R}{2}$.
+  common_errors:
+  - Taking the midpoint of $AH$ as $\frac{1}{2}\mathbf{h}$ instead of $\frac{1}{2}(\mathbf{a}+\mathbf{h})$.
+  - Sign slip, so both points appear on the same side of $N$.
+  - Stating the distance as $R$ rather than $\frac{R}{2}$.
+  - Showing equal distances but not that $N$ lies between them, so not proving a diameter.
+  hints:
+    rephrase: Find the position vector of each midpoint, subtract $\mathbf{n}$, and look at the length
+      and direction of what remains.
+    smaller_case: Take $\mathbf{c}=-\mathbf{b}$, so the midpoint of $BC$ is $O$. Where is it relative
+      to $N=\frac{1}{2}\mathbf{a}$?
+    key_idea: Subtract $\mathbf{n}$ first. The $\mathbf{b}$ and $\mathbf{c}$ terms cancel, leaving $\pm\frac{1}{2}\mathbf{a}$.
+  check: simplify((R*cos(u)+R*cos(v))/2 - (R*cos(t)+R*cos(u)+R*cos(v))/2 + R*cos(t)/2)
+  check_ok: true
+- goal: Deduce that the circle centre $N$, radius $R/2$ passes through the three side midpoints, the midpoints
+    of $AH$, $BH$, $CH$, and the three feet of the altitudes.
+  expected: By symmetry of $\mathbf{n}$, part (iii) holds for each vertex, so all six midpoints lie on
+    the circle, in three diametral pairs. For the foot $D$ of the altitude from $A$, $M$ and $P$ are ends
+    of a diameter, and $D$ lies on $BC$ (through $M$) and on $AH$ (through $P$), which are perpendicular,
+    so $\angle MDP=90^\circ$ and by Thales (converse) $D$ is on the circle. Same for the other feet.
+  solution: 'Since $\mathbf{n}$ is symmetric in $\mathbf{a},\mathbf{b},\mathbf{c}$, part (iii) applies
+    with the roles permuted. The midpoints of $BC$ and $AH$, of $CA$ and $BH$, and of $AB$ and $CH$ are
+    therefore three diameters of the circle $\Gamma$ with centre $N$ and radius $\frac{R}{2}$, so the
+    six midpoints lie on $\Gamma$. Now let $D$ be the foot of the altitude from $A$, with $M$, $P$ as
+    before. $D$ lies on line $BC$, which contains $M$, and on line $AH$, which contains $P$. These lines
+    are perpendicular by (i), so if $D\neq M$ and $D\neq P$ then $\angle MDP=90^\circ$. Since $MP$ is
+    a diameter of $\Gamma$, the converse of Thales'' theorem gives $D\in\Gamma$. If $D=M$ or $D=P$ then
+    $D$ is already on $\Gamma$. The same argument works for the feet from $B$ and $C$. So $\Gamma$ passes
+    through nine points: the nine-point circle.'
+  common_errors:
+  - Proving the six midpoints lie on the circle but not the feet of the altitudes.
+  - Claiming $MP$ is a diameter without referring to part (iii), or using Thales in the wrong direction.
+  - Asserting the right angle at $D$ without saying why $DM$ lies along $BC$ and $DP$ along $AH$.
+  - Ignoring degenerate cases where $D$ coincides with $M$ or $P$ (isosceles or right-angled triangles).
+  hints:
+    rephrase: Pick one foot of an altitude and find a diameter with known endpoints. Then look at the
+      angle it subtends at the foot.
+    smaller_case: Consider only the altitude from $A$ and the midpoints of $BC$ and $AH$. Which line contains
+      the foot $D$ and $M$, and which contains $D$ and $P$?
+    key_idea: A right angle subtended by a segment means the vertex lies on the circle with that segment
+      as diameter (converse of Thales).
+extensions:
+  '3':
+  - What happens to $H$ and the nine-point circle if the triangle is right-angled at $A$? Where do $H$,
+    $N$ and the feet of the altitudes land?
+  - Does the proof change if the triangle is obtuse? Where does $H$ lie, and is $\mathbf{h}=\mathbf{a}+\mathbf{b}+\mathbf{c}$
+    still the orthocentre?
+  '4':
+  - Prove that $OH^2=9R^2-(BC^2+CA^2+AB^2)$ using the vector set-up, and check it on a right-angled triangle.
+  - Show that $N$ is the midpoint of $OH$, and hence that the nine-point circle is the image of the circumcircle
+    under a homothety centred at $G$ with ratio $-\frac{1}{2}$.
+  '5':
+  - Prove the nine-point circle has radius $\frac{R}{2}$ without vectors, using a homothety centred at
+    $H$ with ratio $\frac{1}{2}$.
+  - State Feuerbach's theorem (the nine-point circle is tangent to the incircle and the three excircles)
+    and explain how you might test it numerically on a $3$-$4$-$5$ triangle.
+spoken_vocab:
+- circumcentre
+- circumradius
+- position vector
+- a plus b plus c
+- h equals a plus b plus c
+- orthocentre
+- centroid
+- Euler line
+- nine point circle
+- altitude
+- midpoint
+- diameter
+- Thales
+- R over two
+- dot product
+- collinear
+- foot of the altitude
+source: jaymin/Jaymin Interview (1).pdf#p65
+verified: false
+rating:
+  quality: 9
+  difficulty: 6
+  parts: 4
+  minutes: 25
+  flags: []
+  tagline: Full nine-point circle via vectors; elegant, multi-step, rich extension to Euler line.
+  priority: 120
+  rank: 4
+  tier: S
+  category: jaymin
+  d10: 5.5
+  real: 4.0
+  by: haiku
+refined: true
+tags:
+- vectors
+- geometry

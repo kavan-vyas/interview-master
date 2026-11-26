@@ -1,0 +1,534 @@
+[
+ {
+  "q": "Consider the cubic curve given by the equation $y=ax^3+bx^2+cx+d$, find conditions on $a,b,c,d$ which ensure the curve has a local maximum and a local minimum. Under these conditions, show that the curve has a point of inflection midway between the turning points.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Find all real valued functions which satisfy $(f(x+y))^2\\equiv(f(x))^2+(f(y))^2$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "What is the domain and range of the functions; $f(x)=\\ln(x)$, $f(f(x))$ and $f(f(f(x)))$? What about $f^n(x)$?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Find the value of $1+\\cfrac{1}{1+\\cfrac{1}{1+\\cfrac{1}{1+\\cdots}}}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Find the smallest $a>1$ such that $\\dfrac{a+\\sin(x)}{a+\\sin(y)}\\le e^{y-x}$ for all $x\\le y$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Let $f(x)$ be a non-constant function satisfying the functional equation $f(x+y)=f(x)f(y)$. Show that $f(n)=k^n$ for all integers $n$ and for $k=f(0)$. Show also that the same holds for all rational numbers and that $k>0$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Where in the plane is $\\sin^2x+\\cos^2y=1$?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Sketch $y=x\\ln(x)$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Sketch $y=\\dfrac{\\ln(x)}{x}$ and hence find all natural solutions of the equation $a^b=b^a$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Sketch $y=x^x$ and $y=x^{\\frac{1}{x}}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Sketch $y=\\dfrac{\\sin(x)}{x}$ and $y=\\dfrac{\\sin(x)}{x-1}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Sketch $y=\\cos\\left(\\dfrac{1}{x}\\right)$ and $y=\\sin\\left(\\dfrac{1}{x}\\right)$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Sketch $y=\\dfrac{x+\\sin(x)}{x-\\sin(x)}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Sketch $y=\\cos(x+|x|)$ for $-2\\pi<x<2\\pi$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Sketch $y=\\sqrt{x^3-x}$ and $y^2=x^3-x$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Sketch $y=\\dfrac{x^4-7x^2+12}{x^4-4x^2+4}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Sketch $y=\\dfrac{x^2+1}{x^2-1}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Sketch $y=|x^2-1|$ and comment on the derivative. Sketch $y=x^{\\frac{1}{3}}$ and comment on the derivative. Sketch $y=x^{\\frac{2}{3}}$ and comment on the derivative.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Sketch $y=x^2-x^4$ and $y^2=x^2-x^4$ (consider the derivative at the origin carefully).",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Sketch $y=e^{-x^2}-e^{-3x^2}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "By sketching appropriate graphs, find all solutions to the equation $x-1=(e-1)\\ln(x)$. Hence sketch the graph with equation $y=e^x-xe$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Write $\\dfrac{3e^x-e^{-x}}{e^x+e^{-x}}$ in the form $a+\\dfrac{b}{e^{2x}+1}$ and hence sketch $y=\\dfrac{3e^x-e^{-x}}{e^x+e^{-x}}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Sketch $x^{2n}+y^{2n}=1$ for $n=2$ and $4$. Explain what happens to the graph as $n\\to\\infty$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Sketch the curve $|3x^2+y^2-12|=|x^2-y^2+4|$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Sketch $y=\\sqrt{1-x^2}+\\sqrt{4-x^2}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Sketch i) $1=|x|+|y|$ ii) $1=|x|-|y|$ iii) $1=|y-x|$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "What is the area of the region in the Cartesian plane whose points $(x,y)$ satisfy $|x|+|y|+|x+y|<2$?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Find the minimum value of the expression $|x-1|+|x-2|+|x-4|+|x-6|$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Solve the differential equation $\\dfrac{dy}{dx}=ky$ for $x>0$ subject to the initial condition $x=0$, $y=1$ and $k>0$. Sketch the solution to the differential equation $\\dfrac{dy}{dx}=ky\\left(1-\\dfrac{y}{M}\\right)$ where $M$ is a large constant and the same initial conditions apply (without directly finding $y$).",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Find $\\dfrac{dy}{dx}$ when $y=\\int_0^{x} t^8e^{tx}\\,dt$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Find $f(x)$ if $\\int_0^x f(t)\\,dt=3f(x)+k$, where $k$ is a constant.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Find explicit expressions for i) $\\sinh^{-1}(x)$ ii) $\\cosh^{-1}(x)$ iii) $\\tanh^{-1}(x)$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Is the series $1+\\dfrac{1}{2}+\\dfrac{1}{3}+\\dfrac{1}{4}+\\cdots$ divergent? How about the series $1+\\dfrac{1}{4}+\\dfrac{1}{9}+\\dfrac{1}{16}+\\cdots$? Sketch on separate axes $y=\\dfrac{1}{x}$ and $y=\\dfrac{1}{x^2}$, considering your sketches and by using integration justify your claims.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "By considering the inequality $\\int_0^t (f(x)+\\mu g(x))^2\\,dx \\ge 0$, where $\\mu$ is a constant, prove that, for all functions $f(x)$ and $g(x)$: $\\left(\\int_0^t f(x)g(x)\\,dx\\right)^2\\le\\left(\\int_0^t (f(x))^2\\,dx\\right)\\left(\\int_0^t (g(x))^2\\,dx\\right)$ (Cauchy\u2013Schwarz Inequality). Hence show that $\\int_0^1 (1+x^5)^{\\frac{1}{2}}\\,dx\\le\\sqrt{\\dfrac{7}{6}}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Let $A=\\int\\dfrac{\\sin(x)}{\\sin(x)+\\cos(x)}\\,dx$ and $B=\\int\\dfrac{\\cos(x)}{\\sin(x)+\\cos(x)}\\,dx$, find $A$ and $B$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Integrate $\\sin^4(x)\\cos(x)$ and $\\sin^6(x)\\cos^3(x)$, in general when will this method work?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Evaluate $I=\\int\\dfrac{1}{x^n+x}\\,dx$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Prove that for a continuous function $\\int_a^b f(x)\\,dx=\\int_a^b f(a+b-x)\\,dx$. Hence evaluate i) $I=\\int_4^8\\dfrac{\\ln(9-x)}{\\ln(9-x)+\\ln(x-3)}\\,dx$ ii) $J=\\int_0^{\\frac{\\pi}{2}}\\dfrac{\\sin^{2000}(\\theta)}{\\sin^{2000}(\\theta)+\\cos^{2000}(\\theta)}\\,d\\theta$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Evaluate $I=\\int_0^1\\dfrac{1}{\\sqrt{x}+\\sqrt{x^3}}\\,dx$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "By considering the graph of the function $f(x)=x^{-s}$ show that $\\dfrac{1}{s-1}<1+2^{-s}+3^{-s}+\\cdots<\\dfrac{s}{s-1}$ whenever $s>1$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Evaluate i) $I=\\int\\dfrac{1}{1-\\sin(x)}\\,dx$ ii) $J=\\int e^x\\sin(x)\\,dx$ iii) $K=\\int\\sqrt{e^{2x}+1}\\,dx$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Which of the following numbers is bigger and why; $I=\\int_0^1(1-x^7)^{\\frac{1}{4}}\\,dx$ or $\\int_0^1(1-x^4)^{\\frac{1}{7}}\\,dx$?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Show that $\\int_{\\frac{\\pi}{2}}^{\\pi}\\dfrac{x\\sin(x)}{1+\\cos^2(x)}\\,dx=\\int_0^{\\frac{\\pi}{2}}\\dfrac{(\\pi-x)\\sin(x)}{1+\\cos^2(x)}\\,dx$. Hence find $I=\\int_0^{\\pi}\\dfrac{x\\sin(x)}{1+\\cos^2(x)}\\,dx$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Show that $\\int_0^1\\dfrac{x^2}{\\sqrt{1-x^2}}\\,dx=\\int_0^1\\sqrt{1-x^2}\\,dx$. Hence find $I=\\int_0^1\\dfrac{x^2}{\\sqrt{1-x^2}}\\,dx$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "What is the shortest distance from the point $A(3,1)$ to the curve with equation $y=x^2+1$? What is the shortest distance from the line $y=x$ and the curve $y=x^2+1$? What is the shortest distance between the two curves $y=x^2+1$ and $x=y^2+1$?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "The points $A(6,0)$ and $B(0,-4)$ are points on a triangle, the third point lies on the graph of $y=x^2$, find the co-ordinates of the third point which minimises the area of the triangle.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "If I have a triangle of fixed perimeter $P$ what will the maximum area be? Does there exist a right-angled triangle of fixed perimeter $P$ of smallest area?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Prove, without directly calculating its value, that $11^{10}-1$ is divisible by $100$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Find the sum of the coefficients of the polynomial obtained after expanding and collecting terms of the product $(1-3x+3x^2-5x^3+5x^4)(1+3x-3x^2+5x^3-5x^4)$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Find a polynomial with integer coefficients whose roots include $\\sqrt{2}+\\sqrt{3}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Prove that in the product $(1-x+x^2-x^3+\\cdots-x^{99}+x^{100})(1+x+x^2+\\cdots+x^{99}+x^{100})$ after multiplying out and collecting terms, there does not appear a term in $x$ of odd degree.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Determine $m$, an integer, so that the equation $x^4-(3m+2)x^2+m^2=0$ has four real solutions for $x$ that form an arithmetic progression.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "If the rational quantity $\\dfrac{p}{q}$ (in lowest terms) is a root of $f(x)=a_nx^n+a_{n-1}x^{n-1}+\\cdots+a_1x+a_0$, prove that $p\\mid a_0$ and $q\\mid a_n$. Hence show that the $n$th root of an integer is either an integer itself or irrational.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Show that if four distinct points of the curve $y=2x^4+7x^3+3x-5$ are collinear then their average $x$-coordinate is some constant $k$. Find $k$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Prove that $1^{99}+2^{99}+3^{99}+4^{99}+5^{99}$ is divisible by $5$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Show that if $n$ is a positive integer greater than one then $1+\\dfrac{1}{2}+\\cdots+\\dfrac{1}{n}$ is not an integer.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Consider the sequence $0,1,1,2,2,\\ldots,r,r,r+1,r+1,\\ldots$, deduce the sum of the first $n$ terms $S(n)$. Prove that $S(s+t)-S(s-t)=st$ where $s$ and $t$ are positive integers and $s>t$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Prove that for $n$ a positive integer $1+\\dfrac{1}{1!}+\\dfrac{1}{2!}+\\cdots+\\dfrac{1}{n!}<3$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Let $P(x,y)$ be a polynomial in $x$ and $y$ such that: i) $P(x,y)\\equiv P(y,x)$ ii) $(x-y)$ is a factor of $P(x,y)$. Deduce that $(x-y)^2$ is a factor of $P(x,y)$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "If $2\\log(x-2y)=\\log(x)+\\log(y)$ find $\\dfrac{x}{y}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Let $a$ be the integer consisting of $m$ digit 1's and $b$ be the integer consisting of a digit 1 at the start, a digit 5 at the end and with $m-1$ digit 0's in between. Show that $ab+1$ is a perfect square and find its square root.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Prove that $10201$ is composite in any base.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "How many integers from $1$ to $10^{30}$ inclusive are perfect squares, cubes or fifth powers?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Prove that for any positive integer $n$ and any real number $x$, $\\left\\lfloor\\dfrac{\\lfloor nx\\rfloor}{n}\\right\\rfloor=\\lfloor x\\rfloor$, where $\\lfloor z\\rfloor$ denotes the largest integer value less than or equal to $z$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "If you pick 3 cards from a randomly shuffled pack of cards are you more likely to see a face card than not?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Evaluate, without the use of a calculator, $(\\log_3 169)(\\log_{13} 243)$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "A three-dimensional version of noughts and crosses can be played with a 4x4 cube, the winner is the first player to get four noughts (or crosses) in a straight line. How many winning lines are there?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Two positive numbers, $a$ and $b$, with distinct first digits are multiplied together. Is it possible for the first digit of the product to fall strictly between the first digits of the two numbers?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "A gambler played a game with his friend, he bet half of his money on the toss of a coin; he won on heads and lost on tails. The game was repeated over and over and at the end the gambler had lost as many times as he had won. Did he make money, lose money or break even?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Alice and Bob play a fair game repeatedly for \u00a31 a game. If originally Alice has \u00a3$a$ and Bob has \u00a3$b$, what is Alice's chance of winning all of Bob's money, assuming that play continues until one person has lost all of his or her money?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Determine the function $F(x)$ which satisfies the functional equation $x^2F(x)+F(1-x)=2x-x^4$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "There are $n!$ permutations $(s_1,s_2,s_3,\\ldots,s_n)$ of $(1,2,3,\\ldots,n)$. How many of them satisfy $s_k>k-3$ for $k=1,2,3,\\ldots,n$?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "Is $\\dfrac{1}{n+1}\\dbinom{2n}{n}$ always integer valued when $n$ is a positive integer?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "If you are faced with a corridor of width $m$ and another corridor of width $n$, which is perpendicular to the first, what is the maximum length of ladder you can carry through the corridors? [You may model the ladder as a one-dimensional rod.]",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "A bracelet is made up of a combination of 11 red, yellow or blue beads. How many distinct bracelets can be made if you have at least 11 beads of each colour and if rotations are considered the same but reflections are not?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ },
+ {
+  "q": "i) A regular fair dice is rolled twelve times, what is the probability of getting two of each number? ii) A fair ten-sided dice is rolled four times, what is the probability that your sequence of rolls is increasing?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "tbo/TBO Problem Solving Booklet.pdf#1"
+ }
+]

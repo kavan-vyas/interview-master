@@ -1,0 +1,89 @@
+id: pascal-subsets-two-identities
+title: Subsets and Pascal-type identities
+topics:
+- combinatorics
+- binomial coefficients
+- Pascal's identity
+warmup: false
+answer_source: generated
+statement: Every subset of the set $(1, 2, 3, \ldots, n)$ either contains the element 1 or it does not.
+  By considering these two possibilities, show that $\binom{n-1}{r-1} + \binom{n-1}{r} = \binom{n}{r}$.
+  Explain why $\binom{n-2}{r-2} + 2\binom{n-2}{r-1} + \binom{n-2}{r} = \binom{n}{r}$.
+stages:
+- goal: Prove $\binom{n-1}{r-1}+\binom{n-1}{r}=\binom{n}{r}$ by splitting on whether 1 is in the subset.
+  expected: Size-$r$ subsets containing 1 correspond to $(r-1)$-subsets of $\{2,\ldots,n\}$, giving $\binom{n-1}{r-1}$.
+    Size-$r$ subsets not containing 1 are $r$-subsets of $\{2,\ldots,n\}$, giving $\binom{n-1}{r}$. The
+    two cases are disjoint and cover all $r$-subsets, so the total is $\binom{n}{r}$.
+  solution: 'Split the $r$-subsets of $\{1,\ldots,n\}$ by whether they contain 1. Containing 1: remove
+    1 and choose the remaining $r-1$ elements from $n-1$ elements. Not containing 1: choose all $r$ elements
+    from the remaining $n-1$. Adding gives Pascal''s identity.'
+  common_errors:
+  - Counting subsets containing 1 as $\binom{n-1}{r}$ (forgetting to reduce the size by one).
+  - Not checking that the two cases are disjoint and exhaustive.
+  - Ignoring edge cases such as $r=0$ or $r=n$ (conventions).
+  hints:
+    rephrase: For size-$r$ subsets, how many contain 1, and how many do not?
+    smaller_case: Take $n=3$ and $r=2$. List the 2-subsets of $\{1,2,3\}$, sorted by whether they contain
+      1.
+    key_idea: Split by membership of a fixed element; the two cases are disjoint and together cover everything.
+  check: binomial(6,2)-(binomial(5,1)+binomial(5,2))
+  check_ok: true
+- goal: Explain why $\binom{n-2}{r-2}+2\binom{n-2}{r-1}+\binom{n-2}{r}=\binom{n}{r}$ by classifying subsets
+    according to whether they contain 1 and 2.
+  expected: 'Classify size-$r$ subsets by membership of 1 and 2. Neither: $\binom{n-2}{r}$. Exactly one
+    of them (2 ways to choose which): $2\binom{n-2}{r-1}$. Both: $\binom{n-2}{r-2}$. These cases are disjoint
+    and cover all $r$-subsets, so the sum is $\binom{n}{r}$.'
+  solution: 'Each $r$-subset $X$ of $\{1,\ldots,n\}$ falls into exactly one of four cases by membership
+    of 1 and 2. Neither: $X$ is an $r$-subset of the $n-2$ elements $\{3,\ldots,n\}$, giving $\binom{n-2}{r}$.
+    Exactly one: choose which of 1, 2 is in $X$ (2 ways) and $r-1$ elements from the $n-2$ others, giving
+    $2\binom{n-2}{r-1}$. Both: choose $r-2$ further elements, giving $\binom{n-2}{r-2}$. The total is
+    $\binom{n}{r}$.'
+  common_errors:
+  - Forgetting the factor 2 for the 'exactly one' case.
+  - Using $r$ instead of $r-1$ or $r-2$ in the binomials.
+  - Describing it as an algebra manipulation without explaining the combinatorial meaning.
+  hints:
+    rephrase: Classify each subset by whether it contains 1 and whether it contains 2.
+    smaller_case: Take $n=4$ and $r=2$. Count 2-subsets of $\{1,2,3,4\}$ by how many of 1 and 2 they contain.
+    key_idea: Use two elements to split into four disjoint cases and count each case.
+  check: binomial(5,1)+2*binomial(5,2)+binomial(5,3)-binomial(7,3)
+  check_ok: true
+extensions:
+  '3':
+  - Show combinatorially that $\sum_{k=0}^{n}\binom{n}{k}=2^n$.
+  '4':
+  - Show that $\sum_{k}\binom{m}{k}\binom{n}{r-k}=\binom{m+n}{r}$ by counting $r$-subsets of two disjoint
+    sets.
+  '5':
+  - Show that $\sum_{k=0}^{n}(-1)^k\binom{n}{k}=0$ for $n\ge 1$ using a sign-reversing argument on subsets.
+spoken_vocab:
+- subset
+- set one to n
+- contains the element one
+- n minus one choose r minus one
+- n minus one choose r
+- n choose r
+- n minus two choose r minus two
+- two times n minus two choose r minus one
+- n minus two choose r
+- Pascal's identity
+- disjoint cases
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 2
+  minutes: 10
+  flags: []
+  tagline: Clean combinatorial proofs of Pascal-type identities, open to generalisation.
+  priority: 65
+  rank: 380
+  tier: C
+  category: tbo
+  d10: 2.5
+  real: 5.5
+  by: haiku
+tags:
+- combinatorics
+- proof

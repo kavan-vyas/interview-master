@@ -1,0 +1,113 @@
+id: amgm-open-box-volume
+title: AM-GM chain and the open box
+topics:
+- inequalities
+- AM-GM
+- induction
+- optimisation
+warmup: false
+answer_source: pdf
+statement: (i) Prove that for $a,b\geq 0$, $\frac{a+b}{2}\geq\sqrt{ab}$, with equality if and only if
+  $a=b$. (ii) Deduce that for $a,b,c,d\geq 0$, $\frac{a+b+c+d}{4}\geq\sqrt[4]{abcd}$. (iii) By choosing
+  $d$ suitably in (ii), deduce that for $a,b,c\geq 0$, $\frac{a+b+c}{3}\geq\sqrt[3]{abc}$. (iv) A square
+  of card of side 12 has a square of side $x$ cut from each corner, and the sides are folded up to make
+  an open box. Using (iii) and no calculus, find the largest possible volume.
+stages:
+- goal: Prove the two-variable AM-GM inequality and its equality case.
+  expected: For $a,b\geq 0$, $\frac{a+b}{2}-\sqrt{ab}=\frac12(\sqrt a-\sqrt b)^2\geq 0$, with equality
+    exactly when $a=b$.
+  solution: Write $a=(\sqrt a)^2$ and $b=(\sqrt b)^2$. Then $\frac{a+b}{2}-\sqrt a\sqrt b=\frac12\left(\sqrt
+    a-\sqrt b\right)^2\geq 0$. The square is zero exactly when $\sqrt a=\sqrt b$, i.e. $a=b$.
+  common_errors:
+  - Forgetting to justify $\sqrt{ab}=\sqrt a\sqrt b$ for nonnegative values
+  - Stating equality without proving the converse
+  - Expanding the square incorrectly
+  hints:
+    rephrase: Show the difference of the two sides is a perfect square.
+    smaller_case: Test $a=1$, $b=4$ and compare $\frac{a+b}{2}$ with $\sqrt{ab}$.
+    key_idea: Write $a$ and $b$ as squares of their square roots.
+  check: simplify((a+b)/2 - sqrt(a)*sqrt(b) - (sqrt(a)-sqrt(b))**2/2)
+  check_ok: true
+- goal: Extend to four variables by applying the two-variable result twice.
+  expected: $\frac{a+b+c+d}{4}\geq\sqrt[4]{abcd}$ for $a,b,c,d\geq 0$.
+  solution: 'Apply (i) to the pairs: $\frac{a+b+c+d}{4}=\frac12\left(\frac{a+b}{2}+\frac{c+d}{2}\right)\geq\sqrt{\frac{a+b}{2}\cdot\frac{c+d}{2}}\geq\sqrt{\sqrt{ab}\sqrt{cd}}=\sqrt[4]{abcd}$.'
+  common_errors:
+  - Applying (i) to the wrong pairs or only once
+  - Dropping the square root when taking the fourth root
+  - Using the equality case without checking nonnegativity
+  hints:
+    rephrase: Group the four numbers into two pairs and use the two-variable result on each pair, then
+      on the results.
+    smaller_case: Check the case $a=b=c=d$ to see how both sides compare.
+    key_idea: Apply the two-variable inequality to the averages of the pairs, then to the resulting square
+      roots.
+  check: simplify(sqrt(sqrt(a*b)*sqrt(c*d)) - (a*b*c*d)**Rational(1,4))
+  check_ok: false
+- goal: Choose $d=m=\frac{a+b+c}{3}$ in (ii) to get the three-variable inequality.
+  expected: $m^3\geq abc$, so $\frac{a+b+c}{3}\geq\sqrt[3]{abc}$.
+  solution: 'Put $d=m$ in (ii): $m\geq\sqrt[4]{abcm}$, so $m^4\geq abcm$. Since $m\geq 0$, divide by $m$
+    (the case $m=0$ is trivial) to get $m^3\geq abc$.'
+  common_errors:
+  - Dividing by $m$ without handling $m=0$
+  - Confusing $m^4$ with $m^3$ after the division
+  - Choosing $d$ incorrectly so the mean is not preserved
+  hints:
+    rephrase: Set the fourth number equal to the mean of the other three, then clear the fourth root.
+    smaller_case: Check the case $a=b=c=1$ to see that the mean and the cube root agree.
+    key_idea: Substitute the mean for the fourth variable so that the mean appears on both sides.
+  check: simplify((m**4 - a*b*c*m)/m - (m**3 - a*b*c))
+  check_ok: true
+- goal: Use (iii) to find the largest volume of the open box without calculus.
+  expected: The maximum volume is 128 cubic units, at $x=2$.
+  solution: 'The volume is $V=x(12-2x)^2$ for $0<x<6$. Apply (iii) to $4x$, $12-2x$, $12-2x$, whose sum
+    is 24: $(4x)(12-2x)(12-2x)\leq\left(\frac{24}{3}\right)^3=512$. So $4V\leq 512$, giving $V\leq 128$.
+    Equality when $4x=12-2x=8$, i.e. $x=2$.'
+  common_errors:
+  - Using the wrong sum, such as 12 instead of 24, for the three terms
+  - Forgetting the factor 4 when converting $4V$ to $V$
+  - Not checking that the equality case gives a valid $x$
+  hints:
+    rephrase: Write the volume as a product of three factors whose sum is constant.
+    smaller_case: Compute the volume of the box for $x=1$ to see the size of $V$.
+    key_idea: Find factors that add to a constant, with the right multiplier so the product is the volume
+      up to a constant factor.
+  check: (24/3)**3/4 - 128
+  check_ok: true
+extensions:
+  '3':
+  - Using (iii), show that for $a,b,c>0$ with $abc=1$, we have $a+b+c\geq 3$.
+  '4':
+  - Show that for positive $x,y,z,w$ with $xyzw=16$, we have $x+y+z+w\geq 8$.
+  '5':
+  - Prove that $(a+b+c)\left(\frac1a+\frac1b+\frac1c\right)\geq 9$ for positive $a,b,c$.
+spoken_vocab:
+- a plus b over two
+- greater than or equal to
+- square root of a b
+- fourth root
+- cube root
+- AM GM
+- equality if and only if a equals b
+- card of side twelve
+- open box
+- volume
+- mean
+source: jaymin/Jaymin Interview (1).pdf#p17
+verified: false
+rating:
+  quality: 8
+  difficulty: 5
+  parts: 4
+  minutes: 20
+  flags: []
+  tagline: Real optimisation scenario chaining AM-GM steps; strong extension via open box.
+  priority: 107
+  rank: 38
+  tier: A
+  category: jaymin
+  d10: 5.3
+  real: 7.0
+  by: deepseek-v4.1-flash-free
+tags:
+- inequalities
+- algebra_and_functions

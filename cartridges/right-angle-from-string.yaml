@@ -1,0 +1,90 @@
+id: right-angle-from-string
+title: Making a right angle with only string
+topics:
+- geometry
+- right angles
+- Pythagoras
+- converse of Pythagoras
+- constructions
+warmup: true
+answer_source: generated
+statement: Given a piece of string (only), show how you would make a $90^\circ$ angle.
+stages:
+- goal: Use only the string to mark out equal units along its length, with no ruler or protractor.
+  expected: Fold the string in half and in halves again to get equal quarters, and fold it into thirds
+    to split a part into three equal pieces. Mark or hold the folds so the whole string is divided into
+    12 equal units.
+  solution: Fold the string in half, then in half again, giving four equal parts. Take one of those quarters
+    and fold it into three equal parts by lining its ends up with a third fold. Repeating this on the
+    whole string gives 12 equal units, because 4 times 3 equals 12. Any equal division that gives a 3:4:5
+    ratio also works.
+  common_errors:
+  - Folding in half only, which gives powers of 2 and cannot produce 12 units.
+  - Assuming folds are exactly equal without checking that the folded ends line up.
+  - Forgetting that the string must form a closed loop to make a triangle.
+  hints:
+    rephrase: You need a length that can be split into exact equal parts using only folding. Which number
+      of parts can you get by halving, and which by thirds?
+    smaller_case: Can you split the string into 2 equal parts, then 4? What about 3 equal parts?
+    key_idea: Combining halving and trisecting by folding lets you build a total number of equal units
+      that is a multiple of both 2 and 3.
+  check: null
+- goal: Use the equal units to make a closed loop that forms a triangle with a right angle, and state
+    the side lengths.
+  expected: Sides of 3, 4 and 5 units (12 units total). The angle between the sides of length 3 and 4
+    is $90^\circ$.
+  solution: Mark the loop so that the three sides are 3, 4 and 5 units, which uses all 12 units. Hold
+    the 3-unit and 4-unit sides at their common vertex, opposite the 5-unit side. Since $3^2 + 4^2 = 5^2$,
+    the converse of Pythagoras' theorem says the angle between the 3 and 4 sides is exactly $90^\circ$.
+    Use that corner as your right angle.
+  common_errors:
+  - Using the wrong side lengths, such as 3, 4, 6, which does not give a right angle.
+  - Confusing which side is the hypotenuse, so the right angle is placed at the wrong vertex.
+  - Stating the 3-4-5 ratio without linking it to the converse of Pythagoras.
+  hints:
+    rephrase: Find three whole-number side lengths, using your 12 units, that satisfy a special relationship
+      between their squares.
+    smaller_case: Try a loop of 2, 2 and 2 units. Would that give a right angle? Why or why not?
+    key_idea: A triangle is right-angled exactly when the squares of its two shorter sides add up to the
+      square of its longest side.
+  check: 3**2 + 4**2 - 5**2
+  check_ok: true
+extensions:
+  '3':
+  - 'Prove the converse of Pythagoras'' theorem: if $a^2 + b^2 = c^2$ then the triangle is right-angled.'
+  '4':
+  - Find another Pythagorean triple you could mark out with string, and explain why multiples of 3, 4,
+    5 always work.
+  '5':
+  - Use the law of cosines to show that the angle opposite the 5-unit side in a 3-4-5 triangle is exactly
+    $90^\circ$, then explain why the same method fails for a 3-4-6 loop.
+spoken_vocab:
+- piece of string
+- ninety degrees
+- right angle
+- fold in half
+- fold into thirds
+- three four five
+- Pythagoras
+- square of the hypotenuse
+- closed loop
+- twelve equal units
+source: past-interviews/Actual Past Interview Questions/H2.jpg
+verified: false
+rating:
+  quality: 5
+  difficulty: 2
+  parts: 2
+  minutes: 6
+  flags: []
+  tagline: Classic 3-4-5 rope construction; discussion of why it works.
+  priority: 55
+  rank: 474
+  tier: C
+  category: past-interviews
+  d10: 2.5
+  real: 7.0
+  by: haiku
+tags:
+- geometry
+- proof

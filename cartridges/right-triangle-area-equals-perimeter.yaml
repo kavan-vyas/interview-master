@@ -1,0 +1,85 @@
+id: right-triangle-area-equals-perimeter
+title: Right triangle with area equal to perimeter
+topics:
+- geometry
+- triangles
+- inradius
+- algebra
+warmup: false
+answer_source: generated
+statement: I have a right-angled triangle. Its area is equal to its perimeter. What can you tell me about
+  this triangle?
+stages:
+- goal: Show that the inradius of the triangle is fixed, and find its value.
+  expected: The inradius is $r=2$ for every such triangle.
+  solution: Let $s$ be the semiperimeter, so the perimeter is $P=2s$. The area satisfies $A=rs$. The condition
+    $A=P=2s$ gives $rs=2s$, and since $s>0$, $r=2$. This holds for any triangle, not only right-angled
+    ones.
+  common_errors:
+  - Trying to find one specific triangle instead of using the inradius
+  - Confusing the semiperimeter with the perimeter
+  - Using A=rs with the full perimeter instead of the semiperimeter
+  hints:
+    rephrase: Relate the area to the incircle of the triangle.
+    smaller_case: What is the area of an equilateral triangle with side 2 and how does it relate to its
+      perimeter?
+    key_idea: Split the triangle into three smaller triangles from the incentre. Their areas add up to
+      rs, where s is the semiperimeter.
+  check: null
+- goal: Describe the right-angled triangles satisfying the condition, and give examples.
+  expected: With legs $p,q$ and hypotenuse $h$, the condition becomes $(p-4)(q-4)=8$ with $p,q>4$, and
+    $h=p+q-4$. Integer examples are the triangles with sides 5, 12, 13 and 6, 8, 10.
+  solution: 'For a right triangle, $r=(p+q-h)/2$. Setting $r=2$ gives $h=p+q-4$. Substituting into $p^2+q^2=h^2$
+    gives $p^2+q^2=(p+q-4)^2$, which simplifies to $pq-4p-4q+8=0$, i.e. $(p-4)(q-4)=8$. The integer solutions
+    with $p,q>4$ are $(p,q)=(5,12)$ and $(6,8)$, giving $h=13$ and $h=10$. Check: 5·12/2 = 30 = 5+12+13,
+    and 6·8/2 = 24 = 6+8+10.'
+  common_errors:
+  - Listing only the two integer triangles and claiming they are the only solutions
+  - Dropping the condition that h>0 or p,q>4
+  - Making an algebra slip when expanding $(p+q-4)^2$
+  hints:
+    rephrase: Use the formula for the inradius of a right triangle in terms of its legs and hypotenuse.
+    smaller_case: Check whether the 3-4-5 triangle has area equal to perimeter.
+    key_idea: Combine $r=(p+q-h)/2$ with Pythagoras to eliminate $h$, then factorise.
+  check: 6*8/2 - (6+8+10)
+  check_ok: true
+extensions:
+  '3':
+  - Find all right-angled triangles with integer sides whose area equals their perimeter.
+  '4':
+  - List all solutions of $(p-4)(q-4)=8$ with integer $p$ and $q$, including those where $p>q$.
+  '5':
+  - Is there an equilateral triangle whose area equals its perimeter? If so, find its side length.
+spoken_vocab:
+- right-angled triangle
+- area
+- perimeter
+- inradius
+- semiperimeter
+- hypotenuse
+- legs
+- p
+- q
+- h
+- Pythagoras
+- incentre
+- equals
+source: screenshots/Screenshot 2026-11-19 at 14.36.06.png
+verified: false
+rating:
+  quality: 7
+  difficulty: 4
+  parts: 2
+  minutes: 10
+  flags: []
+  tagline: Inradius forced to 2, leading to an open family of triangles.
+  priority: 75
+  rank: 269
+  tier: B
+  category: screenshots
+  d10: 4.5
+  real: 7.5
+  by: haiku
+tags:
+- geometry
+- proof

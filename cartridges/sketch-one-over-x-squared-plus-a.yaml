@@ -1,0 +1,113 @@
+id: sketch-one-over-x-squared-plus-a
+title: Sketch y = 1/(x^2 + a) for a < 0, a = 0, a > 0
+topics:
+- graph sketching
+- rational functions
+- asymptotes
+- turning points
+- parameters
+warmup: false
+answer_source: generated
+statement: 'Sketch $y=\frac{1}{x^{2}+a}$ for different values of $a$: $a<0$, $a=0$, $a>0$.'
+stages:
+- goal: 'Case a < 0: find the vertical asymptotes, the sign regions, and the turning point at x = 0.'
+  expected: Vertical asymptotes at x = plus or minus sqrt(-a). Between the asymptotes y is negative, with
+    a local maximum 1/a at x = 0 and y tending to minus infinity at the asymptotes. Outside the asymptotes
+    y is positive, decreasing in |x|, tending to plus infinity at the asymptotes and to 0 as |x| tends
+    to infinity. Horizontal asymptote y=0.
+  solution: 'The denominator x^2 + a vanishes when x^2 = -a, giving x = plus or minus sqrt(-a). On the
+    interval between them the denominator is negative and at least as negative as a, so y = 1/(x^2+a)
+    is negative. The denominator is most negative at x = 0, where it equals a, so y is closest to 0 there:
+    y(0) = 1/a is a local maximum. Outside the interval the denominator is positive and grows, so y is
+    positive and decreases to 0.'
+  common_errors:
+  - Calling 1/a a minimum (it is a maximum, since 1/a is the value closest to zero between the asymptotes)
+  - Forgetting the negative region between the asymptotes
+  - Placing the asymptotes at x = plus or minus a instead of plus or minus sqrt(-a)
+  hints:
+    rephrase: For which x is x^2 + a equal to zero, and what sign does x^2 + a have between those values
+      and outside them?
+    smaller_case: Take a = -4. Find where x^2 - 4 = 0 and the sign of x^2 - 4 at x = 0 and at x = 3.
+    key_idea: Vertical asymptotes come from zeros of the denominator, and the sign of y follows the sign
+      of the denominator.
+  check: sp.simplify((1/(x**2+a)).subs(x,0) - 1/a)
+  check_ok: null
+- goal: 'Case a = 0: describe y = 1/x^2 fully.'
+  expected: Vertical asymptote x = 0 with y tending to plus infinity from both sides. y is always positive,
+    even, and tends to 0 as |x| tends to infinity. Horizontal asymptote y=0. No turning point other than
+    the asymptote at 0.
+  solution: With a = 0 the function is 1/x^2, which is defined for x not equal to 0. Since x^2 > 0 on
+    both sides of 0, y is positive and tends to plus infinity on both sides of 0. As |x| grows, 1/x^2
+    tends to 0.
+  common_errors:
+  - Drawing a cusp or a finite value at x = 0
+  - Thinking the graph is negative on one side
+  - Forgetting that the curve is symmetric about the y-axis
+  hints:
+    rephrase: What is y when x is large, and what happens to y as x approaches 0 from either side?
+    smaller_case: Compare 1/x^2 at x = 0.1, 0.01 and at x = 10, 100.
+    key_idea: Even powers keep the denominator positive on both sides of 0.
+  check: sp.limit(1/x**2, x, sp.oo)
+  check_ok: null
+- goal: 'Case a > 0: explain why there are no vertical asymptotes and find the maximum of the bell-shaped
+    curve.'
+  expected: No real zeros of the denominator, so no vertical asymptotes. The denominator is at least a
+    > 0, so 0 < y <= 1/a. Maximum value 1/a at x = 0. The curve is even, bell-shaped, and tends to 0 as
+    |x| tends to infinity. Horizontal asymptote y=0.
+  solution: Since x^2 >= 0, the denominator x^2 + a is at least a > 0, so the function is never zero or
+    undefined. Its largest value occurs where the denominator is smallest, namely x = 0, giving y = 1/a.
+    The derivative is -2x/(x^2+a)^2, which is zero only at x = 0, confirming the maximum. As |x| grows
+    the denominator grows, so y tends to 0.
+  common_errors:
+  - Adding a vertical asymptote for a > 0
+  - Taking the maximum at x = a instead of x = 0
+  - Confusing the maximum value 1/a with the horizontal asymptote
+  hints:
+    rephrase: Can x^2 + a ever be zero when a is positive, and at which x is x^2 + a smallest?
+    smaller_case: 'Try a = 1: find the smallest value of x^2 + 1 and the x where it occurs.'
+    key_idea: The reciprocal of a positive function is largest where the function is smallest.
+  check: sp.simplify(sp.diff(1/(x**2+a), x).subs(x, 0))
+  check_ok: null
+extensions:
+  '3':
+  - Sketch all three cases on one set of axes with a = -1, 0 and 1, labelling the key points.
+  '4':
+  - Show that the area under y = 1/(x^2 + 1) for all real x equals pi.
+  '5':
+  - Explain why, as a tends to 0 from above, the peak height 1/a tends to infinity while the curve for
+    x not equal to 0 tends to y = 1/x^2.
+spoken_vocab:
+- one over x squared plus a
+- vertical asymptote
+- horizontal asymptote
+- local maximum
+- sign
+- positive
+- negative
+- even function
+- x equals zero
+- square root of minus a
+- limit
+- derivative
+- plus infinity
+- minus infinity
+source: past-interviews/Actual Past Interview Questions/F1u.jpg
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 3
+  minutes: 10
+  flags:
+  - needs_diagram
+  tagline: Three-case parameter sketch shows how a changes the curve's topology.
+  priority: 53
+  rank: 499
+  tier: C
+  category: past-interviews
+  d10: 3.0
+  real: 4.0
+  by: haiku
+tags:
+- curve_sketching
+- algebra_and_functions

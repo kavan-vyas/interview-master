@@ -1,0 +1,80 @@
+id: sum-cos-squared-degrees
+title: Sum of cos squared over 1 to 89 degrees
+topics:
+- trigonometry
+- complementary angles
+- symmetry
+- sums
+warmup: false
+answer_source: generated
+statement: Find the exact value of $\cos^2(1^\circ) + \cos^2(2^\circ) + \cos^2(3^\circ) + \cdots + \cos^2(89^\circ)$.
+stages:
+- goal: Find a relationship between the terms $\cos^2(k^\circ)$ and $\cos^2((90-k)^\circ)$.
+  expected: $\cos^2((90-k)^\circ)+\cos^2(k^\circ)=1$ for every $k$.
+  solution: Since $\cos(90^\circ-x)=\sin x$, we have $\cos^2(90^\circ-k^\circ)=\sin^2 k^\circ$. Adding
+    $\cos^2 k^\circ$ gives $\sin^2 k^\circ+\cos^2 k^\circ=1$.
+  common_errors:
+  - Claiming $\cos^2(90^\circ-k^\circ)=\cos^2 k^\circ$, which is false.
+  - Pairing the wrong angles, such as $k$ with $180^\circ-k$.
+  hints:
+    rephrase: Look at what $\cos$ of the complement of an angle equals.
+    smaller_case: Compare $\cos^2(10^\circ)$ with $\cos^2(80^\circ)$ and see what their sum is.
+    key_idea: Use the co-function identity $\cos(90^\circ-x)=\sin x$ together with the Pythagorean identity.
+  check: simplify(cos(pi/2 - x)**2 + cos(x)**2 - 1) == 0
+  check_ok: true
+- goal: Count the pairs, handle the unpaired middle term, and find the total.
+  expected: The total is $\frac{89}{2}$.
+  solution: The angles $1^\circ$ to $89^\circ$ pair as $(k,90-k)$ for $k=1,\dots,44$, giving 44 pairs
+    each summing to 1. The remaining term is $k=45$, with $\cos^2 45^\circ=\frac12$. Total $=44+\frac12=\frac{89}{2}$.
+  common_errors:
+  - Forgetting the middle term $\cos^2 45^\circ=\frac12$ and answering 44.
+  - Counting 45 pairs, which double-counts $k=45$.
+  - Miscounting the number of pairs as 45 or 43.
+  hints:
+    rephrase: Ask how many terms are paired off and whether any term is left over.
+    smaller_case: Do the same sum from $1^\circ$ to $5^\circ$ with the matching complements, and check
+      which term is unpaired.
+    key_idea: Identify the self-paired angle where $k=90-k$, and evaluate its term separately.
+  check: Rational(44,1)*1 + Rational(1,2) - Rational(89,2)
+  check_ok: true
+extensions:
+  '3':
+  - Evaluate $\sum_{k=1}^{179}\cos^2(k^\circ)$.
+  '4':
+  - Evaluate $\sum_{k=1}^{89}\sin^2(k^\circ)$ and explain how it relates to the original sum.
+  '5':
+  - Generalise the pairing argument to $\sum_{k=1}^{n-1}\cos^2\left(\frac{k\pi}{2n}\right)$ and find when
+    a clean closed form appears.
+spoken_vocab:
+- cosine squared
+- sum
+- one degree
+- eighty nine degrees
+- complement
+- ninety minus k
+- sine squared
+- Pythagorean identity
+- pairs
+- forty four pairs
+- middle term
+- forty five degrees
+- one half
+- eighty nine over two
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 2
+  minutes: 6
+  flags: []
+  tagline: Complementary-angle pairing gives a neat, memorable trick.
+  priority: 65
+  rank: 377
+  tier: C
+  category: tbo
+  d10: 2.5
+  real: 7.0
+  by: haiku
+tags:
+- trigonometry

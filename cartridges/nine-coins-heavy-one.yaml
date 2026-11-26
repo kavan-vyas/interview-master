@@ -1,0 +1,106 @@
+id: nine-coins-heavy-one
+title: Heavy coin on a balance
+topics:
+- logic
+- counting
+- induction
+- balance problems
+warmup: false
+answer_source: pdf
+statement: Nine coins look identical, but one is heavier than the rest. Using a balance scale twice, find
+  the heavy coin. What is the largest number of coins for which $n$ weighings always suffice?
+stages:
+- goal: Find the heavy coin among nine coins using two weighings.
+  expected: Split the coins into three groups of three and weigh two groups against each other. If one
+    side is heavier, the heavy coin is in that group; if they balance, it is in the third group. Then
+    weigh two of the three coins in that group. If one is heavier it is the heavy coin; if they balance,
+    the remaining coin is the heavy one.
+  solution: Call the groups A, B, C. Weigh A against B. If A is heavier, the heavy coin is in A; if B
+    is heavier, it is in B; if they balance, it is in C. Within the identified group with coins x, y,
+    z, weigh x against y. If x is heavier, x is heavy; if y is heavier, y is heavy; if they balance, z
+    is heavy. This takes two weighings.
+  common_errors:
+  - Weighing single coins without grouping, which can need more weighings
+  - Forgetting the balance case, which points to the third group
+  - Thinking three weighings are needed because the odd coin could be lighter; here it is known to be
+    heavier
+  hints:
+    rephrase: You have nine coins and a balance. Think about what one weighing can tell you when there
+      are three possible results.
+    smaller_case: Try three coins with a single weighing.
+    key_idea: Each weighing has three possible results, not two.
+  check: 3**2 - 9
+  check_ok: true
+- goal: Show that $n$ weighings cannot handle more than $3^n$ coins.
+  expected: Each weighing has three outcomes (left heavier, right heavier, balance), so $n$ weighings
+    give at most $3^n$ distinct outcome sequences. Each coin must produce its own sequence, so the number
+    of coins is at most $3^n$.
+  solution: The result of the whole procedure is a sequence of $n$ outcomes, each one of three types,
+    so there are at most $3^n$ possible sequences. If two different coins produced the same sequence,
+    the procedure could not tell them apart, because the same sequence would occur whichever of them were
+    heavy. So the number of coins is at most $3^n$.
+  common_errors:
+  - Counting only two outcomes per weighing
+  - Arguing that the procedure is adaptive, so no bound holds; the bound still holds because each sequence
+    identifies at most one coin
+  hints:
+    rephrase: Count how many different overall results the sequence of weighings can produce.
+    smaller_case: With one weighing, how many different results can the balance show?
+    key_idea: If two coins could give the same sequence of results, could you tell which one is heavy?
+  check: 3**3 - 27
+  check_ok: true
+- goal: Give the largest number of coins for $n$ weighings and justify that it is achievable.
+  expected: $3^n$ coins. Split them into three equal groups of $3^{n-1}$, weigh two groups against each
+    other, then apply the same method to the one group identified, which needs $n-1$ weighings.
+  solution: 'Use induction on $n$. For $n=1$, three coins are handled by one weighing: weigh two of them,
+    and if they balance the third is heavy. For general $n$, split $3^n$ coins into three groups of $3^{n-1}$.
+    One weighing identifies the group containing the heavy coin, or the third group if the two weighed
+    groups balance. By induction, $n-1$ weighings then finish the job. So $3^n$ coins can be handled,
+    and by the previous stage no more.'
+  common_errors:
+  - Giving $\frac{3^n-1}{2}$ or $3^n-1$, which are answers for problems where the odd coin could be heavier
+    or lighter
+  - Not stating the base case of the induction
+  hints:
+    rephrase: Can the idea of splitting into groups be repeated on smaller groups?
+    smaller_case: With one weighing and a known heavy coin, how many coins can you handle?
+    key_idea: One weighing should leave you with one third as many coins and one fewer weighing.
+  check: 3*3**1 - 9
+  check_ok: true
+extensions:
+  '3':
+  - Twelve coins, one is either heavier or lighter, three weighings. Find the odd coin and say whether
+    it is heavier or lighter. This can be done.
+  '4':
+  - Explain why ten coins cannot be handled in two weighings, even if you know the odd coin is heavier.
+  '5':
+  - Twenty-seven coins, one heavier, three weighings. Describe how to find it.
+spoken_vocab:
+- nine coins
+- balance scale
+- weighings
+- heavy coin
+- three to the power n
+- three groups
+- heavier
+- balance
+- induction
+source: jaymin/Jaymin Interview (1).pdf#p73
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 3
+  minutes: 10
+  flags: []
+  tagline: Ternary-outcome balance argument; clean bound with natural extension questions.
+  priority: 86
+  rank: 147
+  tier: B
+  category: jaymin
+  d10: 4.0
+  real: 8.0
+  by: haiku
+tags:
+- combinatorics
+- proof

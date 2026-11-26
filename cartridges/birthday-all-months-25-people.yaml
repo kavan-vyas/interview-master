@@ -1,0 +1,100 @@
+id: birthday-all-months-25-people
+title: Birthdays covering all twelve months
+topics:
+- probability
+- combinatorics
+- inclusion-exclusion
+warmup: false
+answer_source: generated
+statement: Assume each birthday is equally likely to fall in any of the $12$ months, independently across
+  people. If $25$ people are chosen at random, what is the probability that at least one of them is born
+  in each of the $12$ months of the year?
+stages:
+- goal: Set up the sample space by describing each person's birth month as an independent choice.
+  expected: Each of the $25$ people independently picks one of $12$ equally likely months, so there are
+    $12^{25}$ equally likely outcomes.
+  solution: Each person makes one independent choice from $12$ months. The number of ordered lists of
+    $25$ birth months is $12^{25}$, and each list has the same probability $1/12^{25}$.
+  common_errors:
+  - Writing $12$ instead of $12^{25}$ for the sample space
+  - Treating the people as indistinguishable
+  - Not stating the uniform and independence assumptions
+  hints:
+    rephrase: Think of each person making one independent choice from twelve options. How many complete
+      lists of choices are there?
+    smaller_case: With $2$ people and $3$ months, how many possible lists of birth months are there?
+    key_idea: Independent choices multiply the number of outcomes.
+- goal: Count the lists that use every month, using inclusion-exclusion over the months that are missed.
+  expected: $N=\sum_{k=0}^{12}(-1)^k\binom{12}{k}(12-k)^{25}$, which equals $12!\,S(25,12)$ where $S$
+    is the Stirling number of the second kind.
+  solution: Let $A_j$ be the event that month $j$ is never used. Then $|A_j|=11^{25}$, and for any set
+    of $k$ forbidden months there are $(12-k)^{25}$ lists. Inclusion-exclusion gives $N=\sum_{k=0}^{12}(-1)^k\binom{12}{k}(12-k)^{25}$.
+    This counts surjections from people to months, which equals $12!\,S(25,12)$.
+  common_errors:
+  - Using the wrong sign pattern in inclusion-exclusion
+  - Forgetting the binomial coefficient $\binom{12}{k}$
+  - Writing $(12-k)^{25}$ as $12^{25-k}$
+  - Counting month orderings instead of people-to-month assignments
+  hints:
+    rephrase: Count the lists where specific months are forbidden, then correct for over-counting with
+      an alternating sum.
+    smaller_case: With $3$ people and $2$ months, count the lists that use both months by subtracting
+      lists that miss one month.
+    key_idea: 'Inclusion-exclusion: subtract lists missing a given month, add back lists missing two months,
+      and so on.'
+  check: Sum((-1)**k*binomial(12,k)*(12-k)**25,(k,0,12)).doit() - factorial(12)*stirling(25,12)
+  check_ok: false
+- goal: Convert the count into a probability and evaluate it approximately.
+  expected: $P=\dfrac{1}{12^{25}}\sum_{k=0}^{12}(-1)^k\binom{12}{k}(12-k)^{25}\approx 0.182$
+  solution: Divide the count from the previous stage by $12^{25}$. Numerically the leading terms are $1-1.3629+0.6918-0.1656+0.0196-0.0011\approx
+    0.182$, so the probability is about $18\%$.
+  common_errors:
+  - Using a union bound that gives a meaningless value
+  - Presenting a Poisson approximation as the exact answer
+  - Forgetting to divide by $12^{25}$
+  - Confusing the chance of missing one month with missing none
+  hints:
+    rephrase: Divide the number of favourable lists by the total number of equally likely lists.
+    smaller_case: For $3$ people and $2$ months, what probability do you get for both months appearing,
+      using the same method?
+    key_idea: The events 'month $j$ is missed' overlap, so their probabilities cannot simply be added.
+  check: Sum((-1)**k*binomial(12,k)*Rational(12-k,12)**25,(k,0,12)).doit() - factorial(12)*stirling(25,12)/Integer(12)**25
+  check_ok: null
+extensions:
+  '3':
+  - Repeat the calculation for $25$ people and $7$ days of the week, and find the probability that every
+    day is covered.
+  '4':
+  - Derive the approximate probability that no month is empty for large numbers of people, using the expected
+    number of empty months.
+  '5':
+  - Compute the expected number of distinct birth months among $25$ people and its variance.
+spoken_vocab:
+- twelve to the power of twenty-five
+- inclusion exclusion
+- sum from k equals zero to twelve
+- minus one to the power of k
+- binomial twelve choose k
+- twelve minus k to the power of twenty-five
+- Stirling number of the second kind
+- probability
+- eleven twelfths
+source: oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Surjection counting by inclusion-exclusion with a substantial numerical answer.
+  priority: 81
+  rank: 251
+  tier: B
+  category: oxbridge-random
+  d10: 6.0
+  real: 5.5
+  by: deepseek-v4.1-flash-free
+tags:
+- probability
+- combinatorics

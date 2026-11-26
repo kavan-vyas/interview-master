@@ -1,0 +1,104 @@
+id: stm-circle-through-ellipse-intersections
+title: Circles through the intersections of two ellipses
+topics:
+- coordinate geometry
+- simultaneous equations
+- circles
+- ellipses
+warmup: true
+answer_source: pdf
+statement: Show that the equation of any circle passing through the points of intersection of the ellipse
+  $(x+2)^2+2y^2=18$ and the ellipse $9(x-1)^2+16y^2=25$ can be written in the form $x^2-2ax+y^2=5-4a$.
+stages:
+- goal: Find the points where the two ellipses intersect.
+  expected: The intersection points are $(2,1)$ and $(2,-1)$.
+  solution: 'Multiply the first equation by 8: $8(x+2)^2+16y^2=144$. Subtract the second equation: $8(x+2)^2-9(x-1)^2=119$.
+    Expanding gives $-x^2+50x+23=119$, so $x^2-50x+96=0$, which factors as $(x-2)(x-48)=0$. For $x=48$,
+    the first ellipse gives $2y^2=18-2500<0$, which has no real solution. For $x=2$, $16+2y^2=18$ gives
+    $y=\pm1$. Checking in the second ellipse: $9+16=25$, so both points lie on both ellipses.'
+  common_errors:
+  - Failing to reject $x=48$ because there are no real $y$ values.
+  - Multiplying by the wrong factor, so the $y^2$ terms do not cancel.
+  - Making an arithmetic slip when expanding $8(x+2)^2-9(x-1)^2$.
+  hints:
+    rephrase: Eliminate $y^2$ by combining the two equations, then solve the resulting quadratic in $x$
+      and check which roots give real $y$.
+    smaller_case: Start by eliminating $y$ by choosing the right multiple of the first equation, and only
+      then expand.
+    key_idea: Make the coefficients of $y^2$ match, then subtract to get an equation in $x$ alone.
+  check: ((2+2)**2+2*1**2-18)**2 + (9*(2-1)**2+16*1**2-25)**2 + ((2+2)**2+2*(-1)**2-18)**2 + (9*(2-1)**2+16*(-1)**2-25)**2
+  check_ok: true
+- goal: Show that the centre of any circle through $(2,1)$ and $(2,-1)$ lies on the $x$-axis.
+  expected: The centre $(p,q)$ satisfies $q=0$.
+  solution: Let the centre be $(p,q)$. Equal distances to $(2,1)$ and $(2,-1)$ give $(2-p)^2+(1-q)^2=(2-p)^2+(1+q)^2$.
+    This simplifies to $-4q=0$, so $q=0$.
+  common_errors:
+  - Assuming the centre is at $x=2$ instead of on the $x$-axis.
+  - Expanding $(1-q)^2$ and $(1+q)^2$ incorrectly, which hides the cancellation.
+  - Forgetting that the two distances must be equal for a circle.
+  hints:
+    rephrase: A circle's centre is equidistant from every point on it. Write the two distance equations
+      and compare them.
+    smaller_case: Take a centre $(p,q)$ with $p=0$ and find the constraint on $q$ from the two points.
+    key_idea: The two points are reflections of each other in the $x$-axis, so the centre must be on the
+      perpendicular bisector.
+  check: (2-p)**2+(1-q)**2-((2-p)**2+(1+q)**2)
+  check_ok: false
+- goal: Write the circle in the form $x^2-2ax+y^2=5-4a$ and identify $a$.
+  expected: The circle is $(x-a)^2+y^2=(2-a)^2+1$, which gives $x^2-2ax+y^2=5-4a$ with centre $(a,0)$.
+  solution: With centre $(p,0)$, the radius squared is $(2-p)^2+1$, from the point $(2,1)$. So the circle
+    is $(x-p)^2+y^2=(2-p)^2+1$. Expanding gives $x^2-2px+p^2+y^2=4-4p+p^2+1$, which simplifies to $x^2-2px+y^2=5-4p$.
+    Setting $a=p$ gives the required form.
+  common_errors:
+  - Using the wrong radius, for example taking it from the point $(2,-1)$ incorrectly or forgetting the
+    $+1$.
+  - Dropping the $p^2$ terms when expanding, so the constant does not match $5-4a$.
+  - Writing the answer without stating what $a$ is.
+  hints:
+    rephrase: Use the centre found in the last step, write the radius squared using one of the points,
+      then expand and simplify.
+    smaller_case: Take the centre $(0,0)$ as a test case and write down its circle through $(2,1)$.
+    key_idea: Use the standard form $(x-a)^2+y^2=r^2$ and substitute one of the intersection points to
+      find $r^2$.
+  check: expand(((x-a)**2+y**2-((2-a)**2+1)) - (x**2-2*a*x+y**2-(5-4*a)))
+  check_ok: true
+extensions:
+  '3':
+  - Show that every circle $x^2-2ax+y^2=5-4a$ passes through $(2,1)$ and $(2,-1)$, for every real $a$.
+  '4':
+  - Find the value of $a$ for which the circle $x^2-2ax+y^2=5-4a$ has the smallest possible radius.
+  '5':
+  - For the value of $a$ found in part 4, show that the two intersection points are the endpoints of a
+    diameter of the circle.
+spoken_vocab:
+- ellipse
+- circle
+- x squared
+- y squared
+- two ellipses
+- centre
+- a
+- x minus two
+- y equals one
+- x squared minus two a x plus y squared equals five minus four a
+- perpendicular bisector
+- intersection
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#8
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Pencil of ellipses producing a circle family; elegant coefficient-matching argument.
+  priority: 81
+  rank: 214
+  tier: B
+  category: siklos
+  d10: 4.0
+  real: 3.0
+  by: haiku
+tags:
+- coordinate_geometry
+- algebra_and_functions

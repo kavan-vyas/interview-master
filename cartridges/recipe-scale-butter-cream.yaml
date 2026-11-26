@@ -1,0 +1,81 @@
+id: recipe-scale-butter-cream
+title: Scaling a recipe by butter to find cream needed
+topics:
+- ratio
+- proportion
+- scaling
+- measurement
+warmup: true
+answer_source: pdf
+statement: "A recipe uses 28 g of butter and 130 ml of cream. The recipe is scaled up so that 98 g of\
+  \ butter is used. How much cream is required?\n a) 400 ml\n b) 455 ml\n c) 910 ml\n d) 520 ml\n e) 425\
+  \ ml"
+stages:
+- goal: Find the scale factor from the butter amounts.
+  expected: Scale factor = 98 / 28 = 3.5.
+  solution: The new amount of butter is 98 g and the original is 28 g. The scale factor is 98 divided
+    by 28, which equals 3.5.
+  common_errors:
+  - Dividing in the wrong order, giving 28/98 = 2/7 instead of 3.5.
+  - Subtracting the amounts (98 - 28 = 70) rather than comparing them as a ratio.
+  hints:
+    rephrase: By what number must 28 g be multiplied to reach 98 g?
+    smaller_case: How many times does 28 fit into 56? Then how many times does 28 fit into 98?
+    key_idea: In a scaled recipe, every ingredient is multiplied by the same factor.
+  check: scale_factor - 98/28
+  check_ok: false
+- goal: Use the scale factor to find the cream needed, and choose the matching option.
+  expected: Cream = 130 x 3.5 = 455 ml, which is option b.
+  solution: 'Multiply the original cream amount by the scale factor: 130 x 3.5 = 455 ml, so the answer
+    is option b.'
+  common_errors:
+  - Choosing option c (910 ml) by scaling by 7, which comes from using 28/98 wrongly or doubling twice.
+  - Choosing option d (520 ml) by scaling by 4 instead of 3.5.
+  hints:
+    rephrase: If every ingredient is multiplied by the same factor, what happens to the cream?
+    smaller_case: Find the cream for a recipe that uses 56 g of butter first, then extend to 98 g.
+    key_idea: Multiply the original cream amount by the scale factor found from the butter.
+  check: cream_needed - 455
+  check_ok: false
+extensions:
+  '3':
+  - If the butter is scaled to 70 g, how much cream is needed? Give your answer in ml.
+  '4':
+  - The recipe is scaled so that 42 g of cream is used instead. How much butter is needed?
+  '5':
+  - A recipe needs 28 g of butter for 130 ml of cream. If the cream is reduced to 65 ml, how much butter
+    is needed, and why does this relationship stay proportional?
+spoken_vocab:
+- recipe
+- twenty eight grams of butter
+- one hundred and thirty millilitres of cream
+- ninety eight grams of butter
+- scaled up
+- how much cream
+- four hundred millilitres
+- four hundred and fifty five millilitres
+- nine hundred and ten millilitres
+- five hundred and twenty millilitres
+- four hundred and twenty five millilitres
+- scale factor
+- three point five
+- option b
+source: kclms/kclms-mcq-specimen-questions-answers-included.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 1
+  parts: 2
+  minutes: 2
+  flags:
+  - trivial
+  tagline: Proportional scaling MCQ; too simple for interview value.
+  priority: 17
+  rank: 679
+  tier: D
+  category: kclms
+  d10: 1.0
+  real: 2.0
+  by: haiku
+tags:
+- algebra_and_functions

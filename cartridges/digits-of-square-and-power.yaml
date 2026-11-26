@@ -1,0 +1,101 @@
+id: digits-of-square-and-power
+title: Digits of $n^2$, $n^n$ and a digit-count formula
+topics:
+- logarithms
+- number of digits
+- inequalities
+- powers
+warmup: false
+answer_source: generated
+statement: If a natural number $n$ has $N$ digits how many digits can $n^2$ have? What about $n^n$? How
+  would you write a formula for the number of digits of $n$?
+stages:
+- goal: Determine how many digits $n^2$ can have when $n$ has $N$ digits.
+  expected: $n^2$ has either $2N-1$ or $2N$ digits.
+  solution: $10^{N-1}\le n<10^N$ gives $10^{2N-2}\le n^2<10^{2N}$. So $n^2$ has at least $2N-1$ digits
+    and at most $2N$ digits. It has $2N-1$ digits exactly when $n<\sqrt{10}\cdot 10^{N-1}$, and $2N$ digits
+    otherwise. For example, $n=10$ gives $100$ (3 digits) and $n=32$ gives $1024$ (4 digits).
+  common_errors:
+  - Answering only $2N$ and ignoring the $2N-1$ case.
+  - Claiming $n^2$ has exactly $2N$ digits for all $n$.
+  - Taking the bounds as $2N-2$ or $2N+1$ because of off-by-one slips.
+  hints:
+    rephrase: Write the inequalities that $n$ satisfies in terms of $N$, then square them.
+    smaller_case: Try $N=2$ and square a few two-digit numbers such as $10$, $31$, $32$, $99$, and count
+      their digits.
+    key_idea: Square the bounds $10^{N-1}\le n<10^N$ and compare the resulting powers of ten.
+  check: all(len(str(k**2)) in (2*len(str(k))-1, 2*len(str(k))) for k in range(1,2000))
+  check_ok: null
+- goal: Determine how many digits $n^n$ can have when $n$ has $N$ digits.
+  expected: $n^n$ has between $n(N-1)+1$ and $nN$ digits.
+  solution: Let $x=n\log_{10}n$. Then $n^n$ has $\lfloor x\rfloor+1$ digits. Since $N-1\le\log_{10}n<N$,
+    we get $n(N-1)\le x<nN$. Hence the digit count lies between $n(N-1)+1$ and $nN$ inclusive. The count
+    grows with $n$, so unlike $n^2$ it is not limited to two possible values.
+  common_errors:
+  - Assuming $n^n$ has about $2N$ digits, as for $n^2$.
+  - Using the bound $n(N-1)\le x$ without the floor and plus-one step, which produces an off-by-one error.
+  - Treating the answer as a single value instead of a range.
+  hints:
+    rephrase: Take the base-10 logarithm of $n^n$ and see what that tells you about its size.
+    smaller_case: Take $N=1$ (so $n$ is a single digit). Compute $n^n$ for $n=2,3,\dots,9$ and compare
+      with the bounds you are developing.
+    key_idea: Write $\log_{10}(n^n)=n\log_{10}n$, then bound this using $N-1\le\log_{10}n<N$.
+  check: all(n*(len(str(n))-1)+1 <= len(str(n**n)) <= n*len(str(n)) for n in range(2,30))
+  check_ok: null
+- goal: Write a formula for the number of digits of $n$ in terms of a logarithm.
+  expected: The number of digits of $n$ is $\lfloor\log_{10}n\rfloor+1$.
+  solution: A number has $d$ digits exactly when $10^{d-1}\le n<10^d$, i.e. $d-1\le\log_{10}n<d$. So $d=\lfloor\log_{10}n\rfloor+1$.
+  common_errors:
+  - Writing $\lceil\log_{10}n\rceil$, which is wrong at exact powers of ten such as $n=100$.
+  - Forgetting the $+1$.
+  - Using $\ln$ rather than $\log_{10}$.
+  hints:
+    rephrase: Find the power of ten that $n$ lies between, then read off the exponent.
+    smaller_case: For $n=1000$ and $n=999$, work out which power of ten each lies between and compare
+      the digit counts.
+    key_idea: Use $10^{d-1}\le n<10^d$ and take $\log_{10}$ of both sides.
+  check: all(floor(log(n,10))+1 == len(str(n)) for n in range(1,1000))
+  check_ok: null
+extensions:
+  '3':
+  - How many digits does $2^{100}$ have?
+  '4':
+  - Prove $d(n)=\lfloor\log_{10}n\rfloor+1$ from $10^{d-1}\le n<10^d$ without assuming the formula.
+  '5':
+  - Estimate the proportion of $N$-digit numbers whose square has $2N$ digits, as $N\to\infty$.
+spoken_vocab:
+- natural number
+- n
+- N digits
+- square
+- n squared
+- n to the n
+- digits
+- logarithm base ten
+- floor
+- ten to the N minus one
+- ten to the N
+- square root of ten
+- formula
+- inequality
+- two N minus one
+- two N
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 3
+  minutes: 10
+  flags: []
+  tagline: Digit-count bounds for squares and powers lead naturally to a logarithm formula.
+  priority: 71
+  rank: 352
+  tier: B
+  category: tbo
+  d10: 5.0
+  real: 7.0
+  by: deepseek-v4.1-flash-free
+tags:
+- exponentials_and_logarithms
+- number_theory

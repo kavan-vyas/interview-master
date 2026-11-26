@@ -1,0 +1,72 @@
+id: chocolate-bar-breaks
+title: Breaking a chocolate bar
+topics:
+- invariants
+- counting
+- counting pieces
+warmup: true
+answer_source: pdf
+statement: A chocolate bar is a $6\times 8$ grid of squares. A move is to take one piece and break it
+  along a straight line between squares. What is the least number of moves needed to separate all 48 squares?
+stages:
+- goal: Show how the number of pieces changes with each move.
+  expected: Each move takes one piece and splits it into two, so the number of pieces increases by exactly
+    one.
+  solution: A straight break of one piece along a line between its squares divides it into exactly two
+    pieces. The net change in the number of pieces is therefore $+1$ per move.
+  common_errors:
+  - Thinking a single break can produce three pieces
+  - Assuming a break must run across the whole bar
+  hints:
+    rephrase: What happens to the number of pieces after one break?
+    smaller_case: Take a $1\times 2$ bar. How many breaks separate it?
+    key_idea: Track the count of pieces, not the lines.
+  check: (1+1) - 1 - 1
+  check_ok: true
+- goal: State the least number of moves needed to separate all 48 squares.
+  expected: 47 moves, however the breaks are made.
+  solution: We start with 1 piece and need 48 pieces. Each move adds exactly 1 piece, so exactly 47 moves
+    are needed. Every sequence of breaks uses 47 moves, so this is also the least possible.
+  common_errors:
+  - Answering 48, which counts the squares rather than the moves
+  - Answering with a number of moves based on the bar's dimensions
+  hints:
+    rephrase: Compare the number of pieces at the start with the number needed at the end.
+    smaller_case: A $2\times 2$ bar has four squares. How many breaks separate it?
+    key_idea: The number of moves is determined by the change in the number of pieces.
+  check: 48 - 1 - 47
+  check_ok: true
+extensions:
+  '3':
+  - Solve the same question for a $5\times 7$ bar. How many moves are needed?
+  '4':
+  - Explain why the answer does not depend on which lines are chosen.
+  '5':
+  - 'Generalise to an $m\times n$ bar: how many moves are needed to separate all squares?'
+spoken_vocab:
+- six by eight
+- chocolate bar
+- breaks
+- pieces
+- moves
+- forty eight squares
+- straight line
+source: jaymin/Jaymin Interview (1).pdf#p73
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 2
+  minutes: 5
+  flags: []
+  tagline: Classic piece-counting invariant gives the answer quickly, with little room to extend.
+  priority: 60
+  rank: 463
+  tier: C
+  category: jaymin
+  d10: 2.0
+  real: 9.0
+  by: deepseek-v4.1-flash-free
+tags:
+- combinatorics
+- proof

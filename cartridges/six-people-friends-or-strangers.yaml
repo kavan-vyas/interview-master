@@ -1,0 +1,102 @@
+id: six-people-friends-or-strangers
+title: 'Six people: three mutual friends or three mutual strangers'
+topics:
+- pigeonhole principle
+- graph theory
+- Ramsey numbers
+warmup: true
+answer_source: pdf
+statement: Among any six people, show that there are three who all know each other, or three who are all
+  strangers to each other.
+stages:
+- goal: Fix one person $A$. Show that among the other five people, at least three are friends of $A$ or
+    at least three are strangers to $A$.
+  expected: Five people are split into two classes (friends of $A$, strangers to $A$). By pigeonhole,
+    one class has at least $\lceil 5/2 \rceil = 3$ people.
+  solution: Each of the other five people is either a friend or a stranger of $A$, so there are two classes.
+    Since $5 > 2 \cdot 2$, some class contains at least three people.
+  common_errors:
+  - Concluding only two people are guaranteed in one class, by treating $5/2$ as 2 instead of rounding
+    up
+  - Assuming the split must be exactly 3-2 without justifying why one class has at least 3
+  hints:
+    rephrase: Each of the other five people is either a friend of $A$ or not. How many people must land
+      in one of the two groups?
+    smaller_case: With three other people, can you always guarantee two of them are in the same group?
+      With five, what changes?
+    key_idea: 'Pigeonhole: with two boxes and five objects, some box holds more than half of them.'
+  check: Eq(ceiling(Rational(5,2)), 3)
+  check_ok: true
+- goal: Assume $B, C, D$ are friends of $A$. Finish the argument by considering whether any two of $B,
+    C, D$ know each other.
+  expected: If some two of $B, C, D$ are friends, those two together with $A$ form three mutual friends.
+    Otherwise $B, C, D$ are pairwise strangers, which is three mutual strangers.
+  solution: 'Case 1: some pair among $B,C,D$ are friends, say $B$ and $C$. Then $A,B,C$ are pairwise friends.
+    Case 2: no pair among $B,C,D$ are friends. Then $B,C,D$ are pairwise strangers. In both cases a required
+    trio exists.'
+  common_errors:
+  - Forgetting that $A$ must be in the friend trio, so only checking pairs among $B,C,D$
+  - Treating the case where none of $B,C,D$ are friends as impossible instead of as the stranger trio
+  hints:
+    rephrase: Look at the relationships between the pairs among $B$, $C$, $D$. Each pair is either friends
+      or strangers.
+    smaller_case: Suppose $B$ and $C$ know each other. Which three people are then mutual friends?
+    key_idea: Split by whether a friendship exists among the three chosen people; both outcomes give a
+      trio.
+- goal: Conclude the statement for any six people.
+  expected: Among any six people there is always a mutual-friend trio or a mutual-stranger trio.
+  solution: Pick any person $A$. By stage 1 there are at least three friends or three strangers of $A$;
+    take such a set of three. By stage 2 that set contains, or together with $A$ yields, a mutual-friend
+    trio or a mutual-stranger trio.
+  common_errors:
+  - Assuming the symmetric case (strangers of $A$) needs separate treatment instead of swapping the roles
+    of friends and strangers
+  - Stopping after finding a trio of friends of $A$ without checking all cases
+  hints:
+    rephrase: Explain why the two cases in stage 1 cover all possibilities, and why the choice of $A$
+      does not matter.
+    smaller_case: If the three friends of $A$ were replaced by three strangers of $A$, would the argument
+      still work?
+    key_idea: The argument is symmetric in friends and strangers, so one case covers the other.
+extensions:
+  '3':
+  - Show that five people can be arranged so that there is no mutual-friend trio and no mutual-stranger
+    trio, for example by arranging them in a pentagon.
+  '4':
+  - Show that the Ramsey number $R(3,3)=6$ by describing a valid colouring of $K_5$ with no monochromatic
+    triangle.
+  '5':
+  - State the best known bounds for $R(4,4)$ and explain why the same pigeonhole approach does not determine
+    it.
+spoken_vocab:
+- six people
+- friends
+- strangers
+- three
+- pigeonhole
+- mutual friends
+- mutual strangers
+- ceiling of five over two
+- Ramsey
+- pick a person A
+- friends of A
+- pairwise
+source: jaymin/Jaymin Interview (1).pdf#p25
+verified: false
+rating:
+  quality: 8
+  difficulty: 5
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Classic Ramsey R(3,3)=6 proof, with natural extensions to the pentagon lower bound.
+  priority: 106
+  rank: 40
+  tier: A
+  category: jaymin
+  d10: 4.5
+  real: 8.5
+  by: haiku
+tags:
+- proof
+- combinatorics

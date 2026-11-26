@@ -1,0 +1,23 @@
+[
+ {
+  "q": "Consider the simultaneous equations $x^2+y^2=b$, $(x-a)^2+y^2=b$. Solve the equations geometrically. Suppose Oxford and Cambridge are 80 miles apart. Can you be 10 miles from both? Can you be 40 miles from both? If so, where? Can you be 50 miles from both? If so, where? How does this relate to the simultaneous equations above? Now suppose the Sun and the Earth are 80 million miles apart. Where could you be if you were 50 million miles from both? What shape does this make? How would you change the equations to represent this situation? What shape does the resulting set of solutions make?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 8 (anonymous).pdf#0"
+ },
+ {
+  "q": "Sketch $y=e^{-x^2}$. Now sketch $y=2e^{-4x^2}$. More generally, consider $y=me^{-m^2x^2}$. Sketch the curves for different positive values of $m$. Is there a curve which bounds all of these curves? How could you find it?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 8 (anonymous).pdf#0"
+ },
+ {
+  "q": "What is a prime number? If $p$ is prime, what are the factors of $p^n$, and how many factors does $p^n$ have? If $p$ and $q$ are distinct primes, how many factors does $p^nq^m$ have? Hence show that $p^nq^m$ has $(n+1)(m+1)$ positive factors. If $p^nq^m$ has exactly 14 positive factors, what is the smallest possible value of $p^nq^m$?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 8 (anonymous).pdf#0"
+ }
+]

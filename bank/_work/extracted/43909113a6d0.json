@@ -1,0 +1,30 @@
+[
+ {
+  "q": "Four students, Arthur, Bertha, Chandra and Delilah, exchange gossip. When Arthur hears a rumour, he tells it to one of the other three without saying who told it to him. He decides whom to tell by choosing at random amongst the other three, omitting the ones that he knows have already heard the rumour. When Bertha, Chandra or Delilah hear a rumour, they behave in exactly the same way (even if they have already heard it themselves). The rumour stops being passed round when it is heard by a student who knows that the other three already have heard it. Arthur starts a rumour and tells it to Chandra. By means of a tree diagram, or otherwise, show that the probability that Arthur rehears it is $\\frac{3}{4}$. Find also the probability that Bertha hears it twice and the probability that Chandra hears it twice.",
+  "kind": "maths",
+  "answer": "The tree diagram has 8 equally likely outcomes, each with probability $\\frac{1}{8}$. Arthur rehears the rumour in 6 of the 8 outcomes, so the probability is $\\frac{6}{8}=\\frac{3}{4}$. Bertha hears it twice in 2 of the 8 outcomes, so the probability is $\\frac{2}{8}=\\frac{1}{4}$. Chandra hears it twice in 4 of the 8 outcomes, so the probability is $\\frac{4}{8}=\\frac{1}{2}$.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#20"
+ },
+ {
+  "q": "Four students, one of whom is a mathematician, take turns at washing up over a long period of time. The number of plates broken by any student in this time obeys a Poisson distribution, the probability of any given student breaking $n$ plates being $e^{-\\lambda}\\lambda^n/n!$ for some fixed constant $\\lambda$, independent of the number of breakages by other students. Given that five plates are broken, find the probability that three or more were broken by the mathematician.",
+  "kind": "maths",
+  "answer": "$\\frac{106}{1024}$ (equivalently $\\frac{53}{512}$). The source also gives a binomial method: the mathematician breaks any given plate with probability $\\frac{1}{4}$, so $P(k)=\\binom{5}{k}\\left(\\frac{1}{4}\\right)^k\\left(\\frac{3}{4}\\right)^{5-k}$. Adding $k=3,4,5$ gives $\\frac{90+15+1}{1024}=\\frac{106}{1024}$. The value of $\\lambda$ cancels out.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#20"
+ },
+ {
+  "q": "The national lottery of Ruritania is based on the positive integers from 1 to $N$, where $N$ is very large and fixed. Tickets cost \u00a31 each. For each ticket purchased, the punter (i.e. the purchaser) chooses a number from 1 to $N$. The winning number is chosen at random, and the jackpot is shared equally amongst those punters who chose the winning number. A syndicate decides to buy $N$ tickets, choosing every number once to be sure of winning a share of the jackpot. The total number of tickets purchased in this draw is $3.8N$ and the jackpot is \u00a3$W$. Assuming that the non-syndicate punters choose their numbers independently and at random, find the most probable number of winning tickets and show that the expected net loss of the syndicate is approximately $N-\\frac{5W(1-e^{-2.8})}{14}$.",
+  "kind": "maths",
+  "answer": "The number of winning tickets from the $2.8N$ non-syndicate tickets is approximately $X\\sim\\text{Poisson}(2.8)$. Since $\\frac{p_{j+1}}{p_j}=\\frac{2.8}{j+1}>1$ exactly when $j<1.8$, the most probable number for non-syndicate punters is 2. Including the syndicate's ticket, the most probable number of winning tickets is 3. The expected winnings are $W\\left(p_0+\\frac{1}{2}p_1+\\frac{1}{3}p_2+\\cdots\\right)=\\frac{W(1-e^{-2.8})}{2.8}=\\frac{5W(1-e^{-2.8})}{14}$, so the expected net loss is approximately $N-\\frac{5W(1-e^{-2.8})}{14}$.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#20"
+ },
+ {
+  "q": "Suppose your car battery has a guarantee of three years, and your car is completely destroyed after two years. Your insurance company offers to give you one third of the price of the battery. What do you think they would say to your counterclaim for the full price, based on the fact that, given it had lasted two years, the exponential model says that it would have had an expected further three years life in it?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#20"
+ }
+]

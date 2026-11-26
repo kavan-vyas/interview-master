@@ -1,0 +1,84 @@
+id: sale-price-percentage-voucher
+title: Reverse percentage with a voucher
+topics:
+- percentages
+- reverse percentages
+- linear equations
+- algebra
+warmup: true
+answer_source: pdf
+statement: In a sale, every price in a shop is reduced by 15%. A customer then uses a voucher to take
+  a further £10 off the sale price of a jacket. She pays £92. What was the price of the jacket before
+  the sale?
+stages:
+- goal: Write an expression for the amount paid in terms of the original price $p$, and form an equation.
+  expected: 0.85p - 10 = 92
+  solution: A 15% reduction leaves 85% of the price, so the sale price is 0.85p. The voucher then takes
+    £10 off, giving 0.85p − 10. This equals the £92 she pays, so 0.85p − 10 = 92.
+  common_errors:
+  - Taking 15% of the price and subtracting it from the voucher amount in the wrong order.
+  - Writing 0.15p instead of 0.85p as the sale price.
+  - Applying the £10 voucher before the 15% reduction, which gives a different equation.
+  hints:
+    rephrase: A 15% reduction leaves what percentage of the original price? The voucher is applied after
+      the sale.
+    smaller_case: If the jacket cost £100 before the sale, what would it cost after 15% off, and then
+      after a £10 voucher?
+    key_idea: Multiply by one minus the percentage as a decimal, then subtract the fixed voucher amount
+      last.
+  check: simplify(Rational(17,20)*p - 10 - (Rational(85,100)*p - 10))
+  check_ok: true
+- goal: Solve the equation to find the original price $p$.
+  expected: £120
+  solution: 0.85p = 102, so p = 102 ÷ 0.85 = 120. The original price was £120.
+  common_errors:
+  - Forgetting to add back the £10 before dividing, giving p = 92 ÷ 0.85.
+  - Dividing 102 by 0.85 incorrectly, for example by dividing by 0.15.
+  - Stating the answer as the sale price (£102) rather than the original price.
+  hints:
+    rephrase: 'Undo the operations in reverse order: first add back the voucher, then divide by the multiplier.'
+    smaller_case: If 0.5p − 10 = 40, what is p?
+    key_idea: 'Reverse the steps: undo the subtraction of £10 first, then undo the multiplication by 0.85.'
+  check: Rational(17,20)*120 - 10 - 92
+  check_ok: true
+extensions:
+  '3':
+  - A shop cuts all prices by 20%, then offers a further £15 off a coat, which then costs £105. What was
+    the original price?
+  '4':
+  - Prices fall by 10% and then rise by 10%. What is the overall percentage change?
+  '5':
+  - A price is cut by 15% and the new price is then increased by 15%. Find the overall percentage change.
+spoken_vocab:
+- fifteen per cent
+- reduced
+- sale price
+- voucher
+- ten pounds off
+- pays ninety two pounds
+- zero point eight five p minus ten equals ninety two
+- p equals one hundred and twenty
+- one hundred and twenty pounds
+- divide
+- add back
+- original price
+- multiplier
+source: kclms/kclms-specimen-questions-4.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 2
+  parts: 2
+  minutes: 4
+  flags:
+  - trivial
+  tagline: Reverse percentage with one voucher step; routine arithmetic.
+  priority: 27
+  rank: 629
+  tier: D
+  category: kclms
+  d10: 1.5
+  real: 2.5
+  by: haiku
+tags:
+- algebra_and_functions

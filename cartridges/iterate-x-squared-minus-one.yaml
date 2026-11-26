@@ -1,0 +1,130 @@
+id: iterate-x-squared-minus-one
+title: 'Iterating x^2 - 1: integer orbits and periodicity of rationals'
+topics:
+- sequences
+- iteration
+- number theory
+- divisibility
+- periodicity
+warmup: false
+answer_source: generated
+statement: 'Iteration formula: $f(x_0)=x_{n+1}$, $f(x)=x^{2}-1$, which defines a sequence of numbers.
+  a) Try for integers $x_0 = 2,3,4,\ldots$ and $x_0=-2,-3,-4,\ldots$, and for $x_0=-1,0,1$. b) When $x_0=\frac{a}{b}$
+  with $a,b\in\mathbb{Z}$ (where $a$ and $b$ are rational numbers), will this ever be periodic? (Periodic
+  means the sequence comes back to its starting number.)'
+stages:
+- goal: 'Part a: compute the orbits of the given integer starting values and classify each.'
+  expected: 'For x_0 = 2, 3, 4, ... and x_0 = -2, -3, -4, ...: the sequence diverges to plus infinity
+    (for example 2, 3, 8, 63, 3968, ...). For x_0 = -1 and x_0 = 0: the sequence cycles -1, 0, -1, 0,
+    ... (period 2, so both are periodic). For x_0 = 1: 1, 0, -1, 0, -1, ... It enters the cycle but never
+    returns to 1, so it is not periodic under the given definition.'
+  solution: f(2)=3, f(3)=8, f(8)=63, f(63)=3968, so the orbit of 2 grows without bound. For negatives,
+    f(-2)=3, f(-3)=8, f(-4)=15, so after one step all these orbits join the divergent orbits. f(-1)=0
+    and f(0)=-1, giving the 2-cycle {-1,0}. f(1)=0, which then enters the 2-cycle {-1,0}; 1 itself never
+    recurs.
+  common_errors:
+  - Concluding x_0 = 1 is periodic because it eventually lands in a cycle
+  - Forgetting that -2, -3, -4 also diverge (they map to positive numbers)
+  - Miscounting the cycle length for -1 and 0
+  hints:
+    rephrase: Apply the rule once, then again, and check whether the numbers get bigger or smaller.
+    smaller_case: Start at x_0 = -1 and apply the rule twice.
+    key_idea: Track the actual values term by term and compare each new term with the one before it.
+  check: ((((2**2-1)**2-1)**2-1)**2-1) - 3968
+  check_ok: true
+- goal: 'Part a (general): prove that every integer with absolute value at least 2 gives a diverging orbit.'
+  expected: If |x| >= 2 then x^2 - 1 >= |x| + 1 > |x|. So |x_n| strictly increases and tends to infinity,
+    and the sequence diverges.
+  solution: Note x^2 - 1 - (|x| + 1) = |x|^2 - |x| - 2 = (|x| - 2)(|x| + 1) >= 0 when |x| >= 2. Thus |x_{n+1}|
+    >= |x_n| + 1, so the absolute values increase by at least 1 at each step and cannot be bounded. Hence
+    the orbit never repeats and diverges.
+  common_errors:
+  - Checking only the first few terms and generalising without proof
+  - Forgetting to handle negative x (use |x|)
+  - Using x^2 - 1 > x without the correct boundary
+  hints:
+    rephrase: Compare x^2 - 1 with |x| when |x| is at least 2.
+    smaller_case: Take x = 2 and x = -3 and compare x^2 - 1 with |x| + 1 in each case.
+    key_idea: Factor the quantity x^2 - |x| - 2 to find its sign.
+  check: (2**2-1)-(2+1)
+  check_ok: true
+- goal: 'Part b: for x_0 = a/b in lowest terms with |b| >= 2, find the reduced denominator of x_1 and
+    show how it changes.'
+  expected: Write x_0 = a/b in lowest terms with |b| >= 2. Then x_1 = (a^2 - b^2)/b^2, and this fraction
+    is already in lowest terms, so its denominator is b^2. In general the reduced denominator of x_n is
+    b^(2^n), so denominators strictly grow.
+  solution: Any prime p dividing b^2 divides b, so if p also divided a^2 - b^2 it would divide a^2, hence
+    a, contradicting gcd(a,b)=1. So gcd(a^2 - b^2, b^2) = 1 and the reduced denominator of x_1 is b^2.
+    Repeating, the denominator of x_n is b^(2^n), which is strictly increasing in n when |b| >= 2.
+  common_errors:
+  - Assuming a/b is already in lowest terms without checking the gcd
+  - Believing denominators stay the same
+  - Forgetting that squaring a fraction squares its denominator
+  hints:
+    rephrase: Write a/b in lowest terms, square it, then subtract 1. What is the denominator now?
+    smaller_case: Compute (3/2)^2 - 1 and look at its denominator.
+    key_idea: Squaring a fraction in lowest terms keeps it in lowest terms, and subtracting an integer
+      does not change the denominator.
+  check: sp.denom(sp.Rational(-2,3)**2-1) - 9
+  check_ok: null
+- goal: 'Part b: decide whether a non-integer rational start can ever be periodic, and state which starts
+    can be periodic.'
+  expected: No. If x_0 = a/b in lowest terms has |b| >= 2, the reduced denominators grow as b^(2^n), so
+    no value can repeat and the sequence is never periodic. Integer starts can be periodic only in the
+    cycle {-1, 0}. Every other integer start diverges.
+  solution: 'A periodic sequence takes finitely many values, so its reduced denominators would be bounded.
+    But the reduced denominator of x_n is b^(2^n) with |b| >= 2, which is unbounded. Therefore no repetition
+    occurs and the orbit is never periodic. Integer starts (b = 1 or -1) reduce to part a: only -1 and
+    0 are periodic.'
+  common_errors:
+  - Concluding that a rational start must return because the numbers are rational
+  - Forgetting to reduce a/b to lowest terms before analysing the denominator
+  - Stating the answer for integers and rationals together without separating the cases
+  hints:
+    rephrase: Could a sequence repeat a number if its denominators keep growing?
+    smaller_case: Check the reduced denominators of x_0 = 3/2, x_1 and x_2.
+    key_idea: A periodic sequence must have bounded denominators, since it only takes finitely many values.
+  check: sp.denom(sp.Rational(5,4)**2-1) - 2**4
+  check_ok: null
+extensions:
+  '3':
+  - Show that the only periodic integer orbit is the 2-cycle {-1, 0}.
+  '4':
+  - Show that every real x_0 with |x_0| greater than (1+sqrt(5))/2 gives a diverging sequence.
+  '5':
+  - For x_0 = 1/2, compute x_1, x_2, x_3 and check that their reduced denominators are 2^2, 2^4, 2^8,
+    which matches the pattern 2^(2^n).
+spoken_vocab:
+- iteration
+- x naught
+- f of x equals x squared minus one
+- integers
+- periodic
+- rational
+- denominator
+- lowest terms
+- diverges
+- cycle
+- a over b
+- greater than
+- absolute value
+- gcd
+source: past-interviews/Actual Past Interview Questions/F1u.jpg
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 4
+  minutes: 20
+  flags: []
+  tagline: Denominator-squaring argument proves rational orbits never periodic; clean number theory.
+  priority: 82
+  rank: 196
+  tier: B
+  category: past-interviews
+  d10: 4.5
+  real: 6.0
+  by: haiku
+tags:
+- number_theory
+- sequences_and_series

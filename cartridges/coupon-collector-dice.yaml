@@ -1,0 +1,107 @@
+id: coupon-collector-dice
+title: Expected rolls until every face appears
+topics:
+- probability
+- expectation
+- geometric distribution
+- linearity of expectation
+- harmonic numbers
+warmup: false
+answer_source: generated
+statement: What is the expected number of rolls of a 6-sided die for all faces to appear at least once?
+  What about an $n$-sided die?
+stages:
+- goal: Find the expected number of additional rolls needed to see a new face when $k-1$ distinct faces
+    have already appeared.
+  expected: With $k-1$ faces seen, $n-k+1$ faces are new, so each roll succeeds with probability $\frac{n-k+1}{n}$.
+    The waiting time is geometric with expectation $\frac{n}{n-k+1}$.
+  solution: Let $T_k$ be the number of rolls from the moment $k-1$ distinct faces have been seen until
+    the next new face appears. Each roll is new with probability $p_k=\frac{n-k+1}{n}$, independently,
+    so $T_k$ is geometric and $\mathbb{E}[T_k]=\frac{1}{p_k}=\frac{n}{n-k+1}$.
+  common_errors:
+  - Using success probability $\frac{k}{n}$ instead of $\frac{n-k+1}{n}$.
+  - Forgetting that a geometric variable's expectation is $1/p$, not $p$.
+  - Counting the first roll as zero rolls rather than one.
+  hints:
+    rephrase: Split the whole process into phases, where phase $k$ begins when you have seen exactly $k-1$
+      distinct faces.
+    smaller_case: For a 2-sided die, how long does it take on average to see the second face after the
+      first has appeared?
+    key_idea: Each phase is a geometric waiting time; the success probability is the fraction of faces
+      not yet seen.
+  check: null
+- goal: Sum the phase expectations to get the total expected number of rolls for an $n$-sided die.
+  expected: $\mathbb{E}[\text{total}]=\sum_{k=1}^{n}\frac{n}{n-k+1}=n\sum_{j=1}^{n}\frac{1}{j}=n\,H_n$,
+    where $H_n$ is the $n$-th harmonic number.
+  solution: By linearity of expectation, the total expected number of rolls is the sum of the phase expectations.
+    Reindexing with $j=n-k+1$ gives $n\sum_{j=1}^{n}\frac1j=nH_n$.
+  common_errors:
+  - Summing $\frac{1}{j}$ without the factor $n$.
+  - Writing the answer as $n\ln n$ exactly rather than $n H_n$ (the logarithm is only an approximation).
+  - Reindexing the sum incorrectly.
+  hints:
+    rephrase: Use linearity of expectation to add the expected phase lengths, then rewrite the sum with
+      a new index.
+    smaller_case: Write out the sum explicitly for $n=2$ and $n=3$ and compare it with the general form.
+    key_idea: Linearity of expectation lets you add expected waiting times without worrying about dependence
+      between phases.
+  check: null
+- goal: Evaluate the expected number of rolls for a 6-sided die.
+  expected: $6\,H_6 = 6\left(1+\tfrac12+\tfrac13+\tfrac14+\tfrac15+\tfrac16\right)=\tfrac{147}{10}=14.7$
+    rolls.
+  solution: $H_6 = \frac{49}{20}$, so $6H_6=\frac{6\cdot 49}{20}=\frac{294}{20}=\frac{147}{10}$, roughly
+    $14.7$ rolls.
+  common_errors:
+  - Arithmetic slips when adding $\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\frac{1}{5}+\frac{1}{6}$.
+  - Forgetting to multiply by $6$ at the end.
+  hints:
+    rephrase: Write $H_6$ as a single fraction, then multiply by the number of faces.
+    smaller_case: What is $H_2$, and what does your general formula give for a 2-sided die?
+    key_idea: Use the general formula $nH_n$ with $n=6$, and compute $H_6$ exactly.
+  check: 6*harmonic(6) - Rational(147,10)
+  check_ok: true
+extensions:
+  '3':
+  - Compute the variance of the number of rolls needed for a 6-sided die.
+  - Show that the phase variances add, and write the variance of the total for an $n$-sided die as a sum.
+  '4':
+  - Show that the expected number of rolls for an $n$-sided die is asymptotically $n\ln n+\gamma n$, where
+    $\gamma$ is the Euler-Mascheroni constant.
+  - Estimate the expected number of rolls for a 100-sided die using the asymptotic form.
+  '5':
+  - Find the expected number of rolls until every face of a 6-sided die has appeared at least twice.
+  - Find the probability that the last new face appears on exactly the $n$-th roll for an $n$-sided die.
+spoken_vocab:
+- expected value
+- rolls
+- six-sided die
+- n-sided die
+- faces
+- at least once
+- geometric
+- harmonic number
+- H sub n
+- n times H sub n
+- linearity of expectation
+- fourteen point seven
+- one over p
+- probability
+source: screenshots/Screenshot 2026-11-19 at 14.38.02.png
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Classic phase decomposition that generalises cleanly from six faces to n.
+  priority: 71
+  rank: 355
+  tier: B
+  category: screenshots
+  d10: 5.0
+  real: 6.5
+  by: deepseek-v4.1-flash-free
+tags:
+- probability
+- sequences_and_series

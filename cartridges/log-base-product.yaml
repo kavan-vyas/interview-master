@@ -1,0 +1,74 @@
+id: log-base-product
+title: Product of two logarithms with swapped bases
+topics:
+- logarithms
+- change of base
+warmup: true
+answer_source: generated
+statement: Evaluate, without the use of a calculator, $(\log_3 169)(\log_{13} 243)$.
+stages:
+- goal: Rewrite both arguments as powers of the other base.
+  expected: 169 = 13^2 and 243 = 3^5, so log_3 169 = 2 log_3 13 and log_13 243 = 5 log_13 3.
+  solution: 169 = 13^2 and 243 = 3^5. Using the power rule, log_3 169 = 2 log_3 13 and log_13 243 = 5
+    log_13 3.
+  common_errors:
+  - Treating log_3 169 as 169 divided by 3.
+  - Writing 243 as a power of 13 or 169 as a power of 3.
+  - Forgetting the power rule and leaving the exponent out of the logarithm.
+  hints:
+    rephrase: Ask what 169 and 243 are as powers of 13 and 3.
+    smaller_case: How does log_2 8 relate to log_2 2? Use the same idea here.
+    key_idea: Each argument is a power of the other base, so the power rule pulls out an exponent.
+  check: null
+- goal: Evaluate the product.
+  expected: '10'
+  solution: (2 log_3 13)(5 log_13 3) = 10 (log_3 13)(log_13 3). Since log_13 3 = 1/log_3 13, the product
+    of the two logs is 1, so the answer is 10.
+  common_errors:
+  - Assuming log_3 13 times log_13 3 is some value other than 1.
+  - Dropping the factor 2 or the factor 5 from the power rule.
+  - Adding the two logarithms instead of multiplying them.
+  hints:
+    rephrase: Once both logs are rewritten, what happens when two logs with swapped bases are multiplied?
+    smaller_case: What is log_2 4 times log_4 2? Use the same reciprocal idea.
+    key_idea: Use the reciprocal identity log_a b times log_b a = 1, and keep the constants from the power
+      rule.
+  check: expand_log(log(169,3)*log(243,13) - 10, force=True)
+  check_ok: true
+extensions:
+  '3':
+  - Evaluate (log_2 81)(log_9 32) without a calculator.
+  '4':
+  - Generalise to (log_a x^n)(log_x a^m) for a, x positive and not equal to 1.
+  '5':
+  - Use the reciprocal identity to simplify (log_2 3)(log_3 4)(log_4 5) continuing up to (log_63 64).
+spoken_vocab:
+- log base three of one sixty nine
+- log base thirteen of two forty three
+- one sixty nine
+- two forty three
+- thirteen squared
+- three to the fifth
+- change of base
+- reciprocal
+- power rule
+- evaluate without a calculator
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 2
+  difficulty: 3
+  parts: 2
+  minutes: 2
+  flags:
+  - trivial
+  tagline: One change-of-base step gives the answer immediately, with little to discuss.
+  priority: 17
+  rank: 688
+  tier: D
+  category: tbo
+  d10: 1.5
+  real: 4.0
+  by: haiku
+tags:
+- exponentials_and_logarithms

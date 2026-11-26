@@ -1,0 +1,136 @@
+id: nim-and-chomp
+title: Nim, nim-sum and Chomp
+topics:
+- combinatorial games
+- binary
+- nim-sum
+- strategy stealing
+warmup: false
+answer_source: pdf
+statement: In Nim, there are several piles of counters. Players take turns to remove any positive number
+  of counters from a single pile. Whoever takes the last counter wins. (i) With two piles, show that the
+  second player wins exactly when the piles are equal. (ii) Write the pile sizes in binary, and let the
+  nim-sum be the result of adding them in binary without carrying. Show that from a position with nim-sum
+  0, every move produces a non-zero nim-sum; and that from a position with non-zero nim-sum, some move
+  produces nim-sum 0. (iii) Deduce that the first player wins exactly when the nim-sum is non-zero. Who
+  wins with piles of 3, 5 and 7, and what is a winning first move? (iv) In Chomp, a rectangular chocolate
+  bar has its bottom-left square poisoned. Players take turns to choose a square and eat it together with
+  every square above and to the right of it. Whoever eats the poisoned square loses. Show that the first
+  player has a winning strategy on any rectangle larger than $1\times 1$, without finding the strategy.
+stages:
+- goal: Show that with two piles, the second player wins exactly when the piles are equal.
+  expected: If the piles are equal, the second player copies each of the first player's moves on the other
+    pile, so the second player takes the last counter. If the piles are unequal, the first player removes
+    counters from the larger pile to make them equal, and then copies the second player's moves.
+  solution: 'Equal piles: whenever the first player removes $k$ from one pile, the second player removes
+    $k$ from the other. The piles stay equal, so the second player makes the last move. Unequal piles:
+    the first player equalises them in one move and then uses the copying strategy, so the first player
+    wins.'
+  common_errors:
+  - Assuming the second player always wins, regardless of the pile sizes
+  - Forgetting that the copying move must always be legal
+  hints:
+    rephrase: What can the player who moves second do to keep the piles in a particular relationship?
+    smaller_case: Try two piles of sizes 1 and 1, then 1 and 2.
+    key_idea: Keep the two piles equal after each of your moves.
+- goal: Use binary and the nim-sum to show that nim-sum 0 positions are losing and nim-sum non-zero positions
+    have a move to nim-sum 0.
+  expected: From nim-sum 0, every move changes exactly one pile and so makes the nim-sum non-zero. From
+    non-zero nim-sum $s$, let $2^k$ be the leading 1 of $s$. Some pile $p$ has a 1 in that place; replace
+    $p$ by $p\oplus s$, which is less than $p$ and gives nim-sum 0.
+  solution: Changing one pile $p$ to $p'$ changes the nim-sum from $0$ to $p\oplus p'$, which is non-zero
+    because $p\ne p'$. For the second claim, let $s$ be the nim-sum and $2^k$ its leading 1. Since the
+    nim-sum has a 1 in position $k$, an odd number of piles have a 1 in position $k$, so at least one
+    pile $p$ does. Then $p\oplus s<p$, so removing $p-(p\oplus s)$ counters from $p$ is legal and makes
+    the nim-sum 0.
+  common_errors:
+  - Claiming that the nim-sum is the ordinary sum of the piles
+  - Choosing a pile without a 1 in the leading position of $s$, which does not give a smaller pile
+  hints:
+    rephrase: Look at the binary digits of the pile sizes one place at a time.
+    smaller_case: Take two piles of sizes 2 and 3 and compute their nim-sum.
+    key_idea: Find the highest place where the nim-sum has a 1, then find a pile that also has a 1 there.
+- goal: Deduce who wins from piles of 3, 5 and 7, and give a winning first move.
+  expected: The first player wins. Removing one counter from any one of the piles 3, 5 or 7 is a winning
+    first move, since each leaves nim-sum 0.
+  solution: In binary $011\oplus 101\oplus 111=001$, which is non-zero, so the first player wins. The
+    nim-sum is 1, and every pile is odd, so removing one counter from any pile gives nim-sum 0. For example,
+    removing one from 7 leaves 3, 5, 6, with nim-sum $011\oplus 101\oplus 110=000$. Removing one from
+    3 leaves 2, 5, 7, and removing one from 5 leaves 3, 4, 7, both with nim-sum 0. The source says that
+    removing one counter from any pile is inaccurate; that remark is itself wrong, since all three moves
+    win here.
+  common_errors:
+  - Concluding that the second player wins because the piles are not equal
+  - Claiming that only one of the three moves works, which the source PDF wrongly states
+  - Making a move that does not give nim-sum 0
+  hints:
+    rephrase: Write the three pile sizes in binary and combine them without carrying.
+    smaller_case: Try piles of 1, 2 and 3 and see whether their nim-sum is zero.
+    key_idea: Look at the lowest binary digit of the nim-sum and find piles with a 1 in that place.
+- goal: Show that the first player has a winning strategy in Chomp on any rectangle larger than $1\times
+    1$, without finding it.
+  expected: The game is finite with no draws, so one player has a winning strategy. Suppose it is the
+    second player. The first player's move eating only the top-right square is legal, since that square
+    is not poisoned. Then the second player has a winning reply $X$. The set $X$ together with the top-right
+    square is itself a legal first move, and it produces the same position as those two moves, which is
+    a loss for the player to move. So the first player could have won by playing that move at the start,
+    a contradiction.
+  solution: Let $TR$ be the top-right square. For a bar larger than $1\times 1$, $TR$ is not the poisoned
+    square, so eating it is a legal opening move. Assume the second player has a winning strategy. Then
+    after $TR$ is eaten, the second player (to move) has a winning reply that eats a set $X$. The set
+    $X\cup\{TR\}$ is up-right closed in the full bar, since every square above or to the right of $X$
+    is in $X$ or is $TR$. So the first player could have opened with $X\cup\{TR\}$, reaching the same
+    position with the second player to move, which is losing for the second player. This contradicts the
+    assumption, so the first player wins.
+  common_errors:
+  - Assuming the strategy must be described to prove the result, which it does not
+  - Forgetting that the top-right square is not the poisoned one for a bar larger than $1\times 1$
+  - Writing the argument in terms of the second player's reply without checking that $X\cup\{TR\}$ is
+    a legal move
+  hints:
+    rephrase: Suppose the second player had a winning strategy. What can the first player do first to
+      test this?
+    smaller_case: 'A $1\times 2$ bar: which squares can be eaten, and which one is poisoned?'
+    key_idea: Use the fact that the game has no draws, and compare the position after the top-right square
+      is eaten with the position reached by a different opening.
+extensions:
+  '3':
+  - 'Nim with piles 1, 2 and 3: who wins?'
+  '4':
+  - 'Nim with piles 4, 9 and 13: who wins?'
+  '5':
+  - 'Nim with piles 2, 5 and 8: give a winning first move.'
+spoken_vocab:
+- nim
+- piles of counters
+- nim-sum
+- binary
+- exclusive or
+- two piles
+- winning move
+- chomp
+- poisoned square
+- top right square
+- strategy stealing
+- first player
+- second player
+source: jaymin/Jaymin Interview (1).pdf#p73
+verified: false
+rating:
+  quality: 6
+  difficulty: 6
+  parts: 4
+  minutes: 20
+  flags:
+  - garbled
+  tagline: Nim-sum proof plus non-constructive Chomp strategy-stealing; excellent interview depth.
+  priority: 79
+  rank: 258
+  tier: B
+  category: jaymin
+  d10: 6.5
+  real: 7.5
+  by: haiku
+tags:
+- combinatorics
+- proof

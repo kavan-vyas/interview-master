@@ -1,0 +1,100 @@
+id: floor-integral-generalisation
+title: Integrals of the floor function
+topics:
+- integration
+- floor function
+- logarithms
+- summation
+warmup: false
+answer_source: generated
+statement: In this question $\lfloor x \rfloor$ denotes the biggest integer smaller than $x$. For example,
+  $\lfloor 2.4 \rfloor = 2$ and $\lfloor -\pi \rfloor = -4$. i) Evaluate $\int_0^5 \lfloor x \rfloor \,
+  dx$. Can you generalize this result? ii) Evaluate the integral $\int_0^{\ln N} \lfloor e^x \rfloor \,
+  dx$. Express your answers in terms of $N$.
+stages:
+- goal: Evaluate $\int_0^5 \lfloor x \rfloor \, dx$.
+  expected: $10$
+  solution: On $[k,k+1)$ for $k=0,1,2,3,4$, the floor equals $k$. So the integral is $0+1+2+3+4=10$.
+  common_errors:
+  - Using rounding instead of the floor
+  - Including an interval on $[5,6)$ that lies outside the range
+  - Miscounting the intervals, for example summing 1 to 5
+  hints:
+    rephrase: On which intervals is the floor constant, and what is its value on each?
+    smaller_case: Evaluate $\int_0^2 \lfloor x \rfloor \, dx$ directly.
+    key_idea: The floor is a step function. Split the integral at each integer and add up value times
+      interval length.
+  check: 10 - sum(range(5))
+  check_ok: null
+- goal: Generalise the result to $\int_0^n \lfloor x \rfloor \, dx$ for a non-negative integer $n$.
+  expected: $\int_0^n \lfloor x \rfloor \, dx = \dfrac{n(n-1)}{2}$
+  solution: On each $[k,k+1)$ for $k=0,\dots,n-1$, the floor is $k$. So the integral is $\sum_{k=0}^{n-1}
+    k = \dfrac{n(n-1)}{2}$. For $n=5$ this gives $10$.
+  common_errors:
+  - Writing the sum as $\sum_{k=1}^{n}$, which is off by one
+  - Using $n^2/2$ instead of the exact sum
+  - Forgetting that integer endpoints have measure zero, so $x=n$ does not add a term
+  hints:
+    rephrase: Use the same splitting as before, but for a general upper limit $n$.
+    smaller_case: Compute $\int_0^3 \lfloor x \rfloor \, dx$ and look for a pattern.
+    key_idea: Write the integral as a sum over $k$ of $k$ times the length 1 of each unit interval, then
+      use the sum of the first integers.
+  check: (5*(5-1))/2 - 10
+  check_ok: true
+- goal: Evaluate $\int_0^{\ln N} \lfloor e^x \rfloor \, dx$ in terms of $N$, where $N$ is a positive integer.
+  expected: $(N-1)\ln N - \ln\big((N-1)!\big)$, equivalently $\ln\dfrac{N^{N-1}}{(N-1)!}$
+  solution: 'On $[0,\ln N]$, $e^x$ runs over $[1,N]$. For $k=1,\dots,N-1$, $\lfloor e^x\rfloor=k$ exactly
+    when $x\in[\ln k,\ln(k+1))$, an interval of length $\ln(k+1)-\ln k$. So the integral is $I=\sum_{k=1}^{N-1}
+    k\,(\ln(k+1)-\ln k)$. Rearranging by summation by parts gives $I=(N-1)\ln N-\sum_{j=2}^{N-1}\ln j=(N-1)\ln
+    N-\ln((N-1)!)$. Check N=3: the integral is $\ln 2+2(\ln 3-\ln 2)=2\ln 3-\ln 2$, which matches $2\ln
+    3-\ln 2!$.'
+  common_errors:
+  - Forgetting that the intervals correspond to $x\in[\ln k,\ln(k+1))$, not $[k,k+1)$
+  - Dropping the term $\ln((N-1)!)$ from the summation
+  - Off-by-one errors in the summation by parts
+  hints:
+    rephrase: Find the values of $x$ where $e^x$ crosses each integer.
+    smaller_case: Work out the integral for $N=2$ and $N=3$ by splitting the interval.
+    key_idea: The floor of $e^x$ is piecewise constant. Each piece has length given by a difference of
+      logarithms. Rearrange the resulting sum to telescope.
+  check: ((3-1)*log(3)-log(factorial(3-1))) - (2*log(3)-log(2))
+  check_ok: true
+extensions:
+  '3':
+  - Evaluate $\int_0^{5.5} \lfloor x \rfloor \, dx$ and $\int_1^4 \lfloor x \rfloor \, dx$.
+  '4':
+  - Evaluate $\int_0^n \lceil x \rceil \, dx$ for an integer $n\ge 0$, where $\lceil x \rceil$ is the
+    smallest integer not less than $x$.
+  '5':
+  - Check the formula from part ii for large $N$ against Stirling's approximation. What does it say about
+    the growth of the integral?
+spoken_vocab:
+- floor of x
+- integral from zero to five
+- integral from zero to n
+- natural log of N
+- e to the x
+- factorial
+- summation
+- generalise
+- biggest integer smaller than x
+source: screenshots/Screenshot 2026-11-19 at 14.36.06.png
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Generalisable floor integrals with open-ended extension; partly overlaps the factorial problem.
+  priority: 71
+  rank: 348
+  tier: B
+  category: screenshots
+  d10: 5.8
+  real: 7.6
+  by: deepseek-v4.1-flash-free
+tags:
+- integration
+- sequences_and_series
+- exponentials_and_logarithms

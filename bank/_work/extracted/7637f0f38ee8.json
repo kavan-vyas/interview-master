@@ -1,0 +1,72 @@
+[
+ {
+  "q": "Triangle $ABC$ has circumcentre $O$, taken as the origin, and circumradius $R$. Its vertices have position vectors $\\mathbf{a},\\mathbf{b},\\mathbf{c}$ with $|\\mathbf{a}|=|\\mathbf{b}|=|\\mathbf{c}|=R$. (i) Let $\\mathbf{h}=\\mathbf{a}+\\mathbf{b}+\\mathbf{c}$. Show that $AH$ is perpendicular to $BC$, and deduce that $H$ is the orthocentre. (ii) The centroid $G$ has position vector $\\frac{1}{3}(\\mathbf{a}+\\mathbf{b}+\\mathbf{c})$. Deduce that $O$, $G$, $H$ are collinear with $OG:GH=1:2$. (iii) Let $N$ have position vector $\\frac{1}{2}(\\mathbf{a}+\\mathbf{b}+\\mathbf{c})$. Show that the midpoint of $BC$ and the midpoint of $AH$ both lie at distance $\\frac{R}{2}$ from $N$, at opposite ends of a diameter. (iv) Deduce that the circle with centre $N$ and radius $\\frac{R}{2}$ passes through the midpoints of the sides, the midpoints of $AH$, $BH$, $CH$, and the feet of the three altitudes.",
+  "kind": "maths",
+  "answer": "(i) $(\\mathbf{h}-\\mathbf{a})\\cdot(\\mathbf{b}-\\mathbf{c})=(\\mathbf{b}+\\mathbf{c})\\cdot(\\mathbf{b}-\\mathbf{c})=|\\mathbf{b}|^2-|\\mathbf{c}|^2=0$, so $H$ lies on the altitude from $A$; by symmetry it lies on the other two altitudes, so $H$ is the orthocentre. (ii) $\\mathbf{g}=\\frac{1}{3}\\mathbf{h}$, so $G$ lies on $OH$ one third of the way along; this line is the Euler line. (iii) The midpoint of $BC$ is $\\frac{1}{2}(\\mathbf{b}+\\mathbf{c})$, and $\\frac{1}{2}(\\mathbf{b}+\\mathbf{c})-\\mathbf{n}=-\\frac{1}{2}\\mathbf{a}$. The midpoint of $AH$ is $\\frac{1}{2}(\\mathbf{a}+\\mathbf{h})=\\mathbf{a}+\\frac{1}{2}(\\mathbf{b}+\\mathbf{c})$, and minus $\\mathbf{n}$ this is $\\frac{1}{2}\\mathbf{a}$. Both have length $\\frac{R}{2}$ and point in opposite directions. (iv) Part (iii) and its analogues cover the six midpoints. For the foot $D$ of the altitude from $A$, the segment from the midpoint of $BC$ to the midpoint of $AH$ is a diameter. Since $D$ lies on lines $BC$ and $AH$, which are perpendicular, the diameter subtends a right angle at $D$ (Thales), so $D$ is on the circle. This is the nine-point circle.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p65"
+ },
+ {
+  "q": "A triangle has sides 13, 14 and 15. (i) Find its area without Heron's formula. (ii) Show that any triangle has area $rs$, where $r$ is the inradius and $s$ the semi-perimeter. Find $r$. (iii) Show that any triangle has area $\\frac{abc}{4R}$, where $R$ is the circumradius. Find $R$. (iv) Place $B$ at the origin and $C$ at $(14,0)$. Find the coordinates of the incentre $I$ and circumcentre $O$, and verify Euler's formula $OI^2=R(R-2r)$.",
+  "kind": "maths",
+  "answer": "(i) Drop the altitude onto the side of length 14, splitting it into $x$ and $14-x$. Then $13^2-x^2=h^2=15^2-(14-x)^2$, giving $x=5$ and $h=12$. Area $=\\frac{1}{2}\\cdot14\\cdot12=84$. (ii) Joining the incentre to the vertices gives total area $\\frac{1}{2}r(a+b+c)=rs$. Here $s=21$, so $r=\\frac{84}{21}=4$. (iii) Area $=\\frac{1}{2}bc\\sin A=\\frac{1}{2}bc\\cdot\\frac{a}{2R}=\\frac{abc}{4R}$. So $R=\\frac{13\\cdot14\\cdot15}{4\\cdot84}=\\frac{65}{8}$. (iv) $A=(5,12)$. The incentre is the weighted average of the vertices with weights 14, 15, 13, giving $I=(6,4)$. $O$ lies on $x=7$; equating distances to $B$ and $A$ gives $y=\\frac{33}{8}$. Then $OI^2=1+\\frac{1}{64}=\\frac{65}{64}$, and $R(R-2r)=\\frac{65}{8}\\cdot\\frac{1}{8}=\\frac{65}{64}$. Verified.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p65"
+ },
+ {
+  "q": "A floor is ruled with parallel lines 1 unit apart, and a needle of length 1 is dropped at random. (i) Describe the needle's position by the distance $d$ from its midpoint to the nearest line and the acute angle $\\theta$ it makes with the lines. What are the ranges of $d$ and $\\theta$, and when does the needle cross a line? (ii) Assuming $d$ and $\\theta$ are independent and uniform, show that the probability of a crossing is $\\frac{2}{\\pi}$. (iii) How could this experiment be used to estimate $\\pi$? (iv) Drop a rigid piece of wire of length $L$, bent into any shape. Explain why the expected number of crossings is $\\frac{2L}{\\pi}$, and check this with a circle of diameter 1.",
+  "kind": "maths",
+  "answer": "(i) $0\\le d\\le\\frac{1}{2}$ and $0\\le\\theta\\le\\frac{\\pi}{2}$. The half-needle reaches vertical distance $\\frac{1}{2}\\sin\\theta$ from its midpoint, so the needle crosses a line iff $d\\le\\frac{1}{2}\\sin\\theta$. (ii) The favourable region has area $\\int_0^{\\pi/2}\\frac{1}{2}\\sin\\theta\\,d\\theta=\\frac{1}{2}$ within a rectangle of area $\\frac{\\pi}{4}$. So the probability is $\\frac{1/2}{\\pi/4}=\\frac{2}{\\pi}$. (iii) Drop $n$ needles and count crossings $C$; then $\\frac{C}{n}\\approx\\frac{2}{\\pi}$, so $\\pi\\approx\\frac{2n}{C}$. Convergence is slow. (iv) By linearity of expectation, expected crossings are additive over pieces of wire, so $E=kL$. A straight needle of length 1 crosses at most once, so $k=\\frac{2}{\\pi}$ and $E=\\frac{2L}{\\pi}$. A circle of diameter 1 has length $\\pi$ and always crosses exactly twice, and $\\frac{2\\pi}{\\pi}=2$. This also gives another proof of (ii).",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p65"
+ },
+ {
+  "q": "Let $n\\ge2$ and $\\omega=e^{2\\pi i/n}$. (i) Show that the roots of $z^n=1$ are $1,\\omega,\\dots,\\omega^{n-1}$, and that they form a regular $n$-gon. (ii) Show that the sum of these roots is $0$. (iii) By factorising $z^n-1$, show that $\\prod_{k=1}^{n-1}(1-\\omega^k)=n$. (iv) Deduce that the product of the distances from one vertex of a regular $n$-gon inscribed in a unit circle to all the other vertices is $n$. (v) Show that $|1-\\omega^k|=2\\sin\\frac{k\\pi}{n}$, and deduce that $\\prod_{k=1}^{n-1}\\sin\\frac{k\\pi}{n}=\\frac{n}{2^{n-1}}$.",
+  "kind": "maths",
+  "answer": "(i) $(\\omega^k)^n=e^{2\\pi ik}=1$, and the $n$ numbers $\\omega^k$ are distinct, so they are all the roots. They lie on the unit circle at equally spaced angles $\\frac{2\\pi k}{n}$. (ii) The sum is a geometric series $\\frac{\\omega^n-1}{\\omega-1}=0$. (iii) $z^n-1=\\prod_{k=0}^{n-1}(z-\\omega^k)$, so $\\prod_{k=1}^{n-1}(z-\\omega^k)=\\frac{z^n-1}{z-1}=1+z+\\dots+z^{n-1}$. Set $z=1$. (iv) Take the modulus in (iii): $\\prod|1-\\omega^k|=n$, and $|1-\\omega^k|$ is the distance from vertex 1 to $\\omega^k$. (v) $|1-e^{i\\phi}|=|e^{-i\\phi/2}-e^{i\\phi/2}|=2\\left|\\sin\\frac{\\phi}{2}\\right|$. With $\\phi=\\frac{2k\\pi}{n}$ this is $2\\sin\\frac{k\\pi}{n}$, positive for $0<k<n$. So $2^{n-1}\\prod\\sin\\frac{k\\pi}{n}=n$. Check $n=3$: $\\sin60^\\circ\\sin120^\\circ=\\frac{3}{4}$.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p65"
+ },
+ {
+  "q": "Prove that at a party with $n\\ge2$ people, where some pairs shake hands (no one shakes hands with themselves and each pair shakes at most once), there are two people who shook the same number of hands.",
+  "kind": "maths",
+  "answer": "Each person shakes between $0$ and $n-1$ hands, which are $n$ possible values, so pigeonhole does not work immediately. However, $0$ and $n-1$ cannot both occur: if someone shook $n-1$ hands, they shook hands with everyone, so nobody shook 0 hands. So the $n$ people take at most $n-1$ distinct values, and by pigeonhole two share a value. In graph language: every simple graph with at least two vertices has two vertices of equal degree.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p65"
+ },
+ {
+  "q": "The complete graph $K_n$ has $n$ vertices, each pair joined by an edge. For which $n$ can you trace every edge exactly once in a single closed route returning to your start? For which $n$ is this possible if you need not return?",
+  "kind": "maths",
+  "answer": "Every vertex of $K_n$ has degree $n-1$. A closed route uses edges at each vertex in pairs, so every degree must be even, so $n$ must be odd. By Euler's theorem this is also sufficient, since $K_n$ is connected. For an open route, at most two vertices may have odd degree. When $n$ is even, all $n$ vertices have odd degree, so only $n=2$ works. So an open route exists for $n$ odd and for $n=2$, and not otherwise.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p65"
+ },
+ {
+  "q": "In a round-robin tournament, every pair of players plays once and there are no draws. Prove that the players can be listed $P_1,P_2,\\dots,P_n$ so that each player beats the next one in the list.",
+  "kind": "maths",
+  "answer": "Induction on $n$; one player is trivial. Given a valid list $P_1,\\dots,P_{n-1}$ and a new player $Q$: if $Q$ beats $P_1$, put $Q$ first. Otherwise $P_1$ beats $Q$. If $P_{n-1}$ beats $Q$, put $Q$ last. Otherwise $Q$ beats $P_{n-1}$, so as we go along the list, the result against $Q$ switches from \"$P_i$ beats $Q$\" to \"$Q$ beats $P_{i+1}$\" at some point $i$. Insert $Q$ between $P_i$ and $P_{i+1}$. In graph language: every tournament has a Hamiltonian path. The list need not reflect overall strength.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p65"
+ },
+ {
+  "q": "A graph is simple if it has no loops and no repeated edges, and planar if it can be drawn in the plane with no edges crossing. You may assume Euler's formula: a connected planar graph with $V$ vertices, $E$ edges and $F$ faces (including the outer face) satisfies $V-E+F=2$. (i) Show that in any graph the sum of the degrees of the vertices is $2E$. Deduce that the number of vertices of odd degree is even. (ii) Show that a connected simple planar graph with $V\\ge3$ satisfies $E\\le3V-6$. (iii) Deduce that $K_5$, the complete graph on five vertices, is not planar. (iv) Three houses must each be connected to three utilities (gas, water, electricity) by pipes that do not cross. Show that this is impossible. (v) Show that every simple planar graph has a vertex of degree at most 5.",
+  "kind": "maths",
+  "answer": "(i) Each edge contributes 1 to the degree of each of its two ends, so the degrees sum to $2E$. The even-degree vertices contribute an even amount, so the odd-degree vertices contribute an even total, which forces an even number of them. (ii) Count edge-sides around face boundaries. Each face boundary has length at least 3, so the total is at least $3F$. Each edge has two sides, so the total is at most $2E$. Hence $3F\\le2E$. Substituting $F=2-V+E$ gives $3(2-V+E)\\le2E$, so $E\\le3V-6$. (iii) $K_5$ has $V=5$ and $E=10$, but $3V-6=9<10$, so by (ii) it is not planar. (iv) This is $K_{3,3}$, with $V=6$ and $E=9$. Part (ii) gives $9\\le12$, so it does not settle the question. Use bipartiteness: there are no triangles, so every face has boundary length at least 4, giving $4F\\le2E$, that is $F\\le4$. But a planar drawing would need $F=2-V+E=5$. Contradiction. (v) Treat each connected component separately. A component with at most two vertices has all degrees at most 1. A component with $V\\ge3$ satisfies $\\sum\\deg=2E\\le6V-12<6V$, so the average degree is less than 6 and some vertex has degree at most 5.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p65"
+ },
+ {
+  "q": "(i) Show that if a connected graph has a closed trail using every edge exactly once, then every vertex has even degree. (ii) Conversely, sketch a proof that if a connected graph has every degree even, such a trail exists. (iii) A double-six domino set has 28 dominoes, one for each unordered pair of numbers from 0 to 6 (including doubles). Can all 28 be laid in a closed ring, with touching ends matching? (iv) What about a double-five set of 21 dominoes? Can they be laid in an open line?",
+  "kind": "maths",
+  "answer": "(i) Each time the trail passes through a vertex it uses one edge in and one out. The starting vertex is paired by the first and last edges. So every degree is even. (ii) Take a closed trail $T$ with as many edges as possible. If some edge is unused, then by connectedness some vertex $v$ on $T$ has an unused edge. In the graph of unused edges every degree is still even, so a trail started at $v$ along unused edges can only get stuck back at $v$. Splicing this closed trail into $T$ at $v$ gives a longer closed trail, a contradiction. (iii) Use vertices $0,\\dots,6$. Each non-double domino is an edge, and each double is a loop, adding 2 to a degree. Each vertex has 6 ordinary edges and one loop, so degree $8$, which is even. The graph is connected, so a ring exists. (iv) Each of the 6 vertices has degree $5+2=7$, which is odd. No closed ring is possible, and since there are 6 odd vertices (more than 2), not even an open line. In general, a double-$n$ set forms a ring exactly when $n$ is even.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p65"
+ },
+ {
+  "q": "A graph is $k$-colourable if its vertices can be coloured with $k$ colours so that adjacent vertices always differ. (i) What is the least number of colours needed for a cycle of length $n$? (ii) Show that a graph in which every vertex has degree at most $\\Delta$ is $(\\Delta+1)$-colourable. (iii) Prove that a graph is 2-colourable if and only if it has no cycle of odd length. (iv) Some straight lines are drawn in the plane. Show that the regions formed can be 2-coloured so that regions sharing an edge have different colours.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p65"
+ }
+]

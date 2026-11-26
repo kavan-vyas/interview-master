@@ -1,0 +1,74 @@
+id: sum-k-times-k-factorial
+title: Sum of k times k factorial
+topics:
+- telescoping sums
+- factorials
+- induction
+warmup: true
+answer_source: pdf
+statement: Evaluate $\sum_{k=1}^n k\cdot k!=1\cdot 1!+2\cdot 2!+\cdots+n\cdot n!$.
+stages:
+- goal: Find the pattern by computing the first few partial sums and state a closed form.
+  expected: S_n = (n+1)! - 1, from S_1=1, S_2=5, S_3=23, S_4=119.
+  solution: S_1=1=2!-1, S_2=1+4=5=3!-1, S_3=5+18=23=4!-1, S_4=23+96=119=5!-1. Conjecture S_n=(n+1)!-1.
+  common_errors:
+  - Stopping after one or two values and guessing a formula that fits them but not the pattern.
+  - Off-by-one error, e.g. writing n!-1 or (n+2)!-1.
+  - Arithmetic slips in k times k factorial, e.g. 3 times 3! is 18, not 9.
+  hints:
+    rephrase: Compute the partial sum for n = 1, 2, 3, 4 and compare each one with a factorial.
+    smaller_case: What is the partial sum for n = 2, and which factorial is it just below?
+    key_idea: Look for a factorial that each partial sum sits just under.
+  check: Sum(k*factorial(k),(k,1,5)).doit() - (factorial(6) - 1)
+  check_ok: true
+- goal: Prove the closed form holds for all n.
+  expected: Use k·k! = (k+1)! - k!, so the sum telescopes to (n+1)! - 1! = (n+1)! - 1.
+  solution: k·k! = (k+1)·k! - k! = (k+1)! - k!. Then the sum over k from 1 to n of [(k+1)! - k!] telescopes
+    to (n+1)! - 1! = (n+1)! - 1.
+  common_errors:
+  - Sign error, e.g. writing k·k! = (k+1)! + k!.
+  - Dropping the lower boundary term, i.e. telescoping to (n+1)! alone.
+  - Checking a few values of n and calling that a proof for all n.
+  hints:
+    rephrase: Try to write each term k·k! as a difference of two consecutive terms of one sequence.
+    smaller_case: Write k·k! as a difference of two factorials for k = 1 and for k = 2.
+    key_idea: Factor the k! out of (k+1)! and see what remains.
+  check: expand_func(k*factorial(k) - (factorial(k+1) - factorial(k)))
+  check_ok: true
+extensions:
+  '3':
+  - Why does the telescoping argument show that the sum is always one less than a factorial?
+  '4':
+  - Use the closed form to find the limit of the sum divided by (n+1)! as n tends to infinity.
+  '5':
+  - For a sequence a_k with a_{k+1} - a_k = k·b_k, what can you say about the sum of k·b_k?
+spoken_vocab:
+- sum
+- k equals one to n
+- k times k factorial
+- n plus one factorial
+- minus one
+- telescoping
+- one factorial
+- two factorial
+- three factorial
+- partial sum
+source: jaymin/Jaymin Interview (1).pdf#p17
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 2
+  minutes: 10
+  flags: []
+  tagline: Pattern hunt leads to telescoping via k·k! = (k+1)! − k!.
+  priority: 80
+  rank: 254
+  tier: B
+  category: jaymin
+  d10: 5.0
+  real: 6.0
+  by: haiku
+tags:
+- sequences_and_series
+- proof

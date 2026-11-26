@@ -1,0 +1,99 @@
+id: binomial-coefficient-recurrence
+title: Write binomial(n,k) and relate binomial(n+1,k) to binomial(n,k)
+topics:
+- combinatorics
+- binomial coefficients
+- Pascal's rule
+- algebraic manipulation
+warmup: true
+answer_source: generated
+statement: Write $\binom{n}{k}$. Then write $\binom{n+1}{k}$ in terms of $\binom{n}{k}$.
+stages:
+- goal: Write $\binom{n}{k}$ in terms of factorials and state what it counts.
+  expected: $\binom{n}{k}=\frac{n!}{k!\,(n-k)!}$ for $0\le k\le n$. It counts the number of ways to choose
+    $k$ objects from $n$ without regard to order.
+  solution: The binomial coefficient $\binom{n}{k}$ is the number of $k$-element subsets of an $n$-element
+    set. Counting ordered selections gives $n(n-1)\cdots(n-k+1)$, and dividing by $k!$ removes the ordering,
+    so $\binom{n}{k}=\frac{n!}{k!(n-k)!}$.
+  common_errors:
+  - Writing $\frac{n!}{k!}$ and omitting $(n-k)!$ in the denominator.
+  - Confusing $\binom{n}{k}$ with $\frac{n}{k}$ or $n^k$.
+  - Forgetting the restriction $0\le k\le n$.
+  hints:
+    rephrase: What does $\binom{n}{k}$ count? Think of choosing a team of $k$ from $n$ people.
+    smaller_case: How many ways are there to choose 2 people from 3? Which factorial formula gives that
+      number?
+    key_idea: Count ordered choices, then divide by the number of orderings of the chosen items.
+  check: combsimp(binomial(n, k) - factorial(n)/(factorial(k)*factorial(n - k)))
+  check_ok: true
+- goal: Express $\binom{n+1}{k}$ as a sum of two binomial coefficients involving $n$.
+  expected: 'Pascal''s rule: $\binom{n+1}{k}=\binom{n}{k}+\binom{n}{k-1}$.'
+  solution: Using the factorial form, $\binom{n}{k}+\binom{n}{k-1}=\frac{n!}{k!(n-k)!}+\frac{n!}{(k-1)!(n-k+1)!}=\frac{n!}{k!(n-k+1)!}\big[(n-k+1)+k\big]=\frac{(n+1)!}{k!(n+1-k)!}=\binom{n+1}{k}$.
+    Combinatorially, a $k$-subset of $\{1,\dots,n+1\}$ either contains the new element or it does not.
+  common_errors:
+  - Writing $\binom{n+1}{k}=\binom{n}{k}+\binom{n}{k+1}$, which has the wrong index.
+  - Writing $\binom{n+1}{k}=\binom{n}{k}+\binom{n+1}{k-1}$, which is circular.
+  - Adding the two binomial coefficients as though they were fractions with a common denominator and getting
+    the numerator wrong.
+  hints:
+    rephrase: Take a set of $n+1$ objects and single out one object. Split the $k$-subsets according to
+      whether that object is included.
+    smaller_case: Take $n=2$, $k=1$. Compare $\binom{3}{1}$ with $\binom{2}{1}$ and $\binom{2}{0}$.
+    key_idea: Split the selections into two disjoint cases according to whether one specific element is
+      chosen.
+  check: combsimp(binomial(n + 1, k) - binomial(n, k) - binomial(n, k - 1))
+  check_ok: true
+- goal: Express $\binom{n+1}{k}$ using $\binom{n}{k}$ alone, as a ratio.
+  expected: $\binom{n+1}{k}=\frac{n+1}{\,n+1-k\,}\binom{n}{k}$, valid for $0\le k\le n$.
+  solution: $\binom{n+1}{k}=\frac{(n+1)!}{k!(n+1-k)!}=\frac{(n+1)\,n!}{k!\,(n-k)!\,(n+1-k)}=\frac{n+1}{n+1-k}\binom{n}{k}$.
+  common_errors:
+  - Writing $\frac{n}{n-k}$ instead of $\frac{n+1}{n+1-k}$.
+  - Forgetting that the formula does not apply when $k=n+1$ (division by zero).
+  - Writing $\binom{n+1}{k}=(n+1)\binom{n}{k}$, which drops the denominator.
+  hints:
+    rephrase: Write both coefficients in factorial form and compare them term by term. What is left over
+      after the common factors cancel?
+    smaller_case: Set $k=1$. How does $\binom{n+1}{1}$ compare with $\binom{n}{1}$?
+    key_idea: Divide the factorial form of $\binom{n+1}{k}$ by the factorial form of $\binom{n}{k}$ and
+      simplify the ratio.
+  check: combsimp(binomial(n + 1, k) - (n + 1)/(n + 1 - k)*binomial(n, k))
+  check_ok: true
+extensions:
+  '3':
+  - Use Pascal's rule to prove that $\sum_{k=0}^{n}\binom{n}{k}=2^n$.
+  '4':
+  - Show that $\sum_{k=0}^{n}(-1)^k\binom{n}{k}=0$ for $n\ge1$.
+  '5':
+  - Prove Vandermonde's identity $\sum_{k}\binom{m}{k}\binom{n}{r-k}=\binom{m+n}{r}$.
+spoken_vocab:
+- n choose k
+- binomial n k
+- n plus one choose k
+- n factorial
+- k factorial
+- n minus k factorial
+- Pascal's rule
+- n plus one over n plus one minus k
+- choose
+- subset
+- ratio
+source: past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2012.docx
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 3
+  minutes: 5
+  flags:
+  - trivial
+  tagline: Routine factorial manipulation and Pascal's rule; little room for discussion.
+  priority: 23
+  rank: 664
+  tier: D
+  category: past-interviews
+  d10: 2.0
+  real: 3.5
+  by: deepseek-v4.1-flash-free
+tags:
+- combinatorics
+- algebra_and_functions

@@ -1,0 +1,115 @@
+id: differentiate-log-power-inverse-trig
+title: Differentiating log, exponential, power and inverse trig functions
+topics:
+- differentiation
+- chain rule
+- logarithmic differentiation
+- inverse trigonometric functions
+- exponential functions
+warmup: true
+answer_source: pdf
+statement: 'Differentiate $y(x)$ with respect to $x$ in the following cases: (i) $y=\ln\left(x+\sqrt{1+x^2}\right)$;
+  (ii) $y=a^x$; (iii) $y=x^x$; (iv) $y=\sin^{-1}\!\left(\frac{x}{\sqrt{1+x^2}}\right)$.'
+stages:
+- goal: Differentiate y = ln(x + √(1+x²)).
+  expected: dy/dx = 1/√(x²+1).
+  solution: Let u = x + √(1+x²). Then u' = 1 + x/√(1+x²) = (√(1+x²) + x)/√(1+x²) = u/√(1+x²). So dy/dx
+    = u'/u = 1/√(1+x²).
+  common_errors:
+  - Forgetting the chain rule for the inner function
+  - Failing to simplify the numerator and denominator
+  - Differentiating √(1+x²) as 1/√(1+x²) without the factor x
+  hints:
+    rephrase: 'Use the chain rule: differentiate the logarithm, then the inner expression.'
+    smaller_case: Differentiate ln(x + 1) and then ln(x + √(1+x²)) in the same way.
+    key_idea: Write the derivative of the inner expression over √(1+x²) and look for a common factor with
+      the denominator.
+  check: abs(N((diff(log(x+sqrt(1+x**2)),x) - 1/sqrt(x**2+1)).subs(x,Rational(1,2)))) < 1e-12
+  check_ok: true
+- goal: Differentiate y = a^x.
+  expected: dy/dx = a^x ln a.
+  solution: Write a^x = e^{x ln a}. Then dy/dx = ln a · e^{x ln a} = a^x ln a.
+  common_errors:
+  - Giving the derivative as x a^{x-1}, which is the power rule
+  - Dropping the factor ln a
+  - Treating a as the variable
+  hints:
+    rephrase: Rewrite a^x using the exponential function with base e.
+    smaller_case: Differentiate 2^x by writing it as e^{x ln 2}.
+    key_idea: The derivative of e^{kx} is k e^{kx}; a^x = e^{x ln a}.
+  check: simplify(diff(a**x,x) - a**x*log(a)) == 0
+  check_ok: true
+- goal: Differentiate y = x^x.
+  expected: dy/dx = x^x (1 + ln x).
+  solution: Write y = e^{x ln x}. Then dy/dx = e^{x ln x} (ln x + x · (1/x)) = x^x (1 + ln x).
+  common_errors:
+  - Using the power rule x·x^{x-1} only
+  - Forgetting the product rule when differentiating x ln x
+  - Confusing the terms when factoring
+  hints:
+    rephrase: Write y as an exponential of a function, or use logarithmic differentiation.
+    smaller_case: Differentiate y = x^2 using the same logarithm method, to check the approach.
+    key_idea: 'Take logs: ln y = x ln x, then differentiate both sides implicitly.'
+  check: simplify(diff(x**x,x) - x**x*(1+log(x))) == 0
+  check_ok: true
+- goal: Differentiate y = sin⁻¹(x/√(1+x²)).
+  expected: dy/dx = 1/(1+x²).
+  solution: Let u = x/√(1+x²). Then u' = (1+x²)^(-3/2). Also 1 - u² = 1/(1+x²), so √(1-u²) = 1/√(1+x²).
+    Hence dy/dx = u'/√(1-u²) = (1+x²)^(-3/2) · √(1+x²) = 1/(1+x²). (The function equals tan⁻¹x, which
+    gives the same result.)
+  common_errors:
+  - Differentiating u incorrectly by forgetting the quotient or chain rule
+  - Failing to simplify 1 - u²
+  - Leaving the answer in a messy form without simplifying
+  hints:
+    rephrase: Simplify the argument of the inverse sine first, for example by substituting x = tan θ.
+    smaller_case: Test the expression at x = 1 by evaluating the argument and the derivative numerically.
+    key_idea: Use the standard formula for the derivative of sin⁻¹ u, then simplify 1 - u² using the given
+      form of u.
+  check: abs(N((diff(asin(x/sqrt(1+x**2)),x) - 1/(1+x**2)).subs(x,Rational(1,2)))) < 1e-12
+  check_ok: true
+extensions:
+  '3':
+  - Differentiate y = ln(sec x + tan x).
+  '4':
+  - Differentiate y = (sin x)^x.
+  '5':
+  - For positive f(x) and g(x), show that d/dx [f(x)^g(x)] = f^g (g' ln f + g f'/f).
+spoken_vocab:
+- y
+- x
+- d y by d x
+- natural log
+- square root
+- one plus x squared
+- a to the power x
+- x to the power x
+- sine inverse
+- chain rule
+- logarithmic differentiation
+- ln a
+- e to the power
+- tan inverse
+- sec x
+- sin x
+source: step-workbook/Cambridge STEP Short Workbook.pdf#1
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 4
+  minutes: 12
+  flags: []
+  tagline: Mixed differentiation covering log, exponential, power and inverse trig; checklist-like but
+    solid.
+  priority: 72
+  rank: 312
+  tier: B
+  category: step-workbook
+  d10: 4.5
+  real: 3.0
+  by: deepseek-v4.1-flash-free
+tags:
+- differentiation
+- exponentials_and_logarithms
+- trigonometry

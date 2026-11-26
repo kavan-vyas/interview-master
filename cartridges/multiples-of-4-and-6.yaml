@@ -1,0 +1,126 @@
+id: multiples-of-4-and-6
+title: 'Multiples of 4 and 6: sure, might, or definitely not'
+topics:
+- number
+- multiples
+- factors
+- lowest common multiple
+- odd and even
+- logical reasoning
+warmup: true
+answer_source: pdf
+statement: N is a whole number which is a multiple of 4 and a multiple of 6. For each statement, say whether
+  you can be sure it is true, it might or might not be true, or it definitely isn't true. Explain your
+  answer in each case. (a) N is a multiple of 12. (b) N is a multiple of 8. (c) N is odd. (d) N is a factor
+  of 24.
+stages:
+- goal: Decide statement (a) and explain.
+  expected: Sure. Multiples of both 4 and 6 are multiples of their lowest common multiple, 12.
+  solution: The lowest common multiple of 4 and 6 is 12. Any number that is a multiple of both 4 and 6
+    must be a multiple of 12, so N is always a multiple of 12. Statement (a) is certainly true.
+  common_errors:
+  - Saying it might be true because 24 is a multiple of 12 but other values might not be.
+  - Confusing the lowest common multiple with the highest common factor, which is 2.
+  - Checking only one example and generalising.
+  hints:
+    rephrase: If a number is a multiple of 4 and also a multiple of 6, what is the smallest number that
+      must divide it?
+    smaller_case: List the first few multiples of 4 and the first few multiples of 6. Which numbers appear
+      in both lists?
+    key_idea: A common multiple of two numbers is always a multiple of their lowest common multiple.
+  check: lcm(4, 6) - 12
+  check_ok: true
+- goal: Decide statement (b) and explain, using a counterexample or a proof.
+  expected: Might. For example 24 is a multiple of 8 and 12 is not.
+  solution: N = 12 is a multiple of 4 and 6, but 12 is not a multiple of 8. N = 24 is a multiple of 4
+    and 6, and 24 = 3 × 8, so it is a multiple of 8. Since it depends on N, it might or might not be true.
+  common_errors:
+  - Saying it is sure because 4 is a multiple of 8.
+  - Saying it definitely isn't true because 12 is not a multiple of 8.
+  - Only testing one value and not giving a counterexample for the other case.
+  hints:
+    rephrase: Find one multiple of 4 and 6 that is also a multiple of 8, and one that is not. What does
+      that tell you?
+    smaller_case: Start with the smallest multiple of both 4 and 6. Is it a multiple of 8? Then try the
+      next one.
+    key_idea: To show a statement might or might not be true, find one case where it holds and one case
+      where it fails.
+  check: (24 % 8 == 0) & (12 % 8 != 0)
+  check_ok: true
+- goal: Decide statement (c) and explain.
+  expected: Definitely not. Every multiple of 4 is even, so N cannot be odd.
+  solution: N is a multiple of 4, so N = 4k for some whole number k. Then N = 2(2k), which is 2 times
+    a whole number, so N is even. Therefore N cannot be odd.
+  common_errors:
+  - Saying it might be odd because 6 is even and so the statement might be true.
+  - Testing 12 and 24 and concluding it is only a might without a general argument.
+  - Confusing odd and even with multiples of 3.
+  hints:
+    rephrase: Write N as 4 times some whole number. Can you split that into 2 times something?
+    smaller_case: 'Look at the multiples of 4: 4, 8, 12, 16. What do they all have in common when you
+      divide by 2?'
+    key_idea: A number that is a multiple of an even number is itself even.
+  check: Mod(4*Symbol('k', integer=True), 2)
+  check_ok: true
+- goal: Decide statement (d) and explain.
+  expected: Might. For example 12 is a factor of 24, but 36 is not.
+  solution: N is a multiple of 12, so N is 12, 24, 36, and so on. 12 divides 24, so N = 12 gives a factor
+    of 24. 36 does not divide 24 because 24 ÷ 36 is not a whole number. Therefore it might or might not
+    be true.
+  common_errors:
+  - Saying it is definitely true because 12 is a factor of 24.
+  - Saying it definitely isn't true because multiples of 12 are bigger than 24.
+  - Forgetting that N = 24 also gives a factor of 24 and thinking only one value of N is possible.
+  hints:
+    rephrase: Remember that a factor of 24 must divide 24 exactly. Which multiples of 12 divide 24, and
+      which do not?
+    smaller_case: Test N = 12 and then N = 36. Does each one divide 24 exactly?
+    key_idea: A factor of a number divides it exactly. To show might, find one example where it works
+      and one where it does not.
+  check: (24 % 12 == 0) & (24 % 36 != 0)
+  check_ok: true
+extensions:
+  '3':
+  - Is N = 0 allowed? Explain how that affects each statement.
+  - Find all values of N less than 100 that are factors of 24, if N is a multiple of 12.
+  '4':
+  - Which two numbers have a lowest common multiple of 60 and a highest common factor of 3?
+  - Explain why a number that is a multiple of 6 and 9 must also be a multiple of 18.
+  '5':
+  - Prove that if N is a multiple of 4 and 6 then N is a multiple of 2 and 3, and use this to justify
+    statement (a) in a different way.
+  - Explain the difference between saying a statement is sure, might, and definitely not, using a set-based
+    argument.
+spoken_vocab:
+- whole number
+- multiple of 4
+- multiple of 6
+- multiple of 12
+- multiple of 8
+- odd
+- factor of 24
+- lowest common multiple
+- counterexample
+- sure
+- might or might not be true
+- definitely isn't true
+- even number
+- divides exactly
+source: kclms/kclms-specimen-questions-2.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 2
+  parts: 4
+  minutes: 6
+  flags: []
+  tagline: Sure/might/not reasoning with counterexamples tests logical precision well.
+  priority: 62
+  rank: 425
+  tier: C
+  category: kclms
+  d10: 1.5
+  real: 6.0
+  by: haiku
+tags:
+- number_theory

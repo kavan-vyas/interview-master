@@ -1,0 +1,111 @@
+id: venn-diagram-clubs
+title: 'Venn diagram: pupils in drama, choir, chess and coding clubs'
+topics:
+- sets
+- Venn diagrams
+- inclusion-exclusion
+- word problems
+- arithmetic
+warmup: false
+answer_source: pdf
+statement: In a school, there are 50 pupils in year nine. Eleven girls are in the drama club and fourteen
+  girls are in the choir. Four girls are in both, and six girls are in neither. Fifteen boys are in the
+  chess club and twelve boys are in the coding club. Three boys are in neither club. How many boys in
+  year nine are in the chess club and the coding club?
+stages:
+- goal: Find the total number of girls in year nine.
+  expected: '27'
+  solution: 'Girls in at least one club = girls in drama + girls in choir − girls in both = 11 + 14 −
+    4 = 21. Add the six girls in neither club: 21 + 6 = 27 girls.'
+  common_errors:
+  - Adding 11 and 14 without subtracting the 4 girls in both clubs (gives 25 in clubs).
+  - Forgetting to add the 6 girls in neither club.
+  - Subtracting the 6 girls in neither club instead of adding.
+  hints:
+    rephrase: Some girls are counted twice if you add the two clubs. What needs to be removed? Then what
+      group still needs to be added to get all the girls?
+    smaller_case: 'Imagine just 2 girls: one in drama and one in choir, with no overlap. How many girls
+      are there in clubs? Now add a girl in both.'
+    key_idea: 'Use the inclusion-exclusion principle: |A ∪ B| = |A| + |B| − |A ∩ B|, then add the group
+      outside both sets.'
+  check: 11 + 14 - 4 + 6 - 27
+  check_ok: true
+- goal: Find the number of boys in year nine.
+  expected: '23'
+  solution: Total pupils = 50. Boys = total − girls = 50 − 27 = 23.
+  common_errors:
+  - Using 50 − 11 − 14 = 25 boys, ignoring the overlap.
+  - Using 50 − 27 − 3 = 20 boys by mistake.
+  - Forgetting the total number of pupils is 50.
+  hints:
+    rephrase: You know the total number of pupils and you have just found the number of girls. How do
+      you get the number of boys?
+    smaller_case: If there were 10 pupils, 4 girls and the rest boys, how many boys would there be?
+    key_idea: The boys and girls together make up the whole year group.
+  check: 50 - 27 - 23
+  check_ok: true
+- goal: Find how many boys are in both the chess club and the coding club.
+  expected: '7'
+  solution: 'Boys in at least one club = total boys − boys in neither club = 23 − 3 = 20. Using inclusion-exclusion:
+    15 + 12 − (boys in both) = 20, so boys in both = 27 − 20 = 7.'
+  common_errors:
+  - Using 15 + 12 = 27 as the number of boys in clubs, ignoring the overlap and the 3 in neither.
+  - Using 20 as the answer without subtracting the overlap.
+  - Forgetting to subtract the 3 boys in neither club from 23.
+  hints:
+    rephrase: First find how many boys are in at least one club. Then use the two club totals and the
+      overlap to find the number in both.
+    smaller_case: If 5 boys are in chess, 4 in coding, and 6 boys are in at least one club, how many are
+      in both?
+    key_idea: The number in at least one club equals the sum of the two club totals minus the number in
+      both.
+  check: 15 + 12 - 7 - 20
+  check_ok: true
+extensions:
+  '3':
+  - How many pupils in total are in at least one club?
+  - If the number of boys in neither club were 5 instead of 3, how many boys would be in both clubs?
+  '4':
+  - Draw a three-set Venn diagram for drama, choir and chess, and explain why the inclusion-exclusion
+    formula needs more terms.
+  - What is the minimum number of boys who must be in both clubs given the data, and why?
+  '5':
+  - Derive the inclusion-exclusion formula for two sets from first principles using a Venn diagram.
+  - Explain how you would check that your Venn diagram totals are consistent with the given data.
+spoken_vocab:
+- year nine
+- pupils
+- girls
+- boys
+- drama club
+- choir
+- chess club
+- coding club
+- in both
+- in neither
+- Venn diagram
+- inclusion-exclusion
+- union
+- intersection
+- total
+- subtract
+- add
+source: kclms/kclms-specimen-questions-2.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 2
+  parts: 3
+  minutes: 5
+  flags:
+  - trivial
+  tagline: Simple set-counting; reliable warm-up but little depth or extension.
+  priority: 33
+  rank: 612
+  tier: D
+  category: kclms
+  d10: 1.5
+  real: 2.5
+  by: haiku
+tags:
+- combinatorics

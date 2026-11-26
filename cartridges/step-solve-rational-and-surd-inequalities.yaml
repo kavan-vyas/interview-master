@@ -1,0 +1,132 @@
+id: step-solve-rational-and-surd-inequalities
+title: Solve a rational inequality and a surd inequality
+topics:
+- inequalities
+- rational functions
+- surds
+- squaring with domain checks
+- polynomial sign analysis
+warmup: false
+answer_source: pdf
+statement: Solve the inequalities (i) $1 + 2x - x^2 > \frac{2}{x}$ $(x \neq 0)$, (ii) $\sqrt{3x + 10}
+  > 2 + \sqrt{x + 4}$ $(x \geqslant -\frac{10}{3})$.
+stages:
+- goal: For part (i), multiply through by $x^2$ and rewrite as a single polynomial inequality in factorised
+    form.
+  expected: $x(x-1)(x+1)(x-2) < 0$.
+  solution: Multiply by $x^2 > 0$ to get $x^2(1+2x-x^2) > 2x$, i.e. $x^2 + 2x^3 - x^4 - 2x > 0$. Multiply
+    by $-1$ to get $x^4 - 2x^3 - x^2 + 2x < 0$. Then $x^4 - 2x^3 - x^2 + 2x = x(x^3 - 2x^2 - x + 2) =
+    x(x-2)(x^2-1) = x(x-1)(x+1)(x-2)$.
+  common_errors:
+  - Multiplying by $x^2$ and then forgetting that the sign of the inequality must be preserved when multiplying
+    by a positive number only.
+  - Dropping the factor $x$ when factorising.
+  - Sign slip when multiplying by $-1$.
+  hints:
+    rephrase: Clear the denominator carefully, remembering that $x^2$ is positive, and move everything
+      to one side.
+    smaller_case: 'Check your polynomial at $x = 1$ and $x = -1$: both should make the product zero.'
+    key_idea: Factorise the quartic by grouping, then test the roots for a sign pattern.
+  check: expand(x**2*(1 + 2*x - x**2) - 2*x - (-(x*(x - 1)*(x + 1)*(x - 2)))) == 0
+  check_ok: true
+- goal: For part (i), find the solution set from the sign pattern.
+  expected: $-1 < x < 0$ or $1 < x < 2$.
+  solution: The critical points are $-1, 0, 1, 2$. Since the leading term of $x(x-1)(x+1)(x-2)$ is positive,
+    the sign is positive for $x > 2$, negative on $(1,2)$, positive on $(0,1)$, negative on $(-1,0)$,
+    and positive for $x < -1$. The inequality is $< 0$, so the solution is $-1 < x < 0$ or $1 < x < 2$.
+    The point $x = 0$ is excluded, as the original inequality requires $x \neq 0$.
+  common_errors:
+  - Choosing the positive intervals instead of the negative intervals.
+  - Including $x = 0$, $x = -1$, $x = 1$ or $x = 2$, which are excluded because the inequality is strict.
+  - Forgetting the restriction $x \neq 0$ from the statement.
+  hints:
+    rephrase: Where is a product of linear factors negative?
+    smaller_case: Test $x = 3$, $x = 1.5$, $x = 0.5$, $x = -0.5$ and $x = -2$ in the factorised form and
+      record the signs.
+    key_idea: Between consecutive roots the sign of a polynomial is constant, so test one point per interval.
+  check: solve_univariate_inequality(x*(x - 1)*(x + 1)*(x - 2) < 0, x, relational=False) == Union(Interval.open(-1,
+    0), Interval.open(1, 2))
+  check_ok: null
+- goal: For part (ii), square once to remove the outer root and identify the condition needed for squaring.
+  expected: $x + 1 > 2\sqrt{x+4}$, and this requires $x > -1$ before squaring again.
+  solution: 'Square both sides (both are non-negative in the domain, so this is valid): $3x + 10 > 4 +
+    4\sqrt{x+4} + x + 4$, which gives $2x + 2 > 4\sqrt{x+4}$, i.e. $x + 1 > 2\sqrt{x+4}$. The right-hand
+    side is non-negative, so the left-hand side must be positive, giving $x > -1$.'
+  common_errors:
+  - Expanding $(2 + \sqrt{x+4})^2$ as $4 + x + 4$ and omitting the cross term $4\sqrt{x+4}$.
+  - Squaring again without first checking the sign of $x+1$.
+  - Ignoring the domain condition $x \geqslant -\frac{10}{3}$.
+  hints:
+    rephrase: What does squaring do to an inequality when both sides are non-negative? What must be true
+      before you square again?
+    smaller_case: 'Take $x = 0$: check whether $\sqrt{10} > 2 + 2$ and whether the squared form agrees.'
+    key_idea: Isolate the remaining surd, then check the sign of the side you are about to square.
+  check: simplify(sqrt(3*x + 10)**2 - (2 + sqrt(x + 4))**2 - (2*x + 2 - 4*sqrt(x + 4))) == 0
+  check_ok: true
+- goal: For part (ii), complete the squaring and give the full solution set.
+  expected: $x > 5$.
+  solution: Square $x + 1 > 2\sqrt{x+4}$ with $x+1 > 0$ to get $x^2 + 2x + 1 > 4x + 16$, i.e. $x^2 - 2x
+    - 15 > 0$, so $(x-5)(x+3) > 0$. This gives $x < -3$ or $x > 5$. Combined with $x > -1$, the solution
+    is $x > 5$. The branch $x < -3$ is rejected because it does not satisfy $x > -1$, which is required
+    for the squared inequality to be equivalent to the original.
+  common_errors:
+  - Keeping $x < -3$ because it satisfies the quadratic inequality.
+  - Forgetting to intersect with $x > -1$.
+  - Solving $(x-5)(x+3) > 0$ with the wrong sign pattern.
+  hints:
+    rephrase: Which values satisfy both the quadratic and the condition $x > -1$?
+    smaller_case: Test $x = -4$ in $x + 1 > 2\sqrt{x+4}$ and explain why it fails, even though the quadratic
+      holds there.
+    key_idea: Combine the sign condition from the quadratic with the validity condition from the earlier
+      squaring step.
+  check: Intersection(Union(Interval.open(-oo, -3), Interval.open(5, oo)), Interval.open(-1, oo)) == Interval.open(5,
+    oo)
+  check_ok: null
+extensions:
+  '3':
+  - Solve $\sqrt{3x+10} < 2 + \sqrt{x+4}$ on the same domain.
+  - Solve $1 + 2x - x^2 \geqslant \frac{2}{x}$ and say which endpoints are included.
+  '4':
+  - Explain why squaring $\sqrt{3x+10} > 2 + \sqrt{x+4}$ directly gives an answer that includes $x < -3$,
+    and say which original inequality that spurious branch solves.
+  - Solve $\sqrt{x+1} - \sqrt{x-1} > 1$ and check your answer.
+  '5':
+  - Show that the set of $x$ satisfying part (i) can be found by a graphical argument comparing $y = 1
+    + 2x - x^2$ with $y = \frac{2}{x}$, and identify the number of intersection points.
+  - Generalise part (ii) to $\sqrt{ax+b} > c + \sqrt{dx+e}$ and state the conditions that must be checked
+    after squaring.
+spoken_vocab:
+- one plus two x minus x squared
+- greater than two over x
+- x not equal to zero
+- root of three x plus ten
+- greater than two plus root of x plus four
+- x greater than or equal to minus ten over three
+- x times x minus one times x plus one times x minus two
+- less than zero
+- x squared minus two x minus fifteen
+- open interval
+- union
+- minus one less than x less than zero
+- one less than x less than two
+- spurious root
+- squaring both sides
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#7
+verified: false
+rating:
+  quality: 4
+  difficulty: 4
+  parts: 2
+  minutes: 10
+  flags: []
+  tagline: Routine sign-pattern and squaring work; the squaring condition x>-1 is the only subtlety.
+  priority: 52
+  rank: 511
+  tier: C
+  category: siklos
+  d10: 3.5
+  real: 3.0
+  by: haiku
+tags:
+- inequalities
+- algebra_and_functions

@@ -1,0 +1,161 @@
+id: mat-2013-q3-shaded-area-cubic-f-k
+title: 'MAT 2013 Q3: shaded area for f_k(x) = x(x-k)(x-2)'
+topics:
+- calculus
+- areas
+- polynomials
+- symmetry
+- transformations
+- integration
+warmup: false
+answer_source: pdf
+statement: Question 3 (Mathematics, Mathematics & Statistics, Mathematics & Philosophy, Mathematics &
+  Computer Science applicants). Let $0 < k < 2$. A graph of $y = f_k(x)$ is sketched, where $f_k(x) =
+  x(x-k)(x-2)$. Let $A(k)$ denote the area of the shaded region. (i) Without evaluating them, write down
+  an expression for $A(k)$ in terms of two integrals. (ii) Explain why $A(k)$ is a polynomial in $k$ of
+  degree 4 or less. [You are not required to calculate $A(k)$ explicitly.] (iii) Verify that $f_k(1+t)
+  = -f_{2-k}(1-t)$ for any $t$. (iv) How can the graph of $y = f_k(x)$ be transformed to the graph of
+  $y = f_{2-k}(x)$? Deduce that $A(k) = A(2-k)$. (v) Explain why there are constants $a, b, c$ such that
+  $A(k) = a(k-1)^4 + b(k-1)^2 + c$. [You are not required to calculate $a, b, c$ explicitly.] (The shaded
+  region is the region between the curve and the x-axis for $0 \leqslant x \leqslant 2$, as on the source
+  figure.)
+stages:
+- goal: 'Part (i): write A(k) as a combination of two integrals, using the sign of f_k on each piece.'
+  expected: A(k) = integral from 0 to k of f_k(x) dx minus integral from k to 2 of f_k(x) dx.
+  solution: 'For 0 < x < k, x > 0, x - k < 0 and x - 2 < 0, so f_k(x) > 0. For k < x < 2, x > 0, x - k
+    > 0 and x - 2 < 0, so f_k(x) < 0. The area is the integral of |f_k|, so on [k, 2] we must negate f_k:
+    A(k) = integral_0^k f_k(x) dx - integral_k^2 f_k(x) dx.'
+  common_errors:
+  - writing A(k) as the plain integral over [0, 2], which gives a signed answer that can be zero
+  - reversing the sign on the first integral rather than the second
+  - forgetting that the upper limit of the second integral is 2
+  hints:
+    rephrase: Split the region at x = k. Ask on which pieces the curve lies above the axis and on which
+      it lies below.
+    smaller_case: Take k = 1 and state the sign of f_1 on (0, 1) and on (1, 2).
+    key_idea: Unsigned area is the integral of the absolute value. Where the function is negative, a sign
+      must be introduced.
+  check: null
+- goal: 'Part (ii): explain why A(k) is a polynomial in k of degree at most 4.'
+  expected: With antiderivative G(x) = x^4/4 - (k+2)x^3/3 + k x^2 (so G(0) = 0), A(k) = 2G(k) - G(2).
+    G(k) is a polynomial in k of degree 4, and G(2) is linear in k, so A(k) is a polynomial in k of degree
+    at most 4.
+  solution: 'Expand f_k(x) = x(x-k)(x-2) = x^3 - (k+2)x^2 + 2kx. An antiderivative is G(x) = x^4/4 - (k+2)x^3/3
+    + k x^2, with G(0) = 0. Then integral_0^k f_k = G(k) and integral_k^2 f_k = G(2) - G(k). So A(k) =
+    G(k) - (G(2) - G(k)) = 2G(k) - G(2). Substituting x = k into G gives terms k^4, k^3, k^2 in k: degree
+    4. Substituting x = 2 gives G(2) = 4 - 8(k+2)/3 + 4k, which is linear in k. Hence A(k) is a polynomial
+    in k of degree at most 4.'
+  common_errors:
+  - claiming the degree is exactly 4 without considering whether terms cancel (not needed here, but the
+    claim is only 'at most 4')
+  - treating the limits k and 2 as constants, which loses the k dependence in the integrand
+  - forgetting that the integrand itself depends on k
+  hints:
+    rephrase: Write the cubic in expanded form, find an antiderivative in x, and then note how each term
+      depends on k after substituting the limits.
+    smaller_case: Look at the integral from 0 to k alone. Which powers of k appear?
+    key_idea: Integrating a polynomial in x gives a polynomial in the limits, and the coefficients depend
+      on k only through the integrand.
+  check: (x**4/4 - (k+2)*x**3/3 + k*x**2).diff(x) - x*(x-k)*(x-2)
+  check_ok: true
+- goal: 'Part (iii): verify the identity f_k(1+t) = -f_{2-k}(1-t).'
+  expected: f_k(1+t) = -(1+t)(1-t)(1+t-k) and f_{2-k}(1-t) = (1-t)(1+t)(1+t-k), so f_k(1+t) = -f_{2-k}(1-t).
+  solution: f_k(1+t) = (1+t)((1+t)-k)((1+t)-2) = (1+t)(1+t-k)(t-1) = -(1+t)(1-t)(1+t-k). Also f_{2-k}(1-t)
+    = (1-t)((1-t)-(2-k))((1-t)-2) = (1-t)(k-1-t)(-1-t). Since k-1-t = -(1+t-k) and -1-t = -(1+t), this
+    equals (1-t)(1+t)(1+t-k). Hence f_k(1+t) = -f_{2-k}(1-t).
+  common_errors:
+  - dropping a sign when rewriting (t-1) as -(1-t)
+  - mistaking k - 1 - t for 1 + t - k without the sign
+  - checking the identity only at a single value of t
+  hints:
+    rephrase: Substitute 1 + t into f_k and 1 - t into f_{2-k}, then factorise each expression and compare.
+    smaller_case: Pick t = 0.2 and k = 0.5, and compute both sides numerically.
+    key_idea: Factorising each cubic into linear factors makes the sign relationship visible.
+  check: (1+t)*((1+t)-k)*((1+t)-2) + (1-t)*((1-t)-(2-k))*((1-t)-2)
+  check_ok: true
+- goal: 'Part (iv): describe the transformation from f_k to f_{2-k} and deduce A(k) = A(2-k).'
+  expected: Reflect the graph of y = f_k(x) in the line x = 1, then reflect the result in the x-axis (equivalently
+    a half-turn about (1, 0)). This gives y = f_{2-k}(x), because f_{2-k}(x) = -f_k(2-x). The transformation
+    maps [0, 2] to itself and the region between curve and axis to the corresponding region for f_{2-k},
+    so A(k) = A(2-k).
+  solution: 'From part (iii) with x = 1 + t, we have f_{2-k}(x) = -f_k(2-x) for all x (replace t by x
+    - 1 in (iii) and use 2-x = 1-(x-1)... equivalently verify f_{2-k}(x) + f_k(2-x) = 0). Reflecting in
+    x = 1 sends y = f_k(x) to y = f_k(2-x); reflecting in the x-axis then gives y = -f_k(2-x) = f_{2-k}(x).
+    This is an isometry that maps the region bounded by the curve and the axis on [0, 2] onto the corresponding
+    region for f_{2-k}, so the areas are equal: A(k) = A(2-k).'
+  common_errors:
+  - describing the transformation as a translation
+  - reflecting in x = 1 and forgetting the reflection in the x-axis, which changes the sign of the region
+  - deducing equality of areas from equality of the functions rather than from the isometry
+  hints:
+    rephrase: Find a reflection in a vertical line followed by a reflection in a horizontal line that
+      turns f_k into f_{2-k}. Use part (iii) to identify the lines.
+    smaller_case: Test the identity at x = 0 and x = 2. What does it say about the zeros?
+    key_idea: Isometries preserve area. Check that the transformation maps the interval [0, 2] to itself.
+  check: (x*(x-(2-k))*(x-2)) + ((2-x)*((2-x)-k)*((2-x)-2))
+  check_ok: true
+- goal: 'Part (v): explain the form A(k) = a(k-1)^4 + b(k-1)^2 + c.'
+  expected: Put u = k - 1. A is a polynomial in k of degree at most 4, so a polynomial in u of degree
+    at most 4. Part (iv) gives A(k) = A(2-k), i.e. A is unchanged under u -> -u, so the polynomial is
+    even in u. An even polynomial of degree at most 4 has the form a u^4 + b u^2 + c.
+  solution: Since 0 < k < 2, u ranges over (-1, 1). A is a polynomial in k of degree at most 4 (part ii),
+    hence a polynomial P(u) of degree at most 4. Under k -> 2-k, u = k-1 becomes 2-k-1 = 1-k = -u. Part
+    (iv) says P(u) = P(-u) for u in (-1, 1), and two polynomials agreeing on an interval are identical,
+    so P(u) = P(-u) identically. Writing P(u) = sum of c_j u^j, the odd coefficients satisfy c_j = -c_j,
+    so they are zero. Thus P(u) = a u^4 + b u^2 + c.
+  common_errors:
+  - stating the form without justifying why odd powers vanish
+  - using k - 1 but forgetting that the symmetry is k -> 2-k, i.e. u -> -u
+  - saying the polynomial has degree exactly 4 without justification
+  hints:
+    rephrase: Substitute u = k - 1 and see how the symmetry of part (iv) acts on u.
+    smaller_case: Consider a simple polynomial such as u + u^2 and check which of its terms change under
+      u -> -u.
+    key_idea: A polynomial invariant under u -> -u contains only even powers of u.
+  check: null
+extensions:
+  '3':
+  - Find A(k) explicitly from the two-integral expression in part (i) and check that A(1/2) = A(3/2).
+  '4':
+  - Compute the signed integral of f_k over [0, 2] and show that it vanishes only when k = 1.
+  '5':
+  - Explain why k = 1 is the only value at which the signed area over [0, 2] vanishes, and interpret this
+    in terms of the half-turn symmetry about (1, 0).
+spoken_vocab:
+- f sub k of x
+- x times x minus k times x minus two
+- shaded area
+- A of k
+- integral from zero to k
+- integral from k to two
+- one plus t
+- one minus t
+- two minus k
+- half-turn
+- reflect in the line x equals one
+- x-axis
+- polynomial in k
+- u equals k minus one
+- even polynomial
+source: mat/2013 MAT done again.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 7
+  parts: 5
+  minutes: 22
+  flags:
+  - needs_diagram
+  - garbled
+  tagline: Sign-split integrals, polynomial degree, symmetry of cubic about x=1
+  priority: 67
+  rank: 371
+  tier: C
+  category: mat
+  d10: 5.0
+  real: 6.0
+  by: haiku
+tags:
+- curve_sketching
+- integration
+- algebra_and_functions

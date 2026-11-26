@@ -1,0 +1,58 @@
+[
+ {
+  "q": "Show that $\\int_0^\\infty x^n e^{-x}\\,dx = n!$ for every integer $n \\geq 0$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p65"
+ },
+ {
+  "q": "For integers $n \\geq 0$, let $I_n = \\int_0^{\\pi/2} \\sin^n x\\,dx$. (i) Find $I_0$ and $I_1$. (ii) Show that $nI_n = (n-1)I_{n-2}$ for $n \\geq 2$. (iii) Show that $nI_nI_{n-1} = \\frac{\\pi}{2}$ for all $n \\geq 1$. (iv) Explain why $I_{n+1} \\leq I_n$ for all $n \\geq 0$. Hence show that for $n \\geq 1$, $\\sqrt{\\frac{\\pi}{2(n+1)}} \\leq I_n \\leq \\sqrt{\\frac{\\pi}{2n}}$. (v) Find $\\lim_{n\\to\\infty} \\sqrt{n}\\, I_n$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p65"
+ },
+ {
+  "q": "Let $e = \\sum_{k=0}^\\infty \\frac{1}{k!}$ and $s_n = \\sum_{k=0}^n \\frac{1}{k!}$. (i) Show that $0 < e - s_n < \\frac{1}{n \\cdot n!}$. (ii) Suppose $e = \\frac{p}{q}$ with $p, q$ positive integers. By considering $q!\\,(e - s_q)$, obtain a contradiction. (iii) Use (i) to find $e$ to three decimal places, and justify your accuracy.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p65"
+ },
+ {
+  "q": "(i) Show that $\\frac{1}{1+x} = \\sum_{k=0}^{n-1} (-x)^k + \\frac{(-x)^n}{1+x}$ for $x \\neq -1$. (ii) By integrating from $0$ to $1$, show that $\\ln 2 = \\sum_{k=1}^{n} \\frac{(-1)^{k+1}}{k} + (-1)^n R_n$, where $R_n = \\int_0^1 \\frac{x^n}{1+x}\\,dx$. (iii) Show that $\\frac{1}{2(n+1)} \\leq R_n \\leq \\frac{1}{n+1}$. Deduce that $1 - \\frac{1}{2} + \\frac{1}{3} - \\frac{1}{4} + \\cdots = \\ln 2$. (iv) Show that the rearranged series $1 - \\frac{1}{2} - \\frac{1}{4} + \\frac{1}{3} - \\frac{1}{6} - \\frac{1}{8} + \\frac{1}{5} - \\frac{1}{10} - \\frac{1}{12} + \\cdots$ (one odd term followed by two even terms) has sum $\\frac{1}{2}\\ln 2$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p65"
+ },
+ {
+  "q": "(i) Solve $\\frac{dy}{dx} = y^2$ with $y(0) = a > 0$. For which $x$ does the solution exist? (ii) Show that $\\frac{dy}{dx} = \\sqrt{y}$ with $y(0) = 0$ (and $y \\geq 0$) has the solutions $y = 0$ and $y = \\frac{x^2}{4}$ for $x \\geq 0$. Find infinitely many more. (iii) Euler's method for $\\frac{dy}{dx} = y$, $y(0) = 1$, uses steps of size $h = \\frac{1}{n}$: $y_{k+1} = y_k + h y_k$. Find the approximation to $y(1)$ and its limit as $n \\to \\infty$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p65"
+ },
+ {
+  "q": "You may assume the intermediate value theorem: a continuous function on $[a,b]$ takes every value between $f(a)$ and $f(b)$. (i) Show that every continuous $f : [0,1] \\to [0,1]$ has a fixed point. (ii) A monk climbs a mountain from 8am to 6pm one day, and descends by the same path from 8am to 6pm the next day. Show that there is a time of day at which he is at the same place on both days. (iii) Show that every polynomial of odd degree has a real root. (iv) A runner covers 10 km in exactly one hour, at varying speed. Show that there is some 5 km stretch that took exactly 30 minutes.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p65"
+ },
+ {
+  "q": "Let $H_n = 1 + \\frac{1}{2} + \\cdots + \\frac{1}{n}$. (i) Show that $\\int_1^\\infty x^{-p}\\,dx$ converges if and only if $p > 1$. (ii) By comparing sums with integrals, show that $\\sum \\frac{1}{n^p}$ converges if and only if $p > 1$. (iii) Show that $\\ln(n+1) \\leq H_n \\leq 1 + \\ln n$. (iv) Show that $\\gamma_n = H_n - \\ln n$ is decreasing and positive, and hence converges. (v) The limit is $\\gamma \\approx 0.577$. Estimate the number of terms needed for $H_n$ to exceed $10$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p65"
+ },
+ {
+  "q": "Sketch the graph of $y = \\frac{\\sin x}{x}$ for $x \\neq 0$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p65"
+ }
+]

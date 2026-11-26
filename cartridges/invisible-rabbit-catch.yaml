@@ -1,0 +1,112 @@
+id: invisible-rabbit-catch
+title: Catching the Invisible Rabbit
+topics:
+- number theory
+- countability
+- enumeration
+- strategy
+warmup: false
+answer_source: generated
+statement: 'Suppose there''s an invisible rabbit which is moving along a train track from an unknown initial
+  position, and it jumps by an unknown amount every second. Every second, before it jumps, you can pick
+  a point on the train track to try and catch the rabbit. Prove that you can catch it in a finite time.
+  (Formalisation used for this cartridge: track positions are integers; the rabbit starts at an unknown
+  integer x_0 and every second jumps by the same unknown integer d; you catch it at second t if your pick
+  at second t equals its position then. If each jump could be any integer chosen independently, the rabbit
+  could always dodge, so the fixed-jump reading is the one under which the question is provable.)'
+stages:
+- goal: 'Model the problem: write the rabbit''s position at second t (before its jump) as a formula in
+    x_0 and d, and state exactly when a pick at second t catches it.'
+  expected: Position at second t is x_0 + t*d for t = 0, 1, 2, ... You catch it at second t exactly when
+    your pick p_t equals x_0 + t*d.
+  solution: After t jumps of size d starting at x_0, the rabbit is at x_0 + t*d before its (t+1)-th jump.
+    A pick p_t at second t catches it iff p_t = x_0 + t*d. So each second you test one value against one
+    linear formula in the two unknowns (x_0, d).
+  common_errors:
+  - Forgetting that the position depends on t, so writing x_0 + d instead of x_0 + t*d.
+  - Starting the count at t = 1 and getting an off-by-one shift in the formula.
+  - Treating the jump as a single known quantity instead of an unknown integer.
+  hints:
+    rephrase: Write down where the rabbit is at second t as a formula in its start and its jump.
+    smaller_case: Suppose the rabbit starts at 0 and jumps by 1 each second. Where is it at second 3?
+    key_idea: Each second gives one equation in the two unknowns, so a catch is a single linear condition
+      that you can test.
+- goal: Show that one pick at a chosen second catches one specific candidate (start, jump) pair.
+  expected: If the candidate is (x_0, d) = (a, b), pick p_t = a + t*b at second t. This catches the rabbit
+    if its true pair is (a, b).
+  solution: 'If (x_0, d) = (a, b), the rabbit is at a + t*b at second t, so picking p_t = a + t*b at second
+    t catches it. Concrete check: for (a, b) = (3, -2) and t = 5, the pick is 3 + 5*(-2) = -7.'
+  common_errors:
+  - Picking a + b instead of a + t*b, i.e. ignoring the second t.
+  - Choosing the time t inconsistently with the pick value.
+  hints:
+    rephrase: Suppose you guess the rabbit starts at a and jumps by b. At second t, where would it be,
+      and what pick would catch it there?
+    smaller_case: Take a = 0, b = 1, t = 2. Where is the rabbit at second 2?
+    key_idea: Choose the pick to equal the rabbit's predicted position for the candidate pair at the time
+      you ask.
+  check: Integer(3) + 5*Integer(-2) - (-7)
+  check_ok: true
+- goal: Use this to catch every possible rabbit in finite time, despite there being infinitely many (start,
+    jump) pairs.
+  expected: Enumerate all pairs (a_k, b_k), k = 0, 1, 2, ..., so that every integer pair appears exactly
+    once (e.g. a zigzag over Z x Z). At second k pick p_k = a_k + k*b_k. Any rabbit with (x_0, d) = (a_m,
+    b_m) is caught at second m.
+  solution: Z x Z is countable, so such an enumeration exists. For a rabbit with (x_0, d) = (a_m, b_m),
+    its position at second m is a_m + m*b_m, which is exactly the pick p_m. So it is caught at second
+    m, which is finite. Each rabbit is caught at its own finite time, so the strategy works for all possible
+    rabbits.
+  common_errors:
+  - 'Treating positions as real numbers: uncountably many pairs cannot be covered by countably many picks,
+    so integrality is essential.'
+  - Giving a strategy that catches only some rabbits, e.g. only those starting near 0.
+  - Claiming a uniform bound on the catch time, which is not needed and is false in general.
+  hints:
+    rephrase: You can ask one question per second, but there are infinitely many possible (start, jump)
+      pairs. How can you make sure every pair is eventually asked about?
+    smaller_case: Suppose only pairs with both entries between -1 and 1 are possible. Nine pairs. How
+      would you order them so each gets its own second?
+    key_idea: The set of integer pairs is countable. List it and use one second per pair.
+extensions:
+  '3':
+  - If the jump is restricted to +1 or -1 each second with unknown sign, can you still catch the rabbit?
+  '4':
+  - Show that a rabbit on the real line with a fixed unknown real start and jump cannot be caught by any
+    countable list of picks.
+  '5':
+  - Extend the strategy to a rabbit whose jump is an unknown integer that may change each second but is
+    bounded by a known constant M.
+spoken_vocab:
+- invisible rabbit
+- train track
+- initial position
+- x naught
+- jumps by an unknown amount
+- pick a point
+- second t
+- x naught plus t times d
+- countable
+- enumerate
+- integer pairs
+- zigzag
+- finite time
+- pick equals position
+source: screenshots/Screenshot 2026-11-19 at 14.37.58.png
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 3
+  minutes: 20
+  flags: []
+  tagline: Dovetailing over countably many (start, jump) pairs; a classic countability argument.
+  priority: 91
+  rank: 122
+  tier: A
+  category: screenshots
+  d10: 5.5
+  real: 6.5
+  by: haiku
+tags:
+- proof
+- combinatorics

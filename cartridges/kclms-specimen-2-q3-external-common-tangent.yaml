@@ -1,0 +1,102 @@
+id: kclms-specimen-2-q3-external-common-tangent
+title: Length of an external common tangent to two circles
+topics:
+- geometry
+- circles
+- tangents
+- Pythagoras theorem
+- surds
+warmup: false
+answer_source: pdf
+statement: Two circles with centres $P$ and $Q$ have radii 5 and 3 respectively, and $PQ=10$. What is
+  the length of an external common tangent to the two circles (the segment between the two points of tangency)?
+  a) $\sqrt{92}$ b) $4\sqrt{6}$ c) 6 d) 8 e) $2\sqrt{6}$
+stages:
+- goal: Find the difference between the two radii as it appears in the construction.
+  expected: '2'
+  solution: Draw the radii PT and QS to the two tangent points. Both are perpendicular to the tangent,
+    so they are parallel. Draw a line through Q parallel to the tangent, meeting PT at X. Then PX = 5
+    - 3 = 2.
+  common_errors:
+  - Using the sum of the radii, 8, instead of the difference.
+  - Confusing the external tangent construction with the internal one.
+  hints:
+    rephrase: Both radii point the same way toward the tangent line. What length does the construction
+      leave along the larger radius?
+    smaller_case: 'Two circles of radii 4 and 1: what is the difference of their radii?'
+    key_idea: For an external tangent, the two radii are parallel and point the same way, so the construction
+      uses their difference.
+  check: Integer(5) - 3 - 2
+  check_ok: true
+- goal: Use Pythagoras in the right-angled triangle PXQ to find the square of the tangent length.
+  expected: '96'
+  solution: Triangle PXQ has a right angle at X, hypotenuse PQ = 10 and leg PX = 2. The tangent length
+    is QX, so QX^2 = 10^2 - 2^2 = 100 - 4 = 96.
+  common_errors:
+  - Using the sum of the radii 8 in the subtraction, giving 36.
+  - Taking QX as the hypotenuse.
+  - Forgetting to square the radius difference.
+  hints:
+    rephrase: Which triangle is right-angled, and which side is its hypotenuse?
+    smaller_case: In a right triangle with hypotenuse 5 and one leg 3, what is the other leg?
+    key_idea: The tangent segment is a leg of the right triangle whose hypotenuse is the distance between
+      centres.
+  check: Integer(10)**2 - 2**2 - 96
+  check_ok: true
+- goal: Take the square root and express it in simplest surd form, then pick the option.
+  expected: 4*sqrt(6)
+  solution: QX = sqrt(96) = sqrt(16 * 6) = 4 sqrt(6). This is option b.
+  common_errors:
+  - Choosing sqrt(92) by making an arithmetic slip, e.g. 100 - 8 = 92.
+  - Choosing 2 sqrt(6) by taking half of the answer.
+  - Failing to simplify sqrt(96) to 4 sqrt(6), which leaves the option unrecognised.
+  hints:
+    rephrase: Factor the number under the square root into a square times something else.
+    smaller_case: Write sqrt(48) in simplest surd form.
+    key_idea: Pull out the largest square factor from under the root.
+  check: sqrt(Integer(96)) - 4*sqrt(6)
+  check_ok: true
+extensions:
+  '3':
+  - What is the length of the internal common tangent when the radii are 5 and 3 and PQ = 10?
+  - What is the external tangent length if PQ = 8 with the same radii?
+  '4':
+  - When do two circles have no common external tangent?
+  - Derive the external tangent length formula using coordinates.
+  '5':
+  - Show that the external tangent length does not depend on the orientation of the configuration.
+  - Generalise to find a common tangent line to n circles.
+spoken_vocab:
+- circle P
+- circle Q
+- centre P
+- centre Q
+- radius five
+- radius three
+- distance P Q equals ten
+- external common tangent
+- tangent points
+- right-angled triangle
+- Pythagoras
+- square root of ninety-six
+- four root six
+- option b
+source: kclms/kclms-specimen-mcq-2.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 3
+  minutes: 6
+  flags:
+  - needs_diagram
+  tagline: Classic tangent construction; good for discussing internal versus external tangents.
+  priority: 53
+  rank: 504
+  tier: C
+  category: kclms
+  d10: 3.0
+  real: 3.0
+  by: haiku
+tags:
+- geometry

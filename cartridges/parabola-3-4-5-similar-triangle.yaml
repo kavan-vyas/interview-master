@@ -1,0 +1,108 @@
+id: parabola-3-4-5-similar-triangle
+title: Triangle similar to a 3-4-5 triangle with vertices on y = x^2 and B at the origin
+topics:
+- coordinate geometry
+- parabola
+- similar triangles
+- Pythagoras
+- right triangles
+- cube roots
+- slopes
+warmup: false
+answer_source: pdf
+statement: Again $A$, $B$, $C$ lie on $y = x^2$ with $B = (0,0)$. I'd like triangle $ABC$ to be similar
+  to a $3$-$4$-$5$ triangle. Where could I put $A$ and $C$? There may be several solutions. I only need
+  one.
+stages:
+- goal: Put the right angle at $B$. Use the perpendicularity of $\vec{BA}$ and $\vec{BC}$ to relate $a$
+    and $c$.
+  expected: $ac=-1$
+  solution: With $A=(a,a^2)$ and $C=(c,c^2)$ and $a<0<c$, the dot product of $\vec{BA}$ and $\vec{BC}$
+    is $ac(1+ac)$. A right angle at $B$ requires this to be zero, so $ac=-1$.
+  common_errors:
+  - Using $ac=1$
+  - Forgetting the factor structure of the dot product
+  hints:
+    rephrase: The right angle is at $B$, so the two legs leave $B$. Make those legs perpendicular.
+    smaller_case: With $c=2$, which $a$ makes the vectors from $B$ perpendicular?
+    key_idea: Perpendicular vectors have zero dot product. Factor it and ignore the non-zero factor.
+  check: a*c + 1
+  check_ok: false
+- goal: Set the ratio of the legs to $4:3$ and solve for $c$.
+  expected: $c^3 = \tfrac{4}{3}$, so $c = (4/3)^{1/3}$
+  solution: Substitute $a=-1/c$. Then $|BA|^2=\tfrac{1}{c^2}+\tfrac{1}{c^4}=\tfrac{c^2+1}{c^4}$ and $|BC|^2=c^2+c^4=c^2(c^2+1)$.
+    So $\dfrac{|BC|^2}{|BA|^2}=c^6$, giving $\dfrac{|BC|}{|AB|}=c^3$. Setting this to $\tfrac{4}{3}$ gives
+    $c^3=\tfrac{4}{3}$. The two legs then have ratio $4:3$, and the hypotenuse is $5/3$ times $|AB|$,
+    so the triangle is similar to $3$-$4$-$5$.
+  common_errors:
+  - Forgetting to square the ratio when comparing lengths, which gives $c^2$ instead of $c^3$
+  - Mixing up which leg is $|AB|$ and which is $|BC|$
+  - Concluding the triangle is similar to $3$-$4$-$5$ without checking that the right angle is at $B$
+  hints:
+    rephrase: Two legs of a right triangle must be in the ratio $4:3$. Express both leg lengths in terms
+      of $c$ after substituting $a=-1/c$.
+    smaller_case: Take $c=1$ and compute both leg lengths. Then compare how the ratio changes with $c$.
+    key_idea: Compare squared lengths first. Simplify the ratio, then take a square root.
+  check: c**3 - 4/3
+  check_ok: false
+- goal: Give $A$ and $C$ explicitly.
+  expected: $A=\left(-\left(\tfrac{3}{4}\right)^{1/3},\ \left(\tfrac{3}{4}\right)^{2/3}\right)$ and $C=\left(\left(\tfrac{4}{3}\right)^{1/3},\
+    \left(\tfrac{4}{3}\right)^{2/3}\right)$
+  solution: From $c^3=\tfrac{4}{3}$, $c=(4/3)^{1/3}$ and $c^2=(4/3)^{2/3}$, so $C=\left((4/3)^{1/3},(4/3)^{2/3}\right)$.
+    Then $a=-1/c=-(3/4)^{1/3}$ and $a^2=(3/4)^{2/3}$, so $A=\left(-(3/4)^{1/3},(3/4)^{2/3}\right)$.
+  common_errors:
+  - Writing $a=-c$ instead of $a=-1/c$
+  - Squaring the $y$-coordinate incorrectly, for example as $(3/4)^{1/3}$ instead of $(3/4)^{2/3}$
+  hints:
+    rephrase: You already have $c$ from the ratio step. Use $a=-1/c$ and write both points as $(x,x^2)$.
+    smaller_case: Compute the coordinates with $c=1$ first, and see which exponent appears in $y$.
+    key_idea: Each point is $(t,t^2)$, so the $y$-coordinate is the square of the $x$-coordinate.
+  check: c - (4/3)**(1/3)
+  check_ok: false
+extensions:
+  '3':
+  - Find a solution with the right angle at $B$ and $BC/AB = 3/4$ instead of $4/3$.
+  '4':
+  - Find a solution where the right angle is at $A$ instead of $B$.
+  '5':
+  - Explain why the cube root appears, and say what the ratio $|BC|/|AB|$ depends on.
+spoken_vocab:
+- A
+- B
+- C
+- x
+- y
+- y equals x squared
+- origin
+- three four five
+- similar
+- right angle
+- a c equals minus one
+- c cubed equals four thirds
+- cube root
+- three quarters
+- four thirds
+- hypotenuse
+- ratio
+- slope
+- perpendicular
+source: past-interviews/Actual Past Interview Questions/Oxford Maths Interview Question 2019 James Munroe.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Perpendicularity gives ac=-1, leaving a neat cube-root ratio condition.
+  priority: 71
+  rank: 336
+  tier: B
+  category: past-interviews
+  d10: 4.5
+  real: 5.0
+  by: haiku
+tags:
+- coordinate_geometry
+- geometry
+- algebra_and_functions

@@ -1,0 +1,30 @@
+[
+ {
+  "q": "Show that every unit fraction $\\frac{1}{N}$ can be written as the sum of two unit fractions. For prime $N$, show that this decomposition is unique. For prime $N>2$, show that $\\frac{2}{N}=\\frac{1}{a}+\\frac{1}{b}$ for integers $a\\neq b$, and that this decomposition is also unique.",
+  "kind": "maths",
+  "answer": "Take the first term as $\\frac{1}{N+1}$; then the other term is $\\frac{1}{N(N+1)}$, so $\\frac{1}{N}=\\frac{1}{N+1}+\\frac{1}{N(N+1)}$. For prime $N$, the factors of $N^2$ are $1, N, N^2$, so $\\{a,b\\}=\\{N+1, N^2+N\\}$ and the decomposition is unique. For $\\frac{2}{N}=\\frac{1}{a}+\\frac{1}{b}$, rewrite as $(2a-N)(2b-N)=N^2$, giving $2a-N=N^2$, $2b-N=1$ (or the reverse), so $\\frac{2}{N}=\\frac{1}{(N^2+N)/2}+\\frac{1}{(N+1)/2}$. This is unique, and the denominators are integers because all primes greater than 2 are odd.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#14"
+ },
+ {
+  "q": "Prove that if $(x-a)^2$ is a factor of the polynomial $p(x)$, then $p'(a)=0$. Prove a corresponding result if $(x-a)^4$ is a factor of $p(x)$. Given that the polynomial $x^6+4x^5-5x^4-40x^3-40x^2+kx+m$ has a factor of the form $(x-a)^4$, find $k$ and $m$.",
+  "kind": "maths",
+  "answer": "If $(x-a)^2$ is a factor, write $p(x)=(x-a)^2q(x)$; differentiating gives $p'(x)=2(x-a)q(x)+(x-a)^2q'(x)$, so $p'(a)=0$. If $(x-a)^4$ is a factor, then $p(a)=p'(a)=p''(a)=p'''(a)=0$ is necessary. For the given polynomial, $p'''(a)=0$ gives $a^3+2a^2-a-2=(a-1)(a+1)(a+2)=0$. Since $p''(1)\\neq 0$ and $p''(-1)\\neq 0$, $a=-2$. Then $p'(-2)=0$ gives $k=32$, and $p(-2)=0$ gives $m=48$.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#14"
+ },
+ {
+  "q": "Show that $\\sin\\theta=\\frac{2t}{1+t^2}$, $\\cos\\theta=\\frac{1-t^2}{1+t^2}$, and $\\frac{1+\\cos\\theta}{\\sin\\theta}=\\tan\\left(\\frac{\\pi}{2}-\\frac{\\theta}{2}\\right)$, where $t=\\tan\\frac{\\theta}{2}$. Let $I=\\int_0^{\\pi/2}\\frac{1}{1+\\cos\\alpha\\sin\\theta}\\,d\\theta$. Use the substitution $t=\\tan\\frac{\\theta}{2}$ to show that, for $0<\\alpha<\\frac{\\pi}{2}$, $I=\\int_0^1\\frac{2}{(t+\\cos\\alpha)^2+\\sin^2\\alpha}\\,dt$. By means of the further substitution $t+\\cos\\alpha=\\sin\\alpha\\tan u$, show that $I=\\frac{\\alpha}{\\sin\\alpha}$. Deduce a similar result for $\\int_0^{\\pi/2}\\frac{1}{1+\\sin\\alpha\\cos\\varphi}\\,d\\varphi$.",
+  "kind": "maths",
+  "answer": "Half-angle formulae give the identities, and $dt=\\frac{1}{2}(1+t^2)\\,d\\theta$ with limits $0$ to $1$ gives $I=\\int_0^1\\frac{2}{(t+\\cos\\alpha)^2+\\sin^2\\alpha}\\,dt$. With $t+\\cos\\alpha=\\sin\\alpha\\tan u$, the limits become $u=\\frac{\\pi}{2}-\\alpha$ to $u=\\frac{\\pi}{2}-\\frac{\\alpha}{2}$, and the integrand becomes $\\frac{2}{\\sin\\alpha}$, so $I=\\frac{2}{\\sin\\alpha}\\left[\\frac{\\pi}{2}-\\frac{\\alpha}{2}-\\left(\\frac{\\pi}{2}-\\alpha\\right)\\right]=\\frac{\\alpha}{\\sin\\alpha}$. For the deduction, the substitution $\\varphi=\\frac{\\pi}{2}-\\theta$ gives $\\int_0^{\\pi/2}\\frac{1}{1+\\cos\\alpha\\cos\\varphi}\\,d\\varphi=\\frac{\\pi/2-\\alpha}{\\cos\\alpha}$ (since $\\int_0^{\\pi/2}\\frac{1}{1+\\sin\\alpha\\cos\\varphi}\\,d\\varphi$ is obtained by replacing $\\alpha$ with $\\frac{\\pi}{2}-\\alpha$). Hence $\\int_0^{\\pi/2}\\frac{1}{1+\\sin\\alpha\\cos\\varphi}\\,d\\varphi=\\frac{\\pi/2-\\alpha}{\\cos\\alpha}$.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#14"
+ },
+ {
+  "q": "The line $\\ell$ has vector equation $\\mathbf{r}=\\lambda\\mathbf{s}$, where $\\mathbf{s}=(\\cos\\theta+\\sqrt{3})\\mathbf{i}+(\\sqrt{2}\\sin\\theta)\\mathbf{j}+(\\cos\\theta-\\sqrt{3})\\mathbf{k}$ and $\\lambda$ is a scalar parameter. Find an expression for the angle between $\\ell$ and the line $\\mathbf{r}=\\mu(a\\mathbf{i}+b\\mathbf{j}+c\\mathbf{k})$. Show that there is a line $m$ through the origin such that, whatever the value of $\\theta$, the acute angle between $\\ell$ and $m$ is $\\frac{\\pi}{6}$. A plane has equation $x-z=4\\sqrt{3}$. The line $\\ell$ meets this plane at $P$. Show that, as $\\theta$ varies, $P$ describes a circle, with its centre on $m$. Find the radius of this circle.",
+  "kind": "maths",
+  "answer": "The angle $\\alpha$ satisfies $\\cos\\alpha=\\frac{(a+c)\\cos\\theta+\\sqrt{2}\\,b\\sin\\theta+(a-c)\\sqrt{3}}{2\\sqrt{2}\\sqrt{a^2+b^2+c^2}}$. Choosing $a=-c$ and $b=0$ removes the $\\theta$-dependence, giving $\\cos\\alpha=\\pm\\frac{\\sqrt{3}}{2}$. Taking $a=1$ gives $\\cos\\alpha=\\frac{\\sqrt{3}}{2}$, so $\\alpha=\\frac{\\pi}{6}$, and the line is $m: \\mathbf{r}=\\mu(\\mathbf{i}-\\mathbf{k})$. The general point of $\\ell$ is $x=\\lambda(\\cos\\theta+\\sqrt{3})$, $y=\\lambda\\sqrt{2}\\sin\\theta$, $z=\\lambda(\\cos\\theta-\\sqrt{3})$. The source solution is truncated before the plane and circle parts are completed.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#14"
+ }
+]

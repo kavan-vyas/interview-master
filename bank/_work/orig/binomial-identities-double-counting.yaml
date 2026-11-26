@@ -1,0 +1,116 @@
+id: binomial-identities-double-counting
+title: Binomial identities by double counting
+topics:
+- binomial coefficients
+- double counting
+- bijections
+- parity
+- integration
+warmup: false
+answer_source: pdf
+statement: Prove each identity by counting something in two ways, where possible. (i) $\sum_{k=0}^{n}\binom{n}{k}=2^n$.
+  (ii) $\sum_{k=0}^{n} k\binom{n}{k}=n2^{n-1}$. (iii) $\sum_{k=0}^{n}(-1)^k\binom{n}{k}=0$ for $n\geq
+  1$. Deduce that a set of size $n\geq 1$ has equally many subsets of even and odd size. (iv) $\sum_{k=0}^{n}k^2\binom{n}{k}=n(n+1)2^{n-2}$.
+  (v) By integrating $(1+x)^n$, evaluate $\sum_{k=0}^{n}\frac{1}{k+1}\binom{n}{k}$.
+stages:
+- goal: Prove (i) and (ii) by double counting.
+  expected: (i) Both sides count subsets of an $n$-set. (ii) Both sides count pairs (committee, chair)
+    where the committee is a subset of an $n$-set.
+  solution: '(i) The left side sorts subsets by size $k$. The right side decides in or out for each of
+    the $n$ elements. (ii) Left: choose a committee of size $k$ ($\binom{n}{k}$ ways), then a chair among
+    its $k$ members, giving $k\binom{n}{k}$. Right: choose the chair ($n$ ways), then any subset of the
+    other $n-1$ people ($2^{n-1}$ ways). Both count the same pairs, so the identity holds.'
+  common_errors:
+  - Counting the chair without choosing the committee first, which double-counts or miscounts.
+  - Writing $2^n$ for the right side of (ii) instead of $n2^{n-1}$.
+  - Forgetting that the empty committee contributes 0 on the left.
+  hints:
+    rephrase: What does each term count? Try to find one set of objects that both sides count.
+    smaller_case: Take $n=2$ and list all subsets, then all committees with a chair.
+    key_idea: Choose the chair first on one side and the committee first on the other.
+  check: sum(k*sympy.binomial(2,k) for k in range(3)) - 2*2**1
+  check_ok: null
+- goal: Prove (iii) by an involution, then deduce that even and odd subsets are equally numerous.
+  expected: Toggling a fixed element pairs subsets of even size with subsets of odd size, so $\sum(-1)^k\binom{n}{k}=0$
+    for $n\geq 1$. Each parity class has $2^{n-1}$ subsets.
+  solution: 'Fix element 1 and toggle its membership: $S \mapsto S \triangle\{1\}$. This changes the size
+    of $S$ by one, so it is a bijection between even and odd subsets. Hence $E=O$ and $\sum(-1)^k\binom{n}{k}=E-O=0$
+    for $n\geq 1$. Since $E+O=2^n$, each class has $2^{n-1}$ subsets. (Alternatively, set $x=-1$ in $(1+x)^n=\sum\binom
+    nk x^k$ for $n\geq 1$.)'
+  common_errors:
+  - Forgetting that the toggle requires $n\geq 1$, since the empty set has no element to toggle.
+  - Claiming $E=O$ from the sum alone without the bijection or the value $2^n$.
+  - Mixing up which parity gets the minus sign.
+  hints:
+    rephrase: Can you pair up the subsets so that each pair has one even and one odd member?
+    smaller_case: Take $n=1$. What are the even and odd subsets?
+    key_idea: Pair subsets using a single fixed element.
+  check: sum((-1)**k*sympy.binomial(5,k) for k in range(6))
+  check_ok: null
+- goal: Prove (iv) by counting committees with a chair and a secretary (who may be the same person).
+  expected: 'Left: $k^2$ choices within a committee of size $k$, giving $\sum k^2\binom nk$. Right: $n(n-1)2^{n-2}$
+    for different roles plus $n2^{n-1}$ for the same person, totalling $n(n+1)2^{n-2}$.'
+  solution: 'Left: pick a committee of size $k$ ($\binom nk$ ways), then a chair and a secretary, possibly
+    the same person, which is $k^2$ ways. Right: pick the chair ($n$ ways). If the secretary is the same
+    person, the other $n-1$ people are free: $n2^{n-1}$. If the secretary is different ($n-1$ choices),
+    the other $n-2$ people are free: $n(n-1)2^{n-2}$. The total is $n2^{n-2}\big((n-1)+2\big)=n(n+1)2^{n-2}$.'
+  common_errors:
+  - Forgetting the case where chair and secretary coincide.
+  - Counting the remaining people incorrectly, for example $2^{n-1}$ in the different-roles case.
+  - Getting $k(k-1)$ on the left, which counts distinct roles only.
+  hints:
+    rephrase: Two distinct roles can be filled in a set number of ways. Can the same person hold both
+      roles?
+    smaller_case: Take $n=2$ and count the committee-with-chair-and-secretary configurations by hand.
+    key_idea: Split the right-hand count by whether the chair and secretary are the same person.
+  check: sum(k**2*sympy.binomial(3,k) for k in range(4)) - 3*4*2**1
+  check_ok: null
+- goal: Evaluate $\sum_{k}\frac{1}{k+1}\binom{n}{k}$ by integrating $(1+x)^n$ from 0 to 1.
+  expected: $\sum_{k=0}^{n}\frac{1}{k+1}\binom{n}{k}=\frac{2^{n+1}-1}{n+1}$.
+  solution: Since $(1+x)^n=\sum_k\binom nk x^k$, integrating from 0 to 1 gives $\sum_k\binom nk\int_0^1
+    x^k\,dx=\sum_k\frac{1}{k+1}\binom nk$. The left integral is $\int_0^1(1+x)^n\,dx=\frac{2^{n+1}-1}{n+1}$.
+  common_errors:
+  - Integrating over the wrong interval, such as $[-1,0]$.
+  - Dropping the factor $1/(n+1)$ from the antiderivative.
+  - Writing $2^{n}$ instead of $2^{n+1}$ after substituting the limits.
+  hints:
+    rephrase: Integrate both sides of the binomial expansion of $(1+x)^n$ over a suitable interval.
+    smaller_case: Take $n=1$. Compute $\int_0^1(1+x)\,dx$ and compare with the sum.
+    key_idea: Integrate term by term, using $\int_0^1 x^k\,dx=1/(k+1)$.
+  check: sum(sympy.binomial(2,k)/sympy.Integer(k+1) for k in range(3)) - sympy.Rational(7,3)
+  check_ok: null
+extensions:
+  '3':
+  - Using the same method, show $\sum_k k(k-1)\binom nk = n(n-1)2^{n-2}$.
+  '4':
+  - Prove $\sum_k \binom nk^2 = \binom{2n}{n}$ by double counting.
+  '5':
+  - Evaluate $\sum_k \frac{(-1)^k}{k+1}\binom nk$ by integration.
+spoken_vocab:
+- n choose k
+- sum from k equals zero to n
+- two to the power n
+- k times n choose k
+- n times two to the power n minus one
+- minus one to the power k
+- k squared
+- n times n plus one times two to the power n minus two
+- integral from zero to one
+- one over k plus one
+- double counting
+- involution
+- committee with a chair
+- secretary
+source: jaymin/Jaymin Interview (1).pdf#p33
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 5
+  minutes: 25
+  flags: []
+  tagline: Combinatorial proofs, an involution, and an integration twist; excellent discussion.
+  priority: 108
+  rank: 30
+  tier: S
+  category: jaymin

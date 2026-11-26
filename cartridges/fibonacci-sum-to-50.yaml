@@ -1,0 +1,119 @@
+id: fibonacci-sum-to-50
+title: Distinct Fibonacci numbers summing to 50
+topics:
+- number theory
+- Fibonacci sequence
+- Zeckendorf's theorem
+- greedy algorithm
+- proof by induction
+warmup: false
+answer_source: generated
+statement: Choose distinct numbers from the Fibonacci sequence whose sum is $50$. Can the same method
+  be used for any positive integer?
+stages:
+- goal: Find a set of distinct Fibonacci numbers (using the terms 1, 2, 3, 5, 8, 13, 21, 34, 55, ...)
+    that sums to 50.
+  expected: For example 34 + 13 + 3 = 50.
+  solution: The Fibonacci numbers up to 50 are 1, 2, 3, 5, 8, 13, 21, 34. Start with the largest, 34,
+    leaving 16. The largest term not exceeding 16 is 13, leaving 3, which is itself a Fibonacci number.
+    So 50 = 34 + 13 + 3. Another valid answer is 21 + 13 + 8 + 5 + 3 = 50.
+  common_errors:
+  - Using 1 twice (from the two starting 1s of the sequence) when the numbers must be distinct.
+  - Stopping with a remainder that is not Fibonacci, such as 16, instead of decomposing it further.
+  - Arithmetic slips, e.g. 34 + 13 = 46 instead of 47.
+  hints:
+    rephrase: Write out the Fibonacci numbers up to 50, then try to pick some of them that add to fifty.
+    smaller_case: Try a smaller target such as 10. Which Fibonacci numbers can you combine to make it?
+    key_idea: Work from the largest Fibonacci number that fits and subtract, then repeat with what is
+      left.
+  check: 3 + 13 + 34 - 50
+  check_ok: true
+- goal: Apply the same greedy method to 50 step by step and confirm the result.
+  expected: 'Greedy choice: 34, then 13, then 3, giving 34 + 13 + 3 = 50, with no repeated terms.'
+  solution: 'Largest Fibonacci number at most 50 is 34; remainder 16. Largest at most 16 is 13; remainder
+    3. 3 is Fibonacci, so the remainder is 0. Result: 50 = 34 + 13 + 3, all distinct.'
+  common_errors:
+  - Choosing 21 as the first term; 21 leaves 29, which then needs 21 again or a non-greedy split.
+  - Forgetting to check that the final remainder is itself a Fibonacci number.
+  hints:
+    rephrase: At each step, take the largest Fibonacci number that does not exceed what remains.
+    smaller_case: 'For 10: the largest Fibonacci number at most 10 is 8, leaving 2. What happens next?'
+    key_idea: Greedy means always taking the biggest available term; the question is whether the remainder
+      always gets smaller fast enough to finish.
+  check: 50 - 34 - 13 - 3
+  check_ok: true
+- goal: Justify whether the greedy method works for every positive integer n.
+  expected: 'Yes. If F_k <= n < F_(k+1), then n - F_k < F_(k+1) - F_k = F_(k-1), so the remainder is smaller
+    than F_(k-1). Hence the remainder needs only Fibonacci numbers below F_(k-1), so no consecutive terms
+    appear and the process terminates. This is Zeckendorf''s theorem: every positive integer is a sum
+    of distinct, non-consecutive Fibonacci numbers, and the representation is unique.'
+  solution: 'Let F_k be the largest Fibonacci number with F_k <= n, so n < F_(k+1). The remainder r =
+    n - F_k satisfies r < F_(k+1) - F_k = F_(k-1). Since r < F_(k-1), the greedy step on r picks a term
+    with index at most k-2, so F_k is never reused and no two consecutive indices occur. Each step strictly
+    reduces the remainder, so the algorithm stops with a representation of n. Example: 55 - 34 = 21 is
+    the identity used at the top level, which is why 50 needed only 34 before the remainder dropped below
+    21.'
+  common_errors:
+  - Claiming the method works only because it worked for 50, with no general argument.
+  - Forgetting that the remainder must be smaller than F_(k-1), not just smaller than n.
+  - Confusing 'distinct' with 'non-consecutive' and not checking both properties.
+  hints:
+    rephrase: Pick the largest Fibonacci number F_k not exceeding n. How big can the leftover n - F_k
+      be compared with the next Fibonacci number?
+    smaller_case: Take n = 50 with F_k = 34. Compare 50 - 34 with the Fibonacci number just below 34.
+    key_idea: Use the identity F_(k+1) - F_k = F_(k-1), then argue by induction (or by a decreasing sequence
+      of remainders).
+  check: (55 - 34) - 21
+  check_ok: true
+extensions:
+  '3':
+  - Represent 100 as a sum of distinct Fibonacci numbers using the greedy method.
+  - Find all representations of 50 as a sum of distinct Fibonacci numbers and say which one is the Zeckendorf
+    representation.
+  '4':
+  - Prove that the Zeckendorf representation of n is unique, using only the fact that no two consecutive
+    Fibonacci numbers are used.
+  - Show that the greedy algorithm uses at most about log base phi of n terms, where phi is the golden
+    ratio.
+  '5':
+  - Count the number of ways to write n as a sum of distinct Fibonacci numbers (not necessarily non-consecutive),
+    and find a recurrence for this count.
+  - Show that the Zeckendorf representation of F_k - 1 has a specific pattern, and use it to characterise
+    which integers have a Zeckendorf representation with exactly two terms.
+spoken_vocab:
+- Fibonacci
+- fifty
+- distinct
+- sum
+- positive integer
+- greedy algorithm
+- Zeckendorf
+- consecutive
+- remainder
+- F sub k
+- F sub k plus one
+- F sub k minus one
+- golden ratio
+- induction
+- log base phi
+- terminate
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 6 (anonymous).pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 5
+  parts: 3
+  minutes: 20
+  flags: []
+  tagline: Greedy Zeckendorf representation; natural path to general proof.
+  priority: 91
+  rank: 128
+  tier: A
+  category: past-interviews
+  d10: 5.8
+  real: 8.0
+  by: deepseek-v4.1-flash-free
+tags:
+- sequences_and_series
+- number_theory
+- proof

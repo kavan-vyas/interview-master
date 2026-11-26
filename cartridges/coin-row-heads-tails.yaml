@@ -1,0 +1,110 @@
+id: coin-row-heads-tails
+title: 'Coin row flips: heads to tails'
+topics:
+- combinatorics
+- invariants
+- parity
+- proof
+warmup: false
+answer_source: pdf
+statement: A row of coins is placed on a table, all showing heads. A move consists of turning over any
+  two coins that are next to each other. (a) Show that a row of 6 coins can be changed so that all show
+  tails. (b) Show that a row of 7 coins can never be changed so that all show tails.
+stages:
+- goal: 'Part (a): give a sequence of moves that turns all 6 coins to tails.'
+  expected: Turn over coins 1 and 2, then coins 3 and 4, then coins 5 and 6.
+  solution: Each move turns two adjacent heads to tails. The three disjoint pairs (1,2), (3,4), (5,6)
+    cover all six coins, so after three moves every coin shows tails.
+  common_errors:
+  - Using overlapping pairs that undo each other's changes
+  - Turning over a single coin, which is not a legal move
+  - Forgetting to cover coin 6
+  hints:
+    rephrase: Can you split the six coins into adjacent pairs with no coin used twice?
+    smaller_case: Show that a row of 2 coins can be turned all tails in one move.
+    key_idea: Disjoint adjacent pairs can be flipped independently, and each pair turns two heads to two
+      tails.
+  check: 6 - 2*3
+  check_ok: true
+- goal: 'Part (b): identify a quantity that every move preserves.'
+  expected: The parity of the number of heads is preserved. Starting from 7 heads, the count is always
+    odd.
+  solution: A move turns over two adjacent coins. Both heads to tails changes the number of heads by −2,
+    one of each gives 0, and both tails to heads gives +2. So the number of heads changes by an even amount,
+    and its parity (odd or even) never changes. Starting with 7 heads, the count is always odd.
+  common_errors:
+  - Checking a few cases and generalising without proof
+  - Claiming the number of heads is preserved rather than its parity
+  - Ignoring the case where both coins in a move are tails
+  hints:
+    rephrase: List what happens to the number of heads for each possible pair a move could turn over.
+    smaller_case: Take a row of 3 coins with 3 heads and try one move. Does the number of heads change
+      by an odd or an even amount?
+    key_idea: 'Find an invariant: a quantity that stays the same under every legal move.'
+  check: Mod(7,2) - 1
+  check_ok: true
+- goal: 'Part (b): conclude that all tails is impossible.'
+  expected: All tails means 0 heads, which is even. The count must stay odd, so it can never be reached.
+  solution: Since the parity of the number of heads never changes, and it starts odd (7), it stays odd
+    after any sequence of moves. All tails gives 0 heads, which is even, so this state can never be reached.
+  common_errors:
+  - Saying all tails is possible because some other pattern works
+  - Confusing zero heads with zero coins
+  - Concluding from the invariant without stating the contradiction
+  hints:
+    rephrase: What is the number of heads when every coin shows tails, and is that number odd or even?
+    smaller_case: For a row of 2 coins, compare the parity of heads at the start with the parity when
+      both are tails.
+    key_idea: Compare the invariant at the start with its value in the target state; a mismatch means
+      the target is unreachable.
+  check: Mod(7,2) - Mod(0,2) - 1
+  check_ok: true
+extensions:
+  '3':
+  - Can a row of 8 coins all showing heads be changed so that all show tails? Justify your answer.
+  '4':
+  - Coins are arranged in a circle of 7, and moves turn over any two adjacent coins, with the first and
+    last counting as adjacent. Can all become tails?
+  '5':
+  - Suppose a move may instead turn over any single coin or any two adjacent coins. For which row lengths
+    n can all coins be made tails from all heads?
+spoken_vocab:
+- coins
+- heads
+- tails
+- row
+- table
+- move
+- turn over
+- adjacent
+- next to
+- parity
+- odd
+- even
+- invariant
+- six coins
+- seven coins
+- modulo two
+- minus two
+- zero heads
+- pair
+- show that
+source: kclms/kclms-specimen-questions-4.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 3
+  parts: 2
+  minutes: 8
+  flags: []
+  tagline: Parity invariant argument; good for discussing which n work.
+  priority: 71
+  rank: 359
+  tier: C
+  category: kclms
+  d10: 3.0
+  real: 5.5
+  by: deepseek-v4.1-flash-free
+tags:
+- proof
+- combinatorics

@@ -1,0 +1,116 @@
+id: absolute-value-curves-limit-shape
+title: Sketching $|x|^p+|y|^p=1$ as the power grows
+topics:
+- graphing
+- absolute value
+- limits
+- powers
+warmup: false
+answer_source: generated
+statement: Draw $|x|^2 + |y|^2 = 1$. Draw $|x| + |y| = 1$. Draw $|x|^3 + |y|^3 = 1$. What would $|x|^{100}
+  + |y|^{100} = 1$ look like?
+stages:
+- goal: Sketch $|x|^2+|y|^2=1$ and identify its shape.
+  expected: A circle of radius 1 centred at the origin, meeting the axes at $(\pm1,0)$ and $(0,\pm1)$.
+  solution: Since $|x|^2 = x^2$ and $|y|^2 = y^2$, the equation is $x^2+y^2=1$, the unit circle.
+  common_errors:
+  - Drawing a circle with a different radius or centre
+  - Thinking the absolute values change the shape, when they don't for even powers
+  - Drawing a diamond instead
+  hints:
+    rephrase: What does $|x|^2$ equal compared with $x^2$?
+    smaller_case: 'Check which points satisfy the equation on the axes: where does $y=0$ meet the curve?'
+    key_idea: Even powers of absolute values remove the sign, so the equation reduces to a standard conic.
+  check: 2*(sqrt(2)/2)**2 - 1
+  check_ok: true
+- goal: Sketch $|x|+|y|=1$ and find its vertices.
+  expected: A square with its corners (vertices) at $(\pm1,0)$ and $(0,\pm1)$, with edges on the lines
+    $\pm x \pm y = 1$.
+  solution: In the first quadrant the equation is $x+y=1$, a line from $(1,0)$ to $(0,1)$. The other quadrants
+    give the reflected segments, forming a diamond with vertices $(\pm1,0)$ and $(0,\pm1)$.
+  common_errors:
+  - Drawing a circle of radius 1
+  - Placing the vertices at $(\pm1,\pm1)$, which is the square $|x|+|y|$ misread as $\max(|x|,|y|)$
+  - Forgetting the reflections into the other quadrants
+  hints:
+    rephrase: Split into quadrants, removing the absolute values in each. What is the equation in the
+      first quadrant?
+    smaller_case: Find the points where the curve crosses the line $y=x$.
+    key_idea: Piecewise linear shapes come from removing absolute values quadrant by quadrant.
+  check: Rational(1,2) + Rational(1,2) - 1
+  check_ok: true
+- goal: Sketch $|x|^3+|y|^3=1$ and locate where it crosses the diagonal $y=x$.
+  expected: The curve crosses $y=x$ at $(2^{-1/3},2^{-1/3})\approx(0.794,0.794)$. It lies between the
+    diamond and the square $|x|\le1, |y|\le1$, bulging towards the corners compared with the circle.
+  solution: On $y=x$ (with $x \ge 0$), $2x^3 = 1$, so $x = 2^{-1/3}$. Since $0.794 > \frac{1}{\sqrt{2}}
+    \approx 0.707$, this point lies outside the unit circle, so the curve is fuller than the circle and
+    fuller than the diamond at the diagonal.
+  common_errors:
+  - Thinking it is still the circle or diamond
+  - Putting the diagonal point at $(\frac{1}{2},\frac{1}{2})$, which is the diamond's point
+  - Failing to note the curve stays inside the square $[-1,1]^2$
+  hints:
+    rephrase: Set $x=y$ in the equation and solve for $x$.
+    smaller_case: Compare the diagonal points of the circle and the diamond. Where does the new curve
+      sit between them?
+    key_idea: Raising the power while keeping the intercepts fixed pushes the diagonal point outwards.
+  check: 2*(2**Rational(-1,3))**3 - 1
+  check_ok: true
+- goal: Describe the shape of $|x|^{100}+|y|^{100}=1$ and justify it.
+  expected: 'Almost the square with corners $(\pm1,\pm1)$: nearly vertical sides at $x=\pm1$ and nearly
+    horizontal sides at $y=\pm1$. The diagonal crossing is at $(2^{-1/100},2^{-1/100})\approx(0.993,0.993)$.'
+  solution: On the diagonal, $2x^{100}=1$, so $x=2^{-1/100}\approx0.993$, which tends to 1 as the power
+    grows. The intercepts stay at $(\pm1,0)$ and $(0,\pm1)$. As the power tends to infinity, $|x|^p$ is
+    negligible unless $|x|$ is at least very close to 1, so the curve tends to the boundary of the square
+    $\max(|x|,|y|)=1$.
+  common_errors:
+  - Predicting a circle or diamond again, without noticing the trend
+  - Thinking the diagonal point stays at $0.707$
+  - Thinking the sides meet the axes at other points than $\pm1$
+  hints:
+    rephrase: Track the diagonal crossing point as the power increases. What does it approach?
+    smaller_case: Look at the diagonal point for power 3 and compare with power 2 and power 1.
+    key_idea: Consider what $2^{-1/p}$ does as $p$ grows.
+  check: limit(2**(-1/p), p, oo) - 1
+  check_ok: true
+extensions:
+  '3':
+  - What is the shape of $|x|^p+|y|^p=1$ as $p$ tends to 0 from above?
+  '4':
+  - Sketch $|x|^{1/2}+|y|^{1/2}=1$ and compare its shape with the diamond.
+  '5':
+  - Find the area enclosed by $|x|^p+|y|^p=1$ as a function of $p$, and say what happens as $p\to\infty$.
+spoken_vocab:
+- modulus of x
+- modulus of y
+- absolute value
+- x squared
+- unit circle
+- diamond
+- square
+- cubed
+- hundredth power
+- diagonal
+- intercept
+- tends to infinity
+source: past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2009.doc
+verified: false
+rating:
+  quality: 9
+  difficulty: 5
+  parts: 4
+  minutes: 15
+  flags:
+  - needs_diagram
+  tagline: Power-p superellipses tend to a square; open-ended justification and extension.
+  priority: 94
+  rank: 63
+  tier: A
+  category: past-interviews
+  d10: 5.0
+  real: 8.5
+  by: deepseek-v4.1-flash-free
+tags:
+- curve_sketching
+- algebra_and_functions
+- limits_and_approximation

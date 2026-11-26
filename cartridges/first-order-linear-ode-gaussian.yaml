@@ -1,0 +1,79 @@
+id: first-order-linear-ode-gaussian
+title: Separable first-order ODE with initial condition
+topics:
+- ordinary differential equations
+- separation of variables
+- initial value problems
+warmup: true
+answer_source: pdf
+statement: Solve the ordinary differential equation $y'+6xy=0$, $y(0)=1$.
+stages:
+- goal: Find the general solution of $y'+6xy=0$.
+  expected: $y=Ce^{-3x^2}$
+  solution: 'Rewrite as $\frac{dy}{dx}=-6xy$. Separate: $\frac{dy}{y}=-6x\,dx$. Integrate: $\ln|y|=-3x^2+k$.
+    Exponentiate: $y=Ce^{-3x^2}$ where $C=\pm e^k$ (and $y=0$ is also a solution).'
+  common_errors:
+  - Dropping the constant of integration.
+  - Integrating $-6x$ incorrectly, e.g. as $-3x$.
+  - Forgetting to exponentiate, leaving $\ln y$ in the answer.
+  hints:
+    rephrase: Can you collect all the $y$ terms on one side and all the $x$ terms on the other?
+    smaller_case: Solve $y'=2y$ first. What function has derivative equal to itself times a constant?
+    key_idea: Separate variables, integrate both sides, then undo the logarithm with the exponential function.
+  check: 'simplify(diff(C*exp(-3*x**2),x) + 6*x*C*exp(-3*x**2))  # zero identically, confirms ODE is satisfied'
+  check_ok: true
+- goal: Use the initial condition $y(0)=1$ to find the particular solution.
+  expected: $y=e^{-3x^2}$
+  solution: 'Substitute $x=0$: $y(0)=C e^{0}=C=1$. So $y=e^{-3x^2}$. Check: $y''=-6xe^{-3x^2}$, so $y''+6xy=0$
+    and $y(0)=1$.'
+  common_errors:
+  - Setting the constant incorrectly, e.g. $C=0$.
+  - Writing $e^{-3x^2+1}$ instead of $e^{-3x^2}$.
+  - Substituting $x=1$ instead of $x=0$.
+  hints:
+    rephrase: The initial condition fixes the one free constant. At which value of $x$ is the condition
+      given?
+    smaller_case: If the general solution is $Ce^{x}$ and $y(0)=5$, what is $C$?
+    key_idea: Evaluate the general solution at the point in the initial condition and solve for the arbitrary
+      constant.
+  check: 'simplify(diff(exp(-3*x**2),x) + 6*x*exp(-3*x**2)) + (exp(-3*x**2).subs(x,0) - 1)  # zero iff
+    ODE and initial condition both hold'
+  check_ok: true
+extensions:
+  '3':
+  - 'Solve $y''+2xy=x$ with $y(0)=0$. Answer: $y=\frac{1}{2}(1-e^{-x^2})$.'
+  - Solve $y'=3y$ with $y(0)=2$.
+  '4':
+  - Solve $y'+ay=0$ with $y(0)=y_0$ for a constant $a>0$, and describe the long-run behaviour.
+  - Solve $y'=\frac{x}{y}$ with $y(0)=1$.
+  '5':
+  - Solve $y'=y^2$ with $y(0)=1$ and find the $x$-value where the solution blows up.
+  - Show that $y'+p(x)y=0$ always has solutions of the form $Ce^{-\int p(x)\,dx}$.
+spoken_vocab:
+- y prime plus six x y equals zero
+- y of zero equals one
+- separate variables
+- e to the power of minus three x squared
+- constant of integration
+- natural log
+- initial condition
+- particular solution
+source: zhou-quant/zhou-quant-guide.pdf#3
+verified: false
+rating:
+  quality: 2
+  difficulty: 3
+  parts: 2
+  minutes: 5
+  flags:
+  - trivial
+  tagline: Routine separable ODE with initial condition; minimal discussion.
+  priority: 17
+  rank: 692
+  tier: D
+  category: zhou-quant
+  d10: 3.0
+  real: 3.0
+  by: deepseek-v4.1-flash-free
+tags:
+- differential_equations

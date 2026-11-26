@@ -1,0 +1,94 @@
+id: knockout-matches-count
+title: Matches in a knockout competition
+topics:
+- counting
+- invariants
+- knockout tournaments
+warmup: true
+answer_source: generated
+statement: In a football competition where every round played is a knockout match (i.e. a draw leading
+  to a replay is not an option), how many matches will be played in the competition in total if there
+  are $n$ teams?
+stages:
+- goal: Count the total matches for a knockout competition with 4 teams.
+  expected: 3 matches.
+  solution: 'Round one has two matches, leaving two winners. The final is one more match. Total: 2 + 1
+    = 3.'
+  common_errors:
+  - Counting only the final
+  - Answering 4, the number of teams
+  - Forgetting the first-round matches
+  hints:
+    rephrase: Track which teams are still in the competition after each match.
+    smaller_case: Start with just 2 teams and count the matches.
+    key_idea: Each match removes exactly one team from contention.
+  check: M - 3
+  check_ok: false
+- goal: Give a formula for the total number of matches with n teams.
+  expected: n - 1 matches.
+  solution: Every match eliminates exactly one team. The champion is the only team never eliminated, so
+    n - 1 teams must be eliminated, which takes n - 1 matches. This holds whatever the bracket shape,
+    including when byes are needed.
+  common_errors:
+  - Answering n/2, which is the number of matches in the first round
+  - Answering n, forgetting the champion is not eliminated
+  - Answering log2(n), which counts rounds rather than matches
+  hints:
+    rephrase: How many teams must lose before there is one winner?
+    smaller_case: Compare the number of matches for 2, 3 and 4 teams.
+    key_idea: Count eliminations rather than counting matches directly.
+  check: M - (n-1)
+  check_ok: false
+- goal: Explain whether the answer changes when n is not a power of 2, so that some teams receive byes.
+  expected: No, the answer is still n - 1.
+  solution: Byes do not eliminate anyone, but every match still eliminates exactly one team. The argument
+    counting eliminations works for any bracket, so the total stays n - 1.
+  common_errors:
+  - Thinking byes add extra matches
+  - Thinking the number of rounds changes the total number of matches
+  hints:
+    rephrase: Does a bye ever remove a team, or does only a played match do that?
+    smaller_case: 'Try 3 teams: one team gets a bye in round one. How many matches are needed?'
+    key_idea: The invariant is the number of eliminations needed.
+  check: M - (n-1)
+  check_ok: false
+extensions:
+  '3':
+  - How many matches are played if a third-place play-off is added?
+  '4':
+  - How many matches are played in a round-robin where every pair of teams plays once?
+  '5':
+  - If every knockout tie is a best-of-three series, and every series goes to three games, how many games
+    are played in total?
+spoken_vocab:
+- knockout
+- matches
+- teams
+- n teams
+- n minus one
+- round
+- final
+- bye
+- replay
+- round robin
+- best of three
+- n choose two
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 2
+  parts: 3
+  minutes: 6
+  flags: []
+  tagline: One-loser-per-match invariant gives a neat, quick counting argument.
+  priority: 61
+  rank: 450
+  tier: C
+  category: tbo
+  d10: 2.0
+  real: 7.5
+  by: haiku
+tags:
+- combinatorics
+- proof

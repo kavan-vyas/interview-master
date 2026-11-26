@@ -1,0 +1,86 @@
+id: inradius-of-9-12-15-triangle
+title: Radius of the circle inside a 9-12-15 triangle
+topics:
+- geometry
+- right triangles
+- inscribed circle
+- area
+warmup: true
+answer_source: pdf
+statement: A right-angled triangle has sides 9 cm, 12 cm and 15 cm. A circle is drawn inside the triangle
+  so that it touches all three sides. What is the radius of the circle?
+stages:
+- goal: Confirm the triangle is right-angled and find its area.
+  expected: 54 cm^2
+  solution: 9^2 + 12^2 = 81 + 144 = 225 = 15^2, so the legs are 9 and 12 and the hypotenuse is 15. Area
+    = (1/2) x 9 x 12 = 54 cm^2.
+  common_errors:
+  - Using 9 + 12 or 9 x 12 as the area without halving
+  - Taking 15 as a leg when computing the area
+  - Computing the area using the perimeter instead
+  hints:
+    rephrase: Which two sides meet at the right angle, and what formula gives the area of a triangle from
+      them?
+    smaller_case: What is the area of a right triangle with legs 3 and 4?
+    key_idea: Check the Pythagorean relation to identify the hypotenuse, then use the two legs as base
+      and height.
+  check: Rational(1,2)*9*12 - 54
+  check_ok: true
+- goal: Relate the radius of the inscribed circle to the area and the semiperimeter, then find the radius.
+  expected: 3 cm
+  solution: Join the centre to the three vertices to split the triangle into three triangles, each with
+    height r. So Area = r x s, where s = (9+12+15)/2 = 18. Hence r = 54/18 = 3 cm. (Equivalently r = (9+12-15)/2
+    = 3.)
+  common_errors:
+  - Using r = Area / perimeter, giving 54/36
+  - Using half the hypotenuse, 7.5 cm, which is the circumradius
+  - Forgetting to halve the perimeter to get the semiperimeter
+  hints:
+    rephrase: The centre of a circle touching all three sides is the same distance from each side. How
+      can that distance be used to split up the area?
+    smaller_case: For a triangle with sides 3, 4, 5 and area 6, what is the semiperimeter?
+    key_idea: Join the centre to the three vertices. The triangle splits into three smaller triangles,
+      each with height r along one side.
+  check: Rational(54,18) - 3
+  check_ok: true
+extensions:
+  '3':
+  - Find the radius of the circle inscribed in an equilateral triangle of side 6 cm.
+  '4':
+  - Prove that the inradius of any right triangle with legs a and b and hypotenuse c is r = (a + b - c)/2.
+  '5':
+  - Find the radius of the excircle that touches the hypotenuse of the 9-12-15 triangle and the extensions
+    of the two legs.
+spoken_vocab:
+- right-angled triangle
+- sides
+- nine centimetres
+- twelve centimetres
+- fifteen centimetres
+- circle
+- touches all three sides
+- radius
+- area
+- semiperimeter
+- half
+- hypotenuse
+- inradius
+- centre
+source: kclms/kclms-specimen-mcq-4.pdf#0
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 2
+  minutes: 6
+  flags: []
+  tagline: Clean inradius formula warm-up with limited room for extension.
+  priority: 45
+  rank: 549
+  tier: C
+  category: kclms
+  d10: 2.5
+  real: 4.0
+  by: big-pickle
+tags:
+- geometry

@@ -1,0 +1,109 @@
+id: cycle-stream-average-speed
+title: 'Cycling to the village: finding a gentle-pace speed'
+topics:
+- speed, distance and time
+- unit conversion
+- multi-part journey
+- average speed
+warmup: false
+answer_source: pdf
+statement: A woman is going to cycle from her house to a village $42$ km away. She cycles at $18$ km per
+  hour for the first forty-five minutes, then at $30$ km per hour for the next $12$ km until she reaches
+  a stream. She then rests for fifteen minutes. After this, she continues to the village at a gentle pace
+  through the fields. Altogether, she has taken two and a half hours to travel the $42$ km. What is her
+  average speed when she is cycling at a gentle pace through the fields?
+stages:
+- goal: Find the distance still to be covered at the gentle pace.
+  expected: 16.5 km
+  solution: First 45 minutes at 18 km/h covers 18 × 0.75 = 13.5 km. Then 12 km to the stream. Total so
+    far is 13.5 + 12 = 25.5 km, so 42 − 25.5 = 16.5 km remain.
+  common_errors:
+  - Using 45 as hours instead of converting 45 minutes to 0.75 h
+  - Forgetting the 12 km stretch at 30 km/h when subtracting
+  - Adding the stream distance twice
+  hints:
+    rephrase: Split the journey into parts. How far has she covered by the time she reaches the stream,
+      and what is left?
+    smaller_case: Start with only the first forty-five minutes. What distance does that cover at 18 km/h?
+    key_idea: Distance equals speed times time, and the units of speed and time must match.
+  check: 42 - (Rational(45,60)*18 + 12) - Rational(33,2)
+  check_ok: true
+- goal: Find how long the gentle-pace section takes, in hours.
+  expected: 1.1 hours (66 minutes)
+  solution: Total time is 2.5 h = 150 min. Cycling times are 45 min, then 12/30 h = 24 min. Rest is 15
+    min. So the gentle section takes 150 − 45 − 24 − 15 = 66 min = 1.1 h.
+  common_errors:
+  - Forgetting to include the 15-minute rest in the time used
+  - Mixing minutes and hours in the subtraction
+  - Computing the 12 km time incorrectly
+  hints:
+    rephrase: The total time is given. Which parts of it are already used up by the other stages of the
+      journey?
+    smaller_case: Convert the total time into minutes first. Then work out how long the 12 km stretch
+      took.
+    key_idea: Time for the unknown part is the total minus the times of all the known parts, all in the
+      same units.
+  check: Rational(5,2) - Rational(84,60) - Rational(11,10)
+  check_ok: true
+- goal: Find her average speed through the fields.
+  expected: 15 km/h
+  solution: Speed = distance ÷ time = 16.5 ÷ 1.1 = 15 km/h.
+  common_errors:
+  - Dividing by 66 instead of 1.1 hours
+  - Using the total distance of 42 km rather than the 16.5 km remaining
+  - Giving the answer in minutes rather than km per hour
+  hints:
+    rephrase: You now know the distance and the time for the fields section. How do you turn these into
+      a speed?
+    smaller_case: Use a simpler stretch of 10 km covered in 2 hours and ask what the speed was.
+    key_idea: Average speed is distance divided by time for the same part of the journey.
+  check: Rational(33,2)/Rational(11,10) - 15
+  check_ok: true
+extensions:
+  '3':
+  - If she had rested for 25 minutes instead of 15, with everything else unchanged, what average speed
+    would she need through the fields?
+  - Suppose the first section were ridden at 18 km/h for one hour instead of forty-five minutes. How much
+    distance is left before the fields section?
+  '4':
+  - Find the average speed for the whole journey, including the rest stop.
+  - If the gentle pace were 12 km/h, how much longer would the fields section take?
+  '5':
+  - 'Generalise: for a journey of total distance D with fixed cycling and rest times, express the gentle-pace
+    speed as a formula in D and the other parameters.'
+spoken_vocab:
+- forty-two kilometres
+- eighteen kilometres per hour
+- thirty kilometres per hour
+- forty-five minutes
+- fifteen minutes
+- two and a half hours
+- sixteen point five kilometres
+- one point one hours
+- sixty-six minutes
+- fifteen kilometres per hour
+- distance
+- time
+- speed
+- divided by
+- multiplied by
+- minus
+- plus
+source: kclms/kclms-specimen-questions-2.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 3
+  parts: 3
+  minutes: 6
+  flags: []
+  tagline: Routine time-distance arithmetic with a clear, single numerical answer.
+  priority: 41
+  rank: 580
+  tier: D
+  category: kclms
+  d10: 1.5
+  real: 2.5
+  by: deepseek-v4.1-flash-free
+tags:
+- mechanics

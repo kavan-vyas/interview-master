@@ -1,0 +1,69 @@
+id: derivative-x-wrt-x-squared
+title: Differentiate x with respect to x squared
+topics:
+- calculus
+- differentiation
+- chain rule
+warmup: true
+answer_source: pdf
+statement: Differentiate $x$ with respect to $x^2$.
+stages:
+- goal: Find the derivative of x^2 with respect to x.
+  expected: 2x
+  solution: d(x^2)/dx = 2x by the power rule.
+  common_errors:
+  - Writing x instead of 2x
+  - Writing 2 instead of 2x
+  hints:
+    rephrase: What is the rate of change of x squared with respect to x?
+    smaller_case: Differentiate x^2 for x = 3 by thinking about the slope of the parabola there.
+    key_idea: Use the power rule on the exponent.
+  check: diff(x**2, x) - 2*x
+  check_ok: true
+- goal: Find dx/d(x^2) using the chain rule.
+  expected: \frac{1}{2x} (for x \neq 0)
+  solution: dx/d(x^2) = (dx/dx)/(d(x^2)/dx) = 1/(2x), valid for x \neq 0.
+  common_errors:
+  - Writing 2x instead of 1/(2x), i.e. forgetting to invert
+  - Writing x/2 by treating the reciprocal incorrectly
+  hints:
+    rephrase: Treat x^2 as the new variable and invert the rate of change you found in the last step.
+    smaller_case: Compare dx/dy with dy/dx when y = x^2 and check the reciprocal relationship.
+    key_idea: dx/dy is the reciprocal of dy/dx when both are taken with respect to the same underlying
+      variable.
+  check: diff(x, x)/diff(x**2, x) - 1/(2*x)
+  check_ok: true
+extensions:
+  '3':
+  - Differentiate x^3 with respect to x^2.
+  '4':
+  - Differentiate y with respect to x^n, for a positive integer n.
+  '5':
+  - Find the second derivative of x with respect to x^2, i.e. d^2x/d(x^2)^2.
+spoken_vocab:
+- d x by d x squared
+- x squared
+- one over two x
+- chain rule
+- derivative
+- reciprocal
+source: past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2012.docx
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 2
+  minutes: 3
+  flags:
+  - trivial
+  tagline: Chain-rule trick; mostly a quick recall check.
+  priority: 17
+  rank: 695
+  tier: D
+  category: past-interviews
+  d10: 3.2
+  real: 8.0
+  by: deepseek-v4.1-flash-free
+tags:
+- differentiation
+- algebra_and_functions

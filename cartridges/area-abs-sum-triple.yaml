@@ -1,0 +1,99 @@
+id: area-abs-sum-triple
+title: Area of a region defined by three absolute values
+topics:
+- modulus
+- inequalities
+- regions in the plane
+- area of polygons
+- symmetry
+warmup: false
+answer_source: generated
+statement: What is the area of the region in the Cartesian plane whose points $(x,y)$ satisfy $|x|+|y|+|x+y|<2$?
+stages:
+- goal: Simplify the inequality $|x|+|y|+|x+y|<2$ into a simpler form, using the fact that $|x|$, $|y|$
+    and $|x+y|$ are the absolute values of three numbers that sum to zero.
+  expected: $|x|+|y|+|x+y|=2\max(|x|,|y|,|x+y|)$, so the region is $\max(|x|,|y|,|x+y|)<1$, which is equivalent
+    to $|x|<1$, $|y|<1$ and $|x+y|<1$ all holding at once.
+  solution: Let $p=x$, $q=y$, $r=-(x+y)$. Then $p+q+r=0$. For three reals summing to zero, the one with
+    the largest modulus has the opposite sign to the other two, so its modulus equals the sum of the other
+    two moduli. Hence $|p|+|q|+|r|=2\max(|p|,|q|,|r|)$. Substituting, the inequality becomes $2\max(|x|,|y|,|x+y|)<2$,
+    so $\max(|x|,|y|,|x+y|)<1$.
+  common_errors:
+  - Splitting into cases and getting the wrong boundaries, for example by missing one of the six sectors.
+  - Assuming the region is a square $|x|<1$, $|y|<1$, and forgetting the constraint on $|x+y|$.
+  - Confusing $|x+y|$ with $|x-y|$ when reading the constraint.
+  hints:
+    rephrase: Let $a=x$, $b=y$ and $c=-(x+y)$. What is the sum $a+b+c$, and what can you say about the
+      largest of $|a|$, $|b|$, $|c|$?
+    smaller_case: Test the identity at one point, for example $x=\tfrac12$, $y=-\tfrac13$, and compare
+      the two sides.
+    key_idea: 'Three real numbers that sum to zero satisfy: sum of moduli equals twice the largest modulus.'
+  check: Abs(Rational(1,2))+Abs(Rational(-1,3))+Abs(Rational(1,2)-Rational(1,3))-2*Max(Abs(Rational(1,2)),Abs(Rational(-1,3)),Abs(Rational(1,2)-Rational(1,3)))
+  check_ok: true
+- goal: Find the area of the region $|x|<1$, $|y|<1$, $|x+y|<1$.
+  expected: The area is $3$. The region is a regular-looking hexagon with vertices $(1,0),(0,1),(-1,1),(-1,0),(0,-1),(1,-1)$.
+    It is the square $[-1,1]^2$ with two opposite corner triangles of area $\tfrac12$ each removed.
+  solution: The square $|x|<1$, $|y|<1$ has area $4$. The condition $|x+y|<1$ removes the corner where
+    $x+y\ge1$, which is the triangle with vertices $(1,0),(0,1),(1,1)$ of area $\tfrac12$. It also removes
+    the opposite corner $x+y\le-1$, which is the triangle $(-1,0),(0,-1),(-1,-1)$, also of area $\tfrac12$.
+    The area is $4-\tfrac12-\tfrac12=3$. The shoelace formula on the six vertices also gives $3$.
+  common_errors:
+  - Removing only one corner triangle, which gives an area of $3.5$.
+  - Using the wrong triangle size, for example area $1$ for each corner.
+  - Computing the area of the diamond $|x|+|y|<1$ (which is $2$) instead of the hexagon.
+  hints:
+    rephrase: Start with the square $|x|<1$, $|y|<1$. Which of its corners does $|x+y|<1$ cut off?
+    smaller_case: Find where the line $x+y=1$ meets the square. What shape is cut off in the top-right
+      corner?
+    key_idea: Compute the area of a square, then subtract the two corner triangles removed by the third
+      constraint.
+  check: Rational(4)-2*Rational(1,2)-3
+  check_ok: true
+extensions:
+  '3':
+  - How does the area change if the inequality is $|x|+|y|+|x+y|<k$ for a positive constant $k$?
+  - Describe the region $|x|+|y|+|x+y|\le 2$. Does its area change?
+  '4':
+  - Find the area of $|x|+|y|+|x-y|<2$ and explain why it matches the original.
+  - Explain why $|x|+|y|+|x+y|=2\max(|x|,|y|,|x+y|)$ holds for all real $x$ and $y$.
+  '5':
+  - Find the area of $|x|+|y|+|x+y|+|x-y|<2$.
+  - Find the area of the region $|x|+|y|+|x+y|+|2x-y|<4$.
+spoken_vocab:
+- modulus
+- mod x
+- mod y
+- mod x plus y
+- less than two
+- area
+- hexagon
+- square
+- corner triangle
+- vertices
+- shoelace formula
+- maximum of mod x, mod y and mod x plus y
+- sum of moduli
+- three numbers that sum to zero
+- symmetry
+- sectors
+- origin
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 2
+  minutes: 10
+  flags: []
+  tagline: Reveals hexagon via max-of-absolute-values identity; area is 3.
+  priority: 75
+  rank: 279
+  tier: B
+  category: tbo
+  d10: 5.0
+  real: 7.0
+  by: deepseek-v4.1-flash-free
+tags:
+- inequalities
+- coordinate_geometry
+- geometry

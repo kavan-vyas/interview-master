@@ -1,0 +1,58 @@
+[
+ {
+  "q": "Three circles of radius $1$ each touch the other two. Find the area of the region enclosed between them.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p81"
+ },
+ {
+  "q": "Two diagonals of adjacent faces of a cube meet at a vertex. What is the angle between them? What is the angle between two space diagonals of the cube?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p81"
+ },
+ {
+  "q": "Give a proof of Pythagoras' theorem. Can you give a second, different proof?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p81"
+ },
+ {
+  "q": "Triangle $ABC$ has circumcentre $O$, which we take as the origin, and circumradius $R$. Let $A,B,C$ have position vectors $\\mathbf{a},\\mathbf{b},\\mathbf{c}$, so $|\\mathbf{a}|=|\\mathbf{b}|=|\\mathbf{c}|=R$. (i) Let $H$ have position vector $\\mathbf{h}=\\mathbf{a}+\\mathbf{b}+\\mathbf{c}$. Show that $AH$ is perpendicular to $BC$, and deduce that $H$ is the orthocentre (where the altitudes meet). (ii) The centroid $G$ has position vector $\\frac{1}{3}(\\mathbf{a}+\\mathbf{b}+\\mathbf{c})$. Deduce that $O$, $G$ and $H$ are collinear, with $OG:GH=1:2$. (iii) Let $N$ have position vector $\\frac{1}{2}(\\mathbf{a}+\\mathbf{b}+\\mathbf{c})$. Show that the midpoint of $BC$ and the midpoint of $AH$ both lie at distance $\\frac{R}{2}$ from $N$, at opposite ends of a diameter. (iv) Deduce that the circle with centre $N$ and radius $\\frac{R}{2}$ passes through the midpoints of the sides, the midpoints of $AH$, $BH$, $CH$, and the feet of the three altitudes.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p81"
+ },
+ {
+  "q": "A triangle has sides $13$, $14$ and $15$. (i) Find its area without Heron's formula. (ii) Show that any triangle has area $rs$, where $r$ is the inradius and $s$ the semi-perimeter. Find $r$. (iii) Show that any triangle has area $\\frac{abc}{4R}$, where $R$ is the circumradius. Find $R$. (iv) Place $B$ at the origin and $C$ at $(14,0)$. Find the coordinates of the incentre $I$ and circumcentre $O$, and verify Euler's formula $OI^2=R(R-2r)$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p81"
+ },
+ {
+  "q": "A floor is ruled with parallel lines $1$ unit apart, and a needle of length $1$ is dropped at random. (i) Describe the position of the needle using the distance $d$ from its midpoint to the nearest line, and the acute angle $\\theta$ it makes with the lines. What are the ranges of $d$ and $\\theta$, and when does the needle cross a line? (ii) Assuming $d$ and $\\theta$ are independent and uniform, show that the probability of a crossing is $\\frac{2}{\\pi}$. (iii) How could this experiment be used to estimate $\\pi$? (iv) Now drop a rigid piece of wire of length $L$, bent into any shape. Explain why the expected number of crossings is $\\frac{2L}{\\pi}$, and check this with a circle of diameter $1$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p81"
+ },
+ {
+  "q": "Let $n \\geq 2$ and $\\omega = e^{2\\pi i/n}$. (i) Show that the roots of $z^n = 1$ are $1, \\omega, \\ldots, \\omega^{n-1}$, and that they form a regular $n$-gon. (ii) Show that the sum of these roots is $0$. (iii) By factorising $z^n - 1$, show that $\\prod_{k=1}^{n-1}(1-\\omega^k) = n$. (iv) Deduce that the product of the distances from one vertex of a regular $n$-gon inscribed in a unit circle to all the other vertices is $n$. (v) Show that $|1-\\omega^k| = 2\\sin\\frac{k\\pi}{n}$, and deduce that $\\prod_{k=1}^{n-1}\\sin\\frac{k\\pi}{n} = \\frac{n}{2^{n-1}}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p81"
+ },
+ {
+  "q": "At a party with $n \\geq 2$ people, some pairs of people shake hands (no one shakes hands with themself, and each pair shakes at most once). Prove that there are two people who shook the same number of hands.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p81"
+ }
+]

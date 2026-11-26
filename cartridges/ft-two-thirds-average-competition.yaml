@@ -1,0 +1,150 @@
+id: ft-two-thirds-average-competition
+title: FT two-thirds-of-the-average competition
+topics:
+- game theory
+- iterated dominance
+- inequalities
+- integers
+warmup: false
+answer_source: generated
+statement: A few years ago there was a competition in the Financial Times. Entrants had to submit a number
+  between $1$ and $100$. The person whose submitted number was closest to $\frac{2}{3}$ of the average
+  of all the submitted numbers won £5000. What number would you submit?
+stages:
+- goal: Show that submitting anything above 67 can never be the best choice, so the other numbers can
+    be eliminated.
+  expected: 67 beats every submission above 67, so no sensible entrant submits 68 to 100.
+  solution: Let $t=\frac{2}{3}\cdot\text{avg}$. Every submission is at most 100, so $t\le \frac{200}{3}\approx
+    66.67<67$. For any $x>67$, the midpoint $\frac{67+x}{2}\ge 67.5$ is above $t$, so $|67-t|<|x-t|$.
+    Hence 67 strictly beats any $x>67$ whatever the others submit.
+  common_errors:
+  - Arguing only against 100 and not against every number above 67.
+  - Forgetting that the target is $\frac{2}{3}$ of the average, not of the maximum.
+  - Treating ties as a reason to keep high numbers without checking all possible averages.
+  hints:
+    rephrase: Think about the largest the target could possibly be, and which of two numbers is always
+      nearer to it.
+    smaller_case: Compare a submission of 100 with a submission of 70. Is one of them always nearer to
+      the target?
+    key_idea: The target is at most two thirds of the largest possible average. Compare distances using
+      midpoints between two submissions.
+  check: floor(Rational(2,3)*100 + Rational(1,2)) - 67
+  check_ok: true
+- goal: Once everyone has stopped submitting above 67, find the new highest number that is never strictly
+    beaten.
+  expected: '45'
+  solution: If all submissions are at most 67, then $t\le\frac{2}{3}\cdot 67\approx 44.67$. For any $x\ge
+    46$, the midpoint $\frac{45+x}{2}\ge 45.5>t$, so 45 strictly beats $x$. So the rational upper bound
+    drops to 45.
+  common_errors:
+  - Using 67 as the average rather than the bound on the target.
+  - Rounding $44.67$ down to 44 and excluding 45, which is still a valid submission.
+  - Making the bound too strict and forgetting that 45 can still be optimal.
+  hints:
+    rephrase: If nobody goes above some ceiling M, what is the largest possible target, and what does
+      that say about numbers above a certain point?
+    smaller_case: Suppose the ceiling were 10. What is the largest target, and which submissions above
+      some value are beaten by a smaller one?
+    key_idea: Repeat the first argument with the new ceiling. A number is beaten by a smaller one once
+      the target is below their midpoint.
+  check: floor(Rational(2,3)*67 + Rational(1,2)) - 45
+  check_ok: true
+- goal: Iterate the elimination until nothing changes. Which single number survives?
+  expected: '1'
+  solution: Eliminating in turn gives the ceilings $100\to 67\to 45\to 30\to 20\to 13\to 9\to 6\to 4\to
+    3\to 2\to 1$, using $M\mapsto\lfloor \frac{2M}{3}+\frac12\rfloor$. From $M=2$ the target is at most
+    $\frac43$, and 1 strictly beats 2 since the midpoint $1.5>\frac43$. From $M=1$ nothing changes. So
+    the only number left after iterated elimination is 1, since 0 is not allowed.
+  common_errors:
+  - Stopping at 2 or 3 and not carrying the iteration down to 1.
+  - Using truncation without the $+\frac12$ and concluding 0, which is outside the range.
+  - Claiming the iteration is finished at 2 because $\frac23\cdot 2$ isn't an integer.
+  hints:
+    rephrase: Keep applying the same elimination to the new ceiling until the ceiling stops changing.
+    smaller_case: Start from a ceiling of 3. What is the largest possible target, and what is the new
+      ceiling?
+    key_idea: Check the lowest legal number. Ask whether the ceiling settles there and whether any smaller
+      submission is allowed.
+  check: floor(Rational(2,3)*1 + Rational(1,2)) - 1
+  check_ok: true
+- goal: 'Confirm that submitting 1 is stable: if everyone else submits 1, no deviation does better.'
+  expected: Yes. Submitting 1 is a Nash equilibrium, so you should submit 1.
+  solution: If the other 99 entrants all submit 1 and you submit $k\ge2$, the average is $\frac{99+k}{100}\le\frac{199}{100}$.
+    The target is $t\le\frac23\cdot\frac{199}{100}\approx1.327<1.5$, which is below the midpoint of 1
+    and $k$. So 1 is strictly closer than $k$ for every deviation, and nobody gains by moving away from
+    1.
+  common_errors:
+  - Checking only deviations to 2 and not to larger numbers.
+  - Failing to notice that the target can exceed 1 when the average is above 1.5.
+  - Assuming ties mean the answer is wrong, when a tie just splits the prize.
+  hints:
+    rephrase: Assume everyone else plays your answer. Could you ever gain by playing something different?
+    smaller_case: Take the single deviation to 2 when everyone else plays 1. Where is the target relative
+      to the midpoint of 1 and 2?
+    key_idea: Bound the target by the largest average possible when one person deviates, and compare it
+      with the midpoint of the two numbers.
+  check: Rational(2,3)*Rational(199,100) < Rational(3,2)
+  check_ok: true
+extensions:
+  '3':
+  - What changes if the target were one half of the average rather than two thirds?
+  - What if zero were allowed as a submission? Which number would then survive?
+  '4':
+  - If submissions were real numbers in $[0,100]$, why would iterated elimination lead to a limit rather
+    than a single number, and what would it be?
+  - How does the answer change if there are three winners sharing the prize rather than one?
+  '5':
+  - 'Real entrants usually submit numbers far above 1. Use level-$k$ reasoning: if others assume the average
+    is 50, what should you submit, and how does this change at level 2?'
+  - Design a version of the game whose unique equilibrium is 50 and explain why the elimination argument
+    gives that answer.
+spoken_vocab:
+- two thirds
+- two thirds of the average
+- average
+- submit
+- closest
+- one hundred
+- sixty seven
+- forty five
+- floor
+- ceiling
+- midpoint
+- strictly dominated
+- iterated elimination
+- fixed point
+- equilibrium
+- deviation
+- one
+- two
+- three
+- four
+- five
+- six
+- nine
+- thirteen
+- twenty
+- thirty
+- winner
+- prize
+- five thousand pounds
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 2 (anonymous).pdf#0
+verified: false
+rating:
+  quality: 9
+  difficulty: 6
+  parts: 4
+  minutes: 15
+  flags: []
+  tagline: Iterated elimination to a Nash equilibrium, with rich discussion of rationality and common
+    knowledge.
+  priority: 102
+  rank: 44
+  tier: A
+  category: past-interviews
+  d10: 4.5
+  real: 8.0
+  by: deepseek-v4.1-flash-free
+tags:
+- combinatorics
+- proof

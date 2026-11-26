@@ -1,0 +1,138 @@
+id: step-fermat-numbers-infinitely-many-primes
+title: Fermat numbers, their product identity, and infinitely many primes
+topics:
+- number theory
+- Fermat numbers
+- proof by induction
+- coprimality
+- infinitude of primes
+warmup: false
+answer_source: pdf
+statement: The $n$th Fermat number, $F_n$, is defined by $F_n=2^{2^n}+1$, $n=0,1,2,\ldots$. Calculate
+  $F_0$, $F_1$, $F_2$ and $F_3$. Show that, for $k=1$, $k=2$ and $k=3$, $F_0F_1\cdots F_{k-1}=F_k-2$ (*).
+  Prove, by induction or otherwise, that (*) holds for all $k\geqslant 1$. Deduce that no two Fermat numbers
+  have a common factor greater than 1. Hence show that there are infinitely many prime numbers.
+stages:
+- goal: Calculate $F_0$, $F_1$, $F_2$ and $F_3$.
+  expected: $F_0=3$, $F_1=5$, $F_2=17$, $F_3=257$
+  solution: $F_0=2^{1}+1=3$, $F_1=2^{2}+1=5$, $F_2=2^{4}+1=17$, $F_3=2^{8}+1=257$.
+  common_errors:
+  - Computing $2^{2^n}$ as $2^n\cdot 2^n$ or as $(2n)^2$
+  - Mixing up the exponent tower, for example writing $2^{n^2}$ instead of $2^{2^n}$
+  hints:
+    rephrase: Evaluate the inner power $2^n$ first, then raise 2 to that power.
+    smaller_case: Work out $F_0$ and $F_1$ by hand before attempting $F_3$.
+    key_idea: The exponent is itself a power of 2, so each Fermat number is one more than a power of two.
+  check: Abs(2**(2**0)+1-3)+Abs(2**(2**1)+1-5)+Abs(2**(2**2)+1-17)+Abs(2**(2**3)+1-257)
+  check_ok: true
+- goal: Verify identity (*) for $k=1$, $k=2$ and $k=3$.
+  expected: $F_0=F_1-2$, $F_0F_1=F_2-2$, $F_0F_1F_2=F_3-2$
+  solution: 'For $k=1$: $F_0=3=5-2=F_1-2$. For $k=2$: $F_0F_1=15=17-2=F_2-2$. For $k=3$: $F_0F_1F_2=255=257-2=F_3-2$.'
+  common_errors:
+  - Multiplying the wrong set of factors
+  - Arithmetic slip in $3\cdot 5\cdot 17$
+  hints:
+    rephrase: For each $k$, compute the product on the left and compare it with $F_k-2$.
+    smaller_case: Start with $k=1$ and check that it holds before moving to $k=2$.
+    key_idea: 'The identity is a finite check: multiply the first $k$ Fermat numbers and compare with
+      the next one minus 2.'
+  check: Abs(3-(5-2))+Abs(3*5-(17-2))+Abs(3*5*17-(257-2))
+  check_ok: true
+- goal: Prove (*) for all $k\geqslant 1$ by induction.
+  expected: Base case $k=1$ holds, and if $F_0\cdots F_{m-1}=F_m-2$ then $F_0\cdots F_m=(F_m-2)F_m=F_{m+1}-2$.
+  solution: 'Base case: $k=1$ holds since $F_0=3=F_1-2$. Inductive step: suppose $F_0\cdots F_{m-1}=F_m-2$.
+    Then $F_0\cdots F_m=(F_m-2)F_m$. Put $t=2^{2^m}$, so $F_m=t+1$ and $F_{m+1}=t^2+1$. Then $(F_m-2)F_m=(t-1)(t+1)=t^2-1=F_{m+1}-2$.
+    By induction, (*) holds for all $k\geqslant 1$.'
+  common_errors:
+  - Assuming the statement for $k=m+1$ rather than $k=m$
+  - Failing to notice that $2^{2^{m+1}}=(2^{2^m})^2$
+  - Not writing out the base case
+  hints:
+    rephrase: Write $F_0\cdots F_m$ using the inductive hypothesis, then look for a way to express $F_{m+1}$
+      in terms of $F_m$.
+    smaller_case: Check the step explicitly for $m=1$ with $F_0F_1=F_2-2$ before doing the general case.
+    key_idea: Substitute $t=2^{2^m}$ to see that $F_{m+1}$ is $t^2+1$, a difference of squares argument
+      then closes the induction.
+  check: expand((t+1-2)*(t+1)-(t**2+1-2))
+  check_ok: true
+- goal: Show that no two Fermat numbers have a common factor greater than 1.
+  expected: For $l\neq m$, $\gcd(F_l,F_m)=1$.
+  solution: Let $l<m$ and let $p$ be a prime dividing both $F_l$ and $F_m$. Since $F_l$ is one of the
+    factors of $F_0\cdots F_{m-1}=F_m-2$, we have $p\mid F_m-2$. Also $p\mid F_m$, so $p\mid 2$, so $p=2$.
+    But every Fermat number is odd, since $2^{2^n}$ is even for $n\geqslant 0$, so $p=2$ is impossible.
+    Hence no prime divides two distinct Fermat numbers, so any common factor greater than 1 would have
+    a prime factor shared by both, which is impossible.
+  common_errors:
+  - Forgetting that any common divisor greater than 1 has a prime factor
+  - Concluding $p\mid 2$ and stopping without using that Fermat numbers are odd
+  - Confusing the identity with the wrong equation, for example $F_0\cdots F_m=F_{m+1}-2$ in place of
+    the one for $m-1$
+  hints:
+    rephrase: Suppose a prime divides two Fermat numbers. Use the identity from the previous part to see
+      what it must also divide.
+    smaller_case: Take $F_0=3$ and $F_2=17$ and see what a shared prime would have to satisfy.
+    key_idea: A product identity places one Fermat number inside the product of the earlier ones, so a
+      shared prime divides a small quantity, which forces it to be 2.
+  check: gcd(2**(2**3)+1,3*5*17)-1
+  check_ok: true
+- goal: Deduce that there are infinitely many primes.
+  expected: Each $F_n$ has a prime factor $p_n$, and these are pairwise distinct, so there are infinitely
+    many primes.
+  solution: Each $F_n\geqslant 3$ has at least one prime factor $p_n$. If $p_n=p_m$ for $n\neq m$, then
+    $p_n$ would be a common factor of $F_n$ and $F_m$ greater than 1, which contradicts the previous part.
+    So the primes $p_0,p_1,p_2,\ldots$ are pairwise distinct. Since there are infinitely many Fermat numbers,
+    there are infinitely many primes.
+  common_errors:
+  - Claiming that the primes are distinct without invoking the coprimality result
+  - Stopping once two distinct Fermat numbers are shown to have distinct prime factors, without considering
+    the infinite family
+  - Assuming each $F_n$ is prime
+  hints:
+    rephrase: Each Fermat number has a prime factor. Ask whether two different Fermat numbers can share
+      one.
+    smaller_case: Pick a prime factor of $F_0$, $F_1$ and $F_2$ and check that they differ.
+    key_idea: Use the fact that distinct Fermat numbers share no prime factor to turn an infinite family
+      of Fermat numbers into an infinite family of distinct primes.
+  check: null
+extensions:
+  '3':
+  - Show that $F_n$ ends in the digit 7 for every $n\geqslant 2$.
+  '4':
+  - Show that $641$ divides $F_5$ without computing $F_5$ in full, using $641=5\cdot 2^7+1$.
+  '5':
+  - Use the product identity (*) to show that the sum of the reciprocals of the primes diverges, or explain
+    why this fails to follow directly from the argument given.
+spoken_vocab:
+- Fermat number
+- F sub n
+- two to the power two to the power n plus one
+- F zero
+- F one
+- F two
+- F three
+- induction
+- common factor
+- greatest common divisor
+- prime number
+- infinitely many primes
+- product of F zero to F k minus one
+- F sub k minus two
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#9
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 5
+  minutes: 15
+  flags: []
+  tagline: Fermat product identity gives coprimality, then infinitely many primes.
+  priority: 83
+  rank: 171
+  tier: B
+  category: siklos
+  d10: 4.0
+  real: 6.0
+  by: haiku
+tags:
+- number_theory
+- proof

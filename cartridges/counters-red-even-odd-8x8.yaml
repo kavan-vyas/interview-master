@@ -1,0 +1,83 @@
+id: counters-red-even-odd-8x8
+title: Even versus odd red counters on an 8×8 board
+topics:
+- counting
+- signed sums
+- generating functions
+- parity
+warmup: false
+answer_source: generated
+statement: I have a large supply of counters which I place in each of the $1\times1$ squares of an $8\times8$
+  chessboard (one counter on each square). Each counter is red, white or blue. A particular pattern of
+  coloured counters is called an arrangement. Determine whether there are more arrangements which contain
+  an even number of red counters or more arrangements which contain an odd number of red counters.
+stages:
+- goal: Compute the signed count $\sum (-1)^{\text{number of red counters}}$ over all arrangements.
+  expected: $1$
+  solution: 'Each square has three colour choices. Red gives a factor of $-1$, while white and blue each
+    give $+1$. So each square contributes a factor summing to $1+1-1=1$. The signed total over the whole
+    board is the product over the 64 squares: $1^{64}=1$. Equivalently, it is $(2-1)^{64}$.'
+  common_errors:
+  - Claiming the signed sum is 0 by symmetry
+  - Weighting red, white and blue equally and getting $3^{64}$
+  hints:
+    rephrase: Give each arrangement a sign of plus one or minus one depending on how many red counters
+      it contains, then add up the signs.
+    smaller_case: Try a $1\times1$ board and then a $1\times2$ board. List the arrangements with their
+      signs.
+    key_idea: The total over all squares factorises into a product with one factor per square.
+  check: 1 - (2-1)**64
+  check_ok: true
+- goal: Use the signed count to decide which parity is more common and by how much.
+  expected: There are more arrangements with an even number of red counters, by exactly one. The even
+    count is $(3^{64}+1)/2$ and the odd count is $(3^{64}-1)/2$.
+  solution: Let $E$ and $O$ be the numbers of arrangements with an even and an odd number of reds. Then
+    $E+O=3^{64}$, since every arrangement is counted once, and $E-O=1$ from the signed count. Solving
+    gives $E=(3^{64}+1)/2$ and $O=(3^{64}-1)/2$. So $E>O$, by exactly 1.
+  common_errors:
+  - Concluding the counts are equal because the board is symmetric
+  - Forgetting that $E+O$ is the total $3^{64}$
+  hints:
+    rephrase: You now know the difference between the two counts. What is their sum?
+    smaller_case: For a $1\times2$ board, count the even and odd red arrangements directly and compare
+      them.
+    key_idea: Solve the two linear equations given by the total and the signed total.
+  check: Rational(3**64+1,2) - Rational(3**64-1,2) - 1
+  check_ok: true
+extensions:
+  '3':
+  - Repeat the signed count with white counters in place of red. Which parity wins?
+  '4':
+  - Show that on any $m\times n$ board, the even-red arrangements exceed the odd-red ones by exactly one.
+  '5':
+  - What is the difference between the even and odd counts if an empty square is allowed as a fourth option?
+spoken_vocab:
+- eight by eight chessboard
+- three to the power sixty four
+- red white blue
+- even number of red counters
+- odd number of red counters
+- minus one
+- plus one over two
+- signed sum
+- arrangement
+- one by one square
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 5
+  parts: 2
+  minutes: 8
+  flags: []
+  tagline: Signed-count trick gives a neat answer, but the problem is short and single-idea.
+  priority: 55
+  rank: 485
+  tier: C
+  category: tbo
+  d10: 5.0
+  real: 5.0
+  by: deepseek-v4.1-flash-free
+tags:
+- combinatorics
+- proof

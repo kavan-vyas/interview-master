@@ -1,0 +1,86 @@
+[
+ {
+  "q": "Let $F_0 = 0$, $F_1 = 1$ and $F_{n+2} = F_{n+1} + F_n$. Let $\\varphi = \\frac{1+\\sqrt{5}}{2}$ and $\\psi = \\frac{1-\\sqrt{5}}{2}$ be the roots of $x^2 = x + 1$. (i) Show that $u_n = A\\varphi^n + B\\psi^n$ satisfies the same recurrence for any constants $A, B$. Deduce that $F_n = \\frac{\\varphi^n - \\psi^n}{\\sqrt{5}}$. (ii) Show that $F_n$ is the integer nearest to $\\varphi^n/\\sqrt{5}$. (iii) Show that $F_{n+1}/F_n \\to \\varphi$. (iv) Prove Cassini's identity $F_{n+1}F_{n-1} - F_n^2 = (-1)^n$ for $n \\geq 1$. (v) An $8 \\times 8$ square is cut into four pieces which appear to rearrange into a $5 \\times 13$ rectangle, of area 65. Use (iv) to explain what is going on.",
+  "kind": "maths",
+  "answer": "(i) $\\varphi^{n+2} = \\varphi^{n+1} + \\varphi^n$, and likewise for $\\psi$, so $A\\varphi^n + B\\psi^n$ satisfies the linear recurrence. Matching $F_0 = 0$ and $F_1 = 1$ gives $A = -B$ and $A(\\varphi - \\psi) = 1$, so $A = 1/\\sqrt{5}$ and $F_n = (\\varphi^n - \\psi^n)/\\sqrt{5}$. (ii) $|F_n - \\varphi^n/\\sqrt{5}| = |\\psi|^n/\\sqrt{5} \\leq 1/\\sqrt{5} < 1/2$, since $|\\psi| \\approx 0.618 < 1$. (iii) $\\frac{F_{n+1}}{F_n} = \\varphi \\cdot \\frac{1 - (\\psi/\\varphi)^{n+1}}{1 - (\\psi/\\varphi)^n} \\to \\varphi$, since $|\\psi/\\varphi| < 1$. (iv) Let $D_n = F_{n+1}F_{n-1} - F_n^2$. Then $D_{n+1} = -D_n$, and $D_1 = F_2F_0 - F_1^2 = -1$, so $D_n = (-1)^n$. (v) With $n = 6$: $F_7F_5 - F_6^2 = 13 \\times 5 - 8^2 = 1$. The pieces do not really fit: along the diagonal of the rectangle there is a thin parallelogram-shaped gap of area exactly 1, too slim to notice. The same trick with consecutive Fibonacci numbers always gains or loses one unit of area.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p25"
+ },
+ {
+  "q": "Define $a_1 = 1$ and $a_{n+1} = \\frac{1}{2}\\left(a_n + \\frac{2}{a_n}\\right)$. (i) Show that $a_n \\geq \\sqrt{2}$ for $n \\geq 2$. (ii) Show that $(a_n)$ is decreasing from $n = 2$ onwards. Deduce that it converges, and find its limit. (iii) Show that $a_{n+1} - \\sqrt{2} = \\frac{(a_n - \\sqrt{2})^2}{2a_n}$. (iv) Compute $a_2, a_3, a_4$ as fractions. Roughly how many decimal places of $\\sqrt{2}$ does $a_5$ give? (v) Explain the construction geometrically, using tangent lines to $y = x^2 - 2$.",
+  "kind": "maths",
+  "answer": "(i) By AM-GM, $a_{n+1} \\geq \\sqrt{a_n \\cdot 2/a_n} = \\sqrt{2}$. (ii) $a_{n+1} - a_n = \\frac{2 - a_n^2}{2a_n} \\leq 0$ when $a_n \\geq \\sqrt{2}$. The sequence is decreasing and bounded below, so it converges to $L \\geq \\sqrt{2}$; solving $L = \\frac{1}{2}(L + 2/L)$ gives $L = \\sqrt{2}$. (iii) $a_{n+1} - \\sqrt{2} = \\frac{a_n^2 + 2 - 2\\sqrt{2}a_n}{2a_n} = \\frac{(a_n - \\sqrt{2})^2}{2a_n}$. (iv) $a_2 = 3/2$, $a_3 = 17/12$, $a_4 = 577/408$. The errors are roughly $0.086$, $0.0025$ and $2.1 \\times 10^{-6}$. By (iii), the error in $a_5$ is about $1.6 \\times 10^{-12}$, so about 11 correct decimal places. The number of correct digits roughly doubles each step (quadratic convergence). (v) The tangent to $y = x^2 - 2$ at $x = a$ meets the x-axis at $x = \\frac{1}{2}(a + 2/a)$. Each step replaces the curve by its tangent line and solves that instead. This is the Newton-Raphson method.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p25"
+ },
+ {
+  "q": "(i) By summing $(k+1)^2 - k^2$ from $k = 1$ to $n$, find $\\sum_{k=1}^n k$. (ii) By summing $(k+1)^3 - k^3$, show that $\\sum_{k=1}^n k^2 = \\frac{1}{6}n(n+1)(2n+1)$. (iii) Prove that $\\sum_{k=1}^n k^3 = \\left(\\sum_{k=1}^n k\\right)^2$. (iv) Find $\\sum_{k=1}^n k(k+1)$ in two ways: using (i) and (ii), and by telescoping $k(k+1)(k+2) - (k-1)k(k+1)$.",
+  "kind": "maths",
+  "answer": "(i) $(k+1)^2 - k^2 = 2k+1$ telescopes to $\\sum k = \\frac{1}{2}n(n+1)$. (ii) $(k+1)^3 - k^3 = 3k^2 + 3k + 1$ telescopes; substituting (i) gives $\\sum k^2 = \\frac{1}{6}n(n+1)(2n+1)$. (iii) By induction: if $\\sum_{k\\leq n} k^3 = \\frac{1}{4}n^2(n+1)^2$, adding $(n+1)^3$ gives $\\frac{1}{4}(n+1)^2(n+2)^2$. (iv) Via (i) and (ii): $\\frac{1}{3}n(n+1)(n+2)$. Via telescoping: $3\\sum k(k+1) = n(n+1)(n+2)$. The answers agree.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p25"
+ },
+ {
+  "q": "In how many ways can a $2 \\times 10$ rectangle be tiled with $1 \\times 2$ dominoes?",
+  "kind": "maths",
+  "answer": "Let $a_n$ be the number of tilings of a $2 \\times n$ board. Looking at the top-left square: a vertical domino leaves $a_{n-1}$ ways; a horizontal domino forces a second horizontal domino below it, leaving $a_{n-2}$ ways. So $a_n = a_{n-1} + a_{n-2}$ with $a_1 = 1$, $a_2 = 2$, giving $a_{10} = 89$ (Fibonacci numbers).",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p25"
+ },
+ {
+  "q": "A convex $n$-gon has all its diagonals drawn, and no three diagonals meet at a single interior point. How many diagonals are there, and how many crossing points inside the polygon?",
+  "kind": "maths",
+  "answer": "Each vertex is joined to $n-3$ non-adjacent vertices, giving $\\frac{1}{2}n(n-3)$ diagonals. Each interior crossing is determined by four vertices (the two diagonals have four distinct endpoints, and any four vertices form a quadrilateral with exactly one crossing), so there are $\\binom{n}{4}$ crossing points.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p25"
+ },
+ {
+  "q": "How many solutions does $a + b + c + d = 10$ have in non-negative integers? In positive integers?",
+  "kind": "maths",
+  "answer": "Non-negative: arrange 10 stars and 3 bars, giving $\\binom{13}{3} = 286$. Positive: substitute $a' = a - 1$ etc. to get $a' + b' + c' + d' = 6$ in non-negative integers, giving $\\binom{9}{3} = 84$.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p25"
+ },
+ {
+  "q": "How many five-digit numbers have digits that strictly increase from left to right? How many have digits that never decrease?",
+  "kind": "maths",
+  "answer": "Strictly increasing: 0 cannot appear, and the number is determined by its set of five digits from $\\{1,\\ldots,9\\}$, giving $\\binom{9}{5} = 126$. Non-decreasing: a multiset of five digits from $\\{1,\\ldots,9\\}$, counted by stars and bars as $\\binom{13}{5} = 1287$.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p25"
+ },
+ {
+  "q": "Five points lie inside or on a square of side 1. Prove that some two of them are at distance at most $\\frac{\\sqrt{2}}{2}$.",
+  "kind": "maths",
+  "answer": "Divide the square into four squares of side $\\frac{1}{2}$. By pigeonhole, two of the five points lie in the same small square. The greatest distance between two points of a square of side $\\frac{1}{2}$ is its diagonal, $\\frac{\\sqrt{2}}{2}$.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p25"
+ },
+ {
+  "q": "Among any six people, show that there are three who all know each other, or three who are all strangers to each other.",
+  "kind": "maths",
+  "answer": "Pick a person $A$. Of the other five, at least three are friends of $A$ or strangers to $A$; by symmetry say $B, C, D$ are friends of $A$. If any two of $B, C, D$ are friends, those two with $A$ form a mutual-friend trio. Otherwise $B, C, D$ are mutual strangers.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p25"
+ },
+ {
+  "q": "How many rectangles (of any size) are there on an $8 \\times 8$ chessboard? How many squares?",
+  "kind": "maths",
+  "answer": "A rectangle is determined by choosing 2 of the 9 horizontal lines and 2 of the 9 vertical lines: $\\binom{9}{2}^2 = 36^2 = 1296$. A $k \\times k$ square can be placed in $(9-k)^2$ positions, so the number of squares is $\\sum_{k=1}^{8} k^2 = 204$.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p25"
+ },
+ {
+  "q": "A path goes from $(0,0)$ to $(n,n)$ in unit steps, each step either $R$ (right, $(1,0)$) or $U$ (up, $(0,1)$). (i) Show that there are $\\binom{2n}{n}$ paths. (ii) By considering where a path meets the line $x + y = n$, prove that $\\sum_{k=0}^{n} \\binom{n}{k}^2 = \\binom{2n}{n}$. (iii) Call a path bad if it visits some point strictly above the line $y = x$. By reflecting part of a bad path in the line $y = x + 1$, show that the number of bad paths is $\\binom{2n}{n-1}$. (iv) Deduce that the number of paths that never go above $y = x$ is $\\frac{1}{n+1}\\binom{2n}{n}$, and check your answer for $n = 3$ by listing the paths.",
+  "kind": "maths",
+  "answer": "(i) A path is determined by choosing which $n$ of the $2n$ steps are $R$. (ii) Every path meets $x + y = n$ at exactly one point $(k, n-k)$; there are $\\binom{n}{k}$ paths from $(0,0)$ to it and $\\binom{n}{k}$ from it to $(n,n)$. Summing over $k$ gives the identity. (iii) A bad path first touches $y = x+1$ at some point $P$; reflect the part after $P$ in $y = x+1$. This sends $(n,n)$ to $(n-1,n+1)$, and the map is reversible, giving a bijection with paths to $(n-1,n+1)$, which number $\\binom{2n}{n-1}$. (iv) Good paths $= \\binom{2n}{n} - \\binom{2n}{n-1} = \\frac{1}{n+1}\\binom{2n}{n}$. For $n = 3$ this gives 5: RRRUUU, RRUR UU, RRUURU, RURRUU, RURURU. These are the Catalan numbers.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p25"
+ },
+ {
+  "q": "(i) How many of the integers $1, 2, \\ldots, 1000$ are divisible by none of 2, 3 and 5? (ii) A derangement of $\\{1, \\ldots, n\\}$ is a permutation with no fixed point. Show that the number of derangements is $D_n = n!\\sum_{k=0}^{n} \\frac{(-1)^k}{k!}$. (iii) Compute $D_4$ and $D_5$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p25"
+ }
+]

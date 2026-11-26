@@ -1,0 +1,123 @@
+id: vieta-power-sums-cubic
+title: Power sums of roots of x³+px+q
+topics:
+- algebra
+- polynomials
+- Vieta
+- power sums
+- real roots
+warmup: false
+answer_source: pdf
+statement: Let $\alpha,\beta,\gamma$ be the roots of $x^3+px+q=0$, where $p$ and $q$ are real. (i) Write
+  down $\alpha+\beta+\gamma$, $\alpha\beta+\beta\gamma+\gamma\alpha$ and $\alpha\beta\gamma$. Deduce that
+  $\alpha^2+\beta^2+\gamma^2=-2p$. (ii) Show that $\alpha^3+\beta^3+\gamma^3=-3q$. (iii) Find $\alpha^4+\beta^4+\gamma^4$
+  in terms of $p$. (iv) Deduce that for every real $q$, the equation $x^3+x+q=0$ has exactly one real
+  root.
+stages:
+- goal: Write down the elementary symmetric functions of the roots using Vieta's formulas.
+  expected: $\alpha+\beta+\gamma=0$, $\alpha\beta+\beta\gamma+\gamma\alpha=p$, $\alpha\beta\gamma=-q$.
+  solution: Expanding $(x-\alpha)(x-\beta)(x-\gamma)=x^3-(\alpha+\beta+\gamma)x^2+(\alpha\beta+\beta\gamma+\gamma\alpha)x-\alpha\beta\gamma$
+    and comparing with $x^3+0x^2+px+q$ gives the three values.
+  common_errors:
+  - Sign error on $\alpha\beta\gamma$
+  - Writing the $x^2$ coefficient as $+(\alpha+\beta+\gamma)$
+  - Mismatching the coefficient of $x$ with the product of roots
+  hints:
+    rephrase: Expand the product of the three linear factors and compare coefficients with the given cubic.
+    smaller_case: Take the cubic $(x-1)(x-2)(x-3)$ and check which coefficient gives the sum of its roots.
+    key_idea: Compare coefficients of the expanded product $(x-\alpha)(x-\beta)(x-\gamma)$ with $x^3+px+q$.
+  check: 'expand((x**3 - e1*x**2 + e2*x - e3).subs({e1: 0, e2: p, e3: -q}) - (x**3 + p*x + q))'
+  check_ok: true
+- goal: Deduce the sum of squares of the roots.
+  expected: $\alpha^2+\beta^2+\gamma^2=-2p$.
+  solution: Use $\alpha^2+\beta^2+\gamma^2=(\alpha+\beta+\gamma)^2-2(\alpha\beta+\beta\gamma+\gamma\alpha)=0-2p=-2p$.
+  common_errors:
+  - Forgetting the factor 2 in the cross term
+  - Taking the sum of squares to equal $+2p$
+  hints:
+    rephrase: Square the sum of the roots and relate it to the sum of squares.
+    smaller_case: Take roots $1,2,-3$ and check $\alpha^2+\beta^2+\gamma^2$ against $(\alpha+\beta+\gamma)^2$
+      minus twice the pairwise sum.
+    key_idea: Use the identity linking the sum of squares to the square of the sum and the pairwise sum.
+  check: (0)**2 - 2*p - (-2*p)
+  check_ok: true
+- goal: Show that the sum of cubes of the roots is $-3q$.
+  expected: $\alpha^3+\beta^3+\gamma^3=-3q$.
+  solution: Each root satisfies $\alpha^3=-p\alpha-q$. Summing over the three roots gives $\sum\alpha^3=-p\sum\alpha-3q=-3q$,
+    since $\sum\alpha=0$.
+  common_errors:
+  - Forgetting that the linear term sums to zero
+  - Dropping the $-q$ term for each root
+  hints:
+    rephrase: Use the fact that each root satisfies the cubic, then sum over the roots.
+    smaller_case: Substitute a root into $x^3+px+q$ and rearrange to write $\alpha^3$ in terms of $\alpha$.
+    key_idea: Rewrite $\alpha^3$ using the cubic equation, then sum.
+  check: 0**3 - 3*0*p + 3*(-q) - (-3*q)
+  check_ok: true
+- goal: Find the fourth power sum in terms of $p$.
+  expected: $\alpha^4+\beta^4+\gamma^4=2p^2$.
+  solution: 'Multiply $\alpha^3=-p\alpha-q$ by $\alpha$ to get $\alpha^4=-p\alpha^2-q\alpha$. Summing:
+    $\sum\alpha^4=-p\sum\alpha^2-q\sum\alpha=-p(-2p)-0=2p^2$.'
+  common_errors:
+  - Forgetting to multiply the cubic relation by $\alpha$ correctly
+  - Using $\sum\alpha=0$ incorrectly on the $q$ term
+  - Sign error from $-p\cdot(-2p)$
+  hints:
+    rephrase: Multiply the relation for each root by that root, then sum.
+    smaller_case: Find $\alpha^4$ for a single root by multiplying the relation for $\alpha^3$ by $\alpha$.
+    key_idea: Reduce the fourth power to lower powers, then use the power sums already found.
+  check: 0*(-3*q) - p*(-2*p) + (-q)*0 - 2*p**2
+  check_ok: true
+- goal: Deduce that $x^3+x+q=0$ has exactly one real root for every real $q$.
+  expected: The cubic has exactly one real root for every real $q$.
+  solution: The derivative is $3x^2+1>0$ for all real $x$, so $x^3+x+q$ is strictly increasing. A strictly
+    increasing continuous function that tends to $-\infty$ and $+\infty$ crosses zero exactly once. (Alternatively,
+    if all roots were real, the sum of squares $-2$ would be negative, which is impossible.)
+  common_errors:
+  - Claiming a cubic always has three real roots
+  - Not justifying why a strictly increasing function has at most one zero
+  - Ignoring that a real cubic always has at least one real root
+  hints:
+    rephrase: Look at how the function changes as $x$ increases.
+    smaller_case: Check what happens to $x^3+x+q$ for very large negative and very large positive $x$.
+    key_idea: Monotonicity controls the number of zeros, and the cubic's end behaviour guarantees at least
+      one.
+  check: diff(x**3 + x + q, x) - (3*x**2 + 1)
+  check_ok: true
+extensions:
+  '3':
+  - Find $\alpha^5+\beta^5+\gamma^5$ in terms of $p$ and $q$.
+  '4':
+  - State the discriminant condition for $x^3+px+q$ to have three distinct real roots.
+  '5':
+  - Show that $x^5+x+q=0$ has exactly one real root for every real $q$.
+spoken_vocab:
+- alpha
+- beta
+- gamma
+- x cubed plus p x plus q
+- Vieta
+- sum of squares
+- alpha to the fourth
+- real root
+- derivative
+- discriminant
+source: jaymin/Jaymin Interview (1).pdf#p17
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 4
+  minutes: 12
+  flags: []
+  tagline: Coherent Vieta and Newton-identity chain ending in a discriminant-style real-root argument.
+  priority: 98
+  rank: 49
+  tier: A
+  category: jaymin
+  d10: 3.0
+  real: 5.0
+  by: haiku
+tags:
+- roots_of_polynomials
+- algebra_and_functions

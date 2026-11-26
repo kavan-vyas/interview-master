@@ -1,0 +1,90 @@
+id: tower-growth-comparison
+title: 'Which grows faster: 2^(2^n) or 100^(100^n)?'
+topics:
+- asymptotics
+- exponentials
+- logarithms
+- limits
+warmup: true
+answer_source: generated
+statement: Which is bigger as $n \to \infty$, $2^{2^{n}}$ or $100^{100^{n}}$? Justify your answer.
+stages:
+- goal: Decide which expression is larger for large n, and reduce the comparison to one involving exponents
+    by taking logarithms.
+  expected: $100^{100^{n}}$ is larger. Taking natural logs, $\ln(2^{2^n})=2^n\ln 2$ and $\ln(100^{100^n})=100^n\ln
+    100$, so compare $2^n\ln 2$ with $100^n\ln 100$.
+  solution: Since $\ln$ is increasing, it preserves order, so compare logarithms. $\ln(2^{2^n}) = 2^n\ln
+    2$ and $\ln(100^{100^n}) = 100^n\ln 100$. For large n the second is far larger because $100^n$ outgrows
+    $2^n$ by the factor $50^n$, which is unbounded.
+  common_errors:
+  - Comparing only the bases 2 and 100, ignoring the tower structure.
+  - Comparing only the inner exponents 2^n and 100^n and forgetting the outer exponent 2^{n} versus 100^{n}
+    also changes the result.
+  - Taking one log but not simplifying the remaining exponential, so the comparison is left unresolved.
+  hints:
+    rephrase: 'Both expressions are towers: a base raised to a power that is itself exponential in n.
+      Which part of each tower dominates the growth?'
+    smaller_case: Compare 2^(2^n) and 100^(100^n) for n = 1 and n = 2 by direct evaluation, then ask what
+      happens as n keeps growing.
+    key_idea: Apply ln to both sides. It preserves order and turns each tower into a single exponential
+      that you can compare.
+- goal: Justify rigorously that the ratio of the logarithms tends to infinity.
+  expected: $\dfrac{\ln(100^{100^n})}{\ln(2^{2^n})}=\dfrac{100^n\ln 100}{2^n\ln 2}=50^n\dfrac{\ln 100}{\ln
+    2}\to\infty$, so $100^{100^n}$ is eventually far larger than $2^{2^n}$.
+  solution: $\dfrac{100^n\ln 100}{2^n\ln 2} = \dfrac{\ln 100}{\ln 2}\left(\dfrac{100}{2}\right)^n = \dfrac{\ln
+    100}{\ln 2}\cdot 50^n$. Since $\ln 100/\ln 2$ is a positive constant and $50^n\to\infty$, the ratio
+    tends to infinity. So $\ln(100^{100^n})/\ln(2^{2^n})\to\infty$, and $100^{100^n}$ is the larger.
+  common_errors:
+  - Writing the ratio as $50\ln100/\ln2$, dropping the exponent n on 50.
+  - Claiming the ratio is bounded because both expressions involve exponentials.
+  - Dividing the original expressions instead of their logarithms, which gives a different and harder
+    quantity to analyse.
+  hints:
+    rephrase: You now have two logarithms. How does their ratio look when you write each as a power of
+      a fixed base?
+    smaller_case: Compute the ratio of the logarithms for n = 1, 2, 3 and check whether it is increasing.
+    key_idea: Rewrite $100^n/2^n$ as $(100/2)^n$. A geometric sequence with ratio above 1 diverges to
+      infinity.
+  check: sp.limit(sp.Integer(50)**n*sp.log(100)/sp.log(2), n, sp.oo) == sp.oo
+  check_ok: null
+extensions:
+  '3':
+  - 'Which is bigger as $n\to\infty$: $3^{3^n}$ or $2^{4^n}$? Justify with logarithms.'
+  - 'Which is bigger as $n\to\infty$: $2^{2^n}$ or $n^n$? Justify your answer.'
+  '4':
+  - Show that $\lim_{n\to\infty} \dfrac{\ln(\ln(2^{2^n}))}{n}$ exists and find its value.
+  - Does $\dfrac{100^{100^n}}{2^{2^n}}$ tend to a finite limit as $n\to\infty$? Explain.
+  '5':
+  - Find $\lim_{n\to\infty}\dfrac{\ln(100^{100^n})}{\ln(2^{2^n})}$ and interpret the result for the original
+    towers.
+  - Prove that for any fixed $k$, $2^{2^n}$ eventually exceeds $n^{k}$ as $n\to\infty$.
+spoken_vocab:
+- two to the power of two to the n
+- one hundred to the power of one hundred to the n
+- limit as n tends to infinity
+- natural log
+- log of two to the power of two to the n
+- ratio of logarithms
+- fifty to the power of n
+- tends to infinity
+- tower
+- bigger
+source: screenshots/Screenshot 2026-11-19 at 14.36.11.png
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 2
+  minutes: 8
+  flags: []
+  tagline: Log-of-log reduction makes an elegant, rigorous growth comparison.
+  priority: 55
+  rank: 470
+  tier: C
+  category: screenshots
+  d10: 3.0
+  real: 5.0
+  by: haiku
+tags:
+- exponentials_and_logarithms
+- limits_and_approximation

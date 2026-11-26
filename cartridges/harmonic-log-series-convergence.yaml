@@ -1,0 +1,124 @@
+id: harmonic-log-series-convergence
+title: Convergence of the series sum 1/(n ln n) and comparison with p-series
+topics:
+- series convergence
+- integral test
+- comparison test
+- p-series
+- logarithms
+warmup: false
+answer_source: generated
+statement: 'Does the series $\sum_{n=2}^{\infty}\frac{1}{n\ln n}$ converge? Hint: compare this to a related
+  integral. (a) How does the answer compare to $\sum_{n=1}^{\infty}\frac{1}{n^2}$, and to $\sum_{n=1}^{\infty}\frac{1}{n}$?
+  (b) What about $\sum_{n=1}^{\infty}\frac{1}{n^p}$ for different values of $p$?'
+stages:
+- goal: Use the integral test to decide convergence of the series.
+  expected: Let f(x) = 1/(x ln x), which is positive and decreasing on [2, infinity). The integral from
+    2 to infinity of dx/(x ln x) equals lim of (ln ln x - ln ln 2) as x tends to infinity, which is infinity.
+    So the integral diverges and the series diverges.
+  solution: Substitute u = ln x, so du = dx/x and the integral becomes int du/u = ln u. Evaluating from
+    ln 2 to infinity gives infinity. The integral test then says the series sum from n = 2 diverges.
+  common_errors:
+  - Claiming the integral converges because the integrand goes to 0.
+  - Forgetting to check that f is positive and decreasing before applying the integral test.
+  hints:
+    rephrase: Write the integral of 1/(x ln x) and look for a substitution that makes it simple.
+    smaller_case: Compare the integral from 2 to 10 with the integral from 2 to 100.
+    key_idea: The integral test relates the series to an improper integral of the same function.
+  check: limit(log(log(x)), x, oo) == oo
+  check_ok: true
+- goal: Compare the series with the harmonic series sum 1/n.
+  expected: For n >= 3, ln n >= 1, so 1/(n ln n) <= 1/n. The ratio of the terms tends to 0 as n tends
+    to infinity. The term is eventually much smaller than 1/n, yet the series still diverges, so this
+    comparison does not give convergence.
+  solution: 'Compare the terms: (1/(n ln n)) / (1/n) = 1/ln n, which tends to 0. Being smaller than a
+    divergent series is not enough to decide convergence, but here the integral test shows the series
+    still diverges.'
+  common_errors:
+  - Concluding convergence from the fact the term is smaller than 1/n.
+  - Using ln n >= 1 for all n >= 2, which is false because ln 2 is less than 1.
+  hints:
+    rephrase: Compare the ratio of consecutive terms of the two series to see which is larger.
+    smaller_case: Compute 1/(n ln n) and 1/n for n = 10 and see which is bigger.
+    key_idea: A comparison test needs a bound in the right direction to conclude anything.
+  check: limit((1/(n*log(n)))/(1/n), n, oo) == 0
+  check_ok: true
+- goal: Compare the series with the convergent sum 1/n^2.
+  expected: The ratio (1/(n ln n)) / (1/n^2) = n / ln n tends to infinity, so 1/(n ln n) is much larger
+    than 1/n^2 for large n. Since sum 1/n^2 converges, the comparison gives no information about convergence
+    of the original series.
+  solution: For large n, n / ln n is large, so the terms of our series exceed those of the convergent
+    series. A convergent series with smaller terms would prove convergence, but here the inequality is
+    in the wrong direction, so the comparison is inconclusive.
+  common_errors:
+  - Concluding convergence because 1/n^2 converges and 1/(n ln n) looks similar.
+  - Confusing the direction of the inequality in the comparison test.
+  hints:
+    rephrase: Ask whether our terms are larger or smaller than the convergent series' terms.
+    smaller_case: Compare 1/(n ln n) and 1/n^2 for n = 100.
+    key_idea: Comparison tests need the inequality in the correct direction to prove anything.
+  check: limit((1/(n*log(n)))/(1/n**2), n, oo) == oo
+  check_ok: true
+- goal: Classify sum 1/n^p for different values of p and show 1/(n ln n) lies in between.
+  expected: sum 1/n^p converges if and only if p > 1, and diverges if p <= 1. For any p > 1, 1/(n ln n)
+    is much larger than 1/n^p, since n^(p-1) / ln n tends to infinity. The series sum 1/(n ln n) therefore
+    lies just above the convergent p-series, and it is also smaller than the divergent harmonic series,
+    but it still diverges.
+  solution: 'p-series test: converges for p > 1, diverges for p <= 1. For p = 3/2, the ratio (1/(n ln
+    n)) / (1/n^(3/2)) = sqrt(n) / ln n tends to infinity, so 1/(n ln n) is bigger than 1/n^(3/2) for large
+    n. Since 1/n^(3/2) is summable, this does not prove convergence, but the integral test still shows
+    divergence. The series is therefore just beyond the convergence boundary p = 1.'
+  common_errors:
+  - Thinking sum 1/n^p converges for p > 0.
+  - Forgetting that the boundary case p = 1 diverges.
+  hints:
+    rephrase: Recall the threshold for the p-series and check where 1/(n ln n) sits relative to it.
+    smaller_case: Look at the ratio of 1/(n ln n) and 1/n^1.5 for large n.
+    key_idea: The logarithm factor pushes the series just past the convergence boundary p = 1.
+  check: limit((1/(n*log(n)))/(1/n**Rational(3,2)), n, oo) == oo
+  check_ok: true
+extensions:
+  '3':
+  - Show sum 1/(n (ln n)^p) converges if and only if p > 1, using Cauchy condensation.
+  - Use the integral test to find the sum from n = 3 of 1/(n ln n) (ln ln n) and decide convergence.
+  '4':
+  - 'Prove sum 1/(n ln n) diverges by Cauchy condensation: compare with sum 2^k / (2^k k ln 2).'
+  - Show that sum 1/(n (ln n)^2) converges and estimate its tail after N terms.
+  '5':
+  - Investigate sum 1/(n ln n ln ln n) and determine the convergence boundary for iterated logarithms.
+  - Discuss why no simple power of n separates convergence from divergence for logarithmic series.
+spoken_vocab:
+- sum from n equals two to infinity
+- one over n log n
+- integral test
+- p-series
+- harmonic series
+- one over n squared
+- comparison test
+- converges
+- diverges
+- logarithm of n
+- p greater than one
+- boundary case p equals one
+- Cauchy condensation
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 5
+  parts: 4
+  minutes: 15
+  flags:
+  - wrong_or_unclear_solution
+  tagline: Log-divergence boundary invites p-test probing; stage 2 comparison is misleading.
+  priority: 54
+  rank: 493
+  tier: C
+  category: juan
+  d10: 5.0
+  real: 4.5
+  by: deepseek-v4.1-flash-free
+tags:
+- sequences_and_series
+- integration
+- limits_and_approximation

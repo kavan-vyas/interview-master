@@ -1,0 +1,90 @@
+id: gambler-half-bets-coin
+title: Gambler's Half-Bets on a Coin
+topics:
+- percentages
+- multiplicative change
+- sequences of outcomes
+warmup: true
+answer_source: generated
+statement: 'A gambler plays a game with his friend. He bets half of his money on the toss of a coin: he
+  wins on heads and loses on tails. The game is repeated over and over, and at the end the gambler has
+  lost as many times as he has won. Did he make money, lose money or break even?'
+stages:
+- goal: Track the gambler's money after one win followed by one loss, starting from an amount x.
+  expected: After one win and one loss he has 0.75x, so he is down 25%.
+  solution: Start with x. A win on half the stake gives x + x/2 = 1.5x. A loss on half of the current
+    money 1.5x takes away 0.75x, leaving 1.5x - 0.75x = 0.75x.
+  common_errors:
+  - Taking half of the original x for the loss instead of half of the current money.
+  - Assuming a win and a loss of equal size cancel out exactly.
+  - Confusing 'half of his money' with 'half of the bet' after the win.
+  hints:
+    rephrase: Each bet is a fraction of whatever he holds at that moment, not of his starting money. Follow
+      him through one win and then one loss.
+    smaller_case: Start with £100. What does he hold after the win, and what does he hold after the loss?
+    key_idea: Each toss multiplies his current money by a fixed factor. Compare the product of those factors
+      with 1.
+  check: sp.Rational(3,2)*sp.Rational(1,2) - sp.Rational(3,4)
+  check_ok: null
+- goal: Generalise to n wins and n losses, in any order, and decide whether he made money, lost money
+    or broke even.
+  expected: He lost money. Final amount = (3/4)^n * x < x for n >= 1.
+  solution: A win multiplies the current money by 3/2 and a loss multiplies it by 1/2. Since the order
+    of the factors does not change the product, n wins and n losses give (3/2)^n (1/2)^n = (3/4)^n. Because
+    3/4 < 1, the final amount is less than x, so he lost money.
+  common_errors:
+  - Concluding he broke even because the number of wins equals the number of losses.
+  - Claiming the order of wins and losses changes the outcome.
+  - Forgetting that n must be at least 1 for the strict inequality.
+  hints:
+    rephrase: Write the money after each toss as a product of multipliers. Ask what the product looks
+      like when the number of wins and losses are equal.
+    smaller_case: Work out the final amount after 2 wins and 2 losses, in the order win, win, lose, lose.
+      Then try the order win, lose, win, lose.
+    key_idea: Multiplication is commutative, so only the count of each multiplier matters. Compare the
+      resulting product with 1.
+  check: sp.simplify(sp.Rational(3,2)**n*sp.Rational(1,2)**n - sp.Rational(3,4)**n)
+  check_ok: null
+extensions:
+  '3':
+  - The gambler bets a fraction f of his money on each toss, with equal numbers of wins and losses. Find
+    his net multiplier after one win and one loss.
+  '4':
+  - The coin has P(heads) = p and he bets half each time. Find the expected multiplicative growth per
+    toss, and say when it is above 1.
+  '5':
+  - On a fair coin with half-bets, show that he can never reach zero money. Then find the probability
+    that he ever doubles his starting money.
+spoken_vocab:
+- gambler
+- half of his money
+- heads
+- tails
+- three quarters
+- times
+- break even
+- lost money
+- n wins
+- n losses
+- x
+- one half
+- three halves
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 6
+  difficulty: 3
+  parts: 2
+  minutes: 6
+  flags: []
+  tagline: Counterintuitive order-independent 0.75^n decay; invites expected-value discussion.
+  priority: 65
+  rank: 388
+  tier: C
+  category: tbo
+  d10: 3.0
+  real: 7.5
+  by: deepseek-v4.1-flash-free
+tags:
+- probability
+- sequences_and_series

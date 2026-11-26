@@ -1,0 +1,103 @@
+id: board-parity-invariant-odd
+title: 'Board of numbers: parity invariant'
+topics:
+- invariants
+- parity
+- modular arithmetic
+- sums
+warmup: true
+answer_source: pdf
+statement: The numbers $1,2,3,\dots,2026$ are written on a board. A move is to erase any two numbers $a$
+  and $b$ and write $|a-b|$. After 2025 moves one number remains. Show that it is odd.
+stages:
+- goal: Show that one move preserves the parity of the sum of the numbers on the board.
+  expected: '|a-b| has the same parity as a+b, so replacing a and b by |a-b| changes the sum by an even
+    amount.'
+  solution: Since |a-b| is congruent to a-b modulo 2, and a-b is congruent to a+b modulo 2 (because -b
+    is congruent to b), we have |a-b| congruent to a+b modulo 2. Replacing a and b by |a-b| changes the
+    total by |a-b| - (a+b), which is even. So the parity of the total is unchanged.
+  common_errors:
+  - Checking parity only on examples without a general argument
+  - Forgetting the absolute value, or treating |a-b| as a-b without justification
+  - Concluding the sum is preserved exactly rather than mod 2
+  hints:
+    rephrase: What happens to the total of the numbers on the board when you erase a and b and write |a-b|?
+      Track only whether it is odd or even.
+    smaller_case: Try a = 5, b = 2. Compare the parity of 5 + 2 with that of |5 - 2|.
+    key_idea: Work modulo 2 rather than with exact values, since the absolute value is not a linear operation.
+  check: ((5+2)-abs(5-2))%2
+  check_ok: true
+- goal: Compute the initial sum of the numbers 1 to 2026 and determine its parity.
+  expected: The sum is 2026 x 2027 / 2 = 2053351, which is odd.
+  solution: The sum 1 + 2 + ... + 2026 equals 2026 x 2027 / 2 = 1013 x 2027 = 2053351. This is odd, since
+    both the factors 1013 and 2027 are odd.
+  common_errors:
+  - Using the wrong formula for the sum
+  - Making an arithmetic error in 1013 x 2027
+  - Claiming the sum is even because 2026 is even
+  hints:
+    rephrase: Use the formula for the sum of the first n whole numbers, and then look at the parity of
+      the result.
+    smaller_case: Sum the numbers 1 to 4 and check the parity of your answer.
+    key_idea: A product of odd numbers is odd, so write the sum as a product.
+  check: 2026*2027/2 - 2053351
+  check_ok: true
+- goal: Conclude the parity of the final number and justify the last step.
+  expected: After 2025 moves one number remains. Its parity equals the parity of the initial sum, which
+    is odd, so the final number is odd.
+  solution: The parity of the total is invariant under each move. After 2025 moves, a single number remains,
+    so its parity equals the parity of the initial total, which is odd. Hence the final number is odd.
+  common_errors:
+  - Forgetting that the final total is the single remaining number
+  - Stating the invariant without applying it to the start and end of the process
+  - Assuming the final number must be 0 or 1
+  hints:
+    rephrase: After the last move, what is the total of the numbers on the board? Compare it with the
+      total at the start.
+    smaller_case: Start with 1, 2, 4 on the board and reduce to one number. What parity does the last
+      number have?
+    key_idea: Use the invariant from the first stage at the very beginning and the very end of the process.
+  check: null
+extensions:
+  '3':
+  - Numbers 1, 2, 4 are on the board. Show that every possible sequence of moves ends in an odd number.
+  '4':
+  - For the board 1, 2, ..., n, for which n is the final number always odd? Answer in terms of n modulo
+    4.
+  '5':
+  - If a and b are replaced by a+b+ab, show that the final number is 2027!-1. Use the invariant given
+    by the product of (1+x) over the numbers on the board.
+spoken_vocab:
+- board
+- erase
+- absolute value
+- parity
+- odd
+- even
+- invariant
+- sum
+- modulo two
+- two thousand twenty six
+- two thousand twenty five moves
+- final number
+- one number remains
+- one thousand and thirteen times two thousand and twenty seven
+source: jaymin/Jaymin Interview (1).pdf#p73
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: Same parity idea as problem one, with a cleaner multi-step structure.
+  priority: 76
+  rank: 267
+  tier: B
+  category: jaymin
+  d10: 2.5
+  real: 4.0
+  by: deepseek-v4.1-flash-free
+tags:
+- proof
+- number_theory

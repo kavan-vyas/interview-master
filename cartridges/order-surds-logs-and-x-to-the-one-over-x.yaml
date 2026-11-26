@@ -1,0 +1,133 @@
+id: order-surds-logs-and-x-to-the-one-over-x
+title: Ordering logs and surds, the stationary point of x^(1/x), and e^pi versus pi^e
+topics:
+- logarithms
+- indices and surds
+- calculus
+- stationary points
+- global maxima
+- inequalities
+warmup: false
+answer_source: pdf
+statement: 'a) Without using a calculator, order the following numbers from smallest to largest: $\log_3(2)$,
+  $\frac{2}{3}$, $2^{1/3}$, $\frac{3}{2}$, $\log_2(3)$. b) i) Find the stationary point of the function
+  $y = x^{1/x}$ (note $x^{1/x} = e^{\frac{1}{x}\ln(x)}$). ii) You are told this stationary point is a
+  global maximum. Which number is greater, $e^{\pi}$ or $\pi^{e}$?'
+stages:
+- goal: Order $\log_3(2)$, $\frac{2}{3}$, $2^{1/3}$, $\frac{3}{2}$, $\log_2(3)$ from smallest to largest,
+    without a calculator.
+  expected: $\log_3(2) < \frac{2}{3} < 2^{1/3} < \frac{3}{2} < \log_2(3)$ (approximately $0.631 < 0.667
+    < 1.260 < 1.5 < 1.585$).
+  solution: Write $\log_3 2 = \frac{\ln 2}{\ln 3}$. Then $\log_3 2 < \frac{2}{3}$ is equivalent to $3\ln
+    2 < 2\ln 3$, i.e. $\ln 8 < \ln 9$, which is true. Next, $2^{1/3} > 1 > \frac{2}{3}$. Then $2^{1/3}
+    < \frac{3}{2}$ is equivalent to $2 < \left(\frac{3}{2}\right)^3 = \frac{27}{8}$ after cubing, which
+    is true. Finally $\frac{3}{2} < \log_2 3$ is equivalent to $2^{3/2} < 3$, i.e. $8 < 9$ after squaring,
+    which is true. Chaining these gives the order.
+  common_errors:
+  - Assuming $\log_3 2$ is larger than $\frac{2}{3}$ because logarithms look large, without checking.
+  - Confusing $\log_3 2$ with $\log_2 3$ and placing them in the wrong order.
+  - Ordering $2^{1/3}$ below $\frac{2}{3}$ by forgetting that $2^{1/3} > 1$.
+  - Relying on rounded decimals without a valid exact comparison for close pairs such as $\log_3 2$ and
+    $\frac{2}{3}$.
+  hints:
+    rephrase: Compare each number with a few benchmarks such as $\frac{2}{3}$, $1$ and $\frac{3}{2}$,
+      and find exact ways to decide each comparison.
+    smaller_case: Write $\log_3 2$ using natural logs, then clear the denominators to compare it with
+      $\frac{2}{3}$.
+    key_idea: Use change of base for the logarithms, and raise both sides to a power to remove roots when
+      comparing surds with rationals.
+  check: And(log(2)/log(3) < Rational(2,3), Rational(2,3) < 2**Rational(1,3), 2**Rational(1,3) < Rational(3,2),
+    Rational(3,2) < log(3)/log(2))
+  check_ok: true
+- goal: Find the stationary point of $y = x^{1/x}$ for $x > 0$.
+  expected: $\frac{dy}{dx} = 0$ when $\ln x = 1$, so $x = e$ and the stationary point is $(e, e^{1/e})$.
+  solution: Write $y = e^{f(x)}$ with $f(x) = \frac{\ln x}{x}$. Then $\frac{dy}{dx} = y f'(x)$ by the
+    chain rule. Using the quotient rule, $f'(x) = \frac{1 - \ln x}{x^2}$. Since $y > 0$, $\frac{dy}{dx}
+    = 0$ requires $1 - \ln x = 0$, so $x = e$. The corresponding value is $y = e^{1/e}$, giving the stationary
+    point $(e, e^{1/e})$.
+  common_errors:
+  - Applying the product rule to $x^{1/x}$ directly without the exponential form, leading to a messy expression.
+  - Solving $1 - \ln x = 0$ incorrectly as $x = 1$ or $x = 0$.
+  - Forgetting that $y$ is never zero, so the factor $y$ can be dropped when setting the derivative to
+    zero.
+  - Giving only the $x$-coordinate and omitting the $y$-coordinate.
+  hints:
+    rephrase: Rewrite $x^{1/x}$ as an exponential of a single function of $x$, then differentiate using
+      the chain rule.
+    smaller_case: Check the derivative of $\frac{\ln x}{x}$ alone first, then bring the exponential back
+      in.
+    key_idea: The sign of $\frac{dy}{dx}$ is the sign of $\frac{dy}{dx} = y\cdot f'(x)$, and $y$ is always
+      positive.
+  check: simplify(diff(exp(log(x)/x), x).subs(x, E)) == 0
+  check_ok: true
+- goal: Use the global maximum from part b to decide which is greater, $e^{\pi}$ or $\pi^{e}$.
+  expected: $e^{\pi} > \pi^{e}$ (approximately $23.14 > 22.46$).
+  solution: Taking natural logs, $e^{\pi} > \pi^{e}$ is equivalent to $\pi > e\ln\pi$, which is equivalent
+    to $\frac{\ln\pi}{\pi} < \frac{1}{e}$. With $f(x) = \frac{\ln x}{x}$, this says $f(\pi) < f(e)$. Part
+    b shows $f$ has a global maximum at $x = e$, so $f(\pi) \le f(e)$. Since $\pi \ne e$, the inequality
+    is strict. Hence $f(\pi) < f(e)$, so $e^{\pi} > \pi^{e}$.
+  common_errors:
+  - Comparing $e^{\pi}$ and $\pi^{e}$ numerically with a rough estimate and no justification.
+  - Taking logs but reversing the inequality when rearranging.
+  - Concluding the wrong direction because the maximum is at $e$, not at $\pi$.
+  - Using $\ln$ of $x$ over $x$ at the wrong points, such as comparing $f(\pi)$ with $f(3)$.
+  hints:
+    rephrase: Take natural logs of both numbers and compare the results, then relate the comparison to
+      a function you have already studied.
+    smaller_case: Apply the same logarithmic comparison to $2^3$ and $3^2$ and see which function values
+      appear.
+    key_idea: Reduce the question to comparing $\frac{\ln x}{x}$ at two points, and use where that function
+      peaks.
+  check: exp(pi) > pi**E
+  check_ok: true
+extensions:
+  '3':
+  - Without a calculator, order $\sqrt{2}$, $\log_2(5)$, $\frac{\pi}{2}$ and $\frac{4}{3}$ from smallest
+    to largest.
+  '4':
+  - Show that $x^{1/x}$ has exactly one stationary point for $x > 0$, and explain why it is a maximum.
+  '5':
+  - Which is greater, $2^{\pi}$ or $\pi^{2}$? Justify your answer without a calculator.
+spoken_vocab:
+- log base three of two
+- two thirds
+- two to the one third
+- three halves
+- log base two of three
+- x to the one over x
+- e to the one over x times log x
+- stationary point
+- global maximum
+- derivative
+- natural log
+- e
+- e to the pi
+- pi to the e
+- greater than
+- less than
+- chain rule
+- quotient rule
+- change of base
+- ln x
+- y prime
+- dy by dx
+source: sample-qs/Maths Interview Questions Sample.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Ordering exercise feeds a neat x^(1/x) maximum argument for e^pi versus pi^e.
+  priority: 81
+  rank: 224
+  tier: B
+  category: sample-qs
+  d10: 5.0
+  real: 7.5
+  by: haiku
+tags:
+- differentiation
+- exponentials_and_logarithms
+- inequalities

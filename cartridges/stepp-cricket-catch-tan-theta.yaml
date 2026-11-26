@@ -1,0 +1,143 @@
+id: stepp-cricket-catch-tan-theta
+title: 'Cricket catch: constant rate of change of tan of the line-of-sight angle'
+topics:
+- mechanics
+- projectile motion
+- relative motion
+- calculus
+- trigonometry
+warmup: false
+answer_source: pdf
+statement: In a game of cricket, a fielder is perfectly placed to catch a ball and takes it just in front
+  of her eye. The angle between the horizontal and her line of sight at time $t$ after the ball is struck
+  is $\theta$. (i) Show that $\dfrac{d}{dt}(\tan\theta)$ is constant during the flight. (ii) The next
+  ball is struck towards the fielder at a different velocity. The fielder runs at constant speed towards
+  the batsman to remain perfectly placed. Assuming horizontal ground, show that $\dfrac{d}{dt}(\tan\theta)$
+  is again constant during the flight.
+stages:
+- goal: 'Part (i), step 1: set up coordinates and write the ball''s position relative to the fielder''s
+    eye, using the catch at time $T$ to fix the eye''s position.'
+  expected: Launch from the origin at $t=0$ with horizontal velocity $U$ and vertical velocity $V$, so
+    the ball is at $(Ut,\ Vt-\tfrac12 gt^2)$. The eye is at a fixed point $(X,H)$. The catch at $t=T$
+    gives $X=UT$ and $H=VT-\tfrac12 gT^2$. The displacement of the ball from the eye is $(x,y)=\big(U(t-T),\
+    (t-T)(V-\tfrac12 g(t+T))\big)$.
+  solution: 'Ball position: $x_b=Ut$, $y_b=Vt-\tfrac12 gt^2$. The eye is fixed at $(X,H)$. At $t=T$ the
+    ball is at the eye, so $UT=X$ and $VT-\tfrac12 gT^2=H$. Then $x=x_b-X=Ut-UT=U(t-T)$ and $y=y_b-H=Vt-\tfrac12
+    gt^2-VT+\tfrac12 gT^2=(t-T)\big(V-\tfrac12 g(t+T)\big)$, using $t^2-T^2=(t-T)(t+T)$.'
+  common_errors:
+  - Treating the eye's position as the launch point instead of fixing it with the catch condition.
+  - Forgetting that the catch fixes both coordinates of the eye, not just one.
+  - Sign error in the $-\tfrac12 gt^2$ term when subtracting $H$.
+  hints:
+    rephrase: Where must the eye be for the ball to be at it at time $T$? Write both coordinates of the
+      ball at $t=T$ and set them equal to the eye's coordinates.
+    smaller_case: Take $g=0$ first. What is the ball's displacement from the eye at each time $t$?
+    key_idea: The catch condition gives two equations that fix the eye's position in terms of the launch
+      data. Substitute these back into the ball's position.
+  check: (U*(t-T) - (U*t - U*T)) + ((V - g*(t+T)/2)*(t-T) - (V*t - g*t**2/2 - (V*T - g*T**2/2)))
+  check_ok: true
+- goal: 'Part (i), step 2: find $\tan\theta$ along the flight and differentiate.'
+  expected: With $\theta$ the elevation of the line of sight, $\tan\theta=\dfrac{\tfrac12 g(t+T)-V}{U}$
+    for $t<T$. Then $\dfrac{d}{dt}(\tan\theta)=\dfrac{g}{2U}$, which is constant.
+  solution: Before the catch $t<T$, so the horizontal distance from the eye is $|x|=U(T-t)$ and the height
+    above the eye is $y=(t-T)\big(V-\tfrac12 g(t+T)\big)$. Hence $\tan\theta=\dfrac{y}{|x|}=\dfrac{(t-T)\big(V-\tfrac12
+    g(t+T)\big)}{U(T-t)}=\dfrac{\tfrac12 g(t+T)-V}{U}$. Differentiating with respect to $t$ gives $\dfrac{d}{dt}(\tan\theta)=\dfrac{g}{2U}$,
+    a constant independent of $t$.
+  common_errors:
+  - Using $|x|=U(t-T)$ instead of $U(T-t)$ and so getting the wrong sign.
+  - Differentiating $\tan\theta$ without first cancelling the factor $(t-T)$.
+  - Forgetting to divide by $U$ when simplifying.
+  - Claiming $\tan\theta$ is constant because the expression looks simple, without computing the derivative.
+  hints:
+    rephrase: The line of sight has tangent equal to vertical separation divided by horizontal separation.
+      Use the magnitudes of both separations.
+    smaller_case: Set $V=0$. What does $\tan\theta$ look like as a function of $t$?
+    key_idea: Look for a common factor in numerator and denominator that cancels once you use the sign
+      of $t-T$ before the catch.
+  check: diff((g*(t+T)/2 - V)/U, t) - g/(2*U)
+  check_ok: true
+- goal: 'Part (ii): the fielder runs at constant speed $s$ toward the batsman. Use the new launch velocity
+    $(U,V)$ and repeat the analysis, and show $\dfrac{d}{dt}(\tan\theta)$ is still constant.'
+  expected: The eye is at $(X_0-st,\ H)$ with $s>0$ (moving away from the ball's horizontal motion). The
+    catch at $t=T$ gives $X_0=(U+s)T$ and $H=VT-\tfrac12 gT^2$. Then $x=(U+s)(t-T)$, $y=(t-T)\big(V-\tfrac12
+    g(t+T)\big)$, $\tan\theta=\dfrac{\tfrac12 g(t+T)-V}{U+s}$, and $\dfrac{d}{dt}(\tan\theta)=\dfrac{g}{2(U+s)}$,
+    a constant.
+  solution: The fielder's eye is at $(X_0-st,H)$, so the ball's horizontal separation is $x=Ut-X_0+st=(U+s)t-X_0$.
+    At $t=T$ we need $x=0$, so $X_0=(U+s)T$, giving $x=(U+s)(t-T)$. The height $H$ is constant on horizontal
+    ground, and the catch gives $H=VT-\tfrac12 gT^2$, so $y$ is as in stage 1. Before the catch $|x|=(U+s)(T-t)$
+    with $U+s>0$, so $\tan\theta=\dfrac{\tfrac12 g(t+T)-V}{U+s}$. Differentiating gives $\dfrac{g}{2(U+s)}$,
+    a constant.
+  common_errors:
+  - Keeping the old horizontal speed $U$ instead of the relative horizontal speed $U+s$.
+  - Taking the fielder's motion to be in the same direction as the ball, which gives $U-s$.
+  - Letting the fielder's eye height change, which is not allowed on horizontal ground.
+  - Forgetting that $U=-s$ (or $U+s=0$) would make $\tan\theta$ undefined, and not stating $U+s\neq 0$.
+  hints:
+    rephrase: 'Work in the fielder''s frame: how fast does the ball approach her horizontally, given she
+      is running away from it?'
+    smaller_case: Set $s=0$. Does your answer from stage 2 come back?
+    key_idea: Relative to the moving fielder, the ball has a different constant horizontal speed. The
+      structure from stage 2 then carries over unchanged.
+  check: diff((g*(t+T)/2 - V)/(U + s), t) - g/(2*(U + s))
+  check_ok: true
+extensions:
+  '3':
+  - Show that the value of $\tan\theta$ at the catch equals $\dfrac{gT-V}{U}$, and interpret it as minus
+    the gradient of the ball's path at $t=T$.
+  - Explain why $\tan\theta$ is undefined if the horizontal speeds of the ball and the fielder are equal,
+    and what that means physically.
+  '4':
+  - Show that if the fielder runs at speed $s$ toward the batsman, the rate of change of $\tan\theta$
+    decreases as $s$ increases.
+  - Find $\tan\theta$ at $t=0$ for the part (ii) setup and show that it depends on the catch time $T$
+    only through the launch data.
+  '5':
+  - Generalise to a fielder whose eye height changes at a constant rate. Is $\tan\theta$ still linear
+    in $t$? Justify your answer.
+  - Discuss how air resistance would change the constancy of $\dfrac{d}{dt}(\tan\theta)$ and why the result
+    depends on the parabolic path.
+spoken_vocab:
+- tan theta
+- theta
+- d over dt
+- derivative
+- horizontal
+- vertical
+- launch velocity U
+- vertical velocity V
+- gravity g
+- half g
+- catch time T
+- fielder
+- eye
+- line of sight
+- relative velocity
+- running speed s
+- batsman
+- constant
+- minus
+- plus
+- squared
+- t minus T
+- t plus T
+- over
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#16
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 2
+  minutes: 12
+  flags: []
+  tagline: 'Physical modelling: a fielder''s moving eye keeps tan θ''s rate constant.'
+  priority: 71
+  rank: 323
+  tier: B
+  category: siklos
+  d10: 4.0
+  real: 5.5
+  by: haiku
+tags:
+- mechanics
+- trigonometry
+- differentiation

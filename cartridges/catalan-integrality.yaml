@@ -1,0 +1,80 @@
+id: catalan-integrality
+title: Is (1/(n+1))C(2n,n) always an integer?
+topics:
+- combinatorics
+- binomial coefficients
+- integers and divisibility
+- Catalan numbers
+warmup: true
+answer_source: generated
+statement: Is $\dfrac{1}{n+1}\dbinom{2n}{n}$ always integer valued when $n$ is a positive integer?
+stages:
+- goal: Decide whether the expression is an integer for every positive integer n, and back the decision
+    with concrete values.
+  expected: Yes. For n = 1 to 5 the values are 1, 2, 5, 14, 42.
+  solution: 'n=1: C(2,1)/2 = 2/2 = 1. n=2: C(4,2)/3 = 6/3 = 2. n=3: C(6,3)/4 = 20/4 = 5. n=4: C(8,4)/5
+    = 70/5 = 14. n=5: C(10,5)/6 = 252/6 = 42. All are integers, which suggests the answer is yes.'
+  common_errors:
+  - Concluding 'no' because the expression looks like a fraction
+  - Checking one value of n and generalising from it
+  hints:
+    rephrase: Evaluate the expression for the first few values of n and look at what comes out.
+    smaller_case: Work out the value at n = 1 and n = 2 by hand.
+    key_idea: Think about whether dividing the binomial coefficient by n+1 always leaves a remainder of
+      zero.
+  check: '[binomial(2*k,k)/(k+1) for k in range(1,6)] == [1,2,5,14,42]'
+  check_ok: null
+- goal: Prove that the expression is an integer for every positive integer n.
+  expected: Use binom(2n,n+1) = binom(2n,n) * n/(n+1), so that (1/(n+1)) binom(2n,n) = binom(2n,n) - binom(2n,n+1).
+    The right-hand side is a difference of two integers, so it is an integer.
+  solution: binom(2n,n+1) = (2n)!/((n+1)!(n-1)!) = binom(2n,n) * n/(n+1). Then binom(2n,n) - binom(2n,n+1)
+    = binom(2n,n)(1 - n/(n+1)) = binom(2n,n)/(n+1). Both binomial coefficients are integers, so the difference
+    is an integer for every positive integer n.
+  common_errors:
+  - Treating a few checked cases as a proof
+  - Getting the ratio binom(2n,n+1)/binom(2n,n) wrong (it is n/(n+1))
+  - Showing a formula but not explaining why the difference of integers is an integer
+  hints:
+    rephrase: Compare the expression with binom(2n, n+1), the coefficient one step up in the bottom entry.
+      How are the two related?
+    smaller_case: Write out binom(4,2) and binom(4,3) and compare them with the value of binom(4,2)/3.
+    key_idea: Look for a way to write the expression as a combination of two binomial coefficients, each
+      of which is an integer.
+  check: combsimp(binomial(2*n,n)/(n+1) - binomial(2*n,n) + binomial(2*n,n+1))
+  check_ok: true
+extensions:
+  '3':
+  - Compute (1/(n+1)) binom(2n,n) for n = 1 to 6 and describe the pattern you see.
+  '4':
+  - Show that binom(2n,n) is even for every positive integer n.
+  '5':
+  - Count lattice paths from (0,0) to (n,n) that never rise above the diagonal, and relate that count
+    to the expression.
+spoken_vocab:
+- n plus one
+- binomial two n choose n
+- one over n plus one
+- integer
+- positive integer
+- divisibility
+- Catalan number
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 2
+  minutes: 8
+  flags: []
+  tagline: Neat rewrite as a binomial difference gives the integrality proof.
+  priority: 55
+  rank: 486
+  tier: C
+  category: tbo
+  d10: 6.5
+  real: 7.5
+  by: deepseek-v4.1-flash-free
+tags:
+- number_theory
+- combinatorics
+- proof

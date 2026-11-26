@@ -1,0 +1,58 @@
+[
+ {
+  "q": "Let $F_0 = 0$, $F_1 = 1$ and $F_{n+2} = F_{n+1} + F_n$. Let $\\varphi = \\frac{1+\\sqrt{5}}{2}$ and $\\psi = \\frac{1-\\sqrt{5}}{2}$ be the roots of $x^2 = x + 1$. (i) Show that $u_n = A\\varphi^n + B\\psi^n$ satisfies the same recurrence for any constants $A, B$. Deduce that $F_n = \\frac{\\varphi^n - \\psi^n}{\\sqrt{5}}$. (ii) Show that $F_n$ is the integer nearest to $\\varphi^n/\\sqrt{5}$. (iii) Show that $F_{n+1}/F_n \\to \\varphi$. (iv) Prove Cassini's identity $F_{n+1}F_{n-1} - F_n^2 = (-1)^n$ for $n \\geq 1$. (v) An $8 \\times 8$ square is cut into four pieces which appear to rearrange into a $5 \\times 13$ rectangle, of area 65. Use (iv) to explain what is going on.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p33"
+ },
+ {
+  "q": "Define $a_1 = 1$ and $a_{n+1} = \\frac{1}{2}\\left(a_n + \\frac{2}{a_n}\\right)$. (i) Show that $a_n \\geq \\sqrt{2}$ for $n \\geq 2$. (ii) Show that $(a_n)$ is decreasing from $n = 2$ onwards. Deduce that it converges, and find its limit. (iii) Show that $a_{n+1} - \\sqrt{2} = \\frac{(a_n - \\sqrt{2})^2}{2a_n}$. (iv) Compute $a_2, a_3, a_4$ as fractions. Roughly how many decimal places of $\\sqrt{2}$ does $a_5$ give? (v) Explain the construction geometrically, using tangent lines to $y = x^2 - 2$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p33"
+ },
+ {
+  "q": "(i) By summing $(k+1)^2 - k^2$ from $k = 1$ to $n$, find $\\sum_{k=1}^{n} k$. (ii) By summing $(k+1)^3 - k^3$, show that $\\sum_{k=1}^{n} k^2 = \\frac{1}{6}n(n+1)(2n+1)$. (iii) Prove that $\\sum_{k=1}^{n} k^3 = \\left(\\sum_{k=1}^{n} k\\right)^2$. (iv) Find $\\sum_{k=1}^{n} k(k+1)$ in two ways: using (i) and (ii), and by telescoping $k(k+1)(k+2) - (k-1)k(k+1)$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p33"
+ },
+ {
+  "q": "In how many ways can a $2 \\times 10$ rectangle be tiled with $1 \\times 2$ dominoes?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p33"
+ },
+ {
+  "q": "A convex $n$-gon has all its diagonals drawn, and no three diagonals meet at a single interior point. How many diagonals are there, and how many crossing points inside the polygon?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p33"
+ },
+ {
+  "q": "How many solutions does $a + b + c + d = 10$ have in non-negative integers? In positive integers?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p33"
+ },
+ {
+  "q": "How many five-digit numbers have digits that strictly increase from left to right? How many have digits that never decrease?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p33"
+ },
+ {
+  "q": "Five points lie inside or on a square of side $1$. Prove that some two of them are at distance at most $\\frac{\\sqrt{2}}{2}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p33"
+ }
+]

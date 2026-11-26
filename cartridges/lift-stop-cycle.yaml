@@ -1,0 +1,100 @@
+id: lift-stop-cycle
+title: Which floor does the lift make its 2025th stop at?
+topics:
+- sequences
+- periodicity
+- modular arithmetic
+- counting
+warmup: false
+answer_source: pdf
+statement: A lift in a building with 7 floors, numbered 1 to 7, stops at floors in the order 1, 2, 3,
+  4, 5, 6, 7, 6, 5, 4, 3, 2, 1, 2, 3, ... and so on, travelling up and down the building continuously.
+  If the first stop is at floor 1, at which floor will the lift make its 2025th stop? Explain clearly
+  how you decided.
+stages:
+- goal: Find how many stops it takes before the pattern repeats.
+  expected: 12 stops
+  solution: One full up-and-down trip has the stops 1, 2, 3, 4, 5, 6, 7 going up (seven stops) and 6,
+    5, 4, 3, 2 coming down (five stops), a total of 12. Stop 13 is floor 1 again, so the pattern has period
+    12.
+  common_errors:
+  - Counting 13 by including the repeated floor 1
+  - Counting 14 by double-counting floors 1 and 7
+  - Counting only the upward trip
+  hints:
+    rephrase: After how many stops does the sequence start over from floor 1 going up?
+    smaller_case: Write out the first 13 stops and see where floor 1 reappears.
+    key_idea: Count the stops in one complete up-and-down trip, counting each floor once per trip.
+  check: 7+5-12
+  check_ok: true
+- goal: Locate the 2025th stop within the repeating cycle.
+  expected: 2024 = 12 × 168 + 8, so the remainder is 8 and stop 2025 is the 9th stop of the cycle.
+  solution: Stop 1 is position 1 of the cycle, so stop n is at position determined by (n - 1) mod 12.
+    For n = 2025, we have 2024 = 12 × 168 + 8, so the remainder is 8, which means the 9th position in
+    the cycle (counting from 1).
+  common_errors:
+  - Using 2025 mod 12 = 9 directly as the position, which gives the wrong floor 4
+  - Forgetting that stop 1 is the start of the cycle, so the offset should be n - 1
+  - Miscounting the remainder
+  hints:
+    rephrase: Which stop in the cycle does stop 1 correspond to? Once you know, how does stop 2025 map
+      onto the cycle?
+    smaller_case: Where in the cycle is the 3rd stop? How many steps after stop 1 is it?
+    key_idea: Use the remainder when (n - 1) is divided by the period to find the position within the
+      cycle.
+  check: 2024 % 12 - 8
+  check_ok: true
+- goal: Identify the floor of the 2025th stop and explain the reasoning.
+  expected: Floor 5
+  solution: The first 12 stops are 1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2. Since stop 2025 is at position
+    9 of the cycle, it is the 9th entry, which is floor 5. The lift makes its 2025th stop at floor 5.
+  common_errors:
+  - Answering floor 4 by taking position 9 as zero-based
+  - Answering floor 6 or 7 from miscounting the cycle
+  - Reading the 9th entry of the wrong list
+  hints:
+    rephrase: Use the position you found, then read off the floor from one full cycle of stops.
+    smaller_case: Where in the cycle is the 3rd floor visited, and which floor is it?
+    key_idea: Map the position in the cycle to the floor listed at that position, then explain the reasoning
+      in words.
+  check: '[1,2,3,4,5,6,7,6,5,4,3,2][2024 % 12] - 5'
+  check_ok: true
+extensions:
+  '3':
+  - What floor is the 2026th stop?
+  '4':
+  - What floor is the 100th stop?
+  '5':
+  - Explain why every floor from 2 to 6 is visited twice per cycle while floors 1 and 7 are visited once,
+    and use this to justify the period.
+spoken_vocab:
+- stop
+- floor
+- two thousand and twenty five
+- two thousand and twenty four
+- twelve
+- modulo twelve
+- remainder
+- divided by
+- one hundred and sixty eight
+- cycle
+- period
+source: kclms/kclms-specimen-questions-2.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 3
+  parts: 3
+  minutes: 5
+  flags: []
+  tagline: Periodic counting task; clean but shallow, mostly arithmetic.
+  priority: 41
+  rank: 575
+  tier: D
+  category: kclms
+  d10: 2.0
+  real: 4.0
+  by: haiku
+tags:
+- number_theory
+- combinatorics

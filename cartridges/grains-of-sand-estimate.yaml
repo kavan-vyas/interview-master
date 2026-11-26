@@ -1,0 +1,101 @@
+id: grains-of-sand-estimate
+title: How Many Grains of Sand Are There?
+topics:
+- Fermi estimation
+- order of magnitude
+- powers of ten
+- volume
+- units
+warmup: false
+answer_source: generated
+statement: How many grains of sand are there in the world?
+stages:
+- goal: Estimate the total volume of sand on Earth in cubic metres, splitting it into beaches and deserts.
+  expected: Roughly 10^14 cubic metres in total, with beaches contributing about 10^12 m^3 and deserts
+    about 10^14 m^3.
+  solution: 'Beaches: take about 10^6 km of coastline, which is 10^9 m. Assume a sand strip 100 m wide
+    and 10 m deep, giving 10^9 * 10^2 * 10^1 = 10^12 m^3. Deserts: take about 10^13 m^2 of sand-covered
+    desert at an average depth of about 10 m, giving 10^14 m^3. The total is about 10^12 + 10^14, roughly
+    1.01 * 10^14 m^3. Check: 10^12 + 10^14 - 101*10^12 = 0.'
+  common_errors:
+  - Counting only beaches and ignoring deserts.
+  - Mixing up square metres and cubic metres.
+  - Forgetting that sand depth is a dimension in the volume calculation.
+  hints:
+    rephrase: Split the world's sand into beaches and deserts, and estimate each as area times depth.
+    smaller_case: Estimate the volume of sand on a single kilometre of beach, first in cubic metres.
+    key_idea: Volume is area times depth. Deserts usually cover far more area than beaches.
+  check: 10**12 + 10**14 - 101*10**12
+  check_ok: true
+- goal: Estimate how many grains of sand fit into one cubic metre.
+  expected: About 8 * 10^9 grains per cubic metre, assuming a grain diameter of about 0.5 mm.
+  solution: 'Model each grain as occupying a cube of side d = 0.5 mm = 5 * 10^-4 m. Each cube has volume
+    d^3 = 1.25 * 10^-10 m^3, so one cubic metre holds 1/(1.25 * 10^-10) = 8 * 10^9 grains. Check: 1/(Rational(1,2)*10**-3)**3
+    - 8*10**9 = 0. Real sand packs with about 60 percent efficiency, which is a refinement left to the
+    extensions.'
+  common_errors:
+  - Using the grain radius instead of the diameter, which makes the count eight times too large.
+  - Mixing millimetres and metres.
+  - Assuming spherical grains without accounting for packing.
+  hints:
+    rephrase: If each grain takes up a small cube, how many cubes fit into a metre-sized cube?
+    smaller_case: How many 1 cm cubes fit into a 1 m cube? Then repeat with smaller grains.
+    key_idea: Grains per cubic metre equals one cubic metre divided by the volume of one grain.
+  check: 1/(Rational(1,2)*10**-3)**3 - 8*10**9
+  check_ok: true
+- goal: Multiply your volume and grain density to get the total number of grains, and state the order
+    of magnitude.
+  expected: About 8 * 10^23 grains, which is on the order of 10^23 to 10^24.
+  solution: 'Total grains = total volume * grains per cubic metre = 10^14 * 8 * 10^9 = 8 * 10^23. Check:
+    10**14*8*10**9 - 8*10**23 = 0. Because the inputs are rough, state the answer as an order of magnitude
+    and give a range.'
+  common_errors:
+  - Dropping powers of ten when multiplying.
+  - Quoting false precision such as a single exact integer.
+  - Forgetting that the result is only an order-of-magnitude estimate.
+  hints:
+    rephrase: Multiply the total volume you found by the number of grains in each cubic metre.
+    smaller_case: Work through the multiplication with powers of ten only, ignoring the leading digits.
+    key_idea: In a Fermi estimate, the powers of ten matter far more than the leading digits.
+  check: 10**14*8*10**9 - 8*10**23
+  check_ok: true
+extensions:
+  '3':
+  - Include a packing efficiency of about 0.6 for random packing of sand. How does your count change?
+  '4':
+  - Estimate the total mass of Earth's sand, using a density of about 1600 kg per cubic metre.
+  '5':
+  - Compare your total with the estimated number of stars in the observable universe, which is roughly
+    10^22 to 10^24. Are the two comparable?
+spoken_vocab:
+- grains of sand
+- Fermi estimate
+- order of magnitude
+- beaches
+- deserts
+- cubic metres
+- square metres
+- powers of ten
+- grain diameter
+- half a millimetre
+- packing efficiency
+- times ten to the fourteen
+- times ten to the twenty three
+source: oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Open Fermi estimate with clear structure and order-of-magnitude discussion.
+  priority: 71
+  rank: 343
+  tier: B
+  category: oxbridge-random
+  d10: 3.5
+  real: 4.5
+  by: deepseek-v4.1-flash-free
+tags:
+- limits_and_approximation

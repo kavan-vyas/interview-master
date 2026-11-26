@@ -1,0 +1,65 @@
+[
+ {
+  "q": "Focusing on the first quadrant, sketch the curve $x^2+y^2=1$. Now sketch $x^3+y^3=1$, using the line $y=x$ to help you. Is the curve $x^3+y^3=1$ inside or outside $x^2+y^2=1$? Now sketch $x^4+y^4=1$ and $x^5+y^5=1$. Is there a maximum number of such curves that can be drawn within the square $0\\le x\\le 1$, $0\\le y\\le 1$? Use Fermat's Last Theorem to discuss whether rational points can lie on curves of the form $x^n+y^n=1$, $n\\ge 3$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 3 (anonymous).pdf#0"
+ },
+ {
+  "q": "How many solutions does the equation $2 = \\sin x + \\sin 2x + \\sin 3x + \\sin 4x + \\cdots$ have? (Options recorded: 0, 1, 2, or 3.)",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 3 (anonymous).pdf#0"
+ },
+ {
+  "q": "Sketch the curve $y = x^2 \\sin\\left(\\frac{1}{x}\\right)$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 3 (anonymous).pdf#0"
+ },
+ {
+  "q": "Suppose 51 numbers are selected from the integers 1 to 1000. Can one choose such a collection containing no: (i) even numbers? (ii) prime numbers? (iii) coprime pairs? (iv) square numbers? (v) numbers which are the sum of a square and a cube?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 3 (anonymous).pdf#0"
+ },
+ {
+  "q": "In an infinite two-dimensional grid, the number in each box is greater than or equal to the average of the numbers in its four neighbouring boxes. Show that all the numbers in the grid are the same.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 3 (anonymous).pdf#0"
+ },
+ {
+  "q": "Let $a\\ne b$ and $a, b>0$. How many real solutions are there to $(x-a)^3+(x-b)^3=0$? Find the real solution and prove that the equation has only one real solution. Find the turning points of the corresponding curve.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 3 (anonymous).pdf#0"
+ },
+ {
+  "q": "Find $x$ if $x = 1 + \\frac{1}{1 + \\frac{1}{1 + \\frac{1}{1 + \\cdots}}}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 3 (anonymous).pdf#0"
+ },
+ {
+  "q": "Define $e^x$. Sketch $\\frac{e^x}{x}$. Also sketch $\\frac{e^x - x - 1}{x^3 + x^2}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 3 (anonymous).pdf#0"
+ },
+ {
+  "q": "Binary thingy (Christmas cracker cards). The full question was not written down; the source suggests reading about the \"Binary Cracker Trick\".",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 3 (anonymous).pdf#0"
+ }
+]

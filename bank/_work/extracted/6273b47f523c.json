@@ -1,0 +1,58 @@
+[
+ {
+  "q": "A tree is a connected graph with no cycles. (i) Show that every tree with at least two vertices has a leaf (a vertex of degree $1$). (ii) Deduce that a tree with $n$ vertices has exactly $n-1$ edges. (iii) Show that in a tree, any two vertices are joined by exactly one path. (iv) How many different trees are there on the labelled vertices $\\{1,2,3\\}$? On $\\{1,2,3,4\\}$? On $\\{1,\\dots,5\\}$? Make a conjecture.",
+  "kind": "maths",
+  "answer": "(i) Take a longest path. Its endpoint $u$ has no neighbour off the path (the path could be extended) and no neighbour on the path other than the next vertex (that would make a cycle), so $u$ has degree 1. (ii) Induction: removing a leaf and its edge leaves a tree on $n-1$ vertices, which by hypothesis has $n-2$ edges. (iii) A path exists by connectedness. If there were two different paths from $x$ to $y$, follow them from $x$ until they first separate and then until they first meet again; the two portions form a cycle. (iv) On 3 vertices every tree is a path, determined by its middle vertex: 3 trees. On 4 vertices: stars (4, choose the centre) and paths ($\\frac{4!}{2}=12$), total 16. On 5 vertices: paths (60), stars (5), and the shape with degrees $3,2,1,1,1$ ($5\\times4\\times3=60$), total 125. The pattern $3, 16, 125$ suggests $n^{n-2}$, which is Cayley's formula.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p73"
+ },
+ {
+  "q": "Two diagonally opposite corner squares are removed from an $8\\times 8$ chessboard. Can the remaining 62 squares be covered exactly by 31 dominoes, each covering two adjacent squares?",
+  "kind": "maths",
+  "answer": "No. Colour the board in the usual way. Each domino covers one black and one white square, so 31 dominoes cover 31 black and 31 white squares. Diagonally opposite corners have the same colour, say black, so after removing them there are 30 black and 32 white squares left, which cannot be covered by 31 dominoes. The key idea is an invariant: a quantity every piece affects in the same way.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p73"
+ },
+ {
+  "q": "A corridor has 100 closed lockers. Student 1 opens every locker. Student 2 toggles (opens if closed, closes if open) every second locker, student 3 toggles every third locker, and so on up to student 100. Which lockers end up open?",
+  "kind": "maths",
+  "answer": "Locker $n$ is toggled by student $d$ exactly when $d\\mid n$, so it ends open iff $n$ has an odd number of divisors. Divisors pair up as $d\\leftrightarrow \\frac{n}{d}$, and the only divisor that can pair with itself is $\\sqrt{n}$. So $n$ has an odd number of divisors exactly when it is a perfect square. The open lockers are $1,4,9,\\dots,100$: ten of them.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p73"
+ },
+ {
+  "q": "The numbers $1,2,3,\\dots,2026$ are written on a board. A move is to erase any two numbers $a$ and $b$ and write $|a-b|$. After 2025 moves one number remains. Show that it is odd.",
+  "kind": "maths",
+  "answer": "Since $|a-b|\\equiv a+b \\pmod 2$, each move leaves the parity of the total unchanged. Initially the total is $\\frac{2026\\times 2027}{2}=1013\\times 2027$, which is odd. So the final number is odd. Extension given: if $a$ and $b$ are replaced by $a+b+ab$, the final number is forced to be $2027!-1$, using the invariant $\\prod(1+x)$ over the numbers on the board.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p73"
+ },
+ {
+  "q": "Nine coins look identical, but one is heavier than the rest. Using a balance scale twice, find the heavy coin. What is the largest number of coins for which $n$ weighings always suffice?",
+  "kind": "maths",
+  "answer": "Split into three groups of three and weigh two groups against each other. If one side is heavier, it holds the heavy coin; if they balance, the third group does. Then weigh two coins from that group. With $n$ weighings there are at most $3^n$ possible outcome sequences, and each coin must lead to a different sequence, so at most $3^n$ coins can be handled. Splitting into thirds shows $3^n$ coins can be handled. So the answer is $3^n$ coins (9 coins for two weighings). Extension: twelve coins, one heavier or lighter, three weighings, and say which; this can be done.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p73"
+ },
+ {
+  "q": "A chocolate bar is a $6\\times 8$ grid of squares. A move is to take one piece and break it along a straight line between squares. What is the least number of moves needed to separate all 48 squares?",
+  "kind": "maths",
+  "answer": "Each move increases the number of pieces by exactly one. We start with 1 piece and need 48, so exactly $\\mathbf{47}$ moves are needed, however we break it.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p73"
+ },
+ {
+  "q": "There is a pile of $n$ counters. Two players take turns to remove 1, 2 or 3 counters from the pile. The player who takes the last counter wins. (i) For which values of $n\\le 8$ does the first player have a winning strategy? (ii) Conjecture a general rule, and prove it. (iii) Now change the rules so that the player who takes the last counter loses. For which $n$ does the first player lose? (iv) Return to the original winning rule, but now a player may remove 1, 3 or 4 counters. For which $n$ does the second player have a winning strategy?",
+  "kind": "maths",
+  "answer": "(i) The first player wins for $n=1,2,3,5,6,7$ and loses for $n=4,8$. (ii) The first player loses exactly when $n$ is a multiple of 4. If not, remove $r\\in\\{1,2,3\\}$ to leave a multiple of 4; afterwards, answer each move $k$ with $4-k$. Eventually the opponent takes the last counter... rather, the second player takes the last counter. (iii) The first player loses exactly when $n\\equiv 1 \\pmod 4$, with the same strategy shifted: leave $4m+1$ counters and answer $k$ with $4-k$. (iv) Working upwards with moves $\\{1,3,4\\}$, the second player wins exactly when $n\\equiv 0$ or $2 \\pmod 7$. This is proved by strong induction, checking residues modulo 7 (from residues 0 and 2 every move leads to a winning position, and from every other residue there is a move to residue 0 or 2).",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p73"
+ },
+ {
+  "q": "In Nim, there are several piles of counters. Players take turns to remove any positive number of counters from a single pile. Whoever takes the last counter wins. (i) With two piles, show that the second player wins exactly when the piles are equal. (ii) Write the pile sizes in binary, and let the nim-sum be the result of adding them in binary without carrying. Show that from a position with nim-sum 0, every move produces a non-zero nim-sum; and that from a position with non-zero nim-sum, some move produces nim-sum 0. (iii) Deduce that the first player wins exactly when the nim-sum is non-zero. Who wins with piles of 3, 5 and 7, and what is a winning first move? (iv) In Chomp, a rectangular chocolate bar has its bottom-left square poisoned. Players take turns to choose a square and eat it together with every square above and to the right of it. Whoever eats the poisoned square loses. Show that the first player has a winning strategy on any rectangle larger than $1\\times 1$, without finding the strategy.",
+  "kind": "maths",
+  "answer": "(i) If the piles are equal, the second player copies each move on the other pile, so takes the last counter. If unequal, the first player equalises them and then copies. (ii) A move changes one pile, which changes the nim-sum, so from nim-sum 0 the result is non-zero. If the nim-sum $s$ is non-zero, take its leading 1 in the $2^k$ place; some pile $p$ has a 1 there, and replacing $p$ by $p\\oplus s<p$ is a legal move giving nim-sum $0$. (iii) The first player facing a non-zero nim-sum wins. With piles 3, 5, 7 the nim-sum is $011\\oplus101\\oplus111=001\\neq 0$, so the first player wins. The source says removing one counter from any pile works, but that is inaccurate; the winning move is to remove one counter from the 7 pile, leaving 3, 5, 6 with nim-sum 0. (iv) The game is finite with no draws, so one player has a winning strategy. Suppose it is the second player. The first player could eat only the top-right square, and then the second player's winning reply $X$ would also remove only that square; but the first player could have played $X$ at the start and then followed the second player's strategy. Contradiction. This is a strategy-stealing argument.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p73"
+ }
+]

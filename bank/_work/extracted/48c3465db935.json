@@ -1,0 +1,625 @@
+[
+ {
+  "q": "What is the meaning of life?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Who do you most admire and why?",
+  "kind": "personal",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "If I said Manchester won a football match believing without a doubt that this was true but actually Chelsea won, was I lying?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Do you know where the multiplication sign came from?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "What is the significance of prime numbers?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "How do we know if $1 + 1 = 2$ if the concept of numbers was in fact 'invented' by humans?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Why do you think grandparents feel the need to academically surpass their children and grandchildren?",
+  "kind": "personal",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Is it possible for a society to exist in which everyone lies all the time? Why?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Define 'cruelty'.",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "If there were three beautiful, naked women standing in front of you, which one would you pick? Does this have any relevance to economics?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Why can't you light a candle in a spaceship?",
+  "kind": "other",
+  "answer": "",
+  "short": true,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "If I said that when I tossed this coin and every time it said heads you have to give me 50p but every time it showed a tails I give you a pound, how many times would you let me flip it and the coin show heads in a row before you would stop playing the game?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "What is free will?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "What is life?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Why do you play table tennis?",
+  "kind": "personal",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "You're in a desert and 2 enemies are working independently. One poisons your water bottle, the other then tips the water out (not knowing it was poisoned). You walk out into the desert and die of thirst. Which one is guilty of murder?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "If we have 25 people, what is the likelihood that at least one of them is born in each month of the year?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "What makes a tennis ball spin as it's travelling through the air?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "How would you design an experiment to disprove the existence of God?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Why can you not see many stars when you stand on top of a mountain?",
+  "kind": "other",
+  "answer": "",
+  "short": true,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Are you cool?",
+  "kind": "personal",
+  "answer": "",
+  "short": true,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Why could you not time a pendulum for 10000 swings by watching it with a timer?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "How would you conceptualise an emotion?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "If I could pass any piece of legislation through Parliament, what would it be?",
+  "kind": "personal",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "What is your opinion on spontaneous human combustion?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "If you could invite any 2 people alive or dead to a dinner party, who would they be and why?",
+  "kind": "personal",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Integrate $\\arctan x$!",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Does law create morality or does morality create law?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Were the Russian peasants mystically connected to the countryside?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Is Hitler really evil?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "If you could interview anyone from history, who would it be?",
+  "kind": "personal",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Is the Bible a fictional work? Could it be called chick lit?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "What was the most beautiful proof in A-Level Mathematics?",
+  "kind": "personal",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "What makes you think that I am having thoughts?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "If you could make up a word, what would it be? Why?",
+  "kind": "personal",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "I am an oil baron in the desert and I need to deliver oil to four different towns which happen to lie on a straight line. In order to deliver the correct amounts to each town, I must visit each town in turn, returning to my warehouse in between each visit. Where should I position my warehouse in order to drive the shortest distance possible? Roads are no problem since I have a friend who is a sheikh and will build me as many roads as I like for free.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "If you entered a teletransporter and your body was destroyed and instantly recreated on Mars in exactly the same way with all your memories intact etc, would you be the same person?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Who is your favourite Metaphysical poet? (Bear in mind this was a MATHS interview!)",
+  "kind": "personal",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "What is the most pieces of pizza I can get from $n$ cuts?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Is it moral to hook up a psychopath (whose only pleasure is killing) to a reality-simulating machine so that he can believe he is in the real world and kill as much as he likes?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "What would you say if Gordon Brown were to take a report which shows that people who go to university earn more than those who do not, and then proclaim that going to university causes you to earn more?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Emma has become a different person since she took up yoga. Therefore she is not responsible for anything she did before she took up yoga.",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Why does the word 'God' and 'I' have a capital letter?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Are you surprised that there is no Russian word for 'privacy'?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Why did they used to make the mill chimneys so tall?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "How would you simulate altitude in your living room?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Was Romeo impulsive?",
+  "kind": "personal",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "If you could have half an hour with any mathematician past or present, who would it be?",
+  "kind": "personal",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "If you were to form a government of philosophers, what selection process would you use?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Why is the pole vaulting world record about 6.5m, and why can't it be broken?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Can a thermostat think?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Compare these bottles of Tesco and Timotei shampoo.",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Could there still be a second coming if mankind had disappeared from the planet?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Describe this saucer to me as if I wasn't in the room.",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Describe your school from an anthropological perspective.",
+  "kind": "personal",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Do you believe that statues can move, and how might this belief be justified?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Do you think the Bavarian peasants of 1848 had an ideology?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Does a snail have a consciousness?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Here is a piece of bark, please talk about it.",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "How do you organise a successful revolution?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "How many grains of sand are there in the world?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "How many monkeys would you use in an experiment?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "How small can you make a computer?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "How would you market a rock band?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "How would you measure the weight of your own head?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "How would you poison someone without the police finding out?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "If a wife had expressed distaste for it previously, would her husband's habit of putting marmalade in his egg at breakfast be grounds for divorce?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "If I were a grapefruit, would I rather be seedless or non-seedless?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "If it could take a form, what shape would the novel To the Lighthouse become?",
+  "kind": "personal",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "If my friend locks me in a room, and says I am free to come out whenever I like as long as I pay \u00a35, is this a deprivation of liberty?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "If there was an omnipotent God, would he be able to create a stone that he couldn't lift?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "If you're not in California, how do you know it exists?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Instead of politicians, why don't we let the managers of IKEA run the country?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Is Taggart an accurate portrayal of Glasgow?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Is it morally wrong to attempt to climb a mountain?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Is the chair really there?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Is the moon made of cheese?",
+  "kind": "other",
+  "answer": "",
+  "short": true,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Is Wittgenstein always right?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Put a monetary value on this teapot.",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Tell me about your life, from the beginning to what made you sit in that chair.",
+  "kind": "personal",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "What colour is that notice board?",
+  "kind": "other",
+  "answer": "",
+  "short": true,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "What effect on the whole of society does someone crashing into a lamppost have?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "What happens if I drop an ant?",
+  "kind": "other",
+  "answer": "",
+  "short": true,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "What would happen if you drilled through the Earth all the way to the other side and then jumped into the hole?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Would you rather be a novel or a poem?",
+  "kind": "personal",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Writing about music is like dancing about architecture. Discuss.",
+  "kind": "personal",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Why is it a disadvantage for humans to have two legs?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Would I be justified in saying that only morons play sport?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ },
+ {
+  "q": "Would Ovid's chat-up line work?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0"
+ }
+]

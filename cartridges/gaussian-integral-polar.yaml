@@ -1,0 +1,81 @@
+id: gaussian-integral-polar
+title: Gaussian integral via polar coordinates
+topics:
+- multivariable integration
+- polar coordinates
+- improper integrals
+warmup: true
+answer_source: pdf
+statement: Calculate $\int_{-\infty}^{\infty} e^{-x^2/2}\,dx$.
+stages:
+- goal: Write the square of the integral as a double integral, convert it to polar coordinates and evaluate
+    it.
+  expected: $I^2=\int_0^{2\pi}\int_0^\infty e^{-r^2/2}\,r\,dr\,d\theta=2\pi$, where $I$ is the original
+    integral.
+  solution: $I^2=\iint_{\mathbb{R}^2} e^{-(x^2+y^2)/2}\,dx\,dy$. With $x=r\cos\theta$, $y=r\sin\theta$
+    we have $dx\,dy=r\,dr\,d\theta$, so $I^2=\int_0^{2\pi}\int_0^\infty e^{-r^2/2}\,r\,dr\,d\theta$. The
+    radial integral is $\int_0^\infty r e^{-r^2/2}\,dr=1$, so $I^2=2\pi$.
+  common_errors:
+  - Dropping the Jacobian factor r when changing to polar coordinates
+  - Using wrong limits for theta or r
+  - Evaluating the radial integral incorrectly
+  hints:
+    rephrase: What do you get when you multiply two copies of the integral, one in x and one in y?
+    smaller_case: Evaluate $\int_0^\infty r e^{-r^2/2}\,dr$ on its own, using the substitution $u=r^2/2$.
+    key_idea: The product of two identical one-dimensional integrals is a double integral, and a rotationally
+      symmetric integrand is easiest in polar coordinates.
+  check: candidate - integrate(r*exp(-r**2/2),(r,0,oo))*2*pi
+  check_ok: false
+- goal: Recover the original integral from its square, choosing the correct root.
+  expected: $I=\sqrt{2\pi}$, because $I^2=2\pi$ and $I>0$.
+  solution: From $I^2=2\pi$ we get $I=\pm\sqrt{2\pi}$. The integrand $e^{-x^2/2}$ is strictly positive,
+    so $I>0$ and $I=\sqrt{2\pi}$.
+  common_errors:
+  - Dropping the negative root without justification
+  - Writing $\sqrt{\pi}$ instead of $\sqrt{2\pi}$
+  - Forgetting that the square root of the squared integral needs a sign argument
+  hints:
+    rephrase: Once you know the square of the integral, what extra fact tells you which root to take?
+    smaller_case: What is the sign of $e^{-x^2/2}$ for every real $x$?
+    key_idea: Taking a square root of a squared unknown requires a sign argument.
+  check: candidate - sqrt(2*pi)
+  check_ok: false
+extensions:
+  '3':
+  - Compute $\int_{-\infty}^{\infty} e^{-a x^2}\,dx$ for $a>0$.
+  - Explain why the polar-coordinates trick requires the integrand to depend only on $x^2+y^2$.
+  '4':
+  - Use the Gaussian result to compute $\int_{-\infty}^{\infty} x^2 e^{-x^2/2}\,dx$.
+  - Derive $\Gamma(1/2)=\sqrt{\pi}$ from the Gaussian integral by substituting $t=x^2$.
+  '5':
+  - Show that $\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} e^{-x^2/2}\,dx=1$ and interpret this as the
+    normalisation of the standard normal density.
+  - Show that the variance of the standard normal distribution is 1.
+spoken_vocab:
+- integral from minus infinity to infinity
+- e to the minus x squared over two
+- d x
+- I squared
+- polar coordinates
+- r d r d theta
+- two pi
+- square root of two pi
+source: zhou-quant/zhou-quant-guide.pdf#3
+verified: false
+rating:
+  quality: 6
+  difficulty: 6
+  parts: 2
+  minutes: 8
+  flags: []
+  tagline: Classic squaring trick; discussion of polar coordinates and root choice.
+  priority: 65
+  rank: 387
+  tier: C
+  category: zhou-quant
+  d10: 6.0
+  real: 7.0
+  by: deepseek-v4.1-flash-free
+tags:
+- integration
+- polar_coordinates

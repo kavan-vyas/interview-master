@@ -1,0 +1,16 @@
+[
+ {
+  "q": "(a) Prove $6$ is a perfect number. (What is the next perfect number? ($<30$)) (b) Can a perfect number be prime? (c) Is there a perfect number of the form $p^n$? (d) Can a perfect number be of the form $pq$, where $p, q$ are both prime? (e) Is there a perfect number of the form $pq^2$? (f) Prove that a perfect number can be of the form $2^{p-1}(2^p-1)$, where $p$ is prime, and prove that it is perfect (always). (g) Prove that the sum of the reciprocals of the proper divisors of a perfect number is equal to $2$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/F2u.jpg"
+ },
+ {
+  "q": "(a) What is a stationary point? (Can you differentiate at $x=0$?) (b) Draw $y=|x|$. Does this have a stationary point? (c) Draw $y=x|x|$. Does this have a stationary point? (d) Sketch the 3D surfaces $z=x^2+y^2$ and $z=x^2-y^2$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/F2u.jpg"
+ }
+]

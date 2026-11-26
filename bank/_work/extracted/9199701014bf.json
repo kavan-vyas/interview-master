@@ -1,0 +1,9 @@
+[
+ {
+  "q": "With the aid of a sketch, show that $x > \\tanh\\left(\\frac{x}{2}\\right)$ for $x > 0$",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "nextstepmaths/NextStepMaths Interview Questions/interview-question-25.pdf#0"
+ }
+]

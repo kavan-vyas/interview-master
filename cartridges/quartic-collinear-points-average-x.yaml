@@ -1,0 +1,101 @@
+id: quartic-collinear-points-average-x
+title: Average x-coordinate of four collinear points on a quartic
+topics:
+- polynomials
+- Vieta's formulas
+- coordinate geometry
+- lines and curves
+warmup: false
+answer_source: generated
+statement: Show that if four distinct points of the curve $y=2x^4+7x^3+3x-5$ are collinear then their
+  average $x$-coordinate is some constant $k$. Find $k$.
+stages:
+- goal: Set up the intersection of a non-vertical line with the curve.
+  expected: $2x^4+7x^3+(3-m)x-(5+c)=0$ for a line $y=mx+c$.
+  solution: A vertical line meets the graph of a function at most once, so four collinear points must
+    lie on a non-vertical line $y=mx+c$. Equating $2x^4+7x^3+3x-5=mx+c$ gives $2x^4+7x^3+(3-m)x-(5+c)=0$.
+    Each intersection point corresponds to a root, and four distinct points give four distinct real roots.
+  common_errors:
+  - Forgetting that vertical lines must be excluded, or treating them as valid lines
+  - Sign errors when moving $mx+c$ to the left-hand side
+  hints:
+    rephrase: What does a general straight line look like, and how do you find where it meets the curve?
+    smaller_case: Take the line $y=0\cdot x+c$. Write the equation for the $x$-coordinates of its intersections
+      with the curve.
+    key_idea: Intersection points correspond to real roots of the difference between the curve and the
+      line.
+  check: 2*x**4 + 7*x**3 + (3-m)*x - (5+c) - (2*x**4 + 7*x**3 + 3*x - 5 - (m*x + c))
+  check_ok: true
+- goal: Use Vieta's formulas to find the sum of the four $x$-coordinates.
+  expected: $x_1+x_2+x_3+x_4=-\tfrac{7}{2}$, independent of $m$ and $c$.
+  solution: The quartic is $2x^4+7x^3+0\cdot x^2+(3-m)x-(5+c)$. For $a_4x^4+a_3x^3+\cdots$, the sum of
+    roots is $-a_3/a_4=-\tfrac{7}{2}$. The coefficient of $x^3$ does not depend on $m$ or $c$, so the
+    sum is the same for every such line.
+  common_errors:
+  - Taking the sum as $+\tfrac{7}{2}$ instead of $-\tfrac{7}{2}$
+  - Using $a_3/a_0$ or another wrong ratio of coefficients
+  hints:
+    rephrase: Which coefficient of the quartic controls the sum of its roots, and which one controls the
+      product?
+    smaller_case: For the quadratic $2x^2+7x-5$, what is the sum of its roots? Use the same reasoning
+      for the quartic.
+    key_idea: 'Vieta''s formulas: the sum of the roots equals minus the ratio of the second-highest coefficient
+      to the leading coefficient.'
+  check: x1 + x2 + x3 + x4 + Rational(7, 2)
+  check_ok: false
+- goal: Find the average $x$-coordinate and state the constant $k$.
+  expected: $k=-\tfrac{7}{8}$
+  solution: The average of the four $x$-coordinates is $\tfrac{1}{4}\left(-\tfrac{7}{2}\right)=-\tfrac{7}{8}$.
+    This value does not depend on which line is chosen, so the average is constant and $k=-\tfrac{7}{8}$.
+  common_errors:
+  - Dividing by $2$ instead of $4$
+  - Forgetting to justify that the constant does not depend on the line
+  hints:
+    rephrase: If the four $x$-coordinates have a known sum, how do you get their average?
+    smaller_case: If three numbers sum to $6$, what is their average? Apply the same idea to four numbers.
+    key_idea: Average equals sum divided by the number of values, and the sum is already fixed by the
+      curve.
+  check: k + Rational(7, 8)
+  check_ok: false
+extensions:
+  '3':
+  - Repeat the argument for the cubic $y=x^3+2x^2-x+1$ with three collinear points, and find the average
+    $x$-coordinate.
+  '4':
+  - Show that for $y=ax^4+bx^3+\cdots$ with four collinear intersection points, the average $x$-coordinate
+    is $-\dfrac{b}{4a}$.
+  '5':
+  - Show that when the four intersection points are collinear, the sum of the squares of their $x$-coordinates
+    is $\tfrac{49}{4}$.
+spoken_vocab:
+- y equals two x to the fourth plus seven x cubed plus three x minus five
+- collinear
+- straight line
+- average
+- Vieta's formulas
+- sum of roots
+- leading coefficient
+- vertical line
+- distinct points
+- constant k
+- minus seven over two
+- minus seven over eight
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 3
+  minutes: 10
+  flags: []
+  tagline: 'Elegant: the line intersection makes the x³ coefficient fix the average.'
+  priority: 71
+  rank: 328
+  tier: B
+  category: tbo
+  d10: 3.0
+  real: 6.5
+  by: haiku
+tags:
+- roots_of_polynomials
+- algebra_and_functions

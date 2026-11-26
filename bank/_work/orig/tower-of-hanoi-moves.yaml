@@ -1,0 +1,135 @@
+id: tower-of-hanoi-moves
+title: 'Tower of Hanoi: move counts and arrangements'
+topics:
+- recursion
+- induction
+- recurrence relations
+- combinatorics
+- Tower of Hanoi
+warmup: false
+answer_source: pdf
+statement: There are three pegs and $n$ discs of different sizes, initially stacked on the first peg with
+  the largest at the bottom. A move takes the top disc from one peg to another, and a disc may never be
+  placed on a smaller one. Let $M_n$ be the least number of moves needed to transfer the stack to the
+  third peg. (i) Show that $M_n=2M_{n-1}+1$, explaining both why this many moves suffice and why fewer
+  will not do. (ii) Deduce that $M_n=2^n-1$. (iii) Now suppose discs may only move between adjacent pegs
+  (first and second, or second and third). Describe a recursive strategy using $T_n$ moves, where $T_n=3T_{n-1}+2$,
+  and solve this recurrence. (iv) How many legal arrangements of the $n$ discs are there? What does this
+  suggest about the strategy in (iii)?
+stages:
+- goal: Show M_n = 2M_{n-1}+1 by giving a strategy (upper bound) and an argument that no strategy does
+    better (lower bound).
+  expected: 'Upper bound: move the top n-1 discs to peg 2 (M_{n-1} moves), move the largest disc to peg
+    3 (1 move), then move the n-1 discs onto peg 3 (M_{n-1} moves). Total 2M_{n-1}+1. Lower bound: the
+    largest disc must move at least once. Before its first move, the other n-1 discs must all be on the
+    peg it does not move to, which takes at least M_{n-1} moves. After its last move, the n-1 discs must
+    all be moved onto the target peg, which takes at least M_{n-1} more. So M_n is at least 2M_{n-1}+1,
+    and hence equal to it.'
+  solution: 'Suffice: M_{n-1} + 1 + M_{n-1} = 2M_{n-1}+1 moves, as described. Necessary: the largest disc
+    moves at least once. At its first move, the other n-1 discs are all on the third peg (the one it does
+    not go to) and have been moved there from peg 1 by moves that involve only the smaller discs, so at
+    least M_{n-1} moves were used. After its last move the n-1 discs sit on peg 3 and the largest disc
+    is at the bottom, so they must be moved onto peg 3 by at least M_{n-1} further moves. Hence M_n >=
+    2M_{n-1}+1.'
+  common_errors:
+  - Only giving the upper bound and not arguing that fewer moves are impossible.
+  - Assuming the largest disc can move with no extra smaller-disc moves in the lower bound.
+  - Counting moves of the largest disc as more than one when it moves only once in the strategy.
+  hints:
+    rephrase: Think about the largest disc. How many times must it move, and what must the other discs
+      be doing at those moments?
+    smaller_case: For n = 2, list the moves needed and see which discs must move before and after the
+      largest one.
+    key_idea: Split the moves at the times the largest disc moves. Each side is a smaller copy of the
+      same problem.
+- goal: Deduce the closed form M_n = 2^n - 1.
+  expected: M_n + 1 = 2(M_{n-1}+1) with M_1 = 1, so M_n + 1 = 2^n and M_n = 2^n - 1.
+  solution: Add 1 to both sides of M_n = 2M_{n-1}+1 to get M_n + 1 = 2(M_{n-1}+1). Since M_1 = 1, M_1+1
+    = 2, so M_n + 1 = 2^n by induction, giving M_n = 2^n - 1.
+  common_errors:
+  - Using M_0 = 0 without checking the base case gives the same result but the base case should be stated.
+  - Forgetting to add 1 to both sides before dividing.
+  - Stating the formula without a proof by induction.
+  hints:
+    rephrase: Try adding a constant to both sides of the recurrence so that it becomes a pure doubling.
+    smaller_case: Compute M_2 from the recurrence and compare with a power of 2.
+    key_idea: A recurrence of the form x_n = 2x_{n-1} + c becomes geometric after a suitable shift.
+  check: simplify((2**n - 1) - (2*(2**(n-1) - 1) + 1))
+  check_ok: true
+- goal: Describe the adjacent-peg strategy and solve its recurrence T_n = 3T_{n-1}+2.
+  expected: 'Move the top n-1 discs from peg 1 to peg 3 (T_{n-1}), move the largest from 1 to 2, move
+    the n-1 discs from 3 to 1 (T_{n-1}), move the largest from 2 to 3, then move the n-1 discs from 1
+    to 3 (T_{n-1}). This gives T_n = 3T_{n-1}+2 with T_1 = 2. Solution: T_n = 3^n - 1.'
+  solution: 'Recurrence: T_n + 1 = 3(T_{n-1}+1), with T_1 + 1 = 3. So T_n + 1 = 3^n and T_n = 3^n - 1.
+    Check: T_1 = 2 moves (1 to 2, 2 to 3).'
+  common_errors:
+  - Using T_1 = 1 as the base case, which is wrong because the largest disc must cross peg 2.
+  - Forgetting the 2 moves of the largest disc and writing T_n = 3T_{n-1}+1.
+  - Solving the recurrence incorrectly, e.g. treating it as 2^n.
+  hints:
+    rephrase: 'Describe the three phases of the strategy: the top discs, the largest disc, and the top
+      discs again.'
+    smaller_case: For n = 1, what is the minimum number of moves to get the single disc from peg 1 to
+      peg 3 when peg 2 is in the way?
+    key_idea: Add a constant to both sides of the recurrence so that it becomes a pure multiplication
+      by 3.
+  check: simplify((3**n - 1) - (3*(3**(n-1) - 1) + 2))
+  check_ok: true
+- goal: Count the legal arrangements and interpret the strategy in (iii).
+  expected: There are 3^n legal arrangements, since each disc is on one of three pegs and the order on
+    each peg is forced. The strategy makes 3^n - 1 moves, so it passes through 3^n arrangements counting
+    the start, which suggests it visits every legal arrangement exactly once.
+  solution: 'Each disc has three choices of peg, and the discs on each peg must be in size order, so each
+    choice gives exactly one arrangement: 3^n total. The strategy uses 3^n - 1 moves, so there are 3^n
+    - 1 + 1 = 3^n positions visited along its path. Since there are 3^n legal arrangements, all of them
+    are visited, each once.'
+  common_errors:
+  - Counting arrangements as n! or 3n, ignoring that discs are determined by peg choice.
+  - Forgetting to include the starting arrangement when comparing with the number of moves.
+  - Claiming the strategy is optimal without noting it is the path through every arrangement.
+  hints:
+    rephrase: For a fixed disc, how many pegs could it be on? Does the order of discs on a peg give extra
+      freedom?
+    smaller_case: For n = 1 and n = 2, list all legal arrangements and count them.
+    key_idea: Compare the number of moves plus one with the number of arrangements.
+  check: 3**n - ((3**n - 1) + 1)
+  check_ok: true
+extensions:
+  '3':
+  - Show that the adjacent-peg strategy is the shortest possible when discs may only move between neighbouring
+    pegs.
+  '4':
+  - Describe how the ordering of discs changes from one move to the next in the adjacent-peg strategy,
+    and identify a pattern.
+  '5':
+  - With four pegs, find the least number of moves for n = 3 and explain why it is smaller than the three-peg
+    value for n = 3.
+spoken_vocab:
+- three pegs
+- discs
+- M sub n
+- T sub n
+- two M sub n minus one plus one
+- two to the n minus one
+- three to the n minus one
+- three to the n
+- peg one
+- peg two
+- peg three
+- Tower of Hanoi
+- adjacent pegs
+- legal arrangements
+- recurrence
+- induction
+source: jaymin/Jaymin Interview (1).pdf#p17
+verified: false
+rating:
+  score: 9
+  difficulty: 4
+  parts: 4
+  minutes: 30
+  flags: []
+  tagline: 'Hanoi twice over: recurrences, lower bounds, and a Hamiltonian-path interpretation.'
+  priority: 130
+  rank: 3
+  tier: S

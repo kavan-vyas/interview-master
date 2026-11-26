@@ -1,0 +1,129 @@
+id: primitive-pythagorean-triples
+title: Primitive Pythagorean triples and the hypotenuse 65
+topics:
+- Pythagorean triples
+- parity
+- coprimality
+- unique factorisation
+- parametrisation
+warmup: false
+answer_source: pdf
+statement: A primitive Pythagorean triple is a triple of positive integers $(a,b,c)$ with $a^2+b^2=c^2$
+  and $\gcd(a,b,c)=1$. (i) Show that exactly one of $a$ and $b$ is even, and that $c$ is odd. (ii) Suppose
+  $b$ is even. Show that $\frac{c+a}{2}$ and $\frac{c-a}{2}$ are coprime positive integers whose product
+  is $\left(\frac{b}{2}\right)^2$. (iii) Deduce that $a=m^2-n^2$, $b=2mn$, $c=m^2+n^2$ for some coprime
+  integers $m>n>0$ of opposite parity. (iv) Find all primitive triples with $c=65$.
+stages:
+- goal: Show that exactly one of $a,b$ is even and that $c$ is odd.
+  expected: If $a,b$ were both even, then $c$ would be even, contradicting $\gcd(a,b,c)=1$. If both were
+    odd, then $c^2\equiv 2 \pmod 4$, impossible. So exactly one of $a,b$ is even, and $c^2=a^2+b^2$ is
+    odd, so $c$ is odd.
+  solution: If $a$ and $b$ are both even, then $c^2=a^2+b^2$ is even, so $c$ is even, and $2\mid\gcd(a,b,c)$,
+    contradicting primitivity. If both are odd, then $a^2+b^2\equiv 2 \pmod 4$, but squares are $0$ or
+    $1 \pmod 4$, so $c^2\equiv 2 \pmod 4$ is impossible. Hence exactly one of $a,b$ is even. Then $c^2=a^2+b^2$
+    is odd, so $c$ is odd.
+  common_errors:
+  - Forgetting to rule out both even
+  - Using $\gcd(a,b)$ instead of $\gcd(a,b,c)$
+  - Claiming both odd is possible because odd squares are odd
+  hints:
+    rephrase: Consider the cases for the parities of $a$ and $b$, and use $\gcd=1$ and squares mod $4$.
+    smaller_case: Look at the triple $(3,4,5)$ and check which entries are even.
+    key_idea: Relate the parity of $c^2$ to the parity of $a^2+b^2$, and use squares mod $4$.
+- goal: Show that $u=\frac{c+a}{2}$ and $v=\frac{c-a}{2}$ are coprime positive integers with $uv=\left(\frac{b}{2}\right)^2$.
+  expected: $u$ and $v$ are positive integers with $uv=\left(\frac{b}{2}\right)^2$ and $\gcd(u,v)=1$.
+  solution: Since $b$ is even, $a$ is odd by (i), so $c\pm a$ is even and $u,v$ are integers. $c>a>0$
+    gives $u,v>0$. Then $uv=\frac{c^2-a^2}{4}=\frac{b^2}{4}=\left(\frac{b}{2}\right)^2$. For coprimality,
+    let $p$ be a prime dividing both $u$ and $v$. Then $p\mid u+v=c$ and $p\mid u-v=a$. Since $p\mid c^2-a^2=b^2$,
+    we get $p\mid b$, so $p\mid\gcd(a,b,c)=1$, a contradiction. So $\gcd(u,v)=1$.
+  check: (((65+63)//2)*((65-63)//2) - (16//2)**2) == 0
+  common_errors:
+  - Claiming $\gcd(u,v)\mid b$ directly without a prime-by-prime argument
+  - Forgetting that $u,v$ are integers because $a$ is odd
+  - Forgetting that $c>a$ makes $v$ positive
+  hints:
+    rephrase: Show that $u+v=c$ and $u-v=a$, then consider a prime dividing both $u$ and $v$.
+    smaller_case: For $(3,4,5)$ compute $\frac{c+a}{2}$ and $\frac{c-a}{2}$ directly and check their product.
+    key_idea: If a prime divides both $u$ and $v$, track what it does to $c$, $a$ and $b^2$; primitivity
+      then gives a contradiction.
+  check_ok: true
+- goal: Deduce the parametrisation $a=m^2-n^2$, $b=2mn$, $c=m^2+n^2$ with $m>n>0$ coprime of opposite
+    parity.
+  expected: $u=m^2$, $v=n^2$ with $m>n>0$ coprime, giving $c=m^2+n^2$, $a=m^2-n^2$, $b=2mn$. Since $c$
+    is odd, $m$ and $n$ have opposite parity.
+  solution: $u,v$ are coprime positive integers whose product is a square. By unique factorisation each
+    is a square, so $u=m^2$ and $v=n^2$ with $m,n>0$. Since $a>0$ we have $u>v$, so $m>n$. Also $\gcd(m,n)=1$
+    because $\gcd(u,v)=1$. Then $c=u+v=m^2+n^2$, $a=u-v=m^2-n^2$, and $b^2=4uv=(2mn)^2$ gives $b=2mn$.
+    Since $c$ is odd, $m^2+n^2$ is odd, so $m$ and $n$ have opposite parity.
+  check: (8**2-1**2-63) + (2*8*1-16) + (8**2+1**2-65) == 0
+  common_errors:
+  - Assuming a coprime product being a square forces each factor to be a square without justification
+  - Forgetting $m>n$ from $a>0$
+  - Not deducing opposite parity from $c$ odd
+  hints:
+    rephrase: Use that coprime positive integers whose product is a square are each squares, then translate
+      back to $a,b,c$.
+    smaller_case: For $(3,4,5)$ compute $u$ and $v$ and take their square roots.
+    key_idea: Identify $m$ and $n$ through $u=m^2$ and $v=n^2$, then rewrite $a,b,c$ using $u+v$, $u-v$,
+      and $uv$.
+  check_ok: true
+- goal: Find all primitive triples with $c=65$.
+  expected: $(a,b,c)=(63,16,65)$ and $(33,56,65)$ (with $a$ odd and $b$ even; the two triples are $\{16,63,65\}$
+    and $\{33,56,65\}$).
+  solution: 'We need $65=m^2+n^2$ with $m>n>0$ coprime of opposite parity. The only representations of
+    $65$ as a sum of two positive squares are $1+64$ and $16+49$, giving $(m,n)=(8,1)$ and $(7,4)$. Both
+    are coprime with opposite parity. For $(8,1)$: $a=63$, $b=16$. For $(7,4)$: $a=33$, $b=56$. Check:
+    $63^2+16^2=3969+256=4225=65^2$ and $33^2+56^2=1089+3136=4225=65^2$.'
+  check: (63**2+16**2-65**2)+(33**2+56**2-65**2) == 0
+  common_errors:
+  - Missing the representation $16+49$
+  - Forgetting the coprimality or opposite-parity condition
+  - Reporting a triple with $\gcd$ greater than $1$
+  - Inconsistent ordering of $a$ and $b$ across triples
+  hints:
+    rephrase: Find all ways to write $65$ as a sum of two squares of positive integers, then apply the
+      parametrisation.
+    smaller_case: Check which of $65-1$, $65-4$, $65-9$ and so on are perfect squares.
+    key_idea: For each candidate pair, test the coprimality and opposite-parity conditions before forming
+      the triple.
+  check_ok: true
+extensions:
+  '3':
+  - Show that the hypotenuse $c$ of a primitive triple has all prime factors $\equiv 1 \pmod 4$.
+  - Show that $c$ of a primitive triple is never divisible by $4$.
+  '4':
+  - Find all primitive triples with $c=25$ and explain why there is only one up to order of $a$ and $b$.
+  - Explain why $(3,4,5)$ and $(5,12,13)$ can be generated from the parametrisation.
+  '5':
+  - Prove that every primitive triple arises from exactly one pair $(m,n)$ with $m>n>0$ coprime of opposite
+    parity, up to swapping $a$ and $b$.
+  - Prove that the parametrisation produces only primitive triples whenever $m,n$ are coprime of opposite
+    parity.
+spoken_vocab:
+- primitive Pythagorean triple
+- hypotenuse
+- sixty five
+- sixty three
+- sixteen
+- thirty three
+- fifty six
+- gcd of a b c
+- coprime
+- opposite parity
+- m squared minus n squared
+- two m n
+- m squared plus n squared
+- unique factorisation
+- perfect square
+source: jaymin/Jaymin Interview (1).pdf#p9
+verified: false
+rating:
+  score: 9
+  difficulty: 4
+  parts: 4
+  minutes: 30
+  flags: []
+  tagline: Parametrisation derivation plus concrete c=65 enumeration; excellent extension and discussion.
+  priority: 130
+  rank: 9
+  tier: S

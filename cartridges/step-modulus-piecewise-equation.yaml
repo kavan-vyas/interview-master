@@ -1,0 +1,112 @@
+id: step-modulus-piecewise-equation
+title: Solve a piecewise-linear equation with four modulus terms
+topics:
+- modulus functions
+- case analysis
+- piecewise linear equations
+warmup: false
+answer_source: pdf
+statement: Find all the solutions of the equation $|x+1| - |x| + 3|x-1| - 2|x-2| = x+2$.
+stages:
+- goal: Solve the equation on the region $x\leq -1$, where every modulus sign can be removed.
+  expected: $x=-2$ is the only solution in this region. On $x\leq -1$ the left side simplifies to $-x-2$,
+    so $-x-2=x+2$ gives $x=-2$.
+  solution: 'For $x\leq -1$: $|x+1|=-(x+1)$, $|x|=-x$, $|x-1|=1-x$, $|x-2|=2-x$. The left side is $-x-1+x+3(1-x)-2(2-x)=-x-2$.
+    Setting $-x-2=x+2$ gives $x=-2$, which satisfies $x\leq -1$.'
+  common_errors:
+  - Dropping the minus sign when removing $|x+1|$ for $x<-1$
+  - Using $|x-2|=x-2$ on a region where $x<2$
+  - Rejecting $x=-2$ because it looks like a boundary value rather than a solution in the region
+  hints:
+    rephrase: Before removing any modulus bars on this region, decide whether each expression inside them
+      is positive or negative.
+    smaller_case: Substitute $x=-3$ into each of the four modulus terms and note which signs you get.
+      Then repeat the same reasoning for the general case $x\leq -1$.
+    key_idea: Each $|x-a|$ is linear on either side of $x=a$. The breakpoints $x=-1,0,1,2$ are the only
+      places where the algebraic form changes.
+  check: Abs(-2+1)-Abs(-2)+3*Abs(-2-1)-2*Abs(-2-2)-(-2+2)
+  check_ok: true
+- goal: Examine the middle regions $-1\leq x\leq 2$ and find any solutions there.
+  expected: No solutions for $-1\leq x<1$. On $1\leq x\leq 2$ the only solution is $x=2$. The value $x=-1$
+    found on $0\leq x\leq 1$ lies outside that region, so it is rejected.
+  solution: 'On $-1\leq x\leq 0$: left side $=x+1+x+3(1-x)-2(2-x)$ simplifies to $x$, so $x=x+2$ is impossible.
+    On $0\leq x\leq 1$: left side $=-x$, so $-x=x+2$ gives $x=-1$, outside the region. On $1\leq x\leq
+    2$: left side $=5x-6$, so $5x-6=x+2$ gives $x=2$, which is valid.'
+  common_errors:
+  - Using $|x|=x$ on $[-1,0]$, which is wrong because $x\leq 0$ there
+  - Accepting $x=-1$ from the $0\leq x\leq 1$ case even though it lies outside that region
+  - Forgetting to check the endpoint $x=2$ in the $1\leq x\leq 2$ case
+  hints:
+    rephrase: Treat each sub-interval separately. For each one, write the left side without modulus signs,
+      then solve, then check that your solution lies inside the interval.
+    smaller_case: Pick $x=-0.5$ and work out the sign of $x$, $x+1$ and $x-1$ there. Use those signs to
+      simplify the left side on $[-1,0]$.
+    key_idea: A solution from one linear case only counts if it lies in that case's interval, so always
+      check membership after solving.
+  check: (5*2-6)-(2+2)
+  check_ok: true
+- goal: Describe the full solution set for $x\geq 2$.
+  expected: Every $x\geq 2$ satisfies the equation, because both sides equal $x+2$ on this region.
+  solution: 'For $x\geq 2$: $|x+1|=x+1$, $|x|=x$, $|x-1|=x-1$, $|x-2|=x-2$. The left side is $x+1-x+3x-3-2x+4=x+2$,
+    which equals the right side for every $x$ in the region. Combined with $x=-2$, the solution set is
+    $\{-2\}\cup[2,\infty)$.'
+  common_errors:
+  - Solving $x+2=x+2$ and concluding there is no solution, rather than recognising an identity
+  - Forgetting to combine the identity region with the isolated solution $x=-2$
+  - Writing $x>2$ instead of $x\geq 2$ and so excluding the endpoint
+  hints:
+    rephrase: When both sides look identical after simplification, think about what that says about every
+      value in the region.
+    smaller_case: Try $x=3$ and $x=10$ in the original equation and compare the two sides at each value.
+    key_idea: An equation can hold identically on an interval. A linear identity in a region means that
+      whole region is part of the solution set.
+  check: (x+1)-x+3*(x-1)-2*(x-2)-(x+2)
+  check_ok: true
+extensions:
+  '3':
+  - Solve $|x-1|+|x-3|=4$.
+  - Solve $|2x-1|=x+3$.
+  - Solve $|x|+|x+2|=2x+1$.
+  '4':
+  - Solve $|x^2-1|+|x|=x+1$.
+  - Solve $\left||x-1|-2\right|=x$.
+  - Prove that $|a|+|b|\geq |a+b|$ for all real $a,b$ and state when equality holds.
+  '5':
+  - Solve $|x+a|-|x-a|=x$ for real $a>0$.
+  - Find how the number of real solutions of $\left||x|-1\right|+|x-2|=k$ depends on $k$.
+  - Sketch $y=|x+1|-|x|+3|x-1|-2|x-2|$ and identify where it equals $x+2$.
+spoken_vocab:
+- absolute value of x plus one
+- minus absolute value of x
+- plus three times absolute value of x minus one
+- minus two times absolute value of x minus two
+- equals x plus two
+- x less than or equal to minus one
+- minus one less than or equal to x less than or equal to zero
+- x greater than or equal to two
+- x equals minus two
+- all x greater than or equal to two
+- modulus
+- region
+- case analysis
+- breakpoint
+- identity
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#3
+verified: false
+rating:
+  quality: 7
+  difficulty: 4
+  parts: 3
+  minutes: 10
+  flags: []
+  tagline: 'Piecewise modulus equation: isolated root plus an entire solution ray.'
+  priority: 81
+  rank: 216
+  tier: B
+  category: siklos
+  d10: 3.0
+  real: 4.0
+  by: haiku
+tags:
+- inequalities
+- algebra_and_functions

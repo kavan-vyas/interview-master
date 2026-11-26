@@ -1,0 +1,123 @@
+id: lattice-points-concentric-circles
+title: 'Concentric circles about (1/3, root 2): one lattice point each'
+topics:
+- coordinate geometry
+- irrationality
+- lattice points
+- proof
+warmup: false
+answer_source: generated
+statement: Show that the family of concentric circles which have centre $\left(\frac{1}{3}, \sqrt{2}\right)$
+  are such that each circle has exactly 1 lattice point on its boundary, and each lattice point is on
+  a circle.
+stages:
+- goal: Write the squared distance from the centre P = (1/3, sqrt 2) to a general lattice point (a, b).
+  expected: (a - 1/3)^2 + (b - sqrt 2)^2 = a^2 - (2/3)a + b^2 - 2 sqrt(2) b + 19/9.
+  solution: Expand (a - 1/3)^2 = a^2 - 2a/3 + 1/9 and (b - sqrt 2)^2 = b^2 - 2 sqrt(2) b + 2. Adding gives
+    the stated expression, since 1/9 + 2 = 19/9.
+  common_errors:
+  - Dropping the 1/9 or the 2 from the constant term
+  - Treating sqrt 2 as rational when expanding
+  - Writing the distance instead of the squared distance and then mishandling the square root
+  hints:
+    rephrase: Expand each squared bracket separately, keeping track of which terms are rational and which
+      involve sqrt 2.
+    smaller_case: Expand the distance from P to the point (0, 0) first.
+    key_idea: Squaring a difference of the form (x - y) gives x squared, minus twice the product, plus
+      y squared.
+  check: (a - Rational(1,3))**2 + (b - sqrt(2))**2 - (a**2 - Rational(2,3)*a + b**2 - 2*sqrt(2)*b + Rational(19,9))
+  check_ok: true
+- goal: Suppose two lattice points (a, b) and (c, d) lie at the same distance from P. Show that b = d.
+  expected: Equal squared distances give a^2 - c^2 - (2/3)(a - c) + b^2 - d^2 = 2 sqrt(2) (b - d). The
+    left side is rational, so if b were not equal to d the right side would be irrational, a contradiction.
+    Hence b = d.
+  solution: Set the two expanded squared distances equal and move the sqrt 2 terms to one side and the
+    rational terms to the other. The left-hand side is a rational number because a, b, c, d are integers.
+    If b - d is nonzero, then 2 sqrt(2)(b - d) is irrational, which cannot equal a rational number. So
+    b - d = 0.
+  common_errors:
+  - Concluding a = c before showing b = d
+  - Claiming the equation forces b = d without explaining the irrationality argument
+  - Forgetting that b^2 - d^2 is rational
+  hints:
+    rephrase: Set the two squared distances equal and separate the terms that contain sqrt 2 from those
+      that do not.
+    smaller_case: Take the pair (0, 0) and (1, 1) and check which side of the equation is irrational.
+    key_idea: A nonzero rational multiple of an irrational number is irrational, so an irrational quantity
+      cannot equal a rational one.
+- goal: With b = d, show that a = c.
+  expected: The equation reduces to (a - c)(a + c - 2/3) = 0. Since a + c is an integer, a + c - 2/3 is
+    never zero, so a = c.
+  solution: With b = d the b terms cancel, leaving a^2 - c^2 - (2/3)(a - c) = 0. Factor to get (a - c)(a
+    + c - 2/3) = 0. Because a + c is an integer, the second factor is nonzero, so a - c = 0.
+  common_errors:
+  - Dividing by a - c without noting that the case a = c is the one we want
+  - Assuming a + c could equal 2/3 for some lattice points
+  hints:
+    rephrase: Once b is known to equal d, what remains is an equation in a and c only. Factor it.
+    smaller_case: Set c = 0 and find all integers a satisfying the equation.
+    key_idea: Factor the difference of squares and check whether the other factor can vanish for integers.
+  check: (a**2 - c**2) - Rational(2,3)*(a - c) - (a - c)*(a + c - Rational(2,3))
+  check_ok: true
+- goal: Conclude both claims about the family of circles centred at P.
+  expected: Take the family of circles centred at P whose radii are the distances from P to lattice points.
+    Each such circle contains its generating lattice point, and by stages 2 and 3 no other lattice point
+    lies on it, so it has exactly one lattice point. Every lattice point lies on the circle centred at
+    P through that point.
+  solution: For each lattice point X, let r_X = |PX|. The circle centred at P with radius r_X contains
+    X. If another lattice point Y lay on it, then |PY| = |PX|, which stages 2 and 3 rule out unless Y
+    = X. So each such circle has exactly one lattice point. Each lattice point lies on the circle with
+    radius |PX|, so every lattice point is on a circle of the family.
+  common_errors:
+  - Claiming every circle centred at P has a lattice point, which is false
+  - Forgetting to state that the family is indexed by lattice points
+  hints:
+    rephrase: Define the radius of each circle using a lattice point, then check what the earlier stages
+      say about that circle.
+    smaller_case: Pick one lattice point and draw the circle centred at P through it. Check whether any
+      other lattice point can lie on that circle.
+    key_idea: Two lattice points give the same distance from P only if they coincide, so each lattice
+      point determines a circle with exactly one lattice point.
+extensions:
+  '3':
+  - Repeat the argument for centre (1/2, sqrt 3).
+  '4':
+  - Replace sqrt 2 by any irrational number t and show the same conclusions hold for centre (1/3, t).
+  '5':
+  - Let the centre be (p, q) with p rational. Under what conditions on p and q does every lattice point
+    get its own circle?
+spoken_vocab:
+- centre
+- one third comma root two
+- concentric circles
+- lattice point
+- squared distance
+- irrational
+- rational
+- root two
+- boundary
+- two lattice points
+- a minus c
+- b equals d
+- factor
+- integer
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 4
+  minutes: 15
+  flags: []
+  tagline: Irrationality of √2 separates rational and irrational parts, forcing both coordinates to match.
+  priority: 82
+  rank: 195
+  tier: B
+  category: tbo
+  d10: 4.5
+  real: 7.0
+  by: haiku
+tags:
+- proof
+- number_theory
+- coordinate_geometry

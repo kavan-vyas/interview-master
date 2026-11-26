@@ -1,0 +1,158 @@
+id: kclms-specimen-q3-linear-systems-method
+title: Solving linear systems by adding equations, and when the method fails
+topics:
+- simultaneous equations
+- linear systems
+- consistency
+- solution counting
+- linear algebra
+warmup: false
+answer_source: pdf
+statement: 'PROBLEM: Find x, y and z if x+y=7, y+z=10, z+x=13. METHOD: Adding the three equations gives
+  2x+2y+2z=30, so x+y+z=15. Since x+y=7, z=15-7=8. In the same way, x=15-10=5 and y=15-13=2. (a) Use the
+  METHOD above to solve: find x, y and z if x+y=11, y+z=16, z+x=19. (b) Adapt the METHOD to solve: find
+  w, x, y and z if w+x+y=9, x+y+z=12, y+z+w=15, z+w+x=18. (c) Try to adapt the METHOD to solve: (i) find
+  x, y and z if x-y=8, z-y=3, x-z=5; (ii) find x, y and z if x-y=8, z-y=3, x-z=4. What goes wrong? (d)
+  One of the PROBLEMs in (c) has many solutions, even though the METHOD does not work; the other has no
+  solutions. Identify which is which, and explain the difference.'
+stages:
+- goal: (a) Solve x+y=11, y+z=16, z+x=19 using the METHOD.
+  expected: x=7, y=4, z=12.
+  solution: 'Adding all three equations gives 2(x+y+z)=46, so x+y+z=23. Then z=23-11=12, x=23-16=7 and
+    y=23-19=4. Check: 7+4=11, 4+12=16, 12+7=19.'
+  common_errors:
+  - Forgetting to halve the sum, so using 46 instead of 23
+  - Subtracting the wrong pair sum from the total, for example giving x=23-11
+  - Not checking the answers in the original equations
+  hints:
+    rephrase: Look at what you get when you add all three equations together.
+    smaller_case: Ask what the sum of only two of the equations tells you about the third variable.
+    key_idea: Adding all three equations counts each variable twice, so the total is half the sum of the
+      right-hand sides.
+  check: 'solve([x+y-11, y+z-16, z+x-19],[x,y,z]) == {x: 7, y: 4, z: 12}'
+  check_ok: true
+- goal: (b) Adapt the METHOD to solve the four-equation system for w, x, y and z.
+  expected: w=6, x=3, y=0, z=9.
+  solution: 'Each variable appears in exactly three of the four equations. Adding all four gives 3(w+x+y+z)=54,
+    so w+x+y+z=18. Then z=18-9=9, w=18-12=6, x=18-15=3 and y=18-18=0. Check: 6+3+0=9, 3+0+9=12, 0+9+6=15,
+    9+6+3=18.'
+  common_errors:
+  - Dividing the sum 54 by 4 instead of 3, because each variable appears three times, not four
+  - Taking the total as 54 instead of 18
+  - Forgetting to check the four equations
+  hints:
+    rephrase: Add all four equations and count how many times each variable appears.
+    smaller_case: Try the method on just the first three equations and see what total it gives.
+    key_idea: Each equation is the total minus one variable, so each variable's value comes from the total
+      minus its matching equation.
+  check: 'solve([w+x+y-9, x+y+z-12, y+z+w-15, z+w+x-18],[w,x,y,z]) == {w: 6, x: 3, y: 0, z: 9}'
+  check_ok: true
+- goal: (c)(i) Adapt the METHOD to x-y=8, z-y=3, x-z=5. Find x, y and z or explain what happens to the
+    METHOD.
+  expected: 'The METHOD gives no fixed total. The third equation is the first minus the second, so the
+    system is not uniquely solvable. y is free: x=y+8 and z=y+3 for any value of y.'
+  solution: 'Adding the equations does not isolate the variables, since the signs do not cancel to give
+    a useful total. Subtracting the second equation from the first gives x-z=8-3=5, which is exactly the
+    third equation. So the third equation adds no information. Two independent equations in three unknowns
+    leave one free parameter: y can be any value, with x=y+8 and z=y+3.'
+  common_errors:
+  - Concluding a unique solution by fixing y, for example setting y=0
+  - Treating the third equation as a new contradiction rather than a repeat
+  - Solving for x and z but not stating that y is free
+  hints:
+    rephrase: Try writing the third equation as a combination of the first two.
+    smaller_case: Take y=0 and solve, then take y=1 and see whether the same three equations still hold.
+    key_idea: Check whether any equation is redundant, meaning it follows from the others.
+  check: ((y+8)-y-8)**2 + ((y+3)-y-3)**2 + (((y+8)-(y+3))-5)**2
+  check_ok: true
+- goal: (c)(ii) Adapt the METHOD to x-y=8, z-y=3, x-z=4. Decide whether there is a solution and say what
+    goes wrong with the METHOD.
+  expected: No solutions. Subtracting the second equation from the first gives x-z=5, which contradicts
+    x-z=4.
+  solution: 'Subtract the second equation from the first: (x-y)-(z-y)=8-3, so x-z=5. But the third equation
+    says x-z=4. Since 5 is not equal to 4, the system has no solution. The METHOD fails because the equations
+    describe conflicting differences, so no consistent values exist.'
+  common_errors:
+  - Claiming infinitely many solutions because there are three unknowns
+  - Substituting incorrectly and reporting specific values for x, y and z
+  - Not noticing that the derived difference contradicts the third equation
+  hints:
+    rephrase: Combine two of the equations in a way that eliminates y.
+    smaller_case: What value does the first equation minus the second give for x-z?
+    key_idea: If two equations force a value that a third equation contradicts, there is no solution.
+  check: solve([x-y-8, z-y-3, x-z-4],[x,y,z]) == []
+  check_ok: true
+- goal: (d) Identify which PROBLEM in (c) has many solutions and which has none, and explain the difference.
+  expected: (i) has many solutions; (ii) has none. In (i) the third equation is the first minus the second,
+    so it is redundant and y is free. In (ii) the third equation contradicts the difference x-z=5 implied
+    by the first two, since 5 is not 4.
+  solution: In (i), x-z=5 is the third equation, so the system is consistent with one free variable and
+    infinitely many solutions. In (ii), x-z=5 from the first two equations conflicts with x-z=4, so the
+    system is inconsistent and has no solutions. The difference is whether the third equation is implied
+    by the first two (many solutions) or conflicts with them (no solutions).
+  common_errors:
+  - Swapping which case has many solutions and which has none
+  - Saying (i) has no solutions because the METHOD does not work
+  - Explaining the difference using the METHOD rather than consistency of the equations
+  hints:
+    rephrase: Compare the third equation with the difference of the first two in each case.
+    smaller_case: Look at what the first two equations imply about x-z, then compare that with the third
+      equation.
+    key_idea: Many solutions means the equations depend on each other. No solutions means they conflict.
+extensions:
+  '3':
+  - Solve x+y=5, y+z=9, z+x=12 with the METHOD, then check your answer.
+  - Write a system of three equations in x, y, z with a repeated equation and state how many free parameters
+    it has.
+  '4':
+  - Solve a system of four equations in w, x, y, z where the sum of any three is given. Use the METHOD
+    and check consistency.
+  - Adapt the METHOD to a system where the coefficients of x, y, z are all 2 instead of 1, and explain
+    what changes.
+  '5':
+  - Show that a system of n equations in n unknowns, each being the total minus one unknown, has a unique
+    solution when the total is known.
+  - Prove that a linear system is consistent exactly when no combination of its equations gives 0 = nonzero.
+spoken_vocab:
+- x plus y equals seven
+- y plus z equals ten
+- z plus x equals thirteen
+- two x plus two y plus two z equals thirty
+- x plus y plus z equals fifteen
+- x plus y equals eleven
+- y plus z equals sixteen
+- z plus x equals nineteen
+- w plus x plus y equals nine
+- x plus y plus z equals twelve
+- y plus z plus w equals fifteen
+- z plus w plus x equals eighteen
+- x minus y equals eight
+- z minus y equals three
+- x minus z equals five
+- x minus z equals four
+- minus
+- equals
+- sum
+- many solutions
+- no solutions
+- free variable
+- redundant
+source: kclms/kclms-specimen-questions-2.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 4
+  parts: 5
+  minutes: 15
+  flags: []
+  tagline: Sum-and-subtract method probes dependence and inconsistency; excellent discussion.
+  priority: 93
+  rank: 70
+  tier: A
+  category: kclms
+  d10: 3.0
+  real: 6.0
+  by: haiku
+tags:
+- algebra_and_functions
+- proof

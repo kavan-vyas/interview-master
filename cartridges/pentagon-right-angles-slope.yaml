@@ -1,0 +1,114 @@
+id: pentagon-right-angles-slope
+title: Irregular pentagon with right angles and a sloping side
+topics:
+- geometry
+- Pythagoras theorem
+- right-angled triangles
+- perimeter and lengths
+- irregular shapes
+warmup: false
+answer_source: pdf
+statement: The diagram shows an irregular pentagon. The lengths of three of the sides are 31 cm, 5 cm
+  and 17 cm. Three of the angles in the pentagon are right angles. The sloping side is 20 cm long. Find
+  the length of the side marked s.
+stages:
+- goal: Find the vertical difference between the 17 cm side and the 5 cm side.
+  expected: 12 cm
+  solution: The two vertical sides are 17 cm and 5 cm. The vertical difference between them is 17 − 5
+    = 12 cm. This is the vertical leg of a right-angled triangle formed by drawing a horizontal line from
+    the end of the 5 cm side to the 17 cm side.
+  common_errors:
+  - Adding 17 and 5 to get 22 cm.
+  - Using 31 cm as the vertical height.
+  - Subtracting the wrong way round, giving −12 and treating it as a length.
+  hints:
+    rephrase: Two vertical sides are shown. How far apart are they vertically?
+    smaller_case: If the sides were 10 cm and 4 cm, how far apart would their tops be vertically?
+    key_idea: The vertical difference between two parallel vertical sides is the difference of their lengths
+      when they share a base line.
+  check: 17 - 5 - 12
+  check_ok: true
+- goal: Find the horizontal part of the sloping side using Pythagoras' theorem.
+  expected: 16 cm
+  solution: The sloping side is the hypotenuse of a right-angled triangle with vertical leg 12 cm and
+    horizontal leg x. By Pythagoras, x² + 12² = 20², so x² = 400 − 144 = 256, and x = 16 cm.
+  common_errors:
+  - Using 20² + 12² instead of 20² − 12², giving a larger value.
+  - Taking the square root of 256 incorrectly.
+  - Using 20 as the horizontal leg instead of the hypotenuse.
+  hints:
+    rephrase: The sloping side is the longest side of a right-angled triangle. Which two sides are the
+      shorter sides, and how do they relate to the hypotenuse?
+    smaller_case: If the hypotenuse were 5 and one leg were 3, what would the other leg be?
+    key_idea: For a right-angled triangle, the square of the hypotenuse equals the sum of the squares
+      of the other two sides.
+  check: sqrt(20**2 - 12**2) - 16
+  check_ok: true
+- goal: Find the length s from the horizontal part of the sloping side and the 31 cm side.
+  expected: 15 cm
+  solution: The 31 cm side is made up of the horizontal length s and the horizontal part of the slope,
+    16 cm. So s + 16 = 31, giving s = 31 − 16 = 15 cm.
+  common_errors:
+  - Adding 16 and 31 to get 47 cm.
+  - Subtracting 12 instead of 16 from 31.
+  - Using 5 cm or 17 cm as the horizontal length.
+  hints:
+    rephrase: 'The 31 cm horizontal length is split into two parts: s and the horizontal part of the slope.
+      What is the other part?'
+    smaller_case: If a horizontal length of 10 cm is split into a part of 3 cm and an unknown part, how
+      do you find the unknown part?
+    key_idea: 'A horizontal length split into two parts: the whole equals the sum of the parts, so the
+      unknown part is the whole minus the known part.'
+  check: 31 - 16 - 15
+  check_ok: true
+extensions:
+  '3':
+  - If the sloping side were 15 cm instead of 20 cm, with the same vertical difference of 12 cm, what
+    would the horizontal part be?
+  - Find the perimeter of the pentagon if you know all five side lengths.
+  '4':
+  - Explain why the Pythagorean triple 5, 12, 13 is related to this problem.
+  - Show that the value of s is unchanged if the 5 cm and 17 cm sides are swapped in position, and explain
+    why.
+  '5':
+  - 'Prove the general result: for a right-angled triangle with hypotenuse c and vertical leg b, the horizontal
+    leg is √(c² − b²).'
+  - Discuss what happens to s if the sloping side is shorter than the vertical difference, and why the
+    figure would be impossible.
+spoken_vocab:
+- irregular pentagon
+- right angles
+- sloping side
+- side marked s
+- 31 centimetres
+- 5 centimetres
+- 17 centimetres
+- 20 centimetres
+- vertical
+- horizontal
+- right-angled triangle
+- Pythagoras theorem
+- hypotenuse
+- square root
+- squared
+- subtract
+source: kclms/kclms-specimen-questions-2.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 4
+  parts: 3
+  minutes: 8
+  flags:
+  - missing_info
+  - needs_diagram
+  tagline: Refers to a diagram that is absent, so the geometry cannot be fixed from text.
+  priority: 15
+  rank: 702
+  tier: D
+  category: kclms
+  d10: 1.5
+  real: 3.0
+  by: haiku
+tags:
+- geometry

@@ -1,0 +1,9 @@
+[
+ {
+  "q": "Two buses, $M$ and $Z$, always arrive at fixed numbers of minutes past the hour, and only one bus comes each hour. You arrive at random times over the course of a year and observe that you are much more likely to catch bus $M$ than bus $Z$. Given that $Z$ arrives during the first half of the hour, what can you deduce about the arrival times $m$ and $z$ of the two buses?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 4 (anonymous).pdf#0"
+ }
+]

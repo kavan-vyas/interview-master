@@ -1,0 +1,163 @@
+id: exp-cubic-root-count-arctan
+title: Counting real roots of an exponential-arctan equation
+topics:
+- calculus
+- differentiation
+- monotonicity
+- limits
+- inverse trigonometric functions
+- counting roots
+warmup: false
+answer_source: pdf
+statement: (i) Let $f(x)=(1+x^2)e^x-k$, where $k$ is a given constant. Show that $f'(x)\geq 0$ and sketch
+  the graph of $f(x)$ in the cases $k<0$, $0<k<1$ and $k>1$. Hence, or otherwise, show that the equation
+  $(1+x^2)e^x-k=0$ has exactly one real root if $k>0$ and no real roots if $k\leq 0$. (ii) Determine the
+  number of real roots of the equation $(e^x-1)-k\tan^{-1}x=0$ in the different cases that arise according
+  to the value of the constant $k$.
+stages:
+- goal: Differentiate $f(x)=(1+x^2)e^x-k$ and show that $f'(x)\geq0$. Identify where $f'(x)=0$.
+  expected: $f'(x)=(1+x)^2e^x\geq0$, with equality only at $x=-1$, so $f$ is strictly increasing.
+  solution: By the product rule, $f'(x)=2xe^x+(1+x^2)e^x=(x^2+2x+1)e^x=(1+x)^2e^x$. This is nonnegative
+    for all $x$ and is zero only at $x=-1$, where the graph has a horizontal inflection. Since $f'$ is
+    zero at only one point, $f$ is strictly increasing.
+  common_errors:
+  - Forgetting the $2xe^x$ term from the product rule.
+  - Claiming $f$ has a local maximum or minimum at $x=-1$, when $f'$ does not change sign there.
+  - Concluding only $f'\geq0$ without noting that $f$ is strictly increasing.
+  hints:
+    rephrase: Use the product rule on $(1+x^2)e^x$ and simplify the result as far as possible.
+    smaller_case: Differentiate $(1+x^2)e^x$ at $x=0$ and at $x=-1$ separately, and check that both values
+      are nonnegative.
+    key_idea: Factorise the derivative. A perfect square times $e^x$ is always nonnegative.
+  check: simplify(diff((1+x**2)*exp(x) - k, x) - (1+x)**2*exp(x)) == 0
+  check_ok: true
+- goal: Find the limits of $f$ as $x\to-\infty$ and $x\to\infty$, and $f(0)$. Deduce the number of real
+    roots of $f(x)=0$ for $k>0$ and for $k\leq0$.
+  expected: '$f\to-k$ as $x\to-\infty$, $f\to\infty$ as $x\to\infty$, and $f(0)=1-k$. Since $f$ is strictly
+    increasing: for $k>0$ there is exactly one real root, and for $k\leq0$ there are none, because $f(x)>-k\geq0$.'
+  solution: As $x\to-\infty$, $(1+x^2)e^x\to0$, so $f\to-k$. As $x\to\infty$, $f\to\infty$. Since $f$
+    is strictly increasing and continuous, $f$ takes every value in $(-k,\infty)$ exactly once. If $k>0$
+    then $0$ lies in this interval, so there is exactly one root. If $k\leq0$ then $0\leq -k$, and since
+    $f(x)>-k$ for all $x$, $f(x)>0$ for all $x$, so there are no roots.
+  common_errors:
+  - Thinking $(1+x^2)e^x\to\infty$ as $x\to-\infty$.
+  - Using the sign of $f(0)$ alone to count roots.
+  - Forgetting that the limit $-k$ is not attained, so the interval is open at the lower end.
+  hints:
+    rephrase: Consider how $(1+x^2)e^x$ behaves as $x$ becomes very large and very negative, then use
+      the monotonicity from the previous stage.
+    smaller_case: Try $k=2$ and $k=-1$. For each, say what the graph looks like near $x=-\infty$ and where
+      it crosses the horizontal axis.
+    key_idea: A continuous strictly increasing function takes each value in its range exactly once. The
+      range is determined by the two limits.
+  check: simplify(limit((1+x**2)*exp(x) - k, x, -oo) + k) == 0
+  check_ok: true
+- goal: Write $f(x)=(e^x-1)-k\tan^{-1}x$. Differentiate it and express the sign of $f'(x)$ in terms of
+    $(1+x^2)e^x-k$.
+  expected: $f'(x)=e^x-\frac{k}{1+x^2}=\frac{(1+x^2)e^x-k}{1+x^2}$. The function $(1+x^2)e^x$ is strictly
+    increasing from $0$ to $\infty$, so $f'$ has at most one zero. For $k\leq0$, $f'>0$ everywhere. For
+    $k>0$, $f$ decreases then increases, with its minimum at the unique point $x_0$ where $(1+x_0^2)e^{x_0}=k$.
+  solution: Differentiating, $f'(x)=e^x-k\cdot\frac{1}{1+x^2}$. Writing this over the common denominator
+    $1+x^2$ gives $f'(x)=\frac{(1+x^2)e^x-k}{1+x^2}$. The denominator is positive. By part (i), $g(x)=(1+x^2)e^x$
+    is strictly increasing from $0$ to $\infty$. So $g(x)=k$ has exactly one solution $x_0$ when $k>0$,
+    and none when $k\leq0$. Hence $f'<0$ for $x<x_0$ and $f'>0$ for $x>x_0$, and $f'>0$ everywhere when
+    $k\leq0$.
+  common_errors:
+  - Differentiating $\tan^{-1}x$ incorrectly as $\frac{1}{x^2+1}$ with the wrong sign or factor.
+  - Stating that $f'$ has a zero at $x=0$ for all $k$.
+  - Forgetting that $f'$ has the same sign as $(1+x^2)e^x-k$, since the denominator is positive.
+  hints:
+    rephrase: Differentiate each term separately, then combine the two terms over the common denominator
+      $1+x^2$.
+    smaller_case: Take $k=1$ and compare $f'(0)$ with the sign of $(1+x^2)e^x-1$ at $x=0$.
+    key_idea: Put $f'(x)$ over the common denominator $1+x^2$ and compare its numerator with the function
+      from part (i).
+  check: simplify(diff(exp(x) - 1 - k*atan(x), x) - ((1+x**2)*exp(x) - k)/(1+x**2)) == 0
+  check_ok: true
+- goal: Find $f(0)$, $f'(0)$, and the limits of $f$ as $x\to-\infty$ and $x\to\infty$.
+  expected: $f(0)=0$, $f'(0)=1-k$, $f(x)\to\frac{k\pi}{2}-1$ as $x\to-\infty$, and $f(x)\to\infty$ as
+    $x\to\infty$.
+  solution: $f(0)=e^0-1-k\cdot0=0$. Also $f'(0)=1-k/(1+0)=1-k$. As $x\to-\infty$, $e^x-1\to-1$ and $\tan^{-1}x\to-\pi/2$,
+    so $f\to-1+\frac{k\pi}{2}$. As $x\to\infty$, $e^x\to\infty$ while $\tan^{-1}x$ stays bounded, so $f\to\infty$.
+  common_errors:
+  - Using $\tan^{-1}x\to\pi/2$ as $x\to-\infty$.
+  - Writing $f'(0)=1+k$ from a sign error.
+  - Forgetting the $-1$ from $e^x-1$ in the limit at $-\infty$.
+  hints:
+    rephrase: Substitute $x=0$ directly. For the limits, consider each term separately and recall the
+      behaviour of $\tan^{-1}$ at $\pm\infty$.
+    smaller_case: For $k=0$, the function is $e^x-1$. Find its limit as $x\to-\infty$ and compare with
+      the general formula after you derive it.
+    key_idea: Limits of a sum are sums of limits when each term has a limit. $\tan^{-1}$ tends to different
+      values at $\pm\infty$.
+  check: simplify(limit(exp(x) - 1 - k*atan(x), x, -oo) - (k*pi/2 - 1)) == 0
+  check_ok: true
+- goal: 'Determine the number of distinct real roots of $f(x)=0$ for each range of $k$: $k\leq0$; $0<k\leq2/\pi$;
+    $2/\pi<k<1$; $k=1$; $k>1$.'
+  expected: One real root ($x=0$) for $k\leq2/\pi$. Two real roots for $2/\pi<k<1$ (one extra root, negative)
+    and for $k>1$ (one extra root, positive). At $k=1$, $x=0$ is a double root, so there is one distinct
+    root (two counted with multiplicity).
+  solution: 'Here $f(0)=0$ always. Case $k\leq0$: $f$ is strictly increasing, so $x=0$ is the only root.
+    Case $k>0$: $f$ decreases on $(-\infty,x_0)$ and increases on $(x_0,\infty)$. Let $L=\frac{k\pi}{2}-1$
+    and $m=f(x_0)$. If $0<k<1$, then $f''(0)>0$ forces $x_0<0$, so $m<f(0)=0$. On $(-\infty,x_0)$, $f$
+    takes exactly the values in $(m,L)$. A second root there requires $0<L$, i.e. $k>2/\pi$. On $(x_0,\infty)$,
+    $0$ is the only root. If $k=1$, then $x_0=0$ and $f\geq0$ with equality only at $0$. If $k>1$, then
+    $f''(0)<0$ forces $x_0>0$. $f$ is decreasing on $(-\infty,x_0)$, so it has no further root there.
+    On $(x_0,\infty)$ there is exactly one more root, since $m<0$.'
+  common_errors:
+  - Claiming a second root exists for every $k>0$.
+  - Forgetting that the limit at $-\infty$ is not attained, so $k=2/\pi$ gives no extra root.
+  - Mishandling the double root at $k=1$ by reporting two distinct roots.
+  hints:
+    rephrase: Track where $f$ is increasing and decreasing, and use $f(0)=0$ to see where the other roots
+      can lie.
+    smaller_case: Try $k=-1$, $k=0.1$ and $k=3$. For each, sketch $f$ on each monotone piece and see where
+      it can cross zero.
+    key_idea: The sign of $f'(0)=1-k$ tells you whether the turning point lies to the left or right of
+      the known root $x=0$. The limit at $-\infty$ tells you whether the left branch can cross zero.
+  check: null
+extensions:
+  '3':
+  - Sketch the graph of $f$ for $k=2/\pi$ and for $k=1$, and explain the tangency at $x=0$ when $k=1$.
+  '4':
+  - Find the range of $\varphi(x)=\frac{e^x-1}{\tan^{-1}x}$ on $(-\infty,0)$ and on $(0,\infty)$, and
+    relate it to the number of roots.
+  '5':
+  - Show rigorously that $\varphi(x)=\frac{e^x-1}{\tan^{-1}x}$ is strictly increasing on $(-\infty,0)$
+    and on $(0,\infty)$.
+spoken_vocab:
+- f of x equals one plus x squared times e to the x minus k
+- f prime of x
+- one plus x all squared times e to the x
+- f of x tends to minus k as x tends to minus infinity
+- k greater than zero
+- k less than or equal to zero
+- e to the x minus one minus k arctan x
+- arctan of x
+- tan inverse of x
+- two over pi
+- pi over two
+- stationary point
+- double root
+- distinct real roots
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#12
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 2
+  minutes: 20
+  flags:
+  - needs_diagram
+  tagline: Monotone-function root counting with a hidden arctan case split
+  priority: 85
+  rank: 158
+  tier: B
+  category: siklos
+  d10: 7.0
+  real: 4.5
+  by: deepseek-v4.1-flash-free
+tags:
+- exponentials_and_logarithms
+- differentiation
+- trigonometry

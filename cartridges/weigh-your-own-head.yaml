@@ -1,0 +1,138 @@
+id: weigh-your-own-head
+title: How would you measure the weight of your own head?
+topics:
+- estimation
+- density
+- volume
+- Archimedes principle
+- mechanics
+warmup: false
+answer_source: generated
+statement: How would you measure the weight of your own head? Describe a method, state your assumptions,
+  and produce a numerical estimate of the head's weight in newtons. Note that you cannot simply place
+  your head on a bathroom scale.
+stages:
+- goal: Choose a feasible method and state the physical relationship you will use.
+  expected: 'Use $m = \rho V$: assume the head''s density is close to that of water, so mass is approximately
+    density times volume. Then measure or estimate the volume of the head. Weight is $W = mg$.'
+  solution: A direct scale reading is impossible, so convert the problem to mass and volume. The head
+    is mostly water and soft tissue with some bone, so its density is roughly that of water, about 1000
+    kg/m^3. Measure the volume by displacement (submerge the head in a container filled to overflow and
+    collect the water) or estimate it by modelling the head as an ellipsoid with measured semi-axes. Then
+    $m = \rho V$ and $W = mg$.
+  common_errors:
+  - Trying to weigh the head on a scale directly, which measures the wrong load because the neck and shoulders
+    carry part of the weight.
+  - Confusing mass (kg) with weight (N).
+  - Assuming bone density dominates, when the head is mostly soft tissue of roughly water density.
+  hints:
+    rephrase: A scale gives you mass or weight directly, but you cannot place your head on one. Which
+      quantity could you measure instead, and what other quantity would give you the mass from it?
+    smaller_case: Estimate the mass of a fist-sized lump of material you know well, such as a bag of water.
+      How would you get its mass without weighing it directly?
+    key_idea: For an object whose density is close to water's, its mass follows from its volume once you
+      know the density.
+  check: null
+- goal: Estimate the volume of the head.
+  expected: Model the head as an ellipsoid with semi-axes 0.10 m, 0.09 m and 0.12 m. Then $V = \frac{4}{3}\pi(0.10)(0.09)(0.12)
+    = \frac{9\pi}{6250}\ \text{m}^3 \approx 4.5 \times 10^{-3}\ \text{m}^3$, about 4.5 litres.
+  solution: Volume of an ellipsoid with semi-axes a, b, c is $V = \frac{4}{3}\pi abc$. Substituting $a
+    = 0.10$, $b = 0.09$, $c = 0.12$ m gives $\frac{4}{3}\pi \times 1.08\times10^{-3} = 1.44\pi\times10^{-3}
+    = \frac{9\pi}{6250}$ m^3, which is approximately $4.5\times10^{-3}$ m^3. This is a plausible adult
+    head volume. Displacement would give a more accurate value.
+  common_errors:
+  - Using full diameters where semi-axes are needed, which overestimates the volume by a factor of about
+    8.
+  - Forgetting the factor of 4/3 or the factor of pi.
+  - Mixing centimetres and metres, giving a volume off by a factor of 1000.
+  hints:
+    rephrase: The ellipsoid formula uses semi-axes, which are half of each full dimension. Make sure you
+      know which of your measurements are full lengths and which are radii.
+    smaller_case: Compute the volume of a sphere of radius 0.1 m, then check whether your ellipsoid formula
+      reduces to that.
+    key_idea: The ellipsoid volume formula is the sphere formula with the radius replaced by three different
+      semi-axes, multiplied together.
+  check: simplify(V - 9*pi/6250)
+  check_ok: false
+- goal: Convert the volume into mass and weight, and sanity-check the result.
+  expected: $m = \rho V \approx 1000 \times \frac{9\pi}{6250} = \frac{36\pi}{25} \approx 4.5\ \text{kg}$,
+    so $W = mg \approx 4.5 \times 9.8 \approx 44\ \text{N}$. This is consistent with the head being about
+    6 to 8 percent of a 70 kg body.
+  solution: 'Using $\rho \approx 1000$ kg/m^3, $m = 1000 \times \frac{9\pi}{6250} = \frac{36\pi}{25} \approx
+    4.52$ kg. Then $W = mg \approx 4.52 \times 9.8 \approx 44$ N. Sanity check: a 70 kg person''s head
+    at about 6 to 7 percent of body mass gives roughly 4 to 5 kg, which agrees. Uncertainty comes mainly
+    from the density assumption and the ellipsoid approximation, so a result of 40 to 50 N is a reasonable
+    answer.'
+  common_errors:
+  - Reporting the mass in kilograms as though it were the weight in newtons.
+  - Using $g = 10$ without saying so, or forgetting $g$ entirely.
+  - Failing to sanity-check the result against the typical head fraction of body mass.
+  hints:
+    rephrase: You have a volume and an assumed density. What single multiplication gives you a mass, and
+      what does gravity then turn that mass into?
+    smaller_case: A 1 litre bottle of water has a mass of about 1 kg. Use that to convert a volume of
+      4.5 litres into a mass.
+    key_idea: Mass is density times volume, and weight is mass times the gravitational field strength
+      g.
+  check: simplify(m - 36*pi/25)
+  check_ok: false
+extensions:
+  '3':
+  - How would your estimate change if you assumed a head density of 1100 kg/m^3 to account for bone, and
+    what would that do to the final weight?
+  - Design a measurement that does not use water displacement, for example using a lever or a seesaw with
+    a known counterweight.
+  - Explain why a bathroom scale under your head while you lie down does not give the weight of your head
+    alone.
+  '4':
+  - Estimate the error introduced by modelling the head as an ellipsoid when the real head is closer to
+    a cuboid with rounded edges.
+  - Describe how you would calibrate a displacement tank to get the head volume to within 5 percent.
+  - If the head were fully submerged and its density were slightly above water, what would happen to the
+    measured displacement, and why?
+  '5':
+  - Use the principle of moments to design an experiment where the neck is the pivot and the head's weight
+    is inferred from a measured torque balance.
+  - Propagate uncertainties in the semi-axes through the volume formula to give an error bar on the final
+    weight.
+  - Compare the weight estimate with one from a medical reference value for the mass of the adult head,
+    and discuss sources of discrepancy.
+spoken_vocab:
+- rho
+- pi
+- four thirds pi
+- density
+- volume
+- mass
+- weight
+- newtons
+- kilograms
+- kilograms per cubic metre
+- cubic metres
+- ellipsoid
+- semi-axis
+- displacement
+- Archimedes
+- times ten to the minus three
+- approximately equals
+- g
+- nine point eight
+- nine pi over six thousand two hundred and fifty
+source: oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 3
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Open Fermi estimate inviting method, assumptions, and sanity-check discussion.
+  priority: 91
+  rank: 94
+  tier: A
+  category: oxbridge-random
+  d10: 3.0
+  real: 7.5
+  by: haiku
+tags:
+- mechanics

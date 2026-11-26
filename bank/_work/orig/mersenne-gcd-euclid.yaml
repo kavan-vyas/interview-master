@@ -1,0 +1,122 @@
+id: mersenne-gcd-euclid
+title: GCD of Mersenne numbers via Euclid's algorithm
+topics:
+- greatest common divisor
+- Euclidean algorithm
+- modular arithmetic
+- factorisation of x^q-1
+- Mersenne numbers
+- primality
+warmup: false
+answer_source: pdf
+statement: Let $m$ and $n$ be positive integers. (i) Write $m=qn+r$ with $0\le r<n$. Show that $2^m-1=2^r(2^{qn}-1)+(2^r-1)$,
+  and deduce that $2^m-1\equiv 2^r-1 \pmod{2^n-1}$. (ii) Show that $\gcd(a,b)=\gcd(b,a-kb)$ for any integer
+  $k$. Hence show that $\gcd(2^m-1,2^n-1)=\gcd(2^n-1,2^r-1)$. (iii) Deduce that $\gcd(2^m-1,2^n-1)=2^{\gcd(m,n)}-1$.
+  (iv) Find $\gcd(2^{91}-1,2^{35}-1)$, and deduce that $2^{91}-1$ is not prime.
+stages:
+- goal: Prove the identity in (i) and deduce the congruence $2^m-1\equiv 2^r-1 \pmod{2^n-1}$.
+  expected: Expanding $2^r(2^{qn}-1)+(2^r-1)=2^{qn+r}-1=2^m-1$. Since $x-1\mid x^q-1$, putting $x=2^n$
+    gives $2^n-1\mid 2^{qn}-1$, so $2^m-1\equiv 2^r-1 \pmod{2^n-1}$.
+  solution: $2^r(2^{qn}-1)+(2^r-1)=2^{qn+r}-2^r+2^r-1=2^m-1$. Since $x-1$ divides $x^q-1$ (geometric sum),
+    setting $x=2^n$ gives $2^n-1\mid 2^{qn}-1$. So $2^r(2^{qn}-1)$ is divisible by $2^n-1$, and therefore
+    $2^m-1\equiv 2^r-1 \pmod{2^n-1}$.
+  common_errors:
+  - Treating $\equiv$ as equality
+  - Splitting the exponent wrongly, e.g. using $2^{m-r}$ instead of $2^{qn}$
+  - Using $x^q-1\mid x-1$ instead of $x-1\mid x^q-1$
+  hints:
+    rephrase: Write $2^m$ as $2^r\cdot 2^{qn}$ and multiply out the right-hand side.
+    smaller_case: Test $m=7$, $n=3$ (so $q=2$, $r=1$) and check the identity numerically.
+    key_idea: Factor $x^q-1=(x-1)(x^{q-1}+\cdots+1)$ and substitute $x=2^n$.
+  check: (2**10-1 - (2**2-1)) % (2**4-1) == 0
+  check_ok: true
+- goal: Show that $\gcd(a,b)=\gcd(b,a-kb)$ and use it to get $\gcd(2^m-1,2^n-1)=\gcd(2^n-1,2^r-1)$.
+  expected: Common divisors of $a$ and $b$ are exactly the common divisors of $b$ and $a-kb$, so the gcds
+    are equal. With $a=2^m-1$, $b=2^n-1$ and $k=2^r(2^{qn}-1)/(2^n-1)\in\mathbb{Z}$, we have $a-kb=2^r-1$,
+    giving the result.
+  solution: If $d\mid a$ and $d\mid b$, then $d\mid a-kb$ and $d\mid b$. Conversely if $d\mid b$ and $d\mid
+    a-kb$, then $d\mid a$. So the two sets of common divisors coincide. From (i), $a=2^m-1=k(2^n-1)+(2^r-1)$
+    with $k=2^r(2^{qn}-1)/(2^n-1)$ an integer, so $a-kb=2^r-1$. Hence $\gcd(2^m-1,2^n-1)=\gcd(2^n-1,2^r-1)$.
+  check: sympy.gcd(2**10-1, 2**4-1) - sympy.gcd(2**4-1, 2**2-1) == 0
+  common_errors:
+  - Reversing the direction of the divisor argument
+  - Forgetting that $k$ must be an integer
+  - Using $a+kb$ or the wrong remainder
+  hints:
+    rephrase: Show that the two sets of common divisors are the same, then identify the integer $k$ from
+      part (i).
+    smaller_case: Take $a=10$, $b=4$, $k=1$ and compare $\gcd(10,4)$ with $\gcd(4,6)$.
+    key_idea: Use the congruence from (i) to write $2^m-1-k(2^n-1)=2^r-1$ for an integer $k$.
+  check_ok: null
+- goal: Use the reduction repeatedly (Euclid's algorithm) to prove $\gcd(2^m-1,2^n-1)=2^{\gcd(m,n)}-1$.
+  expected: Replacing $(m,n)$ by $(n,r)$ preserves $\gcd(m,n)$ and the gcd of the Mersenne numbers. The
+    process ends at $(d,0)$ with $d=\gcd(m,n)$, and $\gcd(2^d-1,2^0-1)=\gcd(2^d-1,0)=2^d-1$.
+  solution: Let $G(m,n)=\gcd(2^m-1,2^n-1)$. By (ii), $G(m,n)=G(n,r)$, and by Euclid's algorithm $\gcd(m,n)=\gcd(n,r)$
+    with $r<n$. Induct on $n$. If $r=0$, then $n\mid m$, $\gcd(m,n)=n$, and $G(m,n)=\gcd(2^n-1,0)=2^n-1$.
+    If $r>0$, the induction hypothesis gives $G(n,r)=2^{\gcd(n,r)}-1=2^{\gcd(m,n)}-1$.
+  check: sympy.gcd(2**12-1, 2**18-1) - (2**6-1) == 0
+  common_errors:
+  - Stopping one step early in the reduction
+  - Forgetting the case $r=0$
+  - Confusing $\gcd(m,n)$ with $\gcd$ of the exponents after the last nonzero step
+  hints:
+    rephrase: 'Iterate (ii): replace $(m,n)$ by $(n,r)$ and note what stays invariant.'
+    smaller_case: Run Euclid's algorithm on $(18,12)$, then on the pair it produces.
+    key_idea: Euclid's algorithm terminates at a pair with remainder $0$; the last nonzero number is the
+      gcd of the exponents.
+  check_ok: null
+- goal: Compute $\gcd(2^{91}-1,2^{35}-1)$ and deduce that $2^{91}-1$ is composite.
+  expected: 'Euclid: $91=2\cdot 35+21$, $35=21+14$, $21=14+7$, $14=2\cdot 7$, so $\gcd(91,35)=7$. Then
+    $\gcd(2^{91}-1,2^{35}-1)=2^7-1=127$. Since $127\mid 2^{91}-1$ and $1<127<2^{91}-1$, $2^{91}-1$ is
+    composite.'
+  solution: Euclid's algorithm gives $\gcd(91,35)=7$. By (iii), $\gcd(2^{91}-1,2^{35}-1)=2^7-1=127$. So
+    $127$ divides $2^{91}-1$. Since $1<127<2^{91}-1$, the number $2^{91}-1$ has a divisor other than $1$
+    and itself, so it is not prime.
+  check: sympy.gcd(2**91-1, 2**35-1) - 127 == 0
+  common_errors:
+  - Concluding primality because the gcd is small
+  - Stopping at $\gcd(91,35)=7$ without applying (iii)
+  - Claiming $2^{91}-1$ is prime because $127$ is prime
+  - Arithmetic slip in the Euclid steps
+  hints:
+    rephrase: First find $\gcd(91,35)$ by Euclid's algorithm, then apply the result from (iii).
+    smaller_case: Compute $\gcd(35,21)$ and $\gcd(21,14)$ and see how they chain.
+    key_idea: A divisor strictly between $1$ and the number itself shows that the number is composite.
+  check_ok: null
+extensions:
+  '3':
+  - Deduce that if $\gcd(m,n)=1$ then $2^m-1$ and $2^n-1$ are coprime.
+  - Show that $2^m-1$ is divisible by $2^{12}-1$ exactly when $12\mid m$.
+  '4':
+  - For which positive $m$ is $2^{12}-1$ a divisor of $2^m-1$? Justify using part (iii).
+  - Show that $\gcd(2^{m}-1,2^{m+1}-1)=1$ for every $m\ge 1$.
+  '5':
+  - Show that if $2^m-1$ is prime then $m$ is prime.
+  - Prove that the reduction in (ii) is the same as the Euclidean algorithm applied to $(m,n)$, and state
+    its running time.
+spoken_vocab:
+- greatest common divisor
+- Euclid's algorithm
+- two to the power of m minus one
+- two to the power of n minus one
+- remainder
+- congruent modulo two to the n minus one
+- ninety one
+- thirty five
+- two to the power of seven minus one
+- one hundred and twenty seven
+- composite
+- not prime
+- x to the q minus one factorisation
+source: jaymin/Jaymin Interview (1).pdf#p9
+verified: false
+rating:
+  score: 9
+  difficulty: 4
+  parts: 4
+  minutes: 25
+  flags: []
+  tagline: Euclid-style reduction to gcd 127; deep number theory with verified, clear stages.
+  priority: 130
+  rank: 15
+  tier: S

@@ -1,0 +1,101 @@
+id: power-function-x-to-the-x-minimum
+title: Minimum of x^x
+topics:
+- calculus
+- differentiation
+- logarithmic differentiation
+- optimisation
+- curve sketching
+warmup: false
+answer_source: generated
+statement: Consider $f(x)=x^x$ for $x>0$. (a) Find $f'(x)$. (b) Find the minimum value of $f$, and the
+  value of $x$ at which it occurs. (c) Sketch $f$ for $x>0$.
+stages:
+- goal: Find f'(x) for f(x)=x^x, x>0.
+  expected: f'(x) = x^x (1 + ln x)
+  solution: Write f(x)=e^{x ln x}. Then f'(x)=e^{x ln x} * (ln x + 1) = x^x (1 + ln x), using d/dx(x ln
+    x)=ln x + 1.
+  common_errors:
+  - Applying the power rule as if the exponent were constant, giving x*x^(x-1).
+  - Forgetting the ln x term from differentiating the exponent.
+  - Dropping the factor x^x when writing the answer.
+  hints:
+    rephrase: The exponent itself depends on x, so the usual power rule does not apply. Consider rewriting
+      the function with exp and ln.
+    smaller_case: Differentiate 2^x first and notice that the power rule does not apply there either.
+    key_idea: Write x^x as e^{x ln x}, then apply the chain rule.
+  check: simplify(diff(x**x, x) - x**x*(1 + log(x)))
+  check_ok: true
+- goal: Find the critical point of f and the minimum value of f on x>0.
+  expected: Critical point at x = 1/e. Minimum value f(1/e) = e^{-1/e} (about 0.692).
+  solution: f'(x)=0 requires 1 + ln x = 0 (since x^x > 0), so x = e^{-1}. For x < 1/e, f' < 0; for x >
+    1/e, f' > 0. So f is decreasing then increasing, and the critical point is a global minimum. f(1/e)
+    = (e^{-1})^{e^{-1}} = e^{-1/e}.
+  common_errors:
+  - Solving x^x = 0 instead of f'(x) = 0.
+  - Writing the minimum value as 1/e instead of e^{-1/e}.
+  - Not checking the sign change of f' and so not confirming the minimum.
+  hints:
+    rephrase: Where does f' change sign, and what is f at that point?
+    smaller_case: Compare the sign of f' at x=0.1 and at x=1.
+    key_idea: A differentiable function on an open interval has a minimum where f' changes sign from negative
+      to positive.
+  check: simplify(exp(-1)**exp(-1) - exp(-exp(-1)))
+  check_ok: true
+- goal: Describe the sketch of f for x>0 by stating its behaviour at the ends and its shape.
+  expected: As x->0+, f(x)->1. f decreases on (0,1/e), reaches minimum e^{-1/e} at x=1/e, then increases
+    through f(1)=1 and tends to infinity. The curve starts at (0,1) (as a limit), dips below 1 between
+    0 and 1, and rises steeply for x>1.
+  solution: Use x^x = e^{x ln x}. Since x ln x -> 0 as x->0+, f -> e^0 = 1. The sign of f' gives the monotonicity
+    found in stage 2. f(1)=1 since 1^1=1. As x->infinity, x ln x -> infinity, so f -> infinity.
+  common_errors:
+  - Thinking f(0)=0 or that f(0) is undefined and ignoring the limit.
+  - Claiming f is increasing on the whole domain.
+  - Forgetting that f(x)<1 for 0<x<1.
+  hints:
+    rephrase: What does f approach as x approaches 0 from the right, and what happens as x grows large?
+    smaller_case: Evaluate f at x=1/2 and at x=2 and compare them with 1.
+    key_idea: Use the limit of x ln x at both ends together with the sign pattern of f'.
+  check: simplify(limit(x**x, x, 0, '+') - 1)
+  check_ok: true
+extensions:
+  '3':
+  - Find the set of x>0 for which x^x < 1.
+  '4':
+  - Compute f''(1/e) and state what it tells you about the minimum.
+  '5':
+  - Without a calculator, decide whether e^pi is greater than pi^e, using the monotonicity of (ln x)/x
+    for x>e.
+spoken_vocab:
+- x to the power x
+- f of x
+- f prime of x
+- e to the power x ln x
+- natural log
+- ln x
+- e to the minus one over e
+- critical point
+- minimum value
+- decreasing then increasing
+- limit as x tends to zero from the right
+- sketch
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 3
+  minutes: 10
+  flags: []
+  tagline: Logarithmic differentiation gives a clean critical point and a surprising minimum value.
+  priority: 71
+  rank: 330
+  tier: B
+  category: juan
+  d10: 4.5
+  real: 7.0
+  by: haiku
+tags:
+- differentiation
+- curve_sketching
+- exponentials_and_logarithms

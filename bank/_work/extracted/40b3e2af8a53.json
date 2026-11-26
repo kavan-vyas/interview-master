@@ -1,0 +1,37 @@
+[
+ {
+  "q": "Differentiate $\\frac{d}{dx}(x\\sin 2x)$",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/G4.jpg"
+ },
+ {
+  "q": "Derive $\\frac{d}{dx}(\\arcsin x) = \\frac{1}{\\sqrt{1-x^2}}$",
+  "kind": "maths",
+  "answer": "$\\frac{d}{dx}(\\arcsin x) = \\frac{1}{\\sqrt{1-x^2}}$ (the derivation itself is not shown in the source)",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/G4.jpg"
+ },
+ {
+  "q": "Why did you take the positive square root and not the negative solution? Use a sketch.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/G4.jpg"
+ },
+ {
+  "q": "Sketch $y = \\frac{1}{x}\\sin\\left(\\frac{1}{x}\\right)$",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/G4.jpg"
+ },
+ {
+  "q": "Is $\\int_{?}^{\\infty}\\frac{1}{x}\\sin\\left(\\frac{1}{x}\\right)\\,dx$ bounded or unbounded?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/G4.jpg"
+ }
+]

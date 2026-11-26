@@ -1,0 +1,121 @@
+id: lines-and-circles-regions
+title: Maximum regions from lines and circles, and Venn diagrams
+topics:
+- combinatorial geometry
+- recurrence
+- induction
+- Venn diagrams
+warmup: false
+answer_source: generated
+statement: How can you maximise the number of regions $n$ straight lines will divide the plane in to?
+  What is this maximum in terms of $n$? What if we replace lines with circles? What does this tell you
+  about Venn Diagrams?
+stages:
+- goal: Find how many new regions the k-th line adds when placed to maximise regions.
+  expected: k
+  solution: To maximise, no two lines should be parallel and no three should pass through one point. The
+    k-th line meets each of the previous k-1 lines at a distinct point, giving k-1 points. These points
+    cut the new line into k pieces, and each piece splits an existing region into two, so the new line
+    adds k regions.
+  common_errors:
+  - Saying each new line adds only one region
+  - Saying the new line is cut into k-1 pieces rather than k, forgetting that k-1 points give k segments
+  hints:
+    rephrase: How many pieces is the new line cut into by the lines already drawn, and what does each
+      piece do to a region?
+    smaller_case: Start with two crossing lines and add a third line that meets both at different points.
+      How many new regions does it create?
+    key_idea: Each piece of a new curve passing through a region divides that region into two.
+  check: ans - k
+  check_ok: false
+- goal: Give the maximum number of regions for n lines in general position.
+  expected: 1 + n(n+1)/2, written as $\frac{n^2+n+2}{2}$
+  solution: Start with 1 region when there are no lines. Adding the k-th line gives k new regions, so
+    the total is 1 + (1 + 2 + ... + n) = 1 + n(n+1)/2 = (n^2+n+2)/2.
+  common_errors:
+  - Answering n^2 or 2^n
+  - Forgetting the initial single region (off by one)
+  - Using the sum 1+2+...+(n-1) instead of 1+2+...+n
+  hints:
+    rephrase: 'With no lines there is one region. Add the lines one at a time: how many new regions does
+      each one contribute?'
+    smaller_case: Draw two lines in general position. How many regions are there, and how does this match
+      your count for the first two lines?
+    key_idea: Build the total up by adding the contributions of each new line.
+  check: ans - (1 + n*(n+1)/2)
+  check_ok: false
+- goal: Find the maximum number of regions for n circles in general position.
+  expected: n^2 - n + 2
+  solution: 'The k-th circle (k >= 2) meets each earlier circle in 2 points, giving 2(k-1) points, which
+    cut it into 2(k-1) arcs. Each arc splits a region, so it adds 2(k-1) regions. The first circle gives
+    2 regions. Total: 2 + sum over k=2..n of 2(k-1) = 2 + n(n-1) = n^2 - n + 2.'
+  common_errors:
+  - Using the line formula for circles
+  - Assuming each circle adds 2 regions, giving 2n
+  - Forgetting that the first circle already gives 2 regions
+  hints:
+    rephrase: How many points can one circle share with another circle, and how many arcs do those points
+      create on the new circle?
+    smaller_case: Draw two circles that overlap in two points. Count the regions.
+    key_idea: Each arc of a new curve cuts an existing region into two.
+  check: ans - (n**2 - n + 2)
+  check_ok: false
+- goal: Explain what the circle result says about Venn diagrams.
+  expected: A Venn diagram for n sets needs 2^n regions, including the outside. Circles can achieve this
+    only for n = 3 (8 regions). For n = 4 the circle bound 14 is less than 16, so circles cannot make
+    a full Venn diagram. Shapes such as ellipses are needed from 4 sets upward.
+  solution: A full Venn diagram for n sets requires every one of the 2^n combinations of membership to
+    appear as a region, including the outside. The circle bound n^2 - n + 2 gives 8 for n = 3, which matches
+    2^3, so three circles work. For n = 4 it gives 14, below the required 16, so four circles cannot produce
+    a full Venn diagram. Non-circular shapes such as ellipses are needed.
+  common_errors:
+  - Saying circles always work for any number of sets
+  - Forgetting to count the outside region when comparing with 2^n
+  hints:
+    rephrase: How many regions must a Venn diagram for n sets contain, and does the outside region count?
+    smaller_case: Compare the circle bound with the required number of regions for 3 sets, then for 4
+      sets.
+    key_idea: Compare a required count of regions with the maximum the shape family can produce.
+extensions:
+  '3':
+  - How does the maximum number of regions for lines change if three lines may be concurrent?
+  - What is the maximum number of regions formed by n lines and m circles together?
+  '4':
+  - What is the maximum number of regions formed by n planes in three-dimensional space?
+  - Which shapes could give a full Venn diagram for 4 sets, and how many regions would they produce?
+  '5':
+  - Derive the circle formula by induction on n.
+  - What is the maximum number of regions formed by n chords of a circle, if no two intersect at an endpoint
+    and no three meet at a point?
+spoken_vocab:
+- regions in the plane
+- n straight lines
+- maximise
+- general position
+- n circles
+- venn diagram
+- two to the power n
+- n squared minus n plus two
+- one plus n times n plus one over two
+- k-th line
+- ellipses
+- sum from k equals one to n
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 4
+  minutes: 15
+  flags: []
+  tagline: Lines versus circles exposes why circles can't make Venn diagrams beyond three.
+  priority: 92
+  rank: 82
+  tier: A
+  category: tbo
+  d10: 5.0
+  real: 7.5
+  by: haiku
+tags:
+- combinatorics
+- geometry

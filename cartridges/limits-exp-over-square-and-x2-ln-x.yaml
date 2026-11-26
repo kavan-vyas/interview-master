@@ -1,0 +1,73 @@
+id: limits-exp-over-square-and-x2-ln-x
+title: Two limits via L'Hopital's rule
+topics:
+- limits
+- L'Hopital's rule
+- indeterminate forms
+- exponential growth
+warmup: true
+answer_source: pdf
+statement: What is the limit of $\frac{e^x}{x^2}$ as $x\to\infty$, and what is the limit of $x^2\ln x$
+  as $x\to 0^+$?
+stages:
+- goal: Find $\lim_{x\to\infty}\frac{e^x}{x^2}$.
+  expected: $\infty$
+  solution: This is $\frac{\infty}{\infty}$. Applying L'Hopital's rule gives $\lim\frac{e^x}{2x}$, which
+    is again $\frac{\infty}{\infty}$. Applying it once more gives $\lim\frac{e^x}{2}=\infty$.
+  common_errors:
+  - Concluding the limit is $0$ by treating $x^2$ as the dominant term
+  - Applying L'Hopital once and stopping, leaving $\frac{e^x}{2x}$ unresolved
+  - Forgetting to check the indeterminate form before applying the rule
+  hints:
+    rephrase: Identify the indeterminate form first. Then ask which function dominates as $x\to\infty$.
+    smaller_case: Try $\frac{e^x}{x}$ as $x\to\infty$ first.
+    key_idea: Repeated L'Hopital reduces the power of $x$ while the exponential stays unchanged.
+  check: sympy.limit(sympy.exp(x)/x**2, x, sympy.oo) == sympy.oo
+  check_ok: null
+- goal: Find $\lim_{x\to 0^+}x^2\ln x$.
+  expected: $0$
+  solution: Rewrite as $\frac{\ln x}{x^{-2}}$, which is of the form $\frac{-\infty}{+\infty}$ as $x\to0^+$.
+    L'Hopital gives $\frac{1/x}{-2x^{-3}}=-\frac{x^{2}}{2}\to 0$.
+  common_errors:
+  - Writing $0\cdot(-\infty)$ as $0$ without rewriting as a quotient
+  - Applying L'Hopital to $x^2\ln x$ directly instead of to a quotient
+  - Sign errors when differentiating $x^{-2}$
+  hints:
+    rephrase: The product is of the form $0\cdot(-\infty)$. How can you turn it into a quotient?
+    smaller_case: What is $\lim_{x\to0^+}x\ln x$?
+    key_idea: Move $x^{2}$ into the denominator as $x^{-2}$.
+  check: sympy.limit(x**2*sympy.log(x), x, 0, '+') == 0
+  check_ok: null
+extensions:
+  '3':
+  - Find $\lim_{x\to\infty}\frac{x^3}{e^x}$.
+  '4':
+  - Find $\lim_{x\to0^+}x\ln x$.
+  '5':
+  - Find $\lim_{x\to\infty}\frac{(\ln x)^2}{x}$.
+spoken_vocab:
+- limit as x goes to infinity
+- e to the x over x squared
+- x squared natural log of x
+- x goes to zero from the right
+- L'Hopital's rule
+- indeterminate form
+source: zhou-quant/zhou-quant-guide.pdf#2
+verified: false
+rating:
+  quality: 3
+  difficulty: 3
+  parts: 2
+  minutes: 4
+  flags: []
+  tagline: Two standard L'Hôpital limits; recall-heavy, little depth.
+  priority: 35
+  rank: 601
+  tier: D
+  category: zhou-quant
+  d10: 1.5
+  real: 2.5
+  by: haiku
+tags:
+- limits_and_approximation
+- differentiation

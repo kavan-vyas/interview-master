@@ -1,0 +1,37 @@
+[
+ {
+  "q": "Four balls are dropped into two boxes, with an equal chance of each ball falling into either box. What is the probability that there are two balls in each box?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 2 (anonymous).pdf#0"
+ },
+ {
+  "q": "Let $f(x) = \\sqrt{x} + 1$ and $g(x) = x^2 + 1$. Find $f(g(f(g(f(g(\\pi))))))$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 2 (anonymous).pdf#0"
+ },
+ {
+  "q": "Find the highest common factor of $36838$ and $38972$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 2 (anonymous).pdf#0"
+ },
+ {
+  "q": "Two particles, $A$ and $B$, of the same size and mass are projected from the same point. They both reach the same maximum height, but $B$ experiences resistance while $A$ does not. Which particle reaches its maximum height first? How does the presence of resistance affect the initial speed required for the particles to reach the same maximum height?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 2 (anonymous).pdf#0"
+ },
+ {
+  "q": "A few years ago there was a competition in the Financial Times. Entrants had to submit a number between 1 and 100. The person whose submitted number was closest to $\\frac{2}{3}$ of the average of all the submitted numbers won \u00a35000. What number would you submit?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 2 (anonymous).pdf#0"
+ }
+]

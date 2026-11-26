@@ -1,0 +1,9 @@
+[
+ {
+  "q": "Without using a calculator, evaluate $(\\log_3 169)(\\log_{13} 729)$",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "nextstepmaths/NextStepMaths Interview Questions/interview-question-24.pdf#0"
+ }
+]

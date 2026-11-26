@@ -1,0 +1,58 @@
+[
+ {
+  "q": "1 person in 1000 is HIV positive. Test results are 99.9% correct. What is the probability that someone with a positive result actually has the disease?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/H2.jpg"
+ },
+ {
+  "q": "$x^{17}=1$. How many roots? How many real roots? Sum of roots? Suggest a method for finding all the roots.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/H2.jpg"
+ },
+ {
+  "q": "Two bottles: homogenised milk and full cream milk (cream sits on top). The bottles themselves are identical. A strong gust of wind blows from the direction shown. Which one falls over?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/H2.jpg"
+ },
+ {
+  "q": "If $a$ and $b$ are real, show that $(x-a)^2+(x-b)^2=0$ has no real roots, and that $(x-a)^3+(x-b)^3=0$ has one real root.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/H2.jpg"
+ },
+ {
+  "q": "State 2 numbers, neither ending in zero, whose product is $10^6$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/H2.jpg"
+ },
+ {
+  "q": "Given a piece of string (only), show how you would make a $90^\\circ$ angle.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/H2.jpg"
+ },
+ {
+  "q": "A person is in a rowing boat on a lake, the boat full of rocks. The rocks are thrown into the lake. What happens to the water level?",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/H2.jpg"
+ },
+ {
+  "q": "A graph of a bell-shaped curve, symmetric about the y-axis, with maximum value 1 at x=0 and tending to 0 as x tends to plus or minus infinity. Suggest a function.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/H2.jpg"
+ }
+]

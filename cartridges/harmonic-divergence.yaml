@@ -1,0 +1,92 @@
+id: harmonic-divergence
+title: Harmonic series diverges (block grouping)
+topics:
+- series
+- divergence
+- grouping
+- harmonic numbers
+- powers of two
+warmup: true
+answer_source: pdf
+statement: Prove that $1+\frac12+\frac13+\frac14+\cdots$ diverges.
+stages:
+- goal: Group the terms into blocks whose denominators run over consecutive powers of 2, and bound each
+    block below.
+  expected: Block j is 1/(2^(j-1)+1) + ... + 1/2^j. It has 2^(j-1) terms, each at least 1/2^j, so the
+    block is at least 1/2.
+  solution: Group as $\frac12$, then $\frac13+\frac14$, then $\frac15+\cdots+\frac18$, and so on. The
+    $j$-th block (for $j\ge1$) is $\sum_{i=2^{j-1}+1}^{2^j}\frac1i$. It contains $2^{j-1}$ terms. Each
+    term satisfies $\frac1i\ge\frac1{2^j}$ because $i\le2^j$. So the block is at least $2^{j-1}\cdot\frac1{2^j}=\frac12$.
+  common_errors:
+  - Miscounting the number of terms in a block, for example taking 2^j terms.
+  - Using the largest term of each block as the bound, which goes the wrong way.
+  - Forgetting the first term 1 when counting the total.
+  hints:
+    rephrase: Split the harmonic sum into groups where the denominators are between consecutive powers
+      of 2.
+    smaller_case: Write out the block for j = 2 and count its terms.
+    key_idea: Count the terms in each group and bound the smallest term in each group from below.
+- goal: Use the block bound to show that the partial sums H_(2^m) grow at least linearly in m.
+  expected: H_(2^m) = 1 + (block 1) + ... + (block m) >= 1 + m/2.
+  solution: Let $H_N=\sum_{i=1}^N\frac1i$. The terms $1$ through $\frac1{2^m}$ are the single term $1$
+    followed by blocks $1$ to $m$. Therefore $H_{2^m}=1+\sum_{j=1}^m(\text{block }j)\ge1+\frac m2$.
+  common_errors:
+  - Using H_(2^m) = 1 + m/2 as an equality rather than a lower bound.
+  - 'Off-by-one error: taking the blocks from j = 0 or j = 2 instead of j = 1 to m.'
+  - Forgetting the first term 1 in the decomposition.
+  hints:
+    rephrase: Write H_(2^m) as the first term plus the blocks, and apply the block bound to each one.
+    smaller_case: Check the claimed bound for m = 1 and m = 2 by direct computation.
+    key_idea: Sum the lower bounds from stage 1 over the m blocks.
+- goal: Conclude that the series diverges.
+  expected: The partial sums H_N are increasing, and the subsequence H_(2^m) is unbounded. So H_N is unbounded
+    and the series diverges.
+  solution: Each term $\frac1i$ is positive, so the partial sums $H_N$ form an increasing sequence. Stage
+    2 shows $H_{2^m}\ge 1+\frac m2\to\infty$, so $H_N$ is unbounded. An increasing sequence that is unbounded
+    tends to infinity, so the series diverges.
+  common_errors:
+  - Concluding divergence from the fact that the terms tend to zero.
+  - Forgetting to use monotonicity, which is what lets a subsequence determine the whole sequence's behaviour.
+  - Concluding from H_(2^m) unbounded without noting that the full sequence is increasing.
+  hints:
+    rephrase: Ask whether a monotone sequence can be bounded if a subsequence of it is unbounded.
+    smaller_case: Consider the sequence 1, 2, 2, 3, 3, 3, ... and decide whether it has an upper bound.
+    key_idea: A monotone increasing sequence with an unbounded subsequence is itself unbounded.
+extensions:
+  '3':
+  - Show that H_n >= ln(n+1) for every n >= 1, using a comparison with the integral of 1/x.
+  '4':
+  - Show that H_n - ln n converges, using the monotone convergence theorem.
+  '5':
+  - Show that H_n is never an integer for n >= 2. Multiply H_n by 2^(k-1) M, where 2^k <= n < 2^(k+1)
+    and M is the product of the odd numbers up to n, and look at which term fails to be an integer.
+spoken_vocab:
+- harmonic series
+- one plus one half plus one third and so on
+- diverges
+- grouping terms
+- powers of two
+- partial sums
+- monotone increasing
+- unbounded
+- H sub n
+- natural logarithm
+source: jaymin/Jaymin Interview (1).pdf#p17
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: Classic Oresme-style block grouping; clean, standard, good warm-up proof.
+  priority: 76
+  rank: 264
+  tier: B
+  category: jaymin
+  d10: 4.5
+  real: 5.5
+  by: deepseek-v4.1-flash-free
+tags:
+- sequences_and_series
+- proof

@@ -1,0 +1,63 @@
+id: last-digit
+title: Last digit of a power
+topics:
+- number theory
+- modular arithmetic
+warmup: true
+answer_source: generated
+verified: false
+statement: What is the last digit of $7^{2026}$?
+stages:
+- goal: Find the cycle of last digits of powers of 7
+  expected: '7, 9, 3, 1, then repeats: period 4'
+  solution: 7^1..7^4 end in 7, 9, 3, 1; 7^4 = 2401 ≡ 1 mod 10.
+  common_errors:
+  - computing 7^3 = 343 wrongly
+  - assuming period 10
+  hints:
+    rephrase: You don't need the whole number. Which part matters?
+    smaller_case: What are the last digits of 7, 49, 343?
+    key_idea: Only the last digit of each product matters, so look for a repeat.
+- goal: Use the cycle to finish
+  expected: 2026 = 4*506 + 2, so last digit is 9
+  solution: '2026 mod 4 = 2, so 7^2026 ends like 7^2 = 49: digit 9.'
+  common_errors:
+  - using 2026 mod 10
+  - off-by-one in the cycle position
+  hints:
+    rephrase: Where in the cycle does the 2026th power land?
+    smaller_case: What is the last digit of 7^6?
+    key_idea: Reduce the exponent modulo the cycle length.
+  check: Mod(7**2026, 10) - 9
+extensions:
+  3:
+  - What is the last digit of 7^(7^7)?
+  4:
+  - What are the last two digits of 7^2026?
+  5:
+  - Which digits d have last-digit cycles of length 1, 2 or 4, and why does 4 divide every cycle length?
+spoken_vocab:
+- seven to the
+- last digit
+- mod
+- modulo
+- cycle
+- period
+- remainder
+rating:
+  quality: 2
+  difficulty: 1
+  parts: 2
+  minutes: 3
+  flags:
+  - trivial
+  tagline: Cycle of 7's last digits is short; a routine warm-up with little depth.
+  priority: 17
+  rank: 689
+  tier: D
+  category: other
+  d10: 1.5
+  real: 5.0
+  by: haiku
+tags:
+- number_theory

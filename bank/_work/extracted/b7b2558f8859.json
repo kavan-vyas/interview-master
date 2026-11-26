@@ -1,0 +1,58 @@
+[
+ {
+  "q": "Prove that for all positive real numbers $a,b,c$, $(a+b)(b+c)(c+a) \\geq 8abc$. When does equality hold?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p17"
+ },
+ {
+  "q": "Solve $x^4 - 10x^3 + 26x^2 - 10x + 1 = 0$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p17"
+ },
+ {
+  "q": "Find all functions $f : \\mathbb{R} \\to \\mathbb{R}$ such that for every real $x$, $f(x) + 2f(1 - x) = x^2$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p17"
+ },
+ {
+  "q": "Find all functions $f : \\mathbb{R} \\to \\mathbb{R}$ such that for all real $x, y$, $f(x)f(y) - f(xy) = x + y$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p17"
+ },
+ {
+  "q": "Given that $x + \\frac{1}{x} = 3$, find $x^5 + \\frac{1}{x^5}$ without solving for $x$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p17"
+ },
+ {
+  "q": "Find the minimum value of $x^2 + y^2$ subject to $x + 2y = 5$. Give as many different methods as you can.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p17"
+ },
+ {
+  "q": "(i) Prove that for $a, b \\geq 0$, $\\frac{a+b}{2} \\geq \\sqrt{ab}$, with equality if and only if $a = b$.\n(ii) Deduce that for $a, b, c, d \\geq 0$, $\\frac{a+b+c+d}{4} \\geq \\sqrt[4]{abcd}$.\n(iii) By choosing $d$ suitably in (ii), deduce that for $a, b, c \\geq 0$, $\\frac{a+b+c}{3} \\geq \\sqrt[3]{abc}$.\n(iv) A square of card of side 12 has a square of side $x$ cut from each corner, and the sides are folded up to make an open box. Using (iii) and no calculus, find the largest possible volume.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p17"
+ },
+ {
+  "q": "Let $\\alpha, \\beta, \\gamma$ be the roots of $x^3 + px + q = 0$, where $p$ and $q$ are real.\n(i) Write down $\\alpha + \\beta + \\gamma$, $\\alpha\\beta + \\beta\\gamma + \\gamma\\alpha$ and $\\alpha\\beta\\gamma$. Deduce that $\\alpha^2 + \\beta^2 + \\gamma^2 = -2p$.\n(ii) Show that $\\alpha^3 + \\beta^3 + \\gamma^3 = -3q$.\n(iii) Find $\\alpha^4 + \\beta^4 + \\gamma^4$ in terms of $p$.\n(iv) Deduce that for every real $q$, the equation $x^3 + x + q = 0$ has exactly one real root.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p17"
+ }
+]

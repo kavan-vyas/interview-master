@@ -1,0 +1,84 @@
+id: blackboard-difference-one
+title: 'Blackboard difference: can 1 be the last number?'
+topics:
+- invariants
+- parity
+- problem solving
+warmup: false
+answer_source: generated
+statement: The numbers 1 to 1000 are written on a blackboard. You randomly choose two numbers $a$ and
+  $b$ from among them and replace them with their difference. You continue this process until you are
+  left with a single number on the board, is it possible for you to be left with the number 1?
+stages:
+- goal: Find a quantity that is preserved by every move (an invariant).
+  expected: The parity of the sum of the numbers on the board never changes. Replacing $a,b$ by $|a-b|$
+    changes the sum by $|a-b|-a-b=-2\min(a,b)$, which is even.
+  solution: Let $S$ be the sum of the board. After replacing $a,b$ with $|a-b|$ the new sum is $S-(a+b)+|a-b|=S-2\min(a,b)$.
+    So $S \bmod 2$ is invariant, though $S$ itself is not.
+  common_errors:
+  - Claiming the sum itself is preserved (only its parity is).
+  - Checking only one move and generalising without argument.
+  - Confusing $|a-b|$ with $a-b$ (sign matters for the argument).
+  hints:
+    rephrase: What happens to the total of all numbers on the board when you do one step?
+    smaller_case: Start with the board 2, 4. Pick both numbers, what is left, and how does the sum change?
+    key_idea: Look for a property of the board that every move preserves, such as something about the
+      sum modulo 2.
+  check: Mod(5+3-Abs(5-3),2)
+  check_ok: true
+- goal: Decide whether 1 can be the final number.
+  expected: No. The initial sum $1+2+\cdots+1000=500500$ is even, so the parity invariant forces the final
+    number to be even. It can never be 1.
+  solution: The final number equals the invariant sum modulo 2 when one number remains, so it is even.
+    Since 1 is odd, the answer is no.
+  common_errors:
+  - Stopping after the invariant without computing the parity of 500500.
+  - Arguing that the final number must be 0 instead of just even.
+  - Saying 'yes' because the process looks random.
+  hints:
+    rephrase: Compute the parity of the starting total, then ask what the last number must have in common
+      with it.
+    smaller_case: 'Board 1, 2, 3: the sum is 6 (even). Can the last number be odd?'
+    key_idea: Use the invariant from the previous stage together with the total of 1 to 1000.
+  check: Mod(Sum(k,(k,1,1000)).doit(),2)
+  check_ok: true
+extensions:
+  '3':
+  - 'The same process on the board 1 to 10: can the final number be 1?'
+  '4':
+  - 'Each move replaces $a,b$ with $a+b-ab$. Show that the final number is always 1 when you start from
+    1 to 1000. Hint: track the product of $(1-x)$ over all numbers.'
+  '5':
+  - 'Each move replaces $a,b$ with $a+b+ab$. Starting from 1 to 1000, find the final number. Hint: track
+    the product of $(1+x)$.'
+spoken_vocab:
+- a
+- b
+- one thousand
+- one to one thousand
+- absolute value of a minus b
+- sum
+- parity
+- modulo two
+- invariant
+- final number
+- one
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 2
+  minutes: 8
+  flags: []
+  tagline: 'Parity invariant: total sum 500500 is even, so 1 is unreachable.'
+  priority: 65
+  rank: 397
+  tier: C
+  category: tbo
+  d10: 3.5
+  real: 6.5
+  by: deepseek-v4.1-flash-free
+tags:
+- proof
+- number_theory

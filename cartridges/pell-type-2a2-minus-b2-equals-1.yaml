@@ -1,0 +1,97 @@
+id: pell-type-2a2-minus-b2-equals-1
+title: Integer solutions of 2a^2 - b^2 = 1
+topics:
+- number theory
+- parity
+- Diophantine equations
+warmup: false
+answer_source: pdf
+statement: Solve $2a^2-b^2=1$ for $a$ and $b$, where $a$ and $b$ are both integers.
+stages:
+- goal: Find one integer solution (a, b).
+  expected: a = 1, b = 1 (sign variants a = ±1, b = ±1 also count).
+  solution: Try small values. With a = 1, 2 - b^2 = 1, so b^2 = 1 and b = ±1. Hence (a, b) = (1, 1) is
+    a solution.
+  common_errors:
+  - Assuming a and b must be positive and missing that b = -1 also works
+  - Trying only a = 0 and concluding there are no solutions
+  hints:
+    rephrase: Find any pair of integers that makes the left-hand side equal to 1.
+    smaller_case: Fix a = 1 and see what value b must take.
+    key_idea: Small trial values often reveal the pattern before any general argument is needed.
+  check: 2*1**2 - 1**2 - 1
+  check_ok: true
+- goal: Show that b must be odd.
+  expected: Rearranging gives b^2 = 2a^2 - 1, which is odd, so b is odd.
+  solution: From b^2 = 2a^2 - 1, the term 2a^2 is even, so 2a^2 - 1 is odd. An odd square can only come
+    from an odd root, so b is odd.
+  common_errors:
+  - Deducing that b is odd from a single example rather than from the parity argument
+  - Concluding the parity of b from the parity of 2a^2 without rewriting the equation first
+  hints:
+    rephrase: Rewrite the equation so that b^2 stands alone, then look at its parity.
+    smaller_case: Consider the parity of 2a^2 whatever integer a is.
+    key_idea: The parity of a square matches the parity of its root.
+  check: 'True'
+  check_ok: true
+- goal: Show that a must be odd, writing b = 2k+1.
+  expected: With b = 2k+1, a^2 = 2k^2 + 2k + 1, which is odd, so a is odd.
+  solution: 'Substitute b = 2k+1: (2k+1)^2 = 4k^2 + 4k + 1 = 2a^2 - 1. Then 2a^2 = 4k^2 + 4k + 2, so a^2
+    = 2k^2 + 2k + 1. This is odd, so a is odd.'
+  common_errors:
+  - Dividing incorrectly, e.g. writing a^2 = 2k^2 + 4k + 1
+  - Stopping at a^2 = 2(k^2 + k) + 1 without stating the parity conclusion
+  hints:
+    rephrase: Substitute the odd form of b into the equation and simplify the right-hand side.
+    smaller_case: Work out (2k+1)^2 for k = 1 and compare it with 2a^2 - 1 for a general a.
+    key_idea: Divide through by 2 and then read off the parity of a^2.
+  check: 'True'
+  check_ok: true
+- goal: Find a second integer solution.
+  expected: a = 5, b = 7.
+  solution: Since a and b must be odd, try odd values of a. a = 3 gives 2*9 - 1 = 17, which is not a square.
+    a = 5 gives 2*25 - 1 = 49 = 7^2, so b = 7 and (a, b) = (5, 7).
+  common_errors:
+  - Testing only even values of a
+  - Accepting a value of b without checking that 2a^2 - 1 is a perfect square
+  hints:
+    rephrase: Find an odd a for which 2a^2 - 1 is a perfect square.
+    smaller_case: Test a = 3 first and see whether 2a^2 - 1 is a square.
+    key_idea: Use the parity result to restrict the search to odd values of a.
+  check: 2*5**2 - 7**2 - 1
+  check_ok: true
+extensions:
+  '3':
+  - Show that the map (a, b) -> (3a + 2b, 4a + 3b) sends any solution to another solution, and apply it
+    to (1, 1).
+  '4':
+  - Prove that the equation has infinitely many integer solutions.
+  '5':
+  - Show that a and b are never both even, and explain how this parity fact restricts the search.
+spoken_vocab:
+- two a squared minus b squared equals one
+- a
+- b
+- integer solution
+- odd
+- even
+- perfect square
+source: past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2012.docx
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 4
+  minutes: 20
+  flags: []
+  tagline: Parity-driven number theory leading to an infinite Pell-type solution family.
+  priority: 82
+  rank: 191
+  tier: B
+  category: past-interviews
+  d10: 5.5
+  real: 5.5
+  by: haiku
+tags:
+- number_theory
+- proof

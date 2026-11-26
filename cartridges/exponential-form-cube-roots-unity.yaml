@@ -1,0 +1,140 @@
+id: exponential-form-cube-roots-unity
+title: Euler's formula, exponential form, and cube roots of unity
+topics:
+- complex numbers
+- Euler's formula
+- exponential form
+- power series
+- roots of unity
+- modulus-argument form
+warmup: false
+answer_source: generated
+statement: (i) By means of series expansions, show that $\cos\theta+i\sin\theta=e^{i\theta}$, and deduce
+  that $\cos\theta-i\sin\theta=e^{-i\theta}$, that $z=re^{i\theta}$, that $\cos\theta=\frac{1}{2}(e^{i\theta}+e^{-i\theta})$
+  and that $\sin\theta=\frac{1}{2i}(e^{i\theta}-e^{-i\theta})$. (ii) Use the above to show that $re^{i\theta}=1$
+  (for real $\theta$ and $r>0$) if and only if $r=1$ and $\theta=2n\pi$ for some integer $n$. (iii) Use
+  part (ii) to find the three distinct roots of $z^3=1$, draw them on the complex plane, and convert them
+  from modulus-argument form to real-imaginary form.
+stages:
+- goal: By series expansion, show $\cos\theta+i\sin\theta=e^{i\theta}$ (part i, first step).
+  expected: $e^{i\theta}=\sum_{n\ge0}\frac{(i\theta)^n}{n!}$ separates into the real part $\sum_{n \text{
+    even}}\frac{(-1)^{n/2}\theta^n}{n!}=\cos\theta$ and the imaginary part $i\sum_{n \text{ odd}}\frac{(-1)^{(n-1)/2}\theta^n}{n!}=i\sin\theta$.
+  solution: Write $e^{i\theta}=\sum_{n\ge0}\frac{(i\theta)^n}{n!}$. Powers of $i$ cycle $1,i,-1,-i$. Even
+    powers $n=2k$ give $i^{2k}=(-1)^k$, which collects into $\cos\theta=\sum_k\frac{(-1)^k\theta^{2k}}{(2k)!}$.
+    Odd powers $n=2k+1$ give $i^{2k+1}=i(-1)^k$, which collects into $i\sin\theta=i\sum_k\frac{(-1)^k\theta^{2k+1}}{(2k+1)!}$.
+    Adding gives $e^{i\theta}=\cos\theta+i\sin\theta$.
+  common_errors:
+  - Writing $i^n=i$ for every $n$
+  - Mis-matching the factorial in the cosine or sine series
+  - Failing to split the series into even and odd powers
+  hints:
+    rephrase: Write out the series for $e^{x}$ and substitute $x=i\theta$. Then look at which powers of
+      $i$ are real and which are imaginary.
+    smaller_case: Write out the first four terms of the series with $\theta$ replaced by $i\theta$, and
+      simplify each power of $i$.
+    key_idea: Split the exponential series into even and odd powers, and compare with the known series
+      for cosine and sine.
+  check: expand(exp(I*t).series(t,0,8).removeO() - cos(t).series(t,0,8).removeO() - I*sin(t).series(t,0,8).removeO())
+  check_ok: true
+- goal: Deduce $\cos\theta-i\sin\theta=e^{-i\theta}$, $z=re^{i\theta}$, and the exponential expressions
+    for $\cos\theta$ and $\sin\theta$.
+  expected: $\cos\theta-i\sin\theta=e^{-i\theta}$; $z=r(\cos\theta+i\sin\theta)=re^{i\theta}$; $\cos\theta=\frac12(e^{i\theta}+e^{-i\theta})$;
+    $\sin\theta=\frac1{2i}(e^{i\theta}-e^{-i\theta})$.
+  solution: Since $\cos$ is even and $\sin$ is odd, replacing $\theta$ by $-\theta$ in $e^{i\theta}=\cos\theta+i\sin\theta$
+    gives $e^{-i\theta}=\cos\theta-i\sin\theta$. A complex number with modulus $r$ and argument $\theta$
+    is $z=r(\cos\theta+i\sin\theta)=re^{i\theta}$. Adding the two Euler relations gives $e^{i\theta}+e^{-i\theta}=2\cos\theta$,
+    and subtracting gives $e^{i\theta}-e^{-i\theta}=2i\sin\theta$.
+  common_errors:
+  - Forgetting that $\sin$ is odd, so the sign flips in $e^{-i\theta}$
+  - Dividing by $2$ rather than $2i$ when isolating $\sin\theta$
+  hints:
+    rephrase: Replace $\theta$ by $-\theta$ in the identity from part one, and use the parity of cosine
+      and sine.
+    smaller_case: Take $\theta=\pi/2$ and check what each expression gives.
+    key_idea: Add and subtract the two Euler relations to isolate cosine and sine.
+  check: expand(((exp(I*t)+exp(-I*t))/2 - cos(t)).rewrite(cos))
+  check_ok: true
+- goal: Show that $re^{i\theta}=1$ for real $\theta$ and $r>0$ if and only if $r=1$ and $\theta=2n\pi$,
+    $n\in\mathbb Z$ (part ii).
+  expected: $|re^{i\theta}|=r$, so $r=1$; then $e^{i\theta}=1$ means $\cos\theta=1$ and $\sin\theta=0$,
+    so $\theta=2n\pi$. Conversely, $r=1$ and $\theta=2n\pi$ give $e^{2n\pi i}=1$.
+  solution: Since $|\cos\theta+i\sin\theta|^2=\cos^2\theta+\sin^2\theta=1$, we have $|re^{i\theta}|=r$.
+    If $re^{i\theta}=1$, taking moduli gives $r=1$. Then $e^{i\theta}=1$ means $\cos\theta=1$ and $\sin\theta=0$,
+    so $\theta=2n\pi$ for an integer $n$. Conversely, if $r=1$ and $\theta=2n\pi$, then $e^{i\theta}=\cos
+    2n\pi+i\sin 2n\pi=1$.
+  common_errors:
+  - Checking only the argument and forgetting that the modulus must equal 1
+  - Proving only one direction of the if-and-only-if statement
+  hints:
+    rephrase: Take the modulus of both sides first. Then think about which angles give the point $1$ on
+      the unit circle.
+    smaller_case: Take $r=2$ and $\theta=\pi$ and check whether $re^{i\theta}$ can equal $1$.
+    key_idea: The modulus of $e^{i\theta}$ is always $1$, so the modulus condition is separate from the
+      angle condition.
+- goal: Use part (ii) to find the three distinct roots of $z^3=1$, and convert them to real-imaginary
+    form (part iii).
+  expected: $z_k=e^{2k\pi i/3}$ for $k=0,1,2$, which are $1$, $-\frac12+\frac{\sqrt3}{2}i$ and $-\frac12-\frac{\sqrt3}{2}i$.
+    They are equally spaced on the unit circle at angles $0$, $2\pi/3$ and $4\pi/3$.
+  solution: 'Write $z=re^{i\theta}$. Then $z^3=r^3e^{3i\theta}=1$, so by part (ii) $r^3=1$, i.e. $r=1$,
+    and $3\theta=2n\pi$, so $\theta=2n\pi/3$. Choosing $n=0,1,2$ gives three distinct roots; $n=3$ repeats
+    $n=0$. Converting: $\cos(2\pi/3)=-\frac12$, $\sin(2\pi/3)=\frac{\sqrt3}{2}$, $\cos(4\pi/3)=-\frac12$,
+    $\sin(4\pi/3)=-\frac{\sqrt3}{2}$. On the Argand diagram the three points form an equilateral triangle
+    inscribed in the unit circle.'
+  common_errors:
+  - Using $\theta=2n\pi$ instead of $\theta=2n\pi/3$
+  - Stopping at two roots, or counting $n=3$ as a new root
+  - Sign error in $\sin(4\pi/3)$ or in the real part of the non-real roots
+  hints:
+    rephrase: Write $z$ in modulus-argument form and substitute into $z^3$. Then apply the result of the
+      previous part.
+    smaller_case: First find the square roots of $1$ in modulus-argument form.
+    key_idea: Taking the cube of $re^{i\theta}$ multiplies the argument by $3$, so the angle condition
+      becomes $3\theta=2n\pi$.
+extensions:
+  '3':
+  - Show that $z^n=1$ has $n$ distinct roots $e^{2k\pi i/n}$ for $k=0,1,\dots,n-1$.
+  '4':
+  - Find the four roots of $z^4=-1$ in real-imaginary form.
+  '5':
+  - Show that the three roots of $z^3=1$ sum to zero and that their product is $1$.
+spoken_vocab:
+- e to the i theta
+- e to the minus i theta
+- cos theta plus i sin theta
+- cos theta minus i sin theta
+- r e to the i theta
+- one over two i
+- n factorial
+- i squared
+- z cubed equals one
+- cube roots of unity
+- two pi over three
+- four pi over three
+- root three over two
+- minus one half
+- unit circle
+- modulus argument form
+- real imaginary form
+- if and only if
+- integer n
+- two n pi
+source: step-workbook/Cambridge STEP Short Workbook.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Mostly bookwork, but the Euler-to-roots-of-unity chain is useful.
+  priority: 62
+  rank: 428
+  tier: C
+  category: step-workbook
+  d10: 4.5
+  real: 3.5
+  by: deepseek-v4.1-flash-free
+tags:
+- complex_numbers
+- sequences_and_series
+- trigonometry

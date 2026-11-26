@@ -1,0 +1,111 @@
+id: upside-down-cone-half-full
+title: Upside-down cone half full, and scaling of area and volume
+topics:
+- geometry
+- volume
+- similarity
+- scaling
+warmup: false
+answer_source: generated
+statement: I have an upside-down hollow cone. If I fill it half way up, what proportion of the volume
+  of the whole cone is filled? How can you explain the change in area and volume of any shape when its
+  sides are doubled?
+stages:
+- goal: Find the fraction of the cone's volume that is filled when the liquid reaches half the cone's
+    height.
+  expected: $\frac{1}{8}$ (12.5%) of the total volume.
+  solution: The liquid forms a small cone at the bottom, similar to the whole cone with linear scale factor
+    $\frac{1}{2}$. Volume scales with the cube of the linear factor, so the fraction is $(\frac{1}{2})^3=\frac{1}{8}$.
+    Explicitly, $V=\frac{1}{3}\pi r^2 h$ gives $\frac{\frac{1}{3}\pi(r/2)^2(h/2)}{\frac{1}{3}\pi r^2 h}=\frac{1}{8}$.
+  common_errors:
+  - Answering $\frac{1}{2}$ by confusing height fraction with volume fraction.
+  - Answering $\frac{1}{4}$ by squaring the scale factor instead of cubing it.
+  - Forgetting that the liquid forms a smaller cone with apex at the bottom.
+  hints:
+    rephrase: When the liquid is at half the height, what shape does the liquid occupy?
+    smaller_case: Think about a cone whose height is 2 units and radius is 1 unit, filled to height 1.
+    key_idea: The filled part is geometrically similar to the whole cone. Work out how volume scales with
+      a linear scale factor in three dimensions.
+  check: sp.simplify(ans - sp.Rational(1,8)) == 0
+  check_ok: null
+- goal: By what factor does the volume of a cone grow when all its lengths are doubled? Explain briefly.
+  expected: A factor of 8. Area grows by 4 and volume by 8, because each length is doubled, so area involves
+    two lengths and volume involves three.
+  solution: If $r\to 2r$ and $h\to 2h$, then $V=\frac{1}{3}\pi r^2 h \to \frac{1}{3}\pi (2r)^2(2h)=8V$.
+    The base area $\pi r^2$ becomes $4\pi r^2$, so it grows by 4.
+  common_errors:
+  - Answering 2 by doubling only one dimension.
+  - Answering 4 for volume, which confuses area and volume.
+  - Explaining it as a coincidence rather than a consequence of dimension.
+  hints:
+    rephrase: Write the volume formula and substitute doubled values for each length.
+    smaller_case: What happens to the area of a square of side 1 when its side is doubled?
+    key_idea: Each length in the formula is multiplied by 2. Count how many lengths each quantity multiplies
+      together.
+  check: sp.simplify(ans - 8) == 0
+  check_ok: null
+- goal: For a general shape scaled by factor $k$, give the area factor and volume factor, and explain
+    why.
+  expected: Area scales by $k^2$ and volume by $k^3$. Area is measured in squares of the unit size and
+    volume in cubes. Scaling every length by $k$ multiplies the number of unit squares by $k^2$ and the
+    number of unit cubes by $k^3$.
+  solution: Under a linear scaling by $k$, every length becomes $kL$. An area built from two lengths scales
+    as $(kL)^2=k^2L^2$, and a volume built from three lengths as $(kL)^3=k^3L^3$. For the cone, $k=2$
+    gives area factor 4 and volume factor 8.
+  common_errors:
+  - Using $2k$ or $k$ for volume instead of $k^3$.
+  - Saying the area factor is $k$ because the shape is 'bigger'.
+  - Giving the explanation without linking it to the dimension of the measurement.
+  hints:
+    rephrase: Ask yourself how many lengths are multiplied together to make an area, and how many for
+      a volume.
+    smaller_case: Take a $1\times 1$ square and an $\text{edge}$ 1 cube, and scale each by 2.
+    key_idea: Count how many unit squares or cubes of the original size fit into the scaled shape.
+  check: sp.simplify((k*L)**3/L**3 - k**3) == 0
+  check_ok: null
+extensions:
+  '3':
+  - If the liquid must fill exactly half the cone's volume, how far up should it reach, as a fraction
+    of the cone's height?
+  '4':
+  - Explain why doubling the radius of a sphere multiplies its surface area by 4 and its volume by 8.
+  '5':
+  - Explain why the scaling rules $k^2$ and $k^3$ do not directly apply to a fractal curve whose length
+    grows at a non-integer rate under magnification.
+spoken_vocab:
+- upside down cone
+- hollow cone
+- half way up
+- volume
+- proportion
+- fraction
+- one eighth
+- scale factor
+- similar shapes
+- area
+- squared
+- cubed
+- doubled
+- sides
+- radius
+- height
+- pi
+source: past-interviews/Actual Past Interview Questions/Maths Trinity Hall Cambridge 2005.doc
+verified: false
+rating:
+  quality: 6
+  difficulty: 3
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: Surprising 1/8 volume fraction and clear scaling discussion.
+  priority: 71
+  rank: 318
+  tier: B
+  category: past-interviews
+  d10: 2.5
+  real: 8.0
+  by: haiku
+tags:
+- geometry
+- proof

@@ -1,0 +1,126 @@
+id: projectile-latest-second-launch
+title: Latest launch time for an intersecting second projectile
+topics:
+- mechanics
+- projectile motion
+- kinematics
+- optimisation
+- trigonometry
+warmup: false
+answer_source: generated
+statement: A projectile is fired from a point on the ground with speed $v$ at an angle $\frac{\pi}{4}$
+  above the horizontal. Later, a second projectile is fired from the same point with speed $2v$. What
+  is the latest time at which the second projectile can be fired so that the two projectiles intersect?
+  You may assume that they are considered to intersect if they meet when they hit the ground.
+stages:
+- goal: Find the time and place at which the first projectile lands.
+  expected: It lands at time $T=\frac{\sqrt{2}\,v}{g}$, at horizontal distance $x=\frac{v^2}{g}$.
+  solution: 'Vertical position: $y=\frac{v}{\sqrt2}t-\frac{g}{2}t^2$. Setting $y=0$ with $t\neq 0$ gives
+    $t=\frac{\sqrt2\,v}{g}$. Horizontal position at that time: $x=\frac{v}{\sqrt2}\cdot\frac{\sqrt2\,v}{g}=\frac{v^2}{g}$.'
+  common_errors:
+  - Using $\frac{v}{g}$ for the flight time, which forgets the factor $2\sin\frac{\pi}{4}=\sqrt2$.
+  - Using $\cos$ for the vertical component, which swaps the horizontal and vertical components.
+  - Forgetting the factor $\frac{1}{2}$ in the $\frac{1}{2}gt^2$ term, which gives the wrong landing time.
+  hints:
+    rephrase: Write the vertical position as a function of time and find when it returns to the ground.
+    smaller_case: If the launch angle were $\frac{\pi}{2}$ instead, what would the flight time be?
+    key_idea: The landing time is the non-zero root of the vertical position equation; the horizontal
+      distance follows from the horizontal velocity.
+  check: simplify(answer - sqrt(2)*v/g) == 0
+  check_ok: false
+- goal: Find the least time $s$ after its launch at which the second projectile (speed $2v$, angle $\alpha$
+    chosen freely) can reach the landing point $\left(\frac{v^2}{g},0\right)$.
+  expected: $s=\left(\sqrt5-\sqrt3\right)\frac{v}{g}$
+  solution: 'The second projectile is at $x=2v\cos\alpha\,s$, $y=2v\sin\alpha\,s-\frac{g}{2}s^2$. For
+    $y=0$ with $s\neq0$: $\sin\alpha=\frac{gs}{4v}$. For $x=\frac{v^2}{g}$: $\cos\alpha=\frac{v}{2gs}$.
+    Using $\sin^2\alpha+\cos^2\alpha=1$ and writing $q=\frac{g^2s^2}{v^2}$ gives $\frac{q}{16}+\frac{1}{4q}=1$,
+    so $q^2-16q+4=0$ and $q=8\pm2\sqrt{15}$. The smaller root is $8-2\sqrt{15}=(\sqrt5-\sqrt3)^2$, so
+    $s=(\sqrt5-\sqrt3)\frac{v}{g}\approx0.504\,\frac{v}{g}$. The larger root gives a later arrival, so
+    the smaller one is used for the latest launch. The angle is valid: $\cos\alpha=\frac{\sqrt5+\sqrt3}{4}$.'
+  common_errors:
+  - Fixing the second projectile at angle $\frac{\pi}{4}$, which the question does not require.
+  - Taking the larger root $q=8+2\sqrt{15}$, which gives a later arrival and therefore an earlier launch.
+  - Setting the horizontal range equal to $\frac{(2v)^2}{g}$, which uses the maximum range rather than
+    the landing point of the first projectile.
+  - Dropping the $\frac{1}{2}gs^2$ term, which ignores gravity.
+  hints:
+    rephrase: Pick an unknown launch angle for the second projectile. What two conditions must hold at
+      the landing point?
+    smaller_case: Suppose the second projectile had speed $v$ instead of $2v$. Would it reach the same
+      ground point? Explain why or why not.
+    key_idea: Require both the horizontal and vertical coordinates to match the target point, then eliminate
+      the angle using $\sin^2+\cos^2=1$.
+  check: simplify(sqrtdenest(answer - (sqrt(5)-sqrt(3))*v/g)) == 0
+  check_ok: false
+- goal: Find the latest time $\tau$ after the first launch at which the second projectile can be fired.
+  expected: $\tau=\left(\sqrt2+\sqrt3-\sqrt5\right)\frac{v}{g}\approx0.910\,\frac{v}{g}$
+  solution: The two projectiles meet at the first projectile's landing point at the moment it lands, at
+    time $T=\frac{\sqrt2\,v}{g}$. The second projectile must have been fired $s$ before that moment, so
+    $\tau=T-s$. Using the least $s$ from the previous stage gives $\tau=\frac{\sqrt2\,v}{g}-\left(\sqrt5-\sqrt3\right)\frac{v}{g}=\left(\sqrt2+\sqrt3-\sqrt5\right)\frac{v}{g}$.
+    Meeting at an earlier point of the first projectile's flight gives a smaller $\tau$, so the landing
+    moment gives the latest launch.
+  common_errors:
+  - Answering $T$ itself, which is the first projectile's flight time, rather than the launch delay.
+  - Subtracting the larger root $s$, which gives an earlier launch and not the latest.
+  - Assuming the latest launch occurs in mid-flight rather than at the landing point.
+  - Mixing up $\tau$ and the second projectile's flight time, so the final answer is the wrong quantity.
+  hints:
+    rephrase: If the second projectile is fired later, it has less time in the air to reach the meeting
+      point. At which moment of the first projectile's flight should they meet to make this as favourable
+      as possible?
+    smaller_case: What is the latest launch time if the first projectile is fired straight up with speed
+      $v$ and the second must hit it at the apex?
+    key_idea: The launch time equals the meeting time minus the second projectile's flight time to the
+      meeting point.
+  check: simplify(answer - (sqrt(2)+sqrt(3)-sqrt(5))*v/g) == 0
+  check_ok: false
+extensions:
+  '3':
+  - Show that the points a projectile of speed $u$ fired from the origin can occupy at time $s$ form a
+    disc of radius $us$ centred at $\left(0,-\frac{gs^2}{2}\right)$.
+  - Use the disc result to explain why the least time to reach a given point is the most favourable for
+    the latest launch.
+  '4':
+  - Repeat the problem with the second projectile's speed set to $3v$, and compare the latest launch time
+    with the $2v$ case.
+  '5':
+  - Explain why the latest firing time occurs when the first projectile lands, rather than at an earlier
+    instant during its flight.
+  - Explain why the second projectile's angle must be chosen to meet the first projectile at the landing
+    point, and why the lower of the two possible trajectories is used.
+spoken_vocab:
+- first projectile
+- second projectile
+- fired from the ground
+- speed v
+- speed two v
+- angle pi over four
+- latest firing time
+- v squared over g
+- root two v over g
+- root five minus root three
+- root two plus root three minus root five
+- gravity g
+- landing point
+- intersect
+- meet when they hit the ground
+- disc of radius u s
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 7 (anonymous).pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Multi-stage projectile problem with a messy but clean latest-time answer.
+  priority: 91
+  rank: 110
+  tier: A
+  category: past-interviews
+  d10: 4.5
+  real: 5.5
+  by: haiku
+tags:
+- mechanics
+- trigonometry

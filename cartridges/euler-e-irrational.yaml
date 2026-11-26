@@ -1,0 +1,122 @@
+id: euler-e-irrational
+title: 'Tail bound for e: irrationality and three decimal places'
+topics:
+- e
+- series
+- irrationality
+- error bounds
+- factorials
+- geometric series
+warmup: false
+answer_source: pdf
+statement: 'Let $e=\sum_{k=0}^\infty\frac{1}{k!}$ and $s_n=\sum_{k=0}^n\frac{1}{k!}$.
+
+
+  (i) Show that $0<e-s_n<\frac{1}{n\cdot n!}$ for every positive integer $n$.
+
+
+  (ii) Suppose $e=\frac{p}{q}$ with $p,q$ positive integers. By considering $q!\,(e-s_q)$, obtain a contradiction.
+
+
+  (iii) Use (i) to find $e$ to three decimal places, and justify your accuracy.'
+stages:
+- goal: Bound the tail $e-s_n$ and show $0<e-s_n<\frac{1}{n\cdot n!}$.
+  expected: $e-s_n=\frac{1}{(n+1)!}\left(1+\frac{1}{n+2}+\frac{1}{(n+2)(n+3)}+\cdots\right)$, which is
+    positive and bounded above by a geometric series with ratio $\frac{1}{n+1}$, giving $e-s_n<\frac{1}{n\cdot
+    n!}$.
+  solution: $e-s_n=\sum_{k\ge n+1}\frac{1}{k!}>0$ since every term is positive. For $k\ge n+1$, $\frac{1}{(k+1)!}=\frac{1}{k+1}\cdot\frac{1}{k!}\le\frac{1}{n+2}\cdot\frac1{k!}<\frac{1}{n+1}\cdot\frac{1}{k!}$,
+    so the $j$-th term after the first is strictly less than $\frac{1}{(n+1)!}\frac{1}{(n+1)^j}$ for $j\ge1$.
+    Hence $e-s_n<\frac{1}{(n+1)!}\sum_{j\ge0}\frac{1}{(n+1)^j}=\frac{1}{(n+1)!}\cdot\frac{n+1}{n}=\frac{1}{n\cdot
+    n!}$.
+  common_errors:
+  - Bounding the ratio by $\frac{1}{n}$ instead of $\frac{1}{n+1}$, which gives a weaker bound
+  - Summing the geometric series from the wrong starting index, so the factor $\frac{n+1}{n}$ is wrong
+  - Forgetting to justify strictness of the upper bound, or dropping the strict lower bound $0<e-s_n$
+  hints:
+    rephrase: Write the tail as a sum starting at $k=n+1$, then compare each term with the one before
+      it.
+    smaller_case: 'Take $n=1$: write $e-s_1$ as a sum. How does each term compare with the previous one?'
+    key_idea: Factorials grow fast, so the ratio of consecutive terms is at most $\frac{1}{n+2}<\frac1{n+1}$;
+      a geometric series bounds the whole tail.
+  check: Rational(1,factorial(5))*Rational(5,4) - Rational(1,4*factorial(4))
+  check_ok: true
+- goal: Assume $e=\frac pq$ and obtain a contradiction by considering $q!\,(e-s_q)$.
+  expected: $q!\,(e-s_q)$ is an integer, but by (i) it lies strictly between $0$ and $\frac1q\le1$, which
+    is impossible.
+  solution: $q!\,e=p\,(q-1)!$ is an integer, and $q!\,s_q=\sum_{k=0}^q\frac{q!}{k!}$ is an integer since
+    $k!\mid q!$ for $k\le q$. So $q!\,(e-s_q)$ is an integer. By (i) with $n=q$, $0<q!\,(e-s_q)<\frac{q!}{q\cdot
+    q!}=\frac1q\le1$. No integer lies strictly between $0$ and $1$, a contradiction. So $e$ is irrational.
+  common_errors:
+  - Claiming $q!\,s_q$ is not an integer, rather than noting $k!$ divides $q!$ for each $k\le q$
+  - Dropping the strict inequality from (i), so the contradiction fails
+  - 'Not handling $q=1$: there $\frac1q=1$, but the strict bound still gives a value $<1$'
+  - Forgetting that $q!\,e=p\,(q-1)!$ needs $p,q$ to be integers
+  hints:
+    rephrase: Multiply $e-s_q$ by $q!$ and ask whether each part is an integer.
+    smaller_case: 'Take $q=2$: if $e=\frac p2$, what is $2!\,e$, and what is $2!\,s_2$? Compare with the
+      bound from (i).'
+    key_idea: An integer cannot lie strictly between $0$ and $1$, so the assumed form of $e$ must fail.
+  check: sum(factorial(5)/factorial(k) for k in range(6)) - 326
+  check_ok: null
+- goal: Use the bound with $n=6$ to find $e$ to three decimal places, and justify it.
+  expected: $s_6=\frac{1957}{720}\approx2.71806$ and $e-s_6<\frac{1}{4320}$, so $2.71805<e<2.71829$, hence
+    $e\approx2.718$ to three decimal places.
+  solution: $s_6=1+1+\frac12+\frac16+\frac1{24}+\frac1{120}+\frac1{720}=\frac{720+720+360+120+30+6+1}{720}=\frac{1957}{720}\approx2.718056$.
+    By (i) with $n=6$, $0<e-s_6<\frac{1}{6\cdot720}=\frac1{4320}\approx0.000232$. So $2.71805<e<2.71829$.
+    Every number in this interval lies in $[2.7175,2.7185)$, so it rounds to $2.718$. Hence $e=2.718$
+    to three decimal places.
+  common_errors:
+  - Using $\frac{1}{6!}$ instead of $\frac{1}{6\cdot6!}$ as the error bound
+  - Arithmetic slip in a reciprocal factorial, or stopping the sum at $k=5$
+  - Quoting a remembered value of $e$ instead of justifying with the interval
+  - Not checking that both interval endpoints round to the same value
+  hints:
+    rephrase: Compute $s_6$, then use $n=6$ in the bound to get an interval containing $e$.
+    smaller_case: 'Use $n=3$: what interval does the bound give for $e$, and is it narrow enough for three
+      decimal places?'
+    key_idea: The bound gives an interval; if both endpoints round to the same three-decimal value, that
+      value is certain.
+  check: Rational(1957,720) - sum(Rational(1,factorial(k)) for k in range(7))
+  check_ok: null
+extensions:
+  '3':
+  - Find the smallest $n$ for which the bound from (i) guarantees $e$ to six decimal places.
+  '4':
+  - Show that the series for $e^x$ converges absolutely for every real $x$, and adapt the tail bound for
+    $x=2$.
+  '5':
+  - Prove that $e$ is not a root of any quadratic with integer coefficients, i.e. $e^2$ is irrational
+    too.
+spoken_vocab:
+- e
+- s sub n
+- sum from k equals zero to n of one over k factorial
+- n times n factorial
+- p over q
+- q factorial
+- strictly between zero and one
+- to three decimal places
+- two point seven one eight
+- tail of the series
+- geometric series
+source: jaymin/Jaymin Interview (1).pdf#p49
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 3
+  minutes: 25
+  flags: []
+  tagline: Tail bound drives both the irrationality proof and a justified three-decimal approximation.
+  priority: 109
+  rank: 37
+  tier: A
+  category: jaymin
+  d10: 6.2
+  real: 6.0
+  by: deepseek-v4.1-flash-free
+refined: true
+tags:
+- sequences_and_series
+- proof
+- number_theory

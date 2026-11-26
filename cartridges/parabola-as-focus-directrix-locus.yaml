@@ -1,0 +1,107 @@
+id: parabola-as-focus-directrix-locus
+title: Locus equidistant from a point and a line
+topics:
+- conic sections
+- locus
+- parabola
+- focus and directrix
+- limiting cases
+warmup: false
+answer_source: generated
+statement: A point $P$ moves so that its distance from the fixed point $F=(0,1)$ equals its distance from
+  the fixed line $y=-1$. (a) Find the equation of the locus of $P$, and identify the curve. (b) How does
+  the locus change if the line is moved further from $F$, keeping $F$ fixed? (c) What happens in the limiting
+  case where the line passes through $F$?
+stages:
+- goal: Find the locus equation for $F=(0,1)$ and the line $y=-1$, and identify the curve.
+  expected: $x^2=4y$, which is a parabola with vertex at the origin, focus $(0,1)$ and directrix $y=-1$.
+  solution: Let $P=(x,y)$. Then $\sqrt{x^2+(y-1)^2}=|y+1|$. Squaring gives $x^2+y^2-2y+1=y^2+2y+1$, so
+    $x^2=4y$.
+  common_errors:
+  - Expanding $(y-1)^2$ or $(y+1)^2$ incorrectly.
+  - Forgetting that the distance to the line is $|y+1|$, not $y+1$.
+  - Identifying the curve as a circle or ellipse because the equation has $x^2$ and $y$ terms.
+  hints:
+    rephrase: Write both distances as expressions in $x$ and $y$, then set them equal and simplify.
+    smaller_case: Find the point on the $y$-axis that is equidistant from $F$ and the line. Then consider
+      whether a second point on the $y$-axis also works.
+    key_idea: This is the definition of a conic with a focus and a directrix. Identify the conic by comparing
+      the equation with a standard form.
+  check: x**2 + (y-1)**2 - (y+1)**2 - (x**2 - 4*y)
+  check_ok: true
+- goal: Repeat the derivation for a general horizontal line $y=k$ with $k<1$, and describe the curve.
+  expected: $x^2=2(1-k)\left(y-\frac{1+k}{2}\right)$. This is still a parabola. Its vertex is midway between
+    $F$ and the line, and its latus rectum has length $2(1-k)$, the distance from $F$ to the line doubled.
+  solution: Setting $x^2+(y-1)^2=(y-k)^2$ gives $x^2=(y-k)^2-(y-1)^2=(1-k)(2y-k-1)=2(1-k)\left(y-\frac{1+k}{2}\right)$.
+    The coefficient $2(1-k)$ is twice the distance from $F$ to the line.
+  common_errors:
+  - Forgetting that the distance to $y=k$ is $|y-k|$ and that the sign matters when $k<1$.
+  - Getting the vertex wrong by taking it at $y=k$ or at $y=1$ instead of the midpoint.
+  - Mixing up the scale factor $4p$ with $p$ itself.
+  hints:
+    rephrase: Repeat the algebra from the previous part with $-1$ replaced by $k$, and keep $k$ as a parameter.
+    smaller_case: Test your formula with $k=-1$ and confirm that it returns $x^2=4y$.
+    key_idea: Write the difference of squares as a product, then factor out the coefficient of $y$ to
+      read off the vertex and the scale.
+  check: (y-k)**2 - (y-1)**2 - 2*(1-k)*(y-(1+k)/2)
+  check_ok: true
+- goal: Describe the locus in the limiting case where the line passes through $F$, meaning $k=1$.
+  expected: $x^2=0$, so the locus is the line $x=0$, the $y$-axis. This is the line through $F$ perpendicular
+    to $y=1$, a degenerate parabola.
+  solution: Substituting $k=1$ into $x^2=2(1-k)\left(y-\frac{1+k}{2}\right)$ gives $x^2=0$. Directly,
+    a point $(0,y)$ has distance $|y-1|$ to both $F$ and the line $y=1$, so it lies on the locus.
+  common_errors:
+  - Concluding that the locus is empty or just the point $F$.
+  - Assuming the parabola still exists with a non-zero latus rectum.
+  - Confusing the locus with the line $y=1$ itself.
+  hints:
+    rephrase: Substitute the limiting value of the line into your general equation and simplify.
+    smaller_case: Pick a point with $x\neq 0$ and check whether its distances to $F$ and the line can
+      be equal.
+    key_idea: The degenerate limit of a family of parabolas can be a line. Compare the squared distances
+      directly.
+  check: x
+  check_ok: true
+extensions:
+  '3':
+  - For a general focus $F=(0,p)$ and directrix $y=-p$, derive the locus equation and compare it with
+    $x^2=4y$.
+  '4':
+  - Replace the line with a circle centred at $F$. What locus do you get when the distances are equal,
+    and how does it differ from the parabola?
+  '5':
+  - Prove that the locus of points whose distance to $F$ is a fixed multiple $e$ of their distance to
+    a line is a conic, and state how the value of $e$ determines the type of conic.
+spoken_vocab:
+- focus
+- directrix
+- locus
+- parabola
+- x squared equals four y
+- y equals negative one
+- vertex
+- latus rectum
+- distance from F to the line
+- limiting case
+- y-axis
+- difference of squares
+- completing the square
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 3
+  parts: 3
+  minutes: 10
+  flags: []
+  tagline: Clean focus-directrix derivation extended to a general line and a degenerate limit.
+  priority: 61
+  rank: 445
+  tier: C
+  category: juan
+  d10: 2.5
+  real: 6.0
+  by: haiku
+tags:
+- coordinate_geometry
+- geometry

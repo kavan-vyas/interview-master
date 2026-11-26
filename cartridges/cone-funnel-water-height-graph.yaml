@@ -1,0 +1,96 @@
+id: cone-funnel-water-height-graph
+title: Water filling a cone-shaped funnel
+topics:
+- volume of a cone
+- similar triangles
+- rates of change
+- graph sketching
+warmup: true
+answer_source: pdf
+statement: Water is poured at a constant rate into a container shaped like a cone with its point at the
+  bottom and its circular top open (like a funnel). Which graph best shows the height $h$ of the water
+  against time $t$? (Options a) to e) are graphs of $h$ against $t$, not reproduced in the source.)
+stages:
+- goal: Relate the volume of water to its height $h$, using the shape of the cone.
+  expected: Let the cone have full height $H$ and top radius $R$. By similar triangles the water surface
+    has radius $r = kh$ with $k = R/H$ constant. The volume is $V = \frac{1}{3}\pi r^2 h = \frac{\pi k^2}{3}
+    h^3$, so volume is proportional to $h^3$.
+  solution: Water at height $h$ forms a smaller cone similar to the whole container, so $r/h = R/H = k$
+    is constant. Substituting $r = kh$ into the cone volume formula gives $V = \frac{1}{3}\pi (kh)^2 h
+    = \frac{\pi k^2}{3}h^3$.
+  common_errors:
+  - Treating the radius as fixed, which gives $V \propto h$ and a straight-line graph.
+  - Using the full cone's $R$ and $H$ instead of the water's own radius and height.
+  - Forgetting that the volume is proportional to $h^3$, not $h^2$.
+  hints:
+    rephrase: How is the radius of the water's surface related to the water's height, given the cone's
+      shape?
+    smaller_case: Compare the water level when $h$ doubles. Does the volume double, or grow by more?
+    key_idea: The width of the water surface grows as the water rises, so volume depends on the radius
+      squared times the height.
+  check: sp.Rational(1,3)*sp.pi*(k*h)**2*h - sp.pi*k**2*h**3/3
+  check_ok: null
+- goal: Use a constant inflow rate to find how $h$ depends on $t$, and identify the graph shape.
+  expected: With constant inflow, $\frac{\pi k^2}{3}h^3 = Ct$, so $h = \left(\frac{3Ct}{\pi k^2}\right)^{1/3}$,
+    i.e. $h \propto t^{1/3}$. The graph rises quickly at first and then flattens out (concave down). The
+    source answer is option b).
+  solution: 'Constant rate means $V = Ct$ for some constant $C$, so $\frac{\pi k^2}{3}h^3 = Ct$ and $h^3
+    \propto t$. Taking cube roots, $h \propto t^{1/3}$. The rate $dh/dt$ decreases as $h$ grows, since
+    the surface widens, so the curve is steep at the start and levels off. Source answer: b).'
+  common_errors:
+  - Choosing a straight-line graph because the inflow rate is constant.
+  - Confusing constant volume rate with constant height rate.
+  - Picking the graph that rises fastest later instead of at the start.
+  hints:
+    rephrase: If the volume rises at a steady rate, does the height rise at a steady rate too?
+    smaller_case: Think about the first few seconds of filling versus the last few seconds, when the water
+      is near the top.
+    key_idea: The volume is proportional to $h^3$, so $h$ is proportional to a cube root of $t$.
+  check: sp.simplify(((3*V*t/(sp.pi*k**2))**sp.Rational(1,3))**3 - 3*V*t/(sp.pi*k**2))
+  check_ok: null
+extensions:
+  '3':
+  - If the funnel's top radius doubled while its height stayed the same, how would the graph change?
+  - Sketch $h$ against $t$ for a cylinder filled at the same constant rate and compare.
+  '4':
+  - Find how long it takes to reach height $h$ in terms of $V$, $k$ and $C$.
+  - Explain what happens to the graph if the container is inverted, with the point at the top.
+  '5':
+  - Suppose the container is a paraboloid $r = kh^{1/2}$. Find the relationship between $V$ and $h$ and
+    the new graph shape.
+  - Show that $dh/dt \to 0$ is not reached for finite $t$ with constant inflow in the funnel above, and
+    explain why.
+spoken_vocab:
+- h
+- t
+- pi
+- cone
+- radius
+- cubed
+- cube root
+- proportional to
+- similar triangles
+- constant rate
+- concave down
+- k
+source: kclms/kclms-specimen-mcq-3.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 3
+  parts: 2
+  minutes: 5
+  flags:
+  - missing_info
+  - needs_diagram
+  tagline: Good V∝h³ insight, but the graph options are absent.
+  priority: 19
+  rank: 666
+  tier: D
+  category: kclms
+  d10: 4.0
+  real: 3.0
+  by: deepseek-v4.1-flash-free
+tags:
+- geometry
+- differentiation

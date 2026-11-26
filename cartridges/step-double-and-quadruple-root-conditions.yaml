@@ -1,0 +1,122 @@
+id: step-double-and-quadruple-root-conditions
+title: Derivative conditions for repeated factors and a quartic-factor problem
+topics:
+- polynomials
+- calculus
+- derivatives
+- factor theorem
+- repeated roots
+warmup: false
+answer_source: pdf
+statement: Prove that if $(x-a)^2$ is a factor of the polynomial $p(x)$, then $p'(a)=0$. Prove a corresponding
+  result if $(x-a)^4$ is a factor of $p(x)$. Given that the polynomial $x^6+4x^5-5x^4-40x^3-40x^2+kx+m$
+  has a factor of the form $(x-a)^4$, find $k$ and $m$.
+stages:
+- goal: Prove that if $(x-a)^2$ divides $p(x)$, then $p'(a)=0$.
+  expected: Write $p(x)=(x-a)^2q(x)$ with $q$ a polynomial. Then $p'(x)=2(x-a)q(x)+(x-a)^2q'(x)$, and
+    substituting $x=a$ gives $p'(a)=0$.
+  solution: Write $p(x)=(x-a)^2q(x)$. By the product rule, $p'(x)=2(x-a)q(x)+(x-a)^2q'(x)$. Every term
+    has a factor $(x-a)$, so $p'(a)=0$.
+  common_errors:
+  - Differentiating $(x-a)^2$ but forgetting the product rule term involving $q'(x)$.
+  - Assuming $p(a)=0$ already forces $p'(a)=0$ without justification.
+  - Writing $p'(a)=2q(a)$, which drops the $(x-a)$ factor in the first term.
+  hints:
+    rephrase: If a squared factor is present, what does the factorised form of $p$ look like?
+    smaller_case: Take $p(x)=(x-1)^2$ and compute $p'(1)$ directly.
+    key_idea: Apply the product rule to $(x-a)^2q(x)$ and see which terms survive when $x=a$.
+  check: null
+- goal: State and prove the corresponding result if $(x-a)^4$ divides $p(x)$.
+  expected: If $(x-a)^4$ divides $p(x)$, then $p(a)=p'(a)=p''(a)=p'''(a)=0$.
+  solution: Write $p(x)=(x-a)^4q(x)$. By Leibniz' rule, $p^{(j)}(x)=\sum_{i=0}^{j}\binom{j}{i}\frac{d^i}{dx^i}\left[(x-a)^4\right]\,q^{(j-i)}(x)$.
+    Each $\frac{d^i}{dx^i}(x-a)^4$ is a constant multiple of $(x-a)^{4-i}$. For $i\le j\le 3$ the power
+    $4-i$ is at least 1, so every term vanishes at $x=a$. Hence $p(a)=p'(a)=p''(a)=p'''(a)=0$.
+  common_errors:
+  - Stating only the double-root condition $p(a)=p'(a)=0$ and missing the conditions on $p''$ and $p'''$.
+  - Not explaining why the derivative terms vanish at $x=a$, for example by not tracking the remaining
+    power of $(x-a)$.
+  hints:
+    rephrase: How many derivatives can you take before the factor $(x-a)^4$ is used up?
+    smaller_case: For $(x-a)^4$ alone, compute its first, second and third derivatives and evaluate each
+      at $x=a$.
+    key_idea: Differentiate $(x-a)^4q(x)$ repeatedly with the product rule and track the power of $(x-a)$
+      that remains.
+  check: null
+- goal: For $p(x)=x^6+4x^5-5x^4-40x^3-40x^2+kx+m$, find all possible values of $a$ for which $(x-a)^4$
+    is a factor.
+  expected: $a=-2$.
+  solution: By the previous stage, $p'''(a)=0$ is necessary. Here $p'''(x)=120x^3+240x^2-120x-240=120(x-1)(x+1)(x+2)$.
+    So $a\in\{1,-1,-2\}$. Next, $p''(x)=30x^4+80x^3-60x^2-240x-80$ gives $p''(1)=-270\neq 0$ and $p''(-1)=50\neq
+    0$, so $a=1$ and $a=-1$ are excluded because $p''(a)$ must vanish. Also $p''(-2)=0$, which is consistent.
+    So $a=-2$.
+  common_errors:
+  - Listing $a=1,-1,-2$ from $p'''$ and not excluding $\pm1$ with $p''$.
+  - 'Arithmetic slip in differentiating: the third derivative of $4x^5$ is $240x^2$, not $60x^2$.'
+  - Thinking $k$ and $m$ affect $p'''$ or $p''$. They do not, since they only appear in the linear and
+    constant terms.
+  hints:
+    rephrase: Which derivative of the polynomial is independent of $k$ and $m$, and what must it vanish
+      at?
+    smaller_case: Differentiate $x^6$ and $4x^5$ separately three times. Which terms contribute to the
+      third derivative?
+    key_idea: Factorise the cubic that appears from the third derivative, then use the second derivative
+      to rule out some of its roots.
+  check: diff(x**6+4*x**5-5*x**4-40*x**3-40*x**2, x, 2).subs(x, -2)
+  check_ok: true
+- goal: Find $k$ and $m$ given that $(x-a)^4=(x+2)^4$ is a factor.
+  expected: $k=32$ and $m=48$.
+  solution: 'Here $p''(x)=6x^5+20x^4-20x^3-120x^2-80x+k$, so $p''(-2)=-32+k$, and $p''(-2)=0$ gives $k=32$.
+    Next, $p(-2)=64-128-80+320-160-2k+m=16-2k+m$. Setting this to zero with $k=32$ gives $m=48$. Check:
+    $(x+2)^4(x-1)(x-3)$ expands to the given polynomial with $k=32$ and $m=48$.'
+  common_errors:
+  - Sign error when evaluating $(-2)^5=-32$ or $(-2)^4=16$.
+  - Treating the term $kx$ as contributing $k$ rather than $-2k$ at $x=-2$.
+  - Using only one of the two conditions $p(-2)=0$ and $p'(-2)=0$.
+  hints:
+    rephrase: Which two conditions at $x=-2$ involve $k$ and $m$?
+    smaller_case: Substitute $x=-2$ into the $kx$ term and into the constant term separately.
+    key_idea: Use $p(a)=0$ and $p'(a)=0$ from the earlier stages, now with $a=-2$.
+  check: (k-32)**2 + (16-2*k+m)**2
+  check_ok: false
+extensions:
+  '3':
+  - Construct a polynomial with a double root at $a$ but not a triple root there, and verify that $p'(a)=0$
+    for it.
+  '4':
+  - Factorise $x^6+4x^5-5x^4-40x^3-40x^2+32x+48$ completely.
+  '5':
+  - Prove that if $(x-a)^n$ divides $p(x)$, then $p^{(j)}(a)=0$ for $j=0,1,\ldots,n-1$, and explain why
+    the converse also holds.
+spoken_vocab:
+- x minus a squared
+- x minus a to the power four
+- p of x
+- p dash of a
+- p double dash of a
+- derivative
+- factor
+- x to the sixth plus four x to the fifth minus five x to the fourth
+- k x plus m
+- minus two
+- repeated root
+- product rule
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#14
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 4
+  minutes: 15
+  flags: []
+  tagline: Multiplicity-derivative link yields a=−2, then k and m by matching.
+  priority: 82
+  rank: 189
+  tier: B
+  category: siklos
+  d10: 5.0
+  real: 5.0
+  by: haiku
+tags:
+- proof
+- roots_of_polynomials
+- differentiation

@@ -1,0 +1,92 @@
+id: phone-plan-march-april
+title: Mobile phone plan costs in March and April
+topics:
+- arithmetic
+- money
+- allowances
+- word problem
+warmup: false
+answer_source: pdf
+statement: A mobile phone plan costs £15 per month. It includes 300 minutes of calls and 100 texts. Extra
+  minutes cost 8p each and extra texts cost 3p each. In March, Dev used 420 minutes and sent 160 texts.
+  In April he used 280 minutes and sent 90 texts. How much more did his plan cost in March than in April?
+stages:
+- goal: Find the total cost of Dev's plan in March.
+  expected: £26.40
+  solution: 'Extra minutes: 420 − 300 = 120, costing 120 × £0.08 = £9.60. Extra texts: 160 − 100 = 60,
+    costing 60 × £0.03 = £1.80. Total = £15 + £9.60 + £1.80 = £26.40.'
+  common_errors:
+  - Charging for all 420 minutes instead of only the 120 above the allowance
+  - Mixing pence and pounds, for example using 8 instead of £0.08
+  - Forgetting the £15 monthly fee
+  hints:
+    rephrase: Only usage above the included allowance is charged extra. How much did Dev use beyond each
+      allowance?
+    smaller_case: If Dev had used 301 minutes and no texts, what would the extra minutes cost?
+    key_idea: Total cost is the fixed monthly fee plus the extra units times their individual prices,
+      all in the same currency.
+  check: 15 + 120*Rational(8,100) + 60*Rational(3,100) - Rational(2640,100)
+  check_ok: true
+- goal: Find how much more the plan cost in March than in April.
+  expected: £11.40
+  solution: 'April: 280 minutes and 90 texts are both within allowance, so the cost is £15. Difference
+    = £26.40 − £15 = £11.40.'
+  common_errors:
+  - Subtracting the extra charges only, and forgetting April's £15 base fee
+  - Charging April's usage as if it exceeded the allowances
+  - Arithmetic slip when subtracting pounds and pence
+  hints:
+    rephrase: Check whether April's minutes and texts go over the allowances, then compare the two monthly
+      totals.
+    smaller_case: Compare two months where one has no extra charges and one has a single extra text at
+      3p.
+    key_idea: Only charges above the allowance vary between months, so the difference comes from the March
+      extras alone once the fixed fee is cancelled.
+  check: (15 + 120*Rational(8,100) + 60*Rational(3,100)) - 15 - Rational(114,10)
+  check_ok: true
+extensions:
+  '3':
+  - Dev expects to use 350 minutes and 120 texts in May. What will his bill be?
+  '4':
+  - Find the number of extra minutes at which the bill in a month with no texts would reach £20.
+  '5':
+  - Dev can choose a plan costing £20 per month with 500 minutes and 200 texts. For which usage patterns
+    is this cheaper than the original plan?
+spoken_vocab:
+- pounds
+- pence
+- minutes
+- texts
+- allowance
+- March
+- April
+- Dev
+- per month
+- extra
+- eight pence
+- three pence
+- fifteen pounds
+- twenty six pounds forty
+- eleven pounds forty
+- times
+- minus
+- plus
+source: kclms/kclms-specimen-questions-4.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 2
+  minutes: 4
+  flags:
+  - trivial
+  tagline: Pure arithmetic with no conceptual depth or extension.
+  priority: 17
+  rank: 684
+  tier: D
+  category: kclms
+  d10: 1.5
+  real: 2.0
+  by: haiku
+tags:
+- algebra_and_functions

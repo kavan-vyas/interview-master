@@ -1,0 +1,115 @@
+id: count-not-divisible-2-5-3-7
+title: Counting integers not divisible by given primes, and their averages
+topics:
+- counting
+- inclusion-exclusion
+- symmetry
+- averages
+- modular arithmetic
+warmup: false
+answer_source: pdf
+statement: How many integers greater than or equal to zero and less than 1000 are not divisible by 2 or
+  5? What is the average value of these integers? How many integers greater than or equal to zero and
+  less than 9261 are not divisible by 3 or 7? What is the average value of these integers?
+stages:
+- goal: Count the integers $0\le n<1000$ that are not divisible by 2 or 5.
+  expected: '400'
+  solution: 'Multiples of 2 in the range: 500. Multiples of 5: 200. Multiples of both (multiples of 10):
+    100. By inclusion-exclusion, the number divisible by 2 or 5 is $500+200-100=600$, so $1000-600=400$
+    integers are not divisible by 2 or 5.'
+  common_errors:
+  - Forgetting to subtract the overlap of multiples of 10.
+  - Counting $0$ as not divisible by 2 or 5 (it is divisible by both).
+  - Miscounting the multiples of 5 in the range.
+  hints:
+    rephrase: Identify the integers that are excluded, namely multiples of 2 or multiples of 5.
+    smaller_case: Count the multiples of 2 from 0 to 9 and see whether the same method works.
+    key_idea: 'Use inclusion-exclusion: add the two counts and subtract the overlap.'
+  check: Integer(len([n for n in range(1000) if n % 2 != 0 and n % 5 != 0])) - 400
+  check_ok: null
+- goal: Find the average of the 400 integers from the first part.
+  expected: '500'
+  solution: Use the map $n\mapsto1000-n$. The integer $0$ is excluded automatically, so the set lies in
+    $1\le n\le999$. Since $1000-n\equiv-n\pmod{10}$, divisibility by 2 and by 5 is preserved, so the set
+    is closed under this map. The elements pair up with sum 1000, so the average is 500.
+  common_errors:
+  - Assuming the average is the midpoint of the whole range, $\frac{0+999}{2}=499.5$.
+  - Using the mean of all integers in the range rather than the mean of the subset.
+  - Forgetting that $0$ must be excluded before pairing.
+  hints:
+    rephrase: Look for a reflection of the range that maps the set to itself.
+    smaller_case: Try the same reflection on the integers from 0 to 9 and see which ones survive.
+    key_idea: Find a map that preserves the set and pairs its elements so that every pair has the same
+      sum.
+  check: Rational(sum([n for n in range(1000) if n % 2 != 0 and n % 5 != 0]), 400) - 500
+  check_ok: null
+- goal: Count the integers $0\le n<9261$ that are not divisible by 3 or 7.
+  expected: '5292'
+  solution: Note $9261=21^3=441\times21$. In each block of 21 consecutive integers, 7 are multiples of
+    3, 3 are multiples of 7, and 1 is a multiple of both (multiples of 21). So 9 are divisible by 3 or
+    7 and 12 are not. The total is $441\times12=5292$.
+  common_errors:
+  - Dividing 9261 by 3 and by 7 and subtracting without adding back the overlap.
+  - Miscounting the multiples of 3 or 7 within one block of 21.
+  - Using 9260 instead of 9261 as the number of integers in the range.
+  hints:
+    rephrase: Notice that 9261 is a clean multiple of 21 and consider what that suggests about blocks.
+    smaller_case: Count how many integers from 0 to 20 are not divisible by 3 or 7.
+    key_idea: Count the good integers in one full period, then multiply by the number of periods.
+  check: Integer(len([n for n in range(9261) if n % 3 != 0 and n % 7 != 0])) - 5292
+  check_ok: null
+- goal: Find the average of the 5292 integers from the second part.
+  expected: $\frac{9261}{2}$
+  solution: Use the map $n\mapsto9261-n$ on $1\le n\le9260$, since $0$ is excluded automatically. As $9261\equiv0\pmod{21}$,
+    we have $9261-n\equiv-n\pmod{21}$, which preserves non-divisibility by 3 and by 7. The elements pair
+    up with sum 9261, so the average is $\frac{9261}{2}$.
+  common_errors:
+  - Averaging over $0$ to $9260$ and quoting $\frac{9260}{2}$.
+  - Forgetting that $0$ must be excluded before pairing up the elements.
+  - Assuming the reflection fails because 9261 is odd.
+  hints:
+    rephrase: Find a reflection of the range that keeps divisibility by 21 unchanged.
+    smaller_case: Try the same reflection on the integers from 0 to 20 and check which values are excluded.
+    key_idea: Pair each $n$ with a partner so that all pairs have the same sum, then average that sum
+      over 2.
+  check: Rational(sum([n for n in range(9261) if n % 3 != 0 and n % 7 != 0]), 5292) - Rational(9261,2)
+  check_ok: null
+extensions:
+  '3':
+  - How many integers $0\le n<1000$ are not divisible by 2, 3 or 5?
+  '4':
+  - For $0\le n<m$, when is the set of integers not divisible by $a$ or $b$ closed under $n\mapsto m-n$?
+  '5':
+  - Show that the average of the integers $0\le n<N$ not divisible by any prime in a given set is $\frac{N}{2}$
+    whenever $N$ is a multiple of the product of those primes.
+spoken_vocab:
+- not divisible by
+- inclusion exclusion
+- nine thousand two hundred and sixty one
+- twenty one cubed
+- symmetry
+- average value
+- greater than or equal to zero
+- less than one thousand
+- modulo
+- reflection
+- pairing
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#6
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 4
+  minutes: 15
+  flags: []
+  tagline: Inclusion-exclusion plus periodic residues make the averages a satisfying extension.
+  priority: 72
+  rank: 314
+  tier: B
+  category: siklos
+  d10: 4.5
+  real: 5.0
+  by: deepseek-v4.1-flash-free
+tags:
+- number_theory
+- combinatorics

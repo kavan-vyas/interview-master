@@ -1,0 +1,30 @@
+[
+ {
+  "q": "Sketch: $y=e^{x}$ and $y=e^{\\frac{1}{x}}$",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/F1u.jpg"
+ },
+ {
+  "q": "Sketch $y=\\frac{1}{x^{2}+a}$ for different values of $a$: $a<0$, $a=0$, $a>0$",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/F1u.jpg"
+ },
+ {
+  "q": "What function represents this graph? (The graph shows a curve with a vertical asymptote at the $y$-axis side, a second branch with a vertical asymptote, and two dashed oblique asymptotes.)",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/F1u.jpg"
+ },
+ {
+  "q": "Iteration formula: $f(x_0)=x_{n+1}$, $f(x)=x^{2}-1$, which defines a sequence of numbers. a) Try for integers $x_0 = 2,3,4,\\ldots$ and $x_0=-2,-3,-4,\\ldots$, and for $x_0=-1,0,1$. b) When $x_0=\\frac{a}{b}$ with $a,b\\in\\mathbb{Z}$ (where $a$ and $b$ are rational numbers), will this ever be periodic? (Periodic means the sequence comes back to its starting number.)",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/F1u.jpg"
+ }
+]

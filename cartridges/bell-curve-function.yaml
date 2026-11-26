@@ -1,0 +1,115 @@
+id: bell-curve-function
+title: Suggesting a bell-shaped function
+topics:
+- functions
+- exponentials
+- symmetry
+- calculus
+- maxima
+- Gaussian curve
+warmup: false
+answer_source: generated
+statement: A graph of a bell-shaped curve, symmetric about the y-axis, with maximum value 1 at $x=0$ and
+  tending to $0$ as $x \to \pm\infty$. Suggest a function.
+stages:
+- goal: Suggest a function $f(x)$ that is even, has $f(0)=1$, and tends to 0 as $x \to \pm\infty$.
+  expected: $f(x) = e^{-x^2}$, or any equivalent form such as $f(x) = \frac{1}{1+x^2}$.
+  solution: 'Take $f(x) = e^{-x^2}$. It is even, since $(-x)^2 = x^2$, so the curve is symmetric about
+    the y-axis. At $x=0$, $f(0) = e^0 = 1$. As $|x|$ grows, $-x^2$ becomes very negative, so $e^{-x^2}
+    \to 0$ from both sides. The reciprocal form $\frac{1}{1+x^2}$ also works: it equals 1 at $x=0$ and
+    decays to 0 as $x \to \pm\infty$.'
+  common_errors:
+  - Proposing $e^{x^2}$, which grows without bound instead of tending to 0.
+  - Proposing $e^{-|x|}$, which is symmetric and peaks at 1 but has a sharp cusp, not a smooth bell shape.
+  - Proposing $\frac{1}{x^2}$, which is undefined at $x=0$ and so does not reach a maximum of 1 there.
+  hints:
+    rephrase: You need a function that is largest at zero and shrinks in both directions. Which exponential
+      shape decays when its exponent becomes very negative?
+    smaller_case: Look at $f(x) = e^{-x}$ at $x = 0$ and as $x$ grows large. Does it still work for negative
+      $x$?
+    key_idea: Make the exponent a negative quantity that is zero at $x=0$ and grows as $|x|$ grows, and
+      check that it is even in $x$.
+  check: sp.simplify(sp.exp(-x**2).subs(x, 0) - 1) == 0 and sp.limit(sp.exp(-x**2), x, sp.oo) == 0 and
+    sp.simplify(sp.exp(-(-x)**2) - sp.exp(-x**2)) == 0
+  check_ok: null
+- goal: Show that your function has its maximum at $x=0$ by examining its derivative.
+  expected: For $f(x)=e^{-x^2}$, $f'(x) = -2x\,e^{-x^2}$. This is zero only at $x=0$, is positive for
+    $x<0$ and negative for $x>0$, so $x=0$ is the maximum.
+  solution: 'Differentiate with the chain rule: $f''(x) = -2x\,e^{-x^2}$. Since $e^{-x^2}$ is always positive,
+    the sign of $f''(x)$ is the sign of $-2x$. So $f''(x) > 0$ for $x < 0$ and $f''(x) < 0$ for $x > 0$.
+    The function increases up to $x=0$ and decreases after, so $x=0$ is the global maximum, with value
+    $f(0)=1$.'
+  common_errors:
+  - Differentiating $e^{-x^2}$ as $e^{-x^2}$ without applying the chain rule.
+  - Forgetting that $e^{-x^2}$ is never zero, so only the $-2x$ factor can make the derivative vanish.
+  - Concluding a maximum from $f'(0)=0$ alone, without checking the sign change.
+  hints:
+    rephrase: Find where the slope of your function is zero, then check whether the slope changes from
+      positive to negative there.
+    smaller_case: Differentiate $e^{-x}$ first. What is its slope at $x=0$, and is it ever zero?
+    key_idea: The derivative of an exponential of a function is that exponential times the derivative
+      of the exponent, so the sign of the slope comes from the exponent's derivative.
+  check: sp.simplify(sp.diff(sp.exp(-x**2), x) - (-2*x*sp.exp(-x**2)))
+  check_ok: null
+- goal: Adjust your function so the curve is narrower or wider, but still has maximum 1 at $x=0$ and still
+    tends to 0.
+  expected: $f_\sigma(x) = e^{-x^2/(2\sigma^2)}$ for a positive constant $\sigma$, which has $f_\sigma(0)=1$
+    for every $\sigma > 0$.
+  solution: 'Replace $x$ with $x/\sigma$ in the exponent: $f_\sigma(x) = e^{-x^2/(2\sigma^2)}$. For every
+    $\sigma > 0$, the exponent is zero at $x=0$, so $f_\sigma(0)=1$, and the exponent becomes very negative
+    as $|x|\to\infty$, so the function still tends to 0. Smaller $\sigma$ gives a narrower bell, and larger
+    $\sigma$ gives a wider one.'
+  common_errors:
+  - Multiplying the whole function by a constant, which changes the maximum away from 1.
+  - Putting the parameter in the wrong place, so the maximum is no longer at $x=0$.
+  - Allowing $\sigma = 0$, which makes the expression undefined.
+  hints:
+    rephrase: Keep the peak height and its location fixed, and find a way to change only how quickly the
+      curve falls away from the peak.
+    smaller_case: Try $f(x) = e^{-x^2/4}$ and $f(x) = e^{-4x^2}$. Which one falls away faster?
+    key_idea: Scaling $x$ inside the exponent stretches or compresses the curve horizontally without moving
+      the peak.
+  check: sp.simplify(sp.exp(-x**2/(2*s**2)).subs(x, 0) - 1)
+  check_ok: null
+extensions:
+  '3':
+  - Find $\int_{-\infty}^{\infty} e^{-x^2}\,dx$ and explain how to rescale your function so that the area
+    under the curve is 1.
+  '4':
+  - Find the inflection points of $e^{-x^2}$ by computing $f''(x)$, and show they occur at $x = \pm\frac{1}{\sqrt{2}}$.
+  '5':
+  - Compare the tails of $e^{-x^2}$ and $\frac{1}{1+x^2}$ as $x\to\infty$. Which one decays faster, and
+    what does that mean for their use as probability models?
+spoken_vocab:
+- bell curve
+- symmetric about the y-axis
+- maximum value one
+- x equals zero
+- tends to zero
+- e to the minus x squared
+- Gaussian
+- reciprocal one over one plus x squared
+- derivative
+- chain rule
+- inflection points
+- standard deviation sigma
+source: past-interviews/Actual Past Interview Questions/H2.jpg
+verified: false
+rating:
+  quality: 6
+  difficulty: 3
+  parts: 3
+  minutes: 10
+  flags: []
+  tagline: Open-ended design task; good for probing even functions and width scaling.
+  priority: 71
+  rank: 361
+  tier: C
+  category: past-interviews
+  d10: 3.0
+  real: 8.0
+  by: deepseek-v4.1-flash-free
+tags:
+- algebra_and_functions
+- curve_sketching
+- differentiation

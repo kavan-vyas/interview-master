@@ -1,0 +1,75 @@
+id: coprime-x2-y2-3z2
+title: Solutions of x²+y²=3z²
+topics:
+- number theory
+- modular arithmetic
+- infinite descent
+warmup: false
+answer_source: generated
+statement: Are there any integer solutions to the equation $x^2+y^2=3z^2$ where $x, y, z$ are co-prime?
+  Are there any integer solutions at all?
+stages:
+- goal: Determine which residues x and y can have modulo 3, and what the equation forces.
+  expected: Squares mod 3 are 0 and 1. x²+y²≡0 (mod 3) forces x≡0 and y≡0 (mod 3).
+  solution: 'Squares mod 3: 0²≡0, 1²≡1, 2²≡1. The right side 3z² is ≡0 mod 3, so x²+y²≡0. The only residue
+    pair from {0,1} summing to 0 mod 3 is (0,0), since 1+1=2 and 1+0=1 are nonzero. So 3|x and 3|y.'
+  common_errors:
+  - Treating 2 as a square residue that is different from 1 mod 3
+  - Concluding that only one of x, y must be divisible by 3
+  - Not checking the case where both squares are 1
+  hints:
+    rephrase: The right-hand side is a multiple of 3. What can x²+y² be modulo 3?
+    smaller_case: List the square residues mod 3 and check which pairs of them add to 0 mod 3.
+    key_idea: Only 0 and 1 are square residues mod 3, so study sums of two of them.
+  check: null
+- goal: Use the mod 3 result to decide about co-prime solutions and state all integer solutions.
+  expected: There are no co-prime solutions. The only integer solution is (0,0,0), which is not co-prime.
+  solution: If 3|x and 3|y, then 9 divides x²+y², so 9 | 3z², giving 3 | z². Hence 3|z. So 3 divides x,
+    y and z together, which rules out gcd(x,y,z)=1. Dividing by 3 gives another solution with smaller
+    absolute values. Repeating this descent forces every solution to be (0,0,0). That trivial solution
+    has gcd 0, so it is not co-prime.
+  common_errors:
+  - Stopping after 3|x and 3|y without handling z
+  - Claiming (0,0,0) counts as co-prime
+  - Skipping the descent argument for non-coprime solutions
+  hints:
+    rephrase: If x and y are both multiples of 3, what does the equation say about z?
+    smaller_case: Write x=3a and y=3b, then substitute and simplify.
+    key_idea: 'Infinite descent: a solution with all entries divisible by 3 gives a smaller solution of
+      the same equation.'
+  check: null
+extensions:
+  '3':
+  - Show that x²+y²=7z² has no solutions other than (0,0,0).
+  '4':
+  - Show that x²+y²=6z² has no solutions other than (0,0,0).
+  '5':
+  - Find a co-prime solution to x²+y²=2z² and explain why the mod 3 argument does not rule it out.
+spoken_vocab:
+- x squared plus y squared equals three z squared
+- co-prime
+- modulo three
+- square residues
+- integer solutions
+- infinite descent
+- trivial solution
+- gcd
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 2
+  minutes: 10
+  flags: []
+  tagline: A mod 3 argument rules out coprime solutions, leading naturally to descent discussion.
+  priority: 65
+  rank: 392
+  tier: C
+  category: tbo
+  d10: 5.5
+  real: 5.5
+  by: deepseek-v4.1-flash-free
+tags:
+- number_theory
+- proof

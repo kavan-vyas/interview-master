@@ -1,0 +1,145 @@
+id: inverse-function-fixed-points
+title: 'Solving f(x)=f⁻¹(x): increasing vs decreasing functions'
+topics:
+- inverse functions
+- domain and range
+- completing the square
+- proof by contradiction
+- monotonicity
+- cube roots
+warmup: false
+answer_source: pdf
+statement: 'Let $f(x)=x^2-2x$ for $x\ge 1$.
+
+
+  (i) Find $f^{-1}(x)$ and state its domain.
+
+
+  (ii) Prove that if $f$ is strictly increasing, then every solution of $f(x)=f^{-1}(x)$ satisfies $f(x)=x$.
+
+
+  (iii) Hence solve $f(x)=f^{-1}(x)$.
+
+
+  (iv) Show that the result of (ii) can fail for decreasing functions, by solving $g(x)=g^{-1}(x)$ for
+  $g(x)=-x^3$.'
+stages:
+- goal: Find the inverse of f and its domain.
+  expected: $f^{-1}(x)=1+\sqrt{1+x}$, with domain $x\ge -1$ (the range of $f$).
+  solution: 'Complete the square: $f(x)=(x-1)^2-1$. Put $y=(x-1)^2-1$, so $(x-1)^2=y+1$. Since $x\ge 1$,
+    $x-1\ge 0$, so $x-1=\sqrt{y+1}$ and $x=1+\sqrt{y+1}$. Swapping variables gives $f^{-1}(x)=1+\sqrt{1+x}$.
+    The range of $f$ is $[-1,\infty)$ (minimum $f(1)=-1$, increasing for $x\ge1$), and this is the domain
+    of $f^{-1}$, so $x\ge -1$.'
+  common_errors:
+  - Taking the negative square root, which gives $x\le 1$ and is outside the domain of $f$.
+  - Stating the domain of $f^{-1}$ as $x\ge 1$ (the domain of $f$) instead of the range of $f$.
+  - Sign errors when completing the square, e.g. $(x-1)^2+1$.
+  - Forgetting to swap $x$ and $y$ at the end.
+  hints:
+    rephrase: Write $y=f(x)$ and solve for $x$ in terms of $y$, keeping the restriction $x\ge1$ in mind.
+    smaller_case: What are $f(1)$ and $f(2)$, and what do they suggest about the range of $f$?
+    key_idea: Complete the square to isolate $x$, choose the root consistent with $x\ge 1$, and remember
+      the domain of $f^{-1}$ is the range of $f$.
+  check: simplify(((1+sqrt(1+x))**2 - 2*(1+sqrt(1+x))) - x) == 0
+  check_ok: true
+- goal: Prove that if f is strictly increasing, every solution of f(x)=f⁻¹(x) satisfies f(x)=x.
+  expected: Let $f(x)=f^{-1}(x)=c$. Then $f(c)=x$. If $x<c$, strict increase gives $f(x)<f(c)$, i.e. $c<x$,
+    a contradiction. Similarly $x>c$ is impossible. So $x=c$ and $f(x)=x$.
+  solution: Suppose $f(x)=f^{-1}(x)=c$. Applying $f$ to $f^{-1}(x)=c$ gives $f(c)=x$. So $f(x)=c$ and
+    $f(c)=x$. If $x<c$, then $f(x)<f(c)$ since $f$ is strictly increasing, so $c<x$, contradicting $x<c$.
+    If $x>c$, then $f(x)>f(c)$, so $c>x$, again a contradiction. Hence $x=c$, and so $f(x)=c=x$.
+  common_errors:
+  - Assuming $f$ is linear or differentiable, which is not given.
+  - Handling only one of the cases $x<c$ and $x>c$.
+  - Asserting $x=c$ without deriving a contradiction from monotonicity.
+  - Confusing $f$ and $f^{-1}$, e.g. deducing $f^{-1}(c)=x$ instead of $f(c)=x$.
+  hints:
+    rephrase: Name the common value $c=f(x)=f^{-1}(x)$. What does $f^{-1}(x)=c$ tell you about $f(c)$?
+    smaller_case: Suppose $f$ is increasing with $f(2)=5$ and $f(5)=2$. Why is that impossible?
+    key_idea: Strict monotonicity turns an inequality between inputs into the same inequality between
+      outputs; compare $x$ and $c$ using $f(x)=c$ and $f(c)=x$.
+- goal: Hence solve f(x)=f⁻¹(x) for f(x)=x²-2x, x≥1.
+  expected: 'The only solution is $x=3$. The root $x=0$ of $x^2-3x=0$ is rejected since it is outside
+    $x\ge 1$. Check: $f(3)=3=f^{-1}(3)$.'
+  solution: '$f$ is strictly increasing on $x\ge 1$ (it is $(x-1)^2-1$ with $x-1\ge0$), so by (ii) any
+    solution satisfies $f(x)=x$. Then $x^2-2x=x$, so $x(x-3)=0$, giving $x=0$ or $x=3$. Only $x=3$ satisfies
+    $x\ge1$. Check: $f(3)=9-6=3$ and $f^{-1}(3)=1+\sqrt4=3$. So $x=3$ is the only solution.'
+  common_errors:
+  - Keeping $x=0$ even though it is outside the domain $x\ge 1$.
+  - Squaring $x^2-2x=1+\sqrt{1+x}$ directly and not checking for extraneous roots.
+  - Solving $f(x)=x$ incorrectly as $x^2-2x=-x$.
+  - Forgetting to justify that $f$ is strictly increasing before using (ii).
+  hints:
+    rephrase: Which result from part (ii) lets you replace $f(x)=f^{-1}(x)$ by a simpler equation?
+    smaller_case: Does $x=2$ work? Compare $f(2)$ with $f^{-1}(2)$.
+    key_idea: 'Since $f$ is strictly increasing, solutions lie on $y=x$: solve $f(x)=x$ and keep only
+      roots with $x\ge1$.'
+  check: '[s for s in solve(x**2-2*x-x, x) if s >= 1] == [3]'
+  check_ok: null
+- goal: Solve g(x)=g⁻¹(x) for g(x)=-x³ and show a solution need not lie on y=x.
+  expected: $g^{-1}(x)=-\sqrt[3]{x}$. The real solutions are $x\in\{-1,0,1\}$. The points $(1,-1)$ and
+    $(-1,1)$ lie off $y=x$, so the conclusion of (ii) fails for this decreasing function.
+  solution: 'Write $y=-x^3$, so $x=-\sqrt[3]{y}$ and $g^{-1}(x)=-\sqrt[3]{x}$. The equation $-x^3=-\sqrt[3]{x}$
+    gives $x^3=\sqrt[3]{x}$. Cubing both sides gives $x^9=x$, i.e. $x(x^8-1)=0$, so the real solutions
+    are $x=0,1,-1$ (cubing is reversible over the reals, so none are extraneous). At $x=1$: $g(1)=-1=g^{-1}(1)$.
+    At $x=-1$: $g(-1)=1=g^{-1}(-1)$. Here $g(x)\ne x$ at $x=\pm1$, so (ii) fails for decreasing $g$.'
+  common_errors:
+  - Writing $g^{-1}(x)=\sqrt[3]{x}$ and losing the minus sign.
+  - Cancelling $x$ from $x^9=x$ and so losing $x=0$, or stopping at $x=0$ and missing $x=\pm1$.
+  - Treating $x^8=1$ as having only the root $x=1$ and missing $x=-1$.
+  - Not checking $g(x)$ against $x$ at the solutions, so not noticing they are off $y=x$.
+  hints:
+    rephrase: First find $g^{-1}$ by writing $y=-x^3$ and solving for $x$.
+    smaller_case: Check whether $x=1$ satisfies $g(1)=g^{-1}(1)$, and whether $g(1)=1$.
+    key_idea: Eliminate the cube root to get a polynomial equation, find its real roots, then compare
+      $g(x)$ with $x$ at each.
+  check: set([s for s in solve(x**9 - x, x) if s.is_real]) == {-1, 0, 1}
+  check_ok: null
+extensions:
+  '3':
+  - Find the inverse of $h(x)=x^2-2x$ on the domain $x\le 1$, and state its domain.
+  - The inverse of $k(x)=x^2+1$ for $x\ge0$ is $\sqrt{x-1}$. Show that $k(x)=k^{-1}(x)$ has no real solutions,
+    and explain via (ii).
+  '4':
+  - Find a strictly decreasing function $k$ with $k(x)=k^{-1}(x)$ for every $x$ in its domain.
+  - For $g(x)=-x^3$, show that $g(g(1))=1$ and $g(1)\ne1$, and explain how this relates to the pairs $(1,-1)$
+    and $(-1,1)$.
+  '5':
+  - Prove that for any strictly decreasing $f$, if $f(x)=f^{-1}(x)=c$ then $f(c)=x$, so the solutions
+    come in swapped pairs $(x,c)$; explain why this does not give a contradiction when $x\ne c$.
+  - Show that if $f$ is strictly increasing and $f(f(x))=x$ for all $x$ in its domain, then $f(x)=x$ for
+    all $x$.
+spoken_vocab:
+- f of x equals x squared minus two x
+- x greater than or equal to one
+- f inverse of x
+- one plus square root of one plus x
+- strictly increasing
+- strictly decreasing
+- g of x equals minus x cubed
+- cube root of x
+- x to the power nine equals x
+- x equals zero or three
+- minus one
+- proof by contradiction
+- fixed point
+source: jaymin/Jaymin Interview (1).pdf#p57
+verified: false
+rating:
+  quality: 9
+  difficulty: 6
+  parts: 4
+  minutes: 25
+  flags: []
+  tagline: Proves f(x)=f⁻¹(x) reduces to f(x)=x, then exposes the decreasing-function counterexample.
+  priority: 120
+  rank: 8
+  tier: S
+  category: jaymin
+  d10: 4.5
+  real: 6.0
+  by: haiku
+refined: true
+tags:
+- proof
+- algebra_and_functions

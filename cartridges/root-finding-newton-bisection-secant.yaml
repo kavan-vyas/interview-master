@@ -1,0 +1,115 @@
+id: root-finding-newton-bisection-secant
+title: 'Root-finding: Newton, bisection and secant methods'
+topics:
+- root finding
+- numerical analysis
+- order of convergence
+warmup: false
+answer_source: pdf
+statement: Could you explain some root-finding algorithms to solve $f(x)=0$? Assume $f(x)$ is a differentiable
+  function.
+stages:
+- goal: Derive Newton's update from the tangent line, then apply it to $f(x)=x^2-2$ starting at $x_0=1$.
+  expected: 'General update: $x_{n+1}=x_n-\frac{f(x_n)}{f''(x_n)}$. For the test case, $x_1=\frac{3}{2}$.'
+  solution: 'The tangent at $x_n$ is $y=f(x_n)+f''(x_n)(x-x_n)$. Setting $y=0$ and solving for $x$ gives
+    $x_{n+1}=x_n-\frac{f(x_n)}{f''(x_n)}$. For $f(x)=x^2-2$ and $x_0=1$: $x_1=1-\frac{1-2}{2}=\frac{3}{2}$.'
+  common_errors:
+  - Using $f(x_n)/f'(x_n)$ with the sign reversed
+  - Forgetting that $f'(x)=2x$ for the test function
+  - Confusing the tangent line with the secant line
+  hints:
+    rephrase: Which line is a good local stand-in for $f$ near $x_n$, and where does that line cross zero?
+    smaller_case: For $f(x)=x-1$, how many Newton steps does the method need from any starting point?
+    key_idea: Newton's method replaces $f$ by its tangent line at the current point and solves for the
+      zero of that line.
+  check: candidate - Rational(3,2)
+  check_ok: false
+- goal: Apply one step of bisection to $f(x)=x^2-2$ on the bracket $[1,2]$.
+  expected: Midpoint $c=\frac{3}{2}$. Since $f(c)=\frac14>0$ and $f(1)<0$, the new bracket is $[1,\frac32]$.
+  solution: 'Check the signs first: $f(1)=-1<0<2=f(2)$, so a root lies in $[1,2]$. The midpoint is $c=\frac32$
+    and $f(c)=\frac94-2=\frac14>0$. The sign change now lies between $1$ and $\frac32$, so the new bracket
+    is $[1,\frac32]$.'
+  common_errors:
+  - Keeping the wrong half of the bracket
+  - Computing the midpoint incorrectly
+  - Not verifying the initial sign change
+  hints:
+    rephrase: Which half of the interval still contains a sign change?
+    smaller_case: Compute the signs of $f$ at both endpoints before doing anything else.
+    key_idea: A continuous function that changes sign on an interval has a root there, and bisection keeps
+      the half where the sign change persists.
+  check: candidate - Rational(3,2)
+  check_ok: false
+- goal: State the secant update, replacing $f'(x_n)$ with a difference quotient, then compute $x_2$ from
+    $x_0=1$, $x_1=2$ for $f(x)=x^2-2$.
+  expected: $x_{n+1}=x_n-f(x_n)\frac{x_n-x_{n-1}}{f(x_n)-f(x_{n-1})}$. For the test case, $x_2=\frac{4}{3}$.
+  solution: 'The derivative is approximated by the slope of the secant through $(x_{n-1},f(x_{n-1}))$
+    and $(x_n,f(x_n))$, giving $x_{n+1}=x_n-f(x_n)\frac{x_n-x_{n-1}}{f(x_n)-f(x_{n-1})}$. With $f(1)=-1$,
+    $f(2)=2$: $x_2=2-2\cdot\frac{2-1}{2-(-1)}=2-\frac{2}{3}=\frac{4}{3}$.'
+  common_errors:
+  - Swapping $x_n$ and $x_{n-1}$ in the quotient
+  - Using $f(x_{n-1})-f(x_n)$ in the denominator while keeping the other terms unchanged
+  - Evaluating $f(1)$ or $f(2)$ incorrectly
+  hints:
+    rephrase: What slope can you compute without knowing $f'$?
+    smaller_case: Compute $f(1)$ and $f(2)$ for $f(x)=x^2-2$ before writing any update.
+    key_idea: Replace the derivative by the slope of the line through the last two iterates.
+  check: candidate - Rational(4,3)
+  check_ok: false
+- goal: Compare the convergence behaviour of the three methods, and state the order of convergence of
+    the secant method.
+  expected: Newton converges quadratically (order 2). Bisection converges linearly, halving the bracket
+    each step. The secant method has order $\varphi=\frac{1+\sqrt5}{2}\approx 1.618$.
+  solution: Newton's error satisfies $e_{n+1}\approx C e_n^2$, which is quadratic. Bisection halves the
+    bracket, so the error factor is $\frac12$ each step, which is linear. The secant error satisfies $e_{n+1}\approx
+    C e_n e_{n-1}$. Trying $e_{n+1}\approx C' e_n^{p}$ gives $p^2=p+1$, so $p=\frac{1+\sqrt5}{2}$.
+  common_errors:
+  - Quoting 2 as the order of the secant method
+  - Calling bisection superlinear
+  - Stating the secant order as 1.5
+  hints:
+    rephrase: How does the error at step $n+1$ depend on the error at step $n$ for each method?
+    smaller_case: Compare how much bisection shrinks the bracket per step with how Newton's error behaves
+      after a few steps.
+    key_idea: The order $p$ of a method comes from a relation $e_{n+1}\approx C e_n^p$. For the secant
+      method the relation involves two previous errors, so substitute a power law and solve for $p$.
+  check: simplify(candidate - (1+sqrt(5))/2)
+  check_ok: false
+extensions:
+  '3':
+  - Show that the secant update reduces to Newton's update as $x_{n-1}\to x_n$.
+  '4':
+  - Give an example where Newton's method diverges because $f'(x_n)$ is close to zero, and explain why.
+  '5':
+  - Describe a safeguarded method that combines Newton steps with bisection, and state the rule that decides
+    which step to take.
+spoken_vocab:
+- f of x equals zero
+- Newton's method
+- x sub n plus one
+- f prime of x sub n
+- bisection method
+- secant method
+- order of convergence
+- golden ratio
+- quadratic convergence
+- linear convergence
+source: zhou-quant/zhou-quant-guide.pdf#3
+verified: false
+rating:
+  quality: 6
+  difficulty: 3
+  parts: 4
+  minutes: 15
+  flags: []
+  tagline: Open-ended survey of three root-finders with convergence comparison.
+  priority: 72
+  rank: 305
+  tier: B
+  category: zhou-quant
+  d10: 2.5
+  real: 4.5
+  by: haiku
+tags:
+- numerical_methods
+- differentiation

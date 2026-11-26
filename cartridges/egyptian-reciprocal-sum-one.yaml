@@ -1,0 +1,88 @@
+id: egyptian-reciprocal-sum-one
+title: Reciprocals of three positive integers summing to one
+topics:
+- number theory
+- Diophantine equations
+- inequalities
+warmup: false
+answer_source: generated
+statement: Solve the equation $\frac{1}{x}+\frac{1}{y}+\frac{1}{z}=1$ for positive integers $x,y,z$.
+stages:
+- goal: Bound the smallest variable, taking x less than or equal to y less than or equal to z.
+  expected: x is 2 or 3.
+  solution: x=1 gives a left side greater than 1, since 1/y and 1/z are positive, so x is at least 2.
+    If x is at least 4 then the left side is at most 3/4 which is less than 1. So x is 2 or 3.
+  common_errors:
+  - Forgetting that x=1 is excluded because the other terms are positive
+  - Using a bound that only works for x=2
+  hints:
+    rephrase: What is the largest possible value of the left side if every variable is at least some number
+      m?
+    smaller_case: Check whether x=1 can ever work, then check x=4.
+    key_idea: Since the variables are sorted, 1/x is at least 1/3 of the sum, which limits how large x
+      can be.
+  check: null
+- goal: Solve the equation for each possible value of x.
+  expected: x=2 gives (y,z)=(3,6) or (4,4). x=3 gives (y,z)=(3,3).
+  solution: For x=2, 1/y+1/z=1/2 with y at least 2 and y less than or equal to z. Then 2/y is at least
+    1/2, so y is at most 4, and y=2 gives no solution. y=3 gives z=6 and y=4 gives z=4. For x=3, 1/y+1/z=2/3
+    with y at least 3, so 2/y is at least 2/3 and y=3, giving z=3.
+  common_errors:
+  - Missing y=4 because only y=3 was tried
+  - Accepting y=2, which forces 1/z=0
+  hints:
+    rephrase: Once x is fixed, how large can y be if y is no bigger than z?
+    smaller_case: Try x=2 and check y=3, then y=4, then y=5.
+    key_idea: With y less than or equal to z, the sum 1/y+1/z is at most 2/y, which bounds y.
+  check: null
+- goal: List all ordered triples (x,y,z).
+  expected: 'There are 10 ordered triples: the 6 permutations of (2,3,6), the 3 permutations of (2,4,4),
+    and (3,3,3).'
+  solution: Sorted solutions are (2,3,6), (2,4,4) and (3,3,3). Distinct entries give 3! = 6 orderings,
+    a repeated pair gives 3 orderings, and all equal gives 1. Total 6+3+1=10.
+  common_errors:
+  - Listing only the sorted triples and not their permutations
+  - Counting (2,4,4) with 6 orderings
+  hints:
+    rephrase: How many ways can you arrange each sorted triple, depending on which entries repeat?
+    smaller_case: How many orderings does (3,3,3) have, and how many does (2,4,4) have?
+    key_idea: Count orderings by how many entries are equal in each triple.
+  check: 6 + 3 + 1 - 10
+  check_ok: true
+extensions:
+  '3':
+  - How many ordered solutions have all three entries distinct?
+  '4':
+  - Solve $\frac{1}{x}+\frac{1}{y}=\frac{1}{2}$ in positive integers.
+  '5':
+  - Solve $\frac{1}{x}+\frac{1}{y}+\frac{1}{z}=2$ in positive integers.
+spoken_vocab:
+- one over x
+- one over y
+- one over z
+- equals one
+- positive integers
+- x y z
+- two
+- three
+- six
+- four
+source: screenshots/Screenshot 2026-11-19 at 14.37.58.png
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 1
+  minutes: 10
+  flags: []
+  tagline: Bounding argument with ordered-triple enumeration; good for checking systematic reasoning.
+  priority: 71
+  rank: 349
+  tier: B
+  category: screenshots
+  d10: 5.0
+  real: 5.0
+  by: deepseek-v4.1-flash-free
+tags:
+- number_theory
+- algebra_and_functions

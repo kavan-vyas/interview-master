@@ -1,0 +1,116 @@
+id: token-game-5x5-grid
+title: Token game on a 5×5 grid and its generalisation
+topics:
+- combinatorial game theory
+- winning and losing positions
+- induction
+- modular arithmetic
+warmup: false
+answer_source: generated
+statement: 'A two player game is played on a $5\times5$ grid. A token starts in the bottom left corner.
+  On each turn, a player can move the token one or two units to the right, or to the leftmost square of
+  the row above. The last player who is able to move wins. Determine which positions of the token are
+  winning and which are losing. Generalise to larger grids: how many winning positions are there on an
+  $m\times n$ grid? (Label squares (row, column), with row 1 at the bottom and column 1 at the left.)'
+stages:
+- goal: Identify the losing squares in the top row of the $5\times5$ grid, where a position is losing
+    if every move from it leads to a winning position.
+  expected: Columns 2 and 5 of the top row, i.e. (5,2) and (5,5), are losing. (5,1), (5,3) and (5,4) are
+    winning.
+  solution: The top row has no upward move, so only rightward moves are available. (5,5) has no moves
+    at all, so it is losing. (5,4) and (5,3) can each move to (5,5), so they are winning. (5,2) can only
+    reach (5,3) and (5,4), both winning, so (5,2) is losing. (5,1) can move to (5,2), so it is winning.
+  common_errors:
+  - Forgetting that a player with no legal move loses
+  - Treating (5,2) as winning because it still has legal moves
+  hints:
+    rephrase: A position is losing exactly when every move from it leads to a winning position. Which
+      square has no moves at all?
+    smaller_case: Consider a single row of four squares. Which of its squares are losing?
+    key_idea: Work backwards from the finishing square, labelling each square as winning or losing.
+  check: null
+- goal: Determine the status of every square in the $5\times5$ grid, and whether the starting square (1,1)
+    is winning.
+  expected: The losing squares are exactly those in columns 2 and 5, in every row. The other 15 squares
+    are winning, including the start (1,1). The first player wins by moving one square right to (1,2).
+  solution: Work upwards from the top row. The upward move from column 1 of row r lands on (r+1,1). Column
+    1 is winning in every row, since (r,1) can move right to the losing square (r,2) in the plain row
+    pattern. So an upward move always lands on a winning square and is never useful. Each row then behaves
+    like the top row, with losing squares at columns 2 and 5. From (1,1), moving right to (1,2) leaves
+    a losing square, so (1,1) is winning.
+  common_errors:
+  - Thinking an upward move gives a useful option even though it lands on a winning square
+  - Forgetting to check the starting square at the end
+  hints:
+    rephrase: Which moves land on winning squares, and can such a move ever help the player who makes
+      it?
+    smaller_case: 'Solve the $2\times2$ grid completely: which of its squares are losing?'
+    key_idea: A move onto a winning square is never useful. Use this to reduce each row to the one-row
+      game you already solved.
+  check: null
+- goal: 'Generalise: how many winning positions are there on an $m\times n$ grid?'
+  expected: If $n \not\equiv 1 \pmod 3$, there are $mn-m\lceil n/3\rceil=m\lfloor 2n/3\rfloor$ winning
+    squares. If $n\equiv 1 \pmod 3$, there are $mn-\lceil m/2\rceil\lceil n/3\rceil$ winning squares.
+    For the $5\times5$ grid this gives $15$.
+  solution: 'In a row where every upward move is useless, the losing squares are the columns $c$ with
+    $n-c\equiv0 \pmod 3$, of which there are $\lceil n/3\rceil$. Whether upward moves are useless depends
+    on the first-column square of the row above. The first-column square of the top row is losing exactly
+    when $n-1\equiv0 \pmod 3$. Case 1, $n\not\equiv1$: every first-column square is winning, so every
+    row is a plain one-row game with $\lceil n/3\rceil$ losing squares. Total winning is $mn-m\lceil n/3\rceil=m\lfloor2n/3\rfloor$.
+    Case 2, $n\equiv1$: the top row''s first square is losing, so the row below is entirely winning, since
+    each of its squares can move up into a losing square. Its first square is then winning, so the next
+    row down is a plain row again. The rows alternate from the top: plain, all winning, plain, and so
+    on. There are $\lceil m/2\rceil$ plain rows, each with $\lceil n/3\rceil$ losing squares, so winning
+    is $mn-\lceil m/2\rceil\lceil n/3\rceil$. For $5\times5$, $n=5\not\equiv1$, giving $5\cdot\lfloor10/3\rfloor=15$.'
+  common_errors:
+  - Using the case $n\not\equiv1$ formula when $n\equiv1 \pmod 3$
+  - Miscounting the losing columns in a row as $\lfloor n/3\rfloor$ instead of $\lceil n/3\rceil$
+  hints:
+    rephrase: Ask which squares in the first column are losing, and how that changes the rows above them.
+    smaller_case: Work out the $1\times n$ and $2\times2$ grids completely, then compare with the $5\times5$
+      result.
+    key_idea: Split the rows according to whether their first-column square is winning or losing. Each
+      row then becomes the one-row game.
+  check: 25 - 5*ceiling(Rational(5,3)) - 15
+  check_ok: true
+extensions:
+  '3':
+  - Prove the row pattern by induction on the number of rows.
+  '4':
+  - Show that when $n\equiv1 \pmod 3$, the bottom-left square is losing exactly when $m$ is odd.
+  '5':
+  - Check that the losing counts plus the winning counts add to $mn$ in both cases, and explain why.
+spoken_vocab:
+- five by five grid
+- m by n grid
+- winning position
+- losing position
+- token
+- bottom left corner
+- leftmost square
+- ceiling of n over three
+- mod three
+- congruent to one mod three
+- row
+- column
+- first player
+- induction
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 3
+  minutes: 20
+  flags: []
+  tagline: Win/lose analysis with a generalisation to m×n; rich discussion potential.
+  priority: 91
+  rank: 96
+  tier: A
+  category: tbo
+  d10: 5.5
+  real: 7.0
+  by: haiku
+tags:
+- combinatorics
+- functional_equations

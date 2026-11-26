@@ -1,0 +1,151 @@
+id: rational-function-range-and-iterate
+title: Range of x/(x^2+1), its turning points, and f(f(x))
+topics:
+- functions
+- range
+- calculus
+- stationary points
+- sketching
+- composition of functions
+warmup: false
+answer_source: pdf
+statement: Let $f(x)=\frac{x}{x^2+1}$. (i) By considering for which $y$ the equation $y=\frac{x}{x^2+1}$
+  has a real solution $x$, find the range of $f$ without calculus. (ii) Find the stationary points using
+  calculus, and check they agree with (i). (iii) Sketch $y=f(x)$. (iv) On the same axes, sketch $y=\frac{1}{f(x)}=x+\frac1x$,
+  and explain how its features follow from those of $f$. (v) Find the range of $f(f(x))$.
+stages:
+- goal: Find the range of f without calculus, by asking for which y the equation y = x/(x^2+1) has a real
+    solution x.
+  expected: The range is $[-\frac12,\frac12]$.
+  solution: Rewrite $y=\frac{x}{x^2+1}$ as $yx^2-x+y=0$. If $y=0$ then $x=0$ works. If $y\neq0$ this is
+    a quadratic in $x$ with real roots only when its discriminant $1-4y^2\ge0$, i.e. $|y|\le\frac12$.
+    So the range is $[-\frac12,\frac12]$.
+  common_errors:
+  - Forgetting the case y=0, where the equation is linear rather than quadratic.
+  - Getting the discriminant inequality the wrong way round.
+  - Concluding the range is all real y because x^2+1 is always positive.
+  hints:
+    rephrase: Ask which values of y make y(x^2+1)=x solvable for a real x.
+    smaller_case: Is there a real x with x/(x^2+1)=1?
+    key_idea: Treat the equation as a quadratic in x and use the discriminant, but check separately the
+      case where the coefficient of x^2 vanishes.
+  check: set(solve(1-4*y**2, y)) == {-Rational(1,2), Rational(1,2)}
+  check_ok: null
+- goal: Find the stationary points of f using calculus and check them against the range from part (i).
+  expected: $f'(x)=\frac{1-x^2}{(x^2+1)^2}$. Stationary points are $(1,\frac12)$, a maximum, and $(-1,-\frac12)$,
+    a minimum. These match the endpoints of the range in (i).
+  solution: By the quotient rule, $f'(x)=\frac{(x^2+1)\cdot1-x\cdot2x}{(x^2+1)^2}=\frac{1-x^2}{(x^2+1)^2}$.
+    This vanishes at $x=\pm1$, where $f(1)=\frac12$ and $f(-1)=-\frac12$. Since $f'$ changes from positive
+    to negative at $x=1$, that point is a maximum. Since $f'$ changes from negative to positive at $x=-1$,
+    that point is a minimum. These values are exactly the endpoints of the range found in (i).
+  common_errors:
+  - Dropping the square in the denominator when differentiating.
+  - Sign error in the numerator, writing $x^2-1$ instead of $1-x^2$.
+  - Giving the x-values of the stationary points without the corresponding y-values.
+  - Not classifying maximum versus minimum using the sign change of f'.
+  hints:
+    rephrase: Differentiate with the quotient rule and find where the numerator is zero.
+    smaller_case: What is the sign of f' at x=0 and at x=2?
+    key_idea: Compare the y-values at the stationary points with the range from part (i), and use the
+      sign change of f' to classify them.
+  check: set(solve(diff(x/(x**2+1), x), x)) == {-1, 1}
+  check_ok: null
+- goal: Establish the symmetry and end behaviour of f needed for the sketch.
+  expected: $f(-x)=-f(x)$, so the graph is symmetric about the origin. $f(x)\to0$ as $x\to\pm\infty$,
+    so the x-axis is a horizontal asymptote. The curve passes through the origin with gradient 1 there.
+  solution: Replacing $x$ by $-x$ gives $\frac{-x}{x^2+1}=-f(x)$, so $f$ is odd. Since the numerator has
+    degree 1 and the denominator has degree 2, $f(x)\to0$ as $x\to\pm\infty$. At the origin $f(0)=0$ and
+    $f'(0)=1$.
+  common_errors:
+  - Confusing odd symmetry with even symmetry.
+  - Claiming the curve never meets the x-axis, when it passes through the origin.
+  - Misjudging the limit at infinity by comparing the wrong powers of x.
+  hints:
+    rephrase: Substitute -x for x and compare the result with f(x).
+    smaller_case: For very large x, which term dominates the denominator?
+    key_idea: Symmetry under x to -x and the behaviour at infinity of a rational function depend on the
+      degrees of its numerator and denominator.
+  check: And(simplify((-x)/((-x)**2+1) + x/(x**2+1)) == 0, limit(x/(x**2+1), x, oo) == 0)
+  check_ok: true
+- goal: Find the range of f(f(x)).
+  expected: The range is $[-\frac25,\frac25]$.
+  solution: By part (i), $f$ takes every value in $[-\frac12,\frac12]$. Since $f$ is increasing on $[-1,1]$,
+    which contains $[-\frac12,\frac12]$, the outer $f$ runs over that interval increasingly. So $f(f(x))$
+    takes all values from $f(-\frac12)=-\frac25$ to $f(\frac12)=\frac25$. Note $f(\frac12)=\frac{1/2}{5/4}=\frac25$.
+  common_errors:
+  - Reporting the range of f, namely $[-\frac12,\frac12]$, as the range of f(f(x)).
+  - Evaluating f(f(x)) only at x=plus or minus 1 and taking those values as the range.
+  - Arithmetic error in f(1/2), for example writing 1/2 instead of 2/5.
+  hints:
+    rephrase: First find every value that f(x) can take, then apply f to all of those values.
+    smaller_case: What is f(0), and what does f do to the endpoints of the interval you found in part
+      (i)?
+    key_idea: If f is monotonic on an interval, the image of that interval is found by applying f to its
+      endpoints.
+  check: Eq(Rational(1,2)/(Rational(1,2)**2+1), Rational(2,5))
+  check_ok: true
+- goal: Explain how the features of 1/f(x) = x + 1/x follow from those of f.
+  expected: Where $f=0$ (at $x=0$), $\frac1f$ has a vertical asymptote $x=0$. As $x\to\pm\infty$, $\frac1f\approx
+    x$, giving the oblique asymptote $y=x$. The maximum $\frac12$ of $f$ at $x=1$ gives a minimum $2$
+    of $\frac1f$ at $x=1$. The minimum $-\frac12$ of $f$ at $x=-1$ gives a maximum $-2$ of $\frac1f$ at
+    $x=-1$. The signs of $\frac1f$ and $f$ agree.
+  solution: Since $\frac1f=\frac{x^2+1}{x}=x+\frac1x$, the zero of $f$ at $x=0$ gives a vertical asymptote
+    of $\frac1f$. Because $f\to0$ at infinity, $\frac1f=x+\frac1x$ behaves like $x$ there, so $y=x$ is
+    an oblique asymptote. Reciprocals reverse the ordering of positive values, so the maximum of $f$ becomes
+    a minimum of $\frac1f$, and the minimum of $f$ becomes a maximum. The values $\frac1f$ at $x=\pm1$
+    are $\pm2$.
+  common_errors:
+  - Placing the vertical asymptote at a stationary point instead of at the zero of f.
+  - Saying the asymptote is y=0 rather than y=x.
+  - Assuming a maximum of f always gives a maximum of 1/f, ignoring the reversal under reciprocal.
+  hints:
+    rephrase: Where is f zero, and what does f tend to as x becomes large?
+    smaller_case: Compare the values of f and 1/f at x=1 and at x=-1.
+    key_idea: Reciprocals send small values to large ones and reverse the order of positive values, so
+      extremes of f turn into extremes of 1/f of the opposite type where f is positive.
+  check: simplify((x + 1/x) - 1/(x/(x**2+1))) == 0
+  check_ok: true
+extensions:
+  '3':
+  - Sketch y=f(x) and state the equations of all asymptotes.
+  - Find the range of f(x)+x on the interval x>=0.
+  - Show that f(x)=k has two real solutions for each k with 0<|k|<1/2.
+  '4':
+  - Find the range of f(f(f(x))).
+  - Find all x for which f(f(x))=f(x).
+  '5':
+  - For which values of k does x/(x^2+1)=k have exactly one real solution?
+  - Show that the graph of f(x)=x/(x^2+a) has maximum value depending on a, and find it.
+spoken_vocab:
+- f of x equals x over x squared plus one
+- y equals x over x squared plus one
+- discriminant
+- real solution
+- range
+- stationary point
+- maximum
+- minimum
+- f dash of x
+- one minus x squared over x squared plus one all squared
+- odd function
+- horizontal asymptote
+- vertical asymptote
+- oblique asymptote
+- one over f of x
+- x plus one over x
+- f of f of x
+- minus a half
+- a half
+- two fifths
+source: jaymin/Jaymin Interview (1).pdf#p57
+verified: false
+rating:
+  score: 9
+  difficulty: 3
+  parts: 5
+  minutes: 25
+  flags: []
+  tagline: Range via y-discriminant, then calculus, sketch, reciprocal symmetry, and composition.
+  priority: 130
+  rank: 7
+  tier: S

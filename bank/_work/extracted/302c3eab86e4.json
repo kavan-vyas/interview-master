@@ -1,0 +1,58 @@
+[
+ {
+  "q": "How many digits does $100!$ have? (Hint: consider the function $\\log_{10} x$.)",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/B1.pdf#p1"
+ },
+ {
+  "q": "Prove that the product of 3 consecutive numbers is divisible by 6.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/B1.pdf#p1"
+ },
+ {
+  "q": "Given $x^3+ax^2+bx+c=0$, can $x$ be a rational root?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/B1.pdf#p1"
+ },
+ {
+  "q": "Sketch $\\dfrac{ax^3+bx^2+cx+d}{(cx+e)(x+f)}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/B1.pdf#p1"
+ },
+ {
+  "q": "Logic question: Wason selection tasks.",
+  "kind": "other",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/B1.pdf#p1"
+ },
+ {
+  "q": "Players A and B play a game by flipping a biased coin with probability of heads $p$. A player wins if they get a head. If player A gets a tail, then it is player B's turn to flip the coin. If player B gets a tail, then it goes back to player A's turn. Player A starts the game. Find the probability that player A wins.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/B1.pdf#p1"
+ },
+ {
+  "q": "Given the 3 Platonic solids, find a relationship between the edges, vertices and faces. (Euler formula.)",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/B1.pdf#p1"
+ },
+ {
+  "q": "Find $\\dfrac{d}{dx}x^{x}$, $\\dfrac{d}{dx}x^{x^{x}}$, $\\ldots$",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/B1.pdf#p1"
+ }
+]

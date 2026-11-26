@@ -1,0 +1,91 @@
+id: nearest-throw-mutual-pair
+title: Students throwing balls to nearest neighbour
+topics:
+- geometry
+- extremal principle
+- distances
+- ordering
+warmup: false
+answer_source: generated
+statement: $n$ students are standing in a field such that the distance between each pair is distinct.
+  Each student is holding a ball, and when the teacher blows a whistle, each student throws their ball
+  to the nearest student. Prove that there is a pair of students that throw their balls to each other.
+stages:
+- goal: Identify the pair of students whose distance is smallest among all pairs.
+  expected: Let A and B be the two students with the smallest distance between them. This pair is unique
+    because all distances are distinct.
+  solution: There are finitely many pairs of students, and since $n\ge 2$ there is at least one pair.
+    Choose the pair A, B whose distance AB is the smallest of all pairwise distances. Because the distances
+    are all distinct, no other pair has this same distance, so the pair is well defined.
+  common_errors:
+  - Assuming the shortest pair is unique without using the distinctness assumption.
+  - Starting with a chain of throws A to B to C and so on, instead of using the globally closest pair
+    directly.
+  hints:
+    rephrase: Among all the distances between pairs of students, which one is the smallest? What can you
+      say about the two students at its ends?
+    smaller_case: Place three students at positions 0, 1 and 3 along a straight line. Which pair is closest,
+      and who throws to whom?
+    key_idea: Look at the globally shortest segment joining two students, and ask who is nearest to each
+      of its endpoints.
+  check: null
+- goal: Show that A throws to B and B throws to A, so the two balls are exchanged.
+  expected: B is the unique nearest student to A, and A is the unique nearest student to B, so A and B
+    throw their balls to each other.
+  solution: Take any student C other than A and B. By the choice of AB as the smallest distance, AC is
+    strictly larger than AB, because distances are distinct. So B is strictly nearer to A than any other
+    student, and A throws to B. Similarly BC is strictly larger than AB, so A is strictly nearer to B
+    than any other student, and B throws to A. Hence A and B throw their balls to each other.
+  common_errors:
+  - Forgetting to check B's own nearest student, not just A's.
+  - Claiming that A throws to B without noting that distances are distinct, which makes the nearest student
+    unique.
+  hints:
+    rephrase: Fix the shortest pair A and B. For A, compare the distance to B with the distance to every
+      other student. Then do the same for B.
+    smaller_case: In the example with students at 0, 1 and 3, check who is the nearest student to the
+      student at 3.
+    key_idea: Once a pair is globally closest, each member is closer to the other than to anyone else,
+      so their throws must point at each other.
+  check: null
+extensions:
+  '3':
+  - If distances need not be distinct, decide whether a mutual pair is still guaranteed, and give an example
+    if it is not.
+  '4':
+  - Prove that the number of mutual pairs is at least 1, and find configurations in which there is exactly
+    one and configurations with the maximum possible number.
+  '5':
+  - Extend the problem to n points in three-dimensional space and decide whether the same argument still
+    gives a mutual pair.
+spoken_vocab:
+- students
+- field
+- distance
+- distinct distances
+- nearest student
+- throw the ball
+- mutual pair
+- shortest distance
+- pairwise distances
+- blow a whistle
+- strictly nearer
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 3
+  parts: 2
+  minutes: 6
+  flags: []
+  tagline: Elegant extremal-pair argument; discussion of why distinct distances matters.
+  priority: 65
+  rank: 383
+  tier: C
+  category: tbo
+  d10: 2.5
+  real: 8.5
+  by: haiku
+tags:
+- combinatorics
+- proof

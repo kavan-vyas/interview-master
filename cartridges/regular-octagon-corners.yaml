@@ -1,0 +1,85 @@
+id: regular-octagon-corners
+title: Corners of a regular octagon with unit edges
+topics:
+- geometry
+- trigonometry
+- coordinates
+- regular polygons
+warmup: true
+answer_source: pdf
+statement: Imagine an octagon with unit edges, centred at the origin. What are the coordinates of its
+  corners?
+stages:
+- goal: Find the distance from the centre to each corner (the circumradius) for a regular octagon with
+    side 1.
+  expected: $R=\dfrac{1}{2\sin(\pi/8)}$, equivalently $R^2=\dfrac{1}{2-\sqrt2}$, so $R\approx1.307$.
+  solution: Each edge subtends angle $2\pi/8=\pi/4$ at the centre. The triangle formed by the centre and
+    one edge is isosceles with base 1 and apex angle $\pi/4$. Splitting it in two gives $\sin(\pi/8)=\dfrac{1/2}{R}$,
+    so $R=\dfrac{1}{2\sin(\pi/8)}$.
+  common_errors:
+  - Using $R=1$, which is the side length, not the circumradius.
+  - Using $\sin(\pi/4)$ instead of $\sin(\pi/8)$ in the half-angle triangle.
+  - Forgetting the factor of 2 when splitting the isosceles triangle.
+  hints:
+    rephrase: Draw the centre and one edge. What angle does that edge subtend at the centre?
+    smaller_case: Consider a square with unit edges first. What is its circumradius?
+    key_idea: Split the isosceles triangle formed by the centre and one edge into two right triangles.
+  check: null
+- goal: Give the coordinates of all eight corners of the octagon.
+  expected: The corners are $\left(\pm\dfrac{1+\sqrt2}{2},\ \pm\dfrac12\right)$ and $\left(\pm\dfrac12,\
+    \pm\dfrac{1+\sqrt2}{2}\right)$, eight points in total.
+  solution: 'Corners are at angles $\pi/8+k\pi/4$. Using $R\cos(\pi/8)=\tfrac12\cot(\pi/8)=\tfrac12(1+\sqrt2)$
+    and $R\sin(\pi/8)=\tfrac12$ gives the coordinates. Check: $\left(\tfrac{1+\sqrt2}{2}\right)^2+\tfrac14=1+\tfrac{\sqrt2}{2}=R^2$,
+    and the distance between $\left(\tfrac12,\tfrac{1+\sqrt2}{2}\right)$ and $\left(\tfrac{1+\sqrt2}{2},\tfrac12\right)$
+    is 1.'
+  common_errors:
+  - Using $\cos(\pi/8)$ and $\sin(\pi/8)$ directly without the $R$ factor, giving the wrong radius.
+  - Listing only four corners, or placing them on the axes.
+  - Getting the sign pattern wrong, so that corners are not symmetric in both axes.
+  hints:
+    rephrase: Corners sit at equal angular steps around the origin. What is the first angle, and what
+      is the step?
+    smaller_case: Find the coordinates of the corner nearest the positive $x$-axis, then reflect.
+    key_idea: Use the circumradius from the previous stage together with the angle of each corner.
+  check: simplify(cos(pi/8)/(2*sin(pi/8)) - (1+sqrt(2))/2)
+  check_ok: true
+extensions:
+  '3':
+  - Find the coordinates of the corners of a regular hexagon with unit edges, centred at the origin.
+  '4':
+  - Find the area of a regular octagon with unit edges.
+  '5':
+  - Show that the regular octagon with unit edges has diagonals of lengths $\sqrt{2+\sqrt2}$ and $1+\sqrt2$
+    between suitable pairs of corners.
+spoken_vocab:
+- octagon
+- unit edges
+- centred at the origin
+- corners
+- coordinates
+- plus or minus
+- one plus root two over two
+- one half
+- circumradius
+- sine of pi over eight
+- root two
+source: waleed/Curve Sketching Questions - Waleed.pdf#0
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 2
+  minutes: 5
+  flags:
+  - needs_diagram
+  tagline: Exact corners (±(1+√2)/2, ±1/2) and permutations; good trig-to-coordinates bridge.
+  priority: 37
+  rank: 584
+  tier: D
+  category: waleed
+  d10: 3.0
+  real: 3.0
+  by: haiku
+tags:
+- trigonometry
+- geometry

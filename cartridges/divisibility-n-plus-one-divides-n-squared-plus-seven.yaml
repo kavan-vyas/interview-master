@@ -1,0 +1,94 @@
+id: divisibility-n-plus-one-divides-n-squared-plus-seven
+title: Integers n with n+1 dividing n^2+7
+topics:
+- number theory
+- divisibility
+- factorisation
+warmup: true
+answer_source: pdf
+statement: Find all integers $n$ such that $n+1$ divides $n^2+7$.
+stages:
+- goal: Rewrite $n^2+7$ so that the factor $n+1$ is visible.
+  expected: $n^2+7=(n+1)(n-1)+8$
+  solution: Expand $(n+1)(n-1)=n^2-1$, so $(n+1)(n-1)+8=n^2+7$. Hence $n^2+7$ leaves remainder $8$ on
+    division by $n+1$.
+  common_errors:
+  - Forgetting the constant term after factoring
+  - Writing $(n+1)^2$ in place of $(n+1)(n-1)$
+  hints:
+    rephrase: Can you write $n^2+7$ as a multiple of $n+1$ plus something left over?
+    smaller_case: 'Try $n=2$: divide $n^2+7=11$ by $n+1=3$. What is the remainder?'
+    key_idea: Use a factorisation that involves $n+1$ and a difference of squares.
+  check: expand((n+1)*(n-1)+8-(n**2+7))
+  check_ok: true
+- goal: Deduce that $n+1$ must divide a fixed number, and state it.
+  expected: $n+1 \mid 8$
+  solution: If $n+1\mid n^2+7$, then since $n+1\mid (n+1)(n-1)$, we get $n+1\mid 8=(n^2+7)-(n+1)(n-1)$.
+  common_errors:
+  - Concluding $n+1\mid 7$ instead of $8$
+  - Assuming $n+1$ must divide $n-1$
+  hints:
+    rephrase: If a number divides two quantities, what else must it divide?
+    smaller_case: 'Take $n=4$: $n+1=5$ and $n^2+7=23$. What does the difference of these two quantities
+      give you?'
+    key_idea: Subtract a multiple of the divisor from the expression to find a smaller quantity it must
+      still divide.
+  check: expand(8-((n**2+7)-(n+1)*(n-1)))
+  check_ok: true
+- goal: List all integers $n$ satisfying the condition.
+  expected: $n\in\{-9,-5,-3,-2,0,1,3,7\}$
+  solution: 'The integer divisors of $8$ are $\pm1,\pm2,\pm4,\pm8$. Each gives $n=d-1$, which yields $0,-2,1,-3,3,-5,7,-9$.
+    Check: $n=-1$ is excluded because $n+1=0$ does not divide $8$.'
+  common_errors:
+  - Omitting negative divisors
+  - Giving $n=d$ instead of $n=d-1$
+  - Including $n=-1$, where $n+1=0$
+  hints:
+    rephrase: Which integers $d$ can divide $8$, and how is $n$ related to $d$?
+    smaller_case: If $n+1=2$, what is $n$? If $n+1=-2$, what is $n$?
+    key_idea: Every integer divisor of $8$, positive or negative, gives one candidate for $n$.
+  check: FiniteSet(*[d-1 for d in [1,-1,2,-2,4,-4,8,-8]]) == FiniteSet(-9,-5,-3,-2,0,1,3,7)
+  check_ok: null
+extensions:
+  '3':
+  - Find all integers $n$ such that $n+3$ divides $n^2+7$.
+  - 'Answer to check: $n\in\{-19,-11,-7,-5,-4,-2,-1,1,5,13\}$.'
+  '4':
+  - Find all integers $n$ such that $n+4$ divides $n^2+7$.
+  - 'Answer to check: $n\in\{-27,-5,-3,19\}$.'
+  '5':
+  - Find all integers $n$ such that $n+5$ divides $n^2+7$.
+  - 'Answer to check: $n\in\{-37,-21,-13,-9,-7,-6,-4,-1,3,11,27\}$ minus any value where $n+5$ fails to
+    divide; verify each candidate before using.'
+spoken_vocab:
+- n plus one divides n squared plus seven
+- integers
+- divides
+- divisors
+- remainder
+- factorise
+- n plus one divides eight
+- minus one
+- minus two
+- minus four
+- minus eight
+- all integers n
+source: jaymin/Jaymin Interview (1).pdf#p1
+verified: false
+rating:
+  quality: 6
+  difficulty: 3
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: Neat factor trick reduces the problem to listing the divisors of 8.
+  priority: 86
+  rank: 151
+  tier: B
+  category: jaymin
+  d10: 3.8
+  real: 7.0
+  by: deepseek-v4.1-flash-free
+tags:
+- number_theory
+- algebra_and_functions

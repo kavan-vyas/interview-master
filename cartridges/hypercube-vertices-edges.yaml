@@ -1,0 +1,124 @@
+id: hypercube-vertices-edges
+title: Vertices and edges of hypercubes
+topics:
+- geometry
+- counting
+- dimension
+- hypercube
+- pattern spotting
+warmup: false
+answer_source: generated
+statement: How many vertices and edges does a line segment have? A square? A cube? A tesseract? Can you
+  conjecture formulae for the number of edges and vertices of an $n$ dimensional hypercube? Can you give
+  the coordinates of the vertices of a tesseract (where 4 edges coincide with the coordinate axes)? What
+  would the longest length between two vertices be?
+stages:
+- goal: Count the vertices and edges of a line segment, a square, a cube and a tesseract.
+  expected: 'Segment: 2 vertices, 1 edge. Square: 4 vertices, 4 edges. Cube: 8 vertices, 12 edges. Tesseract:
+    16 vertices, 32 edges.'
+  solution: A segment has 2 endpoints and 1 edge. A square has 4 corners and 4 sides. A cube has 8 corners
+    and 12 edges (4 in each of 3 directions). A tesseract has 16 vertices, since each vertex is a choice
+    of 0 or 1 in each of 4 coordinates. Each vertex has 4 neighbours, so the edge count is 16 times 4
+    divided by 2, which is 32.
+  common_errors:
+  - Assuming the tesseract has the same 8 vertices as a cube
+  - Counting edges in only one or two directions
+  - Forgetting that each edge has two endpoints when counting from vertex degrees
+  hints:
+    rephrase: Count the corners first, then count the sides that join pairs of corners.
+    smaller_case: List the corners of the cube layer by layer, then count the edges from each corner.
+    key_idea: Each vertex has as many neighbours as the dimension, and each edge is counted from both
+      of its ends.
+  check: (V4-16)**2 + (E4-32)**2
+  check_ok: false
+- goal: Conjecture formulae for the number of vertices V and edges E of an n dimensional hypercube.
+  expected: V = 2^n and E = n*2^(n-1).
+  solution: 'At a vertex each coordinate is 0 or 1, so V = 2^n. From each vertex you can change any one
+    of the n coordinates to reach a neighbour, so every vertex has degree n. The degree sum is n*2^n and
+    each edge is counted twice, so E = n*2^n / 2 = n*2^(n-1). Check: n=1 gives (2,1), n=2 gives (4,4),
+    n=3 gives (8,12), n=4 gives (16,32).'
+  common_errors:
+  - Giving V = 2n, which fits a segment but not higher cubes
+  - Forgetting to halve the degree sum when counting edges
+  - Using n^2 or 2^n as the edge count
+  hints:
+    rephrase: How many choices does a vertex have in each coordinate?
+    smaller_case: Build a table for n = 1, 2 and 3 and look for the pattern in both columns.
+    key_idea: Count the degree sum over all vertices, then divide by two because each edge has two ends.
+  check: (V - 2**n)**2 + (E - n*2**(n-1))**2
+  check_ok: false
+- goal: Give the coordinates of the vertices of a tesseract when one vertex is at the origin and four
+    edges lie along the coordinate axes.
+  expected: The vertices are all 4-tuples (a,b,c,d) with each of a,b,c,d equal to 0 or 1, giving 16 points.
+  solution: Put one vertex at the origin with its four neighbours at the unit points on each axis. Walking
+    along any edge changes exactly one coordinate from 0 to 1, so every vertex has coordinates in {0,1}.
+    All 2^4 = 16 combinations occur.
+  common_errors:
+  - Listing only tuples with exactly one or exactly four 1s
+  - Using 0 and 2 as coordinates, which changes the edge length
+  - Giving only the 8 cube coordinates with a fourth entry added
+  hints:
+    rephrase: Put one vertex at the origin with four edges along the axes. What values can any coordinate
+      of any vertex take?
+    smaller_case: Write the vertices of a square as pairs first, then extend the pattern.
+    key_idea: Moving along one edge changes exactly one coordinate, and it changes it by one unit.
+- goal: Find the longest distance between two vertices of a tesseract, and say how it generalises to n
+    dimensions.
+  expected: 2 for the tesseract. In n dimensions the longest distance is sqrt(n).
+  solution: The longest distance is between opposite corners, for example (0,0,0,0) and (1,1,1,1). Repeated
+    Pythagoras gives distance sqrt(1+1+1+1) = sqrt(4) = 2. In n dimensions the same argument gives sqrt(n).
+  common_errors:
+  - Answering 4 by adding the edge lengths
+  - Answering sqrt(3), which is the cube's space diagonal
+  - Taking the distance between two adjacent vertices, which is 1
+  hints:
+    rephrase: Which two vertices are furthest apart from each other?
+    smaller_case: What is the longest distance between two corners of a unit square?
+    key_idea: Apply Pythagoras once per coordinate direction, so the squared lengths add.
+  check: (L - 2)**2
+  check_ok: false
+extensions:
+  '3':
+  - How many 2-dimensional faces (squares) does a tesseract have?
+  '4':
+  - How many 3-dimensional cells (cubes) does a tesseract have?
+  '5':
+  - How many 2-dimensional faces (squares) does a 5-cube have?
+spoken_vocab:
+- vertex
+- vertices
+- edge
+- edges
+- segment
+- square
+- cube
+- tesseract
+- hypercube
+- n dimensional
+- two to the power n
+- n times two to the power n minus one
+- coordinates
+- origin
+- axis
+- square root
+- Pythagoras
+- dimension
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 4
+  parts: 4
+  minutes: 20
+  flags: []
+  tagline: Pattern conjecture from lower dimensions, then tesseract coordinates and diameter generalising.
+  priority: 92
+  rank: 85
+  tier: A
+  category: tbo
+  d10: 5.0
+  real: 8.0
+  by: big-pickle
+tags:
+- combinatorics
+- coordinate_geometry

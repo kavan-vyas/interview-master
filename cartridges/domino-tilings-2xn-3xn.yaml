@@ -1,0 +1,116 @@
+id: domino-tilings-2xn-3xn
+title: Domino tilings of 2 by n and 3 by n grids
+topics:
+- counting
+- recurrence relations
+- Fibonacci numbers
+- tilings
+warmup: false
+answer_source: generated
+statement: A grid of size $2\times n$ is covered with $2\times 1$ dominoes. How many ways are there to
+  do this? What about a grid of size $3\times n$ and $3\times 1$ dominoes?
+stages:
+- goal: Find a recurrence for the number of tilings of a 2 by n grid with 2 by 1 dominoes.
+  expected: Let a(n) be the number of tilings. Then a(n) = a(n-1) + a(n-2), with a(0) = 1 and a(1) = 1.
+  solution: Look at the first column. Either a vertical domino covers it, leaving a 2 by (n-1) grid, or
+    both cells are covered by horizontal dominoes, which forces the second column to be covered by horizontal
+    dominoes too, leaving a 2 by (n-2) grid.
+  common_errors:
+  - Forgetting the second case, which leads to a(n) = a(n-1) only.
+  - Setting a(0) = 0, which breaks the recurrence at n = 2.
+  hints:
+    rephrase: In the first column, what are the possible ways to place dominoes?
+    smaller_case: Count the tilings of a 2 by 2 grid by hand.
+    key_idea: 'Two cases for the first column: a vertical domino, or a pair of horizontal dominoes.'
+  check: null
+- goal: Give a closed form for the 2 by n count.
+  expected: a(n) = F(n+1), where F is the Fibonacci sequence with F(1) = F(2) = 1. So a(4) = 5 and a(5)
+    = 8.
+  solution: The recurrence a(n) = a(n-1) + a(n-2) with a(0) = a(1) = 1 generates the Fibonacci numbers
+    shifted by one index.
+  common_errors:
+  - Using F(n) instead of F(n+1).
+  - Writing a closed form that does not match a(2) = 2 and a(3) = 3.
+  hints:
+    rephrase: List the first few values of a(n) and compare them to the Fibonacci numbers.
+    smaller_case: Compute a(2) and a(3) and see which Fibonacci number matches.
+    key_idea: The sequence is Fibonacci numbers starting from a different index.
+  check: sp.Abs(ans.subs(n, 4) - 5) + sp.Abs(ans.subs(n, 5) - 8)
+  check_ok: null
+- goal: Describe the structure of tilings of a 3 by n grid with 3 by 1 pieces.
+  expected: Each piece is either a full column (a vertical piece) or part of a horizontal bar of length
+    3. A column covered by a vertical piece splits the grid. Between such columns, every row is covered
+    by horizontal bars that line up in blocks of width 3, and each such block has exactly one tiling.
+  solution: If a column contains a vertical piece, it is filled completely and the grid splits into independent
+    parts. If no column is vertical, each row is a 1 by n strip tiled by bars of length 3 starting at
+    column 1, so the bars are aligned in blocks of width 3 and n must be a multiple of 3 in that segment.
+  common_errors:
+  - Assuming a 3 by 1 piece can lie in only one orientation.
+  - Counting two different tilings for a 3 by 3 block when the all-vertical and all-horizontal tilings
+    are the only two options.
+  hints:
+    rephrase: Where can a 3 by 1 piece sit in a single column, and what does that do to the rest of the
+      grid?
+    smaller_case: Enumerate the tilings of a 3 by 3 grid.
+    key_idea: A full vertical column acts as a barrier, so the grid decomposes into smaller independent
+      blocks.
+  check: null
+- goal: Set up the recurrence for 3 by n tilings and compute the count for n = 9.
+  expected: Let a(n) be the number of tilings. Then a(n) = a(n-1) + a(n-3), with a(0) = a(1) = a(2) =
+    1. The values are 1, 1, 1, 2, 3, 4, 6, 9, 13, 19, so a(9) = 19.
+  solution: Conditioning on the last column being vertical or the end of a width-3 block gives a(n) =
+    a(n-1) + sum over m of a(n-1-3m). Subtracting consecutive versions of this sum gives a(n) = a(n-1)
+    + a(n-3). Iterate from the base values.
+  common_errors:
+  - Using a(n) = a(n-1) + a(n-2), which is the 2 by n recurrence.
+  - Setting a(0) = 0 or not counting the empty grid.
+  hints:
+    rephrase: How does the count change when you add one column that is a vertical piece, and when you
+      add a block of width 3?
+    smaller_case: Check that a(3) = 2 and a(4) = 3 from the structure you found.
+    key_idea: The recurrence follows from the last column being vertical or the end of a width-3 block.
+  check: sp.Abs(ans - 19)
+  check_ok: null
+extensions:
+  '3':
+  - Show that tilings of a 2 by n grid with 2 by 1 dominoes are in bijection with compositions of n into
+    parts 1 and 2.
+  '4':
+  - Count the tilings of a 2 by n grid using 2 by 1 dominoes and 2 by 2 squares.
+  '5':
+  - Using your recurrence for 3 by n tilings with 3 by 1 pieces, find the number of tilings when n = 10.
+spoken_vocab:
+- two by n grid
+- three by n grid
+- domino
+- three by one piece
+- tiling
+- Fibonacci
+- recurrence
+- vertical
+- horizontal
+- column
+- base case
+- empty grid
+- closed form
+- compositions
+source: screenshots/Screenshot 2026-11-19 at 14.37.58.png
+verified: false
+rating:
+  quality: 6
+  difficulty: 6
+  parts: 2
+  minutes: 20
+  flags: []
+  tagline: Good recurrence work on 2xn, extending to a harder 3xn structure. The '3×1 dominoes' label
+    is a misnomer for trominoes.
+  priority: 72
+  rank: 311
+  tier: B
+  category: screenshots
+  d10: 6.0
+  real: 6.0
+  by: deepseek-v4.1-flash-free
+tags:
+- combinatorics
+- sequences_and_series

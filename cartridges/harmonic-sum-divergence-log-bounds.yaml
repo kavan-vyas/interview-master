@@ -1,0 +1,133 @@
+id: harmonic-sum-divergence-log-bounds
+title: 'Harmonic series diverges: integral bounds and a numerical estimate'
+topics:
+- integration
+- inequalities
+- logarithms
+- harmonic series
+- telescoping
+- divergence
+warmup: false
+answer_source: pdf
+statement: The function $f$ satisfies $0\le f(t)\le K$ when $0\le t\le 1$. Explain by means of a sketch,
+  or otherwise, why $0\le\int_0^1 f(t)\,dt\le K$. By considering $\int_0^1\frac{t}{n(n-t)}\,dt$, or otherwise,
+  show that, if $n>1$, $0\le\ln\left(\frac{n}{n-1}\right)-\frac{1}{n}\le\frac{1}{n-1}-\frac{1}{n}$ and
+  deduce that $0\le\ln N-\sum_{n=2}^{N}\frac{1}{n}\le1$. Deduce that $\sum_{n=1}^{N}\frac{1}{n}\to\infty$
+  as $N\to\infty$. Noting that $2^{10}=1024$, show also that if $N<10^{30}$ then $\sum_{n=1}^{N}\frac{1}{n}<101$.
+stages:
+- goal: Justify $0\le\int_0^1 f(t)\,dt\le K$ from the pointwise bounds on f.
+  expected: The graph of f lies between y=0 and y=K over [0,1], so the area under it lies between the
+    area of the zero region and the rectangle of height K, which has area K.
+  solution: Since 0≤f≤K on an interval of length 1, integrating the inequalities gives $\int_0^1 0\,dt\le\int_0^1
+    f\,dt\le\int_0^1 K\,dt$, which is $0\le\int_0^1 f\le K$.
+  common_errors:
+  - Forgetting that the interval has length 1, so the rectangle area is K and not something else
+  - Giving a sketch argument that does not mention the bounds
+  hints:
+    rephrase: Picture the region under the curve and compare it with two rectangles.
+    smaller_case: Take f constant equal to K/2 and check the inequality.
+    key_idea: Integration preserves inequalities between functions.
+  check: null
+- goal: Evaluate $\int_0^1\frac{t}{n(n-t)}\,dt$ for n>1.
+  expected: $\ln\left(\frac{n}{n-1}\right)-\frac{1}{n}$
+  solution: Write $\frac{t}{n-t}=\frac{n}{n-t}-1$, so the integrand is $\frac{1}{n}\left(\frac{n}{n-t}-1\right)$.
+    Then $\int_0^1\frac{n}{n-t}\,dt=n\ln\frac{n}{n-1}$ and $\int_0^1 1\,dt=1$. Dividing by n gives the
+    result.
+  common_errors:
+  - Sign error on the logarithm term
+  - Forgetting the 1/n outside the integral
+  - Mixing up ln(n/(n-1)) with ln(n-1)/n
+  hints:
+    rephrase: Rewrite the fraction t/(n-t) so that one part integrates to a logarithm.
+    smaller_case: Compute the integral when n=2 by an explicit antiderivative.
+    key_idea: Add and subtract n inside the numerator to split the integrand.
+  check: log(n/(n-1)) - 1/n - (log(n/(n-t)) - t/n).subs(t, 1)
+  check_ok: true
+- goal: Show $0\le\ln\left(\frac{n}{n-1}\right)-\frac{1}{n}\le\frac{1}{n-1}-\frac{1}{n}$ for n>1.
+  expected: 'The integrand is non-negative and increasing in t on [0,1], so its maximum is at t=1: $\frac{1}{n(n-1)}=\frac{1}{n-1}-\frac{1}{n}$.
+    Combining with the bounds from the first stage gives the result.'
+  solution: For n>1 and 0≤t≤1, $\frac{t}{n(n-t)}\ge0$ and it increases with t. The value at t=1 is $\frac{1}{n(n-1)}$.
+    Also $\frac{1}{n(n-1)}=\frac{1}{n-1}-\frac{1}{n}$.
+  common_errors:
+  - Using the bound at t=0 instead of t=1
+  - Not checking that the integrand is monotone
+  - Forgetting the lower bound of 0
+  hints:
+    rephrase: Where on [0,1] is the integrand t/(n(n-t)) largest?
+    smaller_case: Take n=2 and compare the integrand at t=0 and t=1.
+    key_idea: Bounding the integrand by its maximum value bounds the integral.
+  check: simplify(1/(n*(n-1)) - (1/(n-1) - 1/n))
+  check_ok: true
+- goal: Telescope the bounds from n=2 to N and deduce $0\le\ln N-\sum_{n=2}^{N}\frac{1}{n}\le1$. Then
+    deduce that the harmonic sum diverges.
+  expected: Summing gives $0\le\ln N-\sum_{n=2}^{N}\frac1n\le1-\frac1N<1$. Since ln N→∞, the sum $\sum_{n=1}^{N}\frac1n$
+    also tends to infinity.
+  solution: Summing $\ln\frac{n}{n-1}$ from n=2 to N telescopes to ln N. Summing $\frac{1}{n-1}-\frac1n$
+    telescopes to $1-\frac1N$. Hence $\sum_{n=2}^{N}\frac1n\le\ln N\le \sum_{n=2}^{N}\frac1n+1$, so $\sum_{n=1}^{N}\frac1n\ge\ln
+    N\to\infty$.
+  common_errors:
+  - Summing the wrong telescoping series
+  - Concluding divergence from the bound 1 rather than from ln N→∞
+  - Forgetting to add the n=1 term
+  hints:
+    rephrase: Add the inequalities over n from 2 to N, and see which terms cancel.
+    smaller_case: Add the inequalities for n=2 and n=3 only.
+    key_idea: The logarithm of a telescoping product gives ln N, which is unbounded.
+  check: summation(1/(k*(k-1)), (k, 2, N)) - (1 - 1/N)
+  check_ok: null
+- goal: Show that if N<10^30 then $\sum_{n=1}^{N}\frac1n<101$.
+  expected: $\sum_{n=1}^{N}\frac1n\le1+\ln N<1+100\ln2<101$, using $10^3<2^{10}$ so $10^{30}<2^{100}$,
+    and $\ln2<1$.
+  solution: 'From the previous stage, $\sum_{n=1}^N\frac1n\le1+\ln N$. Since $10^3<2^{10}$ (1000<1024),
+    $10^{30}<2^{100}$, so $\ln N<100\ln2<100$. Hence the sum is below $1+100=101$. Note: the source''s
+    written inequality $2^{10}=1024<10^3$ is reversed; the correct direction is $10^3<2^{10}$.'
+  common_errors:
+  - Writing 1024 < 1000 (reversed inequality)
+  - Using 10^30 directly without converting to a power of 2
+  - Using ln 2 > 1 in the wrong direction
+  hints:
+    rephrase: Find a power of 2 that is just larger than 10^30, and take logarithms.
+    smaller_case: Show that 10^3 is less than 2^10.
+    key_idea: Replace 10^30 by a power of 2, since logs of powers of 2 are easy to bound.
+  check: null
+extensions:
+  '3':
+  - Show that $H_N-\ln N$ is decreasing and bounded below, so it converges.
+  '4':
+  - Estimate the smallest N for which $\sum_{n=1}^{N}\frac1n\ge10$.
+  '5':
+  - Use an integral comparison to show $\sum_{n=1}^{\infty}\frac{1}{n^{1+\epsilon}}$ converges for every
+    $\epsilon>0$.
+spoken_vocab:
+- integral from zero to one of f of t d t
+- K
+- t over n times n minus t
+- natural log of n over n minus one
+- one over n
+- sum from n equals two to N
+- sum from n equals one to N
+- tends to infinity
+- ten to the power thirty
+- two to the power ten
+- one thousand twenty four
+- ln two
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#10
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 5
+  minutes: 25
+  flags: []
+  tagline: Full elementary proof of harmonic divergence with explicit numerical bound; rich extension.
+  priority: 83
+  rank: 176
+  tier: B
+  category: siklos
+  d10: 6.5
+  real: 5.0
+  by: deepseek-v4.1-flash-free
+tags:
+- sequences_and_series
+- integration
+- inequalities

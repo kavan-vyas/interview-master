@@ -1,0 +1,130 @@
+id: squares-mod-4-identity-and-primes-3-mod-4
+title: Squares mod 4, the two-squares identity, and primes of the form 4k+3
+topics:
+- modular arithmetic
+- sums of two squares
+- two-squares identity
+- proof by contradiction
+- infinitude of primes
+warmup: false
+answer_source: pdf
+statement: (i) Show that every square is congruent to $0$ or $1$ modulo $4$. Deduce that no integer of
+  the form $4k+3$ can be written as a sum of two squares. (ii) Verify that $(a^2+b^2)(c^2+d^2)=(ac-bd)^2+(ad+bc)^2$.
+  Deduce that the product of two sums of two squares is itself a sum of two squares. (iii) Hence, or otherwise,
+  write $65$ as a sum of two squares in two essentially different ways. (iv) Prove that there are infinitely
+  many primes of the form $4k+3$.
+stages:
+- goal: Show every square is $0$ or $1$ mod $4$, and deduce that $4k+3$ is never a sum of two squares.
+  expected: For $n$ even, $n^2\equiv 0 \pmod 4$; for $n$ odd, $n^2\equiv 1 \pmod 4$. So a sum of two squares
+    is $0$, $1$ or $2 \pmod 4$, never $3$, hence no $4k+3$ is a sum of two squares.
+  solution: 'Write $n=2m$: $n^2=4m^2\equiv 0 \pmod 4$. Write $n=2m+1$: $n^2=4m^2+4m+1\equiv 1 \pmod 4$.
+    Each square is $0$ or $1 \pmod 4$, so a sum of two squares is $0$, $1$ or $2 \pmod 4$. Since $4k+3\equiv
+    3 \pmod 4$, it is never a sum of two squares.'
+  common_errors:
+  - Checking only a few values and not covering both parities
+  - Working mod 2 instead of mod 4
+  - Thinking $1+1\equiv 3 \pmod 4$ (it is $2$)
+  - Forgetting that $0+0\equiv 0$, so the residues are $\{0,1,2\}$
+  hints:
+    rephrase: Split integers into even and odd, and find the remainder on division by $4$ of the square
+      in each case.
+    smaller_case: Compute the remainder mod $4$ of $2^2$ and of $3^2$.
+    key_idea: Write an even number as $2m$ and an odd number as $2m+1$, then expand the square.
+  check: set(x**2 % 4 for x in range(4)) == {0,1}
+  check_ok: null
+- goal: Verify the two-squares identity and deduce that a product of two sums of two squares is a sum
+    of two squares.
+  expected: Expanding the right-hand side gives $a^2c^2+b^2d^2+a^2d^2+b^2c^2=(a^2+b^2)(c^2+d^2)$, so the
+    product is a sum of two squares.
+  solution: $(ac-bd)^2+(ad+bc)^2=a^2c^2-2abcd+b^2d^2+a^2d^2+2abcd+b^2c^2$. The cross terms cancel, leaving
+    $a^2c^2+a^2d^2+b^2c^2+b^2d^2=(a^2+b^2)(c^2+d^2)$. So the product is the sum of the two squares $(ac-bd)^2$
+    and $(ad+bc)^2$.
+  common_errors:
+  - Dropping the cross terms $\pm 2abcd$ without checking they cancel
+  - Sign slip between $ac-bd$ and $ac+bd$
+  - Verifying the identity only for specific numbers rather than symbolically
+  hints:
+    rephrase: Expand both sides completely and compare term by term.
+    smaller_case: Take $a=1,\ b=0,\ c=1,\ d=1$ and check that both sides agree numerically.
+    key_idea: Expand the squares on the right and check whether the terms containing $abcd$ cancel.
+  check: sympy.expand((a**2+b**2)*(c**2+d**2)-((a*c-b*d)**2+(a*d+b*c)**2)) == 0
+  check_ok: false
+- goal: Write $65$ as a sum of two squares in two essentially different ways.
+  expected: $65=4^2+7^2$ and $65=1^2+8^2$.
+  solution: '$65=5\times 13=(1^2+2^2)(2^2+3^2)$. Using the identity with $a=1,b=2,c=2,d=3$: $(ac-bd)^2+(ad+bc)^2=(2-6)^2+(3+4)^2=16+49=65$.
+    Replacing $d$ by $-d$ gives $(ac+bd)^2+(ad-bc)^2=(2+6)^2+(3-4)^2=64+1=65$. So $65=4^2+7^2=1^2+8^2$.'
+  common_errors:
+  - Giving only one representation
+  - Reporting $8^2+1^2$ and $1^2+8^2$ as different ways
+  - Arithmetic slip in $ad+bc$ or $ac-bd$
+  - Not checking the final sums equal $65$
+  hints:
+    rephrase: Factor $65$ into primes, write each factor as a sum of two squares, and combine them with
+      the identity from part (ii).
+    smaller_case: Find a way to write $5$ and $13$ each as a sum of two squares.
+    key_idea: Changing the sign of one variable in the identity produces a different combination of the
+      same factors.
+  check: (4**2+7**2-65)+(1**2+8**2-65)==0
+  check_ok: true
+- goal: Prove there are infinitely many primes of the form $4k+3$.
+  expected: Suppose $p_1,\ldots,p_m$ are all such primes. Let $N=4p_1\cdots p_m-1\equiv 3 \pmod 4$. $N$
+    has a prime factor $q\equiv 3 \pmod 4$, but $q$ divides neither $4p_1\cdots p_m$ nor $1$, a contradiction.
+  solution: Since $N$ is odd and $N\equiv 3 \pmod 4$, not all its prime factors can be $\equiv 1 \pmod
+    4$, because a product of primes $\equiv 1 \pmod 4$ is $\equiv 1 \pmod 4$. So $N$ has a prime factor
+    $q\equiv 3 \pmod 4$. If $q=p_i$ for some $i$, then $q\mid 4p_1\cdots p_m$ and $q\mid N$ give $q\mid
+    1$, impossible. So $q$ is a new prime of the form $4k+3$, contradicting the assumption that the list
+    was complete.
+  common_errors:
+  - Using $p_1\cdots p_m+1$, which may be even or not $\equiv 3 \pmod 4$
+  - Concluding that $N$ itself is prime
+  - Forgetting that $N$ must have a factor $\equiv 3 \pmod 4$ by the residue argument
+  - Assuming $2$ divides $N$
+  hints:
+    rephrase: Assume the list of such primes is finite and build a number that none of them divides.
+    smaller_case: Suppose $3$ is the only prime of the form $4k+3$ and consider $4\cdot 3-1$.
+    key_idea: Track the residue of $N$ mod $4$; a product of primes that are $1 \pmod 4$ stays $1 \pmod
+      4$.
+extensions:
+  '3':
+  - Show that $3$ is not a sum of two squares and explain why $6$ is not one either.
+  - Prove there are infinitely many primes of the form $6k+5$ by a similar argument.
+  '4':
+  - Prove there are infinitely many primes of the form $6k+5$ using $N=6p_1\cdots p_m-1$.
+  - Explain why a prime $p\equiv 3 \pmod 4$ cannot be a sum of two squares, while $9$ can be.
+  '5':
+  - Prove there are infinitely many primes of the form $4k+1$ using $N=(2p_1\cdots p_m)^2+1$.
+  - Show that the set of primes $\equiv 1 \pmod 4$ and the set $\equiv 3 \pmod 4$ are both infinite, and
+    explain why the Euclid-style argument fails for $4k+1$ without the square trick.
+spoken_vocab:
+- four k plus three
+- congruent to zero or one modulo four
+- sum of two squares
+- two squares identity
+- Brahmagupta identity
+- sixty five
+- four squared plus seven squared
+- one squared plus eight squared
+- infinitely many primes
+- proof by contradiction
+- four p one times p m minus one
+- prime factor
+- essentially different
+source: jaymin/Jaymin Interview (1).pdf#p9
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 4
+  minutes: 20
+  flags: []
+  tagline: 'Four linked parts: mod arithmetic, identity, factorisation, Euclid-style infinitude.'
+  priority: 97
+  rank: 51
+  tier: A
+  category: jaymin
+  d10: 4.0
+  real: 6.0
+  by: haiku
+tags:
+- number_theory
+- proof

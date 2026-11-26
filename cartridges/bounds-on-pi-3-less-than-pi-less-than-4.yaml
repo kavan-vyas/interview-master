@@ -1,0 +1,96 @@
+id: bounds-on-pi-3-less-than-pi-less-than-4
+title: Show 3 < pi < 4 using inscribed and circumscribed polygons
+topics:
+- geometry
+- bounds
+- perimeter of polygons
+- pi
+warmup: true
+answer_source: pdf
+statement: Show that $3<\pi<4$.
+stages:
+- goal: Show the lower bound pi > 3 using a polygon inscribed in a unit circle.
+  expected: Use the regular hexagon inscribed in the unit circle. Its perimeter is 6, which is less than
+    the circumference 2*pi, so pi > 3.
+  solution: Take a circle of radius 1, so its circumference is 2*pi. A regular hexagon inscribed in the
+    circle has side length equal to the radius, 1, so its perimeter is 6. The hexagon lies inside the
+    circle, and the perimeter of a convex polygon inside a convex curve is less than the curve's length,
+    so 6 < 2*pi, giving pi > 3.
+  common_errors:
+  - Using the square inscribed in the circle, whose perimeter is 4*sqrt(2) which is about 5.66 and does
+    not give 3.
+  - Confusing the side of the hexagon with the diameter.
+  - Using the circumference as 2*pi*r but forgetting r=1 in the unit circle.
+  hints:
+    rephrase: Consider a regular polygon with vertices on a circle of radius 1 and compare its perimeter
+      with the circumference.
+    smaller_case: Start with a regular hexagon and find its side length from the radius.
+    key_idea: A polygon inscribed in a circle has perimeter less than the circumference, so its perimeter
+      gives a lower bound on the circumference.
+  check: (pi > 3) == True
+  check_ok: true
+- goal: Show the upper bound pi < 4 using a polygon circumscribed about a unit circle.
+  expected: Use the square circumscribed about the unit circle. Its side is 2 and its perimeter is 8,
+    which exceeds the circumference 2*pi, so pi < 4.
+  solution: 'Take the circle of radius 1. A square circumscribed about it has sides tangent to the circle,
+    so each side has length 2 and the perimeter is 8. The circle lies inside the square, so its circumference
+    is less than the perimeter of the square: 2*pi < 8, giving pi < 4.'
+  common_errors:
+  - Using the inscribed square for the upper bound. Its perimeter is 4*sqrt(2) which is less than 2*pi,
+    so it gives no upper bound.
+  - Taking the side of the circumscribed square as 1 rather than the diameter 2.
+  - Concluding pi < 4 from 2*pi < 8 without dividing by 2.
+  hints:
+    rephrase: Find a polygon that contains the circle and compute its perimeter.
+    smaller_case: Start with a square around a unit circle and find the length of one side.
+    key_idea: A convex curve has length less than the perimeter of any convex polygon containing it.
+  check: (pi < 4) == True
+  check_ok: true
+extensions:
+  '3':
+  - Show that the perimeter of the inscribed regular 12-gon is greater than 3.1 and deduce a sharper lower
+    bound for pi.
+  - Show that the circumscribed regular hexagon gives an upper bound for pi.
+  '4':
+  - Use the inscribed and circumscribed regular polygons with 96 sides (Archimedes' method) to obtain
+    bounds for pi.
+  - Show that the average of the perimeters of inscribed and circumscribed n-gons gives a better estimate
+    of pi.
+  '5':
+  - Derive pi > 3.14 from Archimedes' polygon method and discuss the error bound.
+  - Relate the polygon method to the integral of 4/(1+x^2) from 0 to 1 and explain why the integral equals
+    pi.
+spoken_vocab:
+- three less than pi less than four
+- pi
+- circle
+- unit circle
+- radius
+- circumference
+- inscribed
+- circumscribed
+- hexagon
+- square
+- perimeter
+- side length
+- two pi
+- convex
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 2
+  minutes: 10
+  flags: []
+  tagline: Classic inscribed and circumscribed polygon bounds; extensible to Archimedes.
+  priority: 65
+  rank: 396
+  tier: C
+  category: tbo
+  d10: 3.5
+  real: 5.0
+  by: deepseek-v4.1-flash-free
+tags:
+- geometry
+- proof

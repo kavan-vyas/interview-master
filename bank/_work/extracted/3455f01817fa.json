@@ -1,0 +1,72 @@
+[
+ {
+  "q": "This lets us define $x!$ for non-integer $x$. Using $\\int_0^\\infty e^{-u^2}\\,du=\\frac{\\sqrt{\\pi}}{2}$ and the substitution $x=u^2$, show that $(-\\tfrac{1}{2})!=\\sqrt{\\pi}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p49"
+ },
+ {
+  "q": "For integers $n\\ge 0$, let $I_n=\\int_0^{\\pi/2}\\sin^n x\\,dx$. (i) Find $I_0$ and $I_1$. (ii) Show that $nI_n=(n-1)I_{n-2}$ for $n\\ge 2$. (iii) Show that $nI_nI_{n-1}=\\frac{\\pi}{2}$ for all $n\\ge 1$. (iv) Explain why $I_{n+1}\\le I_n$ for all $n\\ge 0$. Hence show that for $n\\ge 1$, $\\sqrt{\\frac{\\pi}{2(n+1)}}\\le I_n\\le\\sqrt{\\frac{\\pi}{2n}}$. (v) Find $\\lim_{n\\to\\infty}\\sqrt{n}\\,I_n$.",
+  "kind": "maths",
+  "answer": "(i) $I_0=\\frac{\\pi}{2}$ and $I_1=1$. (ii) Integrate by parts with $u=\\sin^{n-1}x$, $dv=\\sin x\\,dx$, then use $\\cos^2x=1-\\sin^2x$ to get $I_n=(n-1)(I_{n-2}-I_n)$. (iii) $J_n=nI_nI_{n-1}$ satisfies $J_n=J_{n-1}$, so it is constant, equal to $J_1=\\frac{\\pi}{2}$. (iv) $0\\le\\sin^{n+1}x\\le\\sin^n x$ on $[0,\\frac{\\pi}{2}]$ gives $I_{n+1}\\le I_n$; comparing $I_n^2$ with $I_nI_{n-1}$ and $I_nI_{n+1}$ using (iii) gives the bounds. (v) The limit is $\\sqrt{\\pi/2}$, by squeezing.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p49"
+ },
+ {
+  "q": "Let $e=\\sum_{k=0}^\\infty\\frac{1}{k!}$ and $s_n=\\sum_{k=0}^n\\frac{1}{k!}$. (i) Show that $0<e-s_n<\\frac{1}{n\\cdot n!}$. (ii) Suppose $e=\\frac{p}{q}$ with $p,q$ positive integers. By considering $q!\\,(e-s_q)$, obtain a contradiction. (iii) Use (i) to find $e$ to three decimal places, and justify your accuracy.",
+  "kind": "maths",
+  "answer": "(i) The tail $e-s_n=\\frac{1}{(n+1)!}\\left(1+\\frac{1}{n+2}+\\cdots\\right)$ is bounded by a geometric series with ratio $\\frac{1}{n+1}$, giving $e-s_n<\\frac{1}{n\\cdot n!}$. (ii) $q!\\,e=p(q-1)!$ and $q!\\,s_q$ are integers, so $q!(e-s_q)$ is an integer; but by (i) it lies strictly between 0 and $\\frac{1}{q}\\le 1$, a contradiction. (iii) With $n=6$ the error is below $0.00023$ and $s_6\\approx 2.71806$, so $2.71806<e<2.71829$ and $e\\approx 2.718$ to three decimal places.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p49"
+ },
+ {
+  "q": "(i) Show that $\\frac{1}{1+x}=\\sum_{k=0}^{n-1}(-x)^k+\\frac{(-x)^n}{1+x}$ for $x\\ne -1$. (ii) By integrating from 0 to 1, show that $\\ln 2=\\sum_{k=1}^{n}\\frac{(-1)^{k+1}}{k}+(-1)^nR_n$, where $R_n=\\int_0^1\\frac{x^n}{1+x}\\,dx$. (iii) Show that $\\frac{1}{2(n+1)}\\le R_n\\le\\frac{1}{n+1}$. Deduce that $1-\\frac12+\\frac13-\\frac14+\\cdots=\\ln 2$. (iv) Show that the rearranged series $1-\\frac12-\\frac14+\\frac13-\\frac16-\\frac18+\\frac15-\\frac1{10}-\\frac1{12}+\\cdots$ (one odd term followed by two even terms) has sum $\\frac12\\ln 2$.",
+  "kind": "maths",
+  "answer": "(i) Geometric series: $\\sum_{k=0}^{n-1}(-x)^k=\\frac{1-(-x)^n}{1+x}$. (ii) Integrate term by term, using $\\int_0^1(-x)^k\\,dx=\\frac{(-1)^k}{k+1}$ and reindexing. (iii) On $[0,1]$, $\\frac12x^n\\le\\frac{x^n}{1+x}\\le x^n$; integrating, $R_n\\to 0$, so the partial sums tend to $\\ln 2$. (iv) Group the terms in threes: each group equals $\\frac{1}{2k-1}-\\frac{1}{2(2k-1)}-\\frac{1}{4k}=\\frac12\\left(\\frac{1}{2k-1}-\\frac{1}{2k}\\right)$, so the sum is half the $2N$th partial sum of the alternating harmonic series, which tends to $\\frac12\\ln 2$. Rearranging a conditionally convergent series changed its sum.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p49"
+ },
+ {
+  "q": "(i) Solve $\\frac{dy}{dx}=y^2$ with $y(0)=a>0$. For which $x$ does the solution exist? (ii) Show that $\\frac{dy}{dx}=\\sqrt{y}$ with $y(0)=0$ (and $y\\ge 0$) has the solutions $y=0$ and $y=\\frac{x^2}{4}$ for $x\\ge 0$. Find infinitely many more. (iii) Euler's method for $\\frac{dy}{dx}=y$, $y(0)=1$, uses steps of size $h=\\frac{1}{n}$: $y_{k+1}=y_k+hy_k$. Find the approximation to $y(1)$ and its limit as $n\\to\\infty$.",
+  "kind": "maths",
+  "answer": "(i) $y=\\frac{a}{1-ax}$, which exists only for $x<\\frac1a$: the solution blows up in finite time. (ii) $y=0$ and $y=\\frac{x^2}{4}$ both work; for any $c\\ge 0$, $y=0$ for $x\\le c$ and $\\frac{(x-c)^2}{4}$ for $x\\ge c$ is also a solution, so solutions are not unique. (iii) $y_n=\\left(1+\\frac1n\\right)^n\\to e$, the true value of $y(1)$.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p49"
+ },
+ {
+  "q": "You may assume the intermediate value theorem: a continuous function on $[a,b]$ takes every value between $f(a)$ and $f(b)$. (i) Show that every continuous $f:[0,1]\\to[0,1]$ has a fixed point. (ii) A monk climbs a mountain from 8am to 6pm one day, and descends by the same path from 8am to 6pm the next day. Show that there is a time of day at which he is at the same place on both days. (iii) Show that every polynomial of odd degree has a real root. (iv) A runner covers 10 km in exactly one hour, at varying speed. Show that there is some 5 km stretch that took exactly 30 minutes.",
+  "kind": "maths",
+  "answer": "(i) $g(x)=f(x)-x$ has $g(0)\\ge 0$ and $g(1)\\le 0$, so $g$ has a zero. (ii) With $u(t)$ and $d(t)$ his heights on the up and down days, $u-d$ is continuous, negative at 8am and positive at 6pm, so it vanishes somewhere. (iii) For odd degree with leading coefficient $a_n>0$, $p(x)<0$ for very negative $x$ and $p(x)>0$ for very positive $x$, so the IVT gives a root. (iv) Let $g(t)=D(t+\\tfrac12)-D(t)$ for $0\\le t\\le\\tfrac12$. Then $g(0)+g(\\tfrac12)=D(1)-D(0)=10$, so one value is at least 5 and the other at most 5, hence $g(t)=5$ for some $t$.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p49"
+ },
+ {
+  "q": "Let $H_n=1+\\frac12+\\cdots+\\frac1n$. (i) Show that $\\int_1^\\infty x^{-p}\\,dx$ converges if and only if $p>1$. (ii) By comparing sums with integrals, show that $\\sum\\frac{1}{n^p}$ converges if and only if $p>1$. (iii) Show that $\\ln(n+1)\\le H_n\\le 1+\\ln n$. (iv) Show that $\\gamma_n=H_n-\\ln n$ is decreasing and positive, and hence converges. (v) The limit is $\\gamma\\approx 0.577$. Estimate the number of terms needed for $H_n$ to exceed 10.",
+  "kind": "maths",
+  "answer": "(i) For $p\\ne 1$, $\\int_1^X x^{-p}\\,dx=\\frac{X^{1-p}-1}{1-p}$, which has a finite limit exactly when $p>1$; for $p=1$ it is $\\ln X\\to\\infty$. (ii) For $p>0$, compare $\\frac{1}{n^p}$ with $\\int_{n-1}^n x^{-p}\\,dx$ and $\\int_n^{n+1}x^{-p}\\,dx$, so partial sums are bounded exactly when the integral converges. (iii) Sum the inequalities with $p=1$. (iv) $\\gamma_{n+1}-\\gamma_n<0$ since $\\frac1x>\\frac{1}{n+1}$ on $(n,n+1)$, and $\\gamma_n\\ge\\ln(n+1)-\\ln n>0$, so the decreasing bounded sequence converges. (v) $H_n\\approx\\ln n+0.577$, so $\\ln n\\approx 9.42$, giving $n\\approx e^{9.42}\\approx 12\\,000$ (the exact answer is 12 367).",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p49"
+ },
+ {
+  "q": "Sketch the graph of $y=\\frac{\\sin x}{x}$ for $x\\ne 0$.",
+  "kind": "maths",
+  "answer": "The function is even, so only $x>0$ needs sketching and then reflecting. $y\\to 1$ as $x\\to 0$, so there is a removable gap at $(0,1)$. It is zero at $x=n\\pi$ for every nonzero integer $n$, lies between $y=\\pm\\frac{1}{x}$ (touching them where $\\sin x=\\pm 1$), and oscillates with amplitude tending to 0 as $|x|\\to\\infty$. Near 0 it looks like $1-\\frac{x^2}{6}$.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p49"
+ },
+ {
+  "q": "Sketch the curve $y^2=x^3-x$.",
+  "kind": "maths",
+  "answer": "Since $x^3-x=x(x-1)(x+1)$, real points need $-1\\le x\\le 0$ or $x\\ge 1$. The curve is symmetric in the $x$-axis and crosses it at $x=-1,0,1$ with vertical tangents there. It consists of a closed oval over $[-1,0]$ and an unbounded branch for $x\\ge 1$ growing like $\\pm x^{3/2}$. It is an elliptic curve.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p49"
+ },
+ {
+  "q": "How many real solutions does $e^x=x^2$ have?",
+  "kind": "maths",
+  "answer": "Exactly one, and it is negative (about $-0.70$). For $x>0$, $g(x)=\\frac{e^x}{x^2}$ has minimum $g(2)=\\frac{e^2}{4}>1$, so there are no positive solutions. For $x<0$, $h(x)=e^x-x^2$ is strictly increasing with $h(-1)<0<h(0)$, so there is exactly one root, between $-1$ and $0$.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p49"
+ }
+]

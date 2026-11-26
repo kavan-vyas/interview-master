@@ -1,0 +1,93 @@
+id: sum-k-times-k-factorial-2
+title: Sum of k times k factorial
+topics:
+- factorials
+- telescoping sums
+- induction
+- conjecture
+warmup: false
+answer_source: generated
+statement: Conjecture and prove a formula for $1\times1!+2\times2!+3\times3!+\cdots+n\times n!$.
+stages:
+- goal: Compute the first few partial sums and conjecture a closed form.
+  expected: The partial sums are 1, 5, 23, 119, and they match (n+1)! - 1, so the conjecture is S_n =
+    (n+1)! - 1.
+  solution: 'S_1 = 1 = 2! - 1, S_2 = 1+4 = 5 = 3! - 1, S_3 = 23 = 4! - 1 + ... Check: 4! - 1 = 23 and
+    S_3 = 1+4+18 = 23. Pattern: S_n = (n+1)! - 1.'
+  common_errors:
+  - Conjecturing n! - 1 or (n-1)! - 1 by an off-by-one error.
+  - Checking only n=1 and claiming a formula.
+  - Miscalculating a term such as 3 times 3! as 15 instead of 18.
+  hints:
+    rephrase: Compute the partial sums for n=1, 2, 3 and compare them with factorials.
+    smaller_case: Find S_2 = 1 times 1! plus 2 times 2!, and see which factorial it is close to.
+    key_idea: Compare partial sums with factorials of nearby size and check how they relate to the factorial
+      of a neighbouring index.
+  check: sum(sp.Integer(k)*sp.factorial(k) for k in range(1,5)) - (sp.factorial(5)-1)
+  check_ok: null
+- goal: Prove the key identity that k times k! equals (k+1)! minus k!.
+  expected: (k+1)! - k! = k! (k+1-1) = k * k!, so k * k! = (k+1)! - k!.
+  solution: (k+1)! = (k+1) k!, so (k+1)! - k! = k! ((k+1) - 1) = k * k!.
+  common_errors:
+  - Writing (k+1)! - k! = (k+1)k! instead of factoring out k!.
+  - Off-by-one in the index, giving k * k! = (k+2)! - (k+1)!.
+  - Failing to check the identity at k=1 or k=2.
+  hints:
+    rephrase: Write (k+1)! in terms of k! and factor.
+    smaller_case: For k=2, compare 2 * 2! with 3! - 2!.
+    key_idea: Factor the difference of two consecutive factorials.
+  check: sp.expand_func(sp.factorial(sp.Symbol('n')+1)-sp.factorial(sp.Symbol('n'))-sp.Symbol('n')*sp.factorial(sp.Symbol('n')))
+  check_ok: null
+- goal: Sum the identity from k=1 to n, telescope, and state the formula.
+  expected: The sum telescopes to (n+1)! - 1! = (n+1)! - 1, confirming the conjecture.
+  solution: 'sum_{k=1}^{n} k*k! = sum_{k=1}^{n} ((k+1)! - k!) = (n+1)! - 1!. Since 1! = 1, the sum is
+    (n+1)! - 1. Check n=6: 5039 = 7! - 1.'
+  common_errors:
+  - Ending with (n+1)! - 0! instead of 1!, which gives the same value but muddles the telescope.
+  - Forgetting that the first term cancels only with the right index.
+  - Stopping at the telescoped expression without substituting the base value.
+  hints:
+    rephrase: Write out the terms of the sum for the identity and see what cancels.
+    smaller_case: Telescope the sum for n=2 and compare with (2+1)! - 1.
+    key_idea: Consecutive terms cancel, so only the first and last factorials remain.
+  check: sum(sp.Integer(k)*sp.factorial(k) for k in range(1,7)) - (sp.factorial(7)-1)
+  check_ok: null
+extensions:
+  '3':
+  - Find a closed form for the sum from k=1 to n of k^2 times k!, or argue that none simple exists.
+  '4':
+  - Conjecture a closed form for the sum from k=1 to n of k/(k+1)!, then prove it.
+  '5':
+  - Prove the formula for the sum of k times k! by induction, then compare the effort with the telescoping
+    proof.
+spoken_vocab:
+- sum from k equals one to n
+- k times k factorial
+- n factorial
+- n plus one factorial
+- telescoping sum
+- partial sum
+- conjecture
+- induction
+- closed form
+- one factorial
+- minus one
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 3
+  parts: 3
+  minutes: 10
+  flags: []
+  tagline: Conjecture-then-telescope with a clean identity and natural extensions.
+  priority: 81
+  rank: 211
+  tier: B
+  category: tbo
+  d10: 4.5
+  real: 5.0
+  by: haiku
+tags:
+- sequences_and_series
+- proof

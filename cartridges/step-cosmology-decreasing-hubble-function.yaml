@@ -1,0 +1,117 @@
+id: step-cosmology-decreasing-hubble-function
+title: 'Cosmological radius: showing the Hubble-type function is decreasing'
+topics:
+- differentiation
+- quotient rule
+- concavity
+- mean value theorem
+- monotonicity
+warmup: false
+answer_source: generated
+statement: 'In a cosmological model, the radius $R$ of the universe is a function of the age $t$ of the
+  universe. The function $R$ satisfies the three conditions: $R(0) = 0$, $R''(t) > 0$ for $t > 0$, $R''''(t)
+  < 0$ for $t > 0$, where $R''''$ denotes the second derivative of $R$. The function $H$ is defined [SOURCE
+  TEXT TRUNCATED HERE. This cartridge assumes $H(t) = \frac{R''(t)}{R(t)}$ and that the task is to show
+  that $H$ is strictly decreasing for $t > 0$. Verify both against the PDF before use.]'
+stages:
+- goal: Differentiate $H(t) = \frac{R'(t)}{R(t)}$ and express $H'(t)$ in terms of $R$, $R'$, $R''$.
+  expected: $H'(t) = \frac{R(t)R''(t) - (R'(t))^2}{(R(t))^2}$.
+  solution: By the quotient rule, $H'(t) = \frac{R''(t)R(t) - R'(t)R'(t)}{(R(t))^2} = \frac{R(t)R''(t)
+    - (R'(t))^2}{(R(t))^2}$.
+  common_errors:
+  - Forgetting to differentiate the denominator, or treating $R$ as constant.
+  - Applying the quotient rule with the numerator and denominator swapped.
+  - Dropping the square on $R'$ in the numerator.
+  hints:
+    rephrase: Use the quotient rule on $R'(t)$ divided by $R(t)$.
+    smaller_case: Take $R(t) = t^2 + 1$ and differentiate $R'(t)/R(t)$ directly to check your general
+      formula.
+    key_idea: 'Quotient rule: $(u/v)'' = (u''v - uv'')/v^2$ with $u = R''$ and $v = R$.'
+  check: simplify(diff(Derivative(R(t), t)/R(t), t) - (R(t)*Derivative(R(t), (t, 2)) - Derivative(R(t),
+    t)**2)/R(t)**2) == 0
+  check_ok: true
+- goal: Show that $R(t) > 0$ for $t > 0$.
+  expected: By the mean value theorem on $[0, t]$, $R(t) - R(0) = tR'(\xi)$ for some $\xi \in (0, t)$.
+    Since $R(0) = 0$ and $R'(\xi) > 0$, we get $R(t) > 0$.
+  solution: Since $R$ is differentiable, the mean value theorem gives $\frac{R(t) - R(0)}{t - 0} = R'(\xi)$
+    for some $\xi$ with $0 < \xi < t$. Then $R(t) = tR'(\xi)$. Here $t > 0$ and $R'(\xi) > 0$ because
+    $\xi > 0$, so $R(t) > 0$.
+  common_errors:
+  - Assuming $R(t) > 0$ without justification.
+  - Applying the mean value theorem with an interval that does not include $0$.
+  - Forgetting that $R'(\xi) > 0$ requires $\xi > 0$.
+  hints:
+    rephrase: Since $R(0)=0$, how can you relate $R(t)$ to a derivative on $[0,t]$?
+    smaller_case: Take $R(t) = t$ and check that $R(t) > 0$ for $t > 0$.
+    key_idea: The mean value theorem turns the given sign of $R'$ into a sign for $R$.
+  check: None
+  check_ok: null
+- goal: Use the previous results to show that $H'(t) < 0$ for $t > 0$, so $H$ is strictly decreasing.
+  expected: For $t > 0$, $R(t) > 0$ and $R''(t) < 0$, so $R(t)R''(t) < 0$. Also $(R'(t))^2 > 0$, so the
+    numerator is negative. Since the denominator is positive, $H'(t) < 0$, and $H$ is strictly decreasing
+    for $t > 0$.
+  solution: The numerator $R R'' - (R')^2$ is the sum of $R R''$, which is negative because $R>0$ and
+    $R''<0$, and $-(R')^2$, which is negative because $R' > 0$. So the numerator is negative. The denominator
+    $R^2$ is positive for $t > 0$. Hence $H'(t) < 0$ for all $t > 0$, and $H$ is strictly decreasing there.
+  common_errors:
+  - Concluding $H' < 0$ from $R'' < 0$ alone, without using $R > 0$ and $R' > 0$.
+  - Claiming $(R')^2 < 0$ because $R' > 0$ is a condition on the sign of $R'$ rather than its square.
+  - Missing that a negative derivative on an interval implies strict decrease.
+  hints:
+    rephrase: Look at the sign of each term in the numerator and the sign of the denominator.
+    smaller_case: Take $R(t) = t - t^2/10$ on a small interval and check the sign of $R R'' - (R')^2$.
+    key_idea: Combine the signs of $R$, $R''$ and $R'$ term by term in the numerator.
+  check: None
+  check_ok: null
+extensions:
+  '3':
+  - Show that $R'(t)/R(t) > 0$ and deduce a bound on $R(t)$ as $t$ grows.
+  - Explain why the sign conditions $R' > 0$ and $R'' < 0$ alone do not determine the sign of $H'(t)$
+    unless $R(t) > 0$ is also used.
+  '4':
+  - Show that $\frac{R(t)}{t}$ is decreasing for $t>0$ using the same conditions.
+  - Prove that $R'(t) < \frac{R(t)}{t}$ for $t > 0$ using the mean value theorem and concavity.
+  '5':
+  - Show that if $H(t) = R'(t)/R(t)$, then $H$ decreasing implies $R'(t)$ grows at most like $R(t)$ times
+    $H(t_0)$ on $[t_0, \infty)$.
+  - Generalise to $n$ times differentiable $R$ with $R^{(k)}(0)$ conditions and identify which conditions
+    are needed for the sign of the analogous quotient.
+spoken_vocab:
+- R of t
+- R dash of t
+- R double dash of t
+- H of t
+- H dash of t
+- R of zero equals zero
+- R dash of t greater than zero
+- R double dash of t less than zero
+- quotient rule
+- mean value theorem
+- strictly decreasing
+- concave
+- second derivative
+- numerator
+- denominator
+- for t greater than zero
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#7
+verified: false
+rating:
+  quality: 1
+  difficulty: 3
+  parts: 3
+  minutes: 8
+  flags:
+  - garbled
+  - missing_info
+  - trivial
+  tagline: Source truncated and H undefined; reduces to a one-line concavity argument.
+  priority: -3
+  rank: 714
+  tier: D
+  category: siklos
+  d10: 4.0
+  real: 5.0
+  by: haiku
+tags:
+- differentiation
+- proof

@@ -1,0 +1,114 @@
+id: symmetry-substitution-definite-integral
+title: 'Symmetry substitution: f(x)+f(a+b-x) and a reflected definite integral'
+topics:
+- definite integrals
+- substitution
+- symmetry
+- reflection property
+warmup: false
+answer_source: generated
+statement: Prove that for a continuous function $f$ on $[a,b]$, $\int_a^b f(x)\,dx=\int_a^b f(a+b-x)\,dx$.
+  Hence evaluate i) $I=\int_4^8\frac{\ln(9-x)}{\ln(9-x)+\ln(x-3)}\,dx$ and ii) $J=\int_0^{\frac{\pi}{2}}\frac{\sin^{2000}(\theta)}{\sin^{2000}(\theta)+\cos^{2000}(\theta)}\,d\theta$.
+stages:
+- goal: Prove the reflection identity for a continuous f on [a,b].
+  expected: Substitute u = a+b-x in the right-hand side; then dx = -du, the limits x=a to b become u=b
+    to a, the minus sign flips the limits back, and the integral becomes the left-hand side.
+  solution: Let u = a+b-x, so x = a+b-u and dx = -du. When x = a, u = b; when x = b, u = a. Then the right
+    side is the integral from x=a to x=b of f(a+b-x) dx, which becomes the integral from u=b to u=a of
+    f(u)(-du). Reversing the limits removes the minus sign, giving the integral from a to b of f(u) du,
+    which is the left side after renaming the variable. Continuity of f on [a,b] makes both integrals
+    exist and makes the substitution valid.
+  common_errors:
+  - Keeping the minus sign from dx = -du after the limits have already been reversed, which gives the
+    wrong sign.
+  - Substituting u = a-x or u = b-x, which does not map [a,b] onto itself.
+  - Claiming the identity needs f to be odd or even.
+  hints:
+    rephrase: Find a substitution that maps the interval [a,b] onto itself but runs it in reverse. Track
+      dx and the limits carefully.
+    smaller_case: Take f(x)=x on [0,2], so a+b=2. Compute both sides directly and compare them.
+    key_idea: Let u = a+b-x and treat the reversed limits and the sign of dx together.
+  check: null
+- goal: Evaluate I by pairing the integrand with its reflection.
+  expected: I = 2
+  solution: Here a=4, b=8, so a+b=12. Let f(x)=ln(9-x)/(ln(9-x)+ln(x-3)). Then f(12-x) = ln(x-3)/(ln(x-3)+ln(9-x)),
+    since 9-(12-x)=x-3 and (12-x)-3=9-x. Adding gives f(x)+f(12-x) = 1, with the denominators positive
+    on [4,8] (at x=4 the denominator is ln5, at x=8 it is ln5). By the identity from stage 1, 2I = integral
+    from 4 to 8 of [f(x)+f(12-x)] dx = integral from 4 to 8 of 1 dx = 4, so I = 2.
+  common_errors:
+  - Forgetting the factor 1/2 and answering I = 4.
+  - Making an algebra slip so that f(x)+f(12-x) is not 1.
+  - Not checking that the denominator is nonzero on the interval.
+  hints:
+    rephrase: Compare the integrand at x with its value at the reflected point 12 minus x.
+    smaller_case: Write p = ln(9-x) and q = ln(x-3), and simplify p/(p+q) and its reflection, which swaps
+      p and q.
+    key_idea: Pairing the integrand with its reflection can turn the integral into one with an easy integrand.
+  check: I - 2
+  check_ok: false
+- goal: Evaluate J using the reflection identity.
+  expected: J = pi/4
+  solution: Here a=0, b=pi/2, so a+b=pi/2. Let g(theta)=sin^2000(theta)/(sin^2000(theta)+cos^2000(theta)).
+    Then g(pi/2-theta) = cos^2000(theta)/(cos^2000(theta)+sin^2000(theta)). The two terms add to 1, and
+    the denominator is positive on [0,pi/2] because sin and cos never vanish together there. So 2J = integral
+    from 0 to pi/2 of 1 d(theta) = pi/2, giving J = pi/4. The exponent 2000 plays no role; any positive
+    exponent gives the same answer.
+  common_errors:
+  - Concluding that the exponent 2000 changes the value of J.
+  - Writing J = pi/2 by forgetting the factor 1/2.
+  - Not checking that the denominator is positive.
+  hints:
+    rephrase: Substitute theta with pi/2 minus theta and see what the integrand becomes.
+    smaller_case: Try the exponent 2 (sin^2 over sin^2 plus cos^2) and think about what the two integrands
+      add to.
+    key_idea: Reflecting theta to pi/2 minus theta swaps sin and cos, so the two integrands add to a constant.
+  check: J - pi/4
+  check_ok: false
+extensions:
+  '3':
+  - Evaluate the integral from 0 to 1 of x(1-x)^n dx by reflection, then check the answer for n=2.
+  - Show that the integral from 0 to pi of x sin(x) dx equals (pi/2) times the integral from 0 to pi of
+    sin(x) dx.
+  '4':
+  - Evaluate the integral from 0 to pi/2 of sin(x)/(sin(x)+cos(x)) dx and state the reason for your answer.
+  - For a continuous f on [0,1], evaluate the integral from 0 to pi of x f(sin(x)) dx in terms of the
+    integral from 0 to pi of f(sin(x)) dx.
+  '5':
+  - Use the reflection identity to evaluate the integral from 0 to 1 of ln(1+x) / (1+x^2) dx in terms
+    of pi and ln 2 by a suitable reflection.
+  - Find all continuous functions f with f(x)+f(a+b-x)=0 on [a,b] and show that the integral of f over
+    [a,b] is zero.
+spoken_vocab:
+- integral from a to b
+- f of x
+- f of a plus b minus x
+- continuous function
+- reflection
+- substitution u equals a plus b minus x
+- natural log of nine minus x
+- natural log of x minus three
+- sine to the power 2000 of theta
+- cosine to the power 2000 of theta
+- pi over two
+- pi over four
+- I equals two
+- J equals pi over four
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 3
+  minutes: 20
+  flags: []
+  tagline: Reflection identity proved, then applied to two integrals with neat pairing.
+  priority: 91
+  rank: 97
+  tier: A
+  category: tbo
+  d10: 4.0
+  real: 7.0
+  by: haiku
+tags:
+- integration
+- proof

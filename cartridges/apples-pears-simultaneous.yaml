@@ -1,0 +1,85 @@
+id: apples-pears-simultaneous
+title: 'Apples and pears: a pair of prices'
+topics:
+- simultaneous equations
+- linear equations
+- money and unit price
+warmup: true
+answer_source: pdf
+statement: Four apples and three pears cost £$3.20$, and five apples and two pears cost £$2.95$. How much
+  would it cost to buy one apple and one pear?
+stages:
+- goal: Find the price of one apple and the price of one pear.
+  expected: Apple costs £0.35 and pear costs £0.60.
+  solution: 'Let a be the price of an apple and p the price of a pear. Then 4a + 3p = 3.20 and 5a + 2p
+    = 2.95. Multiply the first by 2 and the second by 3: 8a + 6p = 6.40 and 15a + 6p = 8.85. Subtract:
+    7a = 2.45, so a = 0.35. Substitute into 4a + 3p = 3.20: 1.40 + 3p = 3.20, so p = 0.60.'
+  common_errors:
+  - Multiplying only one equation and then subtracting incorrectly
+  - Mixing up which price is which in the substitution
+  - Making an arithmetic slip with decimals such as 2.45 ÷ 7
+  hints:
+    rephrase: Let the unknown prices be letters, write two equations, and eliminate one of the letters.
+    smaller_case: Suppose apples cost the same as pears. What would one equation tell you about the common
+      price?
+    key_idea: Make the coefficient of one unknown the same in both equations, then subtract to eliminate
+      it.
+  check: (4*Rational(7,20) + 3*Rational(3,5) - Rational(16,5)) + (5*Rational(7,20) + 2*Rational(3,5) -
+    Rational(59,20))
+  check_ok: true
+- goal: Find the cost of one apple and one pear together.
+  expected: £0.95
+  solution: One apple and one pear cost 0.35 + 0.60 = £0.95.
+  common_errors:
+  - Reporting the answer in pence without the pound sign or vice versa
+  - Adding the wrong combination of prices
+  - Reporting the cost of two apples and one pear by mistake
+  hints:
+    rephrase: You now know the price of each fruit separately. What do you need to add together?
+    smaller_case: Work out the cost of a single apple and a single pear from your two prices, using the
+      given amounts only once each.
+    key_idea: Once each unknown is found, the total you want is just a sum of the individual values.
+  check: Rational(7,20) + Rational(3,5) - Rational(19,20)
+  check_ok: true
+extensions:
+  '3':
+  - Using the same prices, how much would two apples and two pears cost?
+  '4':
+  - If you only knew that four apples and three pears cost £3.20, could you find the price of one apple
+    and one pear? Explain your answer.
+  '5':
+  - Given ma + np = x and ka + lp = y, state a condition under which the sum a + p is uniquely determined.
+spoken_vocab:
+- four apples
+- three pears
+- five apples
+- two pears
+- three pounds twenty
+- two pounds ninety-five
+- pounds
+- pence
+- one apple and one pear
+- simultaneous equations
+- eliminate
+- substitute
+- multiply
+- subtract
+source: kclms/kclms-specimen-questions-2.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 2
+  minutes: 3
+  flags:
+  - trivial
+  tagline: Routine simultaneous equations; little discussion scope.
+  priority: 17
+  rank: 700
+  tier: D
+  category: kclms
+  d10: 1.5
+  real: 2.0
+  by: deepseek-v4.1-flash-free
+tags:
+- algebra_and_functions

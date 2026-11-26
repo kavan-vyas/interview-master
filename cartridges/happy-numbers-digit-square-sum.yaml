@@ -1,0 +1,147 @@
+id: happy-numbers-digit-square-sum
+title: Happy numbers and the digit square-sum map
+topics:
+- number theory
+- iteration
+- proof
+- sequences
+- digits
+warmup: false
+answer_source: pdf
+statement: For a whole number $n$, let $S(n)$ be the sum of the squares of the digits of $n$. For example,
+  $S(23)=2^2+3^2=13$. A number is called happy if repeatedly applying $S$ eventually gives $1$. For example,
+  $23\to13\to10\to1$, so $23$ is happy. (a) Work out $S(7)$ and $S(49)$. (b) Show that $44$ is happy.
+  (c) Show that $4$ is not happy. (d) Show that $22$ is not happy. (e) Show that if a number is happy,
+  then the number formed by writing a $0$ after any of its digits (for example $23$ gives $203$) is also
+  happy. Explain your answer.
+stages:
+- goal: 'Part (a): compute S(7) and S(49).'
+  expected: S(7) = 7^2 = 49. S(49) = 4^2 + 9^2 = 16 + 81 = 97.
+  solution: 'A one-digit number''s square-sum is just its square, so S(7)=49. For 49, square each digit
+    separately and add: 16+81=97.'
+  common_errors:
+  - Adding the digits instead of squaring them, e.g. S(49)=4+9=13.
+  - Squaring the whole number 49 instead of its digits, giving 2401.
+  - Arithmetic slips such as 4^2 = 8 or 9^2 = 18.
+  hints:
+    rephrase: S takes each digit on its own, squares it, and then adds the results.
+    smaller_case: Practise on a two-digit number with small digits, such as 3 or 12, before doing 49.
+    key_idea: Each digit is squared individually; the whole number is never squared.
+  check: (Integer(7)**2-49)**2+(Integer(4)**2+Integer(9)**2-97)**2
+  check_ok: true
+- goal: 'Part (b): show that 44 is happy by following the sequence of S-values until it reaches 1.'
+  expected: 44 -> 32 -> 13 -> 10 -> 1, since S(44)=32, S(32)=13, S(13)=10, S(10)=1.
+  solution: S(44)=16+16=32. S(32)=9+4=13. S(13)=1+9=10. S(10)=1+0=1. The sequence reaches 1, so 44 is
+    happy.
+  common_errors:
+  - Stopping before reaching 1, which does not show the number is happy.
+  - Using S(10)=10 or S(10)=0 instead of 1^2+0^2=1.
+  - Mis-squaring a digit inside a step.
+  hints:
+    rephrase: Apply S to 44, then apply S to the result, and keep going until you see a 1 or a repeat.
+    smaller_case: Work out S(12) completely to check the process before doing 44.
+    key_idea: A number is happy exactly when some finite run of S-steps lands on 1.
+  check: (Integer(4)**2+Integer(4)**2-32)**2+(Integer(3)**2+Integer(2)**2-13)**2+(Integer(1)**2+Integer(3)**2-10)**2+(Integer(1)**2-1)**2
+  check_ok: true
+- goal: 'Part (c): show that 4 is not happy by tracking its orbit under S until a repeat appears, with
+    no 1 reached.'
+  expected: 4 -> 16 -> 37 -> 58 -> 89 -> 145 -> 42 -> 20 -> 4. This is a cycle that never reaches 1, so
+    4 is not happy.
+  solution: 'Apply S repeatedly: S(4)=16, S(16)=37, S(37)=58, S(58)=89, S(89)=145, S(145)=42, S(42)=20,
+    S(20)=4. The value 4 recurs, so the sequence repeats forever and never equals 1.'
+  common_errors:
+  - Claiming 4 is unhappy because it 'looks small', without showing the orbit.
+  - Stopping after a few steps and not identifying the repeat.
+  - Errors in S(145)=1+16+25=42, or S(20)=4+0=4.
+  hints:
+    rephrase: Keep applying S. Watch for a value you have already seen.
+    smaller_case: Try the orbit of 2 to see how a repeat shows up.
+    key_idea: If the orbit enters a repeating cycle that does not contain 1, the number can never be happy.
+  check: (Integer(4)**2-16)**2+(Integer(1)**2+Integer(6)**2-37)**2+(Integer(3)**2+Integer(7)**2-58)**2+(Integer(5)**2+Integer(8)**2-89)**2+(Integer(8)**2+Integer(9)**2-145)**2+(Integer(1)**2+Integer(4)**2+Integer(5)**2-42)**2+(Integer(4)**2+Integer(2)**2-20)**2+(Integer(2)**2+Integer(0)**2-4)**2
+  check_ok: true
+- goal: 'Part (d): show that 22 is not happy by linking its orbit to the cycle found in part (c).'
+  expected: 22 -> 8 -> 64 -> 52 -> 29 -> 85 -> 89. Since 89 lies in the cycle from part (c), 22 never
+    reaches 1 and is not happy.
+  solution: S(22)=8, S(8)=64, S(64)=52, S(52)=29, S(29)=85, S(85)=89. The value 89 is in the cycle 89
+    -> 145 -> 42 -> 20 -> 4 -> 16 -> 37 -> 58 -> 89, which never contains 1. So 22 is not happy.
+  common_errors:
+  - Concluding 22 is unhappy without reaching a known unhappy value.
+  - Arithmetic slips such as S(52)=25+4=28 instead of 29.
+  - Forgetting that 89 is in the cycle, so the argument is not complete.
+  hints:
+    rephrase: Apply S to 22 repeatedly and check whether you land on a number you already know is part
+      of a loop avoiding 1.
+    smaller_case: Check the first two steps from 22 and see where they go.
+    key_idea: Once an orbit enters a known cycle that avoids 1, it can never come back to 1.
+  check: (Integer(2)**2+Integer(2)**2-8)**2+(Integer(8)**2-64)**2+(Integer(6)**2+Integer(4)**2-52)**2+(Integer(5)**2+Integer(2)**2-29)**2+(Integer(2)**2+Integer(9)**2-85)**2+(Integer(8)**2+Integer(5)**2-89)**2
+  check_ok: true
+- goal: 'Part (e): prove that writing a 0 after any digit of a happy number gives another happy number.'
+  expected: Writing a 0 adds a digit with square 0^2=0, so S(n') = S(n) for the new number n'. Then the
+    orbit of n' is n' -> S(n) -> S(S(n)) -> ... So if n reaches 1 after k steps, n' reaches 1 after k+1
+    steps, and n' is happy. For example, S(203)=4+0+9=13=S(23).
+  solution: Let n be happy and n' be n with a 0 inserted anywhere. The digits of n' are those of n plus
+    one extra digit 0, and 0^2=0, so S(n')=S(n). Let m be the number of S-steps taking n to 1, so S^m(n)=1.
+    Then S(n') = S(n), so S^(m+1)(n') = S^m(n) = 1. Hence n' is happy.
+  common_errors:
+  - Checking one example, such as 23 -> 203, and calling it a proof.
+  - Saying a zero changes the digit sum, when 0^2=0 contributes nothing.
+  - Only considering appending at the end, and not inserting in the middle.
+  - Not connecting S(n')=S(n) to the full orbit reaching 1.
+  hints:
+    rephrase: Compare S of the original number with S of the number after the 0 is added. What does the
+      new digit contribute?
+    smaller_case: Compare S(23) with S(203) and S(230) and see what changes.
+    key_idea: A zero digit contributes nothing to the sum of squares, so the first step gives the same
+      value, and the rest of the orbit is unchanged.
+  check: Integer(2)**2+Integer(0)**2+Integer(3)**2-(Integer(2)**2+Integer(3)**2)
+  check_ok: true
+extensions:
+  '3':
+  - Show that 7 is happy by following its orbit under S until it reaches 1.
+  '4':
+  - Prove that every unhappy number eventually enters the cycle containing 4 (or equivalently 89).
+  '5':
+  - Prove that for any whole number n with at least 4 digits, S(n) < n, and use this to explain why every
+    number with at least 4 digits eventually enters a cycle of values below 1000.
+spoken_vocab:
+- S of n
+- happy number
+- sum of the squares of the digits
+- digit
+- square
+- two squared
+- three squared
+- four squared
+- nine squared
+- arrow one
+- arrow ten
+- zero
+- cycle
+- orbit
+- happy
+- not happy
+- forty four
+- twenty two
+- one hundred forty five
+- two hundred and three
+- twenty three
+- proof
+source: kclms/kclms-specimen-questions-4.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 3
+  parts: 5
+  minutes: 15
+  flags: []
+  tagline: Clean orbit computations; part (e) has a neat zero-insertion invariance insight.
+  priority: 73
+  rank: 298
+  tier: B
+  category: kclms
+  d10: 4.0
+  real: 7.0
+  by: deepseek-v4.1-flash-free
+tags:
+- number_theory
+- proof

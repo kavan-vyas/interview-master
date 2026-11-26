@@ -1,0 +1,69 @@
+id: sum-of-equal-powers-of-three
+title: Sum of three equal powers of 3
+topics:
+- indices
+- powers
+warmup: true
+answer_source: pdf
+statement: What is the value of $3^{12} + 3^{12} + 3^{12}$?
+stages:
+- goal: Simplify the sum of three identical terms into a single power of 3.
+  expected: 3^13
+  solution: Three copies of 3^12 make 3 x 3^12 = 3^(12+1) = 3^13.
+  common_errors:
+  - Writing 3^36 by multiplying the exponents, or adding them as 12 x 3
+  - Leaving the answer as 3^12 x 3 without combining the powers
+  - Treating the sum as 3^12 cubed
+  hints:
+    rephrase: How many copies of the same number are being added, and can that count be written as a power
+      of 3?
+    smaller_case: Write 2^5 + 2^5 + 2^5 as a single power of 2.
+    key_idea: Adding identical terms is multiplication by the number of terms. Then use the rule for multiplying
+      powers with the same base.
+  check: 3**12 + 3**12 + 3**12 - 3**13
+  check_ok: true
+- goal: Evaluate the result as a whole number to confirm it.
+  expected: '1594323'
+  solution: 3^13 = 1594323, since 3^10 = 59049 and 59049 x 27 = 1594323.
+  common_errors:
+  - Arithmetic slip when multiplying 59049 by 27
+  - Confusing 3^13 with 3^12 = 531441
+  hints:
+    rephrase: Split 3^13 into a power you know times the remaining factors.
+    smaller_case: What is 3^3 as a whole number?
+    key_idea: Build up from a power you already know, such as 3^10, then multiply by the remaining factors
+      of 3.
+  check: 3**13 - 1594323
+  check_ok: true
+extensions:
+  '3':
+  - Write 5^20 + 5^20 + 5^20 + 5^20 + 5^20 as a single power of 5.
+  '4':
+  - Simplify 2^n + 2^n + 2^n + 2^n in terms of n, and state the answer as a power of 2.
+  '5':
+  - Explain why k x 3^12 is a power of 3 only when k is itself a power of 3.
+spoken_vocab:
+- three to the power of twelve
+- plus
+- three to the power of thirteen
+- three to the power of thirty-six
+- one million, five hundred and ninety-four thousand, three hundred and twenty-three
+source: kclms/kclms-specimen-mcq-4.pdf#0
+verified: false
+rating:
+  quality: 1
+  difficulty: 2
+  parts: 2
+  minutes: 2
+  flags:
+  - trivial
+  tagline: Pure index arithmetic with no reasoning or discussion beyond evaluation.
+  priority: 7
+  rank: 711
+  tier: D
+  category: kclms
+  d10: 1.0
+  real: 2.0
+  by: haiku
+tags:
+- algebra_and_functions

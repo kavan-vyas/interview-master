@@ -1,0 +1,95 @@
+id: weekday-3-april-1905
+title: Weekday of 3 April 1905
+topics:
+- number theory
+- modular arithmetic
+- calendar arithmetic
+warmup: true
+answer_source: pdf
+statement: On what day of the week did $3$ April $1905$ fall, given that $26$ June $1992$ was a Friday?
+stages:
+- goal: Find how many days lie from 3 April 1905 to 26 June 1992, and reduce that count modulo 7.
+  expected: 31861 days, which is 4 mod 7 (since 7 × 4551 = 31857).
+  solution: 'Count from 3 April 1905 to 3 April 1992: that is 87 years, and the leap days in that span
+    are the 22 Februaries 29 from 1908 to 1992 inclusive (1900 is not a leap year and 1992 is). So the
+    count is 87 × 365 + 22 = 31777 days. From 3 April 1992 to 26 June 1992: 27 days remaining in April,
+    31 in May, and 26 in June, giving 84. Total = 31777 + 84 = 31861. Then 31861 = 7 × 4551 + 4, so the
+    remainder is 4.'
+  common_errors:
+  - Forgetting one or more leap days, especially 1908 or 1992 at the ends of the range.
+  - Treating 1900 as a leap year.
+  - Off-by-one errors from counting the start or end date twice or not at all.
+  - Using 87 years and 22 leap years but then miscounting the months between 3 April and 26 June.
+  hints:
+    rephrase: The weekday only depends on how many days separate the two dates. What quantity mod 7 do
+      you need to compute?
+    smaller_case: Start with a single year, say from 3 April to 3 April a year later. How many days is
+      that, and does a leap day change it?
+    key_idea: Work out the exact day gap between the two dates, then only its remainder upon division
+      by 7 matters.
+  check: Mod(d, 7) - 4
+  check_ok: false
+- goal: Deduce the weekday of 3 April 1905 from the day gap and the known Friday.
+  expected: Monday.
+  solution: '26 June 1992 is 4 days after 3 April 1905 in the weekday cycle (remainder 4). Going back
+    4 days from Friday: Thursday (1), Wednesday (2), Tuesday (3), Monday (4). So 3 April 1905 was a Monday.'
+  common_errors:
+  - Adding 4 days instead of subtracting them, giving Tuesday.
+  - Miscounting the steps backwards from Friday, e.g. landing on Sunday.
+  - Using the total day count rather than its remainder mod 7 when stepping through the week.
+  hints:
+    rephrase: The known date is later than the date you want. In which direction do you step through the
+      days of the week?
+    smaller_case: If 3 April 1905 were exactly 7 days before 26 June 1992 in weekday terms, what day would
+      it be? Now consider a gap of only 1 day.
+    key_idea: Step through the week one day at a time, going backwards from the known Friday by the remainder
+      you found in the previous stage.
+  check: Mod(day_index - 1, 7)
+  check_ok: false
+extensions:
+  '3':
+  - Find the weekday of your own birthday in 1905 using the same method, and explain why only the residue
+    of the day gap matters.
+  - 'Check your answer against the Doomsday rule: which day is 4 April in 1905?'
+  '4':
+  - Show that the weekday of a fixed calendar date repeats every 400 years in the Gregorian calendar,
+    and explain why.
+  - Why does the Gregorian calendar treat 1900 differently from 2000, and how does that change the day
+    count from 1905 to 1992?
+  '5':
+  - Prove that the weekday function of the Gregorian calendar is periodic with period 146097 days and
+    deduce why that is a multiple of 7.
+  - Given a sequence of dates, design an algorithm that computes weekdays in constant time per date and
+    state its correctness argument.
+spoken_vocab:
+- three April nineteen oh five
+- twenty six June nineteen ninety two
+- Friday
+- Monday
+- modulo seven
+- remainder
+- leap year
+- common year
+- days between dates
+- Gregorian calendar
+- nineteen hundred
+- eighty seven years
+- thirty one thousand eight hundred and sixty one days
+source: step1/Approachable STEP I paper.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 4
+  parts: 2
+  minutes: 8
+  flags: []
+  tagline: Mechanical calendar counting; the leap-year trap is the only discussion point.
+  priority: 35
+  rank: 591
+  tier: D
+  category: step1
+  d10: 3.5
+  real: 4.0
+  by: haiku
+tags:
+- number_theory

@@ -1,0 +1,134 @@
+id: stationary-points-and-surfaces
+title: Stationary points and surfaces
+topics:
+- calculus
+- stationary points
+- differentiability
+- multivariable surfaces
+warmup: false
+answer_source: generated
+statement: (a) What is a stationary point? (Can you differentiate at $x=0$?) (b) Draw $y=|x|$. Does this
+  have a stationary point? (c) Draw $y=x|x|$. Does this have a stationary point? (d) Sketch the 3D surfaces
+  $z=x^2+y^2$ and $z=x^2-y^2$.
+stages:
+- goal: (a) Define a stationary point. Can you differentiate y = |x| at x = 0?
+  expected: 'A stationary point is a point on the graph where the function is differentiable and dy/dx
+    = 0 (a horizontal tangent). For y = |x| you cannot differentiate at x = 0: the right-hand derivative
+    is +1 and the left-hand derivative is -1.'
+  solution: A stationary point is (a, f(a)) where f is differentiable at a and f'(a) = 0. For |x| at 0,
+    the difference quotient |h|/h is +1 for h > 0 and -1 for h < 0. The one-sided limits differ, so |x|
+    is not differentiable at 0, and 0 is not a stationary point in the derivative sense.
+  common_errors:
+  - Calling any flat-looking point a stationary point without checking differentiability
+  - Saying the derivative at 0 is 0 because |x| is symmetric
+  - Confusing a stationary point with a turning point
+  hints:
+    rephrase: A stationary point is where the gradient of the curve is zero. First ask whether the gradient
+      exists at the point.
+    smaller_case: Compare the slope of y = |x| at x = 0.1 with the slope at x = -0.1.
+    key_idea: A function is differentiable at a point when the left and right limits of the difference
+      quotient agree.
+  check: Ne(limit(Abs(x)/x, x, 0, '+'), limit(Abs(x)/x, x, 0, '-'))
+  check_ok: true
+- goal: (b) Draw y = |x|. Does it have a stationary point?
+  expected: No. For x > 0 the slope is 1 and for x < 0 the slope is -1. The point x = 0 is a corner where
+    the derivative does not exist, so there is no point with zero gradient.
+  solution: y = |x| equals x for x >= 0 and -x for x < 0. The slopes are +1 and -1, which are never zero.
+    The minimum at (0, 0) is a corner, not a stationary point, because f' does not exist there.
+  common_errors:
+  - Saying (0, 0) is stationary because it is the minimum
+  - Forgetting that a stationary point needs the derivative to exist and equal zero
+  - Thinking y = |x| has a horizontal tangent at the origin
+  hints:
+    rephrase: Split |x| into two linear pieces and look at the slope of each piece.
+    smaller_case: Look at y = |x| for x between 1 and 2, then for x between -2 and -1. What slope do you
+      see in each?
+    key_idea: Stationary points need f'(x) = 0. Check the derivative on each side of 0 and whether it
+      is defined at 0.
+  check: And(Ne(1, 0), Ne(-1, 0))
+  check_ok: true
+- goal: (c) Draw y = x|x|. Does it have a stationary point?
+  expected: Yes, at the origin. For x >= 0 the function is x^2 with slope 2x, and for x < 0 it is -x^2
+    with slope -2x. Both pieces give slope 2|x|, which is 0 at x = 0. The derivative exists there, so
+    (0, 0) is a stationary point (a flat inflection point).
+  solution: y = x|x| equals x^2 for x >= 0 and -x^2 for x < 0. Its derivative is 2x for x >= 0 and -2x
+    for x < 0, that is 2|x|. This is continuous and equals 0 at x = 0, and both one-sided derivatives
+    at 0 are 0, so the derivative exists everywhere. The origin is therefore a stationary point. The second
+    derivative 2 sign(x) changes sign there, so it is a stationary point of inflection.
+  common_errors:
+  - Saying there is no stationary point because the graph has no peak or trough
+  - Forgetting to check that the derivative exists at 0 (it does here)
+  - Differentiating x|x| as if it were x^2 everywhere
+  hints:
+    rephrase: Write x|x| as a piecewise function before differentiating.
+    smaller_case: Differentiate y = x|x| separately near x = 1 and near x = -1.
+    key_idea: Check whether the one-sided derivatives agree at 0, and then whether their common value
+      is zero.
+  check: Piecewise((2*x, x>=0), (-2*x, x<0)).subs(x, 0)
+  check_ok: true
+- goal: (d) Sketch z = x^2 + y^2 and z = x^2 - y^2. What kind of stationary point is the origin for each?
+  expected: 'z = x^2 + y^2 is an upward-opening paraboloid (bowl) with a minimum at the origin. z = x^2
+    - y^2 is a saddle: it rises along the x-axis, falls along the y-axis, and is flat at the origin. Its
+    zero level set is the pair of lines y = x and y = -x.'
+  solution: Both surfaces have zero gradient at the origin, so it is a stationary point of each. For x^2
+    + y^2 the Hessian is diag(2, 2), which is positive definite, so the origin is a local minimum, and
+    the cross-sections are parabolas. For x^2 - y^2 the Hessian is diag(2, -2), which is indefinite, so
+    the origin is a saddle point. Along the x-axis z = x^2 has a minimum, and along the y-axis z = -y^2
+    has a maximum.
+  common_errors:
+  - Saying the origin of x^2 - y^2 is a minimum or maximum
+  - Sketching z = x^2 - y^2 as a bowl because it is quadratic
+  - Forgetting that the zero level set of the saddle is the lines y = x and y = -x
+  hints:
+    rephrase: Set y = 0 and then x = 0 to see the cross-sections of each surface.
+    smaller_case: For z = x^2 - y^2, what is z when y = 0? What is z when x = 0?
+    key_idea: Compare the signs of the second derivatives in x and y. Same signs give a bowl; opposite
+      signs give a saddle.
+  check: Matrix([[diff(x**2-y**2,x,2), diff(x**2-y**2,x,y)],[diff(x**2-y**2,y,x), diff(x**2-y**2,y,2)]]).det()
+    + 4
+  check_ok: true
+extensions:
+  '3':
+  - Sketch the level curves of z = x^2 - y^2 and explain what they show about the saddle.
+  '4':
+  - Find and classify the stationary points of y = x^3 - 3x.
+  '5':
+  - Is y = x|x| twice differentiable at x = 0? Justify your answer.
+spoken_vocab:
+- stationary point
+- derivative
+- gradient
+- modulus of x
+- x times modulus of x
+- z equals x squared plus y squared
+- z equals x squared minus y squared
+- saddle
+- paraboloid
+- turning point
+- differentiable
+- left-hand limit
+- right-hand limit
+- Hessian
+- horizontal tangent
+- inflection point
+- level curve
+source: past-interviews/Actual Past Interview Questions/F2u.jpg
+verified: false
+rating:
+  quality: 6
+  difficulty: 2
+  parts: 4
+  minutes: 15
+  flags:
+  - needs_diagram
+  tagline: Non-differentiable stationary points and saddle surfaces; good conceptual probing.
+  priority: 64
+  rank: 400
+  tier: C
+  category: past-interviews
+  d10: 2.5
+  real: 6.5
+  by: haiku
+tags:
+- differentiation
+- curve_sketching

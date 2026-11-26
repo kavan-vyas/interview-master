@@ -1,0 +1,108 @@
+id: area-regular-polygon-inscribed-circle
+title: Area of a regular n-gon inscribed in a circle
+topics:
+- geometry
+- trigonometry
+- regular polygons
+- circles
+- area
+warmup: true
+answer_source: generated
+statement: What is the area of an $n$-sided regular polygon inscribed within a circle of radius $R$?
+stages:
+- goal: Split the polygon into congruent triangles with the centre as a common vertex, and find the area
+    of one triangle.
+  expected: Each triangle has two sides equal to $R$ and included angle $\frac{2\pi}{n}$, so its area
+    is $T = \frac{1}{2}R^2\sin\left(\frac{2\pi}{n}\right)$.
+  solution: Join the centre $O$ to every vertex. This gives $n$ congruent isosceles triangles, since all
+    sides of the polygon are equal and all radii are $R$. The full angle at the centre is $2\pi$, so each
+    central angle is $\theta = \frac{2\pi}{n}$. For one triangle with sides $R$, $R$ and included angle
+    $\theta$, the area formula $\frac{1}{2}ab\sin C$ gives $T = \frac{1}{2}R^2\sin\left(\frac{2\pi}{n}\right)$.
+  common_errors:
+  - Using $\sin\left(\frac{\pi}{n}\right)$, which is the half-angle, instead of $\sin\left(\frac{2\pi}{n}\right)$.
+  - Treating $R$ as the diameter, which gives a factor of 4 instead of $\frac{1}{2}$.
+  - Using degrees for the angle inside a radian-based sine without converting ($\frac{360}{n}$ versus
+    $\frac{2\pi}{n}$).
+  - Taking the side of the polygon as $R$ rather than the radius.
+  hints:
+    rephrase: Connect the centre of the circle to each vertex. What shapes do you get, and what do you
+      know about two of their sides and the angle between them?
+    smaller_case: Try an equilateral triangle first (n = 3). What is the central angle at the centre,
+      and what is the area of one of the three triangles?
+    key_idea: The polygon is a union of identical triangles meeting at the centre. Area of a triangle
+      with two sides a and b and included angle C is $\frac{1}{2}ab\sin C$.
+  check: simplify(T - R**2*sin(2*pi/n)/2)
+  check_ok: false
+- goal: Combine the triangles to get the total area of the polygon.
+  expected: $A = \frac{n}{2}R^2\sin\left(\frac{2\pi}{n}\right)$
+  solution: The polygon is made of $n$ non-overlapping triangles, each with area $T$ from the previous
+    stage. So $A = nT = n \cdot \frac{1}{2}R^2\sin\left(\frac{2\pi}{n}\right) = \frac{n}{2}R^2\sin\left(\frac{2\pi}{n}\right)$.
+  common_errors:
+  - Forgetting to multiply by $n$ and giving only the area of one triangle.
+  - Multiplying by $n$ twice, or mixing up $n$ and $\frac{1}{n}$.
+  - Dropping the factor $\frac{1}{2}$ when combining.
+  hints:
+    rephrase: How many of these triangles make up the whole polygon, and do they overlap or leave gaps?
+    smaller_case: For a square (n = 4), how many triangles meet at the centre? Add their areas and see
+      what the total looks like.
+    key_idea: The total area is the sum of the areas of the non-overlapping pieces. The pieces are all
+      congruent, so the sum is a multiple of one piece.
+  check: simplify(A - n*R**2*sin(2*pi/n)/2)
+  check_ok: false
+extensions:
+  '3':
+  - Show that as $n \to \infty$ the area tends to $\pi R^2$, the area of the circle.
+  - Use the limit $\lim_{x\to 0}\frac{\sin x}{x} = 1$ to justify the limit in the previous question.
+  '4':
+  - Express the area of the inscribed polygon in terms of its perimeter $P$ and its apothem $a$.
+  - Show that the area of the inscribed polygon is always less than $\pi R^2$ for every $n \ge 3$.
+  '5':
+  - Find the area of the circumscribed regular $n$-gon with the same circle as its incircle or with circumradius
+    $R$, and show that it equals $nR^2\tan\left(\frac{\pi}{n}\right)$ when the circle is the incircle
+    of radius $R$.
+  - Using the inscribed and circumscribed areas, derive a bound on $\pi$ for a given $n$, and state which
+    $n$ gives a useful bound for $\pi$ to two decimal places.
+spoken_vocab:
+- n
+- R
+- A
+- T
+- regular polygon
+- inscribed
+- circumscribed
+- circle
+- radius
+- centre
+- area
+- sine
+- two pi over n
+- pi
+- half
+- half n
+- sides
+- isosceles triangle
+- central angle
+- included angle
+- apothem
+- perimeter
+- tangent
+- limit
+source: nextstepmaths/NextStepMaths Interview Questions/interview-question-4.pdf#0
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 2
+  minutes: 5
+  flags: []
+  tagline: Classic triangle decomposition; leads to limit πR² discussion.
+  priority: 45
+  rank: 556
+  tier: C
+  category: nextstepmaths
+  d10: 3.0
+  real: 7.0
+  by: deepseek-v4.1-flash-free
+tags:
+- geometry
+- trigonometry

@@ -1,0 +1,133 @@
+id: floor-integral-factorial-bound
+title: Floor function integrals and a factorial bound
+topics:
+- floor function
+- integration of step functions
+- telescoping sums
+- logarithms
+- inequalities
+- factorial bounds
+warmup: false
+answer_source: generated
+statement: For any number $x$, the largest integer less than or equal to $x$ is denoted by $[x]$. (i)
+  Sketch the graph of $y=[x]$ for $0\leq x<5$ and evaluate $\int_0^5 [x]\,dx$. (ii) Sketch the graph of
+  $y=[e^x]$ for $0\leq x<\ln n$, where $n$ is an integer, and show that $\int_0^{\ln n}[e^x]\,dx=n\ln
+  n-\ln(n!)$. Hence show that $n!\geq n^n e^{1-n}$.
+stages:
+- goal: Sketch $y=[x]$ on $0\leq x<5$ and evaluate $\int_0^5 [x]\,dx$.
+  expected: The integral equals 10.
+  solution: 'On each interval $[k,k+1)$ for $k=0,1,2,3,4$, $[x]=k$. The graph is a step function: a horizontal
+    segment at height 0 on $[0,1)$, height 1 on $[1,2)$, height 2 on $[2,3)$, height 3 on $[3,4)$, and
+    height 4 on $[4,5)$, each with open right end. Each step has width 1, so $\int_0^5 [x]\,dx = \sum_{k=0}^{4}
+    k\cdot 1 = 0+1+2+3+4 = 10$.'
+  common_errors:
+  - Using $[x]=x$ or rounding to the nearest integer instead of taking the floor.
+  - Miscounting the widths of the steps, e.g. treating the last step as width 0 or width 5.
+  - Adding the heights without multiplying each by its width.
+  hints:
+    rephrase: On which intervals is $[x]$ constant, and what constant value does it take on each?
+    smaller_case: Consider only $0\leq x<2$. What is $\int_0^2 [x]\,dx$, and how does the same idea extend
+      to $0\leq x<5$?
+    key_idea: The integral of a step function is the sum of (height on each step) times (width of that
+      step).
+  check: ANSWER - 10
+  check_ok: false
+- goal: Sketch $y=[e^x]$ on $0\leq x<\ln n$ and show that $\int_0^{\ln n}[e^x]\,dx=n\ln n-\ln(n!)$.
+  expected: $\int_0^{\ln n}[e^x]\,dx = \sum_{k=1}^{n-1} k\left(\ln(k+1)-\ln k\right) = n\ln n-\ln(n!)$.
+  solution: 'For $0\leq x<\ln n$ we have $1\leq e^x<n$, so $[e^x]$ takes values $1,2,\dots,n-1$. For $1\leq
+    k\leq n-1$, $[e^x]=k$ exactly when $k\leq e^x<k+1$, i.e. when $\ln k\leq x<\ln(k+1)$. The graph is
+    a step function with step $k$ on $[\ln k,\ln(k+1))$, starting at $x=0$ (since $\ln 1=0$). Therefore
+
+    $\int_0^{\ln n}[e^x]\,dx=\sum_{k=1}^{n-1}k\left(\ln(k+1)-\ln k\right)=\sum_{k=1}^{n-1}k\ln(k+1)-\sum_{k=1}^{n-1}k\ln
+    k.$
+
+    Reindex the first sum with $j=k+1$: it becomes $\sum_{j=2}^{n}(j-1)\ln j$. So the total is $\sum_{j=2}^{n}(j-1)\ln
+    j-\sum_{j=2}^{n-1}j\ln j=(n-1)\ln n-\sum_{j=2}^{n-1}\ln j$. Writing $(n-1)\ln n=n\ln n-\ln n$ gives
+    $n\ln n-\sum_{j=2}^{n}\ln j=n\ln n-\ln(n!)$, using $\ln 1=0$.'
+  common_errors:
+  - Getting the interval endpoints wrong, e.g. using $[\ln k,\ln(k+1)]$ with the wrong pairing of $k$
+    and the step.
+  - Forgetting that the reindexing shifts the summation limits, which leaves a stray term or an off-by-one
+    in the factorial.
+  - Dropping the $\ln 1 = 0$ term, or confusing $\ln(n!)$ with $(\ln n)!$.
+  - Summing up to $n$ instead of $n-1$, since $[e^x]$ never reaches $n$ on the interval.
+  hints:
+    rephrase: For which $x$ does $[e^x]$ equal a given integer $k$? Express the endpoints of that interval
+      using logarithms.
+    smaller_case: Take $n=3$. Find the $x$-intervals on which $[e^x]$ equals 1 and on which it equals
+      2, then write the integral as a sum over those intervals.
+    key_idea: Split the integral into pieces where $[e^x]$ is constant, then rewrite the resulting sum
+      so that consecutive terms telescope. Recall that $\ln(n!)=\sum_{j=1}^{n}\ln j$.
+  check: simplify(expand_log(ANSWER - (n*log(n) - log(factorial(n))), force=True))
+  check_ok: false
+- goal: Use the result of part (ii) to show that $n!\geq n^n e^{1-n}$.
+  expected: Since $[e^x]\leq e^x$, $n\ln n-\ln(n!)\leq n-1$, which rearranges to $n!\geq n^n e^{1-n}$.
+  solution: For all $x$, $[e^x]\leq e^x$. Integrating over $0\leq x<\ln n$ gives $\int_0^{\ln n}[e^x]\,dx\leq\int_0^{\ln
+    n}e^x\,dx=\left[e^x\right]_0^{\ln n}=n-1$. By part (ii), the left side is $n\ln n-\ln(n!)$, so $n\ln
+    n-\ln(n!)\leq n-1$. Rearranging, $\ln\left(\frac{n^n}{n!}\right)\leq n-1$, so $\frac{n^n}{n!}\leq
+    e^{n-1}$, and therefore $n!\geq n^n e^{1-n}$.
+  common_errors:
+  - Reversing the inequality direction when integrating, or applying $[e^x]\geq e^x-1$ and getting the
+    wrong bound.
+  - Forgetting that $\int_0^{\ln n}e^x\,dx = n-1$ and using an incorrect evaluation such as $n$.
+  - Dividing or multiplying the inequality by $n!$ or taking exponentials incorrectly, e.g. writing $e^{n-1}\leq
+    n^n/n!$.
+  hints:
+    rephrase: Compare $[e^x]$ with $e^x$ pointwise. What does this tell you about the two integrals over
+      $0\leq x<\ln n$?
+    smaller_case: Evaluate $\int_0^{\ln 3}e^x\,dx$ directly and compare it with the value of $\int_0^{\ln
+      3}[e^x]\,dx$ from part (ii).
+    key_idea: The floor of a number never exceeds that number, so integrating the inequality preserves
+      it. Then rearrange the logarithmic inequality by exponentiating.
+extensions:
+  '3':
+  - Using $[e^x]>e^x-1$, show that $\int_0^{\ln n}[e^x]\,dx>n-1-\ln n$, and hence deduce an upper bound
+    of the form $n!<n^{n+1}e^{1-n}$.
+  - Combine the two bounds to show $n^n e^{1-n}\leq n!<n^{n+1}e^{1-n}$.
+  '4':
+  - Using the two-sided bound $n^n e^{1-n}\leq n!<n^{n+1}e^{1-n}$, show that $\lim_{n\to\infty}\frac{(n!)^{1/n}}{n}=\frac{1}{e}$.
+  - Show that the ratio $\frac{n!}{n^n e^{-n}\sqrt{n}}$ is bounded above and below, using the integral
+    method, and comment on what this says about Stirling's formula.
+  '5':
+  - Show that for $n\geq 2$ the inequality $n!>n^n e^{1-n}$ is strict, by arguing that $[e^x]<e^x$ on
+    a set of positive measure in $0\leq x<\ln n$.
+  - 'Generalise the method: for a positive integer $m$, find a closed form for $\int_0^{\ln n}[m e^x]\,dx$
+    in terms of $n$ and $m$, and discuss what happens as $m\to\infty$.'
+spoken_vocab:
+- floor of x
+- square bracket x
+- integer part of x
+- integral from zero to five
+- integral from zero to ln n
+- e to the x
+- natural log of n
+- n factorial
+- n to the power n
+- e to the power one minus n
+- step function
+- telescoping sum
+- reindex the sum
+- less than or equal to
+- greater than or equal to
+- strictly greater than
+- Stirling's formula
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#12
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 3
+  minutes: 20
+  flags: []
+  tagline: Clean integral-to-factorial bound linking floor functions to Stirling-type estimates.
+  priority: 81
+  rank: 234
+  tier: B
+  category: siklos
+  d10: 6.3
+  real: 8.2
+  by: deepseek-v4.1-flash-free
+tags:
+- integration
+- sequences_and_series
+- inequalities

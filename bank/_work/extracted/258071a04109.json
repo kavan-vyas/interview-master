@@ -1,0 +1,135 @@
+[
+ {
+  "q": "\u00a31260 is shared between Ana, Ben and Cat in the ratio 2 : 3 : 4. How much more does Cat receive than Ana?",
+  "kind": "maths",
+  "answer": "One part is \u00a3140. Cat \u00a3560, Ana \u00a3280, so \u00a3280 more.",
+  "short": true,
+  "source": "kclms/kclms-specimen-questions-3.pdf#0"
+ },
+ {
+  "q": "Without using a calculator, decide which is larger, $2^{30}$ or $3^{20}$. Show how you know.",
+  "kind": "maths",
+  "answer": "$2^{30}=(2^3)^{10}=8^{10}$ and $3^{20}=(3^2)^{10}=9^{10}$, so $3^{20}$ is larger.",
+  "short": true,
+  "source": "kclms/kclms-specimen-questions-3.pdf#0"
+ },
+ {
+  "q": "Solve (a) $3x+2y=16$ and $5x-y=5$ (find both x and y); (b) $3(2x-1)<4x+9$.",
+  "kind": "maths",
+  "answer": "(a) y = 5x \u2212 5; 3x + 10x \u2212 10 = 16 \u21d2 x = 2, y = 5. (b) 6x \u2212 3 < 4x + 9 \u21d2 x < 6.",
+  "short": true,
+  "source": "kclms/kclms-specimen-questions-3.pdf#0"
+ },
+ {
+  "q": "A coat is reduced by 20% in a sale. A week later the sale price is reduced by a further 10%. It now costs \u00a372. What was the original price of the coat?",
+  "kind": "maths",
+  "answer": "0.8 \u00d7 0.9 = 0.72; 72 \u00f7 0.72 = \u00a3100.",
+  "short": true,
+  "source": "kclms/kclms-specimen-questions-3.pdf#0"
+ },
+ {
+  "q": "A car travels the first half of a journey at an average speed of 40 mph, and the second half of the same journey at an average speed of 60 mph. What is its average speed for the whole journey?",
+  "kind": "maths",
+  "answer": "Let the distance be 2d: time = d/40 + d/60 = d/24, so speed = 2d \u00f7 (d/24) = 48 mph (not 50).",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-3.pdf#0"
+ },
+ {
+  "q": "What is the smallest positive whole number which has exactly 12 factors (including 1 and the number itself)?",
+  "kind": "maths",
+  "answer": "60 (factors 1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30, 60). Smaller numbers have fewer factors.",
+  "short": true,
+  "source": "kclms/kclms-specimen-questions-3.pdf#0"
+ },
+ {
+  "q": "The number 9 can be written as a sum of consecutive positive whole numbers in two different ways with at least two terms: $4+5$ and $2+3+4$. Find all the ways to write $45$ as a sum of at least two consecutive positive whole numbers.",
+  "kind": "maths",
+  "answer": "$22+23$; $14+15+16$; $7+8+9+10+11$; $5+6+\\cdots+10$; $1+2+\\cdots+9$. (Five ways, one for each odd factor of 45 greater than 1.)",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-3.pdf#0"
+ },
+ {
+  "q": "Explain why the sum of any four consecutive whole numbers is never a multiple of 4.",
+  "kind": "maths",
+  "answer": "The numbers are n, n+1, n+2, n+3 with sum 4n + 6 = 4(n+1) + 2, which leaves remainder 2 when divided by 4.",
+  "short": true,
+  "source": "kclms/kclms-specimen-questions-3.pdf#0"
+ },
+ {
+  "q": "$ABCDE$ is a regular pentagon. $ABF$ is an equilateral triangle drawn outside the pentagon on the side $AB$. Find angles (i) $\\angle EAF$ and (ii) $\\angle AEF$, showing and explaining each step in your working.",
+  "kind": "maths",
+  "answer": "Interior angle of a regular pentagon = 108\u00b0. (i) \u2220EAF = 108 + 60 = 168\u00b0 (angles round a point at A add to 360\u00b0). (ii) AE = AB = AF, so triangle AEF is isosceles: \u2220AEF = (180 \u2212 168) \u00f7 2 = 6\u00b0.",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-3.pdf#0"
+ },
+ {
+  "q": "You are given that $n$ is a whole number and that $n^2$ is even. For each of the following statements say whether you can be sure it is true, it might or might not be true, or it definitely isn't true. Explain your answer in each case. (a) $n$ is even. (b) $n^2$ is a multiple of 4. (c) $n$ is a multiple of 4. (d) $n^3$ is odd.",
+  "kind": "maths",
+  "answer": "(a) Sure: odd \u00d7 odd is odd. (b) Sure: n = 2k so n\u00b2 = 4k\u00b2. (c) Might: n = 2 is not a multiple of 4, n = 4 is. (d) Definitely not: n is even so n\u00b3 is even.",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-3.pdf#0"
+ },
+ {
+  "q": "A rectangle has perimeter 34 cm and each of its diagonals is 13 cm long. Find the area of the rectangle.",
+  "kind": "maths",
+  "answer": "l + w = 17, l\u00b2 + w\u00b2 = 169. 2lw = 17\u00b2 \u2212 169 = 120, so the area is 60 cm\u00b2 (sides 12 and 5).",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-3.pdf#0"
+ },
+ {
+  "q": "A square of side 7 cm and a square of side 5 cm stand side by side with their bases on the same horizontal line. Find the length of the line joining the bottom left corner of the larger square to the top right corner of the smaller square.",
+  "kind": "maths",
+  "answer": "Draw a horizontal line from the bottom left corner and a vertical line from the top right corner to form a right-angled triangle with sides 12 and 5: length \u221a(144 + 25) = 13 cm.",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-3.pdf#0"
+ },
+ {
+  "q": "A museum charges \u00a38 for an adult ticket and \u00a35 for a child ticket. A family ticket, which admits exactly 2 adults and 2 children, costs \u00a320. Tickets for under-3s are free. A group of 3 adults, 5 children and two under-3s visits the museum. Tickets may be mixed in any way, and a family ticket may be used for fewer people than it allows. What is the cheapest total cost for the group?",
+  "kind": "maths",
+  "answer": "No family ticket: \u00a349. One family ticket + 1 adult + 3 children = 20 + 8 + 15 = \u00a343. Two family tickets + 1 child = 40 + 5 = \u00a345. Cheapest is \u00a343.",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-3.pdf#0"
+ },
+ {
+  "q": "A chocolate bar is a rectangle made of 4 \u00d7 6 squares. A move consists of breaking one piece along a straight grid line into two smaller pieces. (a) Show that, however you choose the breaks, exactly 23 moves are needed to separate the bar into 24 single squares. (b) Two players take turns to make a move on a 5 \u00d7 7 bar. The player who makes the last possible move wins. Which player can always win? Explain your answer.",
+  "kind": "maths",
+  "answer": "(a) Each move increases the number of pieces by exactly 1; start with 1 piece and finish with 24, so 23 moves. (b) 35 squares need 34 moves, an even number, so the second player makes the last move and wins whatever either player does.",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-3.pdf#0"
+ },
+ {
+  "q": "In this question, $a \\ast b$ means $a+b+ab$. For example, $2 \\ast 3 = 2+3+6 = 11$. (a) Work out $4 \\ast 1$ and $(-1) \\ast 5$. (b) Show that $a \\ast b = b \\ast a$ for all numbers $a$ and $b$. (c) Find a number $e$ such that $e \\ast a = a$ for every number $a$. (d) Find the number $x$ such that $3 \\ast x = 0$. (e) Find all numbers $a$ such that $a \\ast a = a$. (f) Show that $a \\ast b + 1 = (a+1)(b+1)$. Use this to work out $1 \\ast 2 \\ast 3 \\ast 4 \\ast 5$, where the operations are done from left to right.",
+  "kind": "maths",
+  "answer": "(a) 4 \u2217 1 = 9; (\u22121) \u2217 5 = \u22121. (b) a + b + ab = b + a + ba. (c) e = 0. (d) 3 + 4x = 0, so x = \u22123/4. (e) a\u00b2 + 2a = a \u21d2 a(a + 1) = 0, so a = 0 or \u22121. (f) (a+1)(b+1) = ab + a + b + 1, so 1 \u2217 2 \u2217 3 \u2217 4 \u2217 5 + 1 = 2 \u00d7 3 \u00d7 4 \u00d7 5 \u00d7 6 = 720, giving 719.",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-3.pdf#0"
+ },
+ {
+  "q": "Make $a$ the subject of $v^2 = u^2 + 2as$, and hence find $a$ when $v = 13$, $u = 5$ and $s = 6$.",
+  "kind": "maths",
+  "answer": "a = (v\u00b2 \u2212 u\u00b2)/(2s) = (169 \u2212 25)/12 = 12.",
+  "short": true,
+  "source": "kclms/kclms-specimen-questions-3.pdf#0"
+ },
+ {
+  "q": "The sum of the squares of two consecutive odd positive whole numbers is 202. Find the two numbers.",
+  "kind": "maths",
+  "answer": "Let the numbers be n and n + 2: n\u00b2 + (n + 2)\u00b2 = 202 \u21d2 n\u00b2 + 2n \u2212 99 = 0 \u21d2 (n + 11)(n \u2212 9) = 0. So the numbers are 9 and 11.",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-3.pdf#0"
+ },
+ {
+  "q": "A rectangular lawn measures 12 m by 5 m. It is surrounded by a path of the same width all the way round. The area of the path is equal to the area of the lawn. How wide is the path?",
+  "kind": "maths",
+  "answer": "Path width x: (12 + 2x)(5 + 2x) = 120 \u21d2 2x\u00b2 + 17x \u2212 30 = 0 \u21d2 (2x \u2212 3)(x + 10) = 0. Width 1.5 m.",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-3.pdf#0"
+ },
+ {
+  "q": "Using the factorisation $m^2-n^2=(m-n)(m+n)$, (a) use it to work out $87^2-13^2$. (b) Adapt it to work out $998 \\times 1002$. (c) Show that the difference between the squares of two consecutive whole numbers is always an odd number. (d) Write 15 and 16 each as a difference of two squares of whole numbers. (e) Explain why 18 cannot be written as $m^2-n^2$ for whole numbers $m$ and $n$.",
+  "kind": "maths",
+  "answer": "(a) 74 \u00d7 100 = 7400. (b) (1000 \u2212 2)(1000 + 2) = 1000\u00b2 \u2212 2\u00b2 = 999996. (c) (n+1)\u00b2 \u2212 n\u00b2 = 2n + 1. (d) 15 = 4\u00b2 \u2212 1\u00b2 (or 8\u00b2 \u2212 7\u00b2); 16 = 5\u00b2 \u2212 3\u00b2. (e) m \u2212 n and m + n have the same parity. If both are odd the product is odd; if both are even it is a multiple of 4. 18 is even but not a multiple of 4, so it is impossible.",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-3.pdf#0"
+ }
+]

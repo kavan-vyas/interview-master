@@ -1,0 +1,128 @@
+id: vertical-projection-energy-air-resistance
+title: Vertical projection with force alpha e to the minus beta x
+topics:
+- energy
+- integration
+- differential equations
+- mechanics
+warmup: false
+answer_source: pdf
+statement: A particle of unit mass is projected vertically upwards with speed $u$. At any height $x$,
+  while the particle is moving upwards, it is found to experience a total force $F$, due to gravity and
+  air resistance, given by $F=\alpha e^{-\beta x}$, where $\alpha$ and $\beta$ are positive constants.
+  Calculate the energy expended in reaching a given height $z$. Show that $F=\frac{1}{2}\beta v^2+\alpha-\frac{1}{2}\beta
+  u^2$, where $v$ is the speed of the particle, and explain why $\alpha=\frac{1}{2}\beta u^2+g$, where
+  $g$ is the acceleration due to gravity. Determine an expression, in terms of $y$, $g$ and $\beta$, for
+  the air resistance experienced by the particle on its downward journey when it is at a distance $y$
+  below its highest point.
+stages:
+- goal: Find the energy expended in reaching height $z$.
+  expected: $E=\displaystyle\int_0^z \alpha e^{-\beta x}\,dx=\dfrac{\alpha\left(1-e^{-\beta z}\right)}{\beta}$.
+  solution: 'Energy expended is the work done against the total force over the displacement: $E=\int_0^z\alpha
+    e^{-\beta x}\,dx=\left[-\dfrac{\alpha}{\beta}e^{-\beta x}\right]_0^z=\dfrac{\alpha(1-e^{-\beta z})}{\beta}$.'
+  common_errors:
+  - Integrating from $z$ to $0$ and getting a negative energy
+  - Omitting the $1/\beta$ factor when integrating
+  - Using $e^{\beta z}$ instead of $e^{-\beta z}$ in the antiderivative
+  hints:
+    rephrase: Energy expended is force times distance, summed along the path. That is an integral over
+      $x$ from $0$ to $z$.
+    smaller_case: Start with a constant force $\alpha$ and find the work done over a height $z$.
+    key_idea: Find the antiderivative of $e^{-\beta x}$ and evaluate it between the limits.
+  check: integrate(alpha*exp(-beta*x),(x,0,z)) - alpha*(1-exp(-beta*z))/beta
+  check_ok: null
+- goal: Use conservation of energy to show $F=\frac12\beta v^2+\alpha-\frac12\beta u^2$.
+  expected: $F=\dfrac12\beta v^2+\alpha-\dfrac12\beta u^2$ at any height where the speed is $v$.
+  solution: Work-energy gives $\tfrac12u^2-\tfrac12v^2=\dfrac{\alpha(1-e^{-\beta z})}{\beta}$ at height
+    $z$. Rearranging, $\alpha e^{-\beta z}=\alpha-\beta\left(\tfrac12u^2-\tfrac12v^2\right)$. Since $F=\alpha
+    e^{-\beta x}$ evaluated at $x=z$ is this quantity, $F=\tfrac12\beta v^2+\alpha-\tfrac12\beta u^2$.
+  common_errors:
+  - Using $\tfrac12 v^2-\tfrac12u^2$ with the wrong sign
+  - Forgetting that $\beta$ multiplies the kinetic energy terms
+  - Substituting for $e^{-\beta z}$ incorrectly
+  hints:
+    rephrase: Write the energy equation for the path from $0$ to $z$, then solve it for $\alpha e^{-\beta
+      z}$.
+    smaller_case: Check the sign by considering the case where the speed $v$ is zero at the top.
+    key_idea: Eliminate $e^{-\beta z}$ between the energy equation and $F=\alpha e^{-\beta z}$.
+  check: alpha*exp(-beta*x) - (Rational(1,2)*beta*(u**2 - 2*alpha*(1-exp(-beta*x))/beta) + alpha - Rational(1,2)*beta*u**2)
+  check_ok: null
+- goal: Explain why $\alpha=\frac12\beta u^2+g$.
+  expected: At the highest point $v=0$, so the air resistance $\tfrac12\beta v^2$ vanishes and the total
+    force is gravity, of magnitude $g$. Then $g=\alpha-\tfrac12\beta u^2$.
+  solution: At the highest point the speed is zero, so the air resistance term $\tfrac12\beta v^2$ is
+    zero. The only force is gravity, of magnitude $g$. Setting $v=0$ in $F=\tfrac12\beta v^2+\alpha-\tfrac12\beta
+    u^2$ gives $g=\alpha-\tfrac12\beta u^2$, so $\alpha=\tfrac12\beta u^2+g$.
+  common_errors:
+  - Assuming air resistance is still present at the top
+  - Getting the sign of $g$ wrong and writing $\alpha=\tfrac12\beta u^2-g$
+  - Failing to use $v=0$ at the highest point
+  hints:
+    rephrase: What happens to air resistance when the particle momentarily stops?
+    smaller_case: Consider a particle with $u=0$. What force acts on it at the top?
+    key_idea: Use $v=0$ in the formula from stage 2 and interpret the remaining force physically.
+  check: alpha - (Rational(1,2)*beta*u**2 + g)
+  check_ok: null
+- goal: Find the air resistance on the downward journey at distance $y$ below the highest point.
+  expected: $R=g\left(1-e^{-\beta y}\right)$, equivalently $R=\tfrac12\beta v^2$ with $v^2=\dfrac{2g}{\beta}\left(1-e^{-\beta
+    y}\right)$.
+  solution: Assume the same resistance law $R=\tfrac12\beta v^2$, acting upwards on the way down. Then
+    $v\dfrac{dv}{dy}=g-\tfrac12\beta v^2$ with $v=0$ at $y=0$. Let $w=v^2$, so $\dfrac{dw}{dy}+\beta w=2g$.
+    With integrating factor $e^{\beta y}$ and $w=0$ at $y=0$, $w=\dfrac{2g}{\beta}\left(1-e^{-\beta y}\right)$.
+    Hence $R=\tfrac12\beta w=g\left(1-e^{-\beta y}\right)$.
+  common_errors:
+  - Keeping air resistance pointing downwards on the way down
+  - Ignoring the boundary condition $v=0$ at $y=0$, leaving an arbitrary constant
+  - Using $v\,dv/dt$ instead of $v\,dv/dy$
+  hints:
+    rephrase: On the way down, which direction does air resistance act compared with gravity?
+    smaller_case: Consider very small $y$. What should the resistance be when the speed is near zero?
+    key_idea: Convert $\dfrac{dv}{dt}$ to $v\dfrac{dv}{dy}$ and solve the first-order linear equation
+      for $v^2$.
+  check: g*(1-exp(-beta*y)) - Rational(1,2)*beta*(2*g*(1-exp(-beta*y))/beta)
+  check_ok: null
+extensions:
+  '3':
+  - Show that the maximum height is $H=\frac{1}{\beta}\ln\left(1+\frac{\beta u^2}{2g}\right)$, or find
+    $H$ in terms of $u$, $\beta$ and $g$.
+  '4':
+  - Show that the speed on returning to the point of projection is less than $u$.
+  '5':
+  - Show that the air resistance on the downward journey never exceeds $g$.
+spoken_vocab:
+- alpha
+- beta
+- u
+- v
+- F
+- x
+- y
+- z
+- g
+- energy expended
+- e to the minus beta x
+- integral from zero to z
+- unit mass
+- highest point
+- air resistance
+- half beta v squared
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#18
+verified: false
+rating:
+  quality: 5
+  difficulty: 7
+  parts: 4
+  minutes: 15
+  flags:
+  - wrong_or_unclear_solution
+  tagline: Rich energy and mechanics chain, but the force and energy definitions are unclear.
+  priority: 54
+  rank: 489
+  tier: C
+  category: siklos
+  d10: 5.0
+  real: 4.0
+  by: haiku
+tags:
+- mechanics
+- integration

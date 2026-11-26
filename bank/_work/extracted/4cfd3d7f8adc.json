@@ -1,0 +1,58 @@
+[
+ {
+  "q": "What is the value of $3^{12} + 3^{12} + 3^{12}$?",
+  "kind": "maths",
+  "answer": "a) $3^{13}$",
+  "short": true,
+  "source": "kclms/kclms-specimen-mcq-4.pdf#0"
+ },
+ {
+  "q": "A right-angled triangle has sides 9 cm, 12 cm and 15 cm. A circle is drawn inside the triangle so that it touches all three sides. What is the radius of the circle?",
+  "kind": "maths",
+  "answer": "d) 3 cm",
+  "short": true,
+  "source": "kclms/kclms-specimen-mcq-4.pdf#0"
+ },
+ {
+  "q": "A price is increased by $x\\%$ and the new price is then decreased by $x\\%$. The final price is $4\\%$ lower than the original price. What is the value of $x$?",
+  "kind": "maths",
+  "answer": "e) 20",
+  "short": true,
+  "source": "kclms/kclms-specimen-mcq-4.pdf#0"
+ },
+ {
+  "q": "How many three-digit whole numbers have digits whose product is 12?",
+  "kind": "maths",
+  "answer": "b) 15",
+  "short": true,
+  "source": "kclms/kclms-specimen-mcq-4.pdf#0"
+ },
+ {
+  "q": "The point $P = (3, 1)$ is rotated through $90^\\circ$ anticlockwise about the point $(1, 2)$. What are the coordinates of the image of $P$?",
+  "kind": "maths",
+  "answer": "c) (0, 4)",
+  "short": true,
+  "source": "kclms/kclms-specimen-mcq-4.pdf#0"
+ },
+ {
+  "q": "Two runners start at the same point on a circular track of length $400$ m and run in the same direction at constant speeds of $5$ m/s and $3$ m/s. After how many seconds does the faster runner first catch up with the slower runner?",
+  "kind": "maths",
+  "answer": "d) 200",
+  "short": true,
+  "source": "kclms/kclms-specimen-mcq-4.pdf#0"
+ },
+ {
+  "q": "The lines $y = 2x + 1$ and $y = -x + 7$ meet at the point $P$. What is the area of the triangle bounded by the two lines and the $x$-axis?",
+  "kind": "maths",
+  "answer": "a) $\\frac{75}{4}$ square units",
+  "short": true,
+  "source": "kclms/kclms-specimen-mcq-4.pdf#0"
+ },
+ {
+  "q": "Three fair six-sided dice are rolled. What is the probability that at least one of them shows a six?",
+  "kind": "maths",
+  "answer": "e) $\\frac{91}{216}$",
+  "short": true,
+  "source": "kclms/kclms-specimen-mcq-4.pdf#0"
+ }
+]

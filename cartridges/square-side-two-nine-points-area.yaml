@@ -1,0 +1,97 @@
+id: square-side-two-nine-points-area
+title: 'Nine points in a square of side 2: triangle area'
+topics:
+- pigeonhole principle
+- geometry
+- area
+- lattice points
+warmup: false
+answer_source: generated
+statement: Consider a square of side length $2$. If we have $9$ points inside it, do three of the points
+  necessarily form a triangle of area less than $\frac{1}{2}$?
+stages:
+- goal: Partition the square and find a cell containing three points.
+  expected: Split the square into four unit squares. Nine points in four cells means some cell contains
+    at least three points.
+  solution: Since ceil(9/4) = 3, the pigeonhole principle gives a unit square containing at least three
+    of the points.
+  common_errors:
+  - Concluding that some cell has two points only, using 9 > 8 without noting that 9/4 rounds up to 3.
+  - Using cells of side 2/3, which gives 9 cells and no forced triple.
+  hints:
+    rephrase: If you split the big square into four equal pieces, how many points must share a piece?
+    smaller_case: Put 5 points into 4 pieces and ask how many must share one piece.
+    key_idea: The average number of points per piece is 9/4, so some piece has at least 3.
+  check: null
+- goal: Bound the area of a triangle whose vertices lie in a unit square.
+  expected: The area is at most 1/2.
+  solution: Enclose the triangle in its bounding rectangle inside the unit square. A triangle inscribed
+    in a rectangle has area at most half the rectangle, and the rectangle has area at most 1.
+  common_errors:
+  - Claiming the maximum area is 1 because the triangle fits inside the square.
+  - Assuming the bound is attained only by the diagonal triangle.
+  hints:
+    rephrase: Which triangle inside a unit square has the largest area?
+    smaller_case: Take three corners of the unit square.
+    key_idea: A triangle inscribed in a rectangle occupies at most half of it.
+  check: sp.simplify(ans - sp.Rational(1, 2))
+  check_ok: null
+- goal: Decide whether a triangle of area strictly less than 1/2 is forced.
+  expected: No. Take the 3 by 3 grid of points (0,0), (1,0), (2,0), (0,1), ..., (2,2) with spacing 1.
+    Every non-degenerate triangle with these vertices has area at least 1/2, so no three of the points
+    form a triangle of area less than 1/2.
+  solution: The vertices have integer coordinates, so twice the area is an integer determinant. A non-zero
+    integer has absolute value at least 1, so the area is at least 1/2. The only triples with area 0 are
+    collinear, which do not form a triangle.
+  common_errors:
+  - Answering yes because the 9-point pigeonhole argument gives a triangle of area at most 1/2.
+  - Forgetting that collinear triples do not form a triangle and so do not give a counterexample.
+  hints:
+    rephrase: Can you place 9 points in the square so that every triangle is at least as large as 1/2?
+    smaller_case: Place 3 points in a 2 by 2 square using lattice positions and compute their areas.
+    key_idea: Twice the area of a lattice triangle is an integer determinant.
+  check: null
+extensions:
+  '3':
+  - Replace the 9 points by 5 points in the square of side 2, with the four unit cells. What does the
+    pigeonhole argument guarantee now?
+  '4':
+  - Find a triangle with vertices in a unit square whose area is exactly 1/2, and justify that it is exactly
+    1/2.
+  '5':
+  - Prove that any triangle with vertices in a unit square has area at most 1/2.
+spoken_vocab:
+- square
+- side length
+- two
+- nine points
+- triangle
+- area
+- one half
+- less than
+- pigeonhole principle
+- unit square
+- lattice points
+- grid
+- determinant
+- collinear
+- three points
+source: screenshots/Screenshot 2026-11-19 at 14.37.58.png
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Pigeonhole plus unit-square triangle bound; strictness question adds subtlety.
+  priority: 71
+  rank: 324
+  tier: B
+  category: screenshots
+  d10: 4.5
+  real: 6.5
+  by: haiku
+tags:
+- combinatorics
+- geometry

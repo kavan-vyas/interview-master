@@ -1,0 +1,99 @@
+id: bisector-triangle-angles
+title: Angle BIC at the incentre
+topics:
+- geometry
+- angles
+- angle bisectors
+- triangles
+- proof
+warmup: false
+answer_source: pdf
+statement: In triangle $ABC$, $\angle ABC = 70^\circ$ and $\angle ACB = 40^\circ$. The bisectors of angles
+  $ABC$ and $ACB$ meet at $I$. (i) Find $\angle BIC$. (ii) Show that, whatever the size of triangle $ABC$,
+  $\angle BIC = 90^\circ + \frac{1}{2}\angle BAC$.
+stages:
+- goal: Find angle $BAC$.
+  expected: $\angle BAC = 70^\circ$
+  solution: The angles in a triangle sum to $180^\circ$, so $\angle BAC = 180^\circ - 70^\circ - 40^\circ
+    = 70^\circ$.
+  common_errors:
+  - Subtracting only one of the given angles from $180^\circ$.
+  - Using $90^\circ$ as the angle sum of the triangle.
+  hints:
+    rephrase: Which fact links the three angles of any triangle?
+    smaller_case: A triangle has angles $30^\circ$ and $60^\circ$. What is the third angle?
+    key_idea: The angles of a triangle always sum to $180^\circ$.
+  check: Eq(answer, 70)
+  check_ok: null
+- goal: Find $\angle BIC$ for this triangle.
+  expected: $\angle BIC = 125^\circ$
+  solution: The bisectors halve the angles at $B$ and $C$, so $\angle IBC=35^\circ$ and $\angle ICB=20^\circ$.
+    Then $\angle BIC=180^\circ-35^\circ-20^\circ=125^\circ$.
+  common_errors:
+  - Using the full angles $70^\circ$ and $40^\circ$ rather than their halves.
+  - Computing $\angle BIC = 180^\circ-70^\circ-40^\circ$ (which gives angle $A$, not $\angle BIC$).
+  - Forgetting to subtract both half-angles from $180^\circ$.
+  hints:
+    rephrase: What does an angle bisector do to the angle it splits? Then look at triangle $BIC$.
+    smaller_case: In an equilateral triangle every angle is $60^\circ$. What angle does the bisector of
+      $B$ make with $BC$?
+    key_idea: Triangle $BIC$ has angles at $B$ and $C$ that are half the angles of triangle $ABC$.
+  check: Eq(answer, 125)
+  check_ok: null
+- goal: Prove that $\angle BIC = 90^\circ + \frac{1}{2}\angle BAC$ for any triangle $ABC$.
+  expected: Let $\angle BAC = a$. Then $\angle IBC + \angle ICB = \frac{1}{2}(180^\circ - a) = 90^\circ
+    - \frac{a}{2}$, so $\angle BIC = 180^\circ - (90^\circ - \frac{a}{2}) = 90^\circ + \frac{a}{2}$.
+  solution: Let $\angle BAC = a$. Since $\angle ABC + \angle ACB = 180^\circ - a$, the half-angles satisfy
+    $\angle IBC+\angle ICB=\frac{1}{2}(180^\circ-a)=90^\circ-\frac{a}{2}$. The angles of triangle $BIC$
+    sum to $180^\circ$, so $\angle BIC=180^\circ-(90^\circ-\frac{a}{2})=90^\circ+\frac{a}{2}$.
+  common_errors:
+  - Forgetting to halve $\angle ABC + \angle ACB$ before using it.
+  - Confusing $\angle BIC$ with $\angle BAC$ in the final line.
+  - Assuming a specific value for $\angle BAC$ rather than using a general letter $a$.
+  hints:
+    rephrase: Use a letter for angle $BAC$ and write $\angle ABC+\angle ACB$ in terms of it. Then use
+      the angle sum of triangle $BIC$.
+    smaller_case: For an equilateral triangle, what must $\angle BIC$ be? Check your formula against it.
+    key_idea: Angles $B$ and $C$ sum to $180^\circ$ minus angle $A$, and triangle $BIC$ uses half of each.
+extensions:
+  '3':
+  - Let $I$ be the incentre of triangle $ABC$. Show that $\angle BIC$ is obtuse for every triangle.
+  '4':
+  - The external bisectors of angles $B$ and $C$ meet at $E$. Show that $\angle BEC = 90^\circ - \frac{1}{2}\angle
+    BAC$.
+  '5':
+  - Prove that the three internal angle bisectors of any triangle meet at a single point.
+spoken_vocab:
+- triangle ABC
+- angle ABC
+- angle ACB
+- bisector
+- incentre
+- I
+- angle BIC
+- seventy degrees
+- forty degrees
+- one hundred and twenty five degrees
+- ninety degrees
+- half
+- angle BAC
+- a
+source: kclms/kclms-specimen-questions-4.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 3
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: Standard angle chase that generalises neatly to a proof.
+  priority: 61
+  rank: 458
+  tier: C
+  category: kclms
+  d10: 3.0
+  real: 5.0
+  by: deepseek-v4.1-flash-free
+tags:
+- geometry
+- proof

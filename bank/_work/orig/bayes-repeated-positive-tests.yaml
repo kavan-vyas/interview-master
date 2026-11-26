@@ -1,0 +1,135 @@
+id: bayes-repeated-positive-tests
+title: 'Bayes'' Theorem: Disease Testing, Odds Updating, and Independence'
+topics:
+- Bayes' theorem
+- conditional probability
+- odds
+- likelihood ratio
+- independence
+warmup: false
+answer_source: pdf
+statement: A disease affects 1% of a population. A test detects it in 99% of people who have it, but also
+  gives a positive result for 5% of people who do not. (i) A randomly chosen person tests positive. What
+  is the probability they have the disease? (ii) Show that, in terms of odds, posterior odds = prior odds
+  $\times$ likelihood ratio, where the likelihood ratio is $\frac{P(+\mid D)}{P(+\mid D^c)}$. (iii) The
+  person takes a second, independent test, also positive. What is the probability now? (iv) How many consecutive
+  positive results are needed before the probability of disease exceeds 99%? (v) Comment on the assumption
+  of independence.
+stages:
+- goal: Find the probability of disease given a positive test (part i).
+  expected: $P(D\mid +)=\frac{1}{6}$.
+  solution: In a population of 10 000, 100 people have the disease and 99 of them test positive. Of the
+    9900 healthy people, 5% (495) test positive. So the probability of disease given a positive result
+    is $\frac{99}{99+495}=\frac{99}{594}=\frac{1}{6}$.
+  common_errors:
+  - Reporting 99%, which is the sensitivity $P(+\mid D)$, as the answer.
+  - Confusing $P(+\mid D)$ with $P(D\mid +)$.
+  - Forgetting to weight the false positives by the large healthy population.
+  hints:
+    rephrase: Of all the people who test positive, what fraction actually have the disease?
+    smaller_case: Imagine a population of 10 000 and count how many people fall into each group.
+    key_idea: Bayes' theorem with a denominator that includes both true and false positives.
+  check: x - Rational(1, 6)
+  check_ok: false
+- goal: Show the posterior-odds form of Bayes' theorem (part ii).
+  expected: $\frac{P(D\mid +)}{P(D^c\mid +)}=\frac{P(D)}{P(D^c)}\cdot\frac{P(+\mid D)}{P(+\mid D^c)}$,
+    since the factor $P(+)$ cancels.
+  solution: By Bayes' theorem, $P(D\mid +)=\frac{P(+\mid D)P(D)}{P(+)}$ and $P(D^c\mid +)=\frac{P(+\mid
+    D^c)P(D^c)}{P(+)}$. Dividing the first by the second, the common denominator $P(+)$ cancels, leaving
+    prior odds times likelihood ratio.
+  common_errors:
+  - Forgetting that the denominator is the same in both expressions.
+  - Writing the likelihood ratio the wrong way round.
+  hints:
+    rephrase: Write Bayes' theorem for the disease and for the healthy group, then divide them.
+    smaller_case: Write both posterior probabilities with the same denominator and check what remains
+      when you take the ratio.
+    key_idea: Odds remove the shared normalising constant $P(+)$.
+  check: null
+- goal: Find the probability of disease after two independent positive tests (part iii).
+  expected: $\frac{99}{124}\approx 0.80$.
+  solution: Prior odds are $1:99$. The likelihood ratio is $\frac{0.99}{0.05}=19.8$. After one positive
+    test the odds are $\frac{19.8}{99}=0.2$. After a second independent positive test they are $0.2\times
+    19.8=3.96$, so the probability is $\frac{3.96}{4.96}=\frac{99}{124}\approx 0.80$.
+  common_errors:
+  - Squaring the probability instead of the odds.
+  - Adding odds instead of multiplying them.
+  - Using the original prior after the first test without updating.
+  hints:
+    rephrase: Update the odds after the first positive, then apply the same update again for the second.
+    smaller_case: Compute the odds after one positive test, and then convert them to a probability.
+    key_idea: Each independent positive result multiplies the odds by the same likelihood ratio.
+  check: x - Rational(99, 124)
+  check_ok: false
+- goal: Find how many consecutive positive results push the probability above 99% (part iv).
+  expected: 4 positive results.
+  solution: The probability exceeds 99% when the odds exceed 99. After $n$ positives the odds are $\frac{19.8^n}{99}$,
+    so we need $19.8^n > 9801$. Since $19.8^3\approx 7762$ is too small and $19.8^4\approx 153\,700$ is
+    enough, four consecutive positives are needed.
+  common_errors:
+  - Using 99 as the threshold for the probability instead of for the odds.
+  - Stopping at 3 because $19.8^3$ looks large.
+  hints:
+    rephrase: What odds correspond to a probability of 99%?
+    smaller_case: Compute the odds after one, two and three positives and compare them with the threshold.
+    key_idea: Convert the 99% probability threshold to an odds threshold, then find the smallest power
+      that exceeds it.
+  check: x - 4
+  check_ok: false
+- goal: Comment on whether repeated tests can be treated as independent (part v).
+  expected: Independence is doubtful. Repeat tests on the same person often share causes, such as cross-reactivity,
+    so a false positive may recur. The odds then grow more slowly than the calculation suggests, and the
+    estimate of four tests is too optimistic.
+  solution: The calculation assumed each test is independent given disease status. If whatever caused
+    a false positive (for example, a cross-reacting substance) also causes a repeat false positive, then
+    the second positive is less informative than the independent model suggests. The likelihood ratio
+    then does not multiply, so the posterior probability rises more slowly.
+  common_errors:
+  - Saying the tests are independent because they are separate procedures.
+  - Failing to link the discussion to the model assumption and its consequences.
+  hints:
+    rephrase: Ask whether a person who gives one false positive is equally likely to give another for
+      an unrelated reason.
+    smaller_case: Imagine a person with a persistent cross-reacting condition. What would two positive
+      tests tell you?
+    key_idea: Independence given disease status is a modelling assumption, and it can fail when the errors
+      have a shared cause.
+  check: null
+extensions:
+  '3':
+  - If the test's sensitivity falls to 90%, what is the likelihood ratio?
+  '4':
+  - Derive the posterior-odds form from Bayes' theorem without using the denominator $P(+)$.
+  '5':
+  - Model correlated test results with a shared random effect, and recompute the number of tests needed
+    to exceed 99%.
+spoken_vocab:
+- disease
+- one percent
+- test
+- sensitivity
+- ninety-nine percent
+- false positive
+- five percent
+- Bayes' theorem
+- posterior odds
+- prior odds
+- likelihood ratio
+- independent tests
+- odds
+- probability
+- ninety-nine percent threshold
+- independence
+source: jaymin/Jaymin Interview (1).pdf#p41
+verified: false
+rating:
+  quality: 8
+  difficulty: 4
+  parts: 5
+  minutes: 15
+  flags: []
+  tagline: 'Classic Bayes ladder: odds form, repeated tests, and independence critique.'
+  priority: 108
+  rank: 31
+  tier: S
+  category: jaymin

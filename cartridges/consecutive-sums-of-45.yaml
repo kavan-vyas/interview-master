@@ -1,0 +1,99 @@
+id: consecutive-sums-of-45
+title: Consecutive sums equal to 45
+topics:
+- number theory
+- arithmetic sequences
+- divisors
+- algebra
+warmup: false
+answer_source: pdf
+statement: 'The number $9$ can be written as a sum of consecutive positive whole numbers in two different
+  ways with at least two terms: $4+5$ and $2+3+4$. Find all the ways to write $45$ as a sum of at least
+  two consecutive positive whole numbers.'
+stages:
+- goal: Set up an equation for a run of k consecutive positive whole numbers, starting at n, with sum
+    45.
+  expected: k(2n+k-1)/2 = 45, i.e. k(2n+k-1) = 90, with k at least 2 and n at least 1.
+  solution: The terms are n, n+1, ..., n+k-1. Their sum is k terms times the average (first plus last)/2
+    = k(2n+k-1)/2. Setting this equal to 45 gives k(2n+k-1) = 90.
+  common_errors:
+  - Using the formula for the sum of 1 to k, which only works when the run starts at 1.
+  - Forgetting the factor of 2 when halving the sum of first and last term.
+  hints:
+    rephrase: If the run has k numbers starting at n, what is the sum in terms of n and k?
+    smaller_case: Write the sum of 4+5 using k = 2 and n = 4. Does your formula give 9?
+    key_idea: A run of consecutive numbers sums to the number of terms times the average of the first
+      and last term.
+  check: null
+- goal: Find all ways to write 45 as a sum of at least two consecutive positive whole numbers.
+  expected: 22+23; 14+15+16; 7+8+9+10+11; 5+6+7+8+9+10; 1+2+...+9. That is five ways.
+  solution: Solve k(2n+k-1) = 90 for k from 2 upwards. k=2 gives n=22; k=3 gives n=14; k=5 gives n=7;
+    k=6 gives n=5; k=9 gives n=1. For k=10 and above, n is 0 or negative, which is not allowed.
+  common_errors:
+  - Missing the long run 1+2+...+9 because it has nine terms.
+  - Including k=10 (n=0), since 0 is not a positive whole number.
+  - Listing only the short sums and missing 5+6+...+10.
+  hints:
+    rephrase: For each possible number of terms k, check whether the run can start at a positive whole
+      number n.
+    smaller_case: Find all ways to write 9 with at least two terms. Check your method gives 4+5 and 2+3+4.
+    key_idea: k must divide 90, and the leftover 90/k - k + 1 must be even and positive so that n is a
+      positive whole number.
+  check: len([(k,n) for k in range(2,91) for n in range(1,46) if k*(2*n+k-1)==90]) - 5
+  check_ok: null
+- goal: Explain why the number of ways equals the count of odd divisors of 45 greater than 1.
+  expected: Odd divisors of 45 are 1, 3, 5, 9, 15, 45. Excluding the single-term sum 45 and counting only
+    those greater than 1 gives 5 ways.
+  solution: A sum of k consecutive numbers with k odd gives a multiple of k as its sum, which works out
+    to an odd divisor of 45. Excluding k=1 (the single term 45 itself) and counting the rest gives five
+    ways, matching the list.
+  common_errors:
+  - Counting all six odd divisors and forgetting to exclude the single-term sum.
+  - Thinking 45 can be written with an even number of terms in more ways.
+  hints:
+    rephrase: Which divisors of 45 correspond to the number of terms k in each sum?
+    smaller_case: For 9, the odd divisors are 1, 3, 9. How many ways with at least two terms does that
+      suggest?
+    key_idea: The number of terms in each run is tied to the odd divisors of the total.
+  check: len([d for d in range(3,46,2) if 45%d==0]) - 5
+  check_ok: null
+extensions:
+  '3':
+  - Find all ways to write 27 as a sum of at least two consecutive positive whole numbers.
+  '4':
+  - Explain why a power of 2 cannot be written as a sum of at least two consecutive positive whole numbers.
+  '5':
+  - Show that every odd number N with N at least 3 can be written as a sum of two consecutive whole numbers.
+spoken_vocab:
+- consecutive
+- sum
+- at least two terms
+- forty five
+- twenty two plus twenty three
+- fourteen plus fifteen plus sixteen
+- one plus two plus dot dot dot plus nine
+- odd divisor
+- divisors of forty five
+- number of terms
+- positive whole number
+source: kclms/kclms-specimen-questions-3.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: Enumerate consecutive-sum representations, then link the count to odd divisors; the link is
+    checkable.
+  priority: 71
+  rank: 357
+  tier: B
+  category: kclms
+  d10: 5.8
+  real: 7.0
+  by: deepseek-v4.1-flash-free
+tags:
+- number_theory
+- sequences_and_series
+- algebra_and_functions

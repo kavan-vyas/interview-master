@@ -1,0 +1,100 @@
+id: boat-upstream-downstream-speed
+title: Boat speed in still water from a round trip
+topics:
+- algebra
+- rational equations
+- quadratic equations
+- speed distance time
+- modelling
+warmup: false
+answer_source: pdf
+statement: A boat travels 12 km upstream and then 12 km back downstream again. The stream flows at 1 km/h
+  and the whole journey takes 5 hours. What is the speed of the boat in still water?
+stages:
+- goal: Set up an equation for the total time using time = distance / speed, with the upstream and downstream
+    speeds written in terms of v.
+  expected: Upstream speed is v-1 and downstream speed is v+1, so 12/(v-1) + 12/(v+1) = 5.
+  solution: Let the still-water speed be v km/h. Upstream the boat's effective speed is v-1, and downstream
+    it is v+1. Total time is 12/(v-1) + 12/(v+1) = 5.
+  common_errors:
+  - Using v+1 for upstream and v-1 for downstream.
+  - Using the same speed both ways and ignoring the stream.
+  - Writing time as speed/distance.
+  hints:
+    rephrase: Time equals distance divided by speed. Which speed applies going against the stream?
+    smaller_case: If the boat's speed in still water were 3 km/h, what would its speed upstream be?
+    key_idea: Upstream the stream subtracts from the boat's speed; downstream it adds.
+  check: simplify(12/(v-1)+12/(v+1)-5-(24*v-5*(v**2-1))/(v**2-1))
+  check_ok: true
+- goal: Clear the fractions and rearrange into a quadratic in v.
+  expected: 12(v+1)+12(v-1) = 5(v^2-1), so 24v = 5v^2 - 5, i.e. 5v^2 - 24v - 5 = 0.
+  solution: 'Multiply by (v-1)(v+1): 12(v+1)+12(v-1)=5(v^2-1). Simplify to 24v = 5v^2-5, so 5v^2 - 24v
+    - 5 = 0.'
+  common_errors:
+  - Forgetting to multiply one fraction's term by the other denominator.
+  - Sign errors moving 24v across.
+  - Writing 5v^2 + 24v - 5 = 0.
+  hints:
+    rephrase: Multiply every term by the product of the two denominators.
+    smaller_case: Clear fractions in 1/(a-1) + 1/(a+1) = 1 to see the pattern.
+    key_idea: Combining the two fractions gives a single fraction over v^2 - 1.
+  check: expand(5*v**2-24*v-5-(5*v+1)*(v-5))
+  check_ok: true
+- goal: Solve the quadratic, reject the negative root, and state the speed in still water.
+  expected: (5v+1)(v-5)=0 gives v=5 or v=-1/5. Speed must be positive, so v=5 km/h.
+  solution: Factorise 5v^2 - 24v - 5 = (5v+1)(v-5). The roots are v = -1/5 and v = 5. A speed cannot be
+    negative, so the boat's speed in still water is 5 km/h.
+  common_errors:
+  - Keeping v = -1/5 as an answer.
+  - Factorising to the wrong brackets, e.g. (5v-1)(v+5).
+  - Forgetting to state units or to give the answer in context.
+  hints:
+    rephrase: Factorise the quadratic and check which root makes physical sense.
+    smaller_case: Factorise 2v^2 - 5v - 3 to practise the method.
+    key_idea: In this context only the positive root is meaningful, since speed is positive.
+  check: Integer(5)-5
+  check_ok: true
+extensions:
+  '3':
+  - The stream flows at 1 km/h and the boat travels 12 km each way. If the total journey takes 9 hours,
+    find the boat's speed in still water.
+  '4':
+  - Show that the round trip always takes longer than 24/v hours, where v is the still-water speed, and
+    explain why.
+  '5':
+  - Find the general quadratic for v in terms of stream speed c, distance d each way, and total time T,
+    and check that it reduces to 5v^2 - 24v - 5 = 0 when c=1, d=12, T=5.
+spoken_vocab:
+- upstream
+- downstream
+- still water
+- twelve kilometres
+- one kilometre per hour
+- five hours
+- speed of the boat
+- v minus one
+- v plus one
+- five v squared minus twenty four v minus five
+- five v plus one
+- v minus five
+- factorise
+- reject the negative root
+- kilometres per hour
+source: kclms/kclms-specimen-questions-4.pdf#0
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 3
+  minutes: 6
+  flags: []
+  tagline: Relative-speed equation yielding a clean quadratic with integer root.
+  priority: 51
+  rank: 533
+  tier: C
+  category: kclms
+  d10: 2.5
+  real: 3.0
+  by: deepseek-v4.1-flash-free
+tags:
+- algebra_and_functions

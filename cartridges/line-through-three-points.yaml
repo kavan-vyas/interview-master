@@ -1,0 +1,109 @@
+id: line-through-three-points
+title: Collinearity and equation of a line in 3D
+topics:
+- vectors
+- 3D geometry
+- collinearity
+- vector equation of a line
+- Cartesian equation of a line
+warmup: true
+answer_source: pdf
+statement: Show that the points with position vectors $\begin{pmatrix}1\\0\\1\end{pmatrix}$, $\begin{pmatrix}2\\1\\0\end{pmatrix}$,
+  $\begin{pmatrix}4\\3\\-2\end{pmatrix}$ lie on a straight line and give the equation of the line in the
+  two forms (i) $\mathbf r=\mathbf a+\lambda\mathbf b$ (ii) $\frac{x-x_0}{c}=\frac{y-y_0}{d}=\frac{z-z_0}{e}$.
+stages:
+- goal: Show the three points are collinear.
+  expected: P2 - P1 = (1,1,-1) and P3 - P1 = (3,3,-3) = 3(1,1,-1), so the vectors are parallel and the
+    points are collinear.
+  solution: P2 - P1 = (2-1, 1-0, 0-1) = (1,1,-1). P3 - P1 = (4-1, 3-0, -2-1) = (3,3,-3). The second vector
+    is 3 times the first, so P1, P2, P3 lie on one line through P1 in direction (1,1,-1).
+  common_errors:
+  - Checking only two of the three pairs of points
+  - Subtracting position vectors in the wrong order and drawing the wrong conclusion
+  - Arithmetic slip in the z-components
+  hints:
+    rephrase: Find the vectors from the first point to the other two and see whether one is a multiple
+      of the other.
+    smaller_case: Take just the first two points and find the vector joining them.
+    key_idea: Three points are collinear exactly when the vectors from one of them to the other two are
+      parallel.
+  check: Matrix([3,3,-3]).cross(Matrix([1,1,-1])) == Matrix([0,0,0])
+  check_ok: true
+- goal: Give the line in vector form r = a + λb.
+  expected: r = (1,0,1) + λ(1,1,-1).
+  solution: 'Take a = (1,0,1) (the first point) and b = (1,1,-1) (the direction found in stage 1). Check:
+    at λ = 1, a + b = (2,1,0), which is the second point.'
+  common_errors:
+  - Using a different point as a but with a mismatched direction
+  - Using the direction (3,3,-3) without noting it is a multiple of (1,1,-1), which is still valid but
+    less simple
+  - Mixing up position vector and direction vector
+  hints:
+    rephrase: Choose one of the given points as the starting point and any non-zero vector along the line
+      as the direction.
+    smaller_case: Look at which point is reached from the first point with λ = 1.
+    key_idea: A line needs one point on it and one direction vector; the direction is a difference of
+      two points on the line.
+  check: Matrix([1,0,1]) + Matrix([1,1,-1]) - Matrix([2,1,0]) == Matrix([0,0,0])
+  check_ok: true
+- goal: Give the line in Cartesian form (x-x0)/c = (y-y0)/d = (z-z0)/e.
+  expected: 'With (x0,y0,z0) = (1,0,1) and (c,d,e) = (1,1,-1): (x-1)/1 = y/1 = (z-1)/(-1), equivalently
+    x - 1 = y = 1 - z.'
+  solution: 'From r = (1,0,1) + λ(1,1,-1): x = 1 + λ, y = λ, z = 1 - λ. So λ = y, giving x - 1 = y and
+    1 - z = y. Equivalently (z-1)/(-1) = y. Check with (4,3,-2): 4-1 = 3 = 1-(-2).'
+  common_errors:
+  - Writing the denominator for z as +1 instead of -1
+  - Dropping the common ratio so that the equation is not a chain of equalities
+  - Forgetting that the z-component of the direction gives a negative sign
+  hints:
+    rephrase: Write x, y and z in terms of λ, then eliminate λ.
+    smaller_case: 'Start with x and y only: how are they related along the line?'
+    key_idea: Each component gives λ = (coordinate minus starting coordinate) divided by the direction
+      component; equate these ratios.
+  check: (4-1 == 3) and (3 == 1-(-2))
+  check_ok: true
+extensions:
+  '3':
+  - Find the shortest distance from the origin to the line in part (i).
+  '4':
+  - Determine whether the line through (1,0,1) and (4,3,-2) meets the plane x + y + z = 0, and if so find
+    the point.
+  '5':
+  - Show that (1,0,1), (2,1,0) and (3,2,0) are not collinear, and find the normal vector to the plane
+    they determine.
+spoken_vocab:
+- position vector
+- r equals a plus lambda b
+- lambda
+- x minus one
+- y
+- one minus z
+- direction vector
+- collinear
+- straight line
+- cross product
+- parallel
+- point
+- vector
+- Cartesian form
+- x zero
+- c d e
+source: step-workbook/Cambridge STEP Short Workbook.pdf#1
+verified: false
+rating:
+  quality: 3
+  difficulty: 3
+  parts: 3
+  minutes: 5
+  flags: []
+  tagline: Clear collinearity check and two line forms; routine technique.
+  priority: 41
+  rank: 574
+  tier: D
+  category: step-workbook
+  d10: 2.0
+  real: 2.5
+  by: haiku
+tags:
+- vectors
+- coordinate_geometry

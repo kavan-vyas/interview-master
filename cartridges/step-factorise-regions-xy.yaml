@@ -1,0 +1,118 @@
+id: step-factorise-regions-xy
+title: 'Factorised quadratic inequalities: two wedge regions and a common point'
+topics:
+- algebra
+- factorisation
+- linear inequalities in two variables
+- graph sketching
+warmup: false
+answer_source: pdf
+statement: Show that $x^2 - y^2 + x + 3y - 2 = (x - y + 2)(x + y - 1)$ and hence, or otherwise, indicate
+  by means of a sketch the region of the $x$-$y$ plane for which $x^2 - y^2 + x + 3y > 2$. Sketch also
+  the region of the $x$-$y$ plane for which $x^2 - 4y^2 + 3x - 2y < -2$. Give the coordinates of a point
+  for which both inequalities are satisfied or explain why no such point exists.
+stages:
+- goal: Verify the factorisation of $x^2 - y^2 + x + 3y - 2$.
+  expected: Expanding $(x - y + 2)(x + y - 1)$ gives $x^2 - y^2 + x + 3y - 2$, so the identity holds.
+  solution: $(x-y+2)(x+y-1) = x^2 + xy - x - xy - y^2 + y + 2x + 2y - 2 = x^2 - y^2 + x + 3y - 2$. The
+    $xy$ terms cancel and the linear terms combine to $x + 3y$.
+  common_errors:
+  - Failing to see that the $xy$ cross terms cancel.
+  - Sign slips on the constant term or the $-x$ and $+2x$ terms.
+  hints:
+    rephrase: Multiply the two brackets out term by term and collect like terms.
+    smaller_case: Check both sides at $x = 0, y = 0$ and see whether they agree.
+    key_idea: Expand fully and watch which cross terms cancel.
+  check: expand((x - y + 2)*(x + y - 1) - (x**2 - y**2 + x + 3*y - 2)) == 0
+  check_ok: true
+- goal: Find and describe the region where $x^2 - y^2 + x + 3y > 2$.
+  expected: The inequality is $(x-y+2)(x+y-1) > 0$, so the two factors have the same sign. The boundary
+    lines $y = x+2$ and $y = 1-x$ cross at $(-\frac{1}{2}, \frac{3}{2})$. The region is the pair of opposite
+    wedges to the left and to the right of this vertex, with the boundaries excluded.
+  solution: 'Dividing the factorisation condition gives $(x-y+2)(x+y-1) > 0$. The lines $x - y + 2 = 0$
+    and $x + y - 1 = 0$ meet where $x+2 = 1-x$, so $x = -\frac{1}{2}$ and $y = \frac{3}{2}$. Test points:
+    $(0,0)$ gives $(2)(-1) = -2 < 0$, so it is excluded. $(-5,0)$ gives $(-3)(-6) = 18 > 0$, so the left
+    wedge is included. $(5,0)$ gives $(7)(4) > 0$, so the right wedge is included.'
+  common_errors:
+  - Shading the upper and lower wedges instead of the left and right ones.
+  - Including the boundary lines, although the inequality is strict.
+  - Forgetting that two negative factors also give a positive product.
+  hints:
+    rephrase: When is a product of two real numbers positive?
+    smaller_case: Pick one test point in each of the four wedges formed by two crossing lines and check
+      its sign.
+    key_idea: Each factor changes sign across its own line, so the product changes sign across each line.
+  check: ((-5 - 0 + 2)*(-5 + 0 - 1) > 0) and ((0 - 0 + 2)*(0 + 0 - 1) < 0)
+  check_ok: true
+- goal: Factorise the second inequality, find its region, and give a point satisfying both inequalities.
+  expected: $x^2 - 4y^2 + 3x - 2y + 2 = (x-2y+1)(x+2y+2)$, so the inequality is $(x-2y+1)(x+2y+2) < 0$.
+    The lines cross at $(-\frac{3}{2}, -\frac{1}{4})$, and the region is the upper and lower wedges at
+    that vertex. The point $(1,2)$ lies in both regions.
+  solution: 'Expanding $(x-2y+1)(x+2y+2) = x^2 - 4y^2 + 3x - 2y + 2$, so the inequality is $(x-2y+1)(x+2y+2)
+    < 0$. The lines are $y = \frac{x+1}{2}$ and $y = \frac{-2-x}{2}$, which meet at $x = -\frac{3}{2}$,
+    $y = -\frac{1}{4}$. Test $(0,1)$: $(-1)(4) = -4 < 0$, so the upper wedge is included. Test $(0,-2)$:
+    $(5)(-2) = -10 < 0$, so the lower wedge is included. For $(1,2)$: first inequality gives $(1-2+2)(1+2-1)
+    = 2 > 0$ and second gives $(1-4+1)(1+4+2) = -14 < 0$, so both hold.'
+  common_errors:
+  - Forgetting to multiply the original inequality by $-1$ or to move the $+2$ across correctly.
+  - Concluding that no common point exists without checking the wedges against each other.
+  - Testing a point on a boundary line, where the strict inequality fails.
+  hints:
+    rephrase: Move every term to one side so the right side is zero, then factorise.
+    smaller_case: Find where each linear factor is zero and test a point in each region it creates.
+    key_idea: Try a point inside the left or right wedge of the first region and check whether it also
+      falls in the upper or lower wedge of the second.
+  check: (((1-2*2+1)*(1+2*2+2)) < 0) and (((1-2+2)*(1+2-1)) > 0)
+  check_ok: true
+extensions:
+  '3':
+  - Find the set of points satisfying the first inequality with $\geqslant$ replacing $>$, and say which
+    boundary points are included.
+  - Given a point on the line $x + y = 1$, decide whether it can satisfy both inequalities.
+  '4':
+  - Describe the set of points satisfying both inequalities and say whether it is bounded.
+  - Find the area of the region of the plane, within the square $|x|, |y| \leqslant 5$, that satisfies
+    both inequalities.
+  '5':
+  - Show that the two factorisations share a common line of symmetry and explain whether that line helps
+    locate the intersection of the regions.
+  - 'Generalise: for which constants $c$ does $x^2 - y^2 + x + 3y - 2 = c$ define a hyperbola with asymptotes
+    parallel to $y = x + 2$ and $y = 1 - x$?'
+spoken_vocab:
+- x squared minus y squared plus x plus three y minus two
+- x minus y plus two
+- x plus y minus one
+- open bracket
+- close bracket
+- greater than two
+- less than minus two
+- vertex
+- wedge
+- quadrant
+- boundary line
+- strictly greater than
+- strictly less than
+- point one comma two
+- x minus two y plus one
+- x plus two y plus two
+- modulus
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#7
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 3
+  minutes: 12
+  flags:
+  - needs_diagram
+  tagline: Factorised wedge regions must share a witness point, which students must find.
+  priority: 63
+  rank: 412
+  tier: C
+  category: siklos
+  d10: 3.5
+  real: 3.0
+  by: haiku
+tags:
+- inequalities
+- coordinate_geometry

@@ -1,0 +1,107 @@
+id: sine-x-squared-vs-sine-squared-x
+title: Graphs of sin(x^2) and sin^2 x near the origin
+topics:
+- calculus
+- taylor series
+- graph sketching
+- trigonometry
+warmup: false
+answer_source: generated
+statement: Sketch the graphs of $\sin(x^2)$ and $\sin^2 x$. What shape is the first graph near the origin?
+stages:
+- goal: Describe the shape of $y=\sin(x^2)$ near the origin.
+  expected: 'Near 0, $\sin(x^2)\approx x^2$, so the graph looks like the parabola $y=x^2$: even, touching
+    the origin with zero gradient, and above the x-axis for small $|x|$.'
+  solution: Let $u=x^2$. For small $u$, $\sin u = u - u^3/6 + O(u^5)$. So $\sin(x^2)=x^2 - x^6/6 + O(x^{10})$.
+    Since $x^6$ is very small near 0, the graph is essentially $y=x^2$, a parabola with its vertex at
+    the origin.
+  common_errors:
+  - Saying it looks like $y=x$ (linear) near 0. It is quadratic.
+  - Forgetting that the inner $x^2$ makes the curve flat at the origin.
+  - Claiming there is a corner or cusp at the origin.
+  hints:
+    rephrase: What does $\sin$ look like near zero when its input is small?
+    smaller_case: Compare $\sin(u)$ with $u$ for $u=0.01$, then compare $\sin(x^2)$ with $x^2$ for $x=0.1$.
+    key_idea: Substitute the inner function $u=x^2$ and use the small-angle behaviour of $\sin$.
+  check: sp.simplify(sp.series(ans, x, 0, 3).removeO() - x**2) == 0
+  check_ok: null
+- goal: Find the leading terms of $\sin^2 x$ up to $x^4$ and compare with $\sin(x^2)$ near the origin.
+  expected: $\sin^2 x = x^2 - x^4/3 + \dots$. Both graphs look like $y=x^2$ near the origin, but they
+    differ at fourth order. $\sin(x^2)$ is flatter, since its deviation from $x^2$ is of order $x^6$,
+    while for $\sin^2 x$ it is of order $x^4$.
+  solution: Use $\sin^2 x = \frac{1-\cos 2x}{2}$. With $\cos 2x = 1 - 2x^2 + \frac{2}{3}x^4 - \dots$,
+    we get $\sin^2 x = x^2 - \frac{x^4}{3} + \frac{2x^6}{45} - \dots$
+  common_errors:
+  - Assuming $\sin^2 x = x^2$ exactly.
+  - Treating $\sin^2 x$ as $\sin(x^2)$.
+  - Getting the $x^4$ coefficient's sign wrong.
+  hints:
+    rephrase: Write $\sin^2 x$ using a double-angle identity, then expand the cosine.
+    smaller_case: Check numerically at $x=0.1$ how far $\sin^2 x$ is from $x^2$, and how far $\sin(x^2)$
+      is from $x^2$.
+    key_idea: Expand both functions as power series and compare the first terms where they differ.
+  check: sp.simplify(sp.series(ans, x, 0, 5).removeO() - (x**2 - x**4/3)) == 0
+  check_ok: null
+- goal: State the period of $\sin^2 x$, and describe the global behaviour of both graphs.
+  expected: $\sin^2 x$ has period $\pi$, takes values in $[0,1]$, and is zero at $x=n\pi$. $\sin(x^2)$
+    is even, bounded in $[-1,1]$, has zeros at $x=\pm\sqrt{n\pi}$, and oscillates faster as $|x|$ grows,
+    with local period about $\pi/|x|$.
+  solution: Since $\sin^2(x+\pi)=(-\sin x)^2=\sin^2 x$, the period divides $\pi$, and it is exactly $\pi$
+    because $\sin^2 x$ vanishes at $0$ and has its next zero at $\pi$. For $\sin(x^2)$, the local angular
+    frequency is $\frac{d}{dx}(x^2)=2x$, so the local period is $2\pi/(2x)=\pi/x$, which shrinks as $x$
+    grows.
+  common_errors:
+  - Giving period $2\pi$ for $\sin^2 x$, because $\sin x$ has that period.
+  - Thinking $\sin(x^2)$ has a fixed period.
+  - Forgetting that $\sin^2 x\ge 0$.
+  hints:
+    rephrase: What is the smallest positive shift that leaves $\sin^2 x$ unchanged?
+    smaller_case: Look at $\sin^2 x$ on $[0,\pi]$ and then on $[\pi,2\pi]$.
+    key_idea: Shifting $x$ by $\pi$ changes the sign of $\sin x$ but not $\sin^2 x$.
+  check: sp.simplify(ans - sp.pi) == 0
+  check_ok: null
+extensions:
+  '3':
+  - Sketch $y=\sin(x^3)$ near 0 and describe its shape there.
+  - Find the local period of $\sin(x^2)$ at $x=10$.
+  '4':
+  - Find the leading term of $\sin^2 x - \sin(x^2)$ near 0.
+  - Show that the derivative of $\sin(x^2)$ is unbounded on $\mathbb{R}$ and interpret this on the graph.
+  '5':
+  - Find all points where $\sin(x^2)$ and $\sin^2 x$ intersect for $x\ge 0$, or explain why there are
+    infinitely many.
+  - Explain why $\sin(x^2)$ is not periodic.
+spoken_vocab:
+- sine of x squared
+- sine squared x
+- sine
+- squared
+- parabola
+- origin
+- period
+- pi
+- derivative
+- Taylor series
+- small angle
+- double angle identity
+- cosine
+source: past-interviews/Actual Past Interview Questions/Maths Trinity Hall Cambridge 2005.doc
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 3
+  minutes: 12
+  flags:
+  - needs_diagram
+  tagline: Taylor comparison at x⁴ plus periodicity versus non-periodic oscillation.
+  priority: 73
+  rank: 294
+  tier: B
+  category: past-interviews
+  d10: 3.0
+  real: 4.0
+  by: haiku
+tags:
+- curve_sketching
+- trigonometry

@@ -1,0 +1,85 @@
+id: x2-plus-y2-eq-3z2
+title: Integer solutions of x^2 + y^2 = 3z^2
+topics:
+- diophantine equations
+- quadratic residues mod 3
+- infinite descent
+warmup: false
+answer_source: pdf
+statement: Find all integer solutions of $x^2+y^2=3z^2$.
+stages:
+- goal: Use squares modulo $3$ to show $3\mid x$ and $3\mid y$.
+  expected: Every square is $0$ or $1\pmod3$, and $x^2+y^2\equiv0\pmod3$ forces $3\mid x$ and $3\mid y$.
+  solution: Since $3z^2\equiv0\pmod3$, we need $x^2+y^2\equiv0\pmod3$. Squares are $0$ or $1\pmod3$, so
+    the possible sums are $0+0=0$, $0+1=1$, $1+1=2$. Only $0+0$ gives $0$, so $x^2\equiv y^2\equiv0\pmod3$,
+    hence $3\mid x$ and $3\mid y$.
+  common_errors:
+  - Stating that squares can be $2\pmod3$.
+  - Concluding that only one of $x,y$ is divisible by $3$.
+  - Forgetting that the congruence applies to $x^2+y^2$ as a whole.
+  hints:
+    rephrase: List the possible values of a square mod $3$, then examine every pair of residues.
+    smaller_case: 'Take $x=1$, $y=2$: what is $x^2+y^2 \bmod 3$?'
+    key_idea: Find which combinations of two square residues sum to $0\pmod3$.
+- goal: Deduce $3\mid z$.
+  expected: Writing $x=3x_1$, $y=3y_1$ gives $z^2=3(x_1^2+y_1^2)$, so $3\mid z^2$ and therefore $3\mid
+    z$.
+  solution: 'Substitute $x=3x_1$, $y=3y_1$: $9(x_1^2+y_1^2)=3z^2$, so $z^2=3(x_1^2+y_1^2)$. Thus $3\mid
+    z^2$. Since $3$ is prime, $3\mid z$.'
+  common_errors:
+  - Dividing incorrectly, for example writing $9(x_1^2+y_1^2)=3z^2$ as $z^2=9(\ldots)$.
+  - Using $3\mid z^2$ to conclude $9\mid z^2$ without justification.
+  hints:
+    rephrase: Substitute $x=3x_1$ and $y=3y_1$ into the equation and simplify.
+    smaller_case: What does $z^2=3\cdot(\text{some integer})$ tell you about $z$?
+    key_idea: A prime dividing a square also divides its root.
+- goal: Use infinite descent to conclude the only solution is $x=y=z=0$.
+  expected: The only integer solution is $(x,y,z)=(0,0,0)$.
+  solution: Suppose a nontrivial solution exists. If $z=0$ then $x^2+y^2=0$ forces $x=y=0$, so $z\neq0$.
+    Choose a nontrivial solution with $|z|$ minimal and positive. By the previous stages $3\mid x$, $3\mid
+    y$, $3\mid z$, so $(x/3,y/3,z/3)$ is an integer solution with $0<|z/3|<|z|$. This contradicts minimality.
+    Hence the only solution is $(0,0,0)$.
+  common_errors:
+  - Forgetting to handle the case $z=0$ separately.
+  - Applying descent without choosing a minimal counterexample.
+  - Claiming a nontrivial solution exists without descent.
+  hints:
+    rephrase: Assume a nonzero solution exists and try to produce a smaller one.
+    smaller_case: If $(x,y,z)$ is a solution with all entries divisible by $3$, what is the solution $(x/3,y/3,z/3)$?
+    key_idea: 'Infinite descent: a minimal nontrivial solution cannot exist.'
+extensions:
+  '3':
+  - Find all integer solutions of $x^2+y^2=7z^2$.
+  '4':
+  - Show that $x^2+y^2=4z^2$ has infinitely many integer solutions and describe them.
+  '5':
+  - Show that $x^2+y^2=21z^2$ has only the trivial integer solution.
+spoken_vocab:
+- x squared plus y squared equals three z squared
+- integer solutions
+- squares modulo three
+- divisible by three
+- infinite descent
+- minimal counterexample
+- trivial solution
+- prime divides a square
+- substitute x equals three x one
+source: jaymin/Jaymin Interview (1).pdf#p1
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Classic infinite descent via squares mod 3, prompting discussion of modular method.
+  priority: 106
+  rank: 39
+  tier: A
+  category: jaymin
+  d10: 6.0
+  real: 7.0
+  by: haiku
+tags:
+- number_theory
+- proof

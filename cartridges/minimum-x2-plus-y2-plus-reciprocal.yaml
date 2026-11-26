@@ -1,0 +1,94 @@
+id: minimum-x2-plus-y2-plus-reciprocal
+title: Minimum of x^2+y^2+1/(x^2+y^2)
+topics:
+- algebra
+- inequalities
+- AM-GM
+- optimisation
+warmup: true
+answer_source: generated
+statement: What is the minimum value of $x^2+y^2+\frac{1}{x^2+y^2}$?
+stages:
+- goal: Simplify the expression by substituting $t=x^2+y^2$.
+  expected: $t+\frac{1}{t}$ with $t>0$. Every $t>0$ is attainable, for example with $x=\sqrt{t}$ and $y=0$.
+  solution: Let $t=x^2+y^2$. Then $\frac{1}{t}$ requires $t\ne 0$, so $t>0$ because $t\ge 0$. The expression
+    becomes $f(t)=t+\frac{1}{t}$ for $t>0$.
+  common_errors:
+  - Thinking $x=y=0$ gives a minimum, although $\frac{1}{0}$ is undefined.
+  - Losing the constraint $t>0$.
+  - Substituting incorrectly, for example writing $\frac{1}{x^2}+\frac{1}{y^2}$.
+  hints:
+    rephrase: Introduce a single variable for the repeated quantity $x^2+y^2$.
+    smaller_case: Set $y=0$ and see what the expression becomes in $x$.
+    key_idea: The expression depends on $x$ and $y$ only through $x^2+y^2$.
+  check: sp.simplify(ans - (t + 1/t)) == 0
+  check_ok: null
+- goal: Find the minimum value of $f(t)=t+\frac{1}{t}$ for $t>0$.
+  expected: $2$.
+  solution: 'By AM-GM, $t+\frac{1}{t}\ge 2\sqrt{t\cdot\frac{1}{t}}=2$, with equality when $t=\frac{1}{t}$,
+    i.e. $t=1$. Calculus confirms this: $f''(t)=1-\frac{1}{t^2}=0$ gives $t=1$ (since $t>0$), and $f''''(t)=\frac{2}{t^3}>0$,
+    so it is a minimum.'
+  common_errors:
+  - Claiming there is no minimum because $t+1/t$ grows without bound on both sides.
+  - Writing $\ge 1$ instead of $\ge 2$.
+  - Finding $t=1$ but not computing the value of $f$ there.
+  hints:
+    rephrase: For positive numbers $a$ and $b$, how does their sum compare with the product $ab$?
+    smaller_case: Evaluate $t+\frac{1}{t}$ at $t=\frac{1}{2}$, $t=1$ and $t=2$.
+    key_idea: Use AM-GM on $t$ and $\frac{1}{t}$, or differentiate $f$ and check its second derivative.
+  check: sp.simplify(ans - 2) == 0
+  check_ok: null
+- goal: At the minimum, what is $x^2+y^2$? Describe the set of minimising points $(x,y)$.
+  expected: $x^2+y^2=1$, so the minimising points form the unit circle.
+  solution: Equality in AM-GM holds only when $t=1$, so $x^2+y^2=1$. Every point on the unit circle gives
+    the minimum value 2, and no other points do.
+  common_errors:
+  - Describing only one point such as $(1,0)$ rather than the whole circle.
+  - Giving $x^2+y^2=2$ by mistake, from the wrong equality condition.
+  hints:
+    rephrase: Which value of $t$ makes $t=\frac{1}{t}$?
+    smaller_case: Check which of the points $(1,0)$, $(0,1)$ and $(\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}})$
+      give the value 2.
+    key_idea: Work backwards from the equality condition of the inequality you used.
+  check: sp.simplify(ans - 1) == 0
+  check_ok: null
+extensions:
+  '3':
+  - Find the minimum of $x^2+y^2+\frac{4}{x^2+y^2}$.
+  '4':
+  - Find the minimum of $x^2+y^2$ subject to $x+y=1$.
+  '5':
+  - Find the minimum of $x^2+y^2+z^2+\frac{1}{x^2+y^2+z^2}$ and describe the minimising set.
+spoken_vocab:
+- minimum
+- x squared plus y squared
+- one over x squared plus y squared
+- substitution
+- AM-GM
+- arithmetic mean geometric mean
+- equality
+- unit circle
+- derivative
+- second derivative
+- positive
+- square root
+source: past-interviews/Actual Past Interview Questions/Maths Trinity Hall Cambridge 2005.doc
+verified: false
+rating:
+  quality: 6
+  difficulty: 3
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: AM-GM in disguise; the minimising points form a circle, not one point.
+  priority: 71
+  rank: 339
+  tier: B
+  category: past-interviews
+  d10: 2.5
+  real: 6.5
+  by: haiku
+tags:
+- inequalities
+- coordinate_geometry
+- algebra_and_functions

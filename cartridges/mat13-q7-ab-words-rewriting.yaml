@@ -1,0 +1,147 @@
+id: mat13-q7-ab-words-rewriting
+title: 'AB-words: generating words with rewriting rules'
+topics:
+- formal languages
+- rewriting rules
+- induction
+- invariants
+- words over an alphabet
+warmup: false
+answer_source: generated
+statement: 'Question 7 (Computer Science, Computer Science & Philosophy applicants). AB-words are formed
+  from the letters A and B using rules applied starting from the empty word. Rule (1): if the current
+  word is $x$, it can be replaced by $AxB$. Rule (2): if the current word ends in B, the final B can be
+  removed. (i) Show how the word AAAB can be produced. (ii) Describe precisely all the words that can
+  be produced with rules (1) and (2). Justify your answer. (Write $A^i$ for i consecutive copies of A,
+  similarly for B; e.g. $A^3B^2 = AAABB$.) Add rule (3): reverse the word and replace every A by B and
+  every B by A. (For example, applying this to AAAB gives ABBB.) (iii) Describe precisely all the words
+  that can be produced with rules (1), (2) and (3). Justify your answer. Finally add rule (4): reverse
+  the word. (iv) Show that every word consisting of As and Bs can be formed using these four rules. Hint:
+  show how, if we have produced the word $w$, we can produce (a) the word $Aw$ and (b) the word $Bw$;
+  hence deduce the result.'
+stages:
+- goal: Show how AAAB can be produced using rules (1) and (2) (part i), and describe exactly the words
+    produced by rules (1) and (2) with justification (part ii).
+  expected: '(i) Derivation: empty word, AB, AABB, AAB, AAABB, AAAB. (ii) Exactly the words A^i B^j with
+    0 <= j <= i (including the empty word, i = j = 0).'
+  solution: '(i) Start from the empty word. Rule (1) gives AB. Rule (1) again gives A(AB)B = AABB. Rule
+    (2) removes the final B to give AAB. Rule (1) gives A(AAB)B = AAABB. Rule (2) removes the final B
+    to give AAAB. (ii) Claim: the producible words are exactly A^i B^j with 0 <= j <= i. Invariant: every
+    producible word has the form A^i B^j with j <= i. This holds for the empty word. Rule (1) maps A^i
+    B^j to A^(i+1) B^(j+1), which keeps the form and keeps j <= i. Rule (2) applies only when j >= 1 and
+    maps A^i B^j to A^i B^(j-1), which keeps the form and j <= i. Conversely, every A^i B^j with j <=
+    i is producible: apply rule (1) i times from the empty word to get A^i B^i, then apply rule (2) i
+    - j times to get A^i B^j.'
+  common_errors:
+  - Claiming the words are all words with equal numbers of As and Bs (forgetting rule 2 can remove Bs).
+  - Forgetting that rule 2 only removes a final B, so the word must end in B, and writing words with As
+    after Bs.
+  - Omitting the empty word from the description.
+  - In part (i), trying to get AAAB by adding letters at the end; rule (1) always adds an A at the front
+    and a B at the end.
+  hints:
+    rephrase: Rule (1) always adds one A at the front and one B at the end. Track how many As and Bs each
+      word has, and how rule (2) changes them.
+    smaller_case: Produce the word AABB, which has two As and two Bs, starting from the empty word.
+    key_idea: Look at the quantity (number of As) minus (number of Bs). Rule (1) leaves it unchanged,
+      rule (2) changes it in a known direction. Use this to decide which words are reachable.
+  check: null
+- goal: With rules (1), (2) and (3), describe exactly the producible words, and justify.
+  expected: Exactly the words A^a B^b for all a, b >= 0 (no restriction between a and b).
+  solution: 'Rule (3) on A^i B^j: reverse gives B^j A^i, then swapping letters gives A^j B^i. So rule
+    (3) maps (i, j) to (j, i). Invariant: every producible word has the form A^a B^b. Rules (1) and (2)
+    preserve this form, as shown in the previous stage, and rule (3) sends A^i B^j to A^j B^i, which is
+    also of this form. So every producible word is some A^a B^b. Conversely, every A^a B^b is producible:
+    if a >= b, it is produced by rules (1) and (2) alone. If a < b, then B^a... precisely: the word A^b
+    B^a is producible by rules (1) and (2) since b >= a, and applying rule (3) to it gives A^a B^b.'
+  common_errors:
+  - Concluding that rule (3) only produces words with j <= i, forgetting it swaps the roles of the two
+    blocks.
+  - Forgetting to swap the letters as well as reversing, giving B^j A^i instead of A^j B^i.
+  - Claiming words like ABA or BA are producible; the invariant shows block form is preserved.
+  - Forgetting to show that all words A^a B^b with a < b are reachable.
+  hints:
+    rephrase: What happens to a block of As followed by a block of Bs when you reverse the word and then
+      swap the letters?
+    smaller_case: Apply rule (3) to the word AB and to the word AAB. What words do you get?
+    key_idea: Track each word by the pair (number of As, number of Bs). Rules (1) and (2) act on these
+      pairs, rule (3) swaps the two entries, and you need to see which pairs are reachable.
+  check: null
+- goal: Show that every word over {A, B} can be produced using all four rules, by showing how to produce
+    Aw and Bw from any produced word w.
+  expected: 'Given any producible w: (a) Aw is produced by rules (1) and (2). (b) Bw is produced by: apply
+    rule (3) to w to get u = swap(reverse(w)); then from u produce uA by applying rule (4), rule (1),
+    rule (2), rule (4) in turn; then apply rule (3) to uA to get Bw. Induction on word length from the
+    empty word then gives every word.'
+  solution: '(a) From w apply rule (1) to get AwB, then rule (2) to remove the final B, giving Aw. (b)
+    Write s(x) for the reverse-and-swap of x (rule 3). Apply rule (3) to w to get u = s(w). To produce
+    uA: apply rule (4) to get reverse(u); apply rule (1) to get A reverse(u) B; apply rule (2) to get
+    A reverse(u); apply rule (4) to get reverse(A reverse(u)) = uA. Now apply rule (3) to uA. Reverse
+    of uA is A reverse(u), and swapping gives B s(reverse(u)) = B s(s(w)) = Bw, since s(reverse(u)) =
+    s(s(w)) = w. Induction: the empty word is producible. If every word of length n is producible, then
+    any word of length n+1 has the form Xw with X in {A, B} and w of length n, so it is produced by (a)
+    or (b).'
+  common_errors:
+  - Trying to get Bw using only rules (1) and (2), which always add A at the front.
+  - Confusing Bw with wB; rule (1) puts a B at the end, not the front.
+  - Applying rule (4) or (3) to a word that has not yet been shown to be producible.
+  - Forgetting the base case (the empty word), or not closing the induction.
+  - Making a mistake in the reverse-and-swap computation for uA; check that reverse and swap commute with
+    the appropriate letters.
+  hints:
+    rephrase: Rule (1) gives you an A at the front for free. How can you get a B at the front? Think about
+      which rule moves a letter from the end of a word to the front.
+    smaller_case: Start from the empty word and produce the words A and B. Then try to produce BA and
+      AB from them.
+    key_idea: Rule (3) reverses the word, so a letter at the end of an intermediate word becomes a letter
+      at the front after rule (3). Use an intermediate word that already has an extra letter at its end,
+      and remember that rule (4) lets you move letters from the front to the end.
+  check: null
+extensions:
+  '3':
+  - Using only rules (1), (2) and (3), can the word ABBA be produced? Justify your answer.
+  '4':
+  - Count the words of length 6 that can be produced using rules (1), (2) and (3).
+  '5':
+  - Show that the word BA cannot be produced using rules (1), (2) and (3).
+spoken_vocab:
+- A B words
+- AB word
+- empty word
+- rule one
+- rule two
+- rule three
+- rule four
+- A to the i
+- B to the j
+- A to the a, B to the b
+- reverse
+- swap A and B
+- ends in B
+- final B
+- produce
+- epsilon
+- induction on length
+- prepend A
+- prepend B
+- Aw
+- Bw
+source: mat/2013 MAT done again.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 4
+  minutes: 25
+  flags: []
+  tagline: Rewriting rules generate words; invariant-based structure, reversal rule, completeness
+  priority: 82
+  rank: 193
+  tier: B
+  category: mat
+  d10: 6.0
+  real: 4.5
+  by: haiku
+tags:
+- proof
+- combinatorics

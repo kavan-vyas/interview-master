@@ -1,0 +1,113 @@
+id: pythagoras-two-proofs
+title: Two proofs of Pythagoras' theorem
+topics:
+- geometry
+- Pythagoras
+- area
+- similar triangles
+- proof
+warmup: true
+answer_source: pdf
+statement: Give a proof of Pythagoras' theorem. Can you give a second, different proof?
+stages:
+- goal: Prove Pythagoras' theorem by rearrangement, using four copies of the right-angled triangle in
+    a square of side $a+b$.
+  expected: $(a+b)^2=4\cdot\tfrac12ab+c^2$, which gives $a^2+b^2=c^2$
+  solution: 'Let the right triangle have legs $a,b$ and hypotenuse $c$. Place four copies in the corners
+    of a square of side $a+b$. They leave a central square of side $c$, which stage 2 justifies. The big
+    square has area $(a+b)^2$. It also equals four triangles plus the inner square: $4\cdot\tfrac12ab+c^2=2ab+c^2$.
+    Equating gives $a^2+2ab+b^2=2ab+c^2$, so $a^2+b^2=c^2$.'
+  common_errors:
+  - Writing $(a+b)^2=a^2+b^2$, forgetting the cross term.
+  - Writing each triangle's area as $ab$ instead of $\tfrac12ab$.
+  - Counting three triangles instead of four.
+  - Assuming the inner shape is a square without justification.
+  hints:
+    rephrase: Place the four triangles in the corners of a bigger square. Compare two expressions for
+      the big square's area.
+    smaller_case: Try a $3$-$4$-$5$ triangle. What are the big square's side and the areas of its pieces?
+    key_idea: 'Count the same area in two ways: as the whole square, and as the sum of its pieces.'
+  check: simplify((a+b)**2 - (4*(a*b/2) + c**2) - (a**2 + b**2 - c**2))
+  check_ok: true
+- goal: Justify that the inner quadrilateral is a square of side $c$.
+  expected: Each inner side is a hypotenuse, so has length $c$. At each inner corner, two acute angles
+    $\alpha$ and $\beta$ of adjacent triangles and the inner angle lie along a straight line, so the inner
+    angle is $180^\circ-(\alpha+\beta)=90^\circ$, because $\alpha+\beta=90^\circ$.
+  solution: Each triangle's hypotenuse forms one side of the inner shape, so all four sides have length
+    $c$. At an inner corner, the two triangles contribute their acute angles $\alpha$ and $\beta$. These
+    angles, together with the inner angle, sum to $180^\circ$ along a side of the big square. Since $\alpha+\beta=90^\circ$
+    in each right triangle, the inner angle is $90^\circ$. A quadrilateral with four equal sides and four
+    right angles is a square.
+  common_errors:
+  - Asserting the inner shape is a square because it looks like one.
+  - Forgetting that the four sides are all equal to $c$.
+  - Using the wrong angle sum, such as $360^\circ$ instead of $180^\circ$ along the straight line.
+  hints:
+    rephrase: Look at the four sides of the inner shape and at its corners. Which angles of the triangles
+      meet at each corner?
+    smaller_case: Look at one corner of the inner shape. Which triangle angles meet there, and along which
+      straight line do they lie?
+    key_idea: Angles along a straight line sum to $180^\circ$, and the two acute angles of a right triangle
+      sum to $90^\circ$.
+- goal: Give a second proof using the altitude to the hypotenuse and similar triangles.
+  expected: $a^2=cp$ and $b^2=cq$, where $p$ and $q$ are the two pieces of the hypotenuse, so $a^2+b^2=c(p+q)=c^2$
+  solution: Let the right angle be at $C$, and let the altitude from $C$ meet the hypotenuse $AB$ at $D$.
+    Let $p=BD$ and $q=AD$. Triangles $BCD$ and $BAC$ share angle $B$ and both have a right angle, so they
+    are similar. Hence $\frac{BC}{BA}=\frac{BD}{BC}$, i.e. $\frac ac=\frac pa$, so $a^2=cp$. Similarly,
+    triangles $ACD$ and $ABC$ give $\frac bc=\frac qb$, so $b^2=cq$. Adding gives $a^2+b^2=c(p+q)=c\cdot
+    c=c^2$.
+  common_errors:
+  - Matching the wrong sides in the similarity, e.g. writing $a/c=q/a$.
+  - Assuming the altitude splits the hypotenuse into equal parts.
+  - Asserting similarity without citing both the shared angle and the right angle.
+  hints:
+    rephrase: Draw the altitude from the right-angle vertex to the hypotenuse. Which triangles are similar
+      to the original?
+    smaller_case: Take an isosceles right triangle with legs $1$. Where does the altitude fall, and how
+      long are the pieces of the hypotenuse?
+    key_idea: Two triangles with a right angle and a shared acute angle are similar, so their corresponding
+      sides are proportional.
+  check: simplify((lhs - rhs) - (a**2 - c*p)), where lhs and rhs are the two sides of the candidate relation
+  check_ok: null
+extensions:
+  '3':
+  - 'Prove the converse: if $a^2+b^2=c^2$, then the angle opposite $c$ is a right angle.'
+  '4':
+  - 'Give a vector proof: if $\vec u\perp\vec v$, show that $|\vec u-\vec v|^2=|\vec u|^2+|\vec v|^2$.'
+  '5':
+  - For a triangle with angle $\gamma$ opposite side $c$, derive $c^2=a^2+b^2-2ab\cos\gamma$, and show
+    that it reduces to Pythagoras when $\gamma=90^\circ$.
+spoken_vocab:
+- Pythagoras
+- right-angled triangle
+- legs
+- hypotenuse
+- a squared plus b squared equals c squared
+- square of side a plus b
+- area
+- four copies
+- tilted square
+- altitude
+- similar triangles
+- segments p and q
+- dot product
+source: jaymin/Jaymin Interview (1).pdf#p57
+verified: false
+rating:
+  quality: 7
+  difficulty: 3
+  parts: 3
+  minutes: 12
+  flags:
+  - needs_diagram
+  tagline: Famous rearrangement plus similar-triangles proof; rich discussion of proof styles.
+  priority: 88
+  rank: 141
+  tier: A
+  category: jaymin
+  d10: 2.5
+  real: 6.5
+  by: haiku
+tags:
+- geometry
+- proof

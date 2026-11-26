@@ -1,0 +1,84 @@
+id: sketch-reciprocal-quadratic
+title: Sketch y = 1/((x+1)(x+2))
+topics:
+- graphs
+- asymptotes
+- partial fractions
+- sign analysis
+warmup: true
+answer_source: generated
+statement: Sketch the graph $y=\frac{1}{(x+1)(x+2)}$.
+stages:
+- goal: Identify the vertical asymptotes and the horizontal asymptote.
+  expected: Vertical asymptotes at x = -1 and x = -2; horizontal asymptote y = 0.
+  solution: The denominator vanishes at x = -1 and x = -2, so both are vertical asymptotes. As |x| tends
+    to infinity, the function tends to 0, so y = 0 is the horizontal asymptote.
+  common_errors:
+  - Forgetting that the numerator is constant so the function never equals zero.
+  - Stating the horizontal asymptote as y = 1.
+  hints:
+    rephrase: Where does the denominator become zero, and what happens to the fraction for very large
+      x?
+    smaller_case: Check the behaviour at x = -1 and at x = 100.
+    key_idea: Zeros of the denominator give vertical asymptotes; degree comparison gives the horizontal
+      asymptote.
+- goal: Use partial fractions to rewrite the function and analyse its sign on each interval.
+  expected: 1/((x+1)(x+2)) = 1/(x+1) - 1/(x+2). The function is positive for x < -2, negative on (-2,-1),
+    and positive for x > -1.
+  solution: 'Partial fractions: 1/((x+1)(x+2)) = 1/(x+1) - 1/(x+2). Sign: for x < -2 both factors are
+    negative so the product is positive; on (-2,-1) the product is negative; for x > -1 both factors are
+    positive.'
+  common_errors:
+  - Getting the sign on (-2,-1) wrong.
+  - Writing the partial fraction with the wrong signs.
+  hints:
+    rephrase: Write the fraction as a sum with the factors separated, then test the sign of each factor
+      on each interval.
+    smaller_case: Pick x = -3, x = -1.5 and x = 0 and test the signs of the factors.
+    key_idea: Separate the fraction into simpler parts and track signs of the two linear factors.
+  check: simplify(1/((x+1)*(x+2)) - (1/(x+1) - 1/(x+2)))
+  check_ok: true
+- goal: Find the turning point between the asymptotes and the y-intercept, then sketch the full graph.
+  expected: Minimum at x = -1.5 with y = -4. Y-intercept at (0, 1/2). The graph has two branches in the
+    positive region and a dip below the axis between the asymptotes.
+  solution: 'The product (x+1)(x+2) = x^2 + 3x + 2 is minimised at x = -1.5 where it equals -1/4, so y
+    = -4 is the minimum in (-2,-1). At x = 0, y = 1/2. Sketch: branches approaching the asymptotes, with
+    the dip to -4 between them and positive branches on either side.'
+  common_errors:
+  - Placing the minimum at x = -1 or x = -2 where the function is undefined.
+  - Forgetting the y-intercept.
+  hints:
+    rephrase: Find where the quadratic in the denominator is most negative between its roots.
+    smaller_case: Evaluate the denominator at x = -1.5 and at x = 0.
+    key_idea: The quadratic is symmetric about its vertex, which lies midway between the roots.
+  check: 1/((-3/2+1)*(-3/2+2)) + 4
+  check_ok: true
+extensions:
+  '3':
+  - Sketch y = 1/(x(x+1)) and identify its asymptotes and sign pattern.
+  - Sketch y = -1/((x+1)(x+2)) and describe how the graph changes.
+  '4':
+  - Find the area under y = 1/((x+1)(x+2)) from x = 0 to x = 1.
+  - Discuss whether the graph has any local maxima and explain.
+  '5':
+  - Show how partial fractions generalise to 1/prod (x+a_i) and describe the sign pattern.
+  - Analyse the tangent lines at the points where the graph crosses x = -1.5 and explain the symmetry.
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 5 (anonymous).pdf#0
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: Clean partial-fractions sketch with a turning point between two asymptotes.
+  priority: 51
+  rank: 524
+  tier: C
+  category: past-interviews
+  d10: 2.5
+  real: 4.0
+  by: haiku
+tags:
+- curve_sketching
+- algebra_and_functions

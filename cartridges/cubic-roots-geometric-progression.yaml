@@ -1,0 +1,105 @@
+id: cubic-roots-geometric-progression
+title: Cubic roots in geometric progression
+topics:
+- algebra
+- polynomials
+- vieta-formulas
+- sequences
+warmup: false
+answer_source: generated
+statement: Find the roots of $x^3-13x^2+39x-27=0$, given that the roots are in geometric progression.
+stages:
+- goal: Use the product of the roots and the geometric-progression property to find the middle root.
+  expected: The middle root is 3.
+  solution: Write the roots as a/r, a, ar. Their product is a^3. By Vieta, for x^3+bx^2+cx+d the product
+    of the roots is -d = 27, so a^3 = 27 and a = 3. The middle root is 3.
+  common_errors:
+  - Taking the product of the roots as -27 instead of 27 (sign error from Vieta).
+  - Assuming the middle root must be 1 or -3 without using the product.
+  hints:
+    rephrase: Think about what the product of the three roots equals, and what the middle term of a three-term
+      geometric sequence does to that product.
+    smaller_case: Take a geometric progression 2, 4, 8. What is its product, and how does the middle term
+      relate to it?
+    key_idea: In a geometric progression u/r, u, ur the product of the three terms is u cubed.
+  check: 3**3 - 27
+  check_ok: true
+- goal: Find the other two roots using Vieta's formulas for the sum and pairwise products.
+  expected: The roots are 1, 3 and 9.
+  solution: 'Let the outer roots be p and q. Sum of roots: p+q+3=13, so p+q=10. Product: pq*3=27, so pq=9.
+    Check pairwise sum: 3p+3q+pq=30+9=39, consistent. So p and q are the roots of t^2-10t+9=0, namely
+    1 and 9. Roots: 1, 3, 9.'
+  common_errors:
+  - Using pq=39 (the pairwise sum) instead of pq=9.
+  - Solving t^2-10t+9 incorrectly, for example giving roots 1 and -9.
+  - Forgetting to check that the three roots satisfy the sum of pairwise products.
+  hints:
+    rephrase: Once the middle root is known, use Vieta's sum of roots and product of roots to get a quadratic
+      for the other two.
+    smaller_case: If two numbers have a known sum and a known product, what quadratic do they satisfy?
+    key_idea: Vieta's formulas give the sum and product of the outer two roots, which determine them as
+      roots of a quadratic.
+  check: expand((x-1)*(x-9) - (x**2 - 10*x + 9))
+  check_ok: true
+- goal: State the common ratio of the progression.
+  expected: The common ratio is 3 (sequence 1, 3, 9) or 1/3 (sequence 9, 3, 1).
+  solution: With the terms 1, 3, 9 the ratio is 3/1 = 3. Reading the progression in reverse gives ratio
+    1/3. Both describe the same set of roots.
+  common_errors:
+  - Giving only one ratio and forgetting the reverse ordering.
+  - Dividing the terms in the wrong order and getting an inconsistent ratio.
+  hints:
+    rephrase: Divide each term by the one before it in an ordering of the roots.
+    smaller_case: In the sequence 2, 6, 18 what is the ratio between consecutive terms?
+    key_idea: Reversing a geometric progression gives a progression whose ratio is the reciprocal.
+  check: Integer(3)/1 - 3
+  check_ok: true
+extensions:
+  '3':
+  - Find the condition on the coefficients of a cubic so that its roots are in arithmetic progression,
+    and apply it to this cubic.
+  - Show that for a cubic with three positive roots in geometric progression the middle root equals the
+    cube root of the product of the roots.
+  '4':
+  - 'Generalise to a quartic with roots in geometric progression: how does the product of the roots fix
+    the middle pair?'
+  - Find a cubic with integer coefficients whose roots are in geometric progression with ratio 2.
+  '5':
+  - Show that a polynomial whose roots form a geometric progression has its coefficients related by a
+    determinant or symmetric-function identity, and find one for a general degree-n case.
+spoken_vocab:
+- x cubed
+- minus thirteen x squared
+- plus thirty-nine x
+- minus twenty-seven
+- equals zero
+- geometric progression
+- roots
+- common ratio
+- Vieta
+- middle root
+- product of the roots
+- sum of the roots
+- one
+- three
+- nine
+source: past-interviews/Actual Past Interview Questions/Maths Trinity Hall Cambridge 2005.doc
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: Roots 1, 3, 9 from product and Vieta; tidy but fairly closed.
+  priority: 61
+  rank: 455
+  tier: C
+  category: past-interviews
+  d10: 3.0
+  real: 5.5
+  by: deepseek-v4.1-flash-free
+tags:
+- roots_of_polynomials
+- sequences_and_series
+- algebra_and_functions

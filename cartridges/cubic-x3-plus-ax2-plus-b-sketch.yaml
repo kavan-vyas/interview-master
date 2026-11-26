@@ -1,0 +1,116 @@
+id: cubic-x3-plus-ax2-plus-b-sketch
+title: Sketch f(x) = x^3 + Ax^2 + B for two sign cases
+topics:
+- cubic functions
+- stationary points
+- inflection points
+- number of real roots
+warmup: false
+answer_source: generated
+statement: 'Sketch $f(x) = x^3 + Ax^2 + B$ for: (a) $A > 0$, $B > 0$ (b) $A < 0$, $B > 0$.'
+stages:
+- goal: Find f'(x), f''(x), and the stationary and inflection points of f(x) = x^3 + Ax^2 + B.
+  expected: f'(x) = 3x^2 + 2Ax = x(3x + 2A), so stationary points at x = 0 and x = −2A/3. f''(x) = 6x
+    + 2A, so the inflection point is at x = −A/3.
+  solution: Differentiate term by term to get f' = 3x^2 + 2Ax, then factor as x(3x + 2A). Differentiate
+    again to get f'' = 6x + 2A, which is zero at x = −A/3. f'' changes sign there, so it is a genuine
+    point of inflection.
+  common_errors:
+  - Dropping the factor 3 and getting x = −A rather than x = −2A/3.
+  - Forgetting the factor x and missing the stationary point at x = 0.
+  - Confusing a point of inflection with a stationary point.
+  hints:
+    rephrase: Differentiate term by term, then factor the result.
+    smaller_case: Try A = 3 and B = 1 numerically, and find where the slope is zero.
+    key_idea: A cubic has at most two turning points. They are the roots of the derivative, which is quadratic
+      here.
+  check: sp.simplify(sp.diff(x**3+A*x**2+B,x)-x*(3*x+2*A))==0 and sp.simplify(sp.diff(x**3+A*x**2+B,x,2)-(6*x+2*A))==0
+  check_ok: null
+- goal: For A > 0 and B > 0, find the type and value of each turning point, and the number of real roots.
+    Describe the sketch.
+  expected: Local maximum at x = −2A/3 with value B + 4A³/27 (positive). Local minimum at x = 0 with value
+    B (positive). Both turning points lie above the x-axis, so there is exactly one real root, which is
+    negative and less than −2A/3. The curve rises, falls between the turning points, then rises again.
+    The inflection point at x = −A/3 lies between the turning points.
+  solution: 'Sign of f'' = x(3x + 2A): for x < −2A/3, f'' > 0; for −2A/3 < x < 0, f'' < 0; for x > 0,
+    f'' > 0. So the maximum is at −2A/3 and the minimum at 0. f(−2A/3) = −8A³/27 + 12A³/27 + B = B + 4A³/27
+    and f(0) = B, both positive. As x → −∞, f → −∞, so the single root lies in x < −2A/3.'
+  common_errors:
+  - Sign error when evaluating f(−2A/3), for example getting B − 4A³/27.
+  - Swapping the maximum and the minimum.
+  - Claiming three real roots when A > 0.
+  hints:
+    rephrase: Work out the sign of f' in each of the three intervals between and around the stationary
+      points.
+    smaller_case: Take A = 1 and B = 1, and evaluate f at x = −2/3 and at x = 0.
+    key_idea: Sign changes of f' tell you whether a turning point is a maximum or a minimum. The turning-point
+      values, compared with the x-axis, tell you the number of real roots.
+  check: sp.simplify((x**3+A*x**2+B).subs(x,-2*A/3) - (B+4*A**3/27))==0
+  check_ok: null
+- goal: For A < 0 and B > 0, identify the maximum and minimum, and state the condition on B for one, two
+    (one double), or three real roots.
+  expected: Local maximum at x = 0 with value B > 0. Local minimum at x = −2A/3 (positive x) with value
+    B + 4A³/27. Let c = −4A³/27 = 4|A|³/27 > 0. If B > c, one real root. If B = c, the minimum is 0, giving
+    a double root at x = 2|A|/3 and one further root, so two distinct real roots. If 0 < B < c, three
+    distinct real roots.
+  solution: With A < 0, f' = x(3x + 2A) has zeros at x = 0 and x = 2|A|/3 > 0. The sign pattern is + on
+    x < 0, − on 0 < x < 2|A|/3, + beyond, so x = 0 is a maximum (value B) and x = 2|A|/3 is a minimum
+    (value B + 4A³/27). Since A < 0, 4A³/27 = −c. The minimum is above the axis when B > c, touches it
+    when B = c, and below it when B < c. Since the maximum B is positive, the three-root case occurs exactly
+    when 0 < B < c.
+  common_errors:
+  - Labelling x = 0 as a minimum when A < 0.
+  - Forgetting that 4A³/27 is negative when A < 0, so the sign of the minimum value flips.
+  - Giving only two cases and omitting the three-root case.
+  hints:
+    rephrase: Once you have the turning points, decide which is higher by evaluating f at each one.
+    smaller_case: Take A = −3 and find the value of f at its turning points, then vary B.
+    key_idea: Compare the two turning-point values with the x-axis. The number of crossings changes exactly
+      when one of the turning-point values equals zero.
+  check: sp.simplify((x**3+A*x**2+B).subs(x,0)-B)==0 and sp.simplify((x**3+A*x**2+B).subs(x,-2*A/3)-(B+4*A**3/27))==0
+  check_ok: null
+extensions:
+  '3':
+  - For A < 0, find the value of B that gives a double root, and locate the double root.
+  '4':
+  - Explain how the sketch changes when A = 0.
+  '5':
+  - Generalise to x^3 + px + q and find the discriminant condition for three real roots.
+spoken_vocab:
+- x cubed plus A x squared plus B
+- f of x
+- f prime of x
+- f double prime of x
+- stationary point
+- inflection point
+- local maximum
+- local minimum
+- A greater than zero
+- A less than zero
+- B greater than zero
+- minus two A over three
+- four A cubed over twenty seven
+- double root
+- three real roots
+- one real root
+source: waleed/Curve Sketching Questions - Waleed.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 3
+  parts: 3
+  minutes: 12
+  flags:
+  - needs_diagram
+  tagline: Sign cases test turning-point reasoning and root counting in a clean sketch.
+  priority: 53
+  rank: 508
+  tier: C
+  category: waleed
+  d10: 5.0
+  real: 5.5
+  by: deepseek-v4.1-flash-free
+tags:
+- curve_sketching
+- roots_of_polynomials
+- algebra_and_functions

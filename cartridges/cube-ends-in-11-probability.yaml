@@ -1,0 +1,90 @@
+id: cube-ends-in-11-probability
+title: Cube ending in 11
+topics:
+- modular arithmetic
+- counting
+- probability
+- Chinese remainder theorem
+warmup: true
+answer_source: generated
+statement: A natural number from $1$ to $1000000$ is selected at random. What is the probability that
+  its cube ends in $11$?
+stages:
+- goal: Find all residues $n \bmod 100$ for which $n^3$ ends in 11.
+  expected: 'Exactly one residue class: $n \equiv 71 \pmod{100}$.'
+  solution: 'The last two digits of $n^3$ are $n^3 \bmod 100$, so we need $n^3 \equiv 11 \pmod{100}$.
+    Mod 4: $11 \equiv 3$. Cubes mod 4 are $0,1,0,3$ for $n \equiv 0,1,2,3$, so $n \equiv 3 \pmod 4$. Mod
+    25: the units mod 25 form a cyclic group of order 20 and $\gcd(3,20)=1$, so cubing is a bijection
+    on units. Since $21^3 = 9261 \equiv 11 \pmod{25}$, we get $n \equiv 21 \pmod{25}$. By CRT, among $21,
+    46, 71, 96$ the only one $\equiv 3 \pmod 4$ is $71$. Check: $71^3 = 357911$.'
+  common_errors:
+  - Only looking mod 10 and concluding the probability is 1/10.
+  - Finding one solution such as 71 and not showing it is the only residue mod 100.
+  - Assuming several residues mod 100 work because the cube equation looks like it might have multiple
+    roots.
+  - Using the wrong modulus, for example checking mod 1000 when the question only fixes the last two digits.
+  hints:
+    rephrase: Only the last two digits of the cube matter. Which residues mod 100 give a cube whose last
+      two digits are 11?
+    smaller_case: Start with mod 4 and mod 25 separately. Which residues mod 4 can a cube have, and which
+      values of n give a cube equal to 11 mod 25?
+    key_idea: Split the modulus 100 into 4 and 25, solve each congruence, then combine them with the Chinese
+      remainder theorem. Ask whether cubing is one-to-one on the units mod 25.
+  check: '[x for x in range(100) if (x**3-11)%100==0]==[71]'
+  check_ok: null
+- goal: Count the favourable numbers in $1$ to $1000000$ and give the probability.
+  expected: Probability $=1/100$.
+  solution: $1000000 = 10000 \times 100$, so $1$ to $1000000$ splits into $10000$ complete blocks of 100
+    consecutive integers. Each block contains exactly one $n \equiv 71 \pmod{100}$, so there are $10000$
+    favourable numbers out of $1000000$. Probability $= 10000/1000000 = 1/100$.
+  common_errors:
+  - Counting 10001 by including an extra endpoint.
+  - Forgetting that the count is over $1$ to $1000000$ and not over all integers.
+  - Dividing by the number of residues instead of by the total count of numbers.
+  - Giving 1/10 from the last digit alone.
+  hints:
+    rephrase: How many numbers in the range $1$ to $1000000$ fall in the residue class you found?
+    smaller_case: How many of the numbers $1$ to $100$ match? How many of $1$ to $200$ match?
+    key_idea: Count complete blocks of 100 and check whether a partial block can contribute. Then divide
+      by the total count of numbers.
+  check: Rational(10000,1000000)==Rational(1,100)
+  check_ok: true
+extensions:
+  '3':
+  - What is the probability that a random number from 1 to 10^6 has a cube ending in 1 (last digit)?
+  '4':
+  - Repeat the problem for cubes ending in 8. Is it possible? Which last digits can a cube have?
+  '5':
+  - What is the probability that a random number from 1 to 10^6 has a cube ending in 000?
+spoken_vocab:
+- natural number
+- one to one million
+- probability
+- cube
+- ends in eleven
+- modulo one hundred
+- congruent
+- n cubed
+- Chinese remainder theorem
+- residue
+- mod four
+- mod twenty five
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 2
+  minutes: 12
+  flags: []
+  tagline: Cubing is bijective on units mod 100, giving one residue and probability 1/100.
+  priority: 75
+  rank: 274
+  tier: B
+  category: tbo
+  d10: 4.5
+  real: 6.5
+  by: deepseek-v4.1-flash-free
+tags:
+- number_theory
+- probability

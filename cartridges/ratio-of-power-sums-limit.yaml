@@ -1,0 +1,100 @@
+id: ratio-of-power-sums-limit
+title: Limit of a Ratio of Power Sums
+topics:
+- limits
+- sequences
+- asymptotics
+- sums
+warmup: true
+answer_source: generated
+statement: Evaluate the limit of $\frac{n+n^2+\cdots+n^n}{1^n+2^n+\cdots+n^n}$ as $n \to \infty$.
+stages:
+- goal: Factor n^n out of the numerator and find the limit of numerator divided by n^n.
+  expected: Numerator / n^n = sum over j from 0 to n-1 of n^(-j) = (1 - n^(-n)) / (1 - 1/n), which tends
+    to 1.
+  solution: Numerator = sum over k from 1 to n of n^k = n^n * sum over j from 0 to n-1 of n^(-j) (substituting
+    j = n - k). That geometric sum equals (1 - n^(-n))/(1 - 1/n), which tends to 1 as n tends to infinity,
+    since n^(-n) tends to 0.
+  common_errors:
+  - Thinking the numerator is dominated by n^n alone but then forgetting the lower terms only contribute
+    a factor tending to 1.
+  - Mis-indexing the geometric sum, e.g. using n^(-j) with j from 1.
+  - Assuming the limit of the numerator alone decides the answer without comparing with the denominator.
+  hints:
+    rephrase: Which term in the numerator is largest, and how do the other terms compare to it?
+    smaller_case: For n = 3, compare 3 + 9 + 27 with 27.
+    key_idea: Pull out the biggest power and check that what remains is a geometric sum converging to
+      a constant.
+- goal: Find the limit of denominator divided by n^n.
+  expected: Denominator / n^n = sum over j from 0 to n-1 of (1 - j/n)^n, which tends to sum over j >=
+    0 of e^(-j) = e/(e-1).
+  solution: Denominator = sum over k from 1 to n of k^n = n^n * sum over j from 0 to n-1 of (1 - j/n)^n
+    (substituting j = n - k). Each term satisfies (1 - j/n)^n tends to e^(-j), and (1 - j/n)^n <= e^(-j)
+    for 0 <= j <= n-1, so the terms are dominated by the summable e^(-j). By dominated convergence the
+    sum tends to sum over j >= 0 of e^(-j) = 1/(1 - 1/e) = e/(e-1).
+  common_errors:
+  - Thinking the denominator is asymptotically n^n, so that the ratio tends to 1. The terms (n-1)^n /
+    n^n tend to 1/e, not 0.
+  - Claiming only the k = n term matters.
+  - Forgetting the limit of each term needs justification before summing.
+  hints:
+    rephrase: Write each k^n as n^n times something. For k = n - j, what does that ratio tend to as n
+      grows?
+    smaller_case: For n = 2, the denominator is 1 + 4 = 5. Which terms are close to n^n in size?
+    key_idea: Only terms with k close to n contribute in the limit. Index them by j = n - k and sum a
+      convergent series.
+  check: simplify(1/(1 - exp(-1)) - E/(E - 1))
+  check_ok: true
+- goal: Combine the two limits to get the limit of the original ratio.
+  expected: 1 / (e/(e-1)) = 1 - 1/e.
+  solution: 'The n^n factors cancel: the ratio equals (numerator / n^n) / (denominator / n^n), which tends
+    to 1 / (e/(e-1)) = (e-1)/e = 1 - 1/e.'
+  common_errors:
+  - Answering 1, from thinking the denominator is dominated by n^n.
+  - Inverting the ratio and answering e/(e-1).
+  - Miscalculating 1 / (e/(e-1)) as e - 1 instead of (e-1)/e.
+  hints:
+    rephrase: Divide the two limits from the previous stages.
+    smaller_case: If the numerator over n^n tends to 1 and the denominator over n^n tends to 2, what does
+      the ratio tend to?
+    key_idea: The powers of n cancel, leaving a ratio of two constants.
+  check: simplify((1 - 1/E) - (1 - exp(-1)))
+  check_ok: true
+extensions:
+  '3':
+  - What is the limit of n^n divided by the sum of k^n for k from 1 to n?
+  '4':
+  - Evaluate the limit of the sum of (k/n)^n for k from 1 to n as n tends to infinity.
+  '5':
+  - 'Generalise: find the limit of the sum of (k/n)^(a n) for k from 1 to n, for a fixed a > 0.'
+spoken_vocab:
+- limit
+- n tends to infinity
+- sum from k equals one to n
+- n to the power n
+- numerator
+- denominator
+- geometric series
+- e over e minus one
+- one minus one over e
+- dominated convergence
+- euler's number
+source: screenshots/Screenshot 2026-11-19 at 14.37.58.png
+verified: false
+rating:
+  quality: 6
+  difficulty: 6
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Looks like a simple limit, but the tail sum gives e/(e−1), not 1.
+  priority: 71
+  rank: 327
+  tier: B
+  category: screenshots
+  d10: 6.5
+  real: 5.5
+  by: haiku
+tags:
+- limits_and_approximation
+- sequences_and_series

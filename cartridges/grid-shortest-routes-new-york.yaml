@@ -1,0 +1,87 @@
+id: grid-shortest-routes-new-york
+title: Shortest routes across a city grid
+topics:
+- counting
+- lattice paths
+- combinations
+warmup: false
+answer_source: generated
+statement: 'Here is a map of New York. You can only travel horizontally and vertically. What is the shortest
+  distance from start to finish? Why? How many different ways are there to get from start to finish using
+  the shortest route possible? [The map is not included in the source text. Stand-in grid: streets form
+  a grid; start is at the bottom-left corner, finish is at the top-right corner, 4 blocks east and 3 blocks
+  north of start.]'
+stages:
+- goal: Find the shortest distance from start to finish and justify it.
+  expected: '7 blocks: 4 east and 3 north. Any route that goes west or south adds at least 2 extra blocks.'
+  solution: Getting from start to finish needs a net move of 4 blocks east and 3 blocks north. Each block
+    moved changes the position by exactly one step in one direction, so at least $4+3=7$ blocks are needed.
+    A route of exactly 7 blocks achieves this. Any westward or southward block must be undone by an extra
+    block in the opposite direction, so the minimum is 7.
+  common_errors:
+  - Using the straight-line (diagonal) distance $5$ or $\sqrt{25}$, which is not allowed on the grid
+  - Counting intersections instead of blocks
+  - Forgetting that going back and forth adds distance
+  hints:
+    rephrase: Count how many blocks you must travel east and how many north, then add them up.
+    smaller_case: Try a grid 1 block east and 1 block north. How many blocks is the shortest route, and
+      why can't it be shorter?
+    key_idea: Each move changes only one coordinate by one, so the number of moves is at least the total
+      change in both coordinates.
+  check: 7 - (4 + 3)
+  check_ok: true
+- goal: Count the shortest routes from start to finish.
+  expected: $\binom{7}{3} = 35$
+  solution: A shortest route is a sequence of 7 moves containing exactly 4 east moves and 3 north moves.
+    A route is fixed once we choose which 3 of the 7 positions are north moves, so there are $\binom{7}{3}
+    = 35$ routes.
+  common_errors:
+  - Answering $7! = 5040$, which treats identical moves as distinct
+  - Answering $2^7 = 128$, which counts all routes including non-shortest ones
+  - Arithmetic slip in $\binom{7}{3}$
+  hints:
+    rephrase: A shortest route is just an ordering of moves. What kinds of moves are there, and how many
+      of each?
+    smaller_case: Use a grid 1 block east and 1 block north. List every shortest route.
+    key_idea: Each shortest route is determined by where the north moves sit among the total moves.
+  check: binomial(7,3) - 35
+  check_ok: true
+extensions:
+  '3':
+  - How many shortest routes pass through the intersection 1 block east and 1 block north of start?
+  '4':
+  - How many shortest routes avoid a blocked intersection placed directly in the middle of the grid?
+  '5':
+  - Generalise the count of shortest routes to an $m \times n$ grid of blocks.
+spoken_vocab:
+- New York
+- shortest distance
+- start
+- finish
+- blocks
+- east
+- north
+- binomial seven choose three
+- combinations
+- routes
+source: past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2009.doc
+verified: false
+rating:
+  quality: 3
+  difficulty: 3
+  parts: 2
+  minutes: 8
+  flags:
+  - missing_info
+  - needs_diagram
+  - trivial
+  tagline: Standard lattice-path counting, but the referenced map is absent.
+  priority: 11
+  rank: 704
+  tier: D
+  category: past-interviews
+  d10: 2.5
+  real: 4.0
+  by: deepseek-v4.1-flash-free
+tags:
+- combinatorics

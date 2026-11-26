@@ -1,0 +1,89 @@
+id: reciprocal-sum-three-denominators
+title: Solutions of 1/a + 1/b + 1/c = 1 with a<b<c
+topics:
+- Diophantine equations
+- inequalities
+- bounding
+- rational numbers
+warmup: false
+answer_source: generated
+statement: How many natural number solutions are there to the equation $\frac{1}{a}+\frac{1}{b}+\frac{1}{c}=1$
+  where $a<b<c$?
+stages:
+- goal: Bound the smallest denominator a.
+  expected: a=2.
+  solution: a=1 gives 1/a=1, but then 1/b+1/c>0 makes the sum exceed 1. Since a<b<c, each reciprocal is
+    at most 1/a, so 1 < 3/a, giving a<3. So a=2.
+  common_errors:
+  - Allowing a=1 without checking the sum exceeds 1
+  - Using the wrong direction of the inequality
+  - Stopping at a≤3 and including a=3
+  hints:
+    rephrase: Since a<b<c, how large can 1/b+1/c be compared with 1/a?
+    smaller_case: Try a=3 and check whether 1/3+1/b+1/c can reach 1 with b>3.
+    key_idea: Bound the sum of the three reciprocals above by 3 times the largest term, using the smallest
+      denominator.
+  check: a - 2
+  check_ok: false
+- goal: With a=2, solve for b.
+  expected: b=3.
+  solution: 1/b+1/c=1/2 with 2<b<c. Since b<c, 2/b>1/2, so b<4. Also b≥3. Trying b=3 gives 1/c=1/6, so
+    c=6, and 6>3 holds. b=4 would give c=4, which violates b<c.
+  common_errors:
+  - Forgetting that b must be greater than a
+  - Accepting b=4 when c=4 (not strictly greater)
+  - Making an arithmetic error solving 1/c=1/6
+  hints:
+    rephrase: After substituting a=2, what is the sum 1/b+1/c? Can b be large?
+    smaller_case: Test b=3 and b=4 separately.
+    key_idea: Use the strict inequality b<c to bound b from above.
+  check: b - 3
+  check_ok: false
+- goal: State the total number of solutions with a<b<c.
+  expected: Exactly 1 solution, (a,b,c)=(2,3,6).
+  solution: 'The bounds force a=2 and then b=3, which gives c=6. Check: 1/2+1/3+1/6=1. So there is exactly
+    one solution.'
+  common_errors:
+  - Counting (3,3,3), which fails the strict inequality a<b<c
+  - Reporting permutations as separate solutions
+  - Stating a count without the triple
+  hints:
+    rephrase: Which triples have all three values strictly increasing? Is (3,3,3) allowed?
+    smaller_case: Substitute your candidate triple and verify the sum equals 1.
+    key_idea: Combine the bounds from the previous stages; the strict ordering removes repeated values.
+  check: n_sol - 1
+  check_ok: false
+extensions:
+  '3':
+  - Count the solutions of 1/a+1/b+1/c=1 with a≤b≤c, allowing equal values.
+  '4':
+  - Count the ordered triples (a,b,c) of positive integers with 1/a+1/b+1/c=1, where order matters.
+  '5':
+  - Find all positive integer pairs (a,b) with a<b and 1/a+1/b=1/3.
+spoken_vocab:
+- one over a plus one over b plus one over c equals one
+- natural number solutions
+- a less than b less than c
+- smallest denominator
+- bound
+- strict inequality
+- triple
+- reciprocal
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: Bounding argument yields a single unique solution; clear staged structure.
+  priority: 61
+  rank: 440
+  tier: C
+  category: tbo
+  d10: 3.0
+  real: 6.0
+  by: haiku
+tags:
+- number_theory

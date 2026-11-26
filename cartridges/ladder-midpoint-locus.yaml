@@ -1,0 +1,114 @@
+id: ladder-midpoint-locus
+title: Midpoint of a sliding ladder
+topics:
+- coordinate geometry
+- Pythagoras
+- loci
+- circles
+- right-angled triangles
+warmup: true
+answer_source: pdf
+statement: A ladder of length 2 stands against a vertical wall on horizontal ground, and slides down until
+  it lies flat. What path does its midpoint follow?
+stages:
+- goal: Set up coordinates and find the equation of the path of the midpoint.
+  expected: $x^2+y^2=1$.
+  solution: Put the corner at the origin, with the foot of the ladder at $(a,0)$ and the top at $(0,b)$.
+    Pythagoras gives $a^2+b^2=4$, since the ladder has length 2. The midpoint is $M=(\frac a2,\frac b2)$,
+    and $x^2+y^2=\frac{a^2+b^2}{4}=1$.
+  common_errors:
+  - Using the wrong length, such as a^2+b^2=2 instead of 4.
+  - Writing the midpoint as (a+b)/2 or as (a,b)/4 instead of (a/2,b/2).
+  - Stating a circle of radius 2, forgetting that the midpoint is halfway along the ladder.
+  hints:
+    rephrase: Place the wall along the y-axis and the ground along the x-axis, and name the coordinates
+      of the two ends of the ladder.
+    smaller_case: 'Test a special position: where is the midpoint when the foot is 2 units from the wall?'
+    key_idea: Use Pythagoras to relate the end coordinates, then express the midpoint's coordinates in
+      terms of them.
+  check: 'simplify((x**2+y**2-1).subs({x: a/2, y: b/2}) - (a**2+b**2-4)/4) == 0'
+  check_ok: true
+- goal: Describe which part of the plane the midpoint's path covers.
+  expected: A quarter circle of radius 1, centred at the corner, in the first quadrant, from $(0,1)$ (ladder
+    upright) to $(1,0)$ (ladder flat).
+  solution: At the start the ladder is upright, with foot at $(0,0)$ and top at $(0,2)$, so the midpoint
+    is $(0,1)$. At the end the ladder is flat, with top at the corner $(0,0)$ and foot at $(2,0)$, so
+    the midpoint is $(1,0)$. Both coordinates stay non-negative during the motion, so the path is the
+    first-quadrant quarter circle joining these points.
+  common_errors:
+  - Describing the whole circle rather than the quarter-circle traced during the motion.
+  - Giving the endpoints as (0,2) and (2,0), which are the ends of the ladder rather than its midpoint.
+  - Forgetting that a and b are non-negative, so the path stays in the first quadrant.
+  hints:
+    rephrase: Which positions does the ladder occupy at the start and end of the motion?
+    smaller_case: Where is the midpoint when the ladder is almost upright and the foot is very close to
+      the corner?
+    key_idea: Both coordinates of the midpoint are non-negative throughout, and the endpoints of the motion
+      correspond to the ladder lying along each axis.
+  check: null
+- goal: Give a geometric reason why the midpoint is always distance 1 from the corner.
+  expected: The corner, foot and top form a right-angled triangle, with the right angle at the corner.
+    The midpoint of the hypotenuse is at distance half the hypotenuse from the right-angle vertex, and
+    the hypotenuse has length 2, so the distance is 1.
+  solution: The ladder is the hypotenuse of a right-angled triangle whose right angle is at the corner.
+    The midpoint of the hypotenuse of a right-angled triangle is the circumcentre, equidistant from all
+    three vertices (Thales' theorem). So the distance from the midpoint to the corner is half the hypotenuse,
+    which is $\frac12\cdot2=1$.
+  common_errors:
+  - Confusing the midpoint of the hypotenuse with the centroid, which divides medians in ratio 2:1.
+  - Stating the distance is 2, the length of the ladder, rather than half of it.
+  - Asserting the result without identifying the right angle at the corner.
+  hints:
+    rephrase: Look at the triangle formed by the wall, the ground and the ladder. Which angle is at the
+      corner?
+    smaller_case: In a right-angled triangle with hypotenuse 2, what is the distance from the midpoint
+      of the hypotenuse to the right-angled vertex? Try an isosceles right-angled triangle.
+    key_idea: A circle with the hypotenuse as diameter passes through the right-angled vertex, so the
+      midpoint of the hypotenuse is its centre.
+  check: null
+extensions:
+  '3':
+  - If the ladder has length L, find the equation of the path of its midpoint.
+  - Describe the path of the point one third of the way along the ladder from the foot.
+  '4':
+  - If the foot of the ladder moves away from the wall at constant speed, describe how the midpoint moves.
+  - Find the path of the point that divides the ladder in ratio 1:2 from the top.
+  '5':
+  - Describe the locus of the midpoint of a segment of fixed length L whose ends lie on the two axes.
+  - Find the envelope of all positions of the ladder as it slides.
+spoken_vocab:
+- ladder of length two
+- vertical wall
+- horizontal ground
+- corner at the origin
+- foot of the ladder
+- top of the ladder
+- a squared plus b squared equals four
+- midpoint
+- x squared plus y squared equals one
+- quarter circle
+- radius one
+- centred at the corner
+- circumcentre
+- Thales
+- right angle
+- hypotenuse
+source: jaymin/Jaymin Interview (1).pdf#p57
+verified: false
+rating:
+  quality: 6
+  difficulty: 3
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: Clean locus with a neat right-angle reason for constant distance.
+  priority: 86
+  rank: 150
+  tier: B
+  category: jaymin
+  d10: 2.0
+  real: 5.0
+  by: haiku
+tags:
+- coordinate_geometry
+- geometry

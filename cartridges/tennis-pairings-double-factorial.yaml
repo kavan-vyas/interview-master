@@ -1,0 +1,93 @@
+id: tennis-pairings-double-factorial
+title: Pairing 2n opponents
+topics:
+- counting
+- pairings
+- double factorial
+- factorial simplification
+warmup: true
+answer_source: generated
+statement: In how many ways can $2n$ opponents be paired in the first round of a tennis competition? Can
+  you come up with a more succinct expression for your previous solution (i.e. if I gave you a large value
+  for $n$ you could then use your calculator to calculate the answer quickly)?
+stages:
+- goal: Count the pairings for 4 opponents and for 6 opponents.
+  expected: '4 opponents: 3 pairings. 6 opponents: 15 pairings.'
+  solution: With players A, B, C, D, A can be paired with B, C or D, and the other two form a pair, so
+    there are 3. With 6 players, the first player has 5 partners, and the remaining 4 players have 3 pairings,
+    so 5 times 3 = 15.
+  common_errors:
+  - Counting ordered pairs such as AB and BA separately
+  - Forgetting that the remaining players must also be paired
+  - Answering 4!/2! = 12 by treating pairs as ordered
+  hints:
+    rephrase: Pick the partner of one player, then deal with the people who remain.
+    smaller_case: Start with 2 opponents, then 4 opponents, and check each count.
+    key_idea: Use the first player to split the problem into a smaller pairing problem.
+  check: (P4-3)**2 + (P6-15)**2
+  check_ok: false
+- goal: Derive a general formula for the number of pairings of 2n opponents.
+  expected: (2n)!/(2^n * n!), which equals 1*3*5*...*(2n-1).
+  solution: The first player has 2n-1 possible partners, then the next unpaired player has 2n-3 partners,
+    and so on down to 1. So the count is (2n-1)(2n-3)...(3)(1). Since (2n)! = 2^n * n! * (1*3*...*(2n-1)),
+    dividing gives (2n)!/(2^n * n!).
+  common_errors:
+  - Using (2n)!/n! without dividing by 2^n
+  - Dividing by n! but forgetting the pair order inside each pair
+  - Writing (2n)!/(2^(2n)) as the general formula
+  hints:
+    rephrase: Pick a partner for the first player, then repeat for the next unpaired player.
+    smaller_case: Check your formula against the counts for 4 and 6 opponents.
+    key_idea: Compare the product of odd numbers with the full factorial (2n)! and count how many factors
+      of 2 and n! you need to divide out.
+  check: simplify(P - factorial(2*n)/(2**n*factorial(n)))
+  check_ok: false
+- goal: Write the answer as a succinct expression that is quick to evaluate for large n.
+  expected: (2n-1)!!, the double factorial, equal to 1*3*5*...*(2n-1), or equivalently (2n)!/(2^n * n!).
+  solution: The product of odd numbers 1*3*5*...*(2n-1) is the double factorial (2n-1)!!. It equals (2n)!/(2^n
+    * n!). For example n = 5 gives 9!! = 945, which matches 10!/(2^5 * 5!) = 945.
+  common_errors:
+  - Writing (2n)! as the answer, which overcounts by a factor of 2^n * n!
+  - Confusing the double factorial with (2n)!!, which is the product of even numbers
+  hints:
+    rephrase: Look at the product you found and see if it has a standard name.
+    smaller_case: Multiply out the product for n = 3 and compare with the formula.
+    key_idea: The product of consecutive odd numbers has its own notation.
+extensions:
+  '3':
+  - If two specific players must be paired together, how many pairings remain?
+  '4':
+  - If each pair also chooses which player serves first, how many arrangements are there?
+  '5':
+  - How many ways are there to pair 2n players and then assign the n pairs to n distinct courts?
+spoken_vocab:
+- pairings
+- opponents
+- two n
+- tennis
+- double factorial
+- factorial
+- two to the power n
+- n factorial
+- odd numbers
+- product
+- calculator
+- first round
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 4
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Perfect matchings giving (2n-1)!!; recursion, factorial form, and succinct expression.
+  priority: 81
+  rank: 204
+  tier: B
+  category: tbo
+  d10: 4.5
+  real: 7.0
+  by: haiku
+tags:
+- combinatorics

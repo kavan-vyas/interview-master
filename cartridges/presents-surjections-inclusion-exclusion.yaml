@@ -1,0 +1,183 @@
+id: presents-surjections-inclusion-exclusion
+title: 'Distributing presents: surjections via inclusion-exclusion'
+topics:
+- counting
+- inclusion-exclusion
+- injections
+- surjections
+- permutations
+- binomial identities
+warmup: false
+answer_source: pdf
+statement: 'There are $m$ different presents and $n$ different children. Each present is given to exactly
+  one child.
+
+
+  (i) In how many ways can the presents be given out, with no restrictions?
+
+
+  (ii) If $m \leq n$, in how many ways can they be given out so that no child gets more than one present?
+
+
+  (iii) In how many ways can $4$ presents be given to $3$ children so that every child gets at least one
+  present? Answer this directly, and also by inclusion-exclusion.
+
+
+  (iv) Show that the number of ways to give out $m$ presents so that every child gets at least one is
+  $\sum_{k=0}^{n}(-1)^k\binom{n}{k}(n-k)^m$.
+
+
+  (v) Deduce that $\sum_{k=0}^{n}(-1)^k\binom{n}{k}(n-k)^n=n!$, and that the same sum with exponent $m<n$
+  equals $0$.'
+stages:
+- goal: Count all ways to give out $m$ different presents to $n$ children with no restriction.
+  expected: $n^m$.
+  solution: Each present independently goes to one of the $n$ children, and the choices for different
+    presents do not affect each other. So the total is $n\cdot n\cdots n=n^m$.
+  common_errors:
+  - Writing $m^n$, reversing the roles of presents and children.
+  - Using $\binom{n}{m}$ or $n!$, which treat the presents as identical or force distinct recipients.
+  - Dividing by $m!$ as if the presents were identical.
+  hints:
+    rephrase: Go through the presents one at a time. For a single present, how many children could receive
+      it?
+    smaller_case: Take $m=2$ presents and $n=3$ children. List the ways to give out present 1, then present
+      2.
+    key_idea: Each present makes an independent choice among $n$ children, so multiply the $m$ choices.
+  check: sympy.Integer(3)**2 - 9
+  check_ok: null
+- goal: Count the ways to give out $m\leq n$ presents so that no child gets more than one.
+  expected: $\frac{n!}{(n-m)!}=n(n-1)\cdots(n-m+1)$.
+  solution: Give out the presents one at a time. The first has $n$ possible children. The second must
+    avoid the child already used, so it has $n-1$ choices, and so on. The $m$-th present has $n-m+1$ choices.
+    The total is $n(n-1)\cdots(n-m+1)=\frac{n!}{(n-m)!}$. (If $m>n$ the count would be $0$, since the
+    product contains a factor $0$.)
+  common_errors:
+  - Using $\binom{n}{m}$, which chooses a set of children but ignores which present goes to which child.
+  - Using $n^m$ or $m^n$, ignoring the restriction.
+  - Forgetting that the formula needs $m\leq n$.
+  hints:
+    rephrase: After the first present is given away, which children are still allowed to receive the second?
+    smaller_case: Take $m=2$ presents and $n=3$ children and list all the ways where the two children
+      differ.
+    key_idea: 'Choices shrink by one each time: $n,\,n-1,\,n-2,\dots$, multiplied over $m$ presents.'
+  check: sympy.ff(3,2) - 6
+  check_ok: null
+- goal: Count the ways to give $4$ presents to $3$ children with each child getting at least one, directly
+    and by inclusion-exclusion.
+  expected: $36$ by both methods.
+  solution: 'Directly: the presents split as $2,1,1$, so exactly one child gets two. Choose that child
+    ($3$ ways), choose their two presents ($\binom42=6$ ways), then give the remaining two presents to
+    the other two children, one each ($2$ ways). Total $3\cdot6\cdot2=36$.
+
+
+    By inclusion-exclusion: let $A_i$ be the distributions where child $i$ gets nothing. Total is $3^4=81$.
+    Each $|A_i|=2^4=16$, each $|A_i\cap A_j|=1^4=1$, and $|A_1\cap A_2\cap A_3|=0$. The count is $81-3\cdot16+3\cdot1-0=36$.'
+  common_errors:
+  - Forgetting the $\binom42$ factor for choosing which presents the double-receiver gets.
+  - Arithmetic or sign slips in $81-48+3$, giving $37$ or $30$.
+  - Omitting the $+3\cdot1^4$ term, or treating the triple intersection as nonzero.
+  - Counting the $2,1,1$ pattern with an extra factor, which overcounts.
+  hints:
+    rephrase: Every child gets at least one of the four presents, so what must the pattern of numbers
+      received be? Which child gets two?
+    smaller_case: Take $2$ presents and $2$ children, each getting one. Count directly, then count as
+      total minus the cases where some child gets nothing.
+    key_idea: Let $A_i$ be the set where child $i$ gets nothing. The answer is the total minus $|A_1\cup
+      A_2\cup A_3|$, computed by inclusion-exclusion.
+  check: 3**4 - 3*2**4 + 3*1**4 - 36
+  check_ok: true
+- goal: Prove that the number of ways to give $m$ presents to $n$ children, every child getting at least
+    one, is $\sum_{k=0}^{n}(-1)^k\binom{n}{k}(n-k)^m$.
+  expected: Inclusion-exclusion over the sets $A_i$ (child $i$ gets nothing), with each $k$-fold intersection
+    of size $(n-k)^m$ and $\binom nk$ such intersections.
+  solution: 'Let $A_i$ be the set of distributions in which child $i$ receives nothing. A distribution
+    is good exactly when it lies in no $A_i$. For any set $S$ of $k$ children, $\bigcap_{i\in S}A_i$ is
+    the set of distributions in which all of those $k$ children get nothing, so each present goes to one
+    of the other $n-k$ children, giving $(n-k)^m$. There are $\binom nk$ choices of $S$. By inclusion-exclusion,
+
+    $$\Big|\overline{A_1\cup\cdots\cup A_n}\Big|=\sum_{k=0}^{n}(-1)^k\binom nk(n-k)^m,$$
+
+    where the $k=0$ term is the total $n^m$.'
+  common_errors:
+  - Getting the sign pattern wrong, e.g. not alternating $(-1)^k$.
+  - Omitting the $k=0$ term $n^m$, or stopping the sum before $k=n$.
+  - Forgetting the factor $\binom nk$ for the number of ways to choose which $k$ children are empty.
+  - Taking each intersection to have size $k^m$ instead of $(n-k)^m$.
+  hints:
+    rephrase: Call a distribution bad if some child gets nothing. If $k$ specified children must all get
+      nothing, how many distributions are there?
+    smaller_case: Take $n=2$, $m=2$ and check the formula against a direct list of the $4$ distributions.
+    key_idea: 'Apply inclusion-exclusion to the sets $A_i$: every $k$-fold intersection has size $(n-k)^m$,
+      and there are $\binom nk$ of them.'
+  check: sum((-1)**k*sympy.binomial(3,k)*(3-k)**4 for k in range(4)) - 36
+  check_ok: null
+- goal: Deduce that the sum equals $n!$ when $m=n$ and equals $0$ when $m<n$.
+  expected: '$m=n$: every child gets exactly one present, so $n!$ ways. $m<n$: impossible, so $0$.'
+  solution: By (iv) the sum counts the distributions of $m$ presents among $n$ children with every child
+    getting at least one. If $m=n$, each of the $n$ children needs at least one present and there are
+    only $n$ presents, so each child gets exactly one. Such a distribution is a bijection from presents
+    to children, and there are $n!$ of them. If $m<n$, there are fewer presents than children, so some
+    child must get nothing; no valid distribution exists and the count, hence the sum, is $0$.
+  common_errors:
+  - Claiming the $m=n$ sum is $n^n$, which counts all distributions rather than those where every child
+    gets a present.
+  - Arguing that $m<n$ gives a nonzero count by splitting presents unevenly.
+  - Not noting that (iv) holds for every $m$, so it can be applied with $m=n$ and $m<n$.
+  hints:
+    rephrase: When the number of presents equals the number of children, what does 'every child gets at
+      least one' force?
+    smaller_case: Take $n=3$. Compute $3^3-3\cdot2^3+3\cdot1^3$ and compare with $3!$. Then try exponent
+      $2$.
+    key_idea: 'Use (iv): the sum counts distributions where every child gets a present. Pigeonhole decides
+      how many such distributions exist when $m=n$ and when $m<n$.'
+  check: sympy.Abs(sum((-1)**k*sympy.binomial(4,k)*(4-k)**4 for k in range(5)) - sympy.factorial(4)) +
+    sympy.Abs(sum((-1)**k*sympy.binomial(4,k)*(4-k)**3 for k in range(5)))
+  check_ok: null
+extensions:
+  '3':
+  - Use the formula to count the ways to give 5 presents to 3 children so that every child gets at least
+    one. Check by counting the $3,1,1$ and $2,2,1$ patterns directly.
+  '4':
+  - Show that $\sum_{k}(-1)^k\binom nk (n-k)^m$ counts surjections from an $m$-set onto an $n$-set, and
+    deduce it equals $n!\,S(m,n)$, where $S(m,n)$ is the Stirling number of the second kind.
+  '5':
+  - Prove $\sum_{k}(-1)^k\binom nk (n-k)^m = n!\,S(m,n)$ via the recurrence $S(m,n)=nS(m-1,n)+S(m-1,n-1)$,
+    or by a generating-function argument.
+  - Interpret the identity $\sum_{k}(-1)^k\binom nk (n-k)^m=0$ for $m<n$ as saying the $n$-th finite difference
+    of a polynomial of degree $m<n$ vanishes.
+spoken_vocab:
+- m presents
+- n children
+- n to the power m
+- n factorial over n minus m factorial
+- inclusion-exclusion
+- sum from k equals zero to n
+- minus one to the power k
+- n choose k
+- n minus k to the power m
+- surjection
+- bijection
+- three children
+- four presents
+- Stirling number
+source: jaymin/Jaymin Interview (1).pdf#p33
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 5
+  minutes: 25
+  flags: []
+  tagline: Five-part progression from counting to inclusion-exclusion, ending in a surjection formula.
+  priority: 111
+  rank: 16
+  tier: S
+  category: jaymin
+  d10: 5.0
+  real: 6.5
+  by: haiku
+refined: true
+tags:
+- combinatorics
+- proof

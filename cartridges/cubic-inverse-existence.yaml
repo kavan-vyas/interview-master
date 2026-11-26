@@ -1,0 +1,94 @@
+id: cubic-inverse-existence
+title: When does h(x) = x^3 + ax have an inverse on all of R?
+topics:
+- calculus
+- functions
+- injectivity
+- inverses
+- derivatives
+warmup: false
+answer_source: generated
+statement: Let $h(x)=x^3+ax$, where $a$ is a constant. When will an inverse to $h(x)$ exist for all $x$?
+stages:
+- goal: Compute h'(x) and identify its sign pattern.
+  expected: h'(x) = 3x^2 + a.
+  solution: 'Differentiate term by term: d/dx (x^3) = 3x^2 and d/dx (a x) = a, so h''(x) = 3x^2 + a.'
+  common_errors:
+  - Forgetting that the derivative of ax is a.
+  - Writing the derivative of x^3 as 3x instead of 3x^2.
+  hints:
+    rephrase: Differentiate each term of h(x) separately.
+    smaller_case: Differentiate x^3 alone, then ax alone, and add the results.
+    key_idea: Monotonicity of h follows from the sign of h'(x) across all x.
+  check: sp.diff(x**3 + a*x, x) - (3*x**2 + a)
+  check_ok: null
+- goal: State the condition on a for h to be strictly monotone on R, so that an inverse exists.
+  expected: a >= 0.
+  solution: If a >= 0, then h'(x) = 3x^2 + a >= 0, with equality only at x = 0 when a = 0. So h is strictly
+    increasing and one-to-one on R, hence invertible. If a < 0, then h'(x) < 0 for |x| < sqrt(-a/3), so
+    h is not monotone and not one-to-one.
+  common_errors:
+  - Answering a > 0 and forgetting that a = 0 also works, since x^3 is strictly increasing.
+  - Confusing the condition with the existence of real roots of h.
+  - Claiming strict monotonicity from h' >= 0 without checking that h' is not zero on an interval.
+  hints:
+    rephrase: Look at the sign of h'(x) for all x, including x = 0.
+    smaller_case: Compare the derivative of h when a = 1, a = 0 and a = -3.
+    key_idea: A function whose derivative never changes sign, and vanishes at most at isolated points,
+      is strictly monotone and therefore injective.
+  check: sp.solve_univariate_inequality(a >= 0, a, relational=False) == sp.Interval(0, sp.oo)
+  check_ok: null
+- goal: For a = -3, exhibit two distinct x values that give the same value of h.
+  expected: x = -1 and x = 2 both give h = 2.
+  solution: With a = -3, h(x) = x^3 - 3x. Then h(-1) = -1 + 3 = 2 and h(2) = 8 - 6 = 2. Two distinct inputs
+    share an output, so h is not one-to-one on R and has no inverse on all of R.
+  common_errors:
+  - Dropping the sign when substituting x = -1 into -3x.
+  - Reporting two inputs whose outputs differ.
+  - Choosing a pair that is not distinct, such as x = 2 twice.
+  hints:
+    rephrase: Evaluate h at a few well-chosen points and look for a repeated output.
+    smaller_case: Evaluate h(x) = x^3 - 3x at x = 0, 1 and -1, and check whether any output repeats.
+    key_idea: Non-injectivity is shown by a single coincidence h(x1) = h(x2) with x1 different from x2.
+  check: sp.Eq((-1)**3 + (-3)*(-1), 2**3 + (-3)*2)
+  check_ok: null
+extensions:
+  '3':
+  - Show that h is an odd function and describe how this symmetry relates h(-x) to h(x).
+  '4':
+  - For a < 0, let c = sqrt(-a/3). Find h(c) and h(-c), and show that h takes the value h(-c) at some
+    x > c.
+  '5':
+  - For a < 0, show that h restricted to [-c, c] is one-to-one, and find its range to define a local inverse.
+spoken_vocab:
+- h of x
+- x cubed
+- a x
+- x squared
+- derivative
+- h prime of x
+- strictly increasing
+- one-to-one
+- inverse
+- a greater than or equal to zero
+- minus three
+- square root of minus a over three
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 3
+  parts: 2
+  minutes: 8
+  flags: []
+  tagline: Derivative-based monotonicity; the a=-3 counterexample invites injectivity discussion.
+  priority: 61
+  rank: 456
+  tier: C
+  category: tbo
+  d10: 4.5
+  real: 7.0
+  by: deepseek-v4.1-flash-free
+tags:
+- differentiation
+- algebra_and_functions

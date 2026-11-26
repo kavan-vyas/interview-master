@@ -1,0 +1,97 @@
+id: biased-coins-odd-heads
+title: 'Biased coins: probability of an odd number of heads'
+topics:
+- probability
+- independence
+- telescoping products
+warmup: false
+answer_source: generated
+statement: You have $n$ coins $C_1, C_2, \ldots, C_n$. Each coin $C_k$ is biased so that tossing a heads
+  with coin $C_k$ has a probability of $\frac{1}{2k+1}$. If all $n$ coins are tossed, what is the probability
+  that the number of heads is odd?
+stages:
+- goal: Express the probability of an odd number of heads using the expectation of (-1) raised to the
+    total number of heads.
+  expected: $P(\text{odd})=\frac{1}{2}\left(1-\prod_{k=1}^{n}(1-2p_k)\right)$ where $p_k=\frac{1}{2k+1}$
+  solution: Let X be the total number of heads and X_k the indicator for coin k, so X = X_1 + ... + X_n
+    with the X_k independent. Then E[(-1)^X] = product over k of E[(-1)^{X_k}], and E[(-1)^{X_k}] = (1-p_k)
+    - p_k = 1-2p_k. Since P(even) - P(odd) = E[(-1)^X] and P(even) + P(odd) = 1, we get P(odd) = (1 -
+    E[(-1)^X])/2.
+  common_errors:
+  - Multiplying the heads probabilities instead of using the parity of the total count
+  - Using (1-p_k) instead of 1-2p_k for each coin
+  - Forgetting the factor 1/2 when isolating the odd probability
+  hints:
+    rephrase: Odd and even counts can be separated by a function that is +1 on one of them and -1 on the
+      other. Which function is it, and what is its expectation?
+    smaller_case: With n=1 there is one coin. What does the signed sum give, and how does it relate to
+      the single heads probability?
+    key_idea: Use the expectation of (-1) raised to the total number of heads. Independence makes it factor
+      over the coins.
+- goal: Evaluate the product of the factors 1-2p_k over k from 1 to n.
+  expected: $\frac{1}{2n+1}$
+  solution: '1-2p_k = 1 - 2/(2k+1) = (2k-1)/(2k+1). The product of (2k-1)/(2k+1) for k from 1 to n telescopes:
+    each numerator 2k+1 cancels the denominator of the next factor, leaving the first numerator 1 and
+    the last denominator 2n+1.'
+  common_errors:
+  - Simplifying 1-2p_k incorrectly, for example as 2k/(2k+1)
+  - Failing to notice the telescoping and trying to multiply out a messy expression
+  - Off-by-one error in the first or last term
+  hints:
+    rephrase: Write each factor with its own denominator and look at what cancels between neighbouring
+      factors.
+    smaller_case: Compute the product for n=2 by hand, then compare it with a guess for general n.
+    key_idea: 'Consecutive factors overlap: the denominator of one factor matches the numerator of the
+      next.'
+- goal: Give the closed form for the probability that the number of heads is odd.
+  expected: $\frac{n}{2n+1}$
+  solution: 'P(odd) = (1 - 1/(2n+1))/2 = (2n/(2n+1))/2 = n/(2n+1). Sanity checks: n=1 gives 1/3 (just
+    p_1), and n=2 gives 2/5, which matches direct computation p_1(1-p_2) + p_2(1-p_1) = 4/15 + 2/15.'
+  common_errors:
+  - Halving incorrectly when combining 1 and 1/(2n+1)
+  - Reporting the probability of an even number of heads instead
+  - Miscomputing 1 minus a unit fraction
+  hints:
+    rephrase: Substitute the product from the previous stage into the odd-probability formula and simplify.
+    smaller_case: Check your formula against n=1 by computing the single coin's heads probability directly.
+    key_idea: Simplify one minus a unit fraction first, then halve the result.
+  check: simplify((1 - 1/(2*n + 1))/2 - n/(2*n + 1)) == 0
+  check_ok: true
+extensions:
+  '3':
+  - Show that the probability of an even number of heads is (n+1)/(2n+1).
+  '4':
+  - Find the limit of the probability of an odd number of heads as n tends to infinity.
+  '5':
+  - For independent coins with arbitrary heads probabilities p_k, show that P(odd) = (1 - product of (1-2p_k))/2,
+    and explain why this cannot be obtained by simply adding the p_k.
+spoken_vocab:
+- n coins
+- C sub k
+- one over two k plus one
+- probability of odd heads
+- product from k equals one to n
+- one minus two p sub k
+- telescoping product
+- closed form
+- even heads
+- limit as n tends to infinity
+source: screenshots/Screenshot 2026-11-19 at 14.38.02.png
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Parity via (-1)^N trick; product telescopes to a clean closed form.
+  priority: 91
+  rank: 135
+  tier: A
+  category: screenshots
+  d10: 5.5
+  real: 8.5
+  by: deepseek-v4.1-flash-free
+tags:
+- probability
+- combinatorics

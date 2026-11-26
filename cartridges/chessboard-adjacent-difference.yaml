@@ -1,0 +1,94 @@
+id: chessboard-adjacent-difference
+title: Chessboard neighbours differ by at least n+1
+topics:
+- combinatorics
+- averaging
+- grids
+- adjacency
+warmup: false
+answer_source: generated
+statement: For $n>1$, the integers from 1 to $n^2$ are placed in the cells of an $n\times n$ chessboard.
+  Show that there is a pair of horizontally, vertically, or diagonally adjacent cells whose value differs
+  by at least $n+1$.
+stages:
+- goal: Build a route of adjacent cells from the cell containing 1 to the cell containing $n^2$ and bound
+    its length.
+  expected: A route of king moves (horizontal, vertical or diagonal steps) from the cell holding 1 to
+    the cell holding $n^2$, with $d$ steps where $1\le d\le n-1$.
+  solution: 'Let the cell holding 1 be at (r1,c1) and the cell holding $n^2$ be at (r2,c2). A king move
+    changes the row and the column by at most 1 each. So the target can be reached in max(|r1-r2|, |c1-c2|)
+    steps: move diagonally while both coordinates differ, then straight. Both coordinates lie in {1,...,n},
+    so this maximum is at most n-1. The two cells are distinct since $n^2>1$, so $d\ge 1$.'
+  common_errors:
+  - Using only horizontal and vertical moves. The route can then need up to 2(n-1) steps, which weakens
+    the bound too much.
+  - Forgetting that every step of the route must be between genuinely adjacent cells.
+  hints:
+    rephrase: Picture walking from the square holding 1 to the square holding $n^2$, stepping to any neighbouring
+      square, diagonals included. What is the most steps such a walk could need?
+    smaller_case: On a 3 by 3 board, how many king moves does it take to get from one corner to the opposite
+      corner?
+    key_idea: A diagonal step changes the row and the column at once. Measure the distance between the
+      two cells by the larger of the two coordinate gaps.
+  check: null
+- goal: Use the total change along the route to force one step to be large.
+  expected: Some step has absolute difference at least $n+1$.
+  solution: Let the route's values be $a_0=1, a_1,\dots,a_d=n^2$. By the triangle inequality, the sum
+    of the absolute step differences is at least $|n^2-1| = n^2-1$. So the largest step is at least $(n^2-1)/d$.
+    Since $d\le n-1$ and $n^2-1>0$, this is at least $(n^2-1)/(n-1) = n+1$. Steps are integers, so some
+    pair of adjacent cells differs by at least $n+1$.
+  common_errors:
+  - Concluding a difference strictly greater than n+1 instead of at least n+1.
+  - Using the route length d = 2(n-1) from a horizontal/vertical route, which gives only about (n^2-1)/(2(n-1))
+    and is too weak.
+  - Forgetting absolute values, so that negative steps cancel positive ones.
+  hints:
+    rephrase: Along your route the values climb from the smallest to the largest. What does that say about
+      the sizes of the individual jumps when there are only a few jumps?
+    smaller_case: For n=2 the board has 4 cells, and every pair of cells is adjacent. Which pair is forced
+      to differ by at least n+1=3?
+    key_idea: Compare the total change along the route with the number of steps. If the total is large
+      and the number of steps is small, the largest single step must be large.
+  check: (n**2 - 1)/(n - 1) - (n + 1)
+  check_ok: true
+extensions:
+  '3':
+  - Show that the bound n+1 is sharp by exhibiting an arrangement in which every king-adjacent pair differs
+    by at most n+1.
+  '4':
+  - Replace the board by a k by k by k cube with all face, edge and corner neighbours counted as adjacent.
+    Find the analogous threshold, which should be k^2+k+1.
+  '5':
+  - For an n by m board holding 1 to nm, find the analogous threshold in terms of n and m, and check that
+    it matches n+1 when m=n.
+spoken_vocab:
+- n squared
+- n plus one
+- n by n chessboard
+- king move
+- absolute difference
+- d at most n minus one
+- n squared minus one
+- divided by n minus one
+- adjacent cells
+- the cell holding one
+- the cell holding n squared
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 6
+  parts: 2
+  minutes: 12
+  flags: []
+  tagline: King-move route and a pigeonhole-style bound on total change
+  priority: 65
+  rank: 394
+  tier: C
+  category: tbo
+  d10: 6.5
+  real: 5.5
+  by: deepseek-v4.1-flash-free
+tags:
+- combinatorics
+- proof

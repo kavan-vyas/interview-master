@@ -1,0 +1,30 @@
+[
+ {
+  "q": "Show that you can make up 10 pence in eleven ways using 10p, 5p, 2p and 1p coins. In how many ways can you make up 20 pence using 20p, 10p, 5p, 2p and 1p coins?",
+  "kind": "maths",
+  "answer": "10p can be made in 11 ways (listed systematically: 10; 5+5; three ways using one 5p coin; six ways using no 5p coins). 20p can be made in 41 ways, counted by number of 5p and 2p/1p arrangements: 20; 10 plus any of the 11 ways for 10p; 5+5+5+5; 3 ways with three 5p coins; 6 ways with two 5p coins; 8 ways with one 5p coin; 11 ways with no 5p coins. Grand total = 41.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#4"
+ },
+ {
+  "q": "Consider the system of equations $2yz + zx - 5xy = 2$, $yz - zx + 2xy = 1$, $yz - 2zx + 6xy = 3$. Show that $xyz = \\pm 6$ and find the possible values of $x$, $y$ and $z$.",
+  "kind": "maths",
+  "answer": "Eliminating gives $zx = 6$, $xy = 2$, $yz = 3$. Multiplying gives $(xyz)^2 = 36$, so $xyz = \\pm 6$. If $xyz = 6$ then $x = 2$, $y = 1$, $z = 3$. If $xyz = -6$ then $x = -2$, $y = -1$, $z = -3$.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#4"
+ },
+ {
+  "q": "Suppose that $3 = \\frac{2}{x_1} = \\frac{x_1 + 2}{x_2} = \\frac{x_2 + 2}{x_3} = \\frac{x_3 + 2}{x_4} = \\cdots$. Guess an expression, in terms of $n$, for $x_n$. Then, by induction or otherwise, prove the correctness of your guess.",
+  "kind": "maths",
+  "answer": "$x_n = \\frac{2^{n+1} - 2}{2^{n+1} - 1}$. Values $x_1 = \\frac{2}{3}$, $x_2 = \\frac{6}{7}$, $x_3 = \\frac{14}{15}$, $x_4 = \\frac{30}{31}$ suggest the guess. The guess holds for $n = 1$, and if it holds for $n = k$ then $x_{k+1} = \\frac{2}{3 - x_k} = \\frac{2^{k+2} - 2}{2^{k+2} - 1}$, completing the induction.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#4"
+ },
+ {
+  "q": "Show that, if $\\tan 2\\theta = 2\\tan\\theta + 1$, then $\\tan 2\\theta = -1$. Find all solutions of the equation $\\tan\\theta = 2 + \\tan 3\\theta$ which satisfy $0 < \\theta < 2\\pi$, expressing your answers as rational multiples of $\\pi$. Find all solutions of the equation $\\cot\\varphi = 2 + \\cot 3\\varphi$ which satisfy $-\\frac{3\\pi}{2} < \\varphi < \\frac{\\pi}{2}$, expressing your answers as rational multiples of $\\pi$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#4"
+ }
+]

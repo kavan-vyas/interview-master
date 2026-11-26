@@ -1,0 +1,102 @@
+id: step-telescoping-sine-sum-and-weighted-squares
+title: Telescoping sum of sines and a weighted sum of squared sines
+topics:
+- trigonometric identities
+- telescoping sums
+- differentiation
+- cotangent
+warmup: false
+answer_source: pdf
+statement: Prove that $\sum_{k=0}^{n}\sin k\theta=\frac{\cos\frac12\theta-\cos(n+\frac12)\theta}{2\sin\frac12\theta}$.
+  (i) Deduce that, for $n\ge 1$, $\sum_{k=0}^{n}\sin\left(\frac{k\pi}{n}\right)=\cot\left(\frac{\pi}{2n}\right)$.
+  (ii) By differentiating $(*)$ with respect to $\theta$, or otherwise, show that, for $n\ge 1$, $\sum_{k=0}^{n}k\sin^2\left(\frac{k\pi}{2n}\right)=\frac{(n+1)^2}{4}+\frac14\cot^2\left(\frac{\pi}{2n}\right)$.
+stages:
+- goal: Prove the closed form for $\sum_{k=0}^{n}\sin k\theta$.
+  expected: Using $2\sin\frac12\theta\sin k\theta=\cos(k-\frac12)\theta-\cos(k+\frac12)\theta$, the sum
+    telescopes to $\cos\frac12\theta-\cos(n+\frac12)\theta$. Divide by $2\sin\frac12\theta$, which requires
+    $\sin\frac12\theta\neq0$.
+  solution: 'Use $2\sin A\sin B=\cos(B-A)-\cos(B+A)$ with $A=\frac12\theta$, $B=k\theta$: $2\sin\frac12\theta\sin
+    k\theta=\cos(k-\frac12)\theta-\cos(k+\frac12)\theta$. Summing over $k=0$ to $n$ gives a telescoping
+    sum. The first term is $\cos(-\frac12\theta)=\cos\frac12\theta$ and the last is $-\cos(n+\frac12)\theta$.
+    Dividing by $2\sin\frac12\theta$ gives the result.'
+  common_errors:
+  - Forgetting that $\sin\frac12\theta\neq0$ is needed to divide.
+  - Using $2\sin A\cos B$ instead of $2\sin A\sin B$.
+  - 'Mishandling the first term: $\cos(-\frac12\theta)=\cos\frac12\theta$, not $-\cos\frac12\theta$.'
+  hints:
+    rephrase: Multiply the sum by $2\sin\frac12\theta$ and rewrite each term as a difference of two cosines.
+    smaller_case: Write out the case $n=1$ after multiplying by $2\sin\frac12\theta$.
+    key_idea: Consecutive terms cancel once each product is written as a difference of cosines.
+  check: null
+- goal: Set $\theta=\pi/n$ and simplify the closed form.
+  expected: $\sum_{k=0}^{n}\sin\frac{k\pi}{n}=\cot\frac{\pi}{2n}$ for $n\ge1$.
+  solution: With $\theta=\pi/n$, $(n+\frac12)\theta=\pi+\frac{\pi}{2n}$, so $\cos(n+\frac12)\theta=-\cos\frac{\pi}{2n}$.
+    The numerator is then $2\cos\frac{\pi}{2n}$ and the denominator is $2\sin\frac{\pi}{2n}$, which is
+    nonzero because $n\ge1$. The ratio is $\cot\frac{\pi}{2n}$.
+  common_errors:
+  - Evaluating $\cos(n+\frac12)\frac{\pi}{n}$ as $\cos\frac{\pi}{2n}$, missing the shift by $\pi$.
+  - Writing the answer as $\tan\frac{\pi}{2n}$.
+  hints:
+    rephrase: Substitute $\theta=\pi/n$ and simplify the argument $(n+\frac12)\theta$.
+    smaller_case: Take $n=1$ and check the sum $\sin0+\sin\pi$ against the formula.
+    key_idea: Write $(n+\frac12)\frac{\pi}{n}$ as $\pi$ plus a small angle, then use the sign of cosine.
+  check: simplify(Sum(sin(k*pi/3),(k,0,3)).doit() - cot(pi/6))
+  check_ok: true
+- goal: Show that $\sum_{k=0}^{n}k\sin^2\frac{k\pi}{2n}=\frac{(n+1)^2}{4}+\frac14\cot^2\frac{\pi}{2n}$
+    by differentiating the closed form.
+  expected: $\sum_{k=0}^{n}k\sin^2\frac{k\pi}{2n}=\frac{(n+1)^2}{4}+\frac14\cot^2\frac{\pi}{2n}$, obtained
+    from $\frac{n(n+1)}{4}-\frac12F'(\pi/n)$ with $F'(\pi/n)=-\frac12\left(\csc^2\frac{\pi}{2n}+n\right)$.
+  solution: Put $\theta=\pi/n$. Then $\sin^2\frac{k\pi}{2n}=\frac12(1-\cos k\theta)$, so the sum is $\frac12\sum
+    k-\frac12\sum k\cos k\theta=\frac{n(n+1)}{4}-\frac12F'(\theta)$, where $F(\theta)=\sum\sin k\theta$.
+    Expanding $\cos(n\theta+\frac12\theta)$ in the closed form gives $F(\theta)=\frac12\left[(1-\cos n\theta)\cot\frac12\theta+\sin
+    n\theta\right]$. Differentiating, $F'(\theta)=\frac12\left[n\sin n\theta\cot\frac12\theta-\frac12(1-\cos
+    n\theta)\csc^2\frac12\theta+n\cos n\theta\right]$. At $\theta=\pi/n$, $\sin n\theta=0$ and $\cos n\theta=-1$,
+    so $F'=-\frac12\left(\csc^2\frac{\pi}{2n}+n\right)$. The sum is $\frac{n(n+1)}{4}+\frac{n}{4}+\frac14\csc^2\frac{\pi}{2n}=\frac{n^2+2n}{4}+\frac14(1+\cot^2\frac{\pi}{2n})=\frac{(n+1)^2}{4}+\frac14\cot^2\frac{\pi}{2n}$.
+  common_errors:
+  - Differentiating the closed form without first rewriting it, which makes the algebra messy.
+  - Using the wrong argument in $\sin^2 x=\frac12(1-\cos 2x)$; the argument here is $\frac12k\theta$,
+    so the cosine is of $k\theta$.
+  - Forgetting $\sum_{k=0}^{n}k=\frac{n(n+1)}{2}$.
+  - Dropping the minus sign from $-\frac12F'$.
+  hints:
+    rephrase: Rewrite $\sin^2$ of a half-angle as a cosine of the full angle.
+    smaller_case: Check your final formula at $n=1$ and $n=2$.
+    key_idea: Differentiating $\sum\sin k\theta$ puts the weight $k$ in front of each $\cos k\theta$.
+  check: simplify(sum([k*sin(k*pi/4)**2 for k in range(0,3)]) - ((2+1)**2/Rational(4) + cot(pi/4)**2/4))
+  check_ok: null
+extensions:
+  '3':
+  - Use the closed form to find $\sum_{k=0}^{n}\cos k\theta$.
+  '4':
+  - Prove that $\sum_{k=1}^{n-1}\csc^2\frac{k\pi}{n}=\frac{n^2-1}{3}$.
+  '5':
+  - Generalise the weighted sum to $\sum k\sin^2 k\theta$ for general $\theta$ and say when the closed
+    form simplifies.
+spoken_vocab:
+- sum from k equals zero to n of sine k theta
+- cosine of a half theta
+- two sine a half theta
+- cotangent
+- k sine squared
+- d theta
+- pi over n
+- telescoping
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#11
+verified: false
+rating:
+  quality: 8
+  difficulty: 7
+  parts: 3
+  minutes: 30
+  flags: []
+  tagline: Closed-form sine sum, cot identity, then differentiation for a weighted squared-sine sum.
+  priority: 91
+  rank: 100
+  tier: A
+  category: siklos
+  d10: 6.0
+  real: 4.5
+  by: haiku
+tags:
+- trigonometry
+- sequences_and_series

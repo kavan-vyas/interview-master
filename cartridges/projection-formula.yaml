@@ -1,0 +1,103 @@
+id: projection-formula
+title: Projection formula in a triangle
+topics:
+- triangle geometry
+- trigonometry
+- cosine rule
+- vectors
+warmup: true
+answer_source: generated
+statement: In a triangle $ABC$ with the usual side labels $a, b, c$, prove the projection formula $a=b\cos
+  C+c\cos B$. (a) What does this identity become when $C=90^\circ$? (b) Can you find two essentially different
+  proofs (e.g. one using the cosine rule, one using vectors)?
+stages:
+- goal: Prove $a=b\cos C+c\cos B$ using the cosine rule.
+  expected: By the cosine rule, $b\cos C=\frac{a^2+b^2-c^2}{2a}$ and $c\cos B=\frac{a^2+c^2-b^2}{2a}$.
+    Adding gives $\frac{2a^2}{2a}=a$.
+  solution: 'Cosine rule: $\cos C=\frac{a^2+b^2-c^2}{2ab}$ so $b\cos C=\frac{a^2+b^2-c^2}{2a}$. Similarly
+    $\cos B=\frac{a^2+c^2-b^2}{2ac}$ so $c\cos B=\frac{a^2+c^2-b^2}{2a}$. Sum: numerator $2a^2$, giving
+    $a$.'
+  common_errors:
+  - Dropping the factor 2 in the cosine rule denominator.
+  - Assigning the wrong side to the angle, e.g. using $c$ in the expression for $\cos C$.
+  - Failing to put both terms over the common denominator $2a$ before adding.
+  hints:
+    rephrase: Write each cosine using only the three side lengths.
+    smaller_case: Test the identity on an equilateral triangle with side 1. What is each cosine, and does
+      the right-hand side match $a$?
+    key_idea: The cosine rule turns each cosine into a ratio of side lengths. In the sum, the $b^2$ and
+      $c^2$ terms cancel in pairs.
+  check: '(lambda a,b,c: simplify(b*((a**2+b**2-c**2)/(2*a*b)) + c*((a**2+c**2-b**2)/(2*a*c)) - a))(Symbol(''a''),Symbol(''b''),Symbol(''c''))'
+  check_ok: null
+- goal: 'Give a vector proof: write $\vec{BC}=\vec{BA}+\vec{AC}$ and dot both sides with $\vec{BC}$.'
+  expected: $a^2=ac\cos B+ab\cos C$, and dividing by $a$ gives the projection formula.
+  solution: $\vec{BC}\cdot\vec{BC}=\vec{BC}\cdot\vec{BA}+\vec{BC}\cdot\vec{AC}$. The angle between $\vec{BC}$
+    and $\vec{BA}$ is $B$, so the first term is $ac\cos B$. Reversing both vectors in $\vec{BC}\cdot\vec{AC}$
+    gives $\vec{CB}\cdot\vec{CA}=ab\cos C$. So $a^2=ac\cos B+ab\cos C$, and dividing by $a$ gives the
+    result.
+  common_errors:
+  - Taking the angle between $\vec{BC}$ and $\vec{AC}$ to be $B$ instead of $C$.
+  - Forgetting that $\vec{BC}\cdot\vec{AC}=\vec{CB}\cdot\vec{CA}$ when both vectors are reversed.
+  - Using $\vec{AB}$ where $\vec{BA}$ is needed, which flips the sign.
+  hints:
+    rephrase: Which two vectors meet at the vertex $B$, and which two meet at $C$?
+    smaller_case: Try a right isosceles triangle with legs 1 and hypotenuse $\sqrt{2}$, and check each
+      dot product separately.
+    key_idea: Decompose one side through the third vertex, then dot the sum with the side being measured.
+      Each dot product is a product of two side lengths times a cosine.
+- goal: Specialise to $C=90^\circ$. What does the identity become?
+  expected: $a=c\cos B$, since $\cos 90^\circ=0$. Equivalently $\cos B=a/c$, the adjacent-over-hypotenuse
+    ratio.
+  solution: With $C=90^\circ$, $\cos C=0$, so the $b\cos C$ term vanishes and $a=c\cos B$. Here $c$ is
+    the hypotenuse (opposite the right angle), and $\cos B=a/c$, so $c\cos B=a$.
+  common_errors:
+  - Claiming the identity becomes $a=b+c$.
+  - Taking $c$ to be a leg rather than the hypotenuse.
+  - Forgetting that $\cos 90^\circ=0$ removes the $b$ term entirely.
+  hints:
+    rephrase: What is the cosine of a right angle, and which side is opposite it?
+    smaller_case: Take a 3-4-5 triangle with the right angle at $C$, so $c=5$. Which term survives?
+    key_idea: A right angle kills one term. The remaining term is a basic ratio from right-triangle trigonometry.
+  check: '(lambda a,c: simplify(((a**2+c**2-(c**2-a**2))/(2*a*c))*c - a))(Symbol(''a''),Symbol(''c''))'
+  check_ok: null
+extensions:
+  '3':
+  - Use the same method to write the projection formulas for $b$ and $c$.
+  - Combine the three projection formulas to solve for $\cos A$, $\cos B$, $\cos C$ and recover the cosine
+    rule.
+  '4':
+  - 'Prove the projection formula with coordinates: place $C$ at the origin and $A$ on the positive $x$-axis.'
+  - Show that the vector proof works without knowing the angle is acute.
+  '5':
+  - Explain why the three projection formulas form a linear system in $\cos A$, $\cos B$, $\cos C$ and
+    why it has a unique solution when $a,b,c>0$.
+  - Compare the number of proofs needed to handle obtuse angles with the number needed for acute ones.
+spoken_vocab:
+- a equals b cosine C plus c cosine B
+- cosine rule
+- vector BC equals vector BA plus vector AC
+- dot product
+- right angle
+- hypotenuse
+- cosine of ninety degrees
+- triangle ABC
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 4
+  parts: 3
+  minutes: 12
+  flags:
+  - needs_diagram
+  tagline: Strong multi-proof structure; diagram helps, extends to right-angled case.
+  priority: 73
+  rank: 296
+  tier: B
+  category: juan
+  d10: 2.5
+  real: 6.0
+  by: haiku
+tags:
+- geometry
+- trigonometry

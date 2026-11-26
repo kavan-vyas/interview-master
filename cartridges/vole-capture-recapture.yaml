@@ -1,0 +1,145 @@
+id: vole-capture-recapture
+title: 'Voles: capture-recapture likelihood and the maximum-likelihood estimate of N'
+topics:
+- hypergeometric distribution
+- binomial coefficients
+- maximum likelihood
+- ratio tests
+- combinatorial identities
+warmup: false
+answer_source: pdf
+statement: A group of biologists attempts to estimate the magnitude, $N$, of an island population of voles
+  (Microtus agrestis). Accordingly, the biologists capture a random sample of 200 voles, mark them and
+  release them. A second random sample of 200 voles is then taken of which 11 are found to be marked.
+  Show that the probability, $p_N$, of this occurrence is given by $p_N=k\frac{((N-200)!)^2}{N!\,(N-389)!}$,
+  where $k$ is independent of $N$. The biologists then estimate $N$ by calculating the value of $N$ for
+  which $p_N$ is a maximum. Find this estimate. All unmarked voles in the second sample are marked and
+  then the entire sample is released. Subsequently a third random sample of 200 voles is taken. Using
+  your estimate for $N$, write down the probability that this sample contains exactly $j$ marked voles,
+  leaving your answer in terms of binomial coefficients. Deduce that $\sum_{j=0}^{200}\binom{389}{j}\binom{3247}{200-j}=\binom{3636}{200}$.
+stages:
+- goal: Show that $p_N$ has the stated form and identify the constant $k$.
+  expected: $p_N=\frac{\binom{200}{11}\binom{N-200}{189}}{\binom{N}{200}}$, so $k=\frac{(200!)^2}{11!\,(189!)^2}$.
+  solution: The population has $N$ voles, of which 200 are marked. The second sample has 200 voles, of
+    which 11 are marked and 189 unmarked. The number of ways to choose 11 marked voles from 200 is $\binom{200}{11}$.
+    The number of ways to choose 189 unmarked voles from $N-200$ is $\binom{N-200}{189}$. The total number
+    of samples of size 200 is $\binom{N}{200}$. So $p_N=\frac{\binom{200}{11}\binom{N-200}{189}}{\binom{N}{200}}$.
+    Expanding with factorials gives $p_N=\frac{(200!)^2}{11!\,(189!)^2}\cdot\frac{((N-200)!)^2}{N!\,(N-389)!}$,
+    and the constant does not depend on $N$.
+  common_errors:
+  - Using $N-389$ or $N-200$ wrongly in the unmarked count.
+  - Using 200 unmarked instead of 189 in the second sample.
+  - Forgetting that the denominator is $\binom{N}{200}$, not $\binom{N}{189}$.
+  hints:
+    rephrase: Think of the population as N voles, 200 of which are marked. How many samples of 200 voles
+      contain exactly 11 marked ones?
+    smaller_case: Replace the numbers by a population of 5 with 2 marked, and a sample of 2 containing
+      exactly 1 marked. Count the favourable and total samples.
+    key_idea: 'This is a hypergeometric count: choose which sample members are marked and which are unmarked,
+      then divide by the total number of samples of that size.'
+  check: binomial(200,11)*binomial(800,189)/binomial(1000,200) - (factorial(200)**2/(factorial(11)*factorial(189)**2))*factorial(800)**2/(factorial(1000)*factorial(611))
+  check_ok: true
+- goal: Find the value of N that maximises $p_N$.
+  expected: $N=3636$.
+  solution: Compute the ratio $\frac{p_N}{p_{N-1}}=\frac{((N-200)!)^2}{N!\,(N-389)!}\cdot\frac{(N-1)!\,(N-390)!}{((N-201)!)^2}=\frac{(N-200)^2}{N(N-389)}$.
+    Then $p_N\ge p_{N-1}$ iff $(N-200)^2\ge N(N-389)$, i.e. $N^2-400N+40000\ge N^2-389N$, i.e. $40000\ge
+    11N$. So $p_N$ increases while $N\le 40000/11\approx3636.36$. Since $11\times3636=39996\le40000$ and
+    $11\times3637=40007>40000$, $p_N$ is maximised at $N=3636$.
+  common_errors:
+  - Rounding $40000/11$ up to 3637.
+  - Making an off-by-one error in the ratio $p_N/p_{N-1}$.
+  - Using the continuous derivative without checking the integer maximum.
+  hints:
+    rephrase: Compare p_N with p_{N-1}. When does adding one more vole to the population make the observed
+      outcome more or less likely?
+    smaller_case: Take the same ratio with a smaller set of numbers, such as marked count 2 and sample
+      size 2, and see how the comparison changes with N.
+    key_idea: Form the ratio of consecutive values of p_N. Factorials cancel, leaving a quadratic inequality
+      in N that gives the switch point.
+  check: floor(Rational(40000,11)) - 3636
+  check_ok: true
+- goal: Write down the probability that the third sample contains exactly j marked voles, using binomial
+    coefficients.
+  expected: $P(j)=\frac{\binom{389}{j}\binom{3247}{200-j}}{\binom{3636}{200}}$ for $j=0,1,\dots,200$.
+  solution: With $N=3636$, the marked voles are the 200 from the first sample plus the 189 unmarked voles
+    of the second sample that were then marked, giving 389 marked. The unmarked number is $3636-389=3247$.
+    A sample of 200 contains exactly $j$ marked voles with probability $\frac{\binom{389}{j}\binom{3247}{200-j}}{\binom{3636}{200}}$.
+  common_errors:
+  - Using 200 marked voles and forgetting the 189 newly marked ones.
+  - Using 11 as the marked count, which is only the number recaptured.
+  - Swapping the roles of $j$ and $200-j$ in the binomial coefficients.
+  hints:
+    rephrase: After the second sample, how many voles are now marked, and how many are unmarked? Then
+      count samples of size 200 with exactly j marked.
+    smaller_case: Take a population of 3 with 1 marked and a sample of 1. Count the samples with 0 marked
+      and 1 marked.
+    key_idea: 'Hypergeometric again: the number of marked voles in the sample is j, and the rest of the
+      sample is chosen from the unmarked voles.'
+  check: Sum(binomial(389,j)*binomial(3247,200-j)/binomial(3636,200), (j,0,200)).doit() - 1
+  check_ok: null
+- goal: Deduce the stated binomial identity.
+  expected: $\sum_{j=0}^{200}\binom{389}{j}\binom{3247}{200-j}=\binom{3636}{200}$.
+  solution: The probabilities $P(j)$ for $j=0,\dots,200$ cover all possible outcomes of the third sample,
+    so they sum to 1. Multiplying by $\binom{3636}{200}$ gives $\sum_{j=0}^{200}\binom{389}{j}\binom{3247}{200-j}=\binom{3636}{200}$.
+  common_errors:
+  - Using the wrong summation range.
+  - Misstating the lower index as $j$ instead of $200-j$.
+  - Not explaining why the sum of probabilities is one.
+  hints:
+    rephrase: Something must happen for j. What do the probabilities for all possible j add up to?
+    smaller_case: Use the same structure with 1 marked vole out of 3 and a sample of size 1. Check that
+      the analogous sum equals the total number of samples.
+    key_idea: The probabilities over all outcomes of a distribution sum to 1, so the numerator sum must
+      equal the denominator.
+  check: Sum(binomial(389,j)*binomial(3247,200-j),(j,0,200)).doit() - binomial(3636,200)
+  check_ok: null
+extensions:
+  '3':
+  - Explain why the estimate of N uses the ratio p_N over p_{N-1} rather than solving for the maximum
+    directly.
+  - Explain intuitively why p_N increases and then decreases in N.
+  '4':
+  - Suppose the third sample contains 22 marked voles. Estimate N from the proportion by solving 200 times
+    389 over N equals 22, and compare with 3636.
+  '5':
+  - Find the mean and variance of the number of marked voles j in the third sample, and check the mean
+    against the hypergeometric formula.
+spoken_vocab:
+- N
+- p sub N
+- k
+- factorial
+- binomial 200 choose 11
+- binomial N minus 200 choose 189
+- binomial N choose 200
+- maximum
+- ratio
+- estimate
+- three thousand six hundred and thirty six
+- binomial 389 choose j
+- binomial 3247 choose 200 minus j
+- binomial 3636 choose 200
+- sum from j equals zero to 200
+- marked
+- unmarked
+- sample
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#21
+verified: false
+rating:
+  quality: 6
+  difficulty: 7
+  parts: 4
+  minutes: 25
+  flags:
+  - garbled
+  tagline: Excellent hypergeometric MLE, but the final binomial identity is truncated.
+  priority: 64
+  rank: 399
+  tier: C
+  category: siklos
+  d10: 7.0
+  real: 5.5
+  by: haiku
+tags:
+- probability
+- combinatorics

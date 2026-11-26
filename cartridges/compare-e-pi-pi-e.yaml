@@ -1,0 +1,74 @@
+id: compare-e-pi-pi-e
+title: 'Which is larger: e^pi or pi^e'
+topics:
+- inequalities
+- logarithms
+- monotonicity
+- calculus
+warmup: true
+answer_source: pdf
+statement: Without calculating the numerical values, which is larger, $e^{\pi}$ or $\pi^{e}$?
+stages:
+- goal: Reduce the comparison to one about $\frac{\ln x}{x}$.
+  expected: $e^{\pi}>\pi^{e}$ is equivalent to $\pi>e\ln\pi$, i.e. $\frac{\ln\pi}{\pi}<\frac{1}{e}$.
+  solution: Taking logs, $\ln(e^{\pi})=\pi$ and $\ln(\pi^{e})=e\ln\pi$. Since $\ln$ is increasing, $e^{\pi}>\pi^{e}$
+    iff $\pi>e\ln\pi$. Dividing by $e\pi>0$ gives $\frac{\ln\pi}{\pi}<\frac{1}{e}$.
+  common_errors:
+  - Comparing $e^{\pi}$ and $\pi^{e}$ numerically, which is not allowed here
+  - Reversing the inequality when dividing by $\pi$ or $e$
+  - Taking logs of only one side
+  hints:
+    rephrase: Comparing two large powers directly is hard. Compare their logarithms instead.
+    smaller_case: Which is larger, $2^{3}$ or $3^{2}$? Compare their logarithms.
+    key_idea: Study $f(x)=\frac{\ln x}{x}$ and compare its values at $x=e$ and $x=\pi$.
+  check: sympy.Gt(sympy.pi, sympy.E*sympy.log(sympy.pi))
+  check_ok: null
+- goal: Use monotonicity of $\frac{\ln x}{x}$ to decide which is larger.
+  expected: $e^{\pi}$ is larger.
+  solution: Let $f(x)=\frac{\ln x}{x}$. Then $f'(x)=\frac{1-\ln x}{x^{2}}<0$ for $x>e$. Since $\pi>e$,
+    $f(\pi)<f(e)=\frac{1}{e}$, so $\frac{\ln\pi}{\pi}<\frac{1}{e}$. By stage 1, $e^{\pi}>\pi^{e}$.
+  common_errors:
+  - Using the wrong direction of monotonicity, claiming $f$ is increasing beyond $e$
+  - Checking $f$ only at $\pi$ and not comparing with $f(e)$
+  - Concluding without stating where $f$ is decreasing
+  hints:
+    rephrase: Where is $f(x)=\frac{\ln x}{x}$ decreasing, and does that interval include $\pi$?
+    smaller_case: Check the sign of the derivative of $\frac{\ln x}{x}$ at $x=10$.
+    key_idea: Compute $f'(x)$ and find where it is negative.
+  check: sympy.Gt(sympy.exp(sympy.pi), sympy.pi**sympy.E)
+  check_ok: null
+extensions:
+  '3':
+  - Without computing, compare $2^{3}$ and $3^{2}$.
+  '4':
+  - Without computing, compare $3^{\pi}$ and $\pi^{3}$.
+  '5':
+  - Without computing, decide which is larger, $2^{e}$ or $e^{2}$.
+spoken_vocab:
+- e to the pi
+- pi to the e
+- natural log
+- f of x equals ln x over x
+- derivative
+- decreasing
+- compare
+source: zhou-quant/zhou-quant-guide.pdf#2
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 2
+  minutes: 7
+  flags: []
+  tagline: Classic ln x/x monotonicity trick with generalisation to a^b vs b^a.
+  priority: 65
+  rank: 393
+  tier: C
+  category: zhou-quant
+  d10: 4.5
+  real: 8.0
+  by: deepseek-v4.1-flash-free
+tags:
+- exponentials_and_logarithms
+- differentiation
+- inequalities

@@ -1,0 +1,92 @@
+id: sqrt-two-irrational
+title: Proving Root Two Is Irrational
+topics:
+- number theory
+- proof by contradiction
+- parity
+warmup: true
+answer_source: pdf
+statement: Can you prove that $\sqrt{2}$ is irrational? (A rational number is a ratio of two integers;
+  otherwise it is irrational.)
+stages:
+- goal: Assume $\sqrt{2}=\frac{m}{n}$ with $m,n$ integers in lowest terms, and derive an equation between
+    $m^2$ and $n^2$.
+  expected: m^2 = 2n^2
+  solution: Suppose $\sqrt{2}=\frac{m}{n}$ where $m,n$ are integers with no common factor other than 1.
+    Squaring both sides gives $2=\frac{m^2}{n^2}$, so $m^2 = 2n^2$.
+  common_errors:
+  - Dropping the lowest-terms condition, which is needed for the final contradiction.
+  - Squaring incorrectly, for example writing m^2 = 2n instead of m^2 = 2n^2.
+  hints:
+    rephrase: Start from the assumption that the number is a ratio of integers in lowest terms. Square
+      both sides and clear the denominator.
+    smaller_case: Take the rational number 1.5 = 3/2 and square it. Check which equation you get.
+    key_idea: Clearing denominators gives an integer equation to analyse.
+- goal: Show that m must be even, using parity.
+  expected: m is even, because m^2 = 2n^2 is even, and the square of an odd number is odd.
+  solution: m^2 = 2n^2 is even, so m^2 is even. If m were odd, write m = 2k+1; then m^2 = 4k^2 + 4k +
+    1, which is odd. This is a contradiction, so m is even. Write m = 2x.
+  common_errors:
+  - Claiming m is even without justifying the parity step.
+  - Confusing the square of an even number with the square of an odd number.
+  hints:
+    rephrase: Consider the parity of m^2 and compare it with the parity of m.
+    smaller_case: Test a few odd integers and see whether their squares are odd or even.
+    key_idea: Write an odd integer in the form 2k+1 and expand its square.
+  check: (2*k+1)**2 - (2*(2*k**2+2*k)+1)
+  check_ok: true
+- goal: Show that n must also be even, and state the contradiction.
+  expected: Substituting m = 2x gives n^2 = 2x^2, so n is even. Then m and n are both even, which contradicts
+    that they have no common factor. Therefore $\sqrt{2}$ is irrational.
+  solution: With m = 2x, we have (2x)^2 = 2n^2, so 4x^2 = 2n^2 and n^2 = 2x^2. The same parity argument
+    shows n is even. Both m and n are even, so 2 divides both, contradicting that m/n is in lowest terms.
+    The initial assumption is false, so $\sqrt{2}$ is irrational.
+  common_errors:
+  - Failing to state the contradiction with the lowest-terms assumption.
+  - Making an algebra error when substituting m = 2x.
+  hints:
+    rephrase: Substitute your expression for m back into the equation, then apply the parity argument
+      again to n.
+    smaller_case: Check what happens if m and n are both even, for example m = 4 and n = 2.
+    key_idea: The conclusion must contradict the original assumption about lowest terms.
+extensions:
+  '3':
+  - Prove that the square root of 3 is irrational using the same method.
+  '4':
+  - Prove that the cube root of 2 is irrational.
+  '5':
+  - Show that if p is prime and sqrt(p) is rational, then sqrt(p) is an integer.
+spoken_vocab:
+- square root of two
+- irrational
+- rational
+- ratio of integers
+- lowest terms
+- contradiction
+- m squared equals two n squared
+- even
+- odd
+- parity
+- m equals two x
+- n squared equals two x squared
+- common factor
+source: zhou-quant/zhou-quant-guide.pdf#1
+verified: false
+rating:
+  quality: 2
+  difficulty: 3
+  parts: 3
+  minutes: 5
+  flags:
+  - trivial
+  tagline: Standard contradiction proof; mostly recall of a memorised template.
+  priority: 23
+  rank: 656
+  tier: D
+  category: zhou-quant
+  d10: 2.0
+  real: 7.0
+  by: haiku
+tags:
+- proof
+- number_theory

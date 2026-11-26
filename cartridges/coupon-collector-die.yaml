@@ -1,0 +1,85 @@
+id: coupon-collector-die
+title: Rolling a die until every face appears
+topics:
+- expectation
+- linearity of expectation
+- geometric distribution
+- coupon collector
+warmup: false
+answer_source: pdf
+statement: A fair die is rolled until every face has appeared at least once. What is the expected number
+  of rolls?
+stages:
+- goal: Once 2 distinct faces have appeared, find the expected number of further rolls until a third new
+    face appears.
+  expected: 3/2
+  solution: With 2 faces already seen, a roll shows a new face with probability 4/6 = 2/3. The number
+    of rolls until success is geometric with mean 1/p = 3/2.
+  common_errors:
+  - Using the success probability 2/3 as the expected number of rolls
+  - Using 6/2 = 3 by mistake, forgetting that 4 faces remain unseen
+  - Taking the mean as p instead of 1/p
+  hints:
+    rephrase: After some faces are known, each roll either gives a new face or repeats an old one. What
+      fraction of rolls give a new face, and what does that imply for the number of rolls until one does?
+    smaller_case: Consider a fair two-sided coin and ask how many tosses until both sides have appeared.
+      Work out the phases by hand.
+    key_idea: Within each phase, the number of rolls until a new face is geometric, so its mean follows
+      from the success probability.
+  check: sympy.Rational(6,6-2) - sympy.Rational(3,2)
+  check_ok: null
+- goal: Find the total expected number of rolls until all six faces have appeared, combining the phases
+    with linearity of expectation.
+  expected: 147/10
+  solution: Let phase k be the period when k distinct faces have been seen, for k = 0,...,5. Its expected
+    length is 6/(6-k). By linearity, E = sum over k=0..5 of 6/(6-k) = 1 + 6/5 + 3/2 + 2 + 3 + 6 = 147/10
+    = 14.7.
+  common_errors:
+  - Summing 6/k for k=1..6 instead of 6/(6-k)
+  - Answering 6 (the number of faces) or 6 times the harmonic number wrongly indexed
+  - Giving a decimal approximation such as 6 ln 6 without the exact fraction
+  hints:
+    rephrase: Split the whole process into phases, one for each count of distinct faces seen so far. How
+      long does each phase last on average, and how can you combine the phase averages?
+    smaller_case: Work out the same kind of total for a coin with two faces, phase by phase.
+    key_idea: Linearity of expectation lets you add the expected lengths of the phases without any independence
+      assumption.
+  check: sympy.Rational(147,10) - sum(sympy.Rational(6,6-k) for k in range(6))
+  check_ok: null
+extensions:
+  '3':
+  - What is the expected number of rolls of a fair three-sided die until every face has appeared?
+  '4':
+  - What is the expected number of rolls of a fair four-sided die until every face has appeared?
+  '5':
+  - What is the exact expected number of rolls of a fair five-sided die until every face has appeared?
+    Give a fraction.
+spoken_vocab:
+- expected number of rolls
+- fair die
+- six faces
+- linearity of expectation
+- geometric
+- one over six
+- six over six minus k
+- fourteen point seven
+- one hundred forty seven over ten
+- coupon collector
+source: jaymin/Jaymin Interview (1).pdf#p33
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 2
+  minutes: 10
+  flags: []
+  tagline: Coupon-collector phases combined by linearity; generalises cleanly to n faces.
+  priority: 80
+  rank: 256
+  tier: B
+  category: jaymin
+  d10: 4.0
+  real: 5.0
+  by: deepseek-v4.1-flash-free
+tags:
+- probability

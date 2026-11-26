@@ -1,0 +1,92 @@
+id: improper-integral-sin-over-x-tail
+title: 'Bounded or unbounded: tail of sin(1/x)/x'
+topics:
+- improper integrals
+- comparison test
+- substitution
+- convergence
+warmup: false
+answer_source: generated
+statement: Is $\int_{a}^{\infty}\frac{1}{x}\sin\left(\frac{1}{x}\right)\,dx$ bounded or unbounded? (The
+  lower limit was garbled in the original question; take $a>0$ as a fixed finite constant.)
+stages:
+- goal: Find a bound for the integrand for large $x$.
+  expected: $\left|\frac{1}{x}\sin\frac{1}{x}\right|\le \frac{1}{x^{2}}$ for $x>0$, because $|\sin t|\le
+    |t|$.
+  solution: Put $t=1/x$. Then $|\sin t|\le |t|$ gives $\left|\sin\frac{1}{x}\right|\le\frac{1}{x}$, so
+    $\left|\frac{1}{x}\sin\frac{1}{x}\right|\le\frac{1}{x^{2}}$. Also $x\sin(1/x)\to 1$ as $x\to\infty$,
+    which confirms the integrand behaves like $1/x^2$.
+  common_errors:
+  - Comparing with $1/x$, which gives a divergent integral and a wrong conclusion of 'unbounded'.
+  - Writing $\sin(1/x)\le 1$ and then comparing with $1/x$.
+  - Forgetting the absolute value when bounding.
+  hints:
+    rephrase: For large $x$, what is the size of $\sin$ of a very small number?
+    smaller_case: Bound $\left|\frac{\sin t}{t}\right|$ for small $t>0$ using a known inequality.
+    key_idea: Compare the integrand with a power of $x$ that you can integrate, using a standard bound
+      on sine.
+  check: sp.limit(sp.sin(1/x)*x, x, sp.oo) - 1
+  check_ok: null
+- goal: Use the comparison to show the tail integral is finite, and evaluate the bounding integral.
+  expected: $\int_{a}^{\infty}\frac{1}{x^{2}}\,dx=\frac{1}{a}$, which is finite.
+  solution: $\int_a^\infty x^{-2}dx=\lim_{R\to\infty}\left[-\frac{1}{x}\right]_a^R=\frac{1}{a}$. Since
+    the integrand is bounded in absolute value by $x^{-2}$, the original integral converges absolutely.
+  common_errors:
+  - Evaluating $\int_a^\infty x^{-2}dx$ as $\ln$ or as $\infty$.
+  - Stating that absolute convergence is needed but not concluding finiteness.
+  - Taking the limit of the antiderivative incorrectly, e.g. writing $\frac{1}{a^{2}}$.
+  hints:
+    rephrase: Find an antiderivative of $x^{-2}$, then take the limit as the upper endpoint goes to infinity.
+    smaller_case: Evaluate $\int_1^\infty x^{-3}\,dx$.
+    key_idea: A tail integral of $x^{-p}$ with $p>1$ is finite; the antiderivative tends to a finite limit.
+  check: sp.integrate(1/x**2, (x, a, sp.oo)) - 1/a
+  check_ok: null
+- goal: Conclude whether the integral is bounded or unbounded.
+  expected: The integral is bounded (finite). It converges absolutely and is not unbounded.
+  solution: Since $\left|\frac{1}{x}\sin\frac{1}{x}\right|\le\frac{1}{x^2}$ and $\int_a^\infty x^{-2}dx$
+    is finite, the integral converges absolutely. Its value is finite, so it is bounded. (Substitution
+    $u=1/x$ gives $\int_0^{1/a}\frac{\sin u}{u}\,du=\mathrm{Si}(1/a)$, a finite number.)
+  common_errors:
+  - Concluding 'unbounded' because $\frac{1}{x}$ is not integrable.
+  - Confusing a bounded integrand with a bounded integral.
+  - Arguing that oscillation makes the integral unbounded when absolute convergence settles it.
+extensions:
+  '3':
+  - Show with $u=1/x$ that $\int_a^\infty\frac{1}{x}\sin\frac{1}{x}\,dx=\mathrm{Si}(1/a)$.
+  '4':
+  - Is $\int_0^1\frac{1}{x}\sin\frac{1}{x}\,dx$ convergent, and is it absolutely convergent?
+  '5':
+  - Prove that $\int_1^\infty\frac{\sin x}{x}\,dx$ converges, using a suitable test.
+spoken_vocab:
+- integral from a to infinity
+- one over x
+- sine of one over x
+- bounded
+- unbounded
+- comparison test
+- absolute convergence
+- substitution u equals one over x
+- sine of t
+- less than or equal to
+- one over x squared
+- limit as x goes to infinity
+source: past-interviews/Actual Past Interview Questions/G4.jpg
+verified: false
+rating:
+  quality: 5
+  difficulty: 6
+  parts: 3
+  minutes: 10
+  flags:
+  - garbled
+  tagline: Good comparison trap, since 1/x fails as a bound, but the lower limit was garbled.
+  priority: 53
+  rank: 505
+  tier: C
+  category: past-interviews
+  d10: 5.5
+  real: 5.0
+  by: big-pickle
+tags:
+- integration
+- limits_and_approximation

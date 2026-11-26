@@ -1,0 +1,156 @@
+id: fibonacci-binet-cassini
+title: 'Fibonacci: Binet''s formula, nearest integer, ratio limit, Cassini and the 8x8 puzzle'
+topics:
+- recurrences
+- linear algebra of recurrences
+- Binet formula
+- limits
+- induction
+- algebraic identities
+warmup: false
+answer_source: pdf
+statement: Let $F_0 = 0$, $F_1 = 1$ and $F_{n+2} = F_{n+1} + F_n$. Let $\varphi = \frac{1+\sqrt{5}}{2}$
+  and $\psi = \frac{1-\sqrt{5}}{2}$ be the roots of $x^2 = x + 1$. (i) Show that $u_n = A\varphi^n + B\psi^n$
+  satisfies the same recurrence for any constants $A, B$. Deduce that $F_n = \frac{\varphi^n - \psi^n}{\sqrt{5}}$.
+  (ii) Show that $F_n$ is the integer nearest to $\varphi^n/\sqrt{5}$. (iii) Show that $F_{n+1}/F_n \to
+  \varphi$. (iv) Prove Cassini's identity $F_{n+1}F_{n-1} - F_n^2 = (-1)^n$ for $n \geq 1$. (v) An $8
+  \times 8$ square is cut into four pieces which appear to rearrange into a $5 \times 13$ rectangle, of
+  area 65. Use (iv) to explain what is going on.
+stages:
+- goal: (i) Show that u_n = A phi^n + B psi^n satisfies the recurrence, then use F_0 = 0 and F_1 = 1 to
+    deduce Binet's formula F_n = (phi^n - psi^n)/sqrt(5).
+  expected: phi and psi both satisfy x^2 = x + 1, so phi^(n+2) = phi^(n+1) + phi^n and the same for psi.
+    Multiplying by A and B and adding gives u_(n+2) = u_(n+1) + u_n. Matching u_0 = A + B = 0 gives B
+    = -A. Matching u_1 = A(phi - psi) = A sqrt(5) = 1 gives A = 1/sqrt(5). So F_n = (phi^n - psi^n)/sqrt(5).
+  solution: Since phi^2 = phi + 1, multiplying by phi^n gives phi^(n+2) = phi^(n+1) + phi^n. Psi satisfies
+    the same quadratic, so psi^(n+2) = psi^(n+1) + psi^n. Hence u_(n+2) = A phi^(n+2) + B psi^(n+2) =
+    (A phi^(n+1) + B psi^(n+1)) + (A phi^n + B psi^n) = u_(n+1) + u_n. Any constants A and B work. Now
+    choose A and B to match the initial values. u_0 = A + B = F_0 = 0 gives B = -A. u_1 = A phi + B psi
+    = A(phi - psi) = A sqrt(5) = F_1 = 1, so A = 1/sqrt(5) and B = -1/sqrt(5). Therefore F_n = (phi^n
+    - psi^n)/sqrt(5).
+  common_errors:
+  - Assuming psi does not satisfy the quadratic, or forgetting to check it for psi as well
+  - Matching only u_0 and not u_1, which leaves A and B undetermined
+  - Getting u_1 = A(phi + psi) instead of A(phi - psi), so A is wrong
+  - Forgetting that the recurrence must hold for all n, not just n = 0
+  hints:
+    rephrase: What quadratic do phi and psi satisfy? Multiply it by phi^n and psi^n and see what that
+      says about u_n.
+    smaller_case: Take A = 1, B = 0 and check whether u_2 = u_1 + u_0 holds for the single sequence phi^n.
+    key_idea: Linear combinations of solutions of a linear recurrence are again solutions. Then choose
+      the two constants to match two initial values.
+  check: simplify((((1+sqrt(5))/2)**10 - ((1-sqrt(5))/2)**10)/sqrt(5) - 55) == 0
+  check_ok: true
+- goal: (ii) Show that F_n is the integer nearest to phi^n / sqrt(5).
+  expected: phi^n/sqrt(5) - F_n = psi^n/sqrt(5), so |F_n - phi^n/sqrt(5)| = |psi|^n/sqrt(5) <= 1/sqrt(5)
+    < 1/2, because |psi| < 1 and sqrt(5) > 2.
+  solution: From Binet's formula, phi^n/sqrt(5) - F_n = psi^n/sqrt(5). So the distance from phi^n/sqrt(5)
+    to F_n is |psi|^n/sqrt(5). Since |psi| = (sqrt(5)-1)/2 < 1, we have |psi|^n <= 1, and so the distance
+    is at most 1/sqrt(5) < 1/2. An integer within distance less than 1/2 of a real number is its nearest
+    integer, so F_n is the nearest integer to phi^n/sqrt(5).
+  common_errors:
+  - Claiming |psi| > 1, which reverses the inequality
+  - Using the bound 1/sqrt(5) without checking it is below 1/2
+  - Concluding only for large n, when the bound actually holds for all n >= 0
+  hints:
+    rephrase: How large can |psi|^n be, and how does 1/sqrt(5) compare with 1/2?
+    smaller_case: 'Check n = 3 numerically: compare phi^3/sqrt(5) with F_3.'
+    key_idea: Bound the difference F_n - phi^n/sqrt(5) using the closed form from part (i).
+  check: Abs(N(((1+sqrt(5))/2)**10/sqrt(5)) - 55) < Rational(1,2)
+  check_ok: true
+- goal: (iii) Show that F_(n+1)/F_n tends to phi.
+  expected: F_(n+1)/F_n = phi * (1 - (psi/phi)^(n+1)) / (1 - (psi/phi)^n). Since |psi/phi| = 1/phi^2 <
+    1, the powers tend to 0, so the ratio tends to phi.
+  solution: Using Binet, F_(n+1)/F_n = (phi^(n+1) - psi^(n+1))/(phi^n - psi^n). Factor phi^(n+1) from
+    the top and phi^n from the bottom to get phi * (1 - (psi/phi)^(n+1))/(1 - (psi/phi)^n). Since |psi/phi|
+    = |psi|/phi = 1/phi^2 is less than 1, both powers tend to 0 as n tends to infinity. The ratio therefore
+    tends to phi.
+  common_errors:
+  - Concluding the limit is psi, or 1, instead of phi
+  - Forgetting to show |psi/phi| < 1, which is the step that makes the powers vanish
+  - Dividing by F_n without noting that F_n > 0 for n >= 1
+  hints:
+    rephrase: Factor the largest power of phi out of the numerator and the denominator.
+    smaller_case: Compute F_(n+1)/F_n for n = 5 and n = 6 and see what value they approach.
+    key_idea: Write psi/phi as a number of absolute value less than 1, so that its powers vanish.
+  check: simplify(((1+sqrt(5))/2)**2 - (1+sqrt(5))/2 - 1) == 0
+  check_ok: true
+- goal: (iv) Prove Cassini's identity F_(n+1) F_(n-1) - F_n^2 = (-1)^n for n >= 1.
+  expected: Let D_n = F_(n+1)F_(n-1) - F_n^2. Then D_(n+1) = -D_n, and D_1 = F_2 F_0 - F_1^2 = -1. Hence
+    D_n = (-1)^n.
+  solution: Let D_n = F_(n+1)F_(n-1) - F_n^2. Then D_(n+1) = F_(n+2)F_n - F_(n+1)^2 = (F_(n+1) + F_n)F_n
+    - F_(n+1)^2 = F_(n+1)(F_n - F_(n+1)) + F_n^2 = -F_(n+1)F_(n-1) + F_n^2 = -D_n, using F_n - F_(n+1)
+    = -F_(n-1). Also D_1 = F_2 F_0 - F_1^2 = 0 - 1 = -1. So D_n = (-1)^n for all n >= 1, by induction.
+  common_errors:
+  - Getting the sign wrong at the base case, for example D_1 = +1
+  - Forgetting that F_(n-1) needs n >= 1, or treating F_0 as undefined
+  - Writing F_(n+2) = F_(n+1) - F_n instead of the plus sign
+  hints:
+    rephrase: Write D_(n+1) using the recurrence to replace F_(n+2), then try to rewrite it as a multiple
+      of D_n.
+    smaller_case: Compute D_2 and D_3 directly from the Fibonacci numbers.
+    key_idea: Substitute F_(n+2) = F_(n+1) + F_n and collapse the expression back into D_n.
+  check: 8*3 - 5**2 - (-1)**5 == 0
+  check_ok: true
+- goal: (v) Explain the 8x8 square versus 5x13 rectangle paradox using part (iv).
+  expected: With n = 6, F_7 F_5 - F_6^2 = 13*5 - 8^2 = 65 - 64 = 1 = (-1)^6. The 5x13 rectangle has area
+    65, but the four pieces only cover 64 units. So the rectangle cannot be exactly covered; a thin sliver
+    of area 1 along the diagonal is left as a gap.
+  solution: The square has area 8*8 = 64. By part (iv) with n = 6, F_7 F_5 - F_6^2 = 13*5 - 8^2 = 1, which
+    equals (-1)^6. The rectangle is 5 by 13, with area 65. The four pieces have total area 64, so they
+    cannot fill the rectangle exactly. What appears to be a perfect fit hides a thin parallelogram-shaped
+    gap of area 1 along the diagonal. The same construction with consecutive Fibonacci numbers always
+    differs in area by exactly one unit, because of the (-1)^n sign in Cassini's identity.
+  common_errors:
+  - Saying the pieces overlap; since the rectangle is larger, the pieces leave a gap
+  - Attributing the gap to rounding or measurement error rather than to the algebra
+  - Failing to link the area difference to F_7 F_5 - F_6^2
+  hints:
+    rephrase: Compare the total area of the four pieces with the area of the rectangle they are supposed
+      to form.
+    smaller_case: Repeat the calculation with n = 5 using F_6, F_4 and F_5.
+    key_idea: Look for a quantity that must equal plus or minus one, and interpret the area mismatch between
+      the square and the rectangle.
+  check: 13*5 - 8**2 - 1 == 0
+  check_ok: true
+extensions:
+  '3':
+  - Show that F_(m+n) = F_m F_(n+1) + F_(m-1) F_n for all m, n >= 1.
+  - Show that the Fibonacci numbers satisfy F_(n+1)^2 - F_n F_(n+2) = (-1)^n, and compare with Cassini.
+  '4':
+  - Show that the sum of F_k^2 for k from 1 to n equals F_n F_(n+1).
+  - Show that F_n^2 + F_(n+1)^2 = F_(2n+1) using Binet's formula.
+  '5':
+  - Show that phi^n = F_n phi + F_(n-1) for all n >= 1.
+  - Prove that the Fibonacci numbers are the only integer sequences with F_(n+2) = F_(n+1) + F_n and F_0
+    = 0, F_1 = 1.
+spoken_vocab:
+- F sub n
+- phi
+- psi
+- square root of five
+- A phi to the n
+- B psi to the n
+- Binet's formula
+- Cassini's identity
+- minus one to the n
+- eight by eight
+- five by thirteen
+- area sixty five
+- nearest integer
+- ratio tends to phi
+- telescoping
+- induction
+source: jaymin/Jaymin Interview (1).pdf#p25
+verified: false
+rating:
+  quality: 9
+  difficulty: 6
+  parts: 5
+  minutes: 30
+  flags: []
+  tagline: Binet, rounding, ratio limit, Cassini, then explaining the 8x8 paradox.
+  priority: 118
+  rank: 7
+  tier: S
+  category: jaymin

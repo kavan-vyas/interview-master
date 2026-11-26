@@ -1,0 +1,97 @@
+id: prove-101-prime-pattern
+title: Primality of 101 and the numbers 10101, 1010101, ...
+topics:
+- primes
+- divisibility
+- factorisation
+- number theory
+warmup: false
+answer_source: generated
+statement: Prove that $101$ is not prime, but that $10101$, $1010101$, $101010101$ etc. are all prime
+  (given lots of help).
+stages:
+- goal: 'Test the first claim: is 101 prime?'
+  expected: 101 IS prime. So the claim that it is not prime is false.
+  solution: 'sqrt(101) is about 10.05, so check primes up to 10: 2, 3, 5, 7. 101 is odd. Its digit sum
+    is 2, so it is not divisible by 3. It does not end in 0 or 5. 7 x 14 = 98 leaves remainder 3. No prime
+    up to 10 divides 101, so it is prime.'
+  common_errors:
+  - Accepting the claim without checking
+  - Checking only some small primes and stopping early
+  hints:
+    rephrase: Which primes do you need to check before you can be sure a number is prime?
+    smaller_case: Check whether 15 is prime. Which prime divides it?
+    key_idea: A number n is prime if no prime up to sqrt(n) divides it.
+  check: int(isprime(101)) - 1
+  check_ok: false
+- goal: 'Test the second claim: show 10101 is not prime and factorise it.'
+  expected: 10101 = 3 x 7 x 13 x 37, so it is not prime.
+  solution: The digit sum is 1+0+1+0+1 = 3, so 3 divides 10101. 10101 / 3 = 3367. Then 3367 = 7 x 481,
+    and 481 = 13 x 37. So 10101 = 3 x 7 x 13 x 37.
+  common_errors:
+  - Concluding it is prime because it looks irregular
+  - Dividing by 3 but not factorising the quotient fully
+  hints:
+    rephrase: Is there a quick divisibility test you can apply to the digit sum?
+    smaller_case: Apply the same digit-sum test to 111 and see what it tells you.
+    key_idea: Divide out the smallest prime factor first, then repeat on the quotient.
+  check: 3*7*13*37 - 10101
+  check_ok: true
+- goal: Factorise 1010101 and decide whether it is prime.
+  expected: 1010101 = 101 x 73 x 137, so it is not prime.
+  solution: 1010101 = 101 x 10001, since 101 x 10001 = 1010101. Also 10001 = 73 x 137, because 73 x 137
+    = 7300 + 2701 = 10001. So 1010101 = 101 x 73 x 137.
+  common_errors:
+  - Assuming the whole family of numbers is prime
+  - Stopping after finding one factor without checking that the factor is composite
+  hints:
+    rephrase: Can you write 1010101 as a product of 101 with something simpler?
+    smaller_case: Multiply 101 by 10001 and compare the result with 1010101.
+    key_idea: Look for a repeated structure in the digits that splits the number as a product.
+  check: 101*73*137 - 1010101
+  check_ok: true
+extensions:
+  '3':
+  - Show that 1+100+100^2 is a multiple of 101 when considered mod 101 structure.
+  '4':
+  - Show that 101010101 is divisible by 41 and find the cofactor.
+  '5':
+  - Explain why the claim as stated is false and what the intended correct statement is.
+spoken_vocab:
+- prime
+- not prime
+- divisor
+- factor
+- digit sum
+- divisible by three
+- square root
+- remainder
+- product
+- '101'
+- '10101'
+- '1010101'
+- '101010101'
+- seven
+- thirteen
+- thirty seven
+- seventy three
+- one hundred thirty seven
+source: past-interviews/Actual Past Interview Questions/Maths & Philosophy Oxford Interview.doc
+verified: false
+rating:
+  quality: 3
+  difficulty: 5
+  parts: 3
+  minutes: 10
+  flags:
+  - wrong_or_unclear_solution
+  tagline: 'Premise is false: 101 is prime, so the problem misleads.'
+  priority: 33
+  rank: 615
+  tier: D
+  category: past-interviews
+  d10: 2.0
+  real: 1.0
+  by: haiku
+tags:
+- number_theory

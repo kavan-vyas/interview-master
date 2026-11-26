@@ -1,0 +1,87 @@
+id: reciprocal-sum-zero-real-no-solution
+title: a+b+c=0 and 1/a+1/b+1/c=0 have no real solution
+topics:
+- algebra
+- symmetric functions
+- inequalities
+warmup: false
+answer_source: generated
+statement: Show that no three real numbers $a, b, c$ satisfy the equations $a+b+c=0=\frac{1}{a}+\frac{1}{b}+\frac{1}{c}$.
+stages:
+- goal: Clear denominators in the reciprocal equation to get a relation between pairwise products.
+  expected: Since a, b, c are nonzero, multiplying 1/a+1/b+1/c=0 by abc gives ab+bc+ca=0.
+  solution: The terms are defined only if a, b, c are nonzero. Multiplying 1/a+1/b+1/c = 0 by abc gives
+    bc+ca+ab = 0.
+  common_errors:
+  - Forgetting that a, b, c must be nonzero for 1/a to exist
+  - Multiplying by abc and dropping one of the three terms
+  hints:
+    rephrase: Put the three fractions over a common denominator.
+    smaller_case: If 1/a+1/b=0, what is the relation between a and b?
+    key_idea: Multiply through by the product abc to remove all denominators; the result is symmetric
+      in a, b, c.
+  check: simplify((1/a+1/b+1/c)*a*b*c-(a*b+b*c+c*a))
+  check_ok: true
+- goal: Express a^2+b^2+c^2 using a+b+c and ab+bc+ca.
+  expected: a^2+b^2+c^2 = (a+b+c)^2 - 2(ab+bc+ca) = 0 - 0 = 0.
+  solution: Expand (a+b+c)^2 = a^2+b^2+c^2+2(ab+bc+ca). Using a+b+c=0 and ab+bc+ca=0 gives a^2+b^2+c^2
+    = 0.
+  common_errors:
+  - Forgetting the factor 2 on the cross terms
+  - Dropping the cross terms when expanding the square
+  hints:
+    rephrase: Think about squaring a+b+c.
+    smaller_case: Expand (a+b)^2 and see which cross term appears.
+    key_idea: The sum of squares equals the square of the sum minus twice the sum of pairwise products.
+  check: simplify((a+b+c)**2-2*(a*b+b*c+c*a)-(a**2+b**2+c**2))
+  check_ok: true
+- goal: Use the fact that a, b, c are real to reach a contradiction.
+  expected: Real squares are nonnegative and sum to zero only if each is zero, so a=b=c=0. This contradicts
+    a, b, c nonzero, so no such real numbers exist.
+  solution: Since a^2, b^2, c^2 >= 0 and their sum is 0, each equals 0, so a=b=c=0. But 1/a is undefined
+    when a=0, contradicting the hypothesis. Hence no three real numbers satisfy both equations.
+  common_errors:
+  - Using the sum of squares argument without noting that real squares are nonnegative
+  - Forgetting that a=0 makes 1/a undefined
+  hints:
+    rephrase: What can you say about a sum of nonnegative real numbers equal to zero?
+    smaller_case: What is the smallest possible value of a^2 for real a?
+    key_idea: Real squares are nonnegative, so a sum of them equals zero only if each term is zero.
+extensions:
+  '3':
+  - Show that over the complex numbers solutions exist, for example the cube roots of unity 1, w, w^2
+    where w = e^(2 pi i/3).
+  '4':
+  - Prove that if a+b+c=0 then a^3+b^3+c^3=3abc.
+  '5':
+  - Find nonzero real numbers a, b, c, d with a+b+c+d=0 and 1/a+1/b+1/c+1/d=0, and explain why the three-variable
+    argument does not extend to four variables.
+spoken_vocab:
+- a plus b plus c equals zero
+- one over a plus one over b plus one over c equals zero
+- real numbers
+- nonzero
+- a squared plus b squared plus c squared
+- pairwise products
+- square of the sum
+- nonnegative
+- contradiction
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 4
+  parts: 3
+  minutes: 10
+  flags: []
+  tagline: Symmetric-function trick gives a clean contradiction; elegant and extendable.
+  priority: 81
+  rank: 220
+  tier: B
+  category: tbo
+  d10: 4.5
+  real: 7.0
+  by: haiku
+tags:
+- proof
+- algebra_and_functions

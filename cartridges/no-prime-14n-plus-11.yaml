@@ -1,0 +1,89 @@
+id: no-prime-14n-plus-11
+title: 'Prove 14n+11 is never prime (claim is false: n=0 and n=3 give primes)'
+topics:
+- number theory
+- primality
+- counterexamples
+warmup: false
+answer_source: generated
+statement: Prove that $14n+11$ is never prime.
+stages:
+- goal: Decide whether the claim is true. Test small natural numbers n and check each value 14n+11 for
+    primality.
+  expected: The claim is false. For n=0, 14n+11=11, which is prime. For n=3, 14n+11=53, which is also
+    prime.
+  solution: 'Compute 14n+11 for small n: n=0 gives 11 (prime); n=1 gives 25=5^2 (composite); n=2 gives
+    39=3*13 (composite); n=3 gives 53 (prime). One prime value is enough to refute the universal claim,
+    so the statement cannot be proved. The candidate should say so clearly and not attempt a proof.'
+  common_errors:
+  - 'Trying to prove a divisibility rule such as 7 or 11 always divides 14n+11. It does not: 14n+11 is
+    congruent to 4 mod 7 and 11 mod 14, so no fixed prime divides every term.'
+  - Checking only n=1 and n=2, which both give composite values, and concluding the claim is true.
+  - Ignoring n=0 because it is not a 'proper' example. If natural numbers include 0, n=0 is a valid counterexample;
+    n=3 is a counterexample either way.
+  hints:
+    rephrase: Before trying to prove anything, plug the first few natural numbers into 14n+11 and check
+      each value for primality.
+    smaller_case: Start with n=0, then n=1, n=2, n=3, and check each result.
+    key_idea: A universal claim is refuted by a single counterexample. Look for any n that gives a prime.
+  check: isprime(14*3+11) == True
+  check_ok: true
+- goal: Give the smallest natural n for which 14n+11 is composite.
+  expected: n=1, since 14*1+11=25=5*5.
+  solution: n=0 gives 11 (prime), n=1 gives 25 = 5^2, which is composite. So n=1 is the smallest n with
+    14n+11 composite.
+  common_errors:
+  - Answering n=0 because 0 is sometimes excluded from natural numbers; 14*0+11=11 is prime either way.
+  - Miscalculating 14+11 as 24 or 26.
+  hints:
+    rephrase: Find the first value in the sequence 11, 25, 39, 53, ... that is not prime.
+    smaller_case: Check the second term of the sequence.
+    key_idea: Compute the values one at a time and test each for divisibility by small primes.
+  check: isprime(14*1+11) == False
+  check_ok: true
+extensions:
+  '3':
+  - List all n from 0 to 10 for which 14n+11 is prime.
+  - Show that 14n+11 is never a multiple of 7.
+  '4':
+  - Find a residue class modulo some m such that every term of an arithmetic progression a n + b is divisible
+    by a fixed prime.
+  - Explain why the statement is true for the progression 14n+7 but not for 14n+11.
+  '5':
+  - Characterise all arithmetic progressions an+b with gcd(a,b)=1 that contain infinitely many primes
+    (Dirichlet's theorem), and explain why 14n+11 fits.
+  - Show that 14n+11 is a perfect square for infinitely many n, or argue why not.
+spoken_vocab:
+- fourteen n plus eleven
+- prime
+- composite
+- counterexample
+- natural number
+- n equals zero
+- n equals three
+- fifty three
+- eleven
+- twenty five
+- universal claim
+- proof
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 1
+  parts: 2
+  minutes: 2
+  flags:
+  - trivial
+  - wrong_or_unclear_solution
+  tagline: The claim is false (n=0 gives 11, n=3 gives 53); only a counterexample check.
+  priority: 9
+  rank: 708
+  tier: D
+  category: tbo
+  d10: 1.5
+  real: 4.0
+  by: haiku
+tags:
+- number_theory
+- proof

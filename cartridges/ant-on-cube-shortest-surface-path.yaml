@@ -1,0 +1,120 @@
+id: ant-on-cube-shortest-surface-path
+title: Ant on a unit cube
+topics:
+- 3D geometry
+- shortest paths on surfaces
+- unfolding nets
+- Pythagoras theorem
+warmup: true
+answer_source: pdf
+statement: An ant is at a vertex of a cube which has side length $1$. If the ant can only walk across
+  the faces of the cube, what is the shortest distance to the opposite vertex?
+stages:
+- goal: How many faces must the ant's route pass through, counting its starting face and its final face?
+    Justify your answer.
+  expected: 2 faces
+  solution: Put the cube at $[0,1]^3$, with start $A=(0,0,0)$ and opposite vertex $G=(1,1,1)$. $A$ lies
+    on faces $x=0$, $y=0$, $z=0$. $G$ lies on faces $x=1$, $y=1$, $z=1$. No face contains both vertices,
+    so one face is not enough. Faces $x=0$ (contains $A$) and $y=1$ (contains $G$) share the edge $x=0,\,y=1$,
+    so two faces are enough.
+  common_errors:
+  - Answering 1 face, forgetting that A and G share no face
+  - Answering 3 faces because the route seems to need a turn at each corner
+  - Counting edges crossed instead of faces visited
+  hints:
+    rephrase: Which faces does the starting vertex sit on, and which faces does the opposite vertex sit
+      on? Do any faces appear in both lists?
+    smaller_case: Start with a single face. Can the ant reach the far vertex by walking only across that
+      one face?
+    key_idea: Two faces that share an edge can be flattened into one plane, so a route across them becomes
+      a straight line in that plane.
+  check: null
+- goal: Find the length of the shortest route, using the two-face route from the previous stage.
+  expected: $\sqrt{5}$
+  solution: Unfold face $x=0$ and face $y=1$ flat across their shared edge. The result is a $1\times 2$
+    rectangle. Using coordinates $(u,v)$ on the rectangle, $A$ is at $(0,0)$ and $G$ is at $(2,1)$, which
+    are opposite corners. The straight segment between them has length $\sqrt{1^2+2^2}=\sqrt{5}$.
+  common_errors:
+  - Using $\sqrt{3}$, the straight-through-the-cube distance, which the ant cannot walk along
+  - Using $\sqrt{2}$, a face diagonal, which does not reach the opposite vertex
+  - Unfolding into a $2\times 2$ square and getting $2\sqrt{2}$
+  - Adding edge lengths to get 3 instead of finding the straight line in the unfolded shape
+  hints:
+    rephrase: Imagine opening the two faces out flat like paper, keeping them joined along the shared
+      edge. What shape do they form, and where do the two vertices land?
+    smaller_case: 'Look at one unit square alone: the corner-to-corner distance is a useful building block,
+      but the ant must also cross a second face.'
+    key_idea: The shortest surface route is a straight line in the flattened shape. Apply Pythagoras to
+      the two side lengths of that shape.
+  check: sqrt(5) - sqrt(2**2 + 1**2)
+  check_ok: true
+- goal: State the shortest distance as a decimal to three decimal places, and check it lies between a
+    lower and an upper bound.
+  expected: $\sqrt{5}\approx 2.236$, which lies between $\sqrt{3}\approx 1.732$ and $3$
+  solution: '$\sqrt{5}\approx 2.236$. Lower bound: the straight line through the cube has length $\sqrt{3}\approx
+    1.732$, and the ant cannot do better than that. Upper bound: walking along three edges, $A\to(1,0,0)\to(1,1,0)\to
+    G$, has length $3$. Since $1.732<2.236<3$, the answer is plausible.'
+  common_errors:
+  - Giving $\sqrt{3}$ as the answer
+  - Rounding $\sqrt{5}$ incorrectly, for example to 2.24 or 2.2
+  - Stating a value without checking it against the bounds
+  hints:
+    rephrase: Give the exact value first, then convert it to a decimal. Check your number against a lower
+      bound from the straight-through-the-cube distance and an upper bound from walking along edges.
+    smaller_case: Walking along three edges of the cube gives an upper bound. Is your answer below that?
+    key_idea: To estimate a square root, find the two perfect squares it lies between and narrow down
+      from there.
+  check: round(N(sqrt(5)), 3) - 2.236
+  check_ok: false
+extensions:
+  '3':
+  - An ant walks on the surface of a cuboid measuring 1 by 1 by 2 from one corner to the diagonally opposite
+    corner. Find the shortest surface distance, and say which unfolding gives it.
+  '4':
+  - On the same unit cube, the ant starts at a vertex and must reach the midpoint of an edge that does
+    not lie on any face containing the starting vertex. Find the shortest surface distance.
+  '5':
+  - On the unit cube, the ant must go from one vertex to the opposite vertex while touching a specified
+    edge midpoint on the way. Find the shortest surface route, and explain which faces it crosses.
+spoken_vocab:
+- ant
+- cube
+- side length one
+- vertex
+- opposite vertex
+- faces
+- walk across the faces
+- shortest distance
+- two faces
+- unfold
+- flat rectangle
+- one by two rectangle
+- Pythagoras
+- square root of five
+- root five
+- root three
+- two point two three six
+- edge
+- midpoint
+- corner
+- cuboid
+- one by one by two
+source: nextstepmaths/NextStepMaths Interview Questions/interview-question-20.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 5
+  parts: 3
+  minutes: 10
+  flags:
+  - wrong_or_unclear_solution
+  tagline: Unfolding classic; but stages contradict on the number of faces.
+  priority: 53
+  rank: 509
+  tier: C
+  category: nextstepmaths
+  d10: 3.8
+  real: 8.0
+  by: deepseek-v4.1-flash-free
+tags:
+- geometry

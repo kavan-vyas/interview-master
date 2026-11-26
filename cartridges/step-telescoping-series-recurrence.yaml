@@ -1,0 +1,119 @@
+id: step-telescoping-series-recurrence
+title: Telescoping series and a product recurrence
+topics:
+- series
+- telescoping sums
+- partial fractions
+- recurrence relations
+- limits
+warmup: false
+answer_source: pdf
+statement: Show that the sum $S_N$ of the first $N$ terms of the series $\frac{1}{1\cdot2\cdot3}+\frac{3}{2\cdot3\cdot4}+\frac{5}{3\cdot4\cdot5}+\cdots+\frac{2n-1}{n(n+1)(n+2)}+\cdots$
+  is $S_N=\frac{1}{2}\left(\frac{3}{2}+\frac{1}{N+1}-\frac{5}{N+2}\right)$. What is the limit of $S_N$
+  as $N\to\infty$? The numbers $a_n$ satisfy $\frac{a_n}{a_{n-1}}=\frac{(n-1)(2n-1)}{(n+2)(2n-3)}$. Find
+  an expression for $a_n$ in terms of $a_1$, and hence, or otherwise, evaluate $\sum_{n=1}^{\infty}a_n$
+  when $a_1=\frac{2}{9}$.
+stages:
+- goal: Split the general term into partial fractions and telescope the first N terms to the stated closed
+    form for S_N.
+  expected: $\frac{2n-1}{n(n+1)(n+2)}=-\frac{1}{2n}+\frac{3}{n+1}-\frac{5}{2(n+2)}$, and summing n=1 to
+    N gives $S_N=\frac{1}{2}\left(\frac{3}{2}+\frac{1}{N+1}-\frac{5}{N+2}\right)$.
+  solution: 'Cover-up method: at n=0 the coefficient of 1/n is (2·0-1)/((0+1)(0+2)) = -1/2. At n=-1 the
+    coefficient of 1/(n+1) is (-3)/((-1)(1)) = 3. At n=-2 the coefficient of 1/(n+2) is (-5)/((-2)(-1))
+    = -5/2. Summing, the terms -1/2·H_N + 3(H_{N+1}-1) - (5/2)(H_{N+2}-3/2) with H_{N+1}=H_N+1/(N+1) and
+    H_{N+2}=H_N+1/(N+1)+1/(N+2) cancel the H_N parts (since -1/2+3-5/2=0) and leave 3/4 + 1/(2(N+1)) -
+    5/(2(N+2)), which equals the stated S_N.'
+  common_errors:
+  - Sign error on the 1/n coefficient
+  - Wrong shift when summing 1/(n+1) and 1/(n+2) over n=1 to N
+  - Checking only N=1 without a general argument
+  - Forgetting the overall factor 1/2 when writing the bracket
+  hints:
+    rephrase: Write the general term as a sum of three simple fractions whose denominators are the three
+      factors of n(n+1)(n+2).
+    smaller_case: Take just the first two terms and see which pieces survive when you add them.
+    key_idea: 'Telescoping: pieces of consecutive terms cancel, leaving only a few boundary terms.'
+  check: simplify(Rational(-1,2)/n + 3/(n+1) - Rational(5,2)/(n+2) - (2*n-1)/(n*(n+1)*(n+2)))
+  check_ok: true
+- goal: Find the limit of S_N as N tends to infinity.
+  expected: $\lim_{N\to\infty}S_N=\frac{3}{4}$
+  solution: As N→∞, 1/(N+1)→0 and 5/(N+2)→0, so the bracket tends to 3/2 and the limit is (1/2)(3/2)=3/4.
+  common_errors:
+  - Dropping the factor 1/2 and answering 3/2
+  - Believing the terms with N in the denominator do not vanish
+  hints:
+    rephrase: Which parts of the expression depend on N, and what happens to them as N gets very large?
+    smaller_case: Estimate 1/(N+1) when N is a million.
+    key_idea: A constant factor passes through the limit; terms with N in the denominator tend to zero.
+  check: limit(Rational(1,2)*(Rational(3,2)+1/(N+1)-5/(N+2)), N, oo) - Rational(3,4)
+  check_ok: null
+- goal: Express a_n in terms of a_1 by multiplying the ratios a_k/a_{k-1} for k=2 to n.
+  expected: $a_n=6a_1\frac{2n-1}{n(n+1)(n+2)}$
+  solution: 'The product over k=2..n of (k-1) is (n-1)!. The product of (k+2) is (n+2)!/3! = (n+2)!/6.
+    The product of (2k-1)/(2k-3) telescopes to (2n-1). So $a_n/a_1=\frac{6(n-1)!(2n-1)}{(n+2)!}=\frac{6(2n-1)}{n(n+1)(n+2)}$.
+    Check: n=1 gives a_1.'
+  common_errors:
+  - Dropping the factor 6 that comes from 3!
+  - Failing to telescope the odd-number factors
+  - Writing a_n in terms of b_n without substituting a_1
+  hints:
+    rephrase: Write a_n as a_1 times a product of consecutive ratios and look for factors that cancel.
+    smaller_case: Work out a_2 and a_3 in terms of a_1 by multiplying the ratios one at a time.
+    key_idea: Products of consecutive ratios telescope, so most factors cancel.
+  check: simplify(6*a1*(2*n-1)/(n*(n+1)*(n+2)) / (6*a1*(2*n-3)/((n-1)*n*(n+1))) - (n-1)*(2*n-1)/((n+2)*(2*n-3)))
+  check_ok: true
+- goal: Evaluate the sum of a_n from n=1 to infinity when a_1=2/9.
+  expected: $\sum_{n=1}^{\infty}a_n=1$
+  solution: With a_1=2/9, a_n=(4/3)·(2n-1)/(n(n+1)(n+2)). The series $\sum(2n-1)/(n(n+1)(n+2))$ is the
+    limit from the first stage, 3/4. So the sum is (4/3)(3/4)=1.
+  common_errors:
+  - Using a_1 incorrectly, e.g. 6·2/9 = 4/3 mistaken for 2/3
+  - Not linking the sum back to the earlier limit
+  hints:
+    rephrase: Once a_n is a constant times a term you have already summed, which earlier result can you
+      reuse?
+    smaller_case: Compute the constant multiplying the general term when a_1=2/9.
+    key_idea: A constant multiple pulls out of a series, so the earlier telescoping sum does the work.
+  check: 6*Rational(2,9)*Rational(3,4) - 1
+  check_ok: true
+extensions:
+  '3':
+  - Find the exact value of $\sum_{n=1}^{\infty}\frac{1}{n(n+1)(n+2)}$ by partial fractions.
+  '4':
+  - For what value of a_1 does the sum $\sum_{n=1}^{\infty}a_n$ equal 2?
+  '5':
+  - Explain why the partial sums of $\sum a_n$ converge, and estimate the size of the tail after N terms.
+spoken_vocab:
+- S sub N
+- sum from n equals one to N
+- sum from n equals one to infinity
+- one over n
+- two n minus one
+- n plus one
+- n plus two
+- a sub n
+- a sub one
+- a sub n over a sub n minus one
+- partial fractions
+- telescoping
+- limit as N tends to infinity
+- factorial
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#10
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 4
+  minutes: 25
+  flags: []
+  tagline: Partial fractions telescope, and the recurrence sum reuses the series to give exactly 1.
+  priority: 92
+  rank: 75
+  tier: A
+  category: siklos
+  d10: 4.5
+  real: 3.5
+  by: haiku
+tags:
+- sequences_and_series
+- algebra_and_functions

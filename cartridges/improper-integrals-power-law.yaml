@@ -1,0 +1,105 @@
+id: improper-integrals-power-law
+title: Improper integrals of 1/x^n on [0,1]
+topics:
+- improper integrals
+- convergence
+- power rule
+- limits
+warmup: false
+answer_source: pdf
+statement: Sketch $y=\frac{1}{x}$ and $y=\frac{1}{\sqrt{x}}$. Consider their integrals between $0$ and
+  $1$. More generally, for what values of $n$ does $\int_0^1 \frac{1}{x^n}\,dx$ have a finite value?
+stages:
+- goal: Sketch both curves on (0,1] and describe their behaviour near x = 0.
+  expected: Both curves are positive and decreasing on (0,1] and both equal 1 at x = 1. As x tends to
+    0 from the right, both tend to infinity, with 1/x growing faster than 1/sqrt(x).
+  solution: 'For x in (0,1], 1/x and 1/sqrt(x) are positive, decreasing, and equal 1 at x = 1. Near 0
+    the denominator tends to 0, so each curve shoots upwards. At x = 0.01: 1/x = 100 and 1/sqrt(x) = 10.
+    So the vertical asymptote at 0 is present for both, but 1/x blows up much faster.'
+  common_errors:
+  - Treating the integrand as bounded on [0,1] because the interval is finite
+  - Assuming 1/sqrt(x) stays bounded because it contains a root
+  hints:
+    rephrase: What happens to the height of each curve as x gets very small, but stays positive?
+    smaller_case: Compare the values of each function at x = 0.1, 0.01 and 0.0001.
+    key_idea: Look at how the denominator behaves as x tends to 0 from the right.
+- goal: Evaluate the improper integral of 1/sqrt(x) from 0 to 1.
+  expected: '2'
+  solution: Write the integral as lim_{a->0+} of the integral from a to 1 of x^(-1/2) dx. An antiderivative
+    is 2 sqrt(x), so the integral from a to 1 is 2 - 2 sqrt(a). Letting a -> 0+ gives 2.
+  check: integrate(x**(-1/2),(x,0,1)) - 2
+  common_errors:
+  - Substituting x = 0 into the antiderivative directly without taking a limit
+  - Using a logarithm as the antiderivative of x^(-1/2)
+  hints:
+    rephrase: Replace the lower limit 0 by a small positive number a and let a shrink towards 0.
+    smaller_case: First find the integral from 0.25 to 1 and see what the answer looks like.
+    key_idea: Find an antiderivative of a power of x, then take a limit at the endpoint where the integrand
+      is unbounded.
+  check_ok: true
+- goal: Evaluate the improper integral of 1/x from 0 to 1.
+  expected: It diverges (is infinite).
+  solution: lim_{a->0+} of the integral from a to 1 of 1/x dx = lim_{a->0+} (ln 1 - ln a) = lim_{a->0+}
+    (-ln a) = infinity. So the integral has no finite value.
+  common_errors:
+  - Concluding it is finite because the area looks small near 0
+  - Using the power rule (x^0/0) and not noticing the exponent is -1
+  hints:
+    rephrase: Find an antiderivative of 1/x and check its behaviour as the lower limit tends to 0.
+    smaller_case: Compute the integral from 0.1 to 1 and then from 0.001 to 1.
+    key_idea: The antiderivative of 1/x is a logarithm, which is unbounded near 0.
+- goal: For which values of n does the integral of x^(-n) from 0 to 1 have a finite value? Give the value
+    when it is finite.
+  expected: It is finite exactly when n < 1, with value 1/(1 - n). It diverges for n >= 1 (n = 1 is the
+    logarithmic case).
+  solution: For n not equal to 1, the integral from a to 1 of x^(-n) dx = (1 - a^(1-n))/(1 - n). As a
+    -> 0+, a^(1-n) -> 0 when 1 - n > 0, giving the finite value 1/(1 - n). When n > 1, a^(1-n) -> infinity,
+    so the integral diverges. For n = 1 the result is the logarithmic divergence from the previous stage.
+  common_errors:
+  - Stating the condition as n > 1, which reverses the inequality
+  - Forgetting the n = 1 case
+  - Using the formula for a finite interval without checking the endpoint behaviour
+  hints:
+    rephrase: Split into cases according to the sign of 1 - n.
+    smaller_case: Try n = 2 and then n = 1/2, and see what changes at the lower endpoint.
+    key_idea: The antiderivative of x^(-n) is x^(1-n)/(1-n) when n is not 1. Whether its value at 0 is
+      finite depends on the sign of 1 - n.
+extensions:
+  '3':
+  - Does the integral of x^(-p) from 1 to infinity converge? For which p?
+  '4':
+  - Show that the integral of ln x from 0 to 1 is finite and find its value.
+  '5':
+  - Is the integral of 1/(x(1-x)) from 0 to 1 finite? Explain what happens at each endpoint.
+spoken_vocab:
+- integral from zero to one
+- one over x
+- one over square root of x
+- y equals one over x
+- n
+- finite
+- limit as a tends to zero from the right
+- improper integral
+- converges
+- diverges
+- asymptote
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 6 (anonymous).pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 3
+  parts: 4
+  minutes: 12
+  flags: []
+  tagline: Classic p-test progression from concrete cases to the general exponent n.
+  priority: 72
+  rank: 309
+  tier: B
+  category: past-interviews
+  d10: 4.5
+  real: 8.5
+  by: big-pickle
+tags:
+- integration
+- limits_and_approximation
+- curve_sketching

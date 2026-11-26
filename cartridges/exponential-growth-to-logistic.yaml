@@ -1,0 +1,136 @@
+id: exponential-growth-to-logistic
+title: Exponential growth and the logistic equation
+topics:
+- differential equations
+- separable equations
+- exponential function
+- logistic growth
+- qualitative analysis
+- concavity
+warmup: false
+answer_source: generated
+statement: Solve the differential equation $\dfrac{dy}{dx}=ky$ for $x>0$ subject to the initial condition
+  $x=0$, $y=1$ and $k>0$. Sketch the solution to the differential equation $\dfrac{dy}{dx}=ky\left(1-\dfrac{y}{M}\right)$
+  where $M$ is a large constant and the same initial conditions apply (without directly finding $y$).
+stages:
+- goal: Solve $\dfrac{dy}{dx}=ky$ with $y(0)=1$.
+  expected: $y=e^{kx}$
+  solution: 'Separate variables: $\dfrac{dy}{y}=k\,dx$. Integrate to get $\ln y=kx+C$, so $y=Ae^{kx}$
+    with $A=e^{C}$. The initial condition $y(0)=1$ gives $A=1$, so $y=e^{kx}$.'
+  common_errors:
+  - Forgetting the constant of integration, or losing it when exponentiating.
+  - Applying the initial condition incorrectly, for example getting $A=0$ or $A=k$.
+  - Writing $y=e^{x}$ and dropping the $k$.
+  hints:
+    rephrase: Write the equation as $\dfrac{1}{y}\dfrac{dy}{dx}=k$ and think about which function has
+      a logarithmic derivative equal to a constant.
+    smaller_case: Take $k=1$ and check directly whether $y=e^{x}$ satisfies the equation and the initial
+      condition.
+    key_idea: Separate the variables, integrate both sides, and then use the initial condition to fix
+      the constant.
+  check: diff(exp(k*x),x)-k*exp(k*x)
+  check_ok: true
+- goal: Without solving, describe the behaviour of the solution of $\dfrac{dy}{dx}=ky\left(1-\dfrac{y}{M}\right)$
+    with $y(0)=1$ as $x$ increases. Identify its equilibrium points and their stability.
+  expected: Equilibria at $y=0$ (unstable) and $y=M$ (stable). Since $0<1<M$, the solution starts at $(0,1)$,
+    is increasing, and approaches the horizontal asymptote $y=M$ from below as $x\to\infty$.
+  solution: The right-hand side is zero when $y=0$ or $y=M$, so these are the constant solutions. For
+    $0<y<M$ the right-hand side is positive, so $y$ increases. Since $y$ can't cross an equilibrium, the
+    solution stays in $(0,M)$. It tends to $M$, which is the stable equilibrium, because for $y$ slightly
+    below $M$ the derivative is positive and pushes $y$ back toward $M$ from below.
+  common_errors:
+  - Treating $y=0$ as stable as well, or confusing which equilibrium attracts.
+  - Sketching the curve decreasing, which is the wrong sign.
+  - Sketching the curve crossing $y=M$.
+  hints:
+    rephrase: Find the values of $y$ for which $\dfrac{dy}{dx}=0$. Between those values, is $\dfrac{dy}{dx}$
+      positive or negative?
+    smaller_case: Pick a specific value, such as $y=\tfrac{M}{2}$, and find the sign of $\dfrac{dy}{dx}$
+      there.
+    key_idea: Constant solutions are the zeros of the right-hand side. Their stability is found from the
+      sign of $\dfrac{dy}{dx}$ on either side.
+  check: k*M*(1-M/M)
+  check_ok: true
+- goal: Describe the concavity of the solution and locate its point of inflection. Then sketch the full
+    curve.
+  expected: The point of inflection is at $y=\tfrac{M}{2}$. The curve is concave up for $1\le y<\tfrac{M}{2}$
+    and concave down for $\tfrac{M}{2}<y<M$. The sketch is an S-shaped (logistic) curve starting at $(0,1)$
+    with initial slope about $k$, rising steeply in the middle and levelling off at the asymptote $y=M$.
+  solution: 'Differentiate: $\dfrac{d^2y}{dx^2}=k\left(1-\dfrac{2y}{M}\right)\dfrac{dy}{dx}=k^2y\left(1-\dfrac{y}{M}\right)\left(1-\dfrac{2y}{M}\right)$.
+    For $0<y<M$, the first two factors are positive, so the sign of $y''''$ is the sign of $1-\dfrac{2y}{M}$.
+    This changes at $y=\tfrac{M}{2}$. Since $y$ increases monotonically, this corresponds to an inflection
+    point on the curve. The growth rate $\dfrac{dy}{dx}$ is largest at $y=\tfrac{M}{2}$.'
+  common_errors:
+  - Placing the inflection point at $y=M$ or $y=1$.
+  - Using the second derivative from the wrong equation, which gives the exponential case's concavity.
+  - Drawing the curve as concave down throughout, or missing the concave-up part.
+  hints:
+    rephrase: Find where the curve changes from bending upwards to bending downwards. Consider the sign
+      of $\dfrac{d^2y}{dx^2}$.
+    smaller_case: Use the chain rule to differentiate $\dfrac{dy}{dx}=ky\left(1-\dfrac{y}{M}\right)$ with
+      respect to $x$ and simplify.
+    key_idea: The inflection of a logistic curve occurs where the growth rate is maximised, and the second
+      derivative changes sign there.
+  check: k**2*(M/2)*(1-(M/2)/M)*(1-2*(M/2)/M)
+  check_ok: true
+extensions:
+  '3':
+  - Solve $\dfrac{dy}{dx}=ky\left(1-\dfrac{y}{M}\right)$ exactly by separating the variables, using partial
+    fractions.
+  - Sketch the solution to $\dfrac{dy}{dx}=ky\left(1-\dfrac{y}{M}\right)$ when $y(0)=2M$. Describe how
+    the curve behaves.
+  '4':
+  - Explain why the solution of the logistic equation cannot cross $y=M$ or $y=0$.
+  - Explain why $y=e^{kx}$ is a good approximation of the logistic solution for small $x$, when $y$ is
+    much smaller than $M$.
+  '5':
+  - Show that if $y(0)=\tfrac{M}{2}$, the logistic solution is increasing and has its maximum growth rate
+    at $x=0$.
+  - Discuss how the initial value $y(0)$ affects the time taken to reach $y=\tfrac{M}{2}$, without solving
+    the equation.
+spoken_vocab:
+- dy by dx
+- d y by d x
+- k y
+- y
+- x
+- e to the k x
+- initial condition
+- separable
+- integrate
+- natural log
+- M
+- large constant
+- one minus y over M
+- equilibrium
+- stable
+- unstable
+- horizontal asymptote
+- concave up
+- concave down
+- point of inflection
+- second derivative
+- logistic curve
+- S-shaped
+- sketch
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 7
+  difficulty: 4
+  parts: 3
+  minutes: 12
+  flags:
+  - needs_diagram
+  tagline: 'Qualitative logistic analysis: equilibria, stability, concavity and inflection without solving.'
+  priority: 73
+  rank: 301
+  tier: B
+  category: tbo
+  d10: 4.5
+  real: 5.0
+  by: deepseek-v4.1-flash-free
+tags:
+- differential_equations
+- curve_sketching
+- exponentials_and_logarithms

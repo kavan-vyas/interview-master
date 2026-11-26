@@ -1,0 +1,9 @@
+[
+ {
+  "q": "Simplify $\\sqrt{16 + 4\\sqrt{3} + 3} - \\sqrt{12 - 4\\sqrt{3} + 1}$",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "nextstepmaths/NextStepMaths Interview Questions/interview-question-30.pdf#0"
+ }
+]

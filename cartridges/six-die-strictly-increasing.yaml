@@ -1,0 +1,90 @@
+id: six-die-strictly-increasing
+title: Six Rolls Strictly Increasing
+topics:
+- probability
+- counting
+- combinatorics
+warmup: true
+answer_source: generated
+statement: Suppose we have a 6-sided die and roll it 6 times. What is the probability that the rolls are
+  strictly increasing?
+stages:
+- goal: Count the total number of equally likely outcome sequences for six rolls.
+  expected: 6^6 = 46656
+  solution: Each roll is independent with 6 possible faces, so by the multiplication principle there are
+    6 * 6 * 6 * 6 * 6 * 6 = 6^6 = 46656 ordered sequences, all equally likely.
+  common_errors:
+  - Using 6! = 720 because the rolls seem to be 'arranged'.
+  - Using C(6,6) = 1 as the total count.
+  - Forgetting that repeated faces are allowed.
+  hints:
+    rephrase: How many choices does each roll have, and are the rolls independent?
+    smaller_case: 'Two rolls of a 3-sided die: how many ordered outcomes are there?'
+    key_idea: Independent choices multiply.
+  check: Integer(6)**6 - 46656
+  check_ok: true
+- goal: Count the sequences of six rolls that are strictly increasing.
+  expected: 1 (the only such sequence is 1, 2, 3, 4, 5, 6)
+  solution: Strictly increasing means six distinct values from {1,...,6}. The only way to pick six distinct
+    faces from six is to use all of them, and strict increase forces the order. So exactly one sequence
+    works. In general, the count equals C(6,6) = 1.
+  common_errors:
+  - Counting choose-3 or choose-2 subsets, e.g. C(6,3) = 20, by mixing up the number of rolls.
+  - Forgetting that strictly increasing forbids repeats.
+  - Thinking several orderings are possible.
+  hints:
+    rephrase: A strictly increasing sequence is determined by the set of values it uses. How many values
+      must it use?
+    smaller_case: 'Two rolls of a 3-sided die, strictly increasing: list the pairs.'
+    key_idea: Six strictly increasing values from six faces leave no freedom in which faces are used.
+  check: binomial(6,6) - 1
+  check_ok: true
+- goal: Give the probability that the six rolls are strictly increasing.
+  expected: 1/46656 (that is 1/6^6)
+  solution: Probability = (favourable outcomes) / (total outcomes) = 1 / 6^6 = 1/46656.
+  common_errors:
+  - Giving 1/720 by dividing by 6! instead of 6^6.
+  - Giving 1/6 by forgetting that all six rolls matter.
+  - Leaving the answer unsimplified in a wrong form such as 6/6^6.
+  hints:
+    rephrase: Divide the favourable count by the total count from the earlier stages.
+    smaller_case: For 2 rolls of a 6-sided die, the strictly increasing count is C(6,2) = 15 out of 36
+      total. What is that probability?
+    key_idea: Probability is favourable over total, with the same sample space as before.
+  check: Rational(1,6)**6 - Rational(1,46656)
+  check_ok: true
+extensions:
+  '3':
+  - What is the probability that three rolls of a 6-sided die are strictly increasing?
+  '4':
+  - What is the probability that six rolls of a 6-sided die are non-decreasing?
+  '5':
+  - For n rolls of a 6-sided die with n at most 6, what is the probability the rolls are strictly increasing?
+spoken_vocab:
+- six sided die
+- roll it six times
+- strictly increasing
+- probability
+- six to the power six
+- forty six thousand, six hundred and fifty six
+- one over forty six thousand six hundred and fifty six
+- binomial six choose six
+source: screenshots/Screenshot 2026-11-19 at 14.37.58.png
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 3
+  minutes: 6
+  flags: []
+  tagline: Strict increase forces the unique sequence 1 to 6, a neat counting insight with little depth.
+  priority: 51
+  rank: 525
+  tier: C
+  category: screenshots
+  d10: 2.5
+  real: 6.5
+  by: haiku
+tags:
+- combinatorics
+- probability

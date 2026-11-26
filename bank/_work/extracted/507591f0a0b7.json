@@ -1,0 +1,44 @@
+[
+ {
+  "q": "There are $51$ ants on a square with side length $1$. If you have a glass with a radius of $\\frac{1}{7}$, can you put your glass at a position on the square to guarantee that the glass encompasses at least $3$ ants?",
+  "kind": "maths",
+  "answer": "Yes. Split the square into a $5\\times5$ grid of smaller squares, each of side $\\frac{1}{5}$. There are $25$ areas and $51>2\\cdot25$ ants, so by the generalised pigeonhole principle some small square contains at least $3$ ants. A circle of radius $r$ covers a square of side $s$ when $r\\ge\\frac{s\\sqrt{2}}{2}$. Here $\\frac{\\sqrt{2}}{10}\\approx0.1414<\\frac{1}{7}\\approx0.1429$, so the glass centred on that small square covers it and its $3$ ants.",
+  "short": true,
+  "source": "zhou-quant/zhou-quant-guide.pdf#0"
+ },
+ {
+  "q": "There are $5$ bags with $100$ coins in each bag. A coin can weigh $9$ grams, $10$ grams or $11$ grams. Each bag contains coins of equal weight, but we do not know what type of coins each bag contains. We have a digital scale (the kind that tells the exact weight). How many coins do you need to use the scale to determine which type of coin each bag contains?",
+  "kind": "maths",
+  "answer": "A single weighing suffices. Take $1,3,9,27$ and $81$ coins from bags $1,2,3,4,5$ respectively. Relabel the weights as $-1,0,1$ by subtracting $10$ grams. Each bag's type gives a distinct total deviation, since the contributions are $c_1+3c_2+9c_3+27c_4+81c_5$ with $c_i\\in\\{-1,0,1\\}$, and these $3^5=243$ combinations all give different sums. So the scale reading identifies every bag's coin type.",
+  "short": false,
+  "source": "zhou-quant/zhou-quant-guide.pdf#0"
+ },
+ {
+  "q": "Given an arbitrary integer, come up with a rule to decide whether it is divisible by $9$ and prove it.",
+  "kind": "maths",
+  "answer": "Rule: an integer is divisible by $9$ if and only if the sum of its digits is divisible by $9$. Proof: write $a=a_n10^n+\\dots+a_110+a_0$. Then $a-(a_n+\\dots+a_1+a_0)=\\sum a_k(10^k-1)$, and each $10^k-1$ is divisible by $9$. So $a$ and the digit sum differ by a multiple of $9$, and one is divisible by $9$ exactly when the other is. The same method gives the divisibility rule for $11$ using alternating digit sums.",
+  "short": true,
+  "source": "zhou-quant/zhou-quant-guide.pdf#0"
+ },
+ {
+  "q": "One hundred prisoners are given the chance to be set free tomorrow. Each is given a red or blue hat to wear. Each prisoner can see everyone else's hat but not his own. The hat colours are assigned randomly and once the hats are placed on the prisoners' heads they cannot communicate in any form, or else they are immediately executed. The prisoners will be called out in random order and each called-out prisoner will guess the colour of his hat. Each prisoner declares the colour of his hat so that everyone else can hear it. If a prisoner guesses correctly the colour of his hat, he is set free immediately; otherwise he is executed. They are given the night to come up with a strategy among themselves to save as many prisoners as possible. What is the best strategy they can adopt and how many prisoners can they guarantee to save?",
+  "kind": "maths",
+  "answer": "At least $99$ prisoners can be saved. The first prisoner counts the red hats he sees among the other $99$. If the number is odd he declares red, otherwise blue. He has a $\\frac12$ chance of survival. Every other prisoner then knows the parity of the total red count and the colours of the $98$ hats he sees besides his own. He deduces his own colour from that parity.",
+  "short": true,
+  "source": "zhou-quant/zhou-quant-guide.pdf#0"
+ },
+ {
+  "q": "Same prisoner setup as before, but now there are $3$ possible hat colours: red, blue and white. What is the best strategy they can adopt and how many prisoners can they guarantee to save?",
+  "kind": "maths",
+  "answer": "Still at least $99$ prisoners can be saved, but the first prisoner's chance of survival is now $\\frac13$. Score red $=0$, green $=1$, blue $=2$. The first prisoner announces the total score of the other $99$ prisoners taken modulo $3$. Every other prisoner knows the total score of the others he can see. Since $x\\%3$, $(x+1)\\%3$ and $(x+2)\\%3$ are all different, the announced remainder reveals his own score, and so his own colour.",
+  "short": false,
+  "source": "zhou-quant/zhou-quant-guide.pdf#0"
+ },
+ {
+  "q": "A remote island has three types of chameleons: $13$ red, $15$ green and $17$ blue. Each time two chameleons of different colours meet, they both change to the third colour. For example, if a green chameleon meets a red chameleon, they both become blue. Is it ever possible for all chameleons to become the same colour? Why or why not?",
+  "kind": "maths",
+  "answer": "No. Work modulo $3$. Write the counts as $(13,15,17)\\equiv(1,0,2)\\pmod 3$. When two different colours meet, the pairwise differences between the three counts change by $0$ or $\\pm3$, so they stay congruent to $(1,0,2)$ modulo $3$ up to permutation. Two colours would need equal counts, which requires two counts to be congruent mod $3$, and that never happens. So all chameleons can never become a single colour. A simpler reduction to $(0,2,4)$ also shows the transitions cannot reach $(0,0,6)$.",
+  "short": false,
+  "source": "zhou-quant/zhou-quant-guide.pdf#0"
+ }
+]

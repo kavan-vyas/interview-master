@@ -1,0 +1,23 @@
+[
+ {
+  "q": "A rigid straight rod $AB$ has length $l$ and weight $W$. Its weight per unit length at a distance $x$ from $B$ is $\\alpha W l^{-1}(x/l)^{\\alpha -1}$, where $\\alpha$ is a constant greater than 1. Show that the centre of mass of the rod is at a distance $\\alpha l/(\\alpha + 1)$ from $B$. The rod is placed with the end $A$ on a rough horizontal floor and the end $B$ resting against a rough vertical wall. The rod is in a vertical plane at right angles to the plane of the wall and makes an angle of $\\theta$ with the floor. The coefficient of friction between the floor and the rod is $\\mu$, and the coefficient of friction between the wall and the rod is also $\\mu$. Show that, if the equilibrium is limiting at both $A$ and $B$, then $\\tan\\theta = \\frac{1 - \\alpha\\mu^2}{(1 + \\alpha)\\mu}$. Given that $\\alpha = 3/2$ and given also that the rod slides for any $\\theta < \\pi/4$, find the greatest possible value of $\\mu$.",
+  "kind": "maths",
+  "answer": "Centre of mass: $\\bar{x} = \\frac{\\int_0^l \\alpha W l^{-\\alpha} x^{\\alpha} dx}{\\int_0^l \\alpha W l^{-\\alpha} x^{\\alpha-1} dx} = \\frac{\\alpha l}{\\alpha+1}$ from $B$. Resolving vertically and horizontally and taking moments about $G$, with $F_A=\\mu R_A$ and $F_B=\\mu R_B$ gives $R_A=\\frac{W}{\\mu^2+1}$, $R_B=\\frac{\\mu W}{\\mu^2+1}$, $F_A=\\frac{\\mu W}{\\mu^2+1}$, $F_B=\\frac{\\mu^2 W}{\\mu^2+1}$, and hence $\\tan\\theta=\\frac{1-\\alpha\\mu^2}{(1+\\alpha)\\mu}$. For $\\alpha=3/2$, $\\tan\\theta=\\frac{2-3\\mu^2}{5\\mu}$. Sliding for all $\\theta<\\pi/4$ requires $\\frac{2-3\\mu^2}{5\\mu}\\ge 1$, i.e. $3\\mu^2+5\\mu-2\\le 0$, i.e. $(3\\mu-1)(\\mu+2)\\le 0$. The greatest possible value is $\\mu=1/3$.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#17"
+ },
+ {
+  "q": "$N$ particles $P_1, P_2, \\ldots, P_N$ with masses $m, qm, q^2m, \\ldots, q^{N-1}m$ respectively are at rest at distinct points along a straight line in gravity-free space. The particle $P_1$ is set in motion towards $P_2$ with velocity $V$, and in every subsequent impact the coefficient of restitution is $e$, where $0<e<1$. Show that after the first impact the velocities of $P_1$ and $P_2$ are $\\left(\\frac{1-eq}{1+q}\\right)V$ and $\\left(\\frac{1+e}{1+q}\\right)V$ respectively. Show that if $q \\leqslant e$, then there are exactly $N-1$ impacts, and that if $q=e$, then the total loss of kinetic energy after all impacts have occurred is equal to $\\frac{1}{2} m e\\left(1-e^{N-1}\\right)V^2$.",
+  "kind": "maths",
+  "answer": "Conservation of momentum $mV = mV_1 + mqV_2$ and Newton's law $V_1 - V_2 = -eV$ give $V_1=\\frac{1-eq}{1+q}V$ and $V_2=\\frac{1+e}{1+q}V$. Since $eq\\le e^2<1$, $V_1$ is positive and less than $V$, and $V_2>V_1$ so no further collision between $P_1$ and $P_2$; repeating the argument gives exactly $N-1$ impacts when $q\\le e$. When $q=e$, the final speeds are $(1-e)V$ for $P_1,\\ldots,P_{N-1}$ and $V$ for $P_N$. Summing the geometric progression gives final kinetic energy $\\frac{mV^2}{2}(1-e+e^N)$, so the loss is $\\frac{1}{2}mV^2 - \\frac{mV^2}{2}(1-e+e^N) = \\frac{1}{2}me(1-e^{N-1})V^2$.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#17"
+ },
+ {
+  "q": "An automated mobile dummy target for gunnery practice is moving anti-clockwise around the circumference of a large circle of radius $R$ in a horizontal plane at a constant angular speed $\\omega$. A shell is fired from $O$, the centre of this circle, with initial speed $V$ and angle of elevation $\\alpha$. Show that if $V^2 < gR$, then no matter what the value of $\\alpha$, or what vertical plane the shell is fired in, the shell cannot hit the target. Assume now that $V^2 > gR$ and that the shell hits the target, and let $\\beta$ be the (positive) angle through which the target rotates between the time at which the shell is fired and the time of impact. Show that $\\beta$ satisfies the equation $g^2\\beta^4 - 4\\omega^2V^2\\beta \\ldots$",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#17"
+ }
+]

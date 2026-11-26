@@ -1,0 +1,103 @@
+id: three-digit-minimal-difference
+title: Two three-digit numbers using 1 to 6 with minimal difference
+topics:
+- place value
+- digits
+- optimisation
+- case analysis
+warmup: false
+answer_source: pdf
+statement: The three-digit numbers 523 and 641 use all six digits from 1 to 6 between them. The difference
+  between these numbers is 641 - 523 = 118. Find two three-digit numbers which use all six digits from
+  1 to 6 between them and which have the smallest possible difference.
+stages:
+- goal: Decide which hundreds digits the two numbers should have to keep the difference small.
+  expected: Hundreds digits 4 and 3, with 4 for the larger number and 3 for the smaller.
+  solution: 'The six digits are all different, so the hundreds digits differ, and the difference is at
+    least 100 minus the tens-and-units effect. Using hundreds digits that differ by 1 is necessary for
+    a small gap. Checking the five consecutive pairs gives best gaps: (1,2) 69, (2,3) 49, (3,4) 47, (4,5)
+    49, (5,6) 69. So the hundreds digits are 4 and 3.'
+  common_errors:
+  - Trying to make the hundreds digits equal, which is impossible with distinct digits
+  - Choosing hundreds digits 5 and 4 or 5 and 6 without comparing alternatives
+  hints:
+    rephrase: Could the two numbers share a hundreds digit? What does that imply about how close the hundreds
+      digits can be?
+    smaller_case: Make two two-digit numbers from the digits 1 to 4, each used once. Which tens digits
+      keep the gap small?
+    key_idea: The hundreds place dominates the difference, so the hundreds digits should be as close as
+      possible, and then the tens and units should be arranged to shrink the gap.
+  check: Abs(4-3)-1
+  check_ok: true
+- goal: Choose the tens and units digits and state the smallest possible difference.
+  expected: '47'
+  solution: The larger number is 4xy and the smaller is 3zw, where x, y, z, w are 1, 2, 5, 6 in some order.
+    The gap is 100 + (10x + y) - (10z + w). To make it smallest, make 10x + y as small as possible (12)
+    and 10z + w as large as possible (65), giving 412 - 365 = 47. Hundreds differing by 2 or more gives
+    a gap of at least 147.
+  common_errors:
+  - Giving 56 from 412 - 356
+  - Giving 65 from 421 - 356
+  - Arranging the larger number's tens and units digits in descending order
+  hints:
+    rephrase: For the larger number, which arrangement of its two remaining digits keeps it as small as
+      possible? What about the smaller number?
+    smaller_case: Take hundreds digits 2 and 1 and remaining digits 3, 4, 5, 6. How should you arrange
+      the digits to keep the gap small?
+    key_idea: Within the tens and units places, the larger number should be as small as possible and the
+      smaller number as large as possible.
+  check: (4*100+1*10+2)-(3*100+6*10+5)-47
+  check_ok: true
+- goal: State the pair of numbers that achieves this smallest difference.
+  expected: 412 and 365
+  solution: 412 and 365 use the digits 4, 1, 2, 3, 6, 5, which are 1 to 6 exactly once. Their difference
+    is 412 - 365 = 47. This is the only pair with this gap.
+  common_errors:
+  - Giving 412 and 356 (difference 56)
+  - Giving 421 and 365 (difference 56)
+  hints:
+    rephrase: List the digits in your pair. Do they cover 1 to 6 exactly once, and is the gap as small
+      as possible?
+    smaller_case: Could you reduce the gap by swapping digits between the tens or units places of your
+      two numbers?
+    key_idea: Verify the digit condition first, then check that no rearrangement of the tens and units
+      lowers the gap.
+  check: 412-365-47
+  check_ok: true
+extensions:
+  '3':
+  - Find two three-digit numbers using 1 to 6 exactly once in total with the largest possible difference.
+  '4':
+  - Repeat the problem for two four-digit numbers using 1 to 8 with the smallest possible difference.
+  '5':
+  - Prove that the smallest difference for digits 1 to 6 is 47 without listing every pair.
+spoken_vocab:
+- three digit numbers
+- four hundred and twelve
+- three hundred and sixty five
+- minus
+- difference
+- hundreds digit
+- tens digit
+- units digit
+- digits one to six
+- smallest possible
+source: kclms/kclms-specimen-questions-2.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 3
+  minutes: 10
+  flags: []
+  tagline: Hundreds-digit choice drives a non-obvious optimisation with a checkable answer.
+  priority: 71
+  rank: 320
+  tier: B
+  category: kclms
+  d10: 4.5
+  real: 6.0
+  by: haiku
+tags:
+- combinatorics
+- number_theory

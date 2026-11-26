@@ -1,0 +1,172 @@
+id: coin-first-head-pattern-waiting-times
+title: 'HH vs HT: Waiting Times and the Pattern Race'
+topics:
+- expectation
+- first-step analysis
+- pattern waiting times
+- Markov states
+- conditional reasoning
+warmup: false
+answer_source: pdf
+statement: 'A fair coin is tossed repeatedly.
+
+
+  (i) Let $E$ be the expected number of tosses until the first head appears. Find $E$.
+
+
+  (ii) Find the expected number of tosses until the pattern $HH$ first appears.
+
+
+  (iii) Find the expected number of tosses until the pattern $HT$ first appears.
+
+
+  (iv) Explain, without calculation, why the answers to (ii) and (iii) are different.
+
+
+  (v) Alice and Bob watch the same sequence of tosses. Alice wins if $HH$ appears before $HT$, and Bob
+  wins if $HT$ appears before $HH$. Who is more likely to win?'
+stages:
+- goal: Find the expected number of tosses until the first head (part i).
+  expected: '$E=2$, obtained by conditioning on the first toss: $E=1+\tfrac12E$.'
+  solution: Condition on the first toss. One toss is always used. With probability $\tfrac12$ it is a
+    head and we stop. With probability $\tfrac12$ it is a tail and we are back at the start, needing $E$
+    more tosses on average. So $E=1+\tfrac12E$, giving $E=2$. (Equivalently, the waiting time is geometric
+    with $p=\tfrac12$, so $E=1/p=2$.)
+  common_errors:
+  - Answering 1, forgetting that the count includes the tails before the head.
+  - Answering $\tfrac12$ (writing $E=p$ instead of $E=1/p$).
+  - Writing $E=1+E$ or dropping the factor $\tfrac12$ on the tail branch.
+  hints:
+    rephrase: On average, how many tosses does it take for a fair coin to show its first head?
+    smaller_case: If the coin always landed heads, how many tosses would you need? What if it landed heads
+      with probability $\tfrac14$?
+    key_idea: 'Condition on the first toss: after a tail, the situation is exactly the same as at the
+      start.'
+  check: solve(Eq(x, 1 + x/2), x)[0] - 2
+  check_ok: true
+- goal: Find the expected number of tosses until $HH$ first appears (part ii).
+  expected: $E=6$, from a two-state first-step analysis (start, and last toss was H).
+  solution: 'Let $a$ be the expected remaining tosses from the start (no useful progress), and $b$ the
+    expected remaining tosses when the last toss was H. From the start: $a=1+\tfrac12a+\tfrac12b$. After
+    an H: a head finishes, a tail returns to the start, so $b=1+\tfrac12a$. Substituting, $a=1+\tfrac12a+\tfrac12+\tfrac14a$,
+    so $\tfrac14a=\tfrac32$ and $a=6$.'
+  common_errors:
+  - Treating HH like a single head and answering 2.
+  - Thinking a tail after an H leaves you with one H of progress rather than resetting to zero.
+  - Answering 4 by assuming HH has the same waiting time as HT.
+  hints:
+    rephrase: 'Track two situations: no useful progress yet, and the last toss was a head. What happens
+      from each on the next toss?'
+    smaller_case: Write one equation for each of the two states, then solve them together.
+    key_idea: Use a state for each amount of the pattern already matched, and apply first-step analysis
+      to each state.
+  check: solve([Eq(a, 1 + a/2 + b/2), Eq(b, 1 + a/2)], [a, b])[a] - 6
+  check_ok: true
+- goal: Find the expected number of tosses until $HT$ first appears (part iii).
+  expected: $E=4$, because after an H a further H keeps you in the same state.
+  solution: 'Let $a$ be the expected remaining tosses from the start and $b$ the expected remaining tosses
+    when the last toss was H. From the start: $a=1+\tfrac12a+\tfrac12b$. After an H: a tail finishes the
+    pattern, while a head leaves us in the same state (the latest H is still the useful one), so $b=1+\tfrac12b$,
+    giving $b=2$. Then $\tfrac12a=1+1$, so $a=4$.'
+  common_errors:
+  - Using the HH logic, where a head after a head would finish and a tail resets.
+  - Sending a head after H back to the start, which loses progress that is not actually lost.
+  - Solving $b=1+\tfrac12b$ incorrectly, e.g. getting $b=1$.
+  hints:
+    rephrase: After a head, what does a further head do to your progress toward HT? What does a tail do?
+    smaller_case: Write the equation for the state 'last toss was H' and check whether any toss there
+      loses progress.
+    key_idea: 'Two states again: start, and last toss was H. Note which transitions keep you in the second
+      state and which finish the pattern.'
+  check: solve([Eq(a, 1 + a/2 + b/2), Eq(b, 1 + b/2)], [a, b])[a] - 4
+  check_ok: true
+- goal: Explain without calculation why the answers to (ii) and (iii) differ (part iv).
+  expected: After an H, a wrong toss costs you progress in HH (a T resets you) but not in HT (another
+    H is still a useful last symbol). Equivalently, HH overlaps with itself while HT does not, so occurrences
+    of HH come in clumps and the first one takes longer on average.
+  solution: Both patterns are equally likely to appear at any given position (probability $\tfrac14$),
+    but the waiting times differ because of how failures behave. In HT, once you have an H, the only way
+    to leave that state is a T, and that T completes the pattern; a further H just keeps you where you
+    were. In HH, once you have an H, a T sends you all the way back to the start. Put another way, HH
+    can overlap with itself (HHH contains two copies), so when HH occurs, further copies tend to follow
+    immediately, which means occurrences are bunched and the gaps between bunches are longer. HT cannot
+    overlap with itself, so occurrences are spread out, and the first one comes sooner on average.
+  common_errors:
+  - Saying H and T have different probabilities, which they do not for a fair coin.
+  - Saying the patterns have different probabilities of appearing at a given position; both are $\tfrac14$.
+  - Describing the difference without relating it to what a failed attempt does to progress.
+  hints:
+    rephrase: Compare what happens to your progress after a wrong toss in each pattern.
+    smaller_case: Suppose you have just seen an H. What does the next T do in each pattern, and what does
+      the next H do?
+    key_idea: Compare whether a failed attempt wipes out progress or keeps it, and whether the pattern
+      can overlap with itself.
+  check: null
+- goal: Decide who is more likely to win the race between $HH$ and $HT$ (part v).
+  expected: 'Neither: each wins with probability $\tfrac12$, since the toss right after the first head
+    decides the race.'
+  solution: 'Neither pattern can appear before the first head. Once the first head has occurred, the next
+    toss decides the game immediately: if it is H, the sequence contains HH and Alice wins; if it is T,
+    the sequence contains HT and Bob wins. Each has probability $\tfrac12$, so the game is fair, even
+    though Bob''s pattern has the shorter expected waiting time (4 versus 6).'
+  common_errors:
+  - Arguing that Bob wins because $E_{HT}=4<6=E_{HH}$; expected waiting time does not decide a race.
+  - Forgetting that the first head is the only event that matters before the decisive toss.
+  - Treating the race as depending on how many tails come before the first head.
+  hints:
+    rephrase: Both patterns start with H. What must happen before either can be completed, and what decides
+      the winner after that?
+    smaller_case: Ignore everything before the first head and look only at the very next toss.
+    key_idea: Expected waiting time does not determine a race between two patterns; look at which outcome
+      ends the game first.
+  check: null
+extensions:
+  '3':
+  - What is the expected number of tosses until $HHH$ first appears? Can you spot a pattern from the answers
+    for $H$ and $HH$?
+  - If the coin lands heads with probability $p$, what is the expected waiting time for $HH$, and for
+    $HT$?
+  '4':
+  - In a race between $HHH$ and $HTH$, does the pattern with the shorter expected waiting time always
+    win? Compute the winning probabilities and the expected waiting times.
+  - Show that the expected waiting time for a pattern equals the sum of $2^k$ over all $k$ for which the
+    first $k$ letters equal the last $k$ letters.
+  '5':
+  - Find the probability generating function of the waiting time for $HH$, and use it to recover the expectation.
+  - 'Penney''s game: for any 3-letter pattern chosen by the first player, show the second player can choose
+    a pattern that beats it with probability greater than $\tfrac12$. What does this say about transitivity?'
+spoken_vocab:
+- expected value
+- E
+- expected number of tosses
+- fair coin
+- heads
+- tails
+- H H
+- H T
+- first head
+- Alice
+- Bob
+- wins
+- probability one half
+- first toss
+- first step analysis
+source: jaymin/Jaymin Interview (1).pdf#p41
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 5
+  minutes: 15
+  flags: []
+  tagline: Waiting times for HH vs HT reveal a surprising, well-motivated winner.
+  priority: 111
+  rank: 22
+  tier: S
+  category: jaymin
+  d10: 5.5
+  real: 6.0
+  by: deepseek-v4.1-flash-free
+refined: true
+tags:
+- probability

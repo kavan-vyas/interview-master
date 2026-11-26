@@ -1,0 +1,134 @@
+id: sum-and-double-angle-derivations
+title: Deriving angle-addition, tangent, sum-to-product and arctan formulae
+topics:
+- trigonometry
+- compound angles
+- sum-to-product
+- inverse trigonometric functions
+- proof
+warmup: false
+answer_source: generated
+statement: 'Starting from $\sin(A+B)=\sin A\cos B+\cos A\sin B$, use basic properties of the trig functions
+  to prove: (i) $\sin(A-B)=\sin A\cos B-\cos A\sin B$; (ii) $\cos(A+B)=\cos A\cos B-\sin A\sin B$; (iii)
+  $\tan(A+B)=\frac{\tan A+\tan B}{1-\tan A\tan B}$; (iv) $\sin C+\sin D=2\sin\frac{1}{2}(C+D)\cos\frac{1}{2}(C-D)$;
+  (v) $\tan^{-1}a+\tan^{-1}b=\tan^{-1}\left(\frac{a+b}{1-ab}\right)+n\pi$.'
+stages:
+- goal: Prove sin(A - B) = sin A cos B - cos A sin B.
+  expected: sin(A - B) = sin A cos B - cos A sin B
+  solution: Write A - B = A + (-B). Then sin(A + (-B)) = sin A cos(-B) + cos A sin(-B). Since cos is even
+    and sin is odd, cos(-B) = cos B and sin(-B) = -sin B, giving sin A cos B - cos A sin B.
+  common_errors:
+  - Forgetting that sin is odd, so sin(-B) must be -sin B
+  - Forgetting that cos is even, so cos(-B) = cos B
+  - Writing sin(A - B) = sin A - sin B
+  hints:
+    rephrase: Rewrite A - B as A plus something. What are the parity properties of sin and cos?
+    smaller_case: Take A = 0 in the given addition formula. What does it say about sin(B) and sin(-B)?
+    key_idea: Replace B with -B in the addition formula and use the odd/even properties of sin and cos.
+  check: expand_trig(sin(A-B)) - (sin(A)*cos(B) - cos(A)*sin(B))
+  check_ok: true
+- goal: Prove cos(A + B) = cos A cos B - sin A sin B.
+  expected: cos(A + B) = cos A cos B - sin A sin B
+  solution: Use cos x = sin(pi/2 - x). Then cos(A + B) = sin(pi/2 - A - B) = sin((pi/2 - A) - B). By part
+    (i), this is sin(pi/2 - A) cos B - cos(pi/2 - A) sin B. Using sin(pi/2 - A) = cos A and cos(pi/2 -
+    A) = sin A gives cos A cos B - sin A sin B.
+  common_errors:
+  - Using the wrong co-function identity, e.g. sin(pi/2 - x) = sin x
+  - Circular reasoning by assuming the cos addition formula
+  - Sign error in the final expression
+  hints:
+    rephrase: Which co-function identity turns a cosine into a sine, and which earlier result can you
+      apply after that?
+    smaller_case: Check your co-function identity at x = 0. Does sin(pi/2) equal cos(0)?
+    key_idea: Use cos x = sin(pi/2 - x), then apply the sine difference formula from part (i).
+  check: expand_trig(cos(A+B)) - (cos(A)*cos(B) - sin(A)*sin(B))
+  check_ok: true
+- goal: Prove tan(A + B) = (tan A + tan B)/(1 - tan A tan B).
+  expected: tan(A + B) = (tan A + tan B)/(1 - tan A tan B), assuming cos A, cos B and cos(A + B) are nonzero.
+  solution: Write tan(A + B) = sin(A + B)/cos(A + B) = (sin A cos B + cos A sin B)/(cos A cos B - sin
+    A sin B). Divide numerator and denominator by cos A cos B to get (tan A + tan B)/(1 - tan A tan B).
+  common_errors:
+  - Dividing only the numerator, or dividing by different quantities top and bottom
+  - Sign error, writing + tan A tan B in the denominator
+  - Not stating the assumptions that cosines are nonzero
+  hints:
+    rephrase: Write tan as sin over cos, then divide the top and bottom by the same quantity. What quantity
+      makes both sides clean?
+    smaller_case: Set B = 0 in your expression for tan(A + B). Does it reduce to tan A?
+    key_idea: Write tan = sin/cos, expand both with the earlier formulae, and divide every term by cos
+      A cos B.
+  check: simplify(expand_trig(tan(A+B)) - (tan(A)+tan(B))/(1-tan(A)*tan(B)))
+  check_ok: true
+- goal: Prove sin C + sin D = 2 sin((C + D)/2) cos((C - D)/2).
+  expected: sin C + sin D = 2 sin((C + D)/2) cos((C - D)/2)
+  solution: Let x = (C + D)/2 and y = (C - D)/2. Then C = x + y and D = x - y. So sin C + sin D = sin(x
+    + y) + sin(x - y) = (sin x cos y + cos x sin y) + (sin x cos y - cos x sin y) = 2 sin x cos y.
+  common_errors:
+  - Expanding without substituting new variables, which gives a messy algebra
+  - Solving incorrectly for C and D in terms of the half-sum and half-difference
+  - Getting the sign of the cos term wrong
+  hints:
+    rephrase: Introduce the half-sum and half-difference as new variables. How do C and D look in terms
+      of them?
+    smaller_case: Set C = D. What does the identity say, and does the right side agree with 2 sin C?
+    key_idea: Let x = (C + D)/2 and y = (C - D)/2, so C = x + y and D = x - y, then add the two sine expansions.
+  check: expand_trig(sin(x+y)+sin(x-y)-2*sin(x)*cos(y))
+  check_ok: true
+- goal: Show that tan^(-1) a + tan^(-1) b = tan^(-1)((a + b)/(1 - ab)) + n pi for some integer n (take
+    ab != 1).
+  expected: Let alpha = tan^(-1) a and beta = tan^(-1) b. Then tan(alpha + beta) = (a + b)/(1 - ab), so
+    alpha + beta - tan^(-1)((a + b)/(1 - ab)) is an integer multiple of pi.
+  solution: Let alpha = tan^(-1) a and beta = tan^(-1) b, so tan alpha = a and tan beta = b. By part (iii),
+    tan(alpha + beta) = (a + b)/(1 - ab), which requires ab != 1. Let gamma = tan^(-1)((a + b)/(1 - ab)),
+    so tan gamma = tan(alpha + beta). Since tan has period pi, alpha + beta - gamma = n pi for some integer
+    n.
+  common_errors:
+  - Omitting the n pi term and claiming exact equality
+  - Ignoring the case ab = 1, where the right side is undefined
+  - Forgetting that tan^(-1) takes values in (-pi/2, pi/2)
+  hints:
+    rephrase: If two angles have the same tangent, how far apart can they be? Which function has period
+      pi?
+    smaller_case: Take b = 0. Compare tan^(-1) a + tan^(-1) 0 with tan^(-1) of the right-hand expression.
+    key_idea: Set alpha = tan^(-1) a and beta = tan^(-1) b, apply the tangent addition formula, then use
+      the period of tan.
+  check: simplify(expand_trig(tan(atan(a)+atan(b))) - (a+b)/(1-a*b))
+  check_ok: true
+extensions:
+  '3':
+  - Show that tan^(-1) 1 + tan^(-1) 2 + tan^(-1) 3 = pi using part (v).
+  '4':
+  - Use the sine addition formula to derive the triple-angle identity for sin(3A) in terms of sin A.
+  '5':
+  - Prove 2 sin A cos B = sin(A + B) + sin(A - B) and use it together with part (iv) to recover the sum-to-product
+    formula.
+spoken_vocab:
+- sine A plus B
+- cosine A cosine B minus sine A sine B
+- tangent A plus B
+- sine C plus sine D
+- arc tangent a plus arc tangent b
+- n pi
+- co-function identity
+- half sum
+- half difference
+- period pi
+source: step-workbook/Cambridge STEP Short Workbook.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 5
+  minutes: 20
+  flags: []
+  tagline: Five-part derivation chain; mostly standard, limited open discussion.
+  priority: 63
+  rank: 411
+  tier: C
+  category: step-workbook
+  d10: 3.5
+  real: 3.0
+  by: haiku
+tags:
+- trigonometry
+- proof

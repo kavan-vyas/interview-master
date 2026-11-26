@@ -1,0 +1,130 @@
+id: n-cubed-minus-n-divisible-by-6
+title: Show that n^3 - n is divisible by 6
+topics:
+- number theory
+- divisibility
+- factorisation
+- proof
+warmup: true
+answer_source: generated
+statement: Suppose $n$ is an integer. Show that $n^3 - n$ is divisible by $6$.
+stages:
+- goal: Factorise $n^3 - n$ fully into linear factors.
+  expected: $n^3 - n = (n-1)\,n\,(n+1)$
+  solution: Take out the common factor $n$ to get $n(n^2-1)$. Then $n^2-1$ is a difference of two squares,
+    so $n^2-1=(n-1)(n+1)$. Hence $n^3-n=(n-1)n(n+1)$.
+  common_errors:
+  - Stopping at $n(n^2-1)$ without factorising further
+  - Writing $n^2-1=(n-1)^2$
+  - Dividing through by $n$ and losing the factor, or forgetting the case $n=0$
+  hints:
+    rephrase: Rewrite the expression as a product of simpler pieces. What do both terms share?
+    smaller_case: Try $n=2$, $3$, $4$ and compute $n^3-n$. Look at the factors of each result.
+    key_idea: Take out a common factor first, then look for a difference of two squares.
+  check: expand((n-1)*n*(n+1)) - (n**3 - n)
+  check_ok: true
+- goal: Describe what the factorised form says about the three factors, in terms of the integers.
+  expected: 'The three factors are consecutive integers: $n-1$, $n$, $n+1$.'
+  solution: The factors $n-1$, $n$, $n+1$ differ by $1$ each, so they are three consecutive integers.
+    Therefore $n^3-n$ is a product of three consecutive integers.
+  common_errors:
+  - Thinking the factors are consecutive only when $n$ is positive
+  - Not noticing the pattern and testing only a few values of $n$ as 'proof'
+  hints:
+    rephrase: How far apart are the three factors from one another?
+    smaller_case: Put $n=5$ into the factors and write down the three numbers.
+    key_idea: Three numbers each differing by one are a very specific type of list.
+- goal: Show the product of the three consecutive integers is divisible by $2$.
+  expected: At least one of the three consecutive integers is even, so the product is divisible by $2$.
+  solution: Consecutive integers alternate between even and odd. Among any two consecutive integers one
+    is even, so among three at least one is even. A product containing an even factor is divisible by
+    $2$.
+  common_errors:
+  - Claiming all three are even
+  - Only checking that $n$ itself is even
+  - Not explaining why an even factor makes the whole product even
+  hints:
+    rephrase: What happens to parity as you move from one integer to the next?
+    smaller_case: List the parities of $3,4,5$, then $4,5,6$, then $7,8,9$.
+    key_idea: Think about how the integers split by parity, and how a factor affects divisibility of a
+      product.
+- goal: Show the product of the three consecutive integers is divisible by $3$.
+  expected: Exactly one of the three consecutive integers is a multiple of $3$, so the product is divisible
+    by $3$.
+  solution: Any integer leaves remainder $0$, $1$ or $2$ on division by $3$. If $n-1$ leaves remainder
+    $r$, then $n-1,n,n+1$ leave remainders $r, r+1, r+2$ (mod $3$), which cover all three residues. So
+    one of them has remainder $0$, i.e. is a multiple of $3$. Hence the product is divisible by $3$.
+  common_errors:
+  - Only testing a few values of $n$
+  - Forgetting to consider every possible remainder
+  - Saying every third integer is a multiple of $3$ but not linking it to three consecutive ones
+  hints:
+    rephrase: Divide integers by $3$ and look at the possible remainders. What happens across a run of
+      three in a row?
+    smaller_case: Take $n-1=7$, then $8$, then $9$ as the start of the run, and see what happens each
+      time.
+    key_idea: Cover all possible remainders on division by $3$ with the three consecutive integers.
+- goal: Combine the results to conclude $6$ divides $n^3-n$.
+  expected: Since $2$ and $3$ are coprime and both divide the product, $6$ divides $n^3-n$.
+  solution: The product $(n-1)n(n+1)$ is divisible by $2$ and by $3$. Since $2$ and $3$ share no common
+    factor (they are coprime), it is divisible by $2\times 3=6$. Hence $n^3-n$ is divisible by $6$ for
+    every integer $n$.
+  common_errors:
+  - Not mentioning why divisibility by both $2$ and $3$ is enough
+  - Using the same logic for $4$ and $6$ (non-coprime) to get $24$
+  - Only proving for positive $n$
+  hints:
+    rephrase: You have two separate divisibility facts. What property of the two divisors lets you merge
+      them?
+    smaller_case: Does 'divisible by $2$ and by $4$' imply 'divisible by $8$'? Why or why not?
+    key_idea: Think about the relationship between $2$ and $3$ as divisors.
+extensions:
+  '3':
+  - Prove the same result using induction on $n$ for $n \ge 0$.
+  - Prove it by considering $n$ modulo $6$ and checking each residue.
+  '4':
+  - Show that $n^5 - n$ is divisible by $30$.
+  - Show that the product of any $k$ consecutive integers is divisible by $k!$.
+  '5':
+  - State and prove Fermat's little theorem, and explain how $n^p - n$ divisible by $p$ generalises this
+    problem.
+  - Find all integers $m$ such that $m$ divides $n^3 - n$ for every integer $n$.
+spoken_vocab:
+- n cubed minus n
+- n cubed
+- divisible by six
+- integer
+- factorise
+- common factor
+- difference of two squares
+- n minus one
+- n plus one
+- consecutive integers
+- even
+- odd
+- parity
+- multiple of three
+- remainder
+- modulo
+- mod three
+- coprime
+- induction
+- product
+verified: false
+rating:
+  quality: 4
+  difficulty: 2
+  parts: 5
+  minutes: 8
+  flags: []
+  tagline: Heavily scaffolded but clean; good warm-up on factorising and divisibility.
+  priority: 53
+  rank: 503
+  tier: C
+  category: other
+  d10: 2.5
+  real: 6.0
+  by: haiku
+tags:
+- proof
+- number_theory

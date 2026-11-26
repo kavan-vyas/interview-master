@@ -1,0 +1,78 @@
+id: product-million-no-trailing-zero
+title: Two numbers with product one million, neither ending in zero
+topics:
+- factors
+- prime factorisation
+- divisibility
+warmup: true
+answer_source: generated
+statement: State $2$ numbers, neither ending in zero, whose product is $10^6$.
+stages:
+- goal: Give two numbers, neither ending in zero, whose product is $10^6$.
+  expected: $64$ and $15625$ (in either order).
+  solution: $64\times 15625 = 1000000 = 10^6$. Neither $64$ nor $15625$ ends in $0$.
+  common_errors:
+  - Giving $10$ and $100000$, which both end in zero
+  - Giving $1$ and $10^6$, where $10^6$ ends in zero
+  - Giving $1000$ and $1000$, which both end in zero
+  hints:
+    rephrase: You need a factorisation of $10^6$ into two parts where neither part is divisible by $10$.
+    smaller_case: Try $100=10^2$. Which two numbers have product $100$ without either ending in zero?
+    key_idea: A number ending in zero is divisible by both $2$ and $5$, so the two prime families must
+      be kept apart.
+  check: 64*15625 - 10**6
+  check_ok: true
+- goal: Explain why the two numbers must split the prime factors $2$ and $5$ this way.
+  expected: $10^6=2^6\cdot 5^6$. Each number must contain only $2$s or only $5$s, so one number is $2^6=64$
+    and the other is $5^6=15625$.
+  solution: $10^6=2^6\cdot 5^6$. If one number had both a factor $2$ and a factor $5$, it would be divisible
+    by $10$ and end in $0$. So each of the two numbers contains only one of the primes. All the $2$s must
+    go to one number and all the $5$s to the other, giving $2^6=64$ and $5^6=15625$.
+  common_errors:
+  - Not explaining why a number containing both $2$ and $5$ is excluded
+  - Forgetting that all six copies of each prime must be used
+  hints:
+    rephrase: Write $10^6$ in terms of its prime factors. What makes a number end in zero?
+    smaller_case: Factor $100$ into primes and split the factors between two numbers, keeping neither
+      ending in zero.
+    key_idea: A number ends in zero exactly when it is divisible by both $2$ and $5$.
+  check: 'factorint(10**6) == {2: 6, 5: 6}'
+  check_ok: true
+extensions:
+  '3':
+  - Are $64$ and $15625$ the only unordered pair of positive integers with product $10^6$, neither ending
+    in zero? Justify your answer.
+  '4':
+  - How many ordered pairs of positive integers have product $10^6$ and neither ending in zero?
+  '5':
+  - Find all triples of positive integers with product $10^6$, none ending in zero.
+spoken_vocab:
+- two numbers
+- product
+- ten to the sixth
+- sixty four
+- fifteen thousand six hundred and twenty five
+- two to the sixth
+- five to the sixth
+- prime factorisation
+- ends in zero
+- divisible by ten
+source: past-interviews/Actual Past Interview Questions/H2.jpg
+verified: false
+rating:
+  quality: 3
+  difficulty: 2
+  parts: 2
+  minutes: 4
+  flags:
+  - trivial
+  tagline: Quick warm-up; the prime-splitting explanation adds a little depth.
+  priority: 27
+  rank: 632
+  tier: D
+  category: past-interviews
+  d10: 1.5
+  real: 5.0
+  by: haiku
+tags:
+- number_theory

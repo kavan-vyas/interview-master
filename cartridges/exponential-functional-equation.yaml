@@ -1,0 +1,113 @@
+id: exponential-functional-equation
+title: Exponential functional equation f(x+y)=f(x)f(y)
+topics:
+- functional equations
+- exponentials
+- induction
+- rational powers
+- positivity
+warmup: false
+answer_source: generated
+statement: Let $f:\mathbb{R}\to\mathbb{R}$ be a non-constant function satisfying $f(x+y)=f(x)f(y)$ for
+  all real $x,y$. Let $k=f(1)$. Show that $f(n)=k^n$ for all integers $n$, that the same formula $f(r)=k^r$
+  holds for all rational $r$, and that $k>0$.
+stages:
+- goal: Show f(0)=1 (and record the correction to the constant in the statement).
+  expected: f(0)=1
+  solution: 'Put x=y=0: f(0)=f(0+0)=f(0)^2, so f(0)=0 or 1. If f(0)=0, then for every x, f(x)=f(x+0)=f(x)f(0)=0,
+    so f is constant, a contradiction. Hence f(0)=1. CORRECTION: as printed, the constant is k=f(0). But
+    f(0)=1 is forced, so the claim would say f(n)=1 for all n, which is false: f(x)=e^x is a non-constant
+    solution with f(0)=1 and f(1)=e. The intended constant is k=f(1), which is used in this cartridge.'
+  common_errors:
+  - Stopping at f(0) in {0,1} without excluding f(0)=0
+  - Assuming f(0)=0 is consistent with a non-constant f
+  - Taking k=f(0) as a meaningful base and not noticing k=1 is forced
+  hints:
+    rephrase: Substitute x=y=0 and find which values f(0) can take.
+    smaller_case: Substitute y=0 for a general x and see what happens if f(0)=0.
+    key_idea: A non-constant solution cannot vanish at 0, because f(x)=f(x)f(0) would then be zero for
+      every x.
+  check: f(0) - 1
+  check_ok: false
+- goal: Show f(x)>0 for all x, and hence k=f(1)>0.
+  expected: f(x)>0 for all real x, so k>0.
+  solution: f(x)=f(x/2+x/2)=f(x/2)^2 >= 0. Suppose f(a)=0 for some real a. Then for every x, f(x)=f(x-a+a)=f(x-a)f(a)=0,
+    so f is constant, a contradiction. So f(x) is nonzero and nonnegative, hence positive for all x. In
+    particular k=f(1)>0.
+  common_errors:
+  - Concluding only f(x)>=0 and forgetting to exclude zero
+  - Writing f(x) as a square without the justification f(x)=f(x/2)^2
+  - Asserting k>0 without the zero-propagation argument
+  hints:
+    rephrase: Write f(x) as f(x/2) times f(x/2).
+    smaller_case: Suppose f(1)=0. What does that force f(x) to be for every x?
+    key_idea: A square is nonnegative, and a single zero value would spread to every value.
+- goal: Show f(n)=k^n for every integer n.
+  expected: f(n)=k^n for all integers n.
+  solution: 'n=0: f(0)=1=k^0. For n>=0 by induction: f(n+1)=f(n)f(1)=k^n·k=k^(n+1). For negative integers:
+    f(-n)f(n)=f(0)=1, so f(-n)=1/f(n)=1/k^n=k^(-n), using f(n)!=0 from the previous stage.'
+  common_errors:
+  - Writing f(n)=1 because the constant was taken as f(0)
+  - Forgetting to handle negative integers
+  - Using f(-n)=f(n) instead of f(-n)=1/f(n)
+  hints:
+    rephrase: Start at n=0 and use f(n+1)=f(n)f(1); handle negatives with f(n)f(-n)=f(0).
+    smaller_case: Compute f(2) and f(-1) in terms of k.
+    key_idea: Induction gives nonnegative n; for negative n, pair f(n) with f(-n) and use the value at
+      zero.
+  check: f(n) - k**n
+  check_ok: false
+- goal: Show f(r)=k^r for every rational r=p/q with p an integer and q a positive integer.
+  expected: f(p/q)=k^(p/q) for all integers p and q>=1.
+  solution: 'Additivity gives f(q*x)=f(x)^q for each positive integer q (induction on q). Take x=p/q:
+    f(p/q)^q = f(p) = k^p by the previous stage. Also (k^(p/q))^q = k^p. Both f(p/q) and k^(p/q) are positive
+    (f is positive by stage 2, and k>0). Positive reals with equal q-th powers are equal, so f(p/q)=k^(p/q).'
+  common_errors:
+  - Taking a q-th root without checking that the base is positive
+  - Using f(qx)=f(x)^q without proof
+  - Choosing a complex or negative q-th root
+  hints:
+    rephrase: Raise f(p/q) to the q-th power and compare with f(p).
+    smaller_case: Take p=1, q=2 and relate f(1/2)^2 to f(1).
+    key_idea: Positivity makes the q-th root of k^p unique, so one identity pins down f(p/q).
+  check: f(p/q) - k**(p/q)
+  check_ok: false
+extensions:
+  '3':
+  - Assume f is continuous and show f(x)=k^x for all real x.
+  '4':
+  - Without continuity, write f(x)=e^(g(x)) with g additive, and show g is linear if g is monotone or
+    measurable.
+  '5':
+  - Use a Hamel basis to build a discontinuous solution f(x)=e^(g(x)) with g additive and not linear.
+spoken_vocab:
+- f of x plus y equals f of x times f of y
+- non-constant function
+- k equals f of one
+- f of zero
+- integers n
+- rational numbers p over q
+- q-th root
+- k to the power n
+- greater than zero
+- induction
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 4
+  minutes: 15
+  flags: []
+  tagline: 'Cauchy-style proof: f(0)=1, positivity, then integers and rationals.'
+  priority: 92
+  rank: 86
+  tier: A
+  category: tbo
+  d10: 5.5
+  real: 7.5
+  by: deepseek-v4.1-flash-free
+tags:
+- functional_equations
+- exponentials_and_logarithms
+- proof

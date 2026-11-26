@@ -1,0 +1,100 @@
+id: bracelets-eleven-beads-three-colours
+title: Distinct bracelets from 11 beads in three colours
+topics:
+- combinatorics
+- counting
+- group actions
+- Burnside's lemma
+- cyclic symmetry
+warmup: false
+answer_source: generated
+statement: A bracelet is made up of a combination of 11 red, yellow or blue beads. How many distinct bracelets
+  can be made if you have at least 11 beads of each colour and if rotations are considered the same but
+  reflections are not?
+stages:
+- goal: Identify the symmetry being counted and check whether the colour condition restricts anything.
+  expected: Only rotations identify colourings, so the symmetry group is the cyclic group of order 11.
+    The condition 'at least 11 beads of each colour' is automatically met, so every colouring of the 11
+    positions is allowed.
+  solution: With 11 beads, no more than 11 beads of any colour can be used, so the supply condition never
+    restricts the choice. Rotations of the circular bracelet form the cyclic group C_11. Reflections are
+    excluded by the question.
+  common_errors:
+  - Thinking the colour condition removes some colourings
+  - Including reflections in the symmetry group
+  - Counting labelled positions instead of distinct bracelets
+  hints:
+    rephrase: Think about how many beads of one colour could possibly appear in a bracelet of 11 beads.
+    smaller_case: For a bracelet of 3 beads, list the symmetries that rotate it onto itself.
+    key_idea: Count the colourings of 11 labelled positions first, then account for colourings that rotations
+      identify with each other.
+  check: null
+- goal: Use Burnside's lemma to count the colourings fixed by each rotation and add them up.
+  expected: Sum of fixed colourings = 3^11 + 10 * 3 = 177177.
+  solution: The identity fixes all 3^11 colourings. Each of the other 10 rotations has order 11, a prime,
+    so its cycles are a single 11-cycle on the beads. A colouring fixed by it must be a single colour,
+    giving 3 fixed colourings per rotation. Total = 3^11 + 10*3 = 177177.
+  common_errors:
+  - Forgetting the identity contributes 3^11
+  - Assuming a non-identity rotation fixes 3^(11/d) colourings for some d that does not apply
+  - Including reflections in the sum
+  hints:
+    rephrase: For each rotation, ask which colourings look exactly the same after applying it.
+    smaller_case: For a bracelet of 3 beads in 3 colours, how many colourings are unchanged by a rotation
+      of 120 degrees?
+    key_idea: When the number of beads is prime, a non-identity rotation has one cycle covering every
+      bead, so a fixed colouring must be monochromatic.
+  check: 3**11 + 10*3 - 177177
+  check_ok: true
+- goal: Divide the total by the size of the group to get the number of distinct bracelets.
+  expected: '16107'
+  solution: By Burnside's lemma, the number of orbits = (1/11) * (3^11 + 10*3) = 177177/11 = 16107.
+  common_errors:
+  - Forgetting to divide by 11
+  - Dividing and then rounding instead of checking the division is exact
+  - Dividing by the wrong group order, such as 22 (which includes reflections)
+  hints:
+    rephrase: Burnside's lemma says the number of distinct objects equals the average number of colourings
+      fixed by each symmetry.
+    smaller_case: With 3 beads in 3 colours, use this method to count bracelets. (Compute the total fixed
+      colourings, then divide by the group size 3.)
+    key_idea: Number of orbits = (1/|G|) times the sum over group elements of the number of fixed points.
+  check: Integer(3**11 + 10*3)/11 - 16107
+  check_ok: true
+extensions:
+  '3':
+  - Count distinct bracelets made from 12 beads in two colours, with rotations counted as the same.
+  '4':
+  - Repeat the problem for 11 beads in three colours, but now treat reflections as the same too (the dihedral
+    group of order 22).
+  '5':
+  - Count distinct bracelets of 12 beads in three colours where rotations and reflections are both identified,
+    and explain why the count is an integer.
+spoken_vocab:
+- eleven beads
+- red yellow blue
+- rotations
+- reflections
+- Burnside's lemma
+- three to the power of eleven
+- divided by eleven
+- cyclic group
+- distinct bracelets
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Burnside's lemma on rotations; the colour condition is a red herring.
+  priority: 81
+  rank: 249
+  tier: B
+  category: tbo
+  d10: 6.5
+  real: 5.5
+  by: deepseek-v4.1-flash-free
+tags:
+- combinatorics

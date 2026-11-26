@@ -1,0 +1,127 @@
+id: keys-on-ring-first-success
+title: 'Keys on a ring: which attempt finds the door key'
+topics:
+- probability
+- discrete distributions
+- sampling without replacement
+- Markov chains
+warmup: true
+answer_source: pdf
+statement: I have $k$ different keys on my key ring. When I come home at night I try one key after another
+  until I find the key that fits my front door. What is the probability that I find the correct key, for
+  the first time, on the $n$th attempt in each of the following three cases? (i) At each attempt, I choose
+  a key that I have not tried before, each choice being equally likely. (ii) At each attempt, I choose
+  a key from all my keys, each of the $k$ choices being equally likely. (iii) At the first attempt, I
+  choose from all my keys, each of the $k$ choices being equally likely. At each subsequent attempt, I
+  choose from the keys that I did not try at the previous attempt, each of the $k-1$ choices being equally
+  likely.
+stages:
+- goal: 'Case (i): find P(first success on attempt n) when a key is never retried.'
+  expected: $P(n)=\frac{1}{k}$ for $1\le n\le k$, and $0$ for $n>k$.
+  solution: 'Keys are tried in a uniformly random order with no repeats, so the correct key is equally
+    likely to occupy any of the $k$ positions. Hence $P(n)=\frac{1}{k}$ for $1\le n\le k$ and $0$ otherwise.
+    Check: the $k$ values sum to $1$.'
+  common_errors:
+  - Using the factors $\frac{k-1}{k}$ from case (ii), which assumes keys can be retried.
+  - Forgetting that the probability is zero for $n>k$.
+  hints:
+    rephrase: Imagine all the keys are tried in some random order and you stop at the right one. Where
+      can the right key sit in that order?
+    smaller_case: Take $k=3$. List the orderings of the three keys and count how often the correct key
+      comes first, second and third.
+    key_idea: With no repeats, the sequence of tries is a uniformly random ordering of the keys, so every
+      position is equally likely for the correct key.
+  check: Sum(1/k, (n,1,k)).doit() - 1
+  check_ok: true
+- goal: 'Case (ii): find P(first success on attempt n) when every attempt is a fresh choice from all k
+    keys.'
+  expected: $P(n)=\left(\frac{k-1}{k}\right)^{n-1}\frac{1}{k}$ for $n\ge 1$.
+  solution: 'Attempts are independent, and each attempt hits the correct key with probability $\frac{1}{k}$.
+    The first success on attempt $n$ requires $n-1$ misses, each with probability $\frac{k-1}{k}$, followed
+    by a hit with probability $\frac{1}{k}$. Check with $k=5$: $\sum_{n\ge1}(4/5)^{n-1}(1/5)=1$.'
+  common_errors:
+  - Using the no-repeat answer from case (i), which ignores retries.
+  - Writing the exponent as $n$ rather than $n-1$.
+  hints:
+    rephrase: Each attempt is a fresh draw from all the keys. What is the chance of a miss on one attempt,
+      and what must happen before the success?
+    smaller_case: Take $k=2$. Write out the probabilities for attempts 1, 2 and 3 separately.
+    key_idea: 'Independent trials: a first success on attempt $n$ means a run of misses followed by one
+      hit.'
+  check: Sum((Rational(4,5))**(n-1)*Rational(1,5),(n,1,oo)).doit() - 1
+  check_ok: true
+- goal: 'Case (iii): find P(first success on attempt n) when each new attempt excludes only the key just
+    tried.'
+  expected: $P(1)=\frac{1}{k}$, and for $n\ge 2$, $P(n)=\left(\frac{k-2}{k-1}\right)^{n-2}\frac{1}{k}$.
+  solution: 'Let $w_n$ be the probability that the first $n$ attempts are all wrong. Then $w_1=\frac{k-1}{k}$.
+    Given the previous key was wrong, the next key is uniform over the $k-1$ keys other than the one just
+    tried. This pool contains the correct key and $k-2$ wrong keys, including earlier wrong keys, so keys
+    can be retried. So the next attempt is correct with probability $\frac{1}{k-1}$ and stays wrong with
+    probability $\frac{k-2}{k-1}$. Hence $P(n)=w_{n-1}\frac{1}{k-1}=\frac{k-1}{k}\left(\frac{k-2}{k-1}\right)^{n-2}\frac{1}{k-1}=\left(\frac{k-2}{k-1}\right)^{n-2}\frac{1}{k}$
+    for $n\ge2$. Check with $k=5$: $\frac15+\sum_{n\ge2}\frac15(3/4)^{n-2}=\frac15+\frac45=1$.
+
+
+    Note on the question''s note: the claim that $P(n)=\frac1k$ for every $n\le k$ is wrong for this case.
+    The source formula is correct. For $k=3$, $P(3)=\frac16$, not $\frac13$. The lay-the-keys-in-a-row
+    shortcut does not apply, because the pool at attempt 3 includes the key tried at attempt 1.'
+  common_errors:
+  - Applying the 'keys in a row' shortcut and answering $\frac1k$ for every $n\le k$.
+  - Using $\frac{1}{k-1}$ as the probability at every step without conditioning on the previous attempt
+    being wrong.
+  - Forgetting that the pool excludes only the single key just tried, so earlier wrong keys can come back.
+  hints:
+    rephrase: Split the event 'correct on attempt n' into 'all earlier attempts wrong' and 'attempt n
+      right'. Which keys are available at attempt n, given what was tried at attempt n-1?
+    smaller_case: 'Take $k=2$: after one wrong try, what is left? Then take $k=3$ and find the probabilities
+      for attempts 2 and 3 separately.'
+    key_idea: Track the probability of staying wrong at each step. Whenever the previous key was wrong,
+      the pool still contains the correct key, so the chance of hitting it on the next try is fixed.
+  check: Sum(Rational(1,5)*(Rational(3,4))**(n-2),(n,2,oo)).doit() + Rational(1,5) - 1
+  check_ok: true
+extensions:
+  '3':
+  - Compute the expected number of attempts E[N] in case (i).
+  - Compute E[N] in case (ii) and compare it with case (i).
+  '4':
+  - For case (iii), show that the probabilities P(n) sum to 1 for general k, and interpret the sum.
+  '5':
+  - Find the probability that the correct key is found within the first two attempts in each case, and
+    say which case is best for the user and why.
+spoken_vocab:
+- k
+- n
+- P of n
+- probability
+- one over k
+- k minus one over k
+- k minus two over k minus one
+- n minus one
+- n minus two
+- attempt
+- first success
+- choose
+- without replacement
+- with replacement
+- previous key
+- geometric series
+- sum from n equals one to k
+- sum from n equals two to infinity
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#21
+verified: false
+rating:
+  quality: 8
+  difficulty: 5
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Three sampling schemes compare; the surprising equal 1/k result invites discussion.
+  priority: 91
+  rank: 121
+  tier: A
+  category: siklos
+  d10: 5.5
+  real: 7.0
+  by: haiku
+tags:
+- probability
+- combinatorics

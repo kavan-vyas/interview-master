@@ -1,0 +1,135 @@
+id: stm-power-exp-maxima-minima
+title: Stationary point of $x^m(x-1)^n$ and its nature
+topics:
+- differentiation
+- logarithmic differentiation
+- stationary points
+- curve sketching
+warmup: false
+answer_source: pdf
+statement: Let $f(x)=x^m(x-1)^n$, where $m$ and $n$ are integers greater than 1. Show that $f'(x)=\left(\frac{m}{x}-\frac{n}{1-x}\right)f(x)$.
+  Show that the curve $y=f(x)$ has a stationary point with $0<x<1$. By considering $f''(x)$, show that
+  this stationary point is a maximum if $n$ is even and a minimum if $n$ is odd. Sketch the graphs of
+  $f(x)$ in the four cases that arise according to the values of $m$ and $n$.
+stages:
+- goal: Show that $f'(x)=\left(\frac{m}{x}-\frac{n}{1-x}\right)f(x)$.
+  expected: Take logarithms, differentiate, and multiply back by $f$ to get the stated form.
+  solution: Let $g=\frac{f'}{f}=\frac{m}{x}+\frac{n}{x-1}$, from $\ln f=m\ln x+n\ln(x-1)$. Since $\frac{n}{x-1}=-\frac{n}{1-x}$,
+    this gives $\frac{f'}{f}=\frac{m}{x}-\frac{n}{1-x}$. Multiplying by $f$ gives the result.
+  common_errors:
+  - Sign error when rewriting $\frac{n}{x-1}$ as $\frac{n}{1-x}$.
+  - Differentiating $f$ directly and failing to recognise the factor $f$.
+  - Ignoring the domain restriction $x\neq0,1$.
+  hints:
+    rephrase: Consider the logarithm of $f$ and differentiate it. Then rearrange to see the factor $f$
+      appear.
+    smaller_case: Take $m=n=2$ and check the identity by expanding $f$ directly.
+    key_idea: Logarithmic differentiation turns a product into a sum, and $\frac{f'}{f}$ is the derivative
+      of $\ln f$.
+  check: simplify(diff(x**m*(x-1)**n, x)/(x**m*(x-1)**n) - (m/x - n/(1-x)))
+  check_ok: false
+- goal: Show that the curve has a stationary point with $0<x<1$, and find its position.
+  expected: The stationary point is at $x=\frac{m}{m+n}$, which lies in $(0,1)$.
+  solution: At a stationary point $f'(x)=0$. Since $f\neq0$ away from $x=0,1$, we need $\frac{m}{x}=\frac{n}{1-x}$.
+    This gives $m(1-x)=nx$, so $x=\frac{m}{m+n}$. Since $m,n>0$, this lies in $(0,1)$.
+  common_errors:
+  - Forgetting to exclude the zeros $x=0$ and $x=1$ before dividing by $f$.
+  - Solving $m(1-x)=nx$ incorrectly.
+  - Not checking that the solution lies in $(0,1)$.
+  hints:
+    rephrase: Set the bracket to zero, since $f$ is nonzero on $(0,1)$. Then solve the resulting linear
+      equation.
+    smaller_case: Take $m=n=1$ and find where $\frac{1}{x}=\frac{1}{1-x}$.
+    key_idea: Use the identity from part one. A stationary point needs $f'=0$, and on $(0,1)$ this happens
+      when the bracket vanishes.
+  check: simplify((m/x - n/(1-x)).subs(x, m/(m+n)))
+  check_ok: true
+- goal: Use $f''$ at the stationary point to show it is a maximum when $n$ is even and a minimum when
+    $n$ is odd.
+  expected: At the stationary point $f''=g'f$, where $g'=-\frac{m}{x^2}-\frac{n}{(x-1)^2}<0$. So $f''$
+    has the opposite sign to $f$. On $(0,1)$, $f>0$ when $n$ is even and $f<0$ when $n$ is odd, giving
+    a maximum for $n$ even and a minimum for $n$ odd.
+  solution: Write $f'=gf$ with $g=\frac{m}{x}+\frac{n}{x-1}$. Then $f''=g'f+gf'=g'f+g^2f$. At the stationary
+    point $g=0$, so $f''=g'f$, and $g'=-\frac{m}{x^2}-\frac{n}{(x-1)^2}<0$. On $(0,1)$, $x^m>0$ and $(x-1)^n$
+    has the sign of $(-1)^n$. So $f>0$ when $n$ is even and $f<0$ when $n$ is odd. Thus $f''<0$ (maximum)
+    for $n$ even and $f''>0$ (minimum) for $n$ odd.
+  common_errors:
+  - Forgetting the $g^2f$ term in $f''$, which is harmless here only because $g=0$ at the stationary point.
+  - Assuming the sign of $(x-1)^n$ is always positive.
+  - Getting the sign of $g'$ wrong.
+  hints:
+    rephrase: Differentiate $f'=gf$ again, then evaluate at the point where $g=0$. Work out the sign of
+      $f$ on $(0,1)$ separately.
+    smaller_case: Take $m=n=2$, find the stationary point, and check the sign of $f''$ there by direct
+      computation.
+    key_idea: Compare the sign of $f''$, which is set by $g'$ and $f$, with the sign of $f$, which depends
+      only on the parity of $n$.
+  check: simplify(-m/(m/(m+n))**2 - n/(m/(m+n)-1)**2 + (m+n)**2*(1/m+1/n))
+  check_ok: true
+- goal: Sketch the graphs of $f(x)$ in the four cases given by the parity of $m$ and $n$.
+  expected: Zeros at $x=0$ (order $m$) and $x=1$ (order $n$). For $m$ and $n$ even, $f\ge0$ with turning
+    points at $0$ and $1$ and a maximum at $\frac{m}{m+n}$. For $m$ odd and $n$ even, $f$ changes sign
+    at $0$ with a horizontal inflection, and touches zero at $1$ with a maximum in $(0,1)$. For $m$ even
+    and $n$ odd, $f\le0$ on $(-\infty,1]$ with a maximum at $0$, a minimum at $\frac{m}{m+n}$, and an
+    inflection at $1$. For $m$ and $n$ both odd, $f$ crosses at $0$ and $1$ with inflections, and has
+    a minimum in $(0,1)$.
+  solution: 'Sign of $f$: for $x<0$ it is $(-1)^{m+n}$; for $0<x<1$ it is $(-1)^n$; for $x>1$ it is positive.
+    As $x\to\pm\infty$, $f\sim x^{m+n}$. At $x=0$: if $m$ is even, $f''(0)=0$ and the curve touches the
+    axis (turning point). If $m$ is odd, $m\ge3$, the sign changes and $f''(0)=0$, giving a horizontal
+    inflection. The same applies to $x=1$ with $n$. The single stationary point in $(0,1)$ is a maximum
+    if $n$ is even and a minimum if $n$ is odd. Combining these gives the four cases described.'
+  common_errors:
+  - Treating $x=0$ as a turning point when $m$ is odd, or as a crossing with non-zero slope.
+  - Getting the sign of $f$ for $x<0$ wrong.
+  - Forgetting the behaviour as $x\to\pm\infty$ when deciding which side of the axis the curve lies on.
+  hints:
+    rephrase: Work out the sign of $f$ on each of the three intervals $x<0$, $0<x<1$ and $x>1$, then look
+      at the zeros and their parity.
+    smaller_case: Sketch the case $m=2$, $n=2$ first, then change $m$ to $3$ and see what happens at $x=0$.
+    key_idea: The parity of each exponent controls both the sign of $f$ and whether the axis is crossed
+      or touched at each zero.
+  check: null
+extensions:
+  '3':
+  - For $m=n=2$, find the maximum value of $f(x)=x^2(x-1)^2$ on $0<x<1$ and check that it occurs at the
+    stationary point found in the main question.
+  '4':
+  - Show that the stationary point $x=\frac{m}{m+n}$ tends to $1$ as $m\to\infty$ with $n$ fixed.
+  '5':
+  - Find the value of $f$ at the stationary point in general, in terms of $m$ and $n$.
+spoken_vocab:
+- f of x
+- x to the power m
+- x minus one to the power n
+- f prime
+- m over x minus n over one minus x
+- stationary point
+- maximum
+- minimum
+- f double prime
+- logarithmic differentiation
+- parity
+- even
+- odd
+- inflection
+- turning point
+- sketch
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#8
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 4
+  minutes: 15
+  flags: []
+  tagline: Clean log-derivative structure with sign analysis of f'' for nature.
+  priority: 62
+  rank: 423
+  tier: C
+  category: siklos
+  d10: 4.0
+  real: 4.0
+  by: haiku
+tags:
+- differentiation
+- curve_sketching

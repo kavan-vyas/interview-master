@@ -1,0 +1,108 @@
+id: step-cubic-roots-gp-ap
+title: Cubic with roots in geometric or arithmetic progression
+topics:
+- algebra
+- cubic equations
+- Vieta's formulas
+- sequences
+- progressions
+warmup: false
+answer_source: pdf
+statement: Consider the cubic equation $x^3-px^2+qx-r=0$, where $p\neq 0$ and $r\neq 0$. (i) If the three
+  roots can be written in the form $ak^{-1}$, $a$ and $ak$ for some constants $a$ and $k$, show that one
+  root is $q/p$ and that $q^3-rp^3=0$. (ii) If $r=q^3/p^3$, show that $q/p$ is a root and that the product
+  of the other two roots is $(q/p)^2$. Deduce that the roots are in geometric progression. (iii) Find
+  a necessary and sufficient condition involving $p$, $q$ and $r$ for the roots to be in arithmetic progression.
+stages:
+- goal: Use Vieta's formulas on the roots $a/k$, $a$, $ak$.
+  expected: The sum is $a(1+k+\frac1k)=p$ and the sum of pairwise products is $a^2(1+k+\frac1k)=q$. So
+    $q=ap$, one root is $a=q/p$, and the product $a^3=r$ gives $q^3=rp^3$, that is $q^3-rp^3=0$.
+  solution: Let $S=1+k+\frac1k$. Vieta gives $p=aS$. The pairwise products are $\frac ak\cdot a+\frac
+    ak\cdot ak+a\cdot ak=a^2(\frac1k+1+k)=a^2S$, so $q=a^2S=ap$. Hence $a=q/p$, which is a root. The product
+    of the roots is $a^3=r$, so $rp^3=a^3(aS)^3=a^6S^3=(a^2S)^3=q^3$.
+  common_errors:
+  - Taking the sum of the roots as $-p$; the cubic has $-p$ as the $x^2$ coefficient, so the sum is $+p$.
+  - Taking the product of the roots as $-r$ rather than $r$.
+  - Dividing by $a$ without noting that $a\neq0$, which holds because $r\neq0$.
+  hints:
+    rephrase: Write the three relations between the roots and the coefficients $p$, $q$, $r$.
+    smaller_case: Take $k=2$ and write out the sum, the pairwise products and the product of $\frac a2$,
+      $a$ and $2a$.
+    key_idea: Each of $p$, $q$, $r$ is a symmetric function of the roots, so write them in terms of $a$
+      and $S=1+k+\frac1k$ only.
+  check: 'simplify((q**3 - r*p**3).subs({p: a*(1+k+1/k), q: a**2*(1+k+1/k), r: a**3}))'
+  check_ok: true
+- goal: Use $r=q^3/p^3$ to show $q/p$ is a root, find the product of the other two roots, and deduce the
+    progression.
+  expected: Substituting $x=q/p$ gives $\frac{q^3}{p^3}-r=0$, so $c=q/p$ is a root. The other two roots
+    $\alpha,\beta$ satisfy $\alpha\beta=r/c=(q/p)^2=c^2$. With $k=c/\alpha$, the roots are $c/k$, $c$,
+    $ck$, which is a geometric progression with ratio $k$.
+  solution: Let $c=q/p$. Substituting gives $c^3-pc^2+qc-r=\frac{q^3}{p^3}-pc^2+qc-r$, and since $pc^2=\frac{q^2}{p}=qc$,
+    this is $\frac{q^3}{p^3}-r=0$. So $c$ is a root. The product of all three roots is $r$, so $\alpha\beta=\frac{r}{c}=\frac{q^3/p^3}{q/p}=\frac{q^2}{p^2}=c^2$.
+    Note $q\neq0$, since $q^3=rp^3\neq0$. Since $\alpha\beta=c^2\neq0$, both $\alpha,\beta$ are nonzero.
+    Let $k=c/\alpha$. Then $c/k=\alpha$ and $ck=c^2/\alpha=\beta$, so the roots are $c/k$, $c$, $ck$.
+  common_errors:
+  - Checking $c$ is a root but not using $p\neq0$ to justify the algebra.
+  - Claiming the progression is geometric without checking that $ck$ is the third root.
+  - Computing the product of the other two roots as $q/p$ rather than $(q/p)^2$.
+  hints:
+    rephrase: Substitute $x=q/p$ into the cubic and use the relation $r=q^3/p^3$.
+    smaller_case: Take $p=1$, $q=2$, $r=8$. Find one root, factor it out, and compare the product of the
+      remaining pair with the constant term.
+    key_idea: Factor out the known root; the product of the remaining pair is $r$ divided by that root.
+  check: simplify((q/p)**3 - p*(q/p)**2 + q*(q/p) - q**3/p**3)
+  check_ok: true
+- goal: Find a necessary and sufficient condition in $p$, $q$, $r$ for the roots to be in arithmetic progression.
+  expected: $2p^3-9pq+27r=0$.
+  solution: Write the roots as $m-d$, $m$, $m+d$. Vieta gives $3m=p$, so $m=p/3$. The pairwise products
+    give $3m^2-d^2=q$, so $d^2=\frac{p^2}{3}-q$. The product gives $r=m(m^2-d^2)=\frac p3\left(q-\frac{2p^2}{9}\right)$,
+    so $27r=9pq-2p^3$. Conversely, if $2p^3-9pq+27r=0$, set $m=p/3$ and $d^2=\frac{p^2}{3}-q$. Then $(x-m)((x-m)^2-d^2)$
+    has the same three coefficients as the cubic, so its roots are in arithmetic progression. For real
+    roots with real common difference, also $p^2\ge3q$, which holds automatically when the roots are real.
+  common_errors:
+  - Taking the middle root as $q/p$ rather than $p/3$.
+  - Sign errors when simplifying $\frac p3\left(q-\frac{2p^2}{9}\right)$.
+  - Proving only the forward direction and not checking that the converse holds.
+  hints:
+    rephrase: Call the roots $m-d$, $m$, $m+d$ and use the sum of the roots to find $m$.
+    smaller_case: Take roots $1$, $2$, $3$ and test any candidate condition against them.
+    key_idea: Eliminate $m$ and $d$ between the three Vieta equations; $d^2$ is the only free quantity
+      left.
+  check: null
+extensions:
+  '3':
+  - Show that $q^3=rp^3$ is necessary and sufficient for the roots to be in geometric progression, not
+    just for the form given in part (i).
+  '4':
+  - Find the condition for the reciprocals of the roots to be in arithmetic progression.
+  '5':
+  - Show that if the roots are both in arithmetic and in geometric progression, they must all be equal.
+spoken_vocab:
+- x cubed minus p x squared plus q x minus r equals zero
+- q over p
+- q cubed minus r p cubed
+- geometric progression
+- arithmetic progression
+- two p cubed minus nine p q plus twenty seven r
+- common ratio k
+- product of the other two roots
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#11
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 3
+  minutes: 20
+  flags: []
+  tagline: Vieta on a/k, a, ak links cubic coefficients to progressions; AP condition is rich.
+  priority: 81
+  rank: 217
+  tier: B
+  category: siklos
+  d10: 5.5
+  real: 6.0
+  by: haiku
+tags:
+- roots_of_polynomials
+- sequences_and_series
+- algebra_and_functions

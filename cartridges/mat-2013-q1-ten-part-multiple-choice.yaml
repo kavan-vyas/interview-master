@@ -1,0 +1,205 @@
+id: mat-2013-q1-ten-part-multiple-choice
+title: 'MAT 2013 Q1: ten-part multiple choice (A-J)'
+topics:
+- quadratics
+- transformations
+- chain rule
+- implicit curves
+- polynomials
+- logarithms
+- remainder theorem
+- areas
+- floor function
+- series sums
+warmup: false
+answer_source: pdf
+statement: 'Question 1 (multiple choice, ten parts A–J). For each part, choose the correct answer from
+  (a)–(d). A. For what values of the real number $a$ does the quadratic equation $x^2 + ax + a = 1$ have
+  distinct real roots? (a) $a \neq 2$; (b) $a > 2$; (c) $a = 2$; (d) all values of $a$. B. The graph of
+  $y = \sin x$ is reflected first in the line $x = \pi$ and then in the line $y = 2$. The resulting graph
+  has equation (a) $y = \cos x$; (b) $y = 2 + \sin x$; (c) $y = 4 + \sin x$; (d) $y = 2 - \cos x$. C.
+  The functions $f, g, h$ are related by $f''(x) = g(x+1)$, $g''(x) = h(x-1)$. It follows that $f''''(2x)$
+  equals (a) $h(2x+1)$; (b) $2h''(2x)$; (c) $h(2x)$; (d) $4h(2x)$. D. Which of the following sketches
+  is a graph of $x^4 - y^2 = 2y + 1$? (Four sketches, (a)–(d), on the source sheet.) E. The expression
+  $\frac{d^2}{dx^2}\left[(2x-1)^4(1-x)^5\right] + \frac{d}{dx}\left[(2x+1)^4(3x^2-2)^2\right]$ is a polynomial
+  of degree (a) 9; (b) 8; (c) 7; (d) less than 7. F. Three positive numbers $a, b, c$ satisfy $\log_b
+  a = 2$, $\log_b(c-3) = 3$, $\log_a(c+5) = 2$. This information (a) specifies $a$ uniquely; (b) is satisfied
+  by two values of $a$; (c) is satisfied by infinitely many values of $a$; (d) is contradictory. G. Let
+  $n \geqslant 2$ be an integer and $p_n(x) = (x-1) + (x-2) + \cdots + (x-n)$. What is the remainder when
+  $p_n(x)$ is divided by $p_{n-1}(x)$? (a) $\frac{n}{2}$; (b) $\frac{n+1}{2}$; (c) $\frac{n^2+n}{2}$;
+  (d) $-\frac{n}{2}$. H. The area bounded by the graphs $y = \sqrt{2-x^2}$ and $x + (\sqrt{2}-1)y = \sqrt{2}$
+  equals (a) $\frac{\sin\sqrt{2}}{\sqrt{2}}$; (b) $\frac{\pi}{4} - \frac{1}{\sqrt{2}}$; (c) $\frac{\pi}{2\sqrt{2}}$;
+  (d) $\frac{\pi^2}{6}$. I. The function $F(k)$ is defined for positive integers by $F(1)=1$, $F(2)=1$,
+  $F(3)=-1$ and, for $k \geqslant 2$, $F(2k) = F(k)$, $F(2k+1) = F(k)$. The sum $F(1)+F(2)+\cdots+F(100)$
+  equals (a) $-15$; (b) 28; (c) 64; (d) 81. J. For a real number $x$, $[x]$ denotes the largest integer
+  less than or equal to $x$. Let $n$ be a natural number. The integral $\int_0^n [2^x]\,dx$ equals (a)
+  $\log_2((2^n-1)!)$; (b) $n2^n - \log_2((2^n)!)$; (c) $n2^n$; (d) $\log_2((2^n)!)$, where $k! = 1\times
+  2\times\cdots\times k$. [Transcription note: the source text prints $[2x]$ and $(2n)!$ and $(2n-1)!$,
+  which are dropped exponents; the corrected reading above is the one consistent with the answer.]'
+stages:
+- goal: 'Parts A and B: discriminant of a quadratic and a two-step reflection of a sine graph.'
+  expected: 'A: (a). B: (c), y = 4 + sin x.'
+  solution: 'A: x^2 + ax + a = 1 is x^2 + ax + (a-1) = 0. Discriminant a^2 - 4(a-1) = (a-2)^2, which is
+    positive exactly when a is not 2. B: reflecting in x = pi sends (x, y) to (2pi - x, y), so y = sin
+    x becomes y = sin(2pi - x) = -sin x. Reflecting in y = 2 sends (x, y) to (x, 4 - y), so the new graph
+    is y = 4 - (-sin x) = 4 + sin x.'
+  common_errors:
+  - 'A: using the discriminant a^2 - 4a and forgetting the constant term moved across'
+  - 'A: concluding a > 2 because a bracket was misread as a non-negative quantity'
+  - 'B: reflecting in x = pi as a shift of the graph, not as a mirror image'
+  - 'B: applying the second reflection to the original sine rather than to the first image'
+  hints:
+    rephrase: For A, first rewrite the equation in the form quadratic equals zero. For B, track where
+      one generic point goes under each reflection.
+    smaller_case: For A, pick a specific value of a and test whether the discriminant is zero. For B,
+      follow the point (pi/2, 1) through both reflections.
+    key_idea: Distinct real roots means the discriminant is strictly positive. A reflection in a horizontal
+      line y = c sends y to 2c - y.
+  check: expand((a-2)**2 - (a**2 - 4*(a-1)))
+  check_ok: true
+- goal: 'Parts C and D: chain rule for functions defined by differential relations, and recognising the
+    curve x^4 - y^2 = 2y + 1.'
+  expected: 'C: (c), h(2x). D: the sketch of the two parabolas y = x^2 - 1 (opening up) and y = -x^2 -
+    1 (opening down), which meet only at (0, -1). Identify the letter from the source sheet.'
+  solution: 'C: From f''(x) = g(x+1), differentiate: f''''(x) = g''(x+1). Using g''(x) = h(x-1) with x
+    replaced by x+1 gives g''(x+1) = h(x). So f''''(x) = h(x), hence f''''(2x) = h(2x). D: Complete the
+    square: x^4 = y^2 + 2y + 1 = (y+1)^2, so y + 1 = x^2 or y + 1 = -x^2. The two parabolas are y = x^2
+    - 1 and y = -x^2 - 1, and they touch only at (0, -1). The correct sketch is the one showing exactly
+    these two parabolas.'
+  common_errors:
+  - 'C: writing f''''(x) = g''(x+1) and then h(x+1) by mistake, so the argument is shifted'
+  - 'C: forgetting that f''''(2x) means the second derivative evaluated at 2x, not a derivative of f(2x)'
+  - 'D: taking only one square root, which misses one parabola'
+  - 'D: dropping the sign so y + 1 = x^2 is taken as the only branch'
+  hints:
+    rephrase: For C, differentiate the first relation once more and then substitute the second relation.
+      For D, rearrange the curve so that one side is a perfect square.
+    smaller_case: For D, test x = 0 and x = 1 and see which y values are allowed.
+    key_idea: Track the argument shift from differentiating g(x+1). For D, a square equal to a square
+      gives two branches.
+  check: null
+- goal: 'Parts E and F: degree of an expression built from derivatives, and solving a system of logarithm
+    equations.'
+  expected: 'E: (d), less than 7 (the actual degree is 6, since the x^7 terms cancel). F: (a), a is determined
+    uniquely (a = 4, b = 2, c = 11).'
+  solution: 'E: The x^7 coefficient of the first term is 72 times the x^9 coefficient of (2x-1)^4(1-x)^5,
+    which is -16, giving -1152. The second term has x^8 coefficient 144 in (2x+1)^4(3x^2-2)^2, so its
+    derivative has x^7 coefficient 8 x 144 = 1152. These cancel. For x^6: the first term contributes 56
+    times the x^8 coefficient 112, i.e. 6272; the second term contributes 7 times the x^7 coefficient
+    288, i.e. 2016. Total 8288, which is nonzero, so the degree is 6. F: Let b be the base. Then a = b^2,
+    c - 3 = b^3, and c + 5 = a^2 = b^4. Subtracting gives b^4 - b^3 = 8, i.e. (b-2)(b^3 + b^2 + 2b + 4)
+    = 0. For b > 0 the cubic factor is positive, so b = 2 and a = 4, c = 11. Unique.'
+  common_errors:
+  - 'E: stopping at the cancellation of x^7 and answering 7 rather than checking the next coefficient'
+  - 'E: miscounting the degree of (2x-1)^4(1-x)^5 as 8'
+  - 'F: writing c - 3 = b^2 instead of b^3'
+  - 'F: forgetting to exclude the cubic factor''s non-positive roots, or missing that b must be positive'
+  hints:
+    rephrase: For E, find the leading terms of each piece separately, check whether they cancel, and if
+      so go to the next term. For F, turn each logarithm into a power.
+    smaller_case: For E, work out the x^7 coefficient of each term before combining. For F, first write
+      a in terms of b only.
+    key_idea: For E, look for cancellation between two leading terms. For F, eliminate c using the two
+      expressions for c and then solve a single equation in b.
+  check: null
+- goal: 'Parts G and H: remainder of a polynomial division involving a parameter n, and the area of a
+    circular segment.'
+  expected: 'G: (d), remainder -n/2. H: (b), area pi/4 - 1/sqrt(2).'
+  solution: 'G: p_n(x) = nx - n(n+1)/2 and p_{n-1}(x) = (n-1)x - n(n-1)/2. The quotient is the constant
+    n/(n-1). The remainder is p_n(x) - (n/(n-1)) p_{n-1}(x) = nx - n(n+1)/2 - nx + n^2/2 = -n/2. H: The
+    line meets the circle x^2 + y^2 = 2 at (sqrt2, 0) and (1, 1). The bounded region is the circular segment
+    cut off by the chord between these points, on the upper semicircle. The central angle is pi/4, so
+    the area is (r^2/2)(theta - sin theta) with r^2 = 2, giving pi/4 - sin(pi/4) = pi/4 - 1/sqrt2.'
+  common_errors:
+  - 'G: dividing as if the quotient were a polynomial of x and getting the wrong remainder'
+  - 'G: sign error in the constant term, giving +n/2'
+  - 'H: taking the area under the arc rather than the segment'
+  - 'H: using central angle pi/2 or pi/3 instead of pi/4'
+  hints:
+    rephrase: For G, compare the linear coefficients first and then the constant terms. For H, find where
+      the line meets the circle, then find the central angle that the chord subtends.
+    smaller_case: For G, test n = 2 explicitly. For H, check the point where the line meets the x-axis.
+    key_idea: For G, the remainder is a constant after matching the linear terms. For H, the bounded region
+      is a circular segment, whose area is a sector minus a triangle.
+  check: simplify(n*x - n*(n+1)/2 - (n/(n-1))*((n-1)*x - n*(n-1)/2) - (-n/2))
+  check_ok: true
+- goal: 'Parts I and J: a recursively defined sum, and the integral of a floor function.'
+  expected: 'I: (b), 28. J: (b), n2^n - log_2((2^n)!). (Use the corrected reading of the integrand and
+    the factorial noted in the statement.)'
+  solution: 'I: For k >= 4, F(k) = F(floor(k/2)), and F(3) = -1 is the single exception to F(k) = F(floor(k/2))
+    for k >= 2. So F(k) depends only on the first two binary digits of k: F(k) = 1 if k starts with 10
+    in binary, and F(k) = -1 if it starts with 11, for k >= 2. Then F(1) = 1. Over 2 to 63 the blocks
+    cancel. For 64 to 95 (starting 10 or 11, i.e. the block [64, 96)) the value is +1 on [64, 96), giving
+    +32. For 96 to 100 (starting 11) the value is -1, giving -5. Total: 1 + 32 - 5 = 28. J: On the set
+    where [2^x] = k (k = 1, ..., N with N = 2^n - 1), x lies in [log_2 k, log_2(k+1)). So the integral
+    is the sum over k of k(log_2(k+1) - log_2 k). This telescopes to N log_2(2^n) - log_2(N!) = n(2^n
+    - 1) - log_2((2^n - 1)!). Since (2^n)! = 2^n (2^n - 1)!, this equals n2^n - log_2((2^n)!). Check n
+    = 1: integral 1, option (b) gives 2 - 1 = 1. Check n = 2: integral about 3.415, option (b) gives 8
+    - log_2 24 = 3.415. Options (c) and (d) fail at n = 1 or n = 2.'
+  common_errors:
+  - 'I: ignoring the exception at k = 3 and treating F(3) as F(1)'
+  - 'I: miscounting the block boundaries near 64 and 96'
+  - 'J: reading the integrand literally as [2x], which gives n^2 - n/2 and matches no option'
+  - 'J: dropping the factor 2^n when converting log_2((2^n)!) to a different form'
+  hints:
+    rephrase: For I, find how F behaves on the blocks of integers between consecutive powers of two. For
+      J, find the x-intervals on which the floor takes each integer value.
+    smaller_case: For I, compute F(1) to F(7) by hand. For J, check n = 1 directly.
+    key_idea: For I, F(k) is determined by the leading binary digits of k. For J, the level-set intervals
+      have lengths given by differences of logarithms, which telescope.
+  check: null
+extensions:
+  '3':
+  - 'Part G: find the remainder when p_n(x) is divided by p_{n-2}(x).'
+  '4':
+  - 'Part J: redo the level-set calculation for the integral of the floor of 3^x over [0, n], and state
+    how the answer changes.'
+  '5':
+  - 'Part E: explain why the cancellation of the x^7 terms is not an accident, and find the degree of
+    the expression if the second bracket were (2x+1)^4(3x^2-2)^3.'
+spoken_vocab:
+- a squared
+- x squared
+- discriminant
+- sine x
+- cosine x
+- reflect in the line x equals pi
+- y equals two
+- f double dash
+- g dash
+- h
+- remainder
+- log base b
+- log base a
+- log base two
+- floor of two to the x
+- factorial
+- square root of two
+- pi
+- half disc
+- circular segment
+- parabola
+- binary digits
+- telescoping sum
+source: mat/2013 MAT done again.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 5
+  parts: 10
+  minutes: 20
+  flags:
+  - garbled
+  - missing_info
+  tagline: Truncated text and missing sketches; MCQ format poor for interviews.
+  priority: 18
+  rank: 667
+  tier: D
+  category: mat
+  d10: 3.5
+  real: 3.0
+  by: haiku
+tags:
+- algebra_and_functions
+- differentiation
+- curve_sketching

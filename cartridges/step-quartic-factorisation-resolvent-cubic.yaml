@@ -1,0 +1,135 @@
+id: step-quartic-factorisation-resolvent-cubic
+title: Quartic factorisation and the resolvent cubic
+topics:
+- algebra
+- polynomials
+- factorisation
+- complex roots
+- resolvent cubic
+warmup: false
+answer_source: pdf
+statement: Given that $x^4 + px^2 + qx + r \equiv (x^2 - ax + b)(x^2 + ax + c)$, express $p$, $q$ and
+  $r$ in terms of $a$, $b$ and $c$. Show that $a^2$ is a root of the cubic equation $u^3 + 2pu^2 + (p^2
+  - 4r)u - q^2 = 0$. Verify that $u = 9$ is a root in the case $p = -1$, $q = -6$, $r = 15$. Hence, or
+  otherwise, solve the equation $y^4 - 8y^3 + 23y^2 - 34y + 39 = 0$.
+stages:
+- goal: Expand the product and match coefficients to find $p$, $q$, $r$ in terms of $a$, $b$, $c$.
+  expected: $p = b + c - a^2$, $q = a(b - c)$, $r = bc$
+  solution: Expand $(x^2 - ax + b)(x^2 + ax + c) = x^4 + ax^3 + cx^2 - ax^3 - a^2x^2 - acx + bx^2 + abx
+    + bc$. The $x^3$ terms cancel. Collecting gives $x^4 + (b + c - a^2)x^2 + a(b - c)x + bc$. Comparing
+    with $x^4 + px^2 + qx + r$ gives the result.
+  common_errors:
+  - Leaving an $x^3$ term in, or failing to notice that it cancels.
+  - Sign slip giving $q = a(c - b)$ instead of $a(b - c)$.
+  - Getting the $x^2$ coefficient as $b + c + a^2$.
+  hints:
+    rephrase: Multiply out the two brackets term by term and group the terms by powers of $x$.
+    smaller_case: Set $a = 0$ first. What do the two brackets become, and what does the product look like?
+    key_idea: Two polynomials are identically equal exactly when every coefficient matches.
+  check: expand((x**2 - a*x + b)*(x**2 + a*x + c) - (x**4 + (b + c - a**2)*x**2 + a*(b - c)*x + b*c))
+  check_ok: true
+- goal: Show that $a^2$ is a root of the cubic.
+  expected: Substituting $u = a^2$ gives $a^6 + 2pa^4 + (p^2 - 4r)a^2 - q^2 = 0$, which holds identically
+    once $p$, $q$, $r$ are replaced by their values from stage 1.
+  solution: 'Put $u = a^2$ in the cubic: $a^6 + 2pa^4 + (p^2 - 4r)a^2 - q^2$. Use $p = b + c - a^2$, $q
+    = a(b-c)$, $r = bc$. Expanding: $a^6 + 2(b+c)a^4 - 2a^6 + a^2(b-c)^2 - 2a^4(b+c) + a^6 - a^2(b-c)^2
+    = 0$. Equivalently, dividing by $a^2$ gives $(a^2 + p)^2 = q^2/a^2 + 4r$, i.e. $(b+c)^2 = (b-c)^2
+    + 4bc$, which is an identity. The case $a = 0$ also works: then $q = 0$ and $u = 0$ gives $-q^2 =
+    0$.'
+  common_errors:
+  - Substituting $u = a^2$ but mishandling $(a^2)^2 = a^4$ or $(a^2)^3 = a^6$.
+  - Treating the identity $(b+c)^2 = (b-c)^2 + 4bc$ as a hypothesis rather than an algebraic identity.
+  - Forgetting the $a = 0$ case when dividing by $a^2$.
+  hints:
+    rephrase: Substitute $u = a^2$ into every term of the cubic and simplify using the expressions from
+      the previous stage.
+    smaller_case: 'Check the case $a = 0$ separately: what do $q$ and the cubic reduce to?'
+    key_idea: The quantity $a^2 + p$ combines $b$ and $c$ symmetrically, and $(b+c)^2 - (b-c)^2 = 4bc$
+      links it to $q$ and $r$.
+  check: expand((a**2)**3 + 2*(b + c - a**2)*(a**2)**2 + ((b + c - a**2)**2 - 4*b*c)*a**2 - (a*(b - c))**2)
+  check_ok: true
+- goal: Verify that $u = 9$ is a root of the cubic when $p = -1$, $q = -6$, $r = 15$.
+  expected: The cubic evaluates to $0$ at $u = 9$, since $729 - 162 - 531 - 36 = 0$.
+  solution: 'With $p = -1$, $q = -6$, $r = 15$, the cubic is $u^3 - 2u^2 + (1 - 60)u - 36 = u^3 - 2u^2
+    - 59u - 36$. At $u = 9$: $729 - 162 - 531 - 36 = 0$. So $u = 9$ is a root.'
+  common_errors:
+  - Using $p^2 - 4r = 1 + 60$ (sign error on $4r$).
+  - Using $-q^2 = +36$ instead of $-36$.
+  - Arithmetic slips in $9^3$ or $2 \cdot 9^2$.
+  hints:
+    rephrase: Substitute $u = 9$ and the given $p$, $q$, $r$ into the cubic term by term.
+    smaller_case: Evaluate the term $u^3$ alone first, then the term $2pu^2$, and so on.
+    key_idea: This is direct substitution. Be careful with signs when $p$ and $q$ are negative and $r$
+      is positive.
+  check: 9**3 + 2*(-1)*9**2 + ((-1)**2 - 4*15)*9 - (-6)**2
+  check_ok: true
+- goal: Solve $y^4 - 8y^3 + 23y^2 - 34y + 39 = 0$ using the earlier results.
+  expected: $y = \frac{7 \pm i\sqrt{3}}{2}$ or $y = \frac{1 \pm i\sqrt{11}}{2}$
+  solution: Put $y = x + 2$. Then $x^4 - x^2 - 6x + 15 = 0$, which has $p = -1$, $q = -6$, $r = 15$. Since
+    $u = 9$ is a root, take $a = 3$. Then $b + c = p + a^2 = 8$ and $b - c = q/a = -2$, so $b = 3$ and
+    $c = 5$, and $bc = 15$ checks. Hence $x^4 - x^2 - 6x + 15 = (x^2 - 3x + 3)(x^2 + 3x + 5)$. The first
+    factor gives $x = \frac{3 \pm i\sqrt{3}}{2}$ and the second gives $x = \frac{-3 \pm i\sqrt{11}}{2}$.
+    Adding $2$ gives the values of $y$.
+  common_errors:
+  - Substituting $y = x - 2$ (wrong direction), which gives a different quartic.
+  - Choosing $b$ and $c$ inconsistently with $b + c$ and $b - c$.
+  - Forgetting to add $2$ back when converting from $x$ to $y$.
+  - Using $x = \frac{-3 \pm i\sqrt{11}}{2}$ with the wrong discriminant, such as $9 - 20$ miscalculated.
+  hints:
+    rephrase: Remove the cubic term by a shift of the variable, then use the root $u = 9$ to choose the
+      factorisation.
+    smaller_case: Find the shift that removes the $y^3$ term first, and check the resulting coefficients.
+    key_idea: The root $u = 9$ gives a candidate value for $a$. The relations $b + c = p + a^2$ and $b
+      - c = q/a$ then determine $b$ and $c$.
+  check: expand((y**2 - 7*y + 13)*(y**2 - y + 3) - (y**4 - 8*y**3 + 23*y**2 - 34*y + 39))
+  check_ok: true
+extensions:
+  '3':
+  - Explain why the cubic in $u$ always has at least one real root.
+  - Show that if $a = 0$ then $q = 0$, and that the factorisation then has the form $(x^2 + b)(x^2 + c)$.
+  '4':
+  - Solve $x^4 - 2x^2 + 9 = 0$ by the same method. The roots are $\pm\sqrt{2} \pm i$.
+  '5':
+  - Show that the four roots of $x^4 + px^2 + qx + r = 0$ sum to zero, and find the sum of their pairwise
+    products in terms of $p$.
+spoken_vocab:
+- x to the power of four
+- p x squared
+- q x
+- r
+- a
+- b
+- c
+- identically equal to
+- u cubed
+- u squared
+- y to the power of four
+- minus eight y cubed
+- plus twenty three y squared
+- minus thirty four y
+- plus thirty nine
+- square root of three
+- square root of eleven
+- i
+- open bracket
+- close bracket
+- resolvent cubic
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#15
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 4
+  minutes: 20
+  flags: []
+  tagline: Resolvent cubic emerges from factorisation; shift-to-solve closes it neatly with exact roots.
+  priority: 82
+  rank: 187
+  tier: B
+  category: siklos
+  d10: 6.0
+  real: 4.0
+  by: haiku
+tags:
+- roots_of_polynomials
+- algebra_and_functions

@@ -1,0 +1,81 @@
+id: meera-compound-interest
+title: Meera's compound interest
+topics:
+- compound interest
+- percentages
+- growth factor
+warmup: true
+answer_source: pdf
+statement: Meera invests £2500 in an account paying 4% compound interest per year. How much interest has
+  she earned after two years?
+stages:
+- goal: Find the amount in the account after two years.
+  expected: £2704
+  solution: Each year the balance is multiplied by 1.04, so after two years it is 2500 × 1.04² = 2500
+    × 1.0816 = 2704.
+  common_errors:
+  - Using simple interest (2500 × 0.04 × 2 = 200) instead of compound interest.
+  - Multiplying by 1.08 (adding 4% twice) rather than compounding 1.04 twice.
+  - Applying 4% only once.
+  hints:
+    rephrase: Each year the balance grows by a fixed percentage of the balance at the start of that year.
+      What happens to the balance over two separate years?
+    smaller_case: What is the balance after just one year?
+    key_idea: A percentage increase can be written as a single multiplier. Applying the same multiplier
+      once per year gives the growth over several years.
+  check: 2500*(1+Rational(4,100))**2 - 2704
+  check_ok: true
+- goal: State the interest Meera has earned.
+  expected: £204
+  solution: Interest earned = amount after two years − original investment = 2704 − 2500 = 204.
+  common_errors:
+  - Giving the final amount (£2704) instead of the interest earned.
+  - Subtracting the wrong numbers, for example using the one-year amount.
+  hints:
+    rephrase: Interest earned is the difference between what Meera now has and what she started with.
+    smaller_case: If you invested £100 and ended with £110, how much interest would you have earned?
+    key_idea: Interest earned is the final amount minus the original principal.
+  check: 2704 - 2500 - 204
+  check_ok: true
+extensions:
+  '3':
+  - Starting from £2500 at 4% compound interest per year, how many whole years does it take for the balance
+    to exceed £5000?
+  '4':
+  - Instead of annual compounding, the 4% is compounded monthly at 4%/12 per month. What is the amount
+    after two years, to the nearest penny?
+  '5':
+  - Find the single annual rate that gives the same two-year return as 4% compounded monthly.
+spoken_vocab:
+- pounds
+- two thousand five hundred pounds
+- four per cent
+- compound interest
+- two years
+- 2500 times 1.04 squared
+- '2704'
+- interest earned
+- 2704 minus 2500
+- '204'
+- growth factor
+- principal
+- monthly
+source: kclms/kclms-specimen-questions-4.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 1
+  parts: 2
+  minutes: 2
+  flags:
+  - trivial
+  tagline: Routine compound-interest arithmetic with little scope for discussion.
+  priority: 17
+  rank: 687
+  tier: D
+  category: kclms
+  d10: 1.0
+  real: 2.0
+  by: haiku
+tags:
+- sequences_and_series

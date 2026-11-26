@@ -1,0 +1,107 @@
+id: reciprocal-product-subset-sum
+title: Sum of reciprocal products over subsets of 1..n
+topics:
+- subsets
+- telescoping products
+- induction
+- sums
+warmup: false
+answer_source: generated
+statement: For each non-empty subset of integers $(1, 2, 3, \ldots, n)$ consider the reciprocal of the
+  product of the elements. Let $S_n$ denote the sum of these products. Conjecture and prove a formula
+  for $S_n$.
+stages:
+- goal: Compute S_1, S_2 and S_3 by listing the subsets.
+  expected: S_1 = 1, S_2 = 2, S_3 = 3.
+  solution: For n = 1 the only subset is {1}, giving 1. For n = 2 the subsets are {1}, {2}, {1,2} with
+    values 1, 1/2, 1/2, summing to 2. For n = 3 the subsets are {1}, {2}, {3}, {1,2}, {1,3}, {2,3}, {1,2,3}
+    with values 1, 1/2, 1/3, 1/2, 1/3, 1/6, 1/6, summing to 3.
+  common_errors:
+  - Including the empty subset, which makes the sum off by one
+  - Miscalculating reciprocals such as 1/(2*3)
+  - Forgetting some subsets when n = 3
+  hints:
+    rephrase: List the subsets systematically by size, and write the reciprocal of each product.
+    smaller_case: Start with n = 1 and then add the new element for n = 2.
+    key_idea: Each new element n doubles the number of subsets, with the new ones formed by adding n to
+      each old subset.
+  check: 1 + Rational(1,2) + Rational(1,3) + Rational(1,2) + Rational(1,3) + Rational(1,6) + Rational(1,6)
+    - 3
+  check_ok: true
+- goal: Find a recurrence linking S_n to S_{n-1} by splitting subsets according to whether they contain
+    n.
+  expected: S_n = S_{n-1} + (S_{n-1} + 1)/n.
+  solution: Subsets of {1,...,n} not containing n contribute S_{n-1}. Subsets containing n are of the
+    form A union {n} with A any subset of {1,...,n-1}, including the empty set. Their reciprocal products
+    sum to (1/n) times the sum over all such A, which is (S_{n-1} + 1)/n, where the +1 accounts for the
+    empty set.
+  common_errors:
+  - Forgetting to include the empty set when forming subsets that contain n
+  - Writing (S_{n-1})/n instead of (S_{n-1} + 1)/n
+  hints:
+    rephrase: Split the subsets into two groups, those containing n and those that do not. For the group
+      containing n, what does removing n leave you with?
+    smaller_case: 'Use the n = 2 case: which subsets contain 2, and what do they reduce to after removing
+      2?'
+    key_idea: A subset containing n is the subset you get by removing n, plus n itself, and the empty
+      set is allowed after removing n.
+- goal: Conjecture a closed form for S_n and prove it by induction.
+  expected: 'S_n = n. Base case S_1 = 1. Induction step: S_n = (n-1) + ((n-1) + 1)/n = n.'
+  solution: The values 1, 2, 3 suggest S_n = n. Assume S_{n-1} = n - 1. Then S_n = (n-1) + ((n-1)+1)/n
+    = (n-1) + 1 = n, which completes the induction. An alternative is to note that the product over k
+    from 1 to n of (1 + 1/k) telescopes to n + 1, and subtracting the empty set's contribution of 1 gives
+    S_n = n.
+  common_errors:
+  - Assuming the formula without checking the induction step
+  - Dropping the +1 for the empty set in the recurrence
+  - Algebra slips when simplifying (n-1) + n/n
+  hints:
+    rephrase: Guess the formula from small values, then substitute the inductive hypothesis into the recurrence
+      and simplify.
+    smaller_case: Substitute S_2 = 2 into the recurrence and check that you get S_3 = 3.
+    key_idea: 'Consider the product of (1 + 1/k) over k from 1 to n: expanding it counts every subset,
+      including the empty set.'
+  check: simplify((n - 1) + ((n - 1) + 1)/n - n)
+  check_ok: true
+extensions:
+  '3':
+  - Find the sum over non-empty subsets A of {1,...,n} of (-1)^(|A|+1) divided by the product of the elements
+    of A.
+  '4':
+  - Show that the sum over non-empty subsets of {2,...,n} of the reciprocal product equals (n - 1)/2.
+  '5':
+  - Find the sum over non-empty subsets A of {1,...,n} of |A| divided by the product of the elements of
+    A, where |A| is the size of A.
+spoken_vocab:
+- subset
+- non-empty subset
+- reciprocal
+- product of the elements
+- S sub n
+- sum
+- one over k
+- empty set
+- induction
+- base case
+- inductive step
+- telescoping product
+- one plus one over k
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 5
+  parts: 3
+  minutes: 20
+  flags: []
+  tagline: Elegant closed form S_n=n; rich conjecture-and-induction path.
+  priority: 91
+  rank: 109
+  tier: A
+  category: tbo
+  d10: 5.5
+  real: 7.0
+  by: haiku
+tags:
+- proof
+- combinatorics

@@ -1,0 +1,104 @@
+id: snow-plow-start-time
+title: When did the snow start falling?
+topics:
+- differential equations
+- rates
+- modelling
+- logarithms
+- quadratic equations
+warmup: false
+answer_source: pdf
+statement: The snow began to fall some time before noon at a constant rate. A snow plow was sent out at
+  noon to clear a road. The plow removed snow at a constant volume per minute. At 1 pm it had moved 2
+  miles, and at 2 pm it had moved 3 miles. When did the snow begin to fall?
+stages:
+- goal: Model the plow's speed as a function of time, using constant snowfall and a constant removal rate.
+  expected: $v(t)=\frac{A}{t+T}$, where $t$ is hours after noon, $T$ is hours before noon that the snow
+    began, and $A$ is a constant.
+  solution: Let the snowfall rate be $c$. The snow depth at time $t$ is $c(t+T)$. If the plow clears width
+    $w$ and removes volume at constant rate $k$, then $k=w\,c\,(t+T)\,v$. So $v=\frac{k}{wc(t+T)}=\frac{A}{t+T}$
+    with $A=\frac{k}{wc}$.
+  common_errors:
+  - Assuming the plow moves at constant speed
+  - Treating the snow depth as constant instead of growing with time
+  - Measuring time from the snowfall start rather than from noon
+  hints:
+    rephrase: If the plow removes a fixed volume per hour, what must happen to its speed when the snow
+      is deeper?
+    smaller_case: 'Consider a single instant: how deep is the snow then, and how fast can the plow go?'
+    key_idea: Depth grows linearly with time since the snow started and the removal rate is fixed, so
+      speed is inversely proportional to depth.
+  check: sp.simplify(ans - A/(t+T))
+  check_ok: null
+- goal: Use the two distance conditions to eliminate the constant $A$ and obtain an equation for $T$.
+  expected: $T^2+T-1=0$, or an equivalent scaled form.
+  solution: Distance from noon is $x(t)=A\ln\frac{t+T}{T}$. The conditions are $A\ln\frac{1+T}{T}=2$ and
+    $A\ln\frac{2+T}{T}=3$. Dividing gives $\ln\frac{2+T}{T}=\frac32\ln\frac{1+T}{T}$, so $\frac{2+T}{T}=\left(\frac{1+T}{T}\right)^{3/2}$.
+    Let $u=\frac1T$, so $1+2u=(1+u)^{3/2}$. Squaring gives $(1+2u)^2=(1+u)^3$, i.e. $u^3-u^2-u=0$. Since
+    $u\ne0$, $u^2-u-1=0$. Substituting $u=1/T$ and multiplying by $T^2$ gives $1-T-T^2=0$, i.e. $T^2+T-1=0$.
+  common_errors:
+  - Dividing distances instead of their logarithms
+  - Forgetting that squaring can introduce extraneous roots
+  - Integrating $\frac{1}{t+T}$ incorrectly to get the distance function
+  hints:
+    rephrase: You have two distance conditions and one unknown constant. How can you eliminate that constant?
+    smaller_case: Write the distance from noon to 1 pm in terms of a logarithm, ignoring the constant
+      for the moment.
+    key_idea: Integrate the speed model from noon, then divide one distance equation by the other so that
+      $A$ cancels.
+  check: sp.simplify(sp.Poly(ans, T).monic().as_expr() - (T**2 + T - 1))
+  check_ok: null
+- goal: Solve for $T$ and convert the result to clock time.
+  expected: $T=\frac{\sqrt5-1}{2}\approx0.618$ hours, about 37 minutes before noon, so around 11:23 am.
+  solution: The positive root of $T^2+T-1=0$ is $T=\frac{-1+\sqrt5}{2}=\frac{\sqrt5-1}{2}$. Since $60\times0.618\approx37$
+    minutes, the snow began about 37 minutes before noon, around 11:23 am.
+  common_errors:
+  - Choosing the negative root
+  - Converting hours to minutes incorrectly
+  - Reporting the start time as after noon
+  hints:
+    rephrase: Solve the quadratic, then keep only the root that makes physical sense.
+    smaller_case: Check the sign of each root before converting anything.
+    key_idea: A time before noon is a positive offset, so choose the root that gives a positive $T$.
+  check: sp.simplify(ans - (sp.sqrt(5)-1)/2)
+  check_ok: null
+extensions:
+  '3':
+  - If the plow instead removed snow at a constant speed, would the start time change? Explain why or
+    why not.
+  '4':
+  - Suppose the plow reached $d$ miles at 2 pm instead of 3. For which values of $d$ does a valid start
+    time exist?
+  '5':
+  - Derive the distance formula when the snowfall rate itself increases linearly in time.
+spoken_vocab:
+- snow
+- noon
+- plow
+- constant rate
+- one pm
+- two pm
+- two miles
+- three miles
+- T squared plus T minus one
+- square root of five minus one over two
+- eleven twenty three am
+source: zhou-quant/zhou-quant-guide.pdf#2
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Modelling snowfall as ln-distance gives a transcendental equation; rich discussion.
+  priority: 91
+  rank: 102
+  tier: A
+  category: zhou-quant
+  d10: 6.0
+  real: 6.5
+  by: haiku
+tags:
+- differential_equations
+- integration

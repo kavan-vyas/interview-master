@@ -1,0 +1,108 @@
+id: envelope-of-gaussian-family
+title: The Envelope of the Gaussian Family
+topics:
+- curve sketching
+- exponential functions
+- differentiation
+- envelopes
+- parameter families
+warmup: false
+answer_source: generated
+statement: Sketch $y=e^{-x^2}$. Now sketch $y=2e^{-4x^2}$. More generally, consider $y=me^{-m^2x^2}$.
+  Sketch the curves for different positive values of $m$. Is there a curve which bounds all of these curves?
+  How could you find it?
+stages:
+- goal: For a fixed x > 0, find the value of m that makes y = m e^{-m²x²} as large as possible.
+  expected: m = 1/(√2 x). At this value, the derivative with respect to m is zero.
+  solution: 'Differentiate with respect to m: dy/dm = e^{-m²x²}(1 − 2m²x²). This is zero when m²x² = 1/2,
+    so m = 1/(√2 x) for x > 0. The second-derivative test or the sign of dy/dm shows this is a maximum.'
+  common_errors:
+  - Differentiating with respect to x instead of m.
+  - Forgetting the product rule and dropping the factor m.
+  - Solving 1 − 2m²x² = 0 incorrectly as m = 1/(2x).
+  hints:
+    rephrase: Treat x as a fixed number and the curve parameter m as the variable. For which m is y largest?
+    smaller_case: Fix x = 1. Compare y at m = 0.5, m = 0.7 and m = 1.
+    key_idea: Differentiate with respect to the parameter m, and use the product rule because m appears
+      twice.
+  check: simplify(diff(m*exp(-m**2*x**2), m).subs(m, 1/(sqrt(2)*x)))
+  check_ok: true
+- goal: Find the curve that bounds all members of the family, and state its equation.
+  expected: y = e^{-1/2}/(√2 x) = 1/(√(2e) x) for x > 0. By symmetry, y = 1/(√(2e)|x|) for x ≠ 0.
+  solution: Substitute m = 1/(√2 x) from stage 1 into y = m e^{-m²x²}. This gives y = (1/(√2 x)) e^{-1/2}
+    = 1/(√(2e) x) for x > 0, and the same expression with |x| in general. This is the envelope of the
+    family.
+  common_errors:
+  - Taking the bounding curve to be y = 1, which only bounds the first curve.
+  - Writing e^{1/2} instead of e^{-1/2}.
+  - Forgetting the modulus |x| and so missing the branch for negative x.
+  hints:
+    rephrase: Substitute the best value of m from the previous step back into the equation for y. What
+      do you get as a function of x alone?
+    smaller_case: Put x = 1 into the best-m formula and then into y. Does the resulting value look like
+      a maximum you can sketch?
+    key_idea: The envelope is found by taking, for each x, the maximum of the family over the parameter
+      m.
+  check: simplify(exp(-Rational(1,2))/(sqrt(2)*x) - 1/(sqrt(2*E)*x))
+  check_ok: true
+- goal: Show that the envelope touches each curve in the family and lies above all of them.
+  expected: The curve with parameter m touches the envelope at x = 1/(√2 m), where both have height m
+    e^{-1/2}. Every curve lies on or below the envelope.
+  solution: At x₀ = 1/(√2 m), the curve has y = m e^{-m²x₀²} = m e^{-1/2}. The envelope at x₀ is e^{-1/2}/(√2
+    x₀) = m e^{-1/2}. They agree. For any fixed x, the maximum of the family over m is the envelope value,
+    so no curve exceeds it.
+  common_errors:
+  - Saying the curves cross the envelope rather than touching it.
+  - Checking only one curve and not arguing for all m.
+  - Using the wrong tangency point, such as x = 1/m.
+  hints:
+    rephrase: For a fixed x, which member of the family is highest? Where does that member meet the envelope?
+    smaller_case: At x = 1/2, compare the heights of the curves with m = 1 and m = 2.
+    key_idea: Maximising over the parameter for each fixed x gives the envelope; each curve touches it
+      where the maximising condition holds.
+  check: simplify(m*exp(-m**2*(1/(sqrt(2)*m))**2) - exp(-Rational(1,2))/(sqrt(2)*(1/(sqrt(2)*m))))
+  check_ok: true
+extensions:
+  '3':
+  - Find the envelope of the family of straight lines y = mx − m² as m varies.
+  '4':
+  - Show that the area under each curve y = m e^{-m²x²} over all real x is independent of m, and interpret
+    this in terms of the shape of the curves.
+  '5':
+  - For a family F(x, y, m) = 0, the envelope satisfies both F = 0 and ∂F/∂m = 0. Apply this to F = y
+    − mx + m² to recover the envelope from the previous extension.
+spoken_vocab:
+- e to the power minus x squared
+- e to the power minus m squared x squared
+- two e to the power minus four x squared
+- envelope
+- parameter m
+- derivative with respect to m
+- product rule
+- square root of two
+- e to the power minus a half
+- modulus of x
+- touches
+- bounding curve
+- maximum
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 8 (anonymous).pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 3
+  minutes: 20
+  flags:
+  - needs_diagram
+  tagline: Maximising over the parameter gives a hyperbolic envelope, rich for discussion.
+  priority: 83
+  rank: 178
+  tier: B
+  category: past-interviews
+  d10: 6.8
+  real: 8.0
+  by: deepseek-v4.1-flash-free
+tags:
+- curve_sketching
+- differentiation
+- exponentials_and_logarithms

@@ -1,0 +1,95 @@
+id: die-race-first-six
+title: 'Die race: first to roll a six'
+topics:
+- probability
+- geometric series
+- limits
+warmup: false
+answer_source: generated
+statement: Two players take turns rolling a fair six-sided die, Player 1 rolling first. The first player
+  to roll a 6 wins. (a) Find the probability that Player 1 wins. (b) Generalise to an $n$-sided die. Does
+  your formula tend to a sensible limit as $n\to\infty$?
+stages:
+- goal: Find $P(\text{Player 1 wins})$ for a six-sided die.
+  expected: $\frac{6}{11}$
+  solution: Player 1 wins on his $k$-th roll if both players fail on all earlier rounds and Player 1 rolls
+    a six on round $k$. Each full round has both players failing with probability $(5/6)^2=25/36$. So
+    $P=\sum_{k\ge1}(25/36)^{k-1}(1/6)=\frac{1/6}{1-25/36}=\frac{6}{11}$.
+  common_errors:
+  - Using $\frac{1/6}{1-5/6}$, which forgets that Player 2 must also fail.
+  - Adding probabilities of Player 1 winning on each round without accounting for the earlier failures.
+  - Getting $1/2$ by symmetry, forgetting that Player 1 moves first.
+  hints:
+    rephrase: Think about which round the first six appears in and which player rolls it.
+    smaller_case: Use a two-sided die where each face has probability 1/2. Does your reasoning give a
+      sensible answer there?
+    key_idea: Each complete round, both players must fail. Count the rounds to get a geometric series.
+  check: Rational(6,11) - Rational(1,6)/(1-Rational(25,36))
+  check_ok: true
+- goal: Generalise to an $n$-sided die and give $P(\text{Player 1 wins})$ as a formula in $n$.
+  expected: $\frac{n}{2n-1}$
+  solution: 'Success probability per roll is $p=1/n$, failure $q=(n-1)/n$. By the same geometric series,
+    $P=\frac{p}{1-q^2}=\frac{1/n}{1-(n-1)^2/n^2}=\frac{n}{n^2-(n-1)^2}=\frac{n}{2n-1}$. Check: $n=6$ gives
+    $6/11$.'
+  common_errors:
+  - Writing $1-q^2$ as $1-q$.
+  - Algebra slip in $n^2-(n-1)^2$, e.g. getting $n^2-n+1$.
+  - Forgetting to multiply $1/n$ by $n^2$ when simplifying.
+  hints:
+    rephrase: Name the success and failure probabilities per roll, then reuse your part (a) structure.
+    smaller_case: Set $n=2$ and check that your formula gives a number between 0 and 1.
+    key_idea: The per-round structure is unchanged. Only the success probability depends on $n$.
+  check: '(lambda n: simplify(n/(2*n-1) - (1/n)/(1-((n-1)/n)**2)))(Symbol(''n''))'
+  check_ok: null
+- goal: Find $\lim_{n\to\infty}\frac{n}{2n-1}$ and say whether it is sensible.
+  expected: '$\frac{1}{2}$, which is sensible: with very many faces the two players are almost equally
+    likely to win.'
+  solution: $\frac{n}{2n-1}=\frac{1}{2-1/n}\to\frac{1}{2}$. As $n$ grows, the first roller's advantage
+    fades, so the game tends toward a fair race. Equivalently, $P(T_1\le T_2)\to\frac12$ for i.i.d. geometric
+    times with vanishing success probability.
+  common_errors:
+  - Concluding the limit is 1 because Player 1 always goes first.
+  - Forgetting to divide numerator and denominator by $n$.
+  - Claiming the limit is 0 because the game gets longer.
+  hints:
+    rephrase: Divide the top and bottom by $n$ and ask what happens to $1/n$.
+    smaller_case: Compute the value for $n=100$ and $n=1000$ and see the trend.
+    key_idea: As $n$ grows, the first-mover advantage becomes a vanishing term in the denominator.
+  check: '(lambda n: limit(n/(2*n-1), n, oo) - Rational(1,2))(Symbol(''n''))'
+  check_ok: null
+extensions:
+  '3':
+  - Find $P(\text{Player 2 wins})$ for an $n$-sided die and check that it sums with part (b) to 1.
+  '4':
+  - Replace the fair die by a die with success probability $p$ per roll. Find $P(\text{Player 1 wins})$
+    for general $p$.
+  '5':
+  - Compare the discrete limit with a continuous-time race between two independent exponential clocks.
+spoken_vocab:
+- probability Player 1 wins
+- six-sided die
+- n-sided die
+- geometric series
+- one minus q squared
+- limit as n tends to infinity
+- one half
+- fair die
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 4
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Geometric series with a clean limit; invites discussion of unfair dice and who moves first.
+  priority: 81
+  rank: 243
+  tier: B
+  category: juan
+  d10: 4.5
+  real: 8.5
+  by: deepseek-v4.1-flash-free
+tags:
+- probability
+- sequences_and_series

@@ -1,0 +1,96 @@
+id: leeds-house-prices-two-period-growth
+title: 'Leeds house prices: combining percentage rises across two periods'
+topics:
+- percentages
+- multipliers
+- compound change
+warmup: false
+answer_source: pdf
+statement: From January 1st 2005 until January 1st 2014, average house prices in Leeds rose by 80%. From
+  January 1st 2005 until January 1st 2008, average house prices in Leeds rose by 25%. By what percentage
+  did average house prices in Leeds rise from January 1st 2008 until January 1st 2014?
+stages:
+- goal: Convert the overall 2005 to 2014 rise of 80% into a multiplier applied to the 2005 price.
+  expected: '1.8'
+  solution: A rise of 80% multiplies the price by 1 + 0.8 = 1.8.
+  common_errors:
+  - Using 0.8 as the multiplier instead of 1.8
+  - Treating 80% as multiplying by 0.8 (a fall)
+  hints:
+    rephrase: If a price rises by some percentage, what number do you multiply the old price by to get
+      the new price?
+    smaller_case: A price of 50 rises by 20%. What is the new price, and what single number multiplied
+      by 50 gives it?
+    key_idea: A rise of p% corresponds to a multiplier of 1 + p/100, and multipliers over consecutive
+      periods combine by multiplication.
+  check: Rational(18,10)-Rational(9,5)
+  check_ok: true
+- goal: Find the multiplier for the period January 2008 to January 2014.
+  expected: '1.44'
+  solution: 'The multipliers for consecutive periods multiply: 1.8 = 1.25 × m, so m = 1.8 ÷ 1.25 = 1.44
+    (since 1.25 × 1.44 = 1.8).'
+  common_errors:
+  - Subtracting to get 1.8 - 1.25 = 0.55
+  - Dividing in the wrong order (1.25 ÷ 1.8)
+  - Adding the percentages (80% - 25% = 55%)
+  hints:
+    rephrase: Growth over consecutive periods multiplies. What multiplier, applied after the 2005 to 2008
+      multiplier, gives the overall 2005 to 2014 multiplier?
+    smaller_case: A price goes from 100 to 200, then from 200 to 300. What multiplier takes 200 to 300?
+    key_idea: The overall multiplier equals the product of the sub-period multipliers, so the unknown
+      one is found by division.
+  check: Rational(18,10)/Rational(125,100)-Rational(144,100)
+  check_ok: true
+- goal: State the percentage rise from January 2008 to January 2014.
+  expected: 44%
+  solution: A multiplier of 1.44 means the price increases by 0.44 of its value, which is a 44% rise.
+  common_errors:
+  - Answering 1.44% (quoting the multiplier as a percentage)
+  - Answering 55% (subtracting the percentages)
+  hints:
+    rephrase: If a multiplier is m, what percentage change does it represent?
+    smaller_case: A multiplier of 1.3 represents what percentage change?
+    key_idea: Percentage change equals (multiplier - 1) × 100%.
+  check: Rational(144,100)-1-Rational(44,100)
+  check_ok: true
+extensions:
+  '3':
+  - If the 2005 to 2008 rise had been 40% instead of 25%, what rise from 2008 to 2014 would still give
+    80% overall? Give your answer to one decimal place.
+  '4':
+  - Explain why a 25% rise followed by a 44% rise is not the same as a single 69% rise.
+  '5':
+  - Derive the combined effect of successive percentage rises p% then q%, and use it to check the 2005
+    to 2014 figures in this question.
+spoken_vocab:
+- eighty percent
+- twenty five percent
+- forty four percent
+- one point eight
+- one point two five
+- one point four four
+- divided by
+- times
+- two thousand and five
+- two thousand and eight
+- two thousand and fourteen
+- multiplier
+- percentage rise
+source: kclms/kclms-specimen-questions-2.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 2
+  parts: 3
+  minutes: 5
+  flags: []
+  tagline: Compounding percentages across periods; a common trap, but a short routine calculation.
+  priority: 41
+  rank: 576
+  tier: D
+  category: kclms
+  d10: 2.0
+  real: 2.5
+  by: haiku
+tags:
+- algebra_and_functions

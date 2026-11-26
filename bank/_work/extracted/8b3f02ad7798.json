@@ -1,0 +1,51 @@
+[
+ {
+  "q": "Question 1 (multiple choice, ten parts A\u2013J). For each part, choose the correct answer from (a)\u2013(d). A. For what values of the real number $a$ does the quadratic equation $x^2 + ax + a = 1$ have distinct real roots? (a) $a \\neq 2$; (b) $a > 2$; (c) $a = 2$; (d) all values of $a$. B. The graph of $y = \\sin x$ is reflected first in the line $x = \\pi$ and then in the line $y = 2$. The resulting graph has equation (a) $y = \\cos x$; (b) $y = 2 + \\sin x$; (c) $y = 4 + \\sin x$; (d) $y = 2 - \\cos x$. C. The functions $f, g, h$ are related by $f'(x) = g(x+1)$, $g'(x) = h(x-1)$. It follows that $f''(2x)$ equals (a) $h(2x+1)$; (b) $2h'(2x)$; (c) $h(2x)$; (d) $4h(2x)$. D. Which of the following sketches is a graph of $x^4 - y^2 = 2y + 1$? (Four sketches, (a)\u2013(d).) E. The expression $\\frac{d^2}{dx^2}\\left[(2x-1)^4(1-x)^5\\right] + \\frac{d}{dx}\\left[(2x+1)^4(3x^2-2)^2\\right]$ is a polynomial of degree (a) 9; (b) 8; (c) 7; (d) less than 7. F. Three positive numbers $a, b, c$ satisfy $\\log_b a = 2$, $\\log_b(c-3) = 3$, $\\log_a(c+5) = 2$. This information (a) specifies $a$ uniquely; (b) is satisfied by two values of $a$; (c) is satisfied by infinitely many values of $a$; (d) is contradictory. G. Let $n \\geqslant 2$ be an integer and $p_n(x) = (x-1) + (x-2) + \\cdots + (x-n)$. What is the remainder when $p_n(x)$ is divided by $p_{n-1}(x)$? (a) $\\frac{n}{2}$; (b) $\\frac{n+1}{2}$; (c) $\\frac{n^2+n}{2}$; (d) $-\\frac{n}{2}$. H. The area bounded by the graphs $y = \\sqrt{2-x^2}$ and $x + (\\sqrt{2}-1)y = \\sqrt{2}$ equals (a) $\\frac{\\sin\\sqrt{2}}{\\sqrt{2}}$; (b) $\\frac{\\pi}{4} - \\frac{1}{\\sqrt{2}}$; (c) $\\frac{\\pi}{2\\sqrt{2}}$; (d) $\\frac{\\pi^2}{6}$. I. The function $F(k)$ is defined for positive integers by $F(1)=1$, $F(2)=1$, $F(3)=-1$ and, for $k \\geqslant 2$, $F(2k) = F(k)$, $F(2k+1) = F(k)$. The sum $F(1)+F(2)+\\cdots+F(100)$ equals (a) $-15$; (b) 28; (c) 64; (d) 81. J. For a real number $x$, $[x]$ denotes the largest integer less than or equal to $x$. Let $n$ be a natural number. The integral $\\int_0^n [2x]\\,dx$ equals (a) $\\log_2((2n-1)!)$; (b) $n2^n - \\log_2((2n)!)$; (c) $n2^n$; (d) $\\log_2((2n)!)$, where $k! = 1\\times 2\\times\\cdots\\times k$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "mat/2013 MAT done again.pdf#0"
+ },
+ {
+  "q": "Question 2. (i) Let $k \\neq \\pm 1$. The function $f(t)$ satisfies $f(t) - k f(1-t) = t$ for all values of $t$. By replacing $t$ with $1-t$, determine $f(t)$. (ii) Consider the new identity $f(t) - f(1-t) = g(t)$ (*). (a) Show that no function $f(t)$ satisfies (*) when $g(t) = t$. (b) What condition must the function $g(t)$ satisfy for there to be a solution $f(t)$ to (*)? (c) Find a solution $f(t)$ to (*) when $g(t) = (2t-1)^3$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "mat/2013 MAT done again.pdf#0"
+ },
+ {
+  "q": "Question 3 (Mathematics, Mathematics & Statistics, Mathematics & Philosophy, Mathematics & Computer Science applicants). Let $0 < k < 2$. A graph of $y = f_k(x)$ is sketched, where $f_k(x) = x(x-k)(x-2)$. Let $A(k)$ denote the area of the shaded region. (i) Without evaluating them, write down an expression for $A(k)$ in terms of two integrals. (ii) Explain why $A(k)$ is a polynomial in $k$ of degree 4 or less. [You are not required to calculate $A(k)$ explicitly.] (iii) Verify that $f_k(1+t) = -f_{2-k}(1-t)$ for any $t$. (iv) How can the graph of $y = f_k(x)$ be transformed to the graph of $y = f_{2-k}(x)$? Deduce that $A(k) = A(2-k)$. (v) Explain why there are constants $a, b, c$ such that $A(k) = a(k-1)^4 + b(k-1)^2 + c$. [You are not required to calculate $a, b, c$ explicitly.]",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "mat/2013 MAT done again.pdf#0"
+ },
+ {
+  "q": "Question 4 (Mathematics, Mathematics & Statistics, Mathematics & Philosophy applicants). (i) Let $a > 0$. On the axes provided, sketch the graph of $y = \\frac{a+x}{a-x}$ for $-a < x < a$. (ii) Let $0 < \\theta < \\frac{\\pi}{2}$. The half-disc is given by $x^2 + y^2 \\leqslant 1$ and $y \\geqslant 0$. The shaded region $A$ consists of those points with $-\\cos\\theta \\leqslant x \\leqslant \\sin\\theta$; the region $B$ is the remainder of the half-disc. Find the area of $A$. (iii) Assuming only that $\\sin^2\\theta + \\cos^2\\theta = 1$, show that $\\sin\\theta\\cos\\theta \\leqslant \\frac{1}{2}$. (iv) What is the largest that the ratio $\\frac{\\text{area of } A}{\\text{area of } B}$ can be, as $\\theta$ varies?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "mat/2013 MAT done again.pdf#0"
+ },
+ {
+  "q": "Question 5 (all applicants). The digit sum of a non-negative integer is the sum of its digits (e.g. the digit sum of 123 is $1+2+3=6$). (i) How many positive integers less than 100 have digit sum equal to 8? Let $n$ be a positive integer with $n < 10$. (ii) How many positive integers less than 100 have digit sum equal to $n$? (iii) How many positive integers less than 1000 have digit sum equal to $n$? (iv) How many positive integers between 500 and 999 have digit sum equal to 8? (v) How many positive integers less than 1000 have digit sum equal to 8 and at least one digit at least 5? (vi) What is the total of the digit sums of the integers from 0 to 999 inclusive?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "mat/2013 MAT done again.pdf#0"
+ },
+ {
+  "q": "Question 6 (Computer Science, Mathematics & Computer Science, Computer Science & Philosophy applicants). Alice, Bob and Charlie are expert logicians who always tell the truth. In each scenario, Charlie writes a whole number on Alice's and Bob's foreheads. The difference between the two numbers is one. Each can see the other's number but not their own. (i) Charlie writes numbers and says: \"Each of your numbers is at least 1. The difference between the numbers is 1.\" Alice then says \"I know my number.\" Explain why Alice's number must be 2. What is Bob's number? (ii) Charlie writes new numbers and says: \"Each of your numbers is between 1 and 10 inclusive. The difference between the numbers is 1. Alice's number is a prime.\" Alice then says \"I don't know my number.\" Bob then says \"I don't know my number.\" What is Alice's number? Explain your answer. (iii) Charlie writes new numbers and says: \"Each of your numbers is between 1 and 10 inclusive. The difference between the numbers is 1.\" Alice then says \"I don't know my number. Is my number a square number?\" Charlie then says \"If I told you that, you would know your number.\" Bob then says \"I don't know my number.\" What is Alice's number? Explain your answer.",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "mat/2013 MAT done again.pdf#0"
+ },
+ {
+  "q": "Question 7 (Computer Science, Computer Science & Philosophy applicants). AB-words are formed from the letters A and B using rules applied starting from the empty word. Rule (1): if the current word is $x$, it can be replaced by $AxB$. Rule (2): if the current word ends in B, the final B can be removed. (i) Show how the word AAAB can be produced. (ii) Describe precisely all the words that can be produced with rules (1) and (2). Justify your answer. (Write $A^i$ for i consecutive copies of A, similarly for B; e.g. $A^3B^2 = AAABB$.) Add rule (3): reverse the word and replace every A by B and every B by A. (For example, applying this to AAAB gives ABBB.) (iii) Describe precisely all the words that can be produced with rules (1), (2) and (3). Justify your answer. Finally add rule (4): reverse the word. (iv) Show that every word consisting of As and Bs can be formed using these four rules. Hint: show how, if we have produced the word $w$, we can produce (a) the word $Aw$ and (b) the word $Bw$; hence deduce the result.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "mat/2013 MAT done again.pdf#0"
+ }
+]

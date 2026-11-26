@@ -1,0 +1,100 @@
+[
+ {
+  "q": "Use the definitions, and the results of the previous question, to show that (i) $\\operatorname{sech}^2 x = 1 - \\tanh^2 x$ (ii) $\\frac{d(\\tanh x)}{dx} = \\operatorname{sech}^2 x$ (iii) $\\frac{d^2(\\sinh x)}{dx^2} = \\sinh x$ (iv) $\\sinh^{-1} x = \\ln\\left(x + \\sqrt{x^2+1}\\right)$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "step-workbook/Cambridge STEP Short Workbook.pdf#1"
+ },
+ {
+  "q": "(i) The point $(x,y)$ has the property that its distance from the point $(a,0)$ is equal to its distance from the line $x=-a$. Sketch the locus of the point using this information. Show that $y^2=4ax$. (ii) The point $(x,y)$ has the property that its distance from the point $(ae,0)$ is $e$ times its distance from the line $x=ae^{-1}$. Sketch the locus of the point for $0<e<1$ and for $e>1$. Show that $\\frac{x^2}{a^2}+\\frac{y^2}{b^2}=1$ if $0<e<1$ and that $\\frac{x^2}{a^2}-\\frac{y^2}{b^2}=1$ if $e>1$, where $b=a\\sqrt{|1-e^2|}$. (iii) Show that the hyperbola $\\frac{x^2}{a^2}-\\frac{y^2}{b^2}=1$ becomes the rectangular hyperbola $XY=1$ in the new coordinates given by $x=\\frac{a(X+Y)}{2}$, $y=\\frac{b(X-Y)}{2}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "step-workbook/Cambridge STEP Short Workbook.pdf#1"
+ },
+ {
+  "q": "Show that the curves with parametric form $(x,y)=(at^2,2at)$, $(a\\cos\\theta, b\\sin\\theta)$ and $(a\\cosh\\theta, b\\sinh\\theta)$ are conic sections.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "step-workbook/Cambridge STEP Short Workbook.pdf#1"
+ },
+ {
+  "q": "By converting to cartesian coordinates, show that: (i) $r\\cos(\\theta-\\alpha)=c$ describes a straight line; (ii) $r=\\ell\\cos\\theta$ describes a circle; (iii) $r^2\\cos(\\theta+\\alpha)\\cos(\\theta-\\alpha)=c^2$ describes a hyperbola; (iv) $r^{-1}=k\\cos\\theta+m$ can describe any conic section, the type depending on the values of $k$ and $m$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "step-workbook/Cambridge STEP Short Workbook.pdf#1"
+ },
+ {
+  "q": "Let $A=\\begin{pmatrix}1&2\\\\1&3\\end{pmatrix}$, $B=\\begin{pmatrix}1&0\\\\-1&1\\end{pmatrix}$, $C=\\begin{pmatrix}2&1\\\\1&2\\end{pmatrix}$ and $I=\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}$. (i) Show that $AB\\neq BA$. (ii) Show that $(AB)C=A(BC)$. (iii) Without using any formulae, find a matrix $D=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}$ such that $AD=I$. (iv) Show that $(AB)^T=B^TA^T$. (v) Show that $\\det AB=\\det A\\det B$.",
+  "kind": "maths",
+  "answer": "(iii) $D=\\begin{pmatrix}3&-2\\\\-1&1\\end{pmatrix}$",
+  "short": false,
+  "source": "step-workbook/Cambridge STEP Short Workbook.pdf#1"
+ },
+ {
+  "q": "Show that the points with position vectors $\\begin{pmatrix}1\\\\0\\\\1\\end{pmatrix}$, $\\begin{pmatrix}2\\\\1\\\\0\\end{pmatrix}$, $\\begin{pmatrix}4\\\\3\\\\-2\\end{pmatrix}$ lie on a straight line and give the equation of the line in the two forms (i) $\\mathbf r=\\mathbf a+\\lambda\\mathbf b$ (ii) $\\frac{x-x_0}{c}=\\frac{y-y_0}{d}=\\frac{z-z_0}{e}$.",
+  "kind": "maths",
+  "answer": "(i) $\\mathbf r=\\begin{pmatrix}1\\\\0\\\\1\\end{pmatrix}+\\lambda\\begin{pmatrix}1\\\\1\\\\-1\\end{pmatrix}$; (ii) $x-1=y=1-z$",
+  "short": true,
+  "source": "step-workbook/Cambridge STEP Short Workbook.pdf#1"
+ },
+ {
+  "q": "The three vectors $\\mathbf A$, $\\mathbf B$ and $\\mathbf C$ are defined by $\\mathbf A=(1,3,4)$, $\\mathbf B=(2,1,3)$, $\\mathbf C=(3,3,2)$. (i) Order the vectors by magnitude. (ii) Use the scalar product to find the angles between the pairs of vectors (a) $\\mathbf A$ and $\\mathbf B$, (b) $\\mathbf B$ and $\\mathbf C$, leaving your answer in the form of an inverse cosine. (iii) Find the lengths of the projections of the vectors (a) $\\mathbf A$ onto $\\mathbf B$, (b) $\\mathbf B$ onto $\\mathbf A$. (iv) Find an equation of the plane, in the form $\\mathbf r=\\mathbf a+\\lambda\\mathbf b+\\mu\\mathbf c$, through the points with position vectors $\\mathbf A$, $\\mathbf B$ and $\\mathbf C$. Show that the normal to this plane is $(1,0,1)$ and find an equation of the plane in the form $\\mathbf r\\cdot\\mathbf n=p$, where $\\mathbf n$ is a unit vector.",
+  "kind": "maths",
+  "answer": "(i) $|\\mathbf A|>|\\mathbf C|>|\\mathbf B|$; (ii) (a) $\\cos^{-1}\\frac{17}{2\\sqrt{91}}$, (b) $\\cos^{-1}\\frac{15}{2\\sqrt{77}}$; (iii) (a) $\\frac{17}{\\sqrt{14}}$, (b) $\\frac{17}{\\sqrt{26}}$; (iv) $\\mathbf r=\\begin{pmatrix}1\\\\3\\\\4\\end{pmatrix}+\\lambda\\begin{pmatrix}1\\\\-2\\\\-1\\end{pmatrix}+\\mu\\begin{pmatrix}2\\\\0\\\\-2\\end{pmatrix}$, $\\mathbf r\\cdot\\begin{pmatrix}1/\\sqrt2\\\\0\\\\1/\\sqrt2\\end{pmatrix}=\\frac{5}{\\sqrt2}$",
+  "short": false,
+  "source": "step-workbook/Cambridge STEP Short Workbook.pdf#1"
+ },
+ {
+  "q": "Differentiate $y(x)$ with respect to $x$ in the following cases: (i) $y=\\ln\\left(x+\\sqrt{1+x^2}\\right)$; (ii) $y=a^x$; (iii) $y=x^x$; (iv) $y=\\sin^{-1}\\!\\left(\\frac{x}{\\sqrt{1+x^2}}\\right)$.",
+  "kind": "maths",
+  "answer": "(i) $\\frac{1}{\\sqrt{x^2+1}}$; (ii) $a^x\\ln a$; (iii) $x^x(1+\\ln x)$; (iv) $\\frac{1}{1+x^2}$ (since $\\sin^{-1}\\!\\left(\\frac{x}{\\sqrt{1+x^2}}\\right)=\\tan^{-1}x$)",
+  "short": true,
+  "source": "step-workbook/Cambridge STEP Short Workbook.pdf#1"
+ },
+ {
+  "q": "Show that if $x=a\\cos\\theta$, $y=b\\sin\\theta$ then $\\frac{d^2y}{dx^2}<0$ for $y>0$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "step-workbook/Cambridge STEP Short Workbook.pdf#1"
+ },
+ {
+  "q": "Find the stationary points of the function $f(x)=\\frac{x}{x^2+a^2}$, where $a>0$, classifying them as either maximum or minimum. Sketch the curve (without using a calculator).",
+  "kind": "maths",
+  "answer": "Maximum at $\\left(a,\\frac{1}{2a}\\right)$, minimum at $\\left(-a,-\\frac{1}{2a}\\right)$",
+  "short": false,
+  "source": "step-workbook/Cambridge STEP Short Workbook.pdf#1"
+ },
+ {
+  "q": "Calculate the following integrals: (i) $\\int a^x\\,dx$; (ii) $\\int\\frac{1}{x^2-2x+6}\\,dx$; (iii) $\\int e^{ax}\\cos(bx)\\,dx$; (iv) $\\int e^{ax}e^{ibx}\\,dx$; (v) $\\int\\frac{1}{1-x^3}\\,dx$; (vi) $\\int\\operatorname{cosec}x\\,dx$; (vii) $\\int\\sec x\\,dx$; (viii) $\\int\\frac{1}{\\sqrt{c^2+m^2y^2}}\\,dy$; (ix) $\\int\\tan^{-1}x\\,dx$; (x) $\\int x^3e^{x^2}\\,dx$.",
+  "kind": "maths",
+  "answer": "(i) $\\frac{a^x}{\\ln a}+C$; (ii) $\\frac{1}{\\sqrt5}\\tan^{-1}\\!\\left(\\frac{x-1}{\\sqrt5}\\right)+C$; (iii) $\\frac{1}{a^2+b^2}(a\\cos bx+b\\sin bx)e^{ax}+C$; (iv) $\\frac{1}{a+ib}e^{(a+ib)x}+C$; (v) $\\frac16\\ln\\frac{x^2+x+1}{(x-1)^2}+\\frac{1}{\\sqrt3}\\tan^{-1}\\!\\left(\\frac{2x+1}{\\sqrt3}\\right)+C$; (vi) $\\ln\\tan\\frac{x}{2}+C$; (vii) $\\ln\\left(\\frac{1+\\tan(x/2)}{1-\\tan(x/2)}\\right)+C$; (viii) $\\frac1m\\ln\\left(\\frac{my+\\sqrt{m^2y^2+c^2}}{c}\\right)+C$ or $\\frac1m\\sinh^{-1}\\!\\left(\\frac{my}{c}\\right)+C$; (ix) $x\\tan^{-1}x-\\frac12\\ln(1+x^2)+C$; (x) $\\frac12(x^2-1)e^{x^2}+C$",
+  "short": false,
+  "source": "step-workbook/Cambridge STEP Short Workbook.pdf#1"
+ },
+ {
+  "q": "Find the general solution (i.e. with a constant of integration) of the following equations. (i) $y\\frac{dy}{dx}=x$; (ii) $\\frac{dy}{dx}=my$; (iii) $x\\frac{dy}{dx}=y+1$; (iv) $\\frac{dy}{dx}-y\\tan x=1$; (v) $\\frac{dy}{dx}=\\sqrt{c^2-k^2y^2}$; (vi) $z\\frac{dz}{dy}+k^2y=0$.",
+  "kind": "maths",
+  "answer": "(i) $y^2=x^2+C$; (ii) $y=Ce^{mx}$; (iii) $y=Cx-1$; (iv) $y=C\\sec x+\\tan x$; (v) $ky=c\\sin k(x-x_0)$; (vi) $z^2+k^2y^2=C$",
+  "short": false,
+  "source": "step-workbook/Cambridge STEP Short Workbook.pdf#1"
+ },
+ {
+  "q": "(i) Show, by substituting $y=e^{mx}$ into $a\\frac{d^2y}{dx^2}+b\\frac{dy}{dx}+cy=0$, that there are two values of $m$ for which $e^{mx}$ satisfies the equation. (ii) Show that if $y_1$ and $y_2$ satisfy the equation, then so also does $y=Ay_1+By_2$, where $A$ and $B$ are constants. (iii) Find the two values of $m$ for which $e^{mx}$ satisfies $\\frac{d^2y}{dx^2}+3\\frac{dy}{dx}+2y=0$ and write down a solution that contains two arbitrary constants. Then let $z=y'+2y$, show that $z'+z=0$, solve for $z$ and then solve the resulting first-order differential equation for $y$, thereby proving that the solution found is the most general. (iv) Show by substitution that $e^{px}\\sin qx$ satisfies $\\frac{d^2y}{dx^2}-2p\\frac{dy}{dx}+(p^2+q^2)y=0$. Find the general solution by the method outlined in the second paragraph of (iii).",
+  "kind": "maths",
+  "answer": "(i) $am^2+bm+c=0$; (iii) $m=-1$ and $m=-2$, $y=Ae^{-x}+Be^{-2x}$; (iv) set $z=y'-(p+iq)y$",
+  "short": false,
+  "source": "step-workbook/Cambridge STEP Short Workbook.pdf#1"
+ },
+ {
+  "q": "(i) Show that the equation $\\frac{d^2y}{dx^2}+k^2y=0$ ($y$ real) can be written as $z\\frac{dz}{dy}+k^2y=0$, where $z=\\frac{dy}{dx}$. Show that $z=\\sqrt{c^2-k^2y^2}$, where $c$ is a constant of integration, and hence show that $y=R\\sin k(x-x_0)$, where $R$ and $x_0$ are constants. (ii) Repeat the steps of part (i) on the equation $\\frac{d^2y}{dx^2}-k^2y=0$ to obtain $y=R\\sinh k(x-x_0)$. In this case, is it the general solution?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "step-workbook/Cambridge STEP Short Workbook.pdf#1"
+ }
+]

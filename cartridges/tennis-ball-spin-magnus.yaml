@@ -1,0 +1,118 @@
+id: tennis-ball-spin-magnus
+title: What makes a tennis ball spin, and why it curves
+topics:
+- fluid dynamics
+- Bernoulli's principle
+- Magnus effect
+- order-of-magnitude estimation
+warmup: false
+answer_source: generated
+statement: What makes a tennis ball spin as it is travelling through the air, and how does that spin change
+  its flight path?
+stages:
+- goal: Explain where the ball's spin comes from.
+  expected: The spin is imparted at impact, when the strings grip the ball's surface and friction changes
+    its rotation. The racket face angle and swing direction set the axis and rate of spin.
+  solution: During the short contact the strings exert friction on the ball's surface, producing a torque
+    that sets it rotating. In flight, air produces only a small torque, so the spin persists largely unchanged.
+  common_errors:
+  - Saying gravity causes the spin
+  - Saying the air causes the spin
+  - Ignoring the friction torque at impact
+  hints:
+    rephrase: Think about what happens to the ball during the brief moment it is in contact with the strings.
+    smaller_case: If the strings were perfectly smooth, would the ball pick up any spin when struck?
+    key_idea: Spin is a torque from friction, which acts only while the ball is in contact with the strings.
+- goal: Describe how the spin changes the airflow around the ball.
+  expected: The spinning surface drags the nearby air around with it. On one side the air moves faster
+    relative to the ball, and on the other side it moves slower. For topspin, the air is faster under
+    the ball.
+  solution: In the ball's frame the air approaches from the front. Where the surface moves in the same
+    direction as the approaching air, the relative flow is slower. Where the surface moves against it,
+    the flow is faster. For topspin, the underside moves against the flow, so the underside airflow is
+    faster.
+  common_errors:
+  - Reversing which side is faster for topspin
+  - Saying the air speed is the same on both sides
+  - Forgetting that the difference comes from the surface drag
+  hints:
+    rephrase: Ask which side of the ball's surface moves in the same direction as the air rushing past,
+      and which moves against it.
+    smaller_case: Imagine a stationary ball in a wind with no spin. Are the air speeds on the top and
+      bottom equal?
+    key_idea: Spin adds a surface velocity to the air flow, so the flow speed differs between the two
+      sides.
+- goal: Use Bernoulli's principle to estimate the pressure difference between the two sides.
+  expected: $\Delta p \approx 2\rho v\omega R$, where $v$ is the ball's speed, $\omega$ its spin rate,
+    $R$ its radius and $\rho$ the air density.
+  solution: Take the speeds on the two sides as $v+\omega R$ and $v-\omega R$. Bernoulli gives $\Delta
+    p=\tfrac12\rho\left[(v+\omega R)^2-(v-\omega R)^2\right]=2\rho v\omega R$.
+  common_errors:
+  - Using the difference of speeds instead of the difference of squared speeds
+  - Dropping the factor $\tfrac12$ in Bernoulli
+  - Using the diameter instead of the radius
+  hints:
+    rephrase: 'Use Bernoulli''s principle: higher flow speed means lower pressure. Compare the two speeds
+      you found.'
+    smaller_case: With no spin, what is the difference between the two speeds, and what pressure difference
+      does that give?
+    key_idea: The pressure difference depends on the difference of the squares of the two speeds.
+  check: expand((v+w*R)**2-(v-w*R)**2)/2*rho - 2*rho*v*w*R
+  check_ok: true
+- goal: Estimate the total sideways force on the ball and its direction.
+  expected: $F\approx 2\pi\rho v\omega R^{3}$, directed from the high-pressure side toward the low-pressure
+    side. For topspin this force points downward.
+  solution: Multiply the pressure difference by the projected area $\pi R^2$ to get $F\approx 2\rho v\omega
+    R\cdot\pi R^2=2\pi\rho v\omega R^3$. The low-pressure side is the faster-moving underside for topspin,
+    so the force points down. This is a crude estimate that ignores the real lift coefficient.
+  common_errors:
+  - Using the full surface area $4\pi R^2$ instead of the projected area
+  - Reversing the direction of the force for topspin
+  - Forgetting that the force is perpendicular to the ball's velocity
+  hints:
+    rephrase: Force equals pressure times area. Which area do you use for a sphere facing the flow?
+    smaller_case: For a ball with topspin, on which side is the pressure lower, and which way does that
+      push the ball?
+    key_idea: The net force points from the high-pressure side toward the low-pressure side, and the projected
+      area is the relevant area.
+  check: expand((v+w*R)**2-(v-w*R)**2)/2*rho*pi*R**2 - 2*pi*rho*v*w*R**3
+  check_ok: true
+extensions:
+  '3':
+  - Include the dependence of the lift coefficient on the spin parameter $\omega R/v$ and compare with
+    the crude estimate.
+  '4':
+  - Explain the Magnus force using circulation and the Kutta-Joukowski lift theorem.
+  '5':
+  - Model the full trajectory with drag and Magnus lift, and estimate the lateral deflection of a serve.
+spoken_vocab:
+- omega
+- rho
+- R
+- v
+- Bernoulli
+- Magnus effect
+- topspin
+- backspin
+- pi R cubed
+- pressure difference
+- projected area
+source: oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 4
+  minutes: 20
+  flags:
+  - needs_diagram
+  tagline: Open-ended Magnus-effect estimation; rich discussion, Bernoulli link, requires assumptions.
+  priority: 74
+  rank: 281
+  tier: B
+  category: oxbridge-random
+  d10: 4.0
+  real: 4.0
+  by: haiku
+tags:
+- mechanics

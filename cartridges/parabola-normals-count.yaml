@@ -1,0 +1,129 @@
+id: parabola-normals-count
+title: How many normals to y = x² pass through a point?
+topics:
+- coordinate geometry
+- cubic equations
+- discriminant
+- evolutes
+warmup: false
+answer_source: pdf
+statement: A normal to a curve at a point is the line through that point which is perpendicular to the
+  tangent there. Consider the parabola $y=x^2$. A point $(h, k)$ in the plane can lie on more than one
+  normal to the parabola. For which points $(h, k)$ do exactly one, exactly two, or exactly three distinct
+  normals to $y=x^2$ pass through $(h, k)$?
+stages:
+- goal: Write the condition that the normal at the point $(t,t^2)$ passes through $(h,k)$ as a polynomial
+    equation in $t$.
+  expected: $2t^3+(1-2k)t-h=0$
+  solution: 'The tangent slope at $(t,t^2)$ is $2t$, so for $t\neq 0$ the normal has slope $-\frac{1}{2t}$
+    and equation $y-t^2=-\frac{1}{2t}(x-t)$. Substituting $(x,y)=(h,k)$ and multiplying by $2t$ gives
+    $2t(k-t^2)=-(h-t)$, i.e. $2t^3+(1-2k)t-h=0$. The case $t=0$ is covered: the normal there is the vertical
+    line $x=0$, which passes through $(h,k)$ exactly when $h=0$. The cubic at $t=0$ equals $-h$, so it
+    gives the right answer there too. Every normal corresponds to a root of this cubic and every root
+    gives a normal.'
+  common_errors:
+  - Using slope $+\frac{1}{2t}$ instead of the negative reciprocal of the tangent slope.
+  - Multiplying by $2t$ or dividing by $t$ and then dropping the $t=0$ case, so the vertical normal $x=0$
+    is lost.
+  - Sign slips when expanding $2t(k-t^2)=-(h-t)$.
+  hints:
+    rephrase: A normal is a line through $(t,t^2)$. Ask what its slope must be, then impose that the line
+      passes through $(h,k)$.
+    smaller_case: Take the point $(t,t^2)=(1,1)$. Write the normal there and check whether $(h,k)=(0,0)$
+      lies on it.
+    key_idea: Perpendicular lines have slopes whose product is $-1$. Clear fractions so that the condition
+      becomes a polynomial in $t$.
+  check: 2*t**3 + (1-2*k)*t - h - (-(2*t*(k - t**2) + (h - t)))
+  check_ok: true
+- goal: Count the distinct normals through $(h,k)$ by relating distinct real roots of the cubic to the
+    sign of its discriminant, and identify where the count changes.
+  expected: Three normals when $27h^2<2(2k-1)^3$; one normal when $27h^2>2(2k-1)^3$; on the curve $27h^2=2(2k-1)^3$
+    there are two normals, except at $(0,\frac12)$ where there is only one.
+  solution: Different $t$ give different normals, because the normal at $t$ has slope $-\frac{1}{2t}$
+    and these slopes are distinct. So the number of distinct normals equals the number of distinct real
+    roots of the cubic $2t^3+(1-2k)t-h$. For a cubic $at^3+ct+d$ with $a=2$, $c=1-2k$, $d=-h$, the discriminant
+    is $\Delta=-4ac^3-27a^2d^2=8(2k-1)^3-108h^2=4\left(2(2k-1)^3-27h^2\right)$. If $\Delta>0$ there are
+    three distinct real roots, so three normals. If $\Delta<0$ there is one real root and a complex pair,
+    so one normal. If $\Delta=0$ there is a repeated root, so exactly two distinct roots, unless all three
+    roots coincide. Triple roots need $c=d=0$, i.e. $k=\frac12$ and $h=0$. So the two-normal set is the
+    curve $27h^2=2(2k-1)^3$ minus the point $(0,\frac12)$.
+  common_errors:
+  - Counting a double root twice, or counting a repeated root as several distinct normals.
+  - Getting the sign of the discriminant backwards, so the regions for three and one normal are swapped.
+  - Forgetting that the boundary curve gives two normals rather than three.
+  - Forgetting the exceptional point $(0,\frac12)$ where the triple root occurs.
+  hints:
+    rephrase: Ask how many distinct real roots the cubic in $t$ can have, and what the discriminant says
+      about that.
+    smaller_case: Fix $k=\frac12$ and let $h$ vary. How many distinct real roots does the cubic have for
+      $h=0$ and for $h\neq 0$?
+    key_idea: Distinct roots and roots counted with multiplicity differ. Relate the discriminant to repeated
+      roots, then check when all roots coincide.
+  check: discriminant(2*t**3 + (1-2*k)*t - h, t) - 4*(2*(2*k-1)**3 - 27*h**2)
+  check_ok: true
+- goal: Show that the point $(0,\frac12)$ gives exactly one normal and identify that normal.
+  expected: Exactly one normal, namely the vertical line $x=0$, the normal at the origin.
+  solution: At $(h,k)=(0,\frac12)$ the cubic becomes $2t^3+(1-1)t-0=2t^3$, which has a single distinct
+    root $t=0$ (a triple root). So there is one normal. The normal at $t=0$ is the vertical line $x=0$,
+    since the tangent there is horizontal. This line does pass through $(0,\frac12)$.
+  common_errors:
+  - Counting the triple root $t=0$ as three normals.
+  - Assuming the point lies on the two-normal curve and so has two normals, without checking the multiplicity.
+  - Forgetting that a vertical normal has no finite slope and so may be missed.
+  hints:
+    rephrase: Substitute $h=0$ and $k=\frac12$ into the cubic and look at its roots, counting distinct
+      ones.
+    smaller_case: Ask what the cubic looks like for $k=\frac12$ and general $h$, and then set $h=0$.
+    key_idea: Look at how many distinct roots the cubic has at this particular point, not just whether
+      its discriminant vanishes.
+  check: '(2*t**3 + (1-2*k)*t - h).subs({h: 0, k: Rational(1,2)}) - 2*t**3'
+  check_ok: true
+extensions:
+  '3':
+  - Find the normals through $(0,k)$ for general $k$ and state how many there are as a function of $k$.
+  - Find the tangent points where the three-normal region meets the two-normal boundary.
+  '4':
+  - Show that the boundary $27h^2=2(2k-1)^3$ is the evolute of $y=x^2$, and find its cusp.
+  - Repeat the analysis for $y=x^3$ and state the new cubic that arises.
+  '5':
+  - 'Generalise to $y=x^n$: for which $n$ does the count of normals through $(h,k)$ reach four?'
+  - Count normals to an ellipse through a point and compare with the parabola.
+spoken_vocab:
+- parabola
+- y equals x squared
+- normal
+- tangent
+- perpendicular
+- point h comma k
+- cubic
+- discriminant
+- distinct roots
+- double root
+- triple root
+- semicubical parabola
+- evolute
+- two t cubed plus one minus two k times t minus h equals zero
+- twenty seven h squared
+- two times two k minus one cubed
+- vertical line
+- cusp
+source: jzmaths/JZMaths Interview Questions from the website trial.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 3
+  minutes: 25
+  flags: []
+  tagline: Normals reduce to a cubic; discriminant governs count, with a triple-root special case.
+  priority: 91
+  rank: 114
+  tier: A
+  category: jzmaths
+  d10: 7.0
+  real: 7.0
+  by: haiku
+tags:
+- coordinate_geometry
+- roots_of_polynomials
+- differentiation

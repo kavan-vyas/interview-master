@@ -1,0 +1,113 @@
+id: chebyshev-cos-n-theta-recurrence
+title: cos(nθ) as a polynomial in cos θ
+topics:
+- trigonometry
+- recurrence relations
+- polynomials
+- mathematical induction
+warmup: false
+answer_source: generated
+statement: Show that $\cos(n\theta)=f_n(\cos\theta)$ for polynomials $f_n(x)$ satisfying $f_{n+1}(x)=2xf_n(x)-f_{n-1}(x)$.
+stages:
+- goal: 'Establish the trigonometric identity that drives the recurrence: relate $\cos((n+1)\theta)+\cos((n-1)\theta)$
+    to $\cos(n\theta)$ and $\cos\theta$.'
+  expected: $\cos((n+1)\theta)+\cos((n-1)\theta)=2\cos\theta\cos(n\theta)$
+  solution: Use $\cos(A\pm B)=\cos A\cos B\mp\sin A\sin B$ with $A=n\theta$ and $B=\theta$. Adding $\cos(n\theta+\theta)$
+    and $\cos(n\theta-\theta)$ cancels the sine terms and leaves $2\cos(n\theta)\cos\theta$.
+  common_errors:
+  - Subtracting the two cosines instead of adding them
+  - Keeping the sine terms rather than seeing that they cancel
+  - Getting the factor of 2 wrong
+  hints:
+    rephrase: Write $\cos((n+1)\theta)$ and $\cos((n-1)\theta)$ as cosines of sums and differences. What
+      happens when you add them?
+    smaller_case: Take $n=1$. What is $\cos 2\theta+\cos 0$ in terms of $\cos\theta$?
+    key_idea: Expand both terms with the addition formula. The sine products appear with opposite signs.
+  check: sp.expand_trig(sp.cos(n*t+t)+sp.cos(n*t-t)-2*sp.cos(n*t)*sp.cos(t))
+  check_ok: null
+- goal: Fix the starting polynomials and compute the first few $f_n$ from the recurrence.
+  expected: $f_0(x)=1$, $f_1(x)=x$, $f_2(x)=2x^2-1$, $f_3(x)=4x^3-3x$
+  solution: Since $\cos 0=1$ and $\cos\theta$ is just $\cos\theta$, take $f_0=1$ and $f_1=x$. Then $f_2=2x\cdot
+    x-1=2x^2-1$ and $f_3=2x(2x^2-1)-x=4x^3-3x$.
+  common_errors:
+  - Taking $f_1=1$ or $f_0=0$
+  - Using $f_{n+1}=2xf_n+f_{n-1}$ with the wrong sign
+  - Dropping the $-1$ when computing $f_2$
+  hints:
+    rephrase: Which polynomials must equal $\cos(0\cdot\theta)$ and $\cos(1\cdot\theta)$ as functions
+      of $\cos\theta$?
+    smaller_case: To find $f_2$, which two earlier values does the recurrence use when $n=1$?
+    key_idea: The recurrence needs two starting values, and they must match $\cos 0$ and $\cos\theta$
+      exactly.
+  check: sp.expand(2*x*(2*x**2-1) - x - (4*x**3-3*x))
+  check_ok: true
+- goal: Extend the table to $f_4$ and $f_5$ and check the pattern against $\cos 5\theta$.
+  expected: $f_4(x)=8x^4-8x^2+1$, $f_5(x)=16x^5-20x^3+5x$
+  solution: $f_4=2x(4x^3-3x)-(2x^2-1)=8x^4-8x^2+1$. Then $f_5=2x(8x^4-8x^2+1)-(4x^3-3x)=16x^5-20x^3+5x$.
+  common_errors:
+  - Using $f_2$ where $f_3$ is needed, or the reverse
+  - Arithmetic slips when multiplying by $2x$
+  - Forgetting to subtract the earlier polynomial
+  hints:
+    rephrase: Apply the recurrence twice more, each time using the two most recent polynomials.
+    smaller_case: Find $f_4$ using only $f_3$ and $f_2$ before attempting $f_5$.
+    key_idea: Keep a running table of the $f_k$. Each new entry depends only on the previous two.
+  check: sp.expand(2*x*(8*x**4-8*x**2+1) - (4*x**3-3*x) - (16*x**5-20*x**3+5*x))
+  check_ok: true
+- goal: Give a complete proof that $\cos(n\theta)=f_n(\cos\theta)$ for all $n\ge 0$ and all $\theta$.
+  expected: 'Use strong induction on $n$, with $P(n)$: $\cos(n\theta)=f_n(\cos\theta)$ for all $\theta$.
+    The base cases $P(0)$ and $P(1)$ hold. If $P(n-1)$ and $P(n)$ hold, then with $x=\cos\theta$, $\cos((n+1)\theta)=2\cos\theta\cos(n\theta)-\cos((n-1)\theta)=2xf_n(x)-f_{n-1}(x)=f_{n+1}(x)$.'
+  solution: 'Base cases: $\cos 0=1=f_0$ and $\cos\theta=f_1(\cos\theta)$. For the step, assume $P(n-1)$
+    and $P(n)$ for every $\theta$. The identity from stage 1 gives $\cos((n+1)\theta)=2\cos\theta\cos(n\theta)-\cos((n-1)\theta)$.
+    Substituting the hypotheses with $x=\cos\theta$ gives $2xf_n(x)-f_{n-1}(x)$, which is $f_{n+1}(x)$
+    by definition. So $P(n+1)$ holds, and the result follows for all $n\ge 0$.'
+  common_errors:
+  - Using ordinary induction, which fails because the step needs two previous cases
+  - Forgetting to quantify over all $\theta$
+  - Taking the base case $f_1$ to be $1$ rather than $x$
+  hints:
+    rephrase: Why does the recurrence only give the next step if you know two previous cases?
+    smaller_case: Assume the claim for $n=2$ and $n=3$. Show how it gives the claim for $n=4$.
+    key_idea: 'Use a two-step induction: assume the statement for both $n-1$ and $n$ at once.'
+extensions:
+  '3':
+  - Show that the roots of $f_n$ are $\cos\frac{(2k-1)\pi}{2n}$ for $k=1,\dots,n$.
+  '4':
+  - Prove that $f_m(f_n(x))=f_{mn}(x)$ for all integers $m,n\ge 0$.
+  '5':
+  - Show that $\int_{-1}^{1}\frac{f_m(x)f_n(x)}{\sqrt{1-x^2}}\,dx=0$ for $m\neq n$.
+spoken_vocab:
+- cosine of n theta
+- f sub n of x
+- cos theta
+- two x f sub n minus f sub n minus one
+- addition formula
+- sine terms cancel
+- f sub 0 equals one
+- f sub 1 equals x
+- strong induction
+- base case
+- Chebyshev polynomial
+- two cos A cos B
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 5
+  parts: 4
+  minutes: 18
+  flags:
+  - missing_info
+  tagline: Derives Chebyshev polynomials via product-to-sum identity and induction, though base cases
+    are unstated
+  priority: 54
+  rank: 494
+  tier: C
+  category: tbo
+  d10: 5.5
+  real: 4.5
+  by: deepseek-v4.1-flash-free
+tags:
+- trigonometry
+- algebra_and_functions
+- proof

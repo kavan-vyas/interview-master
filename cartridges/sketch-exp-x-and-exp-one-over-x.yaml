@@ -1,0 +1,96 @@
+id: sketch-exp-x-and-exp-one-over-x
+title: Sketch e^x and e^(1/x)
+topics:
+- graph sketching
+- exponential functions
+- asymptotes
+- limits
+warmup: true
+answer_source: generated
+statement: Sketch $y=e^{x}$ and $y=e^{\frac{1}{x}}$ on the same axes.
+stages:
+- goal: Sketch y = e^x and state its key features.
+  expected: Passes through (0,1); always positive; strictly increasing; horizontal asymptote y=0 as x
+    tends to minus infinity; y tends to plus infinity as x tends to plus infinity.
+  solution: e^x > 0 for all x, so the graph lies strictly above the x-axis. e^0 = 1 gives the y-intercept.
+    The derivative e^x is positive, so the function is increasing. The limit as x tends to minus infinity
+    is 0, giving the horizontal asymptote y=0. The limit as x tends to plus infinity is plus infinity.
+  common_errors:
+  - Placing the horizontal asymptote at x=0 instead of y=0
+  - Forgetting that the curve never touches the x-axis
+  - Drawing the curve going negative for negative x
+  hints:
+    rephrase: What is e^x when x = 0, and what does e^x do as x becomes very large and negative?
+    smaller_case: Sketch 2^x for x = -2, -1, 0, 1, 2 and compare the shape.
+    key_idea: Read the graph from both ends by finding the limits as x tends to minus infinity and plus
+      infinity.
+  check: sp.limit(sp.exp(x), x, -sp.oo)
+  check_ok: null
+- goal: Add y = e^(1/x) to the sketch, giving its domain, asymptotes, behaviour near x = 0, and where
+    it meets y = e^x.
+  expected: 'Domain x not equal to 0. Horizontal asymptote y=1 at both ends: the curve is above y=1 for
+    x>0 and below y=1 for x<0. As x tends to 0 from the left, y tends to 0 (from above). As x tends to
+    0 from the right, y tends to plus infinity (vertical asymptote x=0). Strictly decreasing on each side
+    of x=0. The curves meet at (1,e) and (-1,1/e).'
+  solution: 'Put u = 1/x. As x tends to 0 from the left, u tends to minus infinity, so e^u tends to 0
+    from above. As x tends to 0 from the right, u tends to plus infinity, so e^u tends to plus infinity.
+    As x tends to plus or minus infinity, u tends to 0, so e^u tends to 1: above 1 for x>0 and below 1
+    for x<0. The derivative is -e^(1/x)/x^2, which is negative for every x not equal to 0, so the function
+    decreases on each side of 0. The curves meet when e^x = e^(1/x), i.e. x = 1/x, so x = 1 or x = -1,
+    giving points (1,e) and (-1,1/e).'
+  common_errors:
+  - Thinking the left branch has a vertical asymptote (it does not; it tends to 0)
+  - Forgetting the horizontal asymptote y=1 on both ends
+  - Claiming the function is increasing on one branch
+  - Missing the intersection at x = -1
+  hints:
+    rephrase: What happens to 1/x as x approaches 0 from each side, and what does 1/x do as x goes to
+      plus or minus infinity?
+    smaller_case: Make a table of y = e^(1/x) at x = 0.1, 0.01, -0.1, -0.01 and at x = 10, 100, -10.
+    key_idea: Substitute u = 1/x and use the behaviour of e^u as u tends to minus infinity, to 0, or to
+      plus infinity.
+  check: sp.limit(sp.exp(1/x), x, sp.oo) - 1
+  check_ok: null
+extensions:
+  '3':
+  - Explain why the two curves cross only at x = 1 and x = -1.
+  '4':
+  - Differentiate y = e^(1/x) and justify from the sign of the derivative that each branch is decreasing.
+  '5':
+  - Show that the slope of y = e^(1/x) is always negative while the slope of y = e^x is always positive,
+    so the curves never share a tangent direction.
+spoken_vocab:
+- e to the x
+- e to the one over x
+- y equals e to the x
+- vertical asymptote
+- horizontal asymptote
+- x equals zero
+- intersection
+- domain
+- limit
+- increasing
+- decreasing
+- plus infinity
+- minus infinity
+- tangent
+source: past-interviews/Actual Past Interview Questions/F1u.jpg
+verified: false
+rating:
+  quality: 5
+  difficulty: 3
+  parts: 2
+  minutes: 6
+  flags:
+  - needs_diagram
+  tagline: Intersections at x=±1 and the asymptote behaviour at 0 give good discussion.
+  priority: 47
+  rank: 538
+  tier: C
+  category: past-interviews
+  d10: 3.0
+  real: 5.0
+  by: haiku
+tags:
+- curve_sketching
+- exponentials_and_logarithms

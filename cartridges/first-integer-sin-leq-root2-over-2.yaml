@@ -1,0 +1,78 @@
+id: first-integer-sin-leq-root2-over-2
+title: First positive integer with sin x at most root two over two
+topics:
+- trigonometry
+- radians
+- inequalities
+warmup: true
+answer_source: generated
+statement: What is the first positive integer $x$ which satisfies the following inequality? $\sin x \leq
+  \frac{\sqrt{2}}{2}$, where $x$ is measured in radians.
+stages:
+- goal: Test x=1 and x=2 in the inequality, working in radians.
+  expected: 'Both fail: $\sin 1\approx 0.841$ and $\sin 2\approx 0.909$, and both exceed $\frac{\sqrt{2}}{2}\approx
+    0.707$.'
+  solution: 'Evaluate in radians: $\sin 1\approx 0.841>0.707$ and $\sin 2\approx 0.909>0.707$. Neither
+    satisfies $\sin x\le\frac{\sqrt{2}}{2}$.'
+  common_errors:
+  - Evaluating sine in degrees, where $\sin 1^\circ$ is tiny, and wrongly answering 1.
+  - Believing $\sin 2$ is less than $\frac{\sqrt{2}}{2}$ because it is near $\pi/2$.
+  - Comparing against 0.5 instead of $\frac{\sqrt{2}}{2}$.
+  hints:
+    rephrase: Check the smallest positive integers one at a time, starting from x=1.
+    smaller_case: Estimate sin 1 radians with a calculator or the series $x-x^3/6$.
+    key_idea: The question says radians, so the sine values must be taken in radians, not degrees.
+  check: (N(sin(1) - sqrt(2)/2) > 0) & (N(sin(2) - sqrt(2)/2) > 0)
+  check_ok: true
+- goal: Find the first positive integer that satisfies the inequality.
+  expected: $x=3$, since $\sin 3\approx 0.141\le 0.707$.
+  solution: $\sin 3\approx 0.141$, which is at most $\frac{\sqrt{2}}{2}\approx 0.707$. Since 1 and 2 fail,
+    the first positive integer is $x=3$.
+  common_errors:
+  - Answering $\pi/4$, which is a real number, not an integer.
+  - Answering 4 or 5 without checking x=3.
+  - Forgetting that the question asks for the first integer, not all solutions.
+  hints:
+    rephrase: Keep testing whole numbers in order until the inequality first holds.
+    smaller_case: Estimate sin 3 in radians and compare it with 0.707.
+    key_idea: Sine rises to 1 and then falls back, so the inequality can hold again after values past
+      the peak.
+  check: N(sin(3) - sqrt(2)/2) <= 0
+  check_ok: true
+extensions:
+  '3':
+  - 'Repeat the question with $x$ in degrees and find the first positive integer. (Answer: 45.)'
+  '4':
+  - 'Find the smallest positive real $x$ with $\sin x\le\frac{\sqrt{2}}{2}$. (Answer: $\pi/4$.)'
+  '5':
+  - Give all real solutions of $\sin x\le\frac{\sqrt{2}}{2}$ in the form $[\frac{3\pi}{4}+2k\pi,\ \frac{9\pi}{4}+2k\pi]$
+    for integer $k$, and justify the endpoints.
+spoken_vocab:
+- x
+- sine of x
+- less than or equal to
+- root two over two
+- radians
+- degrees
+- pi over four
+- three
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions (anonymous).pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 2
+  minutes: 3
+  flags:
+  - trivial
+  tagline: Direct numeric check; trivial with little discussion value.
+  priority: 17
+  rank: 693
+  tier: D
+  category: past-interviews
+  d10: 2.5
+  real: 5.5
+  by: deepseek-v4.1-flash-free
+tags:
+- trigonometry
+- inequalities

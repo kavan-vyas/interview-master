@@ -1,0 +1,88 @@
+id: train-tunnel-speed
+title: Men in a tunnel and the train's speed
+topics:
+- rates and speeds
+- distance-time
+- algebra
+warmup: false
+answer_source: generated
+statement: Two men walk $\frac{2}{5}$ of the way into a rail tunnel (women have more sense). They hear
+  a train and run in opposite directions from each other, both running at $15$ mph. Luckily, one gets
+  out just as the train reaches the tunnel, and the other gets out just as the train reaches the end of
+  the tunnel. What is the speed of the train? (Do not try this if your hearing is impaired.)
+stages:
+- goal: Find how long each man takes to reach his exit, measured from the moment they start running. Let
+    the tunnel have length L. The train enters at end A, the end nearer man 1. Man 1 runs back to A and
+    man 2 runs on to the far end B.
+  expected: Man 1 exits after 2L/75 hours. Man 2 exits after L/25 hours (3L/75).
+  solution: Man 1 is 2L/5 from A, so at 15 mph he takes (2L/5)/15 = 2L/75 hours. Man 2 is 3L/5 from B,
+    so he takes (3L/5)/15 = 3L/75 = L/25 hours.
+  common_errors:
+  - Using 2/5 for the man who runs toward the far end
+  - Mixing up which exit each man uses
+  - Using the train's speed instead of the men's 15 mph
+  hints:
+    rephrase: Work out how far each man must run to reach an exit, then use time equals distance divided
+      by speed.
+    smaller_case: If the men were in the exact middle of the tunnel, how long would each one take to reach
+      an exit?
+    key_idea: Each exit is an event at a particular time. The train's travel between the two events covers
+      the whole tunnel.
+  check: 15*(2*L/75) - 2*L/5
+  check_ok: true
+- goal: Find the train's speed from the two exit times.
+  expected: 75 mph.
+  solution: The train covers the full tunnel length L between the two exit moments. The gap between those
+    moments is L/25 - 2L/75 = L/75 hours. So the speed is L divided by L/75, which is 75 mph. The tunnel
+    length cancels.
+  common_errors:
+  - Reporting 15 mph as the train's speed
+  - Subtracting the two exit times incorrectly
+  - Forgetting that the train passes both exit points in order
+  hints:
+    rephrase: How long does the train take to travel the whole tunnel, given the gap between the two exit
+      times?
+    smaller_case: Take the tunnel to be 1 mile long and work through each time in order.
+    key_idea: Speed is distance divided by the time between the two events, here the full length of the
+      tunnel.
+  check: L/(3*L/75 - 2*L/75) - 75
+  check_ok: true
+extensions:
+  '3':
+  - Redo the problem if the men walked one third of the way into the tunnel. Does the speed still depend
+    on the tunnel length?
+  '4':
+  - For a general fraction f of the way in, with f less than 1/2, find the train's speed in terms of f.
+    Show that it does not depend on the tunnel length.
+  '5':
+  - Using your formula from the previous extension, explain what happens to the train's speed as f approaches
+    1/2.
+spoken_vocab:
+- two fifths
+- tunnel
+- rail tunnel
+- fifteen miles per hour
+- train
+- speed
+- seventy five miles per hour
+- L over seventy five
+- distance over speed
+- hearing
+source: past-interviews/Actual Past Interview Questions/H1.jpg
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 2
+  minutes: 6
+  flags: []
+  tagline: Clever relative-timing twist; answer hinges on the time difference.
+  priority: 65
+  rank: 375
+  tier: C
+  category: past-interviews
+  d10: 3.0
+  real: 6.5
+  by: haiku
+tags:
+- mechanics

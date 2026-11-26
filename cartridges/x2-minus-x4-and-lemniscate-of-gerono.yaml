@@ -1,0 +1,119 @@
+id: x2-minus-x4-and-lemniscate-of-gerono
+title: 'y=x²−x⁴ and y²=x²−x⁴: the origin as a double point'
+topics:
+- graph sketching
+- implicit differentiation
+- singular points
+- symmetry
+- domain of implicit curves
+- double points
+warmup: false
+answer_source: generated
+statement: Sketch $y=x^2-x^4$ and $y^2=x^2-x^4$ (consider the derivative at the origin carefully).
+stages:
+- goal: Sketch $y=x^2-x^4$ and identify its key features.
+  expected: 'The function is even with zeros at $x=0$ (touching) and $x=\pm1$. Its critical points are
+    $x=0$, a local minimum with $y=0$ and $y''(0)=0$, and $x=\pm\frac{1}{\sqrt2}$, local maxima with $y=\frac14$.
+    As $|x|\to\infty$, $y\to-\infty$. The shape is M-like: two humps with a dip to $0$ at the origin.'
+  solution: The function is even. Factor $x^2-x^4=x^2(1-x^2)$, so the zeros are $x=0,\pm1$. Then $y'=2x-4x^3=2x(1-2x^2)$,
+    giving critical points $x=0,\pm\frac{1}{\sqrt2}$. Also $y''=2-12x^2$, so $y''(0)=2>0$ (minimum) and
+    $y''(\pm\frac1{\sqrt2})=-4<0$ (maxima), where $y=\frac12-\frac14=\frac14$. Since $-x^4$ dominates,
+    $y\to-\infty$ as $|x|\to\infty$.
+  common_errors:
+  - Calling the origin a maximum
+  - Miscomputing the maximum value as $\frac12$
+  - Forgetting that the graph tends to $-\infty$ at both ends
+  - Concluding the curve is not differentiable at $0$ because the origin is a turning point
+  hints:
+    rephrase: Factor the expression and find its zeros, then look for turning points.
+    smaller_case: Evaluate $x^2-x^4$ at small values such as $x=0.1$ and at large values such as $x=3$.
+    key_idea: Substitute $u=x^2$ to see the shape as a quadratic in $u$, then convert back to $x$.
+  check: simplify((x**2-x**4).subs(x,1/sqrt(2)) - Rational(1,4))==0
+  check_ok: true
+- goal: Sketch $y^2=x^2-x^4$, stating its domain and symmetries.
+  expected: Real points require $x^2-x^4\ge0$, which gives $|x|\le1$. The curve is symmetric in both axes.
+    It equals $y=\pm|x|\sqrt{1-x^2}$, forming a figure-eight (the lemniscate of Gerono) with lobes over
+    $[-1,0]$ and $[0,1]$. It crosses itself at the origin and has vertical tangents at $(\pm1,0)$. Each
+    lobe reaches $|y|=\frac12$ at $x=\pm\frac{1}{\sqrt2}$.
+  solution: Since $y^2=x^2(1-x^2)$ must be non-negative, we need $|x|\le1$. The equation depends only
+    on $x^2$ and $y^2$, so the curve is symmetric about both axes. Taking square roots gives $y=\pm|x|\sqrt{1-x^2}$.
+    The maximum of $x\sqrt{1-x^2}$ on $[0,1]$ occurs at $x=\frac1{\sqrt2}$ and equals $\frac12$, because
+    its square is $x^2-x^4$, whose maximum is $\frac14$. At $x=\pm1$, $y=0$ and the tangent is vertical,
+    since $\frac{dx}{dy}=0$ there.
+  common_errors:
+  - Treating $y^2=\ldots$ as a single-valued function and drawing only the upper branch
+  - Forgetting the restriction $|x|\le1$
+  - Drawing a closed loop without the self-crossing at the origin
+  - Using the wrong maximum height, such as $\frac14$ instead of $\frac12$
+  hints:
+    rephrase: For which real $x$ is the right-hand side non-negative?
+    smaller_case: 'Test $x=2$: can $y^2=4-16$ hold for any real $y$?'
+    key_idea: Take both square roots, and use symmetry to reduce the work.
+  check: solve_univariate_inequality(x**2-x**4>=0, x, relational=False)==Interval(-1,1)
+  check_ok: true
+- goal: Determine the derivative of $y^2=x^2-x^4$ at the origin and explain the behaviour there.
+  expected: The origin is a node (double point). Two branches $y\approx x$ and $y\approx -x$ pass through
+    it, so there are two tangent slopes, $+1$ and $-1$. Implicit differentiation gives $y'=\frac{x-2x^3}{y}$,
+    which is $\frac00$ at the origin. There is no single derivative there, so the curve is not the graph
+    of a differentiable function near $0$. This contrasts with $y=x^2-x^4$, which has $y'(0)=0$.
+  solution: 'Differentiate implicitly: $2yy''=2x-4x^3$, so $y''=\frac{x-2x^3}{y}$ wherever $y\ne0$. On
+    the branch $y=x\sqrt{1-x^2}$ this simplifies to $y''=\frac{1-2x^2}{\sqrt{1-x^2}}\to1$ as $x\to0$.
+    On the branch $y=-x\sqrt{1-x^2}$, $y''=-\frac{1-2x^2}{\sqrt{1-x^2}}\to-1$. So the two branches meet
+    at the origin with slopes $\pm1$. Since there are two different tangent directions, the origin is
+    a node and the derivative is not defined as a single value.'
+  common_errors:
+  - Substituting $x=0$ into $\frac{x-2x^3}{y}$ and reporting $y'=0$
+  - Carrying over $y'(0)=0$ from the first curve
+  - Claiming the derivative is undefined without identifying the two slopes $\pm1$
+  - Assuming the curve is smooth at the origin because it is continuous there
+  hints:
+    rephrase: Differentiate both sides implicitly and see what the result becomes at $(0,0)$.
+    smaller_case: Near the origin, compare the curve with the lines $y=x$ and $y=-x$.
+    key_idea: Near the origin the equation is approximately $y^2=x^2$. Take square roots on each branch
+      separately.
+  check: limit((x-2*x**3)/(x*sqrt(1-x**2)), x, 0) - 1
+  check_ok: true
+extensions:
+  '3':
+  - Find the area enclosed by one loop of $y^2=x^2-x^4$.
+  - Show that $y^2=x^2-x^4$ is the lemniscate of Gerono by parametrising it as $x=\cos t$.
+  '4':
+  - Show that the origin is the only singular point of $y^2=x^2-x^4$.
+  - Find all points on $y^2=x^2-x^4$ where the tangent is vertical.
+  '5':
+  - Find the parametric equations of $y^2=x^2-x^4$ and locate where the tangent is horizontal.
+  - Compute the arc length of one loop of $y^2=x^2-x^4$.
+spoken_vocab:
+- y equals x squared minus x to the fourth
+- y squared equals x squared minus x to the fourth
+- figure eight
+- lemniscate
+- node
+- double point
+- implicit differentiation
+- singular point
+- vertical tangent
+- tangent slope
+- square root
+- domain
+- symmetry about the axes
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 3
+  minutes: 12
+  flags:
+  - needs_diagram
+  tagline: Nice double point at the origin, but the 'derivative at origin' wording is vague.
+  priority: 53
+  rank: 495
+  tier: C
+  category: tbo
+  d10: 3.5
+  real: 4.5
+  by: haiku
+tags:
+- curve_sketching
+- differentiation

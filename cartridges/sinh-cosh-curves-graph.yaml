@@ -1,0 +1,95 @@
+id: sinh-cosh-curves-graph
+title: Graph the curves $\sqrt{y^2-1}=\sinh x$ and $\sqrt{y^2+1}=\cosh x$
+topics:
+- hyperbolic functions
+- identities
+- domains of square roots
+- curve sketching
+- intersections
+warmup: false
+answer_source: generated
+statement: 'Graph the following functions: $\sqrt{y^2 - 1} = \frac{1}{2}(e^x - e^{-x})$ and $\sqrt{y^2
+  + 1} = \frac{1}{2}(e^x + e^{-x})$'
+stages:
+- goal: Rewrite both equations using hyperbolic functions, and state the domain restrictions.
+  expected: 'First equation: $\sqrt{y^2-1}=\sinh x$, so $y=\pm\cosh x$ with $x\ge 0$. Second equation:
+    $\sqrt{y^2+1}=\cosh x$, so $y=\pm\sinh x$ for all real $x$.'
+  solution: 'Recall $\sinh x=\tfrac12(e^x-e^{-x})$ and $\cosh x=\tfrac12(e^x+e^{-x})$. First equation:
+    the left side is $\ge 0$, so $\sinh x\ge 0$, which means $x\ge 0$. Square: $y^2-1=\sinh^2 x$, so $y^2=1+\sinh^2
+    x=\cosh^2 x$, giving $y=\pm\cosh x$. Each sign works, since $y^2-1=\sinh^2 x\ge 0$. Second equation:
+    $\cosh x>0$ always. Square: $y^2+1=\cosh^2 x$, so $y^2=\sinh^2 x$, giving $y=\pm\sinh x$. Since $\sqrt{y^2+1}=|\cosh
+    x|=\cosh x$, this holds for all $x$.'
+  common_errors:
+  - Forgetting the restriction $x\ge 0$ from the first equation.
+  - Writing $y=\pm\sinh x$ for the first equation (the roles are swapped).
+  - Using $1+\sinh^2 x=\sinh^2 x+1$ incorrectly, or misremembering $\cosh^2 x-\sinh^2 x=1$.
+  - Keeping only one sign of $y$.
+  hints:
+    rephrase: Square both sides, but first check which values of $x$ make the right-hand side valid.
+    smaller_case: At $x=0$, what do both equations give for $y$?
+    key_idea: The identity $\cosh^2 x-\sinh^2 x=1$ links the two equations, and the sign of the square-root
+      side restricts the domain.
+  check: simplify(Y**2 - cosh(x)**2)  (Y is the stated y-expression for the first family; this is 0 for
+    $y=\pm\cosh x$)
+  check_ok: null
+- goal: Sketch both families of curves and find where they intersect.
+  expected: 'Graph: two branches $y=\cosh x$ and $y=-\cosh x$ for $x\ge 0$, starting at $(0,\pm1)$. Full
+    curves $y=\sinh x$ and $y=-\sinh x$ for all $x$, through the origin. No intersection points.'
+  solution: Plot the $\cosh$ branches only for $x\ge 0$. Plot the $\sinh$ curves over all $x$; they pass
+    through the origin, are odd, and are not symmetric about the y-axis. Intersections need $\cosh x=\pm\sinh
+    x$. For the $+$ sign, $\cosh x-\sinh x=e^{-x}\neq 0$. For the $-$ sign, $\cosh x+\sinh x=e^{x}\neq
+    0$. So the two families never meet. The $\cosh$ and $\sinh$ branches approach each other as $x\to\infty$,
+    since their gap is $e^{-x}$.
+  common_errors:
+  - Drawing the $\cosh$ branches over all $x$ instead of only $x\ge0$.
+  - Claiming the curves intersect at the origin or at $(0,\pm1)$, which is wrong since the $\sinh$ curves
+    pass through the origin but the $\cosh$ branches do not.
+  - Confusing $\cosh$ and $\sinh$ shapes (for example, saying $\sinh 0=1$).
+  - Not checking intersections algebraically.
+  hints:
+    rephrase: Plot each family on its valid domain, then check whether any pair of curves can have equal
+      y-values at the same x.
+    smaller_case: Compare the values of $\cosh x$ and $\sinh x$ at $x=1$. How far apart are they?
+    key_idea: Intersection means equal y-values at the same x, so set $\cosh x=\pm\sinh x$ and use exponential
+      forms.
+  check: null
+extensions:
+  '3':
+  - Explain why the $\sinh$ curves are odd functions, and describe their symmetry.
+  '4':
+  - Derive $y=\pm\cosh x$ from the first equation using only the $e^{x}$ forms, without citing identities.
+  '5':
+  - Find the area between $y=\cosh x$ and $y=\sinh x$ for $0\le x\le 1$ (the answer is $1-e^{-1}$).
+spoken_vocab:
+- square root of y squared minus one
+- square root of y squared plus one
+- sinh x
+- cosh x
+- e to the x
+- e to the minus x
+- y equals plus or minus cosh x
+- y equals plus or minus sinh x
+- x greater than or equal to zero
+- hyperbolic identity
+- no intersection
+- origin
+source: screenshots/Screenshot 2026-11-19 at 14.36.06.png
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 2
+  minutes: 8
+  flags:
+  - needs_diagram
+  tagline: Squaring reveals y=±cosh x and y=±sinh x; the domain and no-intersection points are the discussion.
+  priority: 37
+  rank: 583
+  tier: D
+  category: screenshots
+  d10: 4.0
+  real: 3.0
+  by: haiku
+tags:
+- hyperbolic_functions
+- curve_sketching

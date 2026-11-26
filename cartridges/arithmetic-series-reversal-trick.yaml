@@ -1,0 +1,150 @@
+id: arithmetic-series-reversal-trick
+title: Arithmetic series by reversal
+topics:
+- sequences and series
+- arithmetic series
+- summation
+- proof
+- triangular numbers
+warmup: false
+answer_source: pdf
+statement: 'Using the method of writing a sum twice, once in reverse order, and adding term by term (which
+  gives $1 + 2 + \cdots + 100 = 5050$): (a) Find $5 + 8 + 11 + \cdots + 101$. (b) Find $7 + 14 + 21 +
+  \cdots + 700$. (c) Show that the sum of the first $n$ odd numbers, $1 + 3 + 5 + \cdots + (2n-1)$, is
+  $n^2$. (d) The sum $1 + 2 + 3 + \cdots + n$ equals $276$. Find $n$. (e) Explain why $1 + 2 + 3 + \cdots
+  + n$ can never equal $100$.'
+stages:
+- goal: (a) Find the sum 5 + 8 + 11 + ... + 101 using the reverse-and-add method.
+  expected: '1749'
+  solution: The common difference is 3, so the number of terms is (101 - 5)/3 + 1 = 33. Let S be the sum.
+    Writing it backwards and adding term by term, each column totals 5 + 101 = 106, giving 2S = 33 \times
+    106 = 3498, so S = 1749.
+  common_errors:
+  - Taking the term count as (101 - 5)/3 = 32 and forgetting the +1.
+  - Using 100 or 101 terms instead of 33.
+  - Getting 2S correct but forgetting to halve it at the end.
+  hints:
+    rephrase: Each term goes up by the same amount at each step. How many steps does it take to get from
+      5 to 101?
+    smaller_case: Try 5 + 8 + 11 + 14. How many terms are there, and what does each column total when
+      you write the sum backwards underneath?
+    key_idea: Count the terms first. Adding the reversed sum column by column gives the same total for
+      every column.
+  check: 33*(5+101)/2 - 1749
+  check_ok: true
+- goal: (b) Find the sum 7 + 14 + 21 + ... + 700.
+  expected: '35350'
+  solution: Every term is 7 times the matching term of 1 + 2 + ... + 100, since 700 = 7 \times 100. So
+    the sum is 7 \times 5050 = 35350.
+  common_errors:
+  - Counting the terms as 99 or 101 instead of 100.
+  - Using the reverse-and-add method with the wrong column total and forgetting to halve.
+  - Multiplying 5050 by 70 or by 700 instead of by 7.
+  hints:
+    rephrase: Can you write every term as a whole-number multiple of 7?
+    smaller_case: Compare 7 + 14 + 21 with 1 + 2 + 3. What is the relationship between the two sums?
+    key_idea: Factor out the common factor 7 and reuse the known result for 1 + 2 + ... + 100.
+  check: 7*5050 - 35350
+  check_ok: true
+- goal: (c) Show that 1 + 3 + 5 + ... + (2n-1) = n^2 using the reverse-and-add method.
+  expected: Let S be the sum. Writing it backwards and adding column by column, each pair (1 + (2n-1)),
+    (3 + (2n-3)), ... totals 2n. There are n such pairs, so 2S = n \times 2n, and therefore S = n^2.
+  solution: Let S = 1 + 3 + ... + (2n-1). Writing the sum backwards gives S = (2n-1) + ... + 3 + 1. Adding
+    the two versions term by term, each of the n columns gives 2n, so 2S = n \times 2n = 2n^2. Dividing
+    by 2 gives S = n^2.
+  common_errors:
+  - Checking only a few values of n (such as n = 1, 2, 3) and calling that a proof.
+  - Counting the number of columns as n - 1 or n + 1.
+  - Forgetting to halve, which gives 2n^2 instead of n^2.
+  hints:
+    rephrase: Write the sum forwards and backwards. Which pairs of terms add to the same number?
+    smaller_case: Take n = 3. Write 1 + 3 + 5 forwards and backwards underneath, and add the columns.
+    key_idea: Every column has the same total, and there are n columns. Multiply those two quantities
+      and then account for the double count.
+  check: Sum(2*k - 1, (k, 1, n)).doit() - n**2
+  check_ok: true
+- goal: (d) Find n such that 1 + 2 + 3 + ... + n = 276.
+  expected: n = 23
+  solution: Reverse-and-add gives 2 \times 276 = n(n+1), so n(n+1) = 552. Since 23 \times 24 = 552, and
+    n(n+1) is increasing for positive n, n = 23.
+  common_errors:
+  - Taking n = 276 or n = 552 directly from the sum.
+  - Solving n^2 = 552 without using the (n+1) factor and getting a non-integer.
+  - Forgetting the factor of 2 and solving n(n+1) = 276, which gives no integer solution.
+  hints:
+    rephrase: Use the reverse-and-add result for the sum of the first n whole numbers. What equation does
+      the sum 276 lead to?
+    smaller_case: Check what 1 + 2 + 3 + 4 equals and whether your formula reproduces it.
+    key_idea: After doubling, you need two consecutive whole numbers whose product matches the target.
+      Test values near the square root of the target.
+  check: 23*(23+1)/2 - 276
+  check_ok: true
+- goal: (e) Explain why 1 + 2 + 3 + ... + n can never equal 100.
+  expected: Reverse-and-add gives n(n+1) = 200. Since n(n+1) increases for positive whole numbers, and
+    13 \times 14 = 182 while 14 \times 15 = 210, the value 200 is skipped. So no whole number n works.
+  solution: 'The sum equals n(n+1)/2, so n(n+1) = 200. Testing consecutive whole numbers: 13 \times 14
+    = 182 and 14 \times 15 = 210. Because n(n+1) increases with n, it jumps from 182 to 210 and never
+    equals 200. So no whole number n gives a sum of 100.'
+  common_errors:
+  - Arguing that 100 is not a perfect square, which does not rule out a triangular number.
+  - Checking only one value of n and concluding that no value works.
+  - Using the wrong target, such as n(n+1) = 100, after forgetting the factor of 2.
+  hints:
+    rephrase: After doubling the sum, what product must n(n+1) equal? Which consecutive values of n(n+1)
+      sit on either side of it?
+    smaller_case: List the sums 1, 3, 6, 10, 15 and look at how consecutive values of n(n+1)/2 grow.
+    key_idea: Compare the target with the values of n(n+1) for consecutive n. Because they increase steadily,
+      check whether the target is hit exactly.
+extensions:
+  '3':
+  - Use the same reverse-and-add idea to show that the sum of the first n even numbers, 2 + 4 + ... +
+    2n, equals n(n+1).
+  - Find the sum of all multiples of 3 from 3 to 300 using the reverse-and-add method.
+  '4':
+  - Show that 1 + 2 + ... + n is always a whole number, and explain why n(n+1) is always even.
+  - Find the sum of 1 + 2 + ... + n for n = 1 to 10 and identify which of these sums are divisible by
+    3.
+  '5':
+  - 'Find the first value of n greater than 1 for which 1 + 2 + ... + n is a perfect square. (Hint: check
+    n = 8.)'
+  - Explain why the sum of an arithmetic series with integer first term, last term and common difference
+    d is always n(a + l)/2, and find when this is a whole number.
+spoken_vocab:
+- five plus eight plus eleven plus dot dot dot plus one hundred and one
+- seven plus fourteen plus twenty one plus dot dot dot plus seven hundred
+- one plus three plus five plus dot dot dot plus two n minus one
+- n squared
+- n open bracket n plus one close bracket
+- two S equals n times two n
+- two S
+- two seven six
+- five hundred and fifty two
+- twenty three
+- one hundred
+- two hundred
+- thirteen times fourteen
+- fourteen times fifteen
+- common difference
+- reverse order
+- sum of the first n odd numbers
+- triangular numbers
+- sigma
+source: kclms/kclms-specimen-questions-4.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 3
+  parts: 5
+  minutes: 12
+  flags: []
+  tagline: Five-part reversal-trick series ending in a no-solution argument.
+  priority: 73
+  rank: 303
+  tier: B
+  category: kclms
+  d10: 3.0
+  real: 5.0
+  by: deepseek-v4.1-flash-free
+tags:
+- sequences_and_series
+- proof

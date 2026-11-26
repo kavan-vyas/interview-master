@@ -1,0 +1,110 @@
+id: sketch-abs-linear-forms
+title: Sketching three absolute-value equations
+topics:
+- modulus
+- graphs
+- piecewise linear functions
+- loci
+warmup: false
+answer_source: generated
+statement: Sketch i) $1=|x|+|y|$ ii) $1=|x|-|y|$ iii) $1=|y-x|$.
+stages:
+- goal: Sketch i) $1=|x|+|y|$.
+  expected: A square (diamond) centred at the origin with vertices $(\pm1,0)$ and $(0,\pm1)$, with straight
+    edges joining neighbouring vertices.
+  solution: In each quadrant the equation becomes a straight line. In the first quadrant $x+y=1$ with
+    $x,y\ge0$, giving the segment from $(1,0)$ to $(0,1)$. Reflecting into the other three quadrants gives
+    the four edges of the diamond $|x|+|y|=1$.
+  common_errors:
+  - Drawing a circle, which confuses the sum of moduli with the sum of squares.
+  - Forgetting the sign cases, so only one edge is drawn.
+  - Placing the vertices at $(\pm1,\pm1)$ instead of on the axes.
+  hints:
+    rephrase: Consider what the graph looks like when you restrict to $x\ge0$ and $y\ge0$, then think
+      about the other quadrants.
+    smaller_case: Start with the points where $y=0$. What values of $x$ satisfy the equation there?
+    key_idea: Split the modulus into cases by sign in each quadrant. Each case gives a straight line.
+  check: (Abs(1)+Abs(0)-1)+(Abs(-1)+Abs(0)-1)+(Abs(0)+Abs(1)-1)+(Abs(0)+Abs(-1)-1)
+  check_ok: true
+- goal: Sketch ii) $1=|x|-|y|$.
+  expected: Two V-shaped pieces. One has its vertex at $(1,0)$ and opens to the right, with arms of slope
+    $+1$ and $-1$. The other has its vertex at $(-1,0)$ and opens to the left, with arms of slope $\pm1$.
+    Nothing is drawn for $-1<x<1$.
+  solution: The equation is $|x|=|y|+1$, so $|x|\ge1$. For $x\ge1$, $|y|=x-1$, which gives the rays $y=x-1$
+    and $y=1-x$ starting at $(1,0)$. For $x\le-1$, $|y|=-x-1$, which gives the rays $y=-x-1$ and $y=x+1$
+    starting at $(-1,0)$.
+  common_errors:
+  - Drawing a hyperbola with vertices on the $y$-axis (that is $|y|-|x|=1$ instead).
+  - Forgetting that $|x|\ge1$, so the curve has no points with $|x|<1$.
+  - Drawing the arms with slope $\pm2$ or with the wrong sign.
+  hints:
+    rephrase: Rearrange to make $|x|$ the subject. What must be true about $|x|$ for any point to exist?
+    smaller_case: Find the points on the $x$-axis, where $y=0$.
+    key_idea: Use $|x|=|y|+1$ and treat $x\ge1$ and $x\le-1$ separately.
+  check: (Abs(1)-Abs(0)-1)+(Abs(-1)-Abs(0)-1)
+  check_ok: true
+- goal: Sketch iii) $1=|y-x|$.
+  expected: Two parallel straight lines of slope $1$, given by $y=x+1$ and $y=x-1$. They pass through
+    $(0,1)$ and $(0,-1)$ respectively.
+  solution: $|y-x|=1$ means $y-x=1$ or $y-x=-1$. Each is a line of gradient $1$ with $y$-intercept $\pm1$.
+  common_errors:
+  - Drawing $y=-x\pm1$ (a sign error in the gradient).
+  - Drawing a single line, or a region between the lines, instead of the two boundary lines.
+  - Using $y=x\pm\sqrt{2}$ because of the perpendicular distance between the lines.
+  hints:
+    rephrase: What does $|y-x|=1$ say about the value of $y-x$?
+    smaller_case: Find the points on the $y$-axis, where $x=0$, that satisfy the equation.
+    key_idea: 'Remove the modulus with two cases: $y-x=1$ or $y-x=-1$.'
+  check: (Abs(1-0)-1)+(Abs(-1-0)-1)
+  check_ok: true
+extensions:
+  '3':
+  - Sketch $|x|+|y|=k$ for a positive constant $k$. How does the shape change as $k$ increases?
+  - Sketch $|x|+|y|=1$ and $|x|+|y|=2$ on the same axes. Describe the region between them.
+  '4':
+  - Sketch $|y|-|x|=1$. How does it compare with part ii)?
+  - Sketch $|x|-|y|=0$. Which familiar lines does it give?
+  '5':
+  - Sketch $\left||x|-|y|\right|=1$. How many separate curves are there?
+  - Sketch $|x|+|y|+|x-y|=2$. Describe the shape using the earlier results.
+spoken_vocab:
+- modulus
+- mod x
+- absolute value of x
+- absolute value of y
+- one equals mod x plus mod y
+- one equals mod x minus mod y
+- one equals mod y minus x
+- diamond
+- vertices
+- hyperbola
+- V shape
+- vertex
+- gradient
+- slope plus one
+- slope minus one
+- parallel lines
+- y-intercept
+- origin
+- quadrant
+- sign cases
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 3
+  minutes: 8
+  flags:
+  - needs_diagram
+  tagline: Diamond, hyperbolic V-pieces and parallel lines; quick sketches with limited discussion.
+  priority: 43
+  rank: 561
+  tier: C
+  category: tbo
+  d10: 2.5
+  real: 5.0
+  by: haiku
+tags:
+- curve_sketching
+- algebra_and_functions

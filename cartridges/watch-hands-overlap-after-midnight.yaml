@@ -1,0 +1,102 @@
+id: watch-hands-overlap-after-midnight
+title: Next overlap of the watch hands after midnight
+topics:
+- rates
+- linear equations
+- clock arithmetic
+- relative speed
+warmup: false
+answer_source: pdf
+statement: Here is a watch. Let's pretend it is midnight right now. The two hands are on top of each other.
+  When is the next time this will happen?
+stages:
+- goal: Find the angular speeds of the minute hand and the hour hand, and the speed of the minute hand
+    relative to the hour hand.
+  expected: The minute hand turns 6 degrees per minute. The hour hand turns 0.5 degrees per minute. The
+    minute hand gains on the hour hand at 5.5 degrees per minute.
+  solution: A full turn is 360 degrees. The minute hand completes a turn in 60 minutes, so its rate is
+    360/60 = 6 degrees per minute. The hour hand completes a turn in 12 hours = 720 minutes, so its rate
+    is 360/720 = 0.5 degrees per minute. The relative rate is 6 - 0.5 = 5.5 degrees per minute.
+  common_errors:
+  - Using 30 degrees per hour for the minute hand instead of 6 degrees per minute.
+  - Using 360 degrees per hour for the hour hand.
+  - Forgetting to subtract the two rates to get the relative speed.
+  hints:
+    rephrase: In one minute, how many degrees does each hand sweep?
+    smaller_case: How far does the hour hand move in one whole hour, in degrees?
+    key_idea: The speed of one hand relative to another is the difference of their speeds.
+  check: 6 - Rational(1,2) - Rational(11,2)
+  check_ok: true
+- goal: Find the first time t, in minutes after midnight, at which the hands coincide again.
+  expected: t = 720/11 minutes, approximately 65.45 minutes after midnight.
+  solution: At time t minutes after midnight, the minute hand is ahead of the hour hand by 5.5 t degrees.
+    The hands coincide when this difference is a multiple of 360. The first positive multiple gives 5.5
+    t = 360, so t = 720/11. At t = 0 they coincide, so this is the next time after midnight.
+  common_errors:
+  - Answering 60 minutes, which is the time of 1:00 and is wrong because the hands do not coincide there.
+  - Using 360 divided by 6 instead of the relative rate.
+  - Forgetting that the minute hand must gain a full lap on the hour hand.
+  - Rounding too early, for example to 65 minutes.
+  hints:
+    rephrase: The minute hand starts level with the hour hand at midnight. When does it next gain exactly
+      one full lap on the hour hand?
+    smaller_case: Check whether the hands coincide at 1:00. Where is each hand at that moment?
+    key_idea: The hands coincide when the minute hand has gained a whole multiple of 360 degrees on the
+      hour hand.
+  check: Rational(11,2)*Rational(720,11) - 360
+  check_ok: true
+- goal: Express the time as a clock reading.
+  expected: 720/11 minutes is 1 hour 5 and 5/11 minutes, so the hands coincide at 1:05 and 5/11 minutes,
+    roughly 1:05:27 am.
+  solution: 720/11 = 65 + 5/11 minutes. Since 65 minutes is 1 hour 5 minutes, the time is 1 h 5 5/11 min
+    after midnight. The fractional 5/11 minute is 300/11 seconds, about 27.3 seconds.
+  common_errors:
+  - Writing the time as 1:65 instead of converting to hours.
+  - Giving only the decimal 65.45 without converting to a clock time.
+  - Miscalculating the seconds from the fraction 5/11 of a minute.
+  hints:
+    rephrase: Write the number of minutes as hours and minutes.
+    smaller_case: Convert 90 minutes into hours and minutes.
+    key_idea: Divide by 60 and keep the remainder as minutes.
+  check: Rational(720,11) - (65 + Rational(5,11))
+  check_ok: true
+extensions:
+  '3':
+  - How many times in a 12-hour period do the two hands coincide, and why is the answer not 12?
+  '4':
+  - When do the hands first lie exactly opposite each other, 180 degrees apart?
+  '5':
+  - If the hands overlap at time T after midnight, when is the next overlap, and why does this give a
+    general formula for all overlaps?
+spoken_vocab:
+- watch
+- hour hand
+- minute hand
+- midnight
+- degrees
+- six degrees per minute
+- half a degree per minute
+- five and a half degrees per minute
+- seven hundred and twenty over eleven
+- one hour five and five elevenths minutes
+- three hundred and sixty degrees
+- one full lap
+- overlap
+source: past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2009.doc
+verified: false
+rating:
+  quality: 5
+  difficulty: 3
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: Relative angular speed gives 1:05 5/11; clean, with easy extensions.
+  priority: 61
+  rank: 430
+  tier: C
+  category: past-interviews
+  d10: 3.0
+  real: 7.0
+  by: haiku
+tags:
+- algebra_and_functions

@@ -1,0 +1,119 @@
+id: round-table-tags
+title: Tags around a round table
+topics:
+- modular arithmetic
+- permutations
+- invariants
+- parity
+- sums mod N
+warmup: false
+answer_source: pdf
+statement: $N$ people sit around a round table, numbered $0,1,\ldots,N-1$ clockwise, and the tag belonging
+  to person $k$ is called 'tag $k$'. One tag is put in front of each person, but a tag need not be in
+  front of its owner. Every second, everyone passes the tag in front of them to the next person clockwise,
+  so all the tags move one place round the table together. For which values of $N$ can the tags be arranged
+  so that, at every second, at least one person has their own tag in front of them?
+stages:
+- goal: Express when tag $k$ is in front of its owner, and deduce that the meeting times must cover every
+    residue mod $N$ exactly once.
+  expected: Tag $k$ starts in front of person $p_k$, so at time $t$ it is in front of person $p_k+t$.
+    It is in front of its owner exactly when $t\equiv d_k=k-p_k\pmod N$. Every residue $t$ needs some
+    $k$ with $d_k\equiv t$, so the $d_k$ are a permutation of the residues mod $N$.
+  solution: Tag $k$ is in front of person $p_k+t$ at time $t$. This is person $k$ when $p_k+t\equiv k$,
+    i.e. $t\equiv d_k=k-p_k\pmod N$. So tag $k$ meets its owner at times $d_k$ and then every $N$ seconds.
+    Since every second needs a match, each residue class $t\bmod N$ must contain some $d_k$. There are
+    $N$ tags and $N$ residues, so each residue occurs exactly once among the $d_k$.
+  common_errors:
+  - Thinking the tags move backwards, so the meeting time is $p_k-k$ rather than $k-p_k$.
+  - Forgetting that the condition must hold at every second, not just at the start.
+  - Assuming the $d_k$ can repeat without checking the count of residues.
+  hints:
+    rephrase: Each tag returns to its owner after a fixed number of seconds. Ask how often each tag meets
+      its owner and what that means for the times when a match occurs.
+    smaller_case: Take $N=3$. Place the tags and list the seconds at which each tag meets its owner over
+      one full cycle.
+    key_idea: Count the meeting times modulo $N$ and compare the number of tags with the number of residues.
+  check: null
+- goal: For odd $N$, give an arrangement that works.
+  expected: Put tag $k$ in front of person $-k\pmod N$. Then $d_k\equiv 2k\pmod N$, which runs over all
+    residues because $2$ is invertible modulo an odd $N$.
+  solution: Set $p_k\equiv -k\pmod N$. Then $d_k=k-p_k\equiv 2k\pmod N$. Since $N$ is odd, $\gcd(2,N)=1$,
+    so $k\mapsto 2k$ is a bijection on the residues mod $N$. Hence the $d_k$ are all distinct and cover
+    every residue, so at every second exactly one tag meets its owner.
+  common_errors:
+  - Using $p_k=k$ and concluding that $d_k=0$ for all $k$, which fails.
+  - Claiming $2k$ is distinct for all $k$ without using that $N$ is odd.
+  hints:
+    rephrase: Choose positions so that the meeting times $d_k$ are simple multiples of $k$. Then check
+      whether those multiples cover every residue.
+    smaller_case: Take $N=5$ and try $p_k=-k$. Compute $d_k$ for each $k$ and see whether they are all
+      different.
+    key_idea: Use a multiplication map on the residues and check when it is a bijection.
+  check: len(set([Mod(2*k, 7) for k in range(7)])) - 7
+  check_ok: null
+- goal: Show that no arrangement works when $N$ is even.
+  expected: Impossible. Summing the $d_k$ gives $0\pmod N$, but the residues $0,1,\ldots,N-1$ sum to $\frac{N(N-1)}{2}\equiv
+    \frac{N}{2}\pmod N$, which is nonzero.
+  solution: Since $p$ is a bijection from tags to people, $\sum_k p_k=\sum_k k=\frac{N(N-1)}{2}$. Hence
+    $\sum_k d_k=\sum_k(k-p_k)=0$ exactly, so $\sum_k d_k\equiv 0\pmod N$. But the $d_k$ are a permutation
+    of $0,1,\ldots,N-1$, so $\sum_k d_k\equiv\frac{N(N-1)}{2}\pmod N$. For $N=2m$, this is $m(2m-1)\equiv
+    -m\equiv m\pmod{2m}$, which is not $0$. Contradiction.
+  common_errors:
+  - Summing the $d_k$ and getting $0$ without noticing that the $d_k$ must cover every residue.
+  - Miscomputing $\frac{N(N-1)}{2}\bmod N$ for even $N$.
+  - Forgetting that $N=2$ is also covered by this argument.
+  hints:
+    rephrase: Add up all the meeting times in two different ways and compare the results modulo $N$.
+    smaller_case: Take $N=2$ and check directly whether the two tags can meet their owners at both seconds.
+    key_idea: The sum of the residues $0,\ldots,N-1$ depends on the parity of $N$, and the sum of the
+      $p_k$ is fixed.
+  check: Mod(15, 6) - 3
+  check_ok: true
+extensions:
+  '3':
+  - Tags move two places per second instead of one. For which $N$ can the tags be arranged so that a match
+    happens every second?
+  - Require each person to meet their own tag at least once in every block of two seconds.
+  '4':
+  - Count how many arrangements work for a given odd $N$.
+  - Describe all valid arrangements for $N=3$.
+  '5':
+  - Generalise to a table where tags move $a$ places per second, and find a criterion in terms of $\gcd(a,N)$.
+  - Consider the case where the tags move in both directions alternately.
+spoken_vocab:
+- round table
+- people
+- tags
+- clockwise
+- owner
+- modulo N
+- odd
+- even
+- residue
+- permutation
+- meeting time
+- invertible
+- sum of residues
+- contradiction
+- N equals two
+- N equals three
+- N equals five
+source: jzmaths/JZMaths Interview Questions from the website trial.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 8
+  parts: 3
+  minutes: 25
+  flags: []
+  tagline: Deep modular reasoning with parity; a genuinely demanding, rewarding proof.
+  priority: 91
+  rank: 106
+  tier: A
+  category: jzmaths
+  d10: 6.5
+  real: 7.0
+  by: haiku
+tags:
+- number_theory
+- combinatorics

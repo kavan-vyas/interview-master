@@ -1,0 +1,91 @@
+id: partial-fractions-set
+title: Partial fractions
+topics:
+- partial fractions
+- rational functions
+- algebra
+- cover-up method
+- equating coefficients
+warmup: true
+answer_source: pdf
+statement: 'Express in partial fractions: (i) $\frac{2}{(x+1)(x-1)}$; (ii) $\frac{1}{x^3+1}$; (iii) $\frac{4x+1}{(x+1)^2(x-2)}$;
+  (iv) $\frac{x^2-7}{(x-2)(x+1)}$.'
+stages:
+- goal: Decompose (i) and (ii).
+  expected: (i) 1/(x-1) - 1/(x+1); (ii) 1/(3(x+1)) + (2-x)/(3(x^2-x+1))
+  solution: (i) Write 2/((x+1)(x-1)) = A/(x-1) + B/(x+1). Setting x=1 gives A=1, and setting x=-1 gives
+    B=-1. (ii) Factor x^3+1=(x+1)(x^2-x+1). Write 1/(x^3+1) = A/(x+1) + (Bx+C)/(x^2-x+1). Setting x=-1
+    gives A=1/3. Comparing coefficients gives B=-1/3 and C=2/3.
+  common_errors:
+  - Using a constant numerator for the irreducible quadratic in (ii)
+  - Sign slip when using the cover-up method
+  - Not checking the coefficients by substitution
+  - Writing (Bx+C) as just B
+  hints:
+    rephrase: What form must each piece take for a linear factor, and what form for an irreducible quadratic
+      factor?
+    smaller_case: Decompose 3/(x(x+3)) first, before attempting the cubic.
+    key_idea: Use the cover-up method for distinct linear factors and equate coefficients for the remaining
+      terms.
+  check: sp.simplify(sp.apart(2/((x+1)*(x-1)), x) - (1/(x-1) - 1/(x+1))) == 0 and sp.simplify(sp.apart(1/(x**3+1),
+    x) - (1/(3*(x+1)) + (2-x)/(3*(x**2-x+1)))) == 0
+  check_ok: null
+- goal: Decompose (iii) and (iv).
+  expected: (iii) -1/(x+1) + 1/(x+1)^2 + 1/(x-2); (iv) 1 + 2/(x+1) - 1/(x-2)
+  solution: (iii) Write (4x+1)/((x+1)^2(x-2)) = A/(x+1) + B/(x+1)^2 + C/(x-2). Setting x=2 gives C=1.
+    Setting x=-1 gives B=1. Comparing the 1/x terms at large x gives A+C=0, so A=-1. (iv) The numerator
+    and denominator have equal degree, so divide first to get 1 + (x-5)/((x-2)(x+1)). Then write (x-5)/((x-2)(x+1))
+    = A/(x-2) + B/(x+1), with A=-1 and B=2.
+  common_errors:
+  - Using only B/(x+1)^2 and omitting the A/(x+1) term for the repeated factor
+  - Forgetting the polynomial part 1 in (iv)
+  - Sign error in the coefficient of 1/(x-2)
+  - Not doing the division first when the degrees are equal
+  hints:
+    rephrase: A repeated factor needs one term for each power. What should you do first when the numerator
+      degree is at least the denominator degree?
+    smaller_case: For 1/(x(x+1)^2), list the terms the partial fraction form requires before solving for
+      constants.
+    key_idea: If the numerator degree is at least the denominator degree, divide first. A repeated factor
+      (x+a)^2 contributes A/(x+a) + B/(x+a)^2.
+  check: sp.simplify(sp.apart((4*x+1)/((x+1)**2*(x-2)), x) - (-1/(x+1) + 1/(x+1)**2 + 1/(x-2))) == 0 and
+    sp.simplify(sp.apart((x**2-7)/((x-2)*(x+1)), x) - (1 + 2/(x+1) - 1/(x-2))) == 0
+  check_ok: null
+extensions:
+  '3':
+  - Express (3x+5)/((x-1)(x+2)(x+3)) in partial fractions.
+  '4':
+  - Express 1/(x^4-1) in partial fractions over the reals.
+  '5':
+  - Express 1/(x^4+4) in partial fractions over the reals.
+spoken_vocab:
+- partial fractions
+- x plus one
+- x minus one
+- x cubed plus one
+- x squared minus x plus one
+- x plus one squared
+- x minus two
+- four x plus one
+- x squared minus seven
+- cover-up method
+- equate coefficients
+- over
+source: step-workbook/Cambridge STEP Short Workbook.pdf#0
+verified: false
+rating:
+  quality: 4
+  difficulty: 4
+  parts: 4
+  minutes: 12
+  flags: []
+  tagline: 'Mechanical but varied: repeated factor, sum of cubes, improper fraction.'
+  priority: 52
+  rank: 513
+  tier: C
+  category: step-workbook
+  d10: 3.0
+  real: 3.0
+  by: haiku
+tags:
+- algebra_and_functions

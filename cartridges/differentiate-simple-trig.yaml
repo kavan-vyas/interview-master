@@ -1,0 +1,93 @@
+id: differentiate-simple-trig
+title: Differentiate simple trig functions
+topics:
+- calculus
+- differentiation
+- trigonometry
+- chain rule
+warmup: true
+answer_source: generated
+statement: 'Differentiate simple trig functions: $\frac{d}{dx}\sin x$, $\frac{d}{dx}\cos x$, $\frac{d}{dx}\sin
+  3x$.'
+stages:
+- goal: Differentiate sin x with respect to x.
+  expected: cos x
+  solution: sin x has the standard derivative cos x. The slope of the sine curve at each x equals the
+    value of cosine there.
+  common_errors:
+  - Answering -cos x (a sign slip from the cosine case)
+  - Answering sin x
+  hints:
+    rephrase: Which standard trig function is the derivative of sine?
+    smaller_case: Sketch sin x near x = 0 and check whether it is rising or falling there.
+    key_idea: Learn the standard derivatives of sine and cosine as a pair.
+  check: diff(sin(x), x) - cos(x)
+  check_ok: true
+- goal: Differentiate cos x with respect to x.
+  expected: -sin x
+  solution: The derivative of cos x is -sin x. The cosine curve is falling just after x = 0, where sin
+    x is positive, so the minus sign is needed.
+  common_errors:
+  - Answering sin x and dropping the minus sign
+  - Answering -cos x
+  hints:
+    rephrase: Think about whether cos x is increasing or decreasing near x = 0, and what sign that gives.
+    smaller_case: Check the slope of cos x at x = 0 numerically using a small step.
+    key_idea: The derivatives of sine and cosine are linked by a sign change.
+  check: diff(cos(x), x) + sin(x)
+  check_ok: true
+- goal: Differentiate sin 3x with respect to x.
+  expected: 3 cos 3x
+  solution: 'Use the chain rule. The outer function is sine, with derivative cos of the inner function.
+    The inner function 3x has derivative 3. Multiply: 3 cos 3x.'
+  common_errors:
+  - Answering cos 3x and forgetting the inner derivative
+  - Answering 3 cos x
+  hints:
+    rephrase: What is the derivative of the inside, 3x, and how does the chain rule use it?
+    smaller_case: Differentiate sin 2x. What factor appears?
+    key_idea: 'Chain rule: differentiate the outer function, keep the inside unchanged, then multiply
+      by the derivative of the inside.'
+  check: diff(sin(3*x), x) - 3*cos(3*x)
+  check_ok: true
+extensions:
+  '3':
+  - Differentiate tan x using the quotient rule.
+  '4':
+  - Differentiate sin(x^2) and cos(5x) and state the chain-rule factor in each case.
+  '5':
+  - Prove the derivative of sin x is cos x from the limit definition.
+spoken_vocab:
+- derivative
+- differentiate
+- d by d x
+- sine
+- cosine
+- tangent
+- chain rule
+- inside function
+- outer function
+- three x
+- slope
+- standard derivative
+- minus sign
+source: past-interviews/Actual Past Interview Questions/Maths & Philosophy Oxford Interview.doc
+verified: false
+rating:
+  quality: 1
+  difficulty: 1
+  parts: 3
+  minutes: 2
+  flags:
+  - trivial
+  tagline: Routine recall of standard trig derivatives with no reasoning or extension.
+  priority: 13
+  rank: 703
+  tier: D
+  category: past-interviews
+  d10: 1.5
+  real: 2.0
+  by: deepseek-v4.1-flash-free
+tags:
+- differentiation
+- trigonometry

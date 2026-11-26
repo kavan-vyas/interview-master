@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+pyyaml
+sympy
+pypdf
+numpy
+sounddevice
+silero-vad
+speechbrain
+torch
+torchaudio
+claude-agent-sdk

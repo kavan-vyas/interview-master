@@ -1,0 +1,141 @@
+id: mat-2013-q4-ratio-and-half-disc
+title: 'MAT 2013 Q4: sketch of (a+x)/(a-x), area of a half-disc region, and maximal area ratio'
+topics:
+- graphs
+- rational functions
+- trigonometry
+- areas
+- inequalities
+- optimisation
+warmup: false
+answer_source: pdf
+statement: Question 4 (Mathematics, Mathematics & Statistics, Mathematics & Philosophy applicants). (i)
+  Let $a > 0$. On the axes provided, sketch the graph of $y = \frac{a+x}{a-x}$ for $-a < x < a$. (ii)
+  Let $0 < \theta < \frac{\pi}{2}$. The half-disc is given by $x^2 + y^2 \leqslant 1$ and $y \geqslant
+  0$. The shaded region $A$ consists of those points with $-\cos\theta \leqslant x \leqslant \sin\theta$;
+  the region $B$ is the remainder of the half-disc. Find the area of $A$. (iii) Assuming only that $\sin^2\theta
+  + \cos^2\theta = 1$, show that $\sin\theta\cos\theta \leqslant \frac{1}{2}$. (iv) What is the largest
+  that the ratio $\frac{\text{area of } A}{\text{area of } B}$ can be, as $\theta$ varies?
+stages:
+- goal: 'Part (i): sketch y = (a+x)/(a-x) on -a < x < a, identifying key points and behaviour.'
+  expected: The curve is strictly increasing from (-a, 0) through (0, 1) and rises without bound as x
+    approaches a from the left, with a vertical asymptote at x = a. Its range is 0 < y < infinity on the
+    interval, with y = 0 at x = -a.
+  solution: 'At x = -a, y = 0/(2a) = 0. At x = 0, y = a/a = 1. As x -> a from the left, the numerator
+    tends to 2a > 0 and the denominator tends to 0 from above, so y -> +infinity. The derivative is y''
+    = [(a-x) + (a+x)]/(a-x)^2 = 2a/(a-x)^2 > 0, so the curve is strictly increasing. Sketch: an increasing
+    curve from (-a, 0), through (0, 1), with vertical asymptote x = a.'
+  common_errors:
+  - drawing a horizontal asymptote inside the interval
+  - drawing the curve decreasing, which corresponds to a sign error in the derivative
+  - placing the curve below the x-axis for x near -a
+  - forgetting that the curve is undefined at x = a
+  hints:
+    rephrase: Find the value at x = -a and at x = 0, then find what happens as x approaches a. Check whether
+      the curve goes up or down by computing a derivative.
+    smaller_case: Take a = 1 and evaluate y at x = -0.5, 0 and 0.5.
+    key_idea: The sign of the derivative shows whether the curve is monotone, and the denominator's zero
+      gives the asymptote.
+  check: diff((a+x)/(a-x), x) - 2*a/(a-x)**2
+  check_ok: true
+- goal: 'Part (ii): find the area of region A.'
+  expected: Area of A = pi/4 + sin(theta) cos(theta).
+  solution: 'The area of the half-disc with x <= s, for -1 <= s <= 1, is integral from -1 to s of sqrt(1
+    - x^2) dx = s sqrt(1-s^2)/2 + arcsin(s)/2 + pi/4. Put s = sin theta: sqrt(1-s^2) = cos theta, so this
+    is sin theta cos theta/2 + theta/2 + pi/4. Put s = -cos theta: sqrt(1-s^2) = sin theta and arcsin(-cos
+    theta) = -(pi/2 - theta), so this is -sin theta cos theta/2 + theta/2. Area of A = (first) - (second)
+    = sin theta cos theta + pi/4. Check: theta -> 0 gives pi/4, which is the quarter disc on -1 <= x <=
+    0, as expected.'
+  common_errors:
+  - using the quarter-disc area for A without accounting for the cut at x = sin theta
+  - mis-evaluating arcsin(-cos theta) as -theta
+  - forgetting that the half-disc has area pi/2 when finding B
+  - miscalculating sqrt(1 - sin^2 theta) as sin theta
+  hints:
+    rephrase: Find the area of the half-disc to the left of x = sin theta, then subtract the area to the
+      left of x = -cos theta. Use the points where the vertical lines meet the circle.
+    smaller_case: Take theta = pi/4 and find the x-range of A.
+    key_idea: A standard integral for the area of a circular segment cut by a vertical line gives the
+      answer once the two cuts are subtracted.
+  check: sin(th)*cos(th) + pi/4 - ((sin(th)*cos(th)/2 + th/2 + pi/4) - (-sin(th)*cos(th)/2 + th/2))
+  check_ok: true
+- goal: 'Part (iii): show sin(theta) cos(theta) <= 1/2 using only sin^2 + cos^2 = 1.'
+  expected: Since (sin theta - cos theta)^2 >= 0, we have sin^2 theta + cos^2 theta - 2 sin theta cos
+    theta >= 0, so 1 - 2 sin theta cos theta >= 0, giving sin theta cos theta <= 1/2.
+  solution: Expanding (sin theta - cos theta)^2 gives sin^2 theta - 2 sin theta cos theta + cos^2 theta.
+    This is a square and so non-negative. Using sin^2 theta + cos^2 theta = 1, we get 1 - 2 sin theta
+    cos theta >= 0, i.e. sin theta cos theta <= 1/2.
+  common_errors:
+  - trying to derive the bound from sin and cos individually without a square
+  - dropping the factor 2 when rearranging
+  - using the bound without saying where the inequality comes from
+  hints:
+    rephrase: Find an expression that is always non-negative and involves sin theta cos theta, then use
+      the identity given.
+    smaller_case: Test theta = 0 and theta = pi/4 and compare the values of sin theta cos theta.
+    key_idea: A real square is never negative. Expand the square of the difference of sin theta and cos
+      theta.
+  check: null
+- goal: 'Part (iv): find the largest value of area(A)/area(B) as theta varies.'
+  expected: The largest value is (pi + 2)/(pi - 2), attained at theta = pi/4.
+  solution: 'The half-disc has area pi/2, so area(B) = pi/2 - (pi/4 + sin theta cos theta) = pi/4 - sin
+    theta cos theta. Let u = sin theta cos theta, which lies in (0, 1/2] by part (iii) and attains 1/2
+    at theta = pi/4. The ratio is R(u) = (pi/4 + u)/(pi/4 - u). Its derivative is (pi/2)/(pi/4 - u)^2
+    > 0, so R is increasing in u. The maximum occurs at u = 1/2: R = (pi/4 + 1/2)/(pi/4 - 1/2) = (pi +
+    2)/(pi - 2). This is attained at theta = pi/4, which lies in (0, pi/2).'
+  common_errors:
+  - forgetting to subtract A from the half-disc area to find B
+  - treating the ratio as decreasing in u
+  - computing the maximum at an endpoint of theta rather than in u
+  - forgetting that the maximum of u is attained inside the interval (0, pi/2)
+  hints:
+    rephrase: Find B from the half-disc area and A. Then write the ratio as a function of sin theta cos
+      theta, and find how it changes.
+    smaller_case: Compare the ratio at theta near 0 with the ratio at theta = pi/4.
+    key_idea: The ratio is a monotone function of u = sin theta cos theta, and part (iii) bounds u.
+  check: (pi/4 + Rational(1,2))/(pi/4 - Rational(1,2)) - (pi+2)/(pi-2)
+  check_ok: true
+extensions:
+  '3':
+  - Show that area(A) is at least the area of the quarter disc for every theta in (0, pi/2).
+  '4':
+  - Show that there is no theta in (0, pi/2) for which area(A) equals area(B).
+  '5':
+  - Does the answer to part (iv) change if the half-disc has radius r instead of 1? Explain.
+spoken_vocab:
+- y equals a plus x over a minus x
+- asymptote
+- half-disc
+- x squared plus y squared less than or equal to one
+- theta
+- sine theta
+- cosine theta
+- shaded region A
+- region B
+- pi over four
+- square root of two
+- ratio
+- largest value
+- quarter disc
+- monotone
+source: mat/2013 MAT done again.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 4
+  minutes: 20
+  flags:
+  - needs_diagram
+  tagline: Half-disc area via sinθcosθ, then maximal ratio at θ=π/4
+  priority: 74
+  rank: 287
+  tier: B
+  category: mat
+  d10: 5.5
+  real: 5.5
+  by: haiku
+tags:
+- geometry
+- trigonometry
+- inequalities

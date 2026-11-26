@@ -1,0 +1,182 @@
+id: tower-of-hanoi-moves
+title: 'Tower of Hanoi: optimal moves and the adjacent-peg variant'
+topics:
+- recursion
+- induction
+- recurrence relations
+- lower bounds
+- counting arrangements
+- Tower of Hanoi
+warmup: false
+answer_source: pdf
+statement: 'There are three pegs and $n$ discs of different sizes, initially stacked on the first peg
+  with the largest at the bottom. A move takes the top disc from one peg and places it on another peg,
+  and a disc may never be placed on a smaller disc. Let $M_n$ be the least number of moves needed to transfer
+  the whole stack to the third peg.
+
+
+  (i) Show that $M_n=2M_{n-1}+1$, explaining both why this many moves suffice and why fewer will not do.
+
+
+  (ii) Deduce that $M_n=2^n-1$.
+
+
+  (iii) Now suppose discs may only move between adjacent pegs (first and second, or second and third).
+  Describe a recursive strategy that transfers the stack from the first peg to the third using $T_n$ moves,
+  where $T_n=3T_{n-1}+2$, and solve this recurrence.
+
+
+  (iv) How many legal arrangements of the $n$ discs on the three pegs are there? What does this suggest
+  about the strategy in (iii)?'
+stages:
+- goal: Show $M_n=2M_{n-1}+1$ by giving a strategy (upper bound) and an argument that no strategy does
+    better (lower bound).
+  expected: 'Upper bound: move the top $n-1$ discs to peg 2 ($M_{n-1}$ moves), move the largest disc to
+    peg 3 (1 move), then move the $n-1$ discs from peg 2 onto peg 3 ($M_{n-1}$ moves): total $2M_{n-1}+1$.
+    Lower bound: the largest disc must move at least once. Just before its first move, the other $n-1$
+    discs must all sit on the one peg that is neither its source nor its destination, so at least $M_{n-1}$
+    moves of smaller discs have been made. After its last move it is on peg 3, so the $n-1$ discs must
+    still be brought onto peg 3, needing at least $M_{n-1}$ further moves. Hence $M_n\ge 2M_{n-1}+1$,
+    so equality holds.'
+  solution: 'Suffice: $M_{n-1}+1+M_{n-1}=2M_{n-1}+1$ moves by the three-phase strategy. Necessary: the
+    largest disc moves at least once. Consider its first move, from peg 1 to some peg $p$. Every smaller
+    disc must then be on the third peg, not 1 or $p$, since the largest disc can only land on an empty
+    peg and must leave an empty source peg to be lifted. Getting all $n-1$ smaller discs from peg 1 onto
+    another single peg takes at least $M_{n-1}$ moves (by symmetry of the pegs, the minimum for moving
+    a stack between any two pegs is $M_{n-1}$). Consider its last move, which ends on peg 3. Afterwards
+    the $n-1$ smaller discs are all on one other peg and must be moved onto peg 3, taking at least $M_{n-1}$
+    further moves. These two blocks of moves are disjoint and the largest disc moves at least once in
+    between, so $M_n\ge 2M_{n-1}+1$. Combined with the strategy, $M_n=2M_{n-1}+1$.'
+  common_errors:
+  - Giving only the strategy (upper bound) and not arguing that fewer moves is impossible.
+  - Assuming the largest disc can move with no preparatory moves of the smaller discs, or forgetting that
+    they must all be on a single third peg at that moment.
+  - Not noting that moving a stack between any two pegs costs the same $M_{n-1}$ by symmetry, so the sub-problems
+    really are copies of the original.
+  - Counting the largest disc's moves incorrectly, or double counting moves before its first and after
+    its last move.
+  hints:
+    rephrase: Focus on the largest disc. How many times must it move, and where must all the other discs
+      be at the moment it moves?
+    smaller_case: For $n=2$, list a shortest sequence of moves. Which disc moves before and after the
+      largest one, and why can the largest disc not move at the very start?
+    key_idea: Cut the sequence of moves at the first and last moves of the largest disc. Each outer piece
+      is a smaller Tower of Hanoi problem on $n-1$ discs.
+- goal: Deduce the closed form $M_n=2^n-1$.
+  expected: $M_n+1=2(M_{n-1}+1)$ with $M_1=1$, so $M_n+1=2^n$ and $M_n=2^n-1$, proved by induction (or
+    by iterating the recurrence).
+  solution: 'Add 1 to both sides of $M_n=2M_{n-1}+1$: $M_n+1=2(M_{n-1}+1)$. So $M_n+1$ is geometric with
+    ratio 2. Base case: $M_1=1$ (one disc needs one move), so $M_1+1=2$. By induction $M_n+1=2^n$, i.e.
+    $M_n=2^n-1$. Check: $M_2=3$.'
+  common_errors:
+  - Not stating or checking a base case ($M_1=1$, or $M_0=0$).
+  - Forgetting to add 1 to both sides, so the recurrence does not become a pure doubling.
+  - Stating the formula from the first few values without proof by induction.
+  - Solving as $M_n=2^n$ by dropping the $+1$.
+  hints:
+    rephrase: Try adding a constant to both sides of the recurrence so that it becomes a pure doubling.
+    smaller_case: Compute $M_1,M_2,M_3$ from the recurrence and compare each with a power of 2.
+    key_idea: A recurrence $x_n=2x_{n-1}+c$ becomes geometric after shifting $x_n$ by the constant $c$.
+  check: simplify((2**n - 1) - (2*(2**(n-1) - 1) + 1))
+  check_ok: true
+- goal: Describe the adjacent-peg strategy and solve $T_n=3T_{n-1}+2$.
+  expected: Move the top $n-1$ discs from peg 1 to peg 3 ($T_{n-1}$), move the largest from peg 1 to peg
+    2 (1), move the $n-1$ discs from peg 3 back to peg 1 ($T_{n-1}$), move the largest from peg 2 to peg
+    3 (1), then move the $n-1$ discs from peg 1 to peg 3 ($T_{n-1}$). So $T_n=3T_{n-1}+2$ with $T_1=2$,
+    giving $T_n=3^n-1$.
+  solution: 'The three transfers of $n-1$ discs (1 to 3, 3 to 1, 1 to 3) each cost $T_{n-1}$ by symmetry
+    (reflecting the pegs), and the largest disc makes two single-step moves, giving $T_n=3T_{n-1}+2$.
+    Add 1: $T_n+1=3(T_{n-1}+1)$. With $T_1=2$ (move 1 to 2, then 2 to 3), $T_1+1=3$, so $T_n+1=3^n$ and
+    $T_n=3^n-1$.'
+  common_errors:
+  - 'Using $T_1=1$ as the base case: the single disc must pass through peg 2, so $T_1=2$.'
+  - Forgetting that the largest disc moves twice, writing $T_n=3T_{n-1}+1$ or $2T_{n-1}+1$.
+  - Using the three-peg strategy unchanged, which would move discs directly between pegs 1 and 3.
+  - Solving the recurrence incorrectly, for example as $3^n$ or $2\cdot 3^{n-1}$.
+  hints:
+    rephrase: 'Describe three phases: moving the top discs out of the way, moving the largest disc, and
+      rebuilding. The largest disc cannot jump from peg 1 to peg 3, so where must the other discs be when
+      it moves?'
+    smaller_case: For $n=1$, how many moves does a single disc need to go from peg 1 to peg 3 when it
+      may only move between neighbouring pegs?
+    key_idea: The largest disc makes two moves, and the smaller stack is moved three times. Add a constant
+      to both sides so the recurrence becomes a pure multiplication by 3.
+  check: simplify((3**n - 1) - (3*(3**(n-1) - 1) + 2))
+  check_ok: true
+- goal: Count the legal arrangements and interpret the strategy in (iii).
+  expected: 'There are $3^n$ legal arrangements: each disc is on one of three pegs, and the order of discs
+    on each peg is forced (largest at the bottom). The strategy takes $3^n-1$ moves, so it passes through
+    $3^n$ arrangements including the start. Since this equals the total number of legal arrangements,
+    it visits every arrangement exactly once, which suggests it is optimal: a route that visits every
+    legal arrangement once cannot be shortened.'
+  solution: 'Each disc independently chooses a peg ($3^n$ ways), and on each peg the discs must be in
+    decreasing size from the bottom, so each choice gives exactly one legal arrangement: $3^n$ in total.
+    The strategy uses $3^n-1$ moves, so it passes through $(3^n-1)+1=3^n$ arrangements, the start included.
+    This is all of them, each once. Moreover, with adjacent-peg moves each arrangement has at most two
+    legal moves, so the arrangements form a path from all-on-peg-1 to all-on-peg-3; the strategy follows
+    this path, so no shorter strategy exists.'
+  common_errors:
+  - Counting arrangements as $n!$ or $3n$, ignoring that the order on each peg is forced by the size rule.
+  - Forgetting to include the starting arrangement when comparing $3^n-1$ moves with $3^n$ arrangements.
+  - Concluding the strategy is optimal without noting it visits every arrangement exactly once.
+  - Applying the 'visits everything once' idea to the unrestricted three-peg game, where the shortest
+    solution visits only $2^n$ of the $3^n$ arrangements.
+  hints:
+    rephrase: For a fixed disc, how many pegs could it be on? Does the order of the discs on a peg give
+      any extra freedom?
+    smaller_case: For $n=1$ and $n=2$, list all legal arrangements and count them. Compare with $T_1+1$
+      and $T_2+1$.
+    key_idea: Compare the number of moves plus one with the number of arrangements.
+  check: simplify(3**n - ((3**n - 1) + 1))
+  check_ok: true
+extensions:
+  '3':
+  - Show that in the adjacent-peg version each arrangement has at most two legal moves, and use this to
+    explain why $3^n-1$ moves is the minimum.
+  - In the ordinary three-peg game, how many of the $3^n$ arrangements does the optimal $2^n-1$ move solution
+    visit?
+  '4':
+  - Describe how the position of the smallest disc changes from move to move in the adjacent-peg strategy,
+    and relate the arrangements to ternary (base 3) numbers.
+  - In the ordinary game, show that the optimal solution is unique.
+  '5':
+  - With four pegs, find the least number of moves for $n=3$ and explain why it is smaller than the three-peg
+    value $7$.
+  - Describe the Frame-Stewart idea for four pegs and compute its move count for $n=4$ and $n=5$.
+spoken_vocab:
+- three pegs
+- discs
+- M sub n
+- T sub n
+- two M sub n minus one plus one
+- two to the n minus one
+- three to the n minus one
+- three to the n
+- peg one
+- peg two
+- peg three
+- Tower of Hanoi
+- adjacent pegs
+- legal arrangements
+- recurrence
+- induction
+source: jaymin/Jaymin Interview (1).pdf#p17
+verified: false
+rating:
+  quality: 8
+  difficulty: 4
+  parts: 4
+  minutes: 30
+  flags: []
+  tagline: Classic recursion, adjacent-peg variant, and Hamiltonian-path insight.
+  priority: 110
+  rank: 26
+  tier: S
+  category: jaymin
+  d10: 4.5
+  real: 7.5
+  by: haiku
+refined: true
+tags:
+- combinatorics
+- sequences_and_series

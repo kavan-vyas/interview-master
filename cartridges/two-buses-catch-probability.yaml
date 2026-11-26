@@ -1,0 +1,113 @@
+id: two-buses-catch-probability
+title: Two Buses and Catch Probability
+topics:
+- probability
+- geometric probability
+- modelling
+- inequalities
+warmup: false
+answer_source: generated
+statement: Two buses, $M$ and $Z$, always arrive at fixed numbers of minutes past the hour, and only one
+  bus comes each hour. You arrive at random times over the course of a year and observe that you are much
+  more likely to catch bus $M$ than bus $Z$. Given that $Z$ arrives during the first half of the hour,
+  what can you deduce about the arrival times $m$ and $z$ of the two buses?
+stages:
+- goal: Model the situation with arrivals at minute $m$ for $M$ and minute $z$ for $Z$ in each hour, taking
+    the catch to be whichever bus arrives next after you. Find $P(M)$, the probability you catch $M$,
+    in the case $m<z$.
+  expected: $P(M)=\frac{60-(z-m)}{60}=1-\frac{z-m}{60}$
+  solution: 'Let $t\in[0,60)$ be your arrival minute and let the pattern repeat every hour. If $m<z$:
+    for $0\le t<m$ the next bus is $M$ (at $m$); for $m\le t<z$ the next bus is $Z$ (at $z$); for $z\le
+    t<60$ the next bus is $M$ (at $60+m$). The $M$ intervals have total length $m+(60-z)$, so $P(M)=\frac{60-(z-m)}{60}$.'
+  common_errors:
+  - 'Forgetting the wrap-around: the $M$ bus at $m$ also serves the stretch from $z$ up to $60+m$.'
+  - Using $\frac{z-m}{60}$ for $P(M)$ instead of its complement.
+  hints:
+    rephrase: Draw a 60-minute clock with two marked points. For each part of the circle, ask which bus
+      comes next.
+    smaller_case: Take $m=10$ and $z=20$. Count the minutes in each hour during which the next bus is
+      $M$.
+    key_idea: The probability of catching a bus equals the proportion of the hour during which it is the
+      next to arrive, so you need the arc length for each bus.
+  check: (60-(z-m))/60 - (1 - (z-m)/60)
+  check_ok: true
+- goal: Repeat the calculation for the case $m>z$ and find $P(M)$.
+  expected: $P(M)=\frac{m-z}{60}$
+  solution: 'If $z<m$: for $0\le t<z$ the next bus is $Z$ (at $z$); for $z\le t<m$ the next bus is $M$
+    (at $m$); for $m\le t<60$ the next bus is $Z$ (at $60+z$). The $M$ interval has length $m-z$, so $P(M)=\frac{m-z}{60}$.
+    Check: $P(Z)=\frac{z+(60-m)}{60}$ and $P(M)+P(Z)=1$.'
+  common_errors:
+  - Assigning the wrap-around interval to $M$ instead of $Z$.
+  - Writing $P(M)=\frac{m}{60}$ and dropping the $z$.
+  hints:
+    rephrase: Ask which bus is next during the stretch between $z$ and $m$, then which bus is next during
+      the rest of the hour.
+    smaller_case: Take $z=10$ and $m=40$. Find the minutes in each hour when $M$ is the next bus.
+    key_idea: Use the fact that $P(M)+P(Z)=1$ to check your interval lengths.
+  check: (m-z)/60 - (1 - (60-(m-z))/60)
+  check_ok: true
+- goal: Using $z<30$ and the requirement $P(M)>\tfrac{1}{2}$, state what you can deduce about $m$ relative
+    to $z$.
+  expected: Either $m<z$, or $m>z+30$. Equivalently, $m$ does not lie in the half-hour window $[z,\,z+30]$.
+    In the second case $m>30$.
+  solution: 'Case $m<z$: $P(M)>\tfrac{1}{2}$ means $z-m<30$. This always holds, since $0\le m<z<30$. Case
+    $m>z$: $P(M)>\tfrac{1}{2}$ means $m-z>30$. Since $z\ge 0$, this requires $m>z+30$, which forces $m>30$.
+    Combining both cases, $m<z$ or $m>z+30$. Ties ($m=z$, or $m-z=30$ exactly) give $P(M)=P(Z)$ and are
+    excluded.'
+  common_errors:
+  - Forgetting the $m<z$ branch, where both buses are in the first half and $M$ comes first.
+  - Accepting $m>z+30$ without checking that it forces $m>30$ given $z<30$.
+  - Using $P(M)>\tfrac{1}{4}$ or $P(M)>\tfrac{3}{4}$ as the threshold instead of $\tfrac{1}{2}$.
+  hints:
+    rephrase: Split into the cases $m<z$ and $m>z$. In each case, write $P(M)>\tfrac{1}{2}$ as an inequality
+      involving $m$ and $z$.
+    smaller_case: Fix $z=20$. Test whether $m=5$ and $m=45$ each make $M$ more likely than $Z$, using
+      your formulas from the earlier stages.
+    key_idea: Being more likely to catch $M$ than $Z$ means $P(M)>\tfrac{1}{2}$, so compare each formula
+      with one half.
+  check: null
+extensions:
+  '3':
+  - With three buses, each arriving at a fixed minute past the hour, when is each bus most likely to be
+    the next one caught?
+  - If you must wait for a specific bus rather than catching whichever comes first, how does the answer
+    change?
+  '4':
+  - Generalise to $n$ buses at fixed minutes past the hour. What is the probability of catching bus $k$?
+  '5':
+  - Suppose each bus's minute is an independent uniform random variable on $[0,60)$. What is the probability
+    that $M$ is the next bus to arrive after a random time?
+spoken_vocab:
+- bus M
+- bus Z
+- m
+- z
+- minutes past the hour
+- sixty
+- thirty
+- first half of the hour
+- greater than
+- less than
+- probability
+- one half
+- plus thirty
+- z plus thirty
+- the interval from z to z plus thirty
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 4 (anonymous).pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Surprising deduction from a clean modular-arrival probability model.
+  priority: 81
+  rank: 202
+  tier: B
+  category: past-interviews
+  d10: 5.5
+  real: 6.5
+  by: haiku
+tags:
+- probability

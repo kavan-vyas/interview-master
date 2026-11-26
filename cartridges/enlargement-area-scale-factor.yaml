@@ -1,0 +1,88 @@
+id: enlargement-area-scale-factor
+title: Area of an Enlarged Shape on a Grid
+topics:
+- enlargement
+- scale factor
+- area scaling
+- coordinate geometry
+warmup: true
+answer_source: pdf
+statement: 'This diagram shows a shape on a 1 cm square grid. An enlargement of the shape takes point
+  A to $(9,6)$ and B to $(18,6)$. What is the area of the enlarged shape? Options: a) $4\,\text{cm}^2$
+  b) $16\,\text{cm}^2$ c) $36\,\text{cm}^2$ d) $21\,\text{cm}^2$ e) $12\,\text{cm}^2$'
+stages:
+- goal: Find the scale factor of the enlargement from the images of A and B.
+  expected: Scale factor 3
+  solution: Under the enlargement, the horizontal distance between A and B goes from $18-9=9$ to the original
+    distance. From the diagram, the original distance between A and B is 3 cm. So the scale factor is
+    $k = \frac{9}{3} = 3$.
+  common_errors:
+  - Using the distance between the images as the scale factor without comparing it to the original distance.
+  - Reading the grid distance between A and B incorrectly, for example counting endpoints rather than
+    gaps.
+  - Taking the scale factor as 2 because the x-coordinate of B is twice that of A.
+  hints:
+    rephrase: Compare the length between A and B on the diagram with the length between their images.
+      How many times bigger is the new one?
+    smaller_case: If the new segment were 6 units long and the original 3, what would the scale factor
+      be?
+    key_idea: The scale factor is the ratio of an image length to the matching original length.
+  check: 3 - Rational(9,3)
+  check_ok: true
+- goal: Find the area of the enlarged shape.
+  expected: 36 cm², which is option c
+  solution: The original shape has area 4 cm², read from the grid in the diagram. Areas scale by $k^2$,
+    so the enlarged area is $4 \times 3^2 = 36\ \text{cm}^2$, which is option c.
+  common_errors:
+  - Multiplying the area by $k$ instead of $k^2$, giving 12 cm² (option e).
+  - Using the scale factor squared on the wrong quantity, such as the perimeter.
+  - Choosing 16 cm² (option b) from $4 \times 2^2$, which uses the wrong scale factor.
+  hints:
+    rephrase: If every length doubles, by what factor does the area change?
+    smaller_case: A 1 cm square enlarged by scale factor 2 becomes a 2 cm square. Compare the areas.
+    key_idea: Area is measured in two dimensions, so it scales by the square of the scale factor.
+  check: 36 - 4*3**2
+  check_ok: true
+extensions:
+  '3':
+  - A shape of area 10 cm² is enlarged with scale factor 4. Find the new area.
+  - A rectangle is enlarged with scale factor $\frac{1}{2}$. By what fraction does its area change?
+  '4':
+  - An enlargement maps a triangle of area 7 cm² to one of area 63 cm². Find the scale factor and the
+    centre-independent reasoning that justifies it.
+  '5':
+  - Show that an enlargement with scale factor $k$ maps a region of area $A$ to a region of area $k^2A$
+    using the change-of-variables formula for the Jacobian.
+spoken_vocab:
+- enlargement
+- scale factor
+- point A
+- point B
+- nine comma six
+- eighteen comma six
+- square centimetres
+- area
+- grid
+- option c
+- thirty six
+source: kclms/kclms-mcq-specimen-questions-answers-included.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 2
+  minutes: 3
+  flags:
+  - missing_info
+  - needs_diagram
+  - trivial
+  tagline: Multiple-choice recall with the referenced grid shape missing from the statement.
+  priority: 1
+  rank: 712
+  tier: D
+  category: kclms
+  d10: 2.0
+  real: 2.0
+  by: deepseek-v4.1-flash-free
+tags:
+- geometry

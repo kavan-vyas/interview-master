@@ -1,0 +1,137 @@
+id: p-series-harmonic-euler-gamma
+title: p-integral and p-series tests, harmonic bounds, Euler-Mascheroni constant
+topics:
+- improper integrals
+- comparison of sums and integrals
+- p-series
+- harmonic numbers
+- monotone convergence
+- asymptotics
+warmup: false
+answer_source: pdf
+statement: Let $H_n=1+\frac{1}{2}+\cdots+\frac{1}{n}$. (i) Show that $\int_1^\infty x^{-p}\,dx$ converges
+  if and only if $p>1$. (ii) By comparing sums with integrals, show that $\sum\frac{1}{n^p}$ converges
+  if and only if $p>1$. (iii) Show that $\ln(n+1)\le H_n\le 1+\ln n$. (iv) Show that $\gamma_n=H_n-\ln
+  n$ is decreasing and positive, and hence converges. (v) The limit is $\gamma\approx 0.577$. Estimate
+  the number of terms needed for $H_n$ to exceed 10.
+stages:
+- goal: Determine when $\int_1^\infty x^{-p}\,dx$ converges.
+  expected: It converges exactly when $p>1$ (with value $\frac{1}{p-1}$), and diverges for $p\le 1$.
+  solution: For $p\ne 1$, $\int_1^X x^{-p}\,dx=\frac{X^{1-p}-1}{1-p}$. If $p>1$, then $X^{1-p}\to 0$,
+    giving the limit $\frac{1}{p-1}$. If $p<1$, then $X^{1-p}\to\infty$. For $p=1$ the integral equals
+    $\ln X\to\infty$. Hence it converges if and only if $p>1$.
+  common_errors:
+  - Forgetting the case $p=1$, which diverges logarithmically
+  - Sign error in the exponent $1-p$ of the antiderivative
+  - Forgetting the $-1$ term from the lower limit
+  hints:
+    rephrase: Compute the integral up to a finite upper limit X, then let X go to infinity.
+    smaller_case: Work out the cases p=2 and p=1 separately.
+    key_idea: The antiderivative is a power of x, and its behaviour at infinity depends on the sign of
+      the exponent.
+  check: x,X,p=symbols('x X p',positive=True); simplify(integrate(x**(-p),(x,1,X),conds='none')-(X**(1-p)-1)/(1-p))
+  check_ok: null
+- goal: Use comparison of sums and integrals to show that $\sum\frac{1}{n^p}$ converges if and only if
+    $p>1$.
+  expected: For $p>0$ the series converges if and only if $\int_1^\infty x^{-p}\,dx$ does, i.e. iff $p>1$.
+    For $p\le 0$ the terms do not tend to 0, so the series diverges.
+  solution: For $p>0$, $f(x)=x^{-p}$ is positive and decreasing. Hence $\int_n^{n+1}f\le f(n)\le\int_{n-1}^{n}f$
+    for $n\ge 2$. Summing gives $\int_1^{N+1}f\le S_N\le 1+\int_1^{N}f$, where $S_N=\sum_{n\le N}n^{-p}$.
+    The partial sums increase, so they are bounded if and only if the integral is finite, i.e. iff $p>1$.
+    For $p\le 0$, $n^{-p}\not\to 0$, so the series diverges.
+  common_errors:
+  - Reversing the inequalities between the sum and the integral
+  - Ignoring the case $p\le 0$, where the terms do not tend to 0
+  - Concluding that the sum equals the integral
+  hints:
+    rephrase: Sketch the decreasing curve and compare each term with the area under the curve over the
+      neighbouring unit intervals.
+    smaller_case: Test the comparison with p=2 using the first three terms.
+    key_idea: For a decreasing function, each term sits between two integrals over adjacent unit intervals.
+  check: null
+- goal: Show that $\ln(n+1)\le H_n\le 1+\ln n$.
+  expected: Yes. Sum the bounds $\int_k^{k+1}\frac{dx}{x}\le\frac{1}{k}\le\int_{k-1}^{k}\frac{dx}{x}$
+    over the appropriate range of k.
+  solution: Since $\frac{1}{x}$ is decreasing, $\int_k^{k+1}\frac{dx}{x}\le\frac{1}{k}$ for $k\ge 1$.
+    Summing for $k=1,\dots,n$ gives $\ln(n+1)\le H_n$. Also $\frac{1}{k}\le\int_{k-1}^{k}\frac{dx}{x}$
+    for $k\ge 2$. Summing for $k=2,\dots,n$ and adding 1 gives $H_n\le 1+\ln n$.
+  common_errors:
+  - Reversing the direction of the sandwich
+  - Off-by-one error, such as using $\ln n$ instead of $\ln(n+1)$ as the lower bound
+  - Using base-10 logarithms
+  hints:
+    rephrase: Compare each term $\frac{1}{k}$ with the integral of $\frac{1}{x}$ over the unit interval
+      just to its right and over the one just to its left.
+    smaller_case: Check n=1. What do the two bounds give?
+    key_idea: Since $\frac{1}{x}$ is decreasing, $\frac{1}{k}$ is bounded above and below by integrals
+      over adjacent unit intervals.
+  check: n,x=symbols('n x',positive=True); simplify(integrate(1/x,(x,1,n+1))-log(n+1))
+  check_ok: null
+- goal: Show that $\gamma_n=H_n-\ln n$ is decreasing and positive, and hence convergent.
+  expected: $\gamma_{n+1}-\gamma_n=\frac{1}{n+1}-\ln\left(1+\frac{1}{n}\right)<0$, and $\gamma_n\ge\ln(n+1)-\ln
+    n>0$. A decreasing sequence bounded below converges.
+  solution: $\gamma_{n+1}-\gamma_n=\frac{1}{n+1}-\ln\frac{n+1}{n}$. For $t>0$ we have $\ln(1+t)>\frac{t}{1+t}$,
+    and with $t=\frac{1}{n}$ this gives $\ln\frac{n+1}{n}>\frac{1}{n+1}$, so the difference is negative.
+    From (iii), $H_n\ge\ln(n+1)$, so $\gamma_n\ge\ln(n+1)-\ln n>0$. A decreasing sequence bounded below
+    converges.
+  common_errors:
+  - Trying to show monotonicity by differentiating $H_n$ as a function of n
+  - Claiming positivity without using the bound from (iii)
+  - Using $\ln(1+t)\ge t$, which is false, instead of $\ln(1+t)>\frac{t}{1+t}$
+  hints:
+    rephrase: Compute $\gamma_{n+1}-\gamma_n$ using $H_{n+1}-H_n=\frac{1}{n+1}$ and compare it with zero.
+    smaller_case: Evaluate $\gamma_2-\gamma_1$, given that $\gamma_1=1$.
+    key_idea: Monotone bounded sequences converge. Use part (iii) for the lower bound.
+  check: Rational(1,2) - log(2) < 0
+  check_ok: true
+- goal: Estimate the smallest n for which $H_n>10$.
+  expected: $n\approx e^{10-\gamma}\approx 12367$. The exact first such n is 12367.
+  solution: Using $H_n\approx\ln n+\gamma+\frac{1}{2n}$, set $\ln n\approx 10-\gamma\approx 9.4228$. Then
+    $n\approx e^{9.4228}\approx 1.2367\times 10^4$. The correction $\frac{1}{2n}$ is negligible at this
+    size, and the first integer above the threshold is 12367.
+  common_errors:
+  - Ignoring $\gamma$ and using $\ln n\approx 10$, which gives about 22026
+  - Using base-10 logarithms
+  - Stopping at a rough estimate of about 12000 without giving an integer answer
+  hints:
+    rephrase: Use the approximation for $H_n$ from part (iv) and solve for n.
+    smaller_case: Estimate $H_{100}$ first. Is it below or above 10?
+    key_idea: Invert $H_n\approx\ln n+\gamma$, then exponentiate.
+  check: int(round(exp(10 - EulerGamma).evalf())) - 12367
+  check_ok: null
+extensions:
+  '3':
+  - Show that $\sum\frac{1}{n\ln n}$ diverges, using the integral test with $f(x)=\frac{1}{x\ln x}$.
+  '4':
+  - Use part (iv) to show that $0<\gamma\le 1$.
+  '5':
+  - Show that $\sum_{n\ge 2}\frac{1}{n(\ln n)^2}$ converges.
+spoken_vocab:
+- H sub n
+- harmonic number
+- integral from one to infinity of x to the minus p
+- p greater than one
+- gamma sub n
+- natural log
+- Euler's constant
+- ln of n plus one
+- one plus one half plus one third
+- sum of one over n to the p
+- partial sums
+- comparison test
+- decreasing sequence
+- bounded below
+- ten terms
+- twelve thousand
+source: jaymin/Jaymin Interview (1).pdf#p49
+verified: false
+rating:
+  score: 9
+  difficulty: 4
+  parts: 5
+  minutes: 35
+  flags: []
+  tagline: Harmonic bounds, gamma convergence and a sharp estimate; excellent progression.
+  priority: 130
+  rank: 12
+  tier: S

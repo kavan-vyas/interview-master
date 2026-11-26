@@ -1,0 +1,144 @@
+id: buffon-needle-and-wire-length
+title: Buffon's needle and the expected crossings of a wire
+topics:
+- probability
+- geometric probability
+- integration
+- estimating pi
+- linearity of expectation
+- Buffon's needle
+warmup: false
+answer_source: pdf
+statement: A floor is ruled with parallel lines 1 unit apart, and a needle of length 1 is dropped at random.
+  (i) Describe the needle's position by the distance $d$ from its midpoint to the nearest line and the
+  acute angle $\theta$ it makes with the lines. What are the ranges of $d$ and $\theta$, and when does
+  the needle cross a line? (ii) Assuming $d$ and $\theta$ are independent and uniform, show that the probability
+  of a crossing is $\frac{2}{\pi}$. (iii) How could this experiment be used to estimate $\pi$? (iv) Drop
+  a rigid piece of wire of length $L$, bent into any shape. Explain why the expected number of crossings
+  is $\frac{2L}{\pi}$, and check this with a circle of diameter 1.
+stages:
+- goal: State the ranges of $d$ and $\theta$ and the condition for the needle to cross a line.
+  expected: $0\le d\le\frac{1}{2}$ and $0\le\theta\le\frac{\pi}{2}$. The needle crosses a line if and
+    only if $d\le\frac{1}{2}\sin\theta$.
+  solution: Since the lines are 1 apart, the midpoint is at most $\frac{1}{2}$ from its nearest line.
+    The acute angle between the needle and the lines lies in $[0,\frac{\pi}{2}]$. Half of the needle has
+    length $\frac{1}{2}$, and its vertical extent from the midpoint is $\frac{1}{2}\sin\theta$. The needle
+    reaches the nearest line exactly when $d\le\frac{1}{2}\sin\theta$.
+  common_errors:
+  - Giving the range of $d$ as $[0,1]$ instead of $[0,\frac{1}{2}]$.
+  - Using $\sin\theta$ instead of $\frac{1}{2}\sin\theta$ as the reach of half the needle.
+  - Letting $\theta$ range up to $\pi$ instead of the acute angle $\frac{\pi}{2}$.
+  hints:
+    rephrase: Look at one half of the needle, from its midpoint to one end. How far vertically does that
+      half reach, and how does this compare with $d$?
+    smaller_case: Take the needle exactly horizontal, so $\theta=0$. When can it cross a line?
+    key_idea: Compare the vertical reach of half the needle, which depends on $\theta$, with the distance
+      $d$ to the nearest line.
+  check: null
+- goal: Show that the probability of a crossing is $\frac{2}{\pi}$.
+  expected: The favourable area is $\int_0^{\pi/2}\frac{1}{2}\sin\theta\,d\theta=\frac{1}{2}$. The total
+    rectangle has area $\frac{1}{2}\cdot\frac{\pi}{2}=\frac{\pi}{4}$. So $P=\frac{1/2}{\pi/4}=\frac{2}{\pi}$.
+  solution: Treat $(\theta,d)$ as uniform on the rectangle $[0,\frac{\pi}{2}]\times[0,\frac{1}{2}]$, which
+    has area $\frac{\pi}{4}$. A crossing occurs in the region $d\le\frac{1}{2}\sin\theta$. Its area is
+    $\int_0^{\pi/2}\frac{1}{2}\sin\theta\,d\theta=\frac{1}{2}[-\cos\theta]_0^{\pi/2}=\frac{1}{2}$. The
+    probability is $\frac{1/2}{\pi/4}=\frac{2}{\pi}$.
+  common_errors:
+  - Forgetting to divide by the total area of the rectangle.
+  - Taking the rectangle area as $\frac{\pi}{2}$ instead of $\frac{\pi}{4}$.
+  - Integrating $\sin\theta$ incorrectly, for example as $\cos\theta$ without the sign change.
+  hints:
+    rephrase: The probability is a ratio of areas in the $(\theta,d)$ plane. Set up the full rectangle
+      of possible outcomes, then find the part where a crossing happens.
+    smaller_case: Compute the total area of the $(\theta,d)$ rectangle first, before thinking about the
+      crossing region.
+    key_idea: The crossing region lies under the curve $d=\frac{1}{2}\sin\theta$. Integrate the height
+      of that curve over $\theta$ and divide by the total area.
+  check: Rational(1,2)/(pi/4) - 2/pi
+  check_ok: true
+- goal: Explain how the experiment can be used to estimate $\pi$.
+  expected: Drop $n$ needles and count the number $C$ of needles that cross a line. Then $\frac{C}{n}\approx\frac{2}{\pi}$,
+    so $\pi\approx\frac{2n}{C}$.
+  solution: 'By the law of large numbers, the observed fraction of crossings approximates the probability
+    $\frac{2}{\pi}$ from part (ii). Solve $\frac{C}{n}=\frac{2}{\pi}$ for $\pi$ to get the estimate $\pi\approx\frac{2n}{C}$.
+    The method converges slowly: the error shrinks roughly like $\frac{1}{\sqrt{n}}$, so many drops are
+    needed for good accuracy. It relies on the needles being dropped uniformly and independently.'
+  common_errors:
+  - Inverting the estimate to $\pi\approx\frac{C}{2n}$.
+  - Claiming a precise value of $\pi$ from a small number of drops.
+  - Ignoring the need for uniform, independent drops.
+  hints:
+    rephrase: Connect the observed fraction of crossings with the probability from part (ii), then rearrange
+      the equation to make $\pi$ the subject.
+    smaller_case: Suppose exactly one needle in four crossed a line. Use the probability from part (ii)
+      to write down an equation and solve it for $\pi$.
+    key_idea: Replace the probability with the observed frequency, then solve for $\pi$.
+  check: null
+- goal: Explain why the expected number of crossings of a bent wire of length $L$ is $\frac{2L}{\pi}$,
+    and check this with a circle of diameter 1.
+  expected: Expected crossings are additive over pieces of wire, and a straight piece of length $\ell\le
+    1$ has expected crossings $\frac{2\ell}{\pi}$. So the wire of length $L$ has expectation $\frac{2L}{\pi}$.
+    A circle of diameter 1 has length $\pi$ and meets the lines in 2 points, giving $\frac{2\pi}{\pi}=2$.
+  solution: Approximate the wire by a polygonal path with segments of length at most 1. By linearity of
+    expectation, the expected number of intersections is the sum over the segments. For a straight segment
+    of length $\ell\le 1$, the same argument as part (ii) with $d\le\frac{\ell}{2}\sin\theta$ gives probability
+    $\frac{2\ell}{\pi}$ of a crossing, and it can cross at most once. So the expectation over the polygon
+    is $\frac{2}{\pi}\sum\ell_i=\frac{2L}{\pi}$, and taking the limit gives the result for the curved
+    wire. For the circle of diameter 1, its length is $\pi$. Since the diameter equals the line spacing,
+    the circle meets exactly one line, in two points, with probability 1. So the number of intersection
+    points is 2, matching $\frac{2\pi}{\pi}=2$. Counting intersection points rather than needles makes
+    the circle check meaningful.
+  common_errors:
+  - Counting the circle as crossing once rather than as two intersection points with a line.
+  - Using circumference $2\pi$ instead of $\pi$ for diameter 1.
+  - Assuming linearity fails for curved wires instead of splitting the wire into short straight pieces.
+  hints:
+    rephrase: Split the wire into short straight pieces. What is the expected number of crossings for
+      each piece, and how do these add up?
+    smaller_case: Take a straight needle of length $\frac{1}{2}$. Using the part (ii) argument, what is
+      the probability that it crosses a line?
+    key_idea: Linearity of expectation lets you add up contributions from pieces, and each contribution
+      depends only on the piece's length.
+  check: 2*pi/pi - 2
+  check_ok: true
+extensions:
+  '3':
+  - Adapt the needle experiment to a grid of perpendicular lines spaced 1 apart and find the expected
+    number of crossings of a needle of length $\ell\le 1$.
+  '4':
+  - Explain why the answer to part (iv) does not depend on the wire being bent, and state the conditions
+    under which the argument breaks down.
+  '5':
+  - Use the expected-crossing result for a closed convex curve to derive Cauchy's formula for the perimeter
+    in terms of the mean number of crossings.
+spoken_vocab:
+- needle
+- distance d
+- theta
+- acute angle
+- crossing
+- probability
+- two over pi
+- pi over four
+- integral of sine theta
+- uniform
+- independent
+- estimate pi
+- wire of length L
+- linearity of expectation
+- expected number of crossings
+- circle of diameter one
+- Buffon
+source: jaymin/Jaymin Interview (1).pdf#p65
+verified: false
+rating:
+  quality: 9
+  difficulty: 7
+  parts: 4
+  minutes: 25
+  flags:
+  - needs_diagram
+  tagline: Buffon's needle to bent-wire expectation by linearity; rich extension to estimating π.
+  priority: 109
+  rank: 22
+  tier: S
+  category: jaymin

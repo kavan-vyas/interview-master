@@ -1,0 +1,94 @@
+id: tournament-hamiltonian-path
+title: Round-Robin Ordering
+topics:
+- tournaments
+- induction
+- Hamiltonian path
+warmup: true
+answer_source: pdf
+statement: In a round-robin tournament, every pair of players plays once and there are no draws. Prove
+  that the players can be listed $P_1,P_2,\dots,P_n$ so that each player beats the next one in the list.
+stages:
+- goal: Verify the base case $n=2$ and state the induction hypothesis.
+  expected: With two players, the winner is listed first. Assume any tournament on $n-1$ players has such
+    a list.
+  solution: With two players, exactly one beat the other, so list the winner first. For the inductive
+    step, assume that every tournament on $n-1$ players has a list in which each player beats the next.
+  common_errors:
+  - Listing players in order of strength without justification
+  - Stating the hypothesis for the wrong number of players
+  hints:
+    rephrase: With two players, what does a single match tell you about the order?
+    smaller_case: Take $n=3$ and see how many valid orders exist.
+    key_idea: Induction removes one player and assumes the statement for the smaller tournament.
+- goal: Insert a new player $Q$ into a valid list of $n-1$ players.
+  expected: If $Q$ beats $P_1$, put $Q$ first. If $P_{n-1}$ beats $Q$, put $Q$ last. Otherwise insert
+    $Q$ between $P_i$ and $P_{i+1}$, where $P_i$ beats $Q$ and $Q$ beats $P_{i+1}$.
+  solution: 'Case 1: $Q$ beats $P_1$. Put $Q$ first; then $Q$ beats $P_1$ and the other adjacent pairs
+    are unchanged. Case 2: $P_{n-1}$ beats $Q$. Put $Q$ last. Case 3: $P_1$ beats $Q$ and $Q$ beats $P_{n-1}$.
+    Let $i$ be the largest index with $P_i$ beating $Q$. Then $i<n-1$, and $Q$ beats $P_{i+1}$ by maximality
+    of $i$. Insert $Q$ between $P_i$ and $P_{i+1}$.'
+  common_errors:
+  - Missing one of the three cases
+  - Choosing an index $i$ where $Q$ does not beat $P_{i+1}$
+  - Forgetting that $P_{n-1}$ might beat $Q$
+  hints:
+    rephrase: Look at how each existing player fared against $Q$, and see where that result changes.
+    smaller_case: Take the list $P_1,P_2$ with $P_1$ beating $P_2$. Try a new player $Q$ who loses to
+      $P_1$ and beats $P_2$.
+    key_idea: Find the place in the list where the outcome against $Q$ switches from losing to winning.
+- goal: Conclude the induction step and state the result for all $n$.
+  expected: Every tournament on $n$ players has a list in which each player beats the next, so the statement
+    holds for all $n\ge2$.
+  solution: In each case the new list has every adjacent pair beating in the right direction. The only
+    new adjacent pairs involve $Q$ and are checked in the case analysis; all other adjacent pairs are
+    unchanged. By induction the statement holds for all $n\ge2$.
+  common_errors:
+  - Forgetting to check the adjacent pairs next to $Q$
+  - Claiming the induction hypothesis without verifying the base case
+  hints:
+    rephrase: Which adjacent pairs are new after inserting $Q$, and which ones were removed?
+    smaller_case: After inserting $Q$ between $P_i$ and $P_{i+1}$ in a list of three, check each adjacent
+      pair.
+    key_idea: Only the pairs touching the new player need checking.
+extensions:
+  '3':
+  - Give a 4-player tournament in which the player with the most wins is not first in some valid list.
+    Explain why the list need not follow overall strength.
+  '4':
+  - Prove that every tournament on $n\ge1$ players has a player who can reach every other player by a
+    path of length at most two.
+  '5':
+  - Prove that a tournament has a Hamiltonian cycle if and only if it is strongly connected.
+spoken_vocab:
+- round-robin tournament
+- players
+- beats
+- n players
+- P sub one
+- P sub n
+- induction
+- base case
+- inserted
+- adjacent
+- Hamiltonian path
+- tournament
+source: jaymin/Jaymin Interview (1).pdf#p65
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Classic induction proof with a case split; rewards clear, rigorous structure.
+  priority: 96
+  rank: 54
+  tier: A
+  category: jaymin
+  d10: 4.5
+  real: 8.0
+  by: haiku
+tags:
+- proof
+- combinatorics

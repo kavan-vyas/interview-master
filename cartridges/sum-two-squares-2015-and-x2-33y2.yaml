@@ -1,0 +1,80 @@
+id: sum-two-squares-2015-and-x2-33y2
+title: Positive solutions of x²+y²=2015 and x²+33y²=555555555
+topics:
+- modular arithmetic
+- sums of squares
+- divisibility
+- descent
+warmup: false
+answer_source: generated
+statement: Find all positive integer solutions $(x,y)$ to $x^2+y^2=2015$. Will the following equation
+  have any positive integer solutions $x^2+33y^2=555555555$?
+stages:
+- goal: Decide whether x²+y²=2015 has positive integer solutions.
+  expected: No. Since 2015≡3 (mod 4), it cannot be a sum of two squares.
+  solution: Squares mod 4 are 0 or 1, so x²+y² mod 4 can only be 0, 1 or 2. But 2015=4·503+3≡3 (mod 4).
+    So there are no solutions. (Factoring gives 2015=5·13·31, and 31≡3 mod 4 appears to an odd power,
+    which also rules it out.)
+  common_errors:
+  - Searching numerically for solutions and stopping when none are found
+  - Treating 3 as a possible residue of a sum of two squares mod 4
+  - Missing the zero case
+  hints:
+    rephrase: What are the possible values of a square mod 4, and what sums of two of them are possible?
+    smaller_case: Check which residues mod 4 come from x²+y² with x,y in {0,1,2,3}.
+    key_idea: Reduce both sides modulo 4 and compare residues.
+  check: 2015 % 4 - 3
+  check_ok: true
+- goal: Decide whether x²+33y²=555555555 has positive integer solutions.
+  expected: No. Descent reduces the equation to a²+33b²=61728395, which is ≡2 (mod 3), impossible.
+  solution: '555555555 is divisible by 9 (digit sum 45). Mod 3: x² ≡ N − 33y² ≡ 0, so 3|x, hence 9|x².
+    Then 33y² ≡ N − x² ≡ 0 (mod 9), giving 3y²≡0 (mod 9), so 3|y. Write x=3a, y=3b: a²+33b²=N/9=61728395.
+    Since 61728395 has digit sum 41 ≡2 (mod 3), and a²+33b²≡a² (mod 3) must be 0 or 1, this is impossible.
+    So there are no positive solutions.'
+  common_errors:
+  - Concluding solutions exist because the equation is not obviously contradictory
+  - Forgetting that 33 is divisible by 3 and so drops out mod 3
+  - Dividing by 9 incorrectly
+  - Doing the mod 3 argument on the original equation and not reducing
+  hints:
+    rephrase: Reduce the equation modulo 3. Which terms vanish, and what does that force about x?
+    smaller_case: Look at x²+33y²=9 first and see how x and y must behave.
+    key_idea: Factor out powers of 3 from x and y, then check the residue of the reduced equation mod
+      3.
+  check: 61728395 % 3 - 2
+  check_ok: true
+extensions:
+  '3':
+  - Find a positive integer pair (x,y) with x²+y²=2017.
+  '4':
+  - Show that x²+y²=2016 has no positive integer solutions.
+  '5':
+  - Explain using prime factorisation why 2015 cannot be written as a sum of two squares.
+spoken_vocab:
+- x squared plus y squared equals two thousand fifteen
+- x squared plus thirty three y squared
+- positive integer solutions
+- modulo four
+- modulo three
+- divisibility by nine
+- descent
+- reduce
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 2
+  minutes: 8
+  flags: []
+  tagline: Clean prime-factor and mod 4 contrast; second part is one line.
+  priority: 55
+  rank: 472
+  tier: C
+  category: tbo
+  d10: 6.0
+  real: 5.0
+  by: haiku
+tags:
+- number_theory
+- proof

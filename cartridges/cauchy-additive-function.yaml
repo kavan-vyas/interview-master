@@ -1,0 +1,143 @@
+id: cauchy-additive-function
+title: 'Cauchy''s equation: additive on the rationals, and on the reals when monotone'
+topics:
+- functional equations
+- Cauchy's equation
+- rationals
+- monotonicity
+- squeeze and limits
+- induction
+warmup: false
+answer_source: pdf
+statement: 'Let $f:\mathbb{Q}\to\mathbb{Q}$ satisfy $f(x+y)=f(x)+f(y)$ for all rational $x,y$.
+
+
+  (i) Show that $f(0)=0$ and $f(-x)=-f(x)$ for all rational $x$.
+
+
+  (ii) Show that $f(nx)=nf(x)$ for every integer $n$ and rational $x$.
+
+
+  (iii) Deduce that $f(x)=cx$ for all rational $x$, where $c=f(1)$.
+
+
+  (iv) Now let $g:\mathbb{R}\to\mathbb{R}$ satisfy $g(x+y)=g(x)+g(y)$ for all real $x,y$, and suppose
+  also that $g$ is increasing. Show that $g(x)=cx$ for all real $x$, where $c=g(1)$.'
+stages:
+- goal: Show $f(0)=0$ and $f(-x)=-f(x)$.
+  expected: Substituting $x=y=0$ to get $f(0)=2f(0)$, hence $f(0)=0$; then substituting $y=-x$ to get
+    $f(x)+f(-x)=f(0)=0$.
+  solution: Setting $x=y=0$ gives $f(0)=f(0)+f(0)=2f(0)$, so $f(0)=0$. Setting $y=-x$ gives $f(x)+f(-x)=f(0)=0$,
+    so $f(-x)=-f(x)$.
+  common_errors:
+  - Treating $f(0)$ as arbitrary or assuming $f(0)=0$ without proof
+  - Using $y=-x$ to conclude $f(-x)=-f(x)$ before establishing $f(0)=0$
+  - Confusing additivity with $f(xy)=f(x)f(y)$, so claiming $f(0)=1$ or $f(-x)=1/f(x)$
+  hints:
+    rephrase: 'Plug particular values into the equation: first make both inputs equal, then make them
+      opposites.'
+    smaller_case: What does the equation say when $x=y=0$? Solve it for $f(0)$.
+    key_idea: Use $x=y=0$ to pin down $f(0)$, then $y=-x$ so that $x+y=0$.
+  check: solve(Eq(F0, 2*F0), F0)[0]
+  check_ok: true
+- goal: Show $f(nx)=nf(x)$ for every integer $n$.
+  expected: Induction on $n\ge 0$ with base case $n=0$ (or $n=1$) and step $f((n+1)x)=f(nx)+f(x)$, then
+    the negative integers handled using $f(-y)=-f(y)$.
+  solution: 'For $n\ge 0$ we induct. Base: $f(0\cdot x)=f(0)=0=0\cdot f(x)$. Step: if $f(nx)=nf(x)$ then
+    $f((n+1)x)=f(nx+x)=f(nx)+f(x)=(n+1)f(x)$. For $n<0$ write $m=-n>0$; then $f(nx)=f(-(mx))=-f(mx)=-mf(x)=nf(x)$,
+    using part (i).'
+  common_errors:
+  - Omitting the negative integers
+  - Not stating or checking the base case
+  - Writing $f((n+1)x)=f(nx)+f(1)$ instead of $f(nx)+f(x)$
+  - Applying the formula to non-integer $n$ before it has been proved
+  hints:
+    rephrase: Prove it for $n=0,1,2,\dots$ by induction, then reduce negative $n$ to positive $n$.
+    smaller_case: Write $f(2x)$ and $f(3x)$ using the equation with $x+x$ and $2x+x$.
+    key_idea: The inductive step is $(n+1)x=nx+x$; negative $n$ follow from $f(-y)=-f(y)$.
+  check: simplify(((n+1)*Fx) - (n*Fx + Fx))
+  check_ok: true
+- goal: Deduce $f(x)=cx$ for all rational $x$, where $c=f(1)$.
+  expected: Writing $x=p/q$ with $p\in\mathbb{Z}$, $q\in\mathbb{Z}_{>0}$, then using $q\,f(p/q)=f(p)=pf(1)$
+    and dividing by $q$.
+  solution: Let $x=p/q$ with $p$ an integer and $q$ a positive integer. By (ii) with $n=q$, $qf(p/q)=f(q\cdot
+    p/q)=f(p)$. By (ii) with $n=p$ and $x=1$, $f(p)=pf(1)=pc$. Hence $qf(p/q)=pc$, and since $q\neq 0$,
+    $f(p/q)=\frac{p}{q}c$.
+  common_errors:
+  - Proving the result only for integers or only for $1/q$
+  - Not using (ii) to evaluate $f(p)$ as $pf(1)$
+  - Allowing $q=0$ or forgetting that every rational has such a form
+  - Forgetting that $c$ is simply the constant $f(1)$
+  hints:
+    rephrase: Every rational is $p/q$. Multiply $f(p/q)$ by $q$ and use the integer rule from (ii).
+    smaller_case: Find $f(1/2)$ by noting that $2\cdot\tfrac12=1$.
+    key_idea: Apply $f(nx)=nf(x)$ with $n=q$ and $x=p/q$, then with $n=p$ and $x=1$.
+  check: simplify(q*(p/q)*c - p*c)
+  check_ok: true
+- goal: Show $g(x)=cx$ for all real $x$ when $g$ is additive and increasing.
+  expected: Noting that the argument of (i)-(iii) gives $g(r)=cr$ for rational $r$, then trapping real
+    $x$ between rationals $r_n\le x\le s_n$ both tending to $x$, using monotonicity to get $cr_n\le g(x)\le
+    cs_n$, and squeezing.
+  solution: The arguments of (i)-(iii) used only additivity, so $g(r)=cr$ for all rational $r$, with $c=g(1)$.
+    Fix real $x$ and, for each positive integer $n$, let $r_n=\lfloor nx\rfloor/n$ and $s_n=r_n+1/n$.
+    These are rational, $r_n\le x\le s_n$, and $r_n,s_n\to x$. Since $g$ is increasing, $g(r_n)\le g(x)\le
+    g(s_n)$, i.e. $cr_n\le g(x)\le cs_n$. As $n\to\infty$ both bounds tend to $cx$, so by the squeeze
+    theorem $g(x)=cx$.
+  common_errors:
+  - Using only additivity and concluding the rational result extends to reals without any argument (this
+    is false in general)
+  - Not using monotonicity to compare $g(x)$ with $g(r_n)$ and $g(s_n)$
+  - Choosing rationals that are on one side of $x$ only or do not converge to $x$
+  - Assuming $g$ is continuous instead of deriving the result from monotonicity
+  hints:
+    rephrase: You know $g$ exactly on the rationals. Trap the real number $x$ between rationals that get
+      arbitrarily close to it, and see what monotonicity says about $g(x)$.
+    smaller_case: Take $x=\sqrt2$. Trap it between $1.4$ and $1.5$, then between $1.41$ and $1.42$, and
+      bound $g(\sqrt2)$ each time.
+    key_idea: Monotonicity turns $r\le x\le s$ into $g(r)\le g(x)\le g(s)$, and the rational values $cr$,
+      $cs$ squeeze $g(x)$ to $cx$.
+  check: limit(c*(x - 1/n), n, oo) - c*x
+  check_ok: true
+extensions:
+  '3':
+  - Show that an additive $g:\mathbb{R}\to\mathbb{R}$ with $g(x)\geq 0$ for all $x\geq 0$ is increasing,
+    and hence linear.
+  '4':
+  - Show that an additive $g:\mathbb{R}\to\mathbb{R}$ that is continuous at $0$ is linear.
+  '5':
+  - Show that an additive $g:\mathbb{R}\to\mathbb{R}$ that is bounded above on some interval $[0,\delta]$
+    is linear.
+  - Does a non-linear additive function $\mathbb{R}\to\mathbb{R}$ exist? What must it look like, and which
+    of the hypotheses above does it fail?
+spoken_vocab:
+- f of x plus y equals f of x plus f of y
+- Cauchy functional equation
+- rationals
+- reals
+- increasing
+- f of zero
+- c equals f of one
+- sandwich
+- limit
+- integer
+source: jaymin/Jaymin Interview (1).pdf#p17
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 4
+  minutes: 25
+  flags: []
+  tagline: Rational-to-real progression with monotonicity; builds a complete rigorous argument.
+  priority: 110
+  rank: 35
+  tier: S
+  category: jaymin
+  d10: 6.0
+  real: 5.5
+  by: deepseek-v4.1-flash-free
+refined: true
+tags:
+- functional_equations
+- proof
+- inequalities

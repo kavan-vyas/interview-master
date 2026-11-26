@@ -1,0 +1,90 @@
+id: powers-of-sin-cos-substitution
+title: Integrating powers of sine and cosine by substitution
+topics:
+- integration by substitution
+- trigonometric integrals
+- trigonometric identities
+warmup: false
+answer_source: generated
+statement: Integrate $\sin^4(x)\cos(x)$ and $\sin^6(x)\cos^3(x)$, in general when will this method work?
+stages:
+- goal: Integrate sin^4(x) cos(x).
+  expected: sin^5(x)/5 + C
+  solution: Let u = sin x, so du = cos x dx. Then the integral becomes integral of u^4 du = u^5/5 + C
+    = sin^5(x)/5 + C.
+  common_errors:
+  - Forgetting the constant of integration.
+  - Integrating sin^4 as sin^5/4 (wrong exponent).
+  hints:
+    rephrase: Look for a function inside the integrand whose derivative also appears as a factor.
+    smaller_case: Integrate sin^2(x) cos(x) using the same idea.
+    key_idea: If the derivative of one function is present as a factor, substitute that function.
+  check: simplify(diff(sin(x)**5/5, x) - sin(x)**4*cos(x))
+  check_ok: true
+- goal: Integrate sin^6(x) cos^3(x).
+  expected: sin^7(x)/7 - sin^9(x)/9 + C
+  solution: Write cos^3 x = (1 - sin^2 x) cos x, so the integrand is sin^6 x (1 - sin^2 x) cos x. Let
+    u = sin x, du = cos x dx. The integral becomes integral of (u^6 - u^8) du = u^7/7 - u^9/9 + C.
+  common_errors:
+  - Trying u = sin x without first converting the leftover cos^2 x into 1 - sin^2 x.
+  - Using u = cos x, which leaves sin factors that are hard to handle.
+  - Dividing by the wrong power when integrating u^8.
+  hints:
+    rephrase: After you pull out one cos x, what is left over, and how can you write it in terms of sin
+      x?
+    smaller_case: Integrate sin^2(x) cos^3(x) by the same method.
+    key_idea: Use sin^2 x + cos^2 x = 1 to rewrite the leftover even power of cos.
+  check: simplify(diff(sin(x)**7/7 - sin(x)**9/9, x) - sin(x)**6*cos(x)**3)
+  check_ok: true
+- goal: State in general when this substitution method works for integrals of sin^m(x) cos^n(x).
+  expected: It works when m or n is an odd positive integer. If n is odd, let u = sin x; if m is odd,
+    let u = cos x. If both are even, use double-angle identities instead.
+  solution: For sin^m x cos^n x with n odd, save one factor of cos x to form du = -... (cos x dx = du
+    with u = sin x), and write the remaining even power of cos x as (1 - sin^2 x)^((n-1)/2). The same
+    works with the roles of sin and cos swapped when m is odd. When both m and n are even, the substitution
+    leaves a leftover even power that is not simpler, so use identities such as sin^2 x = (1 - cos 2x)/2.
+  common_errors:
+  - Saying the method works for any product of sine and cosine.
+  - Using the substitution when both powers are even, where the method does not simplify the integrand.
+  hints:
+    rephrase: Think about which factor you can save to form du, and what the remaining power must look
+      like.
+    smaller_case: Compare sin^4(x) cos(x) with sin^2(x) cos^2(x) and see which one the substitution handles.
+    key_idea: The substitution needs one of the powers to be odd so that a single factor can be saved
+      as du.
+extensions:
+  '3':
+  - Integrate sin^2(x) cos^2(x) dx.
+  '4':
+  - Integrate sin^3(x) / cos^4(x) dx.
+  '5':
+  - Explain why the substitution u = sin x alone does not help with the integral of sin^2(x) dx, and what
+    to use instead.
+spoken_vocab:
+- sine to the fourth x times cosine x
+- sine to the sixth x times cosine cubed x
+- sine x to the fifth over five
+- u equals sine x
+- one minus sine squared
+- odd power
+- double angle identity
+- plus C
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 3
+  minutes: 7
+  flags: []
+  tagline: Odd cosine power unlocks substitution; the general criterion invites discussion of even powers.
+  priority: 61
+  rank: 444
+  tier: C
+  category: tbo
+  d10: 3.0
+  real: 4.0
+  by: haiku
+tags:
+- integration
+- trigonometry

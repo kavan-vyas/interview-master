@@ -1,0 +1,116 @@
+id: lottery-syndicate-poisson
+title: Ruritanian Lottery Syndicate
+topics:
+- Poisson approximation
+- expectation
+- mode of a distribution
+- expected value of a function of a random variable
+warmup: false
+answer_source: pdf
+statement: The national lottery of Ruritania is based on the positive integers from 1 to $N$, where $N$
+  is very large and fixed. Tickets cost £1 each. For each ticket purchased, the punter (i.e. the purchaser)
+  chooses a number from 1 to $N$. The winning number is chosen at random, and the jackpot is shared equally
+  amongst those punters who chose the winning number. A syndicate decides to buy $N$ tickets, choosing
+  every number once to be sure of winning a share of the jackpot. The total number of tickets purchased
+  in this draw is $3.8N$ and the jackpot is £$W$. Assuming that the non-syndicate punters choose their
+  numbers independently and at random, find the most probable number of winning tickets and show that
+  the expected net loss of the syndicate is approximately $N-\frac{5W(1-e^{-2.8})}{14}$.
+stages:
+- goal: Identify the distribution of the number of non-syndicate tickets on the winning number, and find
+    the most probable total number of winning tickets (including the syndicate's ticket).
+  expected: 3 winning tickets
+  solution: The $2.8N$ non-syndicate tickets each match the winning number with probability $\frac{1}{N}$,
+    so the count $X$ on the winning number is approximately Poisson(2.8). Let $p_j=P(X=j)$. Then $\frac{p_{j+1}}{p_j}=\frac{2.8}{j+1}$,
+    which exceeds 1 exactly when $j<1.8$. So the mode of $X$ is 2. Including the syndicate's ticket, the
+    total number of winning tickets is $X+1$, whose most probable value is 3.
+  common_errors:
+  - Giving the mode of $X$ (2) as the answer without adding the syndicate's ticket.
+  - Using the binomial mean or the total of 3.8N tickets rather than the 2.8N non-syndicate tickets.
+  - Miscomparing consecutive Poisson probabilities, so the mode is off by one.
+  hints:
+    rephrase: Ask how many non-syndicate tickets match the winning number, and then how many winning tickets
+      there are in total.
+    smaller_case: Compare the probabilities of 0 and 1 non-syndicate matches, and then 1 and 2, using
+      the ratio of consecutive terms.
+    key_idea: For a Poisson($\mu$) distribution, the probability ratio of consecutive values is $\frac{\mu}{j+1}$,
+      which determines where the mode occurs.
+  check: Integer(3)-3
+  check_ok: true
+- goal: Show that the expected winnings of the syndicate are $\frac{5W(1-e^{-2.8})}{14}$.
+  expected: $\frac{5W(1-e^{-2.8})}{14}$
+  solution: The syndicate always holds a winning ticket and receives $\frac{W}{X+1}$. So the expected
+    winnings are $W\sum_{j\ge 0}\frac{p_j}{j+1}=W\sum_{j\ge 0}\frac{e^{-2.8}2.8^j}{(j+1)!}=\frac{W e^{-2.8}}{2.8}\left(e^{2.8}-1\right)=\frac{W(1-e^{-2.8})}{2.8}=\frac{5W(1-e^{-2.8})}{14}$.
+  common_errors:
+  - Using $\frac{W}{X}$ rather than $\frac{W}{X+1}$, which fails when the count is zero.
+  - Dropping the factor $\frac{1}{\mu}$ when pulling $\frac{1}{j+1}$ into the factorial.
+  - Mishandling the sum by missing the $e^{\mu}-1$ term.
+  hints:
+    rephrase: Write the syndicate's share as a function of the number of non-syndicate winners, and then
+      take the expectation over that number.
+    smaller_case: Compute the sum for only the first two terms and see how the factor $\frac{1}{j+1}$
+      combines with $\frac{1}{j!}$.
+    key_idea: Use $\frac{\mu^j}{(j+1)!}=\frac{1}{\mu}\cdot\frac{\mu^{j+1}}{(j+1)!}$ and recognise the
+      exponential series.
+  check: Rational(5,14)*W*(1-exp(-Rational(14,5))) - W*(1-exp(-Rational(14,5)))/Rational(14,5)
+  check_ok: true
+- goal: Show that the expected net loss of the syndicate is approximately $N-\frac{5W(1-e^{-2.8})}{14}$.
+  expected: $N-\frac{5W(1-e^{-2.8})}{14}$
+  solution: The syndicate pays $N$ pounds for $N$ tickets. Its expected winnings are $\frac{5W(1-e^{-2.8})}{14}$,
+    so its expected net loss is $N-\frac{5W(1-e^{-2.8})}{14}$.
+  common_errors:
+  - Subtracting the winnings from the total of 3.8N tickets rather than the syndicate's own N tickets.
+  - Reversing the sign, so the answer becomes a gain rather than a loss.
+  hints:
+    rephrase: Ask what the syndicate spends and what it expects to receive, and then take the difference.
+    smaller_case: Set $W=0$ and check what the net loss should be.
+    key_idea: Net loss equals cost minus expected winnings.
+  check: (N - Rational(5,14)*W*(1-exp(-Rational(14,5)))) - (N - W*(1-exp(-Rational(14,5)))/Rational(14,5))
+  check_ok: null
+extensions:
+  '3':
+  - Show that the most probable number of non-syndicate winning tickets is 2 by comparing consecutive
+    terms.
+  - Explain why the Poisson approximation becomes accurate as $N$ becomes very large.
+  '4':
+  - Find the expected net loss if the syndicate instead buys $2N$ tickets and the non-syndicate count
+    per number remains Poisson(2.8).
+  - Find the probability that the syndicate's share is at least $\frac{W}{3}$.
+  '5':
+  - Derive the Poisson approximation for the count on the winning number from the binomial distribution
+    of $2.8N$ tickets.
+  - Discuss how the expected net loss changes if the jackpot $W$ is random with a known mean.
+spoken_vocab:
+- Ruritania
+- lottery
+- syndicate
+- jackpot
+- Poisson
+- two point eight
+- most probable
+- mode
+- expected net loss
+- N
+- W
+- e to the minus two point eight
+- five W times one minus e to the minus two point eight over fourteen
+- winning tickets
+- non-syndicate punters
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#20
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Poisson expectation of 1/(1+X) gives a clean interpretable loss; rich discussion.
+  priority: 91
+  rank: 118
+  tier: A
+  category: siklos
+  d10: 6.0
+  real: 4.0
+  by: haiku
+tags:
+- probability
+- limits_and_approximation

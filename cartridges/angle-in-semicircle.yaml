@@ -1,0 +1,92 @@
+id: angle-in-semicircle
+title: Angle in a semicircle
+topics:
+- geometry
+- circle-theorems
+- proof
+warmup: true
+answer_source: generated
+statement: What is special about the angle in a semicircle? Prove it from scratch.
+stages:
+- goal: Identify the angle at a point C on the circle subtended by a diameter AB.
+  expected: 'It is a right angle: angle ACB = 90 degrees (pi/2).'
+  solution: For any point C on a circle with diameter AB, the angle ACB at C is 90 degrees. This is Thales'
+    theorem.
+  common_errors:
+  - Stating the angle is 60 degrees or some other value, perhaps by confusing it with an equilateral triangle.
+  - Confusing the angle at the centre (180 degrees) with the angle at the circumference.
+  hints:
+    rephrase: Look at the angle at the circumference that is subtended by a diameter, and name its value
+      in degrees.
+    smaller_case: Draw a circle with a diameter drawn horizontally and a point at the top. Estimate the
+      angle at that point.
+    key_idea: The angle at the centre subtended by a diameter is a straight line; the angle at the circumference
+      is half of that.
+  check: Rational(1,2)*pi - pi/2
+  check_ok: true
+- goal: 'Prove the result: join C to the centre O, let the base angles of the two isosceles triangles
+    be alpha and beta, and use the angle sum of triangle ABC.'
+  expected: Let angle OAC = angle OCA = alpha and angle OBC = angle OCB = beta. The angle sum of ABC gives
+    alpha + beta + (alpha + beta) = pi, so angle ACB = alpha + beta = pi/2.
+  solution: OA, OB and OC are radii, so triangles OAC and OBC are isosceles. Let angle OAC = angle OCA
+    = alpha and angle OBC = angle OCB = beta. Since O lies on AB, angle CAB = alpha and angle CBA = beta.
+    Angle ACB = angle ACO + angle OCB = alpha + beta. The angles of triangle ABC sum to pi, so alpha +
+    beta + (alpha + beta) = pi, giving alpha + beta = pi/2.
+  common_errors:
+  - Assuming without proof that the triangles OAC and OBC are isosceles.
+  - Forgetting that O lies on AB, so that angle CAB equals angle OAC.
+  - Writing angle ACB = alpha + beta but then failing to use the angle sum in ABC.
+  hints:
+    rephrase: Draw the radii from the centre to A, B and C, and mark equal angles in each isosceles triangle.
+    smaller_case: Take C at the top of the circle with AB horizontal, and check that the two base angles
+      add up correctly.
+    key_idea: The angles of a triangle sum to pi, and the angle at C splits into two parts at the centre
+      O.
+extensions:
+  '3':
+  - 'Prove the converse: if angle ACB = 90 degrees then C lies on the circle with diameter AB.'
+  - Show that the angle subtended by a chord at the circumference is half the angle subtended at the centre
+    (the general case).
+  '4':
+  - Prove the tangent-chord angle theorem using the same isosceles-triangle method.
+  - Use the angle in a semicircle result to show that the circumcentre of a right triangle lies on the
+    hypotenuse.
+  '5':
+  - Prove that the angles of a cyclic quadrilateral opposite each other sum to pi, using the inscribed
+    angle theorem.
+  - Derive the inscribed angle theorem for the case where the chord does not pass through the centre.
+spoken_vocab:
+- semicircle
+- diameter AB
+- point C
+- centre O
+- radius
+- angle
+- right angle
+- pi over two
+- isosceles triangle
+- base angles
+- alpha
+- beta
+- angle sum of a triangle
+- Thales theorem
+source: past-interviews/Actual Past Interview Questions/Maths Trinity Hall Cambridge 2005.doc
+verified: false
+rating:
+  quality: 4
+  difficulty: 2
+  parts: 2
+  minutes: 5
+  flags:
+  - trivial
+  tagline: Classic warm-up; proof via isosceles triangles invites discussion.
+  priority: 37
+  rank: 589
+  tier: D
+  category: past-interviews
+  d10: 2.0
+  real: 4.0
+  by: deepseek-v4.1-flash-free
+tags:
+- geometry
+- proof

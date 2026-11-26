@@ -1,0 +1,122 @@
+id: alternating-dice-game-bias
+title: Alternating dice game with a biased die
+topics:
+- probability
+- geometric series
+- recursion
+- fairness
+warmup: false
+answer_source: generated
+statement: Person A has a fair die and Person B has a biased die, where the probability that Person B
+  rolls a 6 is $p$. They play a game in which they take turns rolling their dice until someone rolls a
+  6. The person who rolls a 6 wins. If Person A starts first, what is the probability that Person A wins?
+  What would $p$ have to be for the game to be fair? Does this value of $p$ make sense? Justify your answer.
+stages:
+- goal: Set up an equation for W, the probability that A wins.
+  expected: W = 1/6 + (5/6)(1 - p) W. A wins on the first roll with probability 1/6. Otherwise A misses
+    (5/6) and B misses (1 - p), and the game restarts in the same situation, so the probability of winning
+    from there is again W.
+  solution: Split on the first roll. A rolls a 6 with probability 1/6, which wins immediately. A misses
+    with probability 5/6, then B misses with probability 1 - p. After both miss, the position is identical
+    to the start, so the win probability is W again. Thus W = 1/6 + (5/6)(1 - p) W.
+  common_errors:
+  - Using 1/6 for B's probability of rolling a 6 instead of p.
+  - Forgetting that the game restarts after both players miss, and treating the outcome as a single turn.
+  - Writing the restart factor as (5/6) p instead of (5/6)(1 - p).
+  hints:
+    rephrase: Split the possible outcomes by what happens on A's very first roll, then see what the remaining
+      game looks like.
+    smaller_case: Think about what happens if both players miss on their first turns. How does the game
+      look afterwards?
+    key_idea: 'The game is self-similar: after both players miss, it restarts from the same state, so
+      the same unknown W appears on both sides of the equation.'
+  check: Rational(1,6) + Rational(5,6)*(1-p)*(1/(1+5*p)) - 1/(1+5*p)
+  check_ok: true
+- goal: Solve the equation for W.
+  expected: W = 1/(1 + 5p).
+  solution: W - (5/6)(1 - p) W = 1/6, so W (1 - 5/6 + 5p/6) = 1/6, which gives W (1 + 5p)/6 = 1/6 and
+    W = 1/(1 + 5p).
+  common_errors:
+  - Algebra error when combining 1 - (5/6)(1 - p) into (1 + 5p)/6.
+  - Writing the answer as 1/(6 - 5p) or similar.
+  - Forgetting to check the limits p = 0 and p = 1.
+  hints:
+    rephrase: Collect all terms containing W on one side, then simplify the coefficient of W.
+    smaller_case: Set p = 0 in the equation. What does B's die do in that case, and what should W be?
+    key_idea: Factor W out of the terms that contain it, then solve a linear equation with a single unknown.
+  check: Rational(1,6) + Rational(5,6)*(1-p)/(1+5*p) - 1/(1+5*p)
+  check_ok: true
+- goal: Find the value of p that makes the game fair.
+  expected: p = 1/5, since fairness means W = 1/2, so 1 + 5p = 2.
+  solution: Set 1/(1 + 5p) = 1/2. Then 1 + 5p = 2, so p = 1/5.
+  common_errors:
+  - Setting p = 1/6 because the fair die has probability 1/6.
+  - Confusing the fairness condition W = 1/2 with W = p.
+  - Solving 1/(1 + 5p) = 1/2 incorrectly.
+  hints:
+    rephrase: A fair game means each player has the same chance of winning. What value must W take?
+    smaller_case: Check what happens if B's die is identical to A's die, meaning p = 1/6, and compare
+      W with 1/2.
+    key_idea: Fairness is the condition W = 1/2 applied to the formula from the previous stage.
+  check: 1/(1+5*Rational(1,5)) - Rational(1,2)
+  check_ok: true
+- goal: Decide whether the fair value of p makes sense and justify the answer.
+  expected: 'Yes. p = 1/5 is larger than 1/6, so B needs a stronger chance of rolling a 6 to offset the
+    advantage of rolling first. Checks: p = 0 gives W = 1 (B can never win, so A wins surely), and p =
+    1 gives W = 1/6 (B always rolls a 6 on turn two, so A wins only with a first-roll 6). At p = 1/5,
+    B''s win probability 5p/(1 + 5p) equals 1/2.'
+  solution: Going first is an advantage, so the fair value of p should be above 1/6, and 1/5 > 1/6 confirms
+    this. The limiting cases p = 0 and p = 1 also match the formula, and B's win probability 1 - W = 5p/(1
+    + 5p) equals 1/2 at p = 1/5.
+  common_errors:
+  - Saying the answer does not make sense without comparing with 1/6.
+  - Failing to check the boundary values p = 0 and p = 1.
+  - Giving an intuitive argument without verifying the formula.
+  hints:
+    rephrase: Compare the fair value of p with the fair die's probability of 1/6, and ask which player
+      has the advantage.
+    smaller_case: Test the formula at p = 0 and p = 1 and see whether the results match what you expect.
+    key_idea: Sanity-check the answer against the boundary cases and against the advantage of moving first.
+  check: null
+extensions:
+  '3':
+  - Find the probability that the game lasts more than three rolls in total when both dice are fair.
+  '4':
+  - When both dice are fair, find the expected total number of rolls before someone rolls a 6.
+  '5':
+  - Suppose three players take turns in the order A, B, C, with A's die fair, B's die having probability
+    p of a 6, and C's die having probability q of a 6. Find the probability that A wins.
+spoken_vocab:
+- A
+- B
+- p
+- one sixth
+- five sixths
+- W
+- one over one plus five p
+- fair
+- biased
+- geometric series
+- win probability
+- first roll
+- restart
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions (anonymous).pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 4
+  parts: 4
+  minutes: 10
+  flags: []
+  tagline: Turn-based equation, then fairness condition and interpretation discussion.
+  priority: 82
+  rank: 200
+  tier: B
+  category: past-interviews
+  d10: 5.0
+  real: 7.5
+  by: deepseek-v4.1-flash-free
+tags:
+- probability
+- sequences_and_series
+- algebra_and_functions

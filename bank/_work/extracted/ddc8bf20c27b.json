@@ -1,0 +1,58 @@
+[
+ {
+  "q": "Graph the following. Mark any intercepts: $x^{\\frac{2}{3}} + y^{\\frac{2}{3}} = a^{\\frac{2}{3}}, \\ a > 0$",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.36.06.png"
+ },
+ {
+  "q": "How many binary chains of length $n$ are there, and how many of these are even parity?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.36.06.png"
+ },
+ {
+  "q": "I am given a square of unit length. I would like to cut this into rectangles with side lengths of ratio 2:1 (they do not all need to be the same size). How many rectangles can I cut this into?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.36.06.png"
+ },
+ {
+  "q": "Graph the following functions: $\\sqrt{y^2 - 1} = \\frac{1}{2}(e^x - e^{-x})$ and $\\sqrt{y^2 + 1} = \\frac{1}{2}(e^x + e^{-x})$",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.36.06.png"
+ },
+ {
+  "q": "I have three sticks whose lengths form a geometric progression. Let the length of the shortest stick be $a$ and the common ratio be $r$. What are the constraints on the values of $a$ and $r$?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.36.06.png"
+ },
+ {
+  "q": "I have a right-angled triangle. Its area is equal to its perimeter. What can you tell me about this triangle?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.36.06.png"
+ },
+ {
+  "q": "In this question $\\lfloor x \\rfloor$ denotes the biggest integer smaller than $x$. For example, $\\lfloor 2.4 \\rfloor = 2$ and $\\lfloor -\\pi \\rfloor = -4$. i) Evaluate $\\int_0^5 \\lfloor x \\rfloor \\, dx$. Can you generalize this result? ii) Evaluate the integral $\\int_0^{\\ln N} \\lfloor e^x \\rfloor \\, dx$. Express your answers in terms of $N$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.36.06.png"
+ },
+ {
+  "q": "I have 3 options for breakfast: an apple, a banana and a citrus. I would like to use a fair, 2-sided coin to decide what to eat. What could I do and what would be the expected value of choosing an apple? If your method does not terminate, find the expected number of coin flips needed to make a decision.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.36.06.png"
+ }
+]

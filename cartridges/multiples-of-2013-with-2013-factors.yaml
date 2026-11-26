@@ -1,0 +1,102 @@
+id: multiples-of-2013-with-2013-factors
+title: Multiples of 2013 with 2013 factors
+topics:
+- number theory
+- prime factorisation
+- divisor function
+- counting
+warmup: false
+answer_source: generated
+statement: How many multiples of $2013$ have exactly $2013$ factors?
+stages:
+- goal: Factorise 2013 into primes.
+  expected: $2013 = 3\times 11\times 61$
+  solution: 'Digit sum is 6, so 3 divides 2013: $2013 = 3\times 671$. Then $671 = 11\times 61$. All three
+    are prime.'
+  common_errors:
+  - Stopping at $3\times 671$ without factorising 671
+  - Treating 61 or 671 as composite or missing that 11 divides 671
+  hints:
+    rephrase: Write 2013 as a product of primes only.
+    smaller_case: 'Try the same on 12 or 105: divide out the smallest prime repeatedly.'
+    key_idea: Use the divisibility test for 3, then test 671 against small primes such as 7, 11, 13.
+  check: factorint(2013) == {3:1, 11:1, 61:1}
+  check_ok: true
+- goal: Use the divisor-count formula to constrain the prime factorisation of any such multiple $n$.
+  expected: $n = 3^a 11^b 61^c$ with $a,b,c\ge 1$ and no other prime factors, where $(a+1)(b+1)(c+1)=2013$.
+  solution: If $n=\prod p_i^{e_i}$ then the number of factors is $\prod (e_i+1)$. Since $2013\mid n$,
+    the primes 3, 11, 61 each have exponent at least 1, so each contributes a factor at least 2. The total
+    product 2013 has exactly three prime factors (counted with multiplicity), and three factors each $\ge
+    2$ already use all of them, so each of the three factors is one prime of 2013 and no other prime can
+    divide $n$ (it would add a further factor $\ge 2$).
+  common_errors:
+  - Forgetting that exponents of 3, 11, 61 must be at least 1
+  - Allowing extra prime factors in n
+  - Using $e_i$ instead of $e_i+1$ in the divisor formula
+  hints:
+    rephrase: What does the number of factors of $n$ look like in terms of its prime exponents, and what
+      does divisibility by 2013 force?
+    smaller_case: How many factors does $p^2 q$ have? What about $p^5$?
+    key_idea: Each prime dividing n contributes a factor at least 2 to a product that has very few prime
+      factors available.
+  check: 3*11*61 - 2013
+  check_ok: true
+- goal: Count the valid exponent triples and hence the multiples.
+  expected: '6'
+  solution: 'The numbers $a+1,b+1,c+1$ must be 3, 11, 61 in some order, so $(a,b,c)$ is a permutation
+    of $(2,10,60)$. There are $3!=6$ assignments, each giving a different $n$, e.g. $3^2\cdot 11^{10}\cdot
+    61^{60}$. Each is divisible by 2013. Answer: 6.'
+  common_errors:
+  - Answering 1 by taking only one ordering
+  - Counting 3 instead of 3!
+  - Giving exponents 3, 11, 61 rather than 2, 10, 60
+  hints:
+    rephrase: In how many ways can the three required factor values be matched to the three primes?
+    smaller_case: For divisor count 6 with a multiple of 6 required, which numbers work?
+    key_idea: Assign the three divisor-count factors to the three primes; different assignments give different
+      numbers.
+extensions:
+  '3':
+  - How many multiples of 2013 have exactly 2014 factors?
+  - How many multiples of 2013 have exactly 2013 factors and are also perfect squares?
+  '4':
+  - How many multiples of 2013 have exactly 4026 factors? Is the answer finite?
+  - Find the smallest multiple of 2013 with exactly 2013 factors, or compare which assignment of exponents
+    gives it.
+  '5':
+  - For which positive integers $N$ is the number of multiples of 2013 with exactly $N$ factors finite
+    and nonzero? Characterise them.
+  - Generalise to multiples of $pqr$ for distinct primes $p,q,r$ with exactly $pqr$ factors.
+spoken_vocab:
+- multiple
+- factor
+- divisor
+- prime factorisation
+- '2013'
+- three times eleven times sixty-one
+- exponent
+- to the power
+- divisor function
+- d of n
+- permutation
+- three factorial
+- perfect square
+verified: false
+rating:
+  quality: 7
+  difficulty: 7
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Divisor-count constraints force careful exponent case analysis; rich, clearly stated counting
+    problem.
+  priority: 81
+  rank: 227
+  tier: B
+  category: other
+  d10: 6.0
+  real: 4.0
+  by: haiku
+tags:
+- number_theory
+- combinatorics

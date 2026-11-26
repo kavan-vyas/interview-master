@@ -1,0 +1,72 @@
+id: trailing-zeros-25-factorial
+title: Trailing zeros of 25 factorial
+topics:
+- prime factorisation
+- Legendre formula
+- counting
+- factorials
+warmup: true
+answer_source: generated
+statement: How many zeros are on the end of $25!$?
+stages:
+- goal: Count the factors of 5 in 25!.
+  expected: '6'
+  solution: Multiples of 5 up to 25 are 5, 10, 15, 20, 25, giving 5 factors of 5. The number 25 contributes
+    one extra factor of 5, for a total of 6 factors of 5.
+  common_errors:
+  - Counting only the multiples of 5 and forgetting the extra factor from 25
+  - Counting multiples of 2 instead of 5
+  hints:
+    rephrase: Count the multiples of 5 first, then check whether any number in the range has a higher
+      power of 5.
+    smaller_case: How many factors of 5 are in 10!?
+    key_idea: Add floor(25/5) and floor(25/25) to count the powers of 5.
+  check: floor(Rational(25,5)) + floor(Rational(25,25)) - 6
+  check_ok: true
+- goal: Justify why the number of trailing zeros equals the count of factors of 5.
+  expected: Trailing zeros = min(v2, v5) = v5 = 6, because factors of 2 outnumber factors of 5 in 25!.
+  solution: Each trailing zero needs one factor of 10 = 2 x 5. Since 25! has more factors of 2 than factors
+    of 5, the number of zeros is limited by the factors of 5, which is 6.
+  common_errors:
+  - Counting factors of 2 instead of 5
+  - Not explaining why 2s are not the limiting factor
+  hints:
+    rephrase: What must each zero at the end of a number come from?
+    smaller_case: Does 10! end with more 2s or more 5s?
+    key_idea: Every 10 needs a 2 and a 5, and 2s are more plentiful than 5s.
+extensions:
+  '3':
+  - How many zeros are on the end of 100!?
+  '4':
+  - How many zeros are on the end of 1000! when written in base 10?
+  '5':
+  - How many trailing zeros does 1000! have in base 12?
+spoken_vocab:
+- zeros
+- trailing zeros
+- 25 factorial
+- factors of five
+- factors of two
+- powers of five
+- floor
+- multiples of five
+source: past-interviews/Actual Past Interview Questions/H1.jpg
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 2
+  minutes: 3
+  flags:
+  - trivial
+  tagline: Standard factor-of-5 count; too familiar to probe deeply.
+  priority: 17
+  rank: 671
+  tier: D
+  category: past-interviews
+  d10: 1.5
+  real: 7.0
+  by: haiku
+tags:
+- number_theory
+- proof

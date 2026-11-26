@@ -1,0 +1,133 @@
+id: trees-leaves-edges-cayley
+title: 'Trees: leaves, edges, unique paths and counting'
+topics:
+- graph theory
+- trees
+- induction
+- counting
+- conjecture
+warmup: false
+answer_source: pdf
+statement: A tree is a connected graph with no cycles. (i) Show that every tree with at least two vertices
+  has a leaf (a vertex of degree $1$). (ii) Deduce that a tree with $n$ vertices has exactly $n-1$ edges.
+  (iii) Show that in a tree, any two vertices are joined by exactly one path. (iv) How many different
+  trees are there on the labelled vertices $\{1,2,3\}$? On $\{1,2,3,4\}$? On $\{1,\dots,5\}$? Make a conjecture.
+stages:
+- goal: Prove that every tree with at least two vertices has a leaf.
+  expected: 'Take a longest path. Its endpoint has degree 1: any neighbour off the path would extend it,
+    and any neighbour on the path other than the next vertex would create a cycle.'
+  solution: A tree with at least two vertices is connected, so it has an edge and hence a path with at
+    least one edge. Since the graph is finite, choose a path P = v_0 v_1 ... v_k of maximum length, with
+    k at least 1. The endpoint v_0 has a neighbour v_1 on P. Any other neighbour off P would extend P,
+    contradicting maximality. Any other neighbour v_j on P (j at least 2) would create the cycle v_0 v_1
+    ... v_j v_0, which is forbidden. So deg(v_0) = 1.
+  common_errors:
+  - Picking an arbitrary vertex and claiming it is a leaf
+  - Forgetting that a longest path must contain at least one edge
+  - Arguing about cycles without checking that the extra neighbour lies on the path
+  hints:
+    rephrase: Look at the two ends of a path that cannot be made any longer.
+    smaller_case: Draw a path on 4 vertices and a star on 4 vertices. Where are the leaves, and what do
+      the ends of a maximal path look like?
+    key_idea: Maximality of a path restricts the neighbourhood of its endpoint, and the no-cycle condition
+      restricts it further.
+  check: null
+- goal: Show that a tree on n vertices has exactly n-1 edges, by induction on n, and check the case n
+    = 5.
+  expected: Remove a leaf and its edge. The rest is still a tree on n-1 vertices, so it has n-2 edges
+    by hypothesis, and adding the leaf edge back gives n-1 edges in total.
+  solution: 'Base case: a tree on 1 vertex has no edges, which is 1-1 = 0. Inductive step: let T be a
+    tree on n at least 2 vertices and let v be a leaf (from part (i)). Deleting v and its unique edge
+    leaves a graph that is still acyclic, since removing vertices and edges cannot create cycles. It is
+    still connected, because any path between two remaining vertices cannot pass through v (v has degree
+    1 and so is never an interior vertex of a path). So it is a tree on n-1 vertices with n-2 edges. Restoring
+    v and its edge gives n-1 edges. For n = 5 this gives 4 edges.'
+  common_errors:
+  - Forgetting to check that the remaining graph is still connected
+  - Using a base case that is not a tree or is not checked
+  - Miscounting by adding the leaf edge twice
+  hints:
+    rephrase: What happens to the number of vertices and edges when you delete one leaf and its edge?
+    smaller_case: Take the path on 3 vertices. Delete an endpoint and count what is left.
+    key_idea: 'Induction on n: deleting a leaf keeps you inside the class of trees, so the hypothesis
+      applies to the smaller tree.'
+  check: (5-1)-4
+  check_ok: true
+- goal: Show that in a tree, any two vertices are joined by exactly one path.
+  expected: Connectedness gives at least one path. If there were two different paths between x and y,
+    following them from x until they first separate and then until they next meet gives a cycle, which
+    is impossible.
+  solution: Connectedness gives a path from x to y. Suppose P and Q are two different x-y paths. Walk
+    along both from x. Since the paths differ, there is a first point where they diverge, and then a first
+    later vertex that lies on both again. Between these two meeting points, the two portions of P and
+    Q are internally disjoint and distinct, so together they form a cycle. A tree has no cycles, so the
+    paths must be equal.
+  common_errors:
+  - Saying the paths 'might share vertices' without showing that the portions form a cycle
+  - Confusing paths with walks, which may repeat vertices
+  - Forgetting that the two portions must be distinct as paths
+  hints:
+    rephrase: Suppose two different routes exist between the same two vertices. Where could they first
+      split apart and then rejoin?
+    smaller_case: Take a 4-cycle and two vertices opposite each other. How many paths join them, and what
+      is the cycle formed?
+    key_idea: Two distinct routes between the same endpoints always contain a loop, and a tree forbids
+      loops.
+  check: null
+- goal: Count the labelled trees on {1,2,3}, {1,2,3,4} and {1,...,5}, and make a conjecture for n labelled
+    vertices.
+  expected: 3, 16 and 125 trees respectively. The conjecture is n^(n-2) (Cayley's formula).
+  solution: 'n = 3: every tree is a path, determined by its middle vertex, giving 3 trees. n = 4: stars,
+    determined by the centre, give 4 trees, and paths give 4!/2 = 12, for a total of 16. n = 5: paths
+    give 5!/2 = 60, stars give 5, and the fork with degree sequence 3,2,1,1,1 gives 5 x 4 x 3 = 60 choices,
+    for a total of 125. The sequence 3, 16, 125 matches n^(n-2) for n = 3, 4, 5, which is Cayley''s formula.'
+  common_errors:
+  - Counting unlabelled shapes instead of labelled trees
+  - Using 4! instead of 4!/2 for paths, forgetting that a path and its reverse are the same
+  - Missing the fork shape on 5 vertices
+  - Stating a conjecture that only fits the first data point
+  hints:
+    rephrase: Sort the trees on each vertex count by shape, then count how many labellings each shape
+      has.
+    smaller_case: Start with n = 3. Each tree is a path, so ask which vertex is in the middle.
+    key_idea: For each shape, count the labelled copies carefully, counting a path and its reverse once.
+  check: (3**(3-2)-3)+(4**(4-2)-16)+(5**(5-2)-125)
+  check_ok: true
+extensions:
+  '3':
+  - Show that a tree on n vertices with n at least 2 has at least two leaves.
+  '4':
+  - Prove that adding any edge to a tree creates exactly one cycle.
+  '5':
+  - Prove Cayley's formula n^(n-2) by counting labelled trees with Prufer sequences.
+spoken_vocab:
+- tree
+- connected graph
+- cycle
+- leaf
+- degree
+- vertex
+- vertices
+- edge
+- path
+- longest path
+- induction
+- labelled vertices
+- star
+- fork
+- Cayley's formula
+- n to the power n minus two
+- n minus one
+source: jaymin/Jaymin Interview (1).pdf#p73
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 4
+  minutes: 35
+  flags: []
+  tagline: Proofs building to Cayley's formula, conjectured from small counts.
+  priority: 107
+  rank: 32
+  tier: S
+  category: jaymin

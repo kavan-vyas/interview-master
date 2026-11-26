@@ -1,0 +1,192 @@
+id: rational-function-range-and-iterate
+title: Range of x/(x²+1), its turning points, reciprocal and f(f(x))
+topics:
+- functions
+- range
+- discriminant
+- stationary points
+- sketching
+- reciprocal graphs
+- composition of functions
+warmup: false
+answer_source: pdf
+statement: 'Let $f(x)=\frac{x}{x^2+1}$.
+
+
+  (i) By considering for which $y$ the equation $y=\frac{x}{x^2+1}$ has a real solution $x$, find the
+  range of $f$ without using calculus.
+
+
+  (ii) Find the stationary points of $f$ using calculus, and check that they agree with your answer to
+  (i).
+
+
+  (iii) Sketch $y=f(x)$.
+
+
+  (iv) On the same axes, sketch $y=\frac{1}{f(x)}=x+\frac1x$, and explain how its features follow from
+  those of $f$.
+
+
+  (v) Find the range of $f(f(x))$.'
+stages:
+- goal: 'Part (i): find the range of f without calculus, by asking for which y the equation y = x/(x^2+1)
+    has a real solution x.'
+  expected: The range is $[-\frac12,\frac12]$, obtained from the discriminant of $yx^2-x+y=0$, with the
+    case $y=0$ treated separately.
+  solution: Rewrite $y=\frac{x}{x^2+1}$ as $yx^2-x+y=0$ (valid since $x^2+1>0$). If $y=0$ then $x=0$ works.
+    If $y\neq0$ this is a quadratic in $x$, with real roots iff its discriminant $1-4y^2\ge0$, i.e. $|y|\le\frac12$.
+    Since $y=0$ also lies in this interval, the range is $[-\frac12,\frac12]$.
+  common_errors:
+  - Forgetting the case y=0, where the equation is linear rather than quadratic.
+  - Getting the discriminant inequality the wrong way round.
+  - Concluding the range is all real y because x^2+1 is always positive.
+  - Mis-writing the quadratic, e.g. as yx^2+x+y=0 with a wrong discriminant such as 1-2y.
+  hints:
+    rephrase: Ask which values of y make y(x^2+1)=x solvable for a real x.
+    smaller_case: Is there a real x with x/(x^2+1)=1? What about x/(x^2+1)=1/4?
+    key_idea: Treat the equation as a quadratic in x and demand a non-negative discriminant, but check
+      separately the case where the coefficient of x^2 vanishes.
+  check: set(solve(1-4*y**2, y)) == {-Rational(1,2), Rational(1,2)}
+  check_ok: null
+- goal: 'Part (ii): find the stationary points of f using calculus and check them against the range from
+    part (i).'
+  expected: $f'(x)=\frac{1-x^2}{(x^2+1)^2}$. Stationary points are $(1,\frac12)$, a maximum, and $(-1,-\frac12)$,
+    a minimum. These y-values are the endpoints of the range in (i).
+  solution: 'By the quotient rule, $f''(x)=\frac{(x^2+1)\cdot1-x\cdot2x}{(x^2+1)^2}=\frac{1-x^2}{(x^2+1)^2}$.
+    This vanishes at $x=\pm1$, where $f(1)=\frac12$ and $f(-1)=-\frac12$. The denominator is positive,
+    so the sign of $f''$ is that of $1-x^2$: $f''$ changes from positive to negative at $x=1$ (maximum)
+    and from negative to positive at $x=-1$ (minimum). These values are exactly the endpoints of the range
+    found in (i).'
+  common_errors:
+  - Dropping the square in the denominator when differentiating.
+  - Sign error in the numerator, writing $x^2-1$ instead of $1-x^2$.
+  - Giving the x-values of the stationary points without the corresponding y-values.
+  - Not classifying maximum versus minimum using the sign change of f'.
+  hints:
+    rephrase: Differentiate with the quotient rule and find where the numerator is zero.
+    smaller_case: What is the sign of f' at x=0 and at x=2?
+    key_idea: Compare the y-values at the stationary points with the range from part (i), and use the
+      sign change of f' to classify them.
+  check: set(solve(diff(x/(x**2+1), x), x)) == {-1, 1}
+  check_ok: null
+- goal: 'Part (iii): collect the symmetry, intercept and end behaviour of f and sketch y=f(x).'
+  expected: $f$ is odd, so the graph is symmetric about the origin. It passes through the origin with
+    gradient 1, rises to the maximum $(1,\frac12)$, then decreases towards $0^+$ as $x\to\infty$. By symmetry
+    it has the minimum $(-1,-\frac12)$ and tends to $0^-$ as $x\to-\infty$. The x-axis is a horizontal
+    asymptote. $f>0$ for $x>0$ and $f<0$ for $x<0$.
+  solution: Replacing $x$ by $-x$ gives $\frac{-x}{x^2+1}=-f(x)$, so $f$ is odd. Numerator degree 1 and
+    denominator degree 2 give $f(x)\to0$ as $x\to\pm\infty$, with the sign of $x$. At the origin $f(0)=0$
+    and $f'(0)=1$. From (ii), $f$ increases on $(-1,1)$ and decreases for $|x|>1$, with turning points
+    $(\pm1,\pm\frac12)$. Joining these features gives an S-shaped curve squeezed between $y=\pm\frac12$
+    and approaching the x-axis at both ends.
+  common_errors:
+  - Confusing odd symmetry with even symmetry.
+  - Claiming the curve never meets the x-axis, when it passes through the origin.
+  - Drawing the curve crossing the x-axis again or heading to infinity instead of flattening onto y=0.
+  - Misjudging the limit at infinity by comparing the wrong powers of x.
+  hints:
+    rephrase: Substitute -x for x and compare the result with f(x); then say what happens for very large
+      |x|.
+    smaller_case: For very large x, which term dominates the denominator, and so how big is f(x)?
+    key_idea: Odd symmetry plus the turning points from (ii) and the limit at infinity fix the whole shape.
+  check: And(simplify((-x)/((-x)**2+1) + x/(x**2+1)) == 0, limit(x/(x**2+1), x, oo) == 0, diff(x/(x**2+1),
+    x).subs(x, 0) == 1)
+  check_ok: true
+- goal: 'Part (iv): sketch y = 1/f(x) = x + 1/x on the same axes and explain how its features follow from
+    those of f.'
+  expected: Where $f=0$ (at $x=0$), $\frac1f$ has a vertical asymptote $x=0$. As $x\to\pm\infty$, $\frac1f\approx
+    x$, giving the oblique asymptote $y=x$. The maximum $\frac12$ of $f$ at $x=1$ gives a local minimum
+    $2$ of $\frac1f$ at $x=1$; the minimum $-\frac12$ at $x=-1$ gives a local maximum $-2$. The signs
+    of $\frac1f$ and $f$ agree, and the two graphs never meet since $|f|\le\frac12<1$.
+  solution: Since $\frac1f=\frac{x^2+1}{x}=x+\frac1x$, the zero of $f$ at $x=0$ gives a vertical asymptote
+    of $\frac1f$. Because $\frac1x\to0$ at infinity, $x+\frac1x$ behaves like $x$, so $y=x$ is an oblique
+    asymptote. Reciprocals reverse the order of values of the same sign, so the maximum of $f$ (positive)
+    becomes a minimum of $\frac1f$, with value $2$ at $x=1$, and the minimum of $f$ (negative) becomes
+    a maximum, value $-2$ at $x=-1$. The branches lie in $y\ge2$ for $x>0$ and $y\le-2$ for $x<0$, outside
+    the band $|y|\le\frac12$ that contains the graph of $f$.
+  common_errors:
+  - Placing the vertical asymptote at a stationary point instead of at the zero of f.
+  - Saying the asymptote is y=0 rather than y=x.
+  - Assuming a maximum of f always gives a maximum of 1/f, ignoring the reversal under reciprocal.
+  - Drawing the two curves as intersecting, when f=1/f would need f=±1.
+  hints:
+    rephrase: Where is f zero, and what does f tend to as x becomes large?
+    smaller_case: Compare the values of f and 1/f at x=1 and at x=-1.
+    key_idea: Reciprocals send small values to large ones and reverse the order of same-sign values, so
+      extremes of f turn into extremes of 1/f of the opposite type.
+  check: And(simplify((x + 1/x) - 1/(x/(x**2+1))) == 0, (x + 1/x).subs(x, 1) == 2, diff(x + 1/x, x).subs(x,
+    1) == 0)
+  check_ok: true
+- goal: 'Part (v): find the range of f(f(x)).'
+  expected: The range is $[-\frac25,\frac25]$.
+  solution: By part (i), $f(x)$ takes every value in $[-\frac12,\frac12]$, so the range of $f(f(x))$ is
+    $f\big([-\frac12,\frac12]\big)$. Since $f$ is increasing on $[-1,1]$, which contains $[-\frac12,\frac12]$,
+    this image is $[f(-\frac12),f(\frac12)]$. Now $f(\frac12)=\frac{1/2}{5/4}=\frac25$ and $f(-\frac12)=-\frac25$.
+    So the range is $[-\frac25,\frac25]$.
+  common_errors:
+  - Reporting the range of f, namely $[-\frac12,\frac12]$, as the range of f(f(x)).
+  - Evaluating f(f(x)) only at x=±1 and taking those values as the range.
+  - Arithmetic error in f(1/2), for example writing 1/2 instead of 2/5.
+  - Applying f to the whole real line rather than to the range of the inner f.
+  hints:
+    rephrase: First find every value that f(x) can take, then apply f to all of those values.
+    smaller_case: What is f(0), and what does f do to the endpoints of the interval you found in part
+      (i)?
+    key_idea: If f is monotonic on an interval, the image of that interval is found by applying f to its
+      endpoints.
+  check: Rational(1,2)/(Rational(1,2)**2+1) - Rational(2,5)
+  check_ok: true
+extensions:
+  '3':
+  - Find the range of $x+\frac1x$ for $x\neq0$, using the result of part (i).
+  - Show that $f(x)=k$ has two real solutions for each $k$ with $0<|k|<\frac12$.
+  '4':
+  - Find the range of $f(f(f(x)))$.
+  - Find all $x$ for which $f(f(x))=f(x)$.
+  '5':
+  - For which values of $k$ does $\frac{x}{x^2+1}=k$ have exactly one real solution?
+  - For $a>0$, find the maximum value of $\frac{x}{x^2+a}$ and where it occurs.
+spoken_vocab:
+- f of x equals x over x squared plus one
+- y equals x over x squared plus one
+- discriminant
+- real solution
+- range
+- stationary point
+- maximum
+- minimum
+- f dash of x
+- one minus x squared over x squared plus one all squared
+- odd function
+- horizontal asymptote
+- vertical asymptote
+- oblique asymptote
+- one over f of x
+- x plus one over x
+- f of f of x
+- minus a half
+- a half
+- two fifths
+source: jaymin/Jaymin Interview (1).pdf#p57
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 5
+  minutes: 25
+  flags:
+  - needs_diagram
+  tagline: Range via discriminant, calculus check, reciprocal sketch, iterated range [−2/5, 2/5].
+  priority: 93
+  rank: 67
+  tier: A
+  category: jaymin
+  d10: 4.5
+  real: 6.5
+  by: haiku
+refined: true
+tags:
+- curve_sketching
+- differentiation
+- inequalities

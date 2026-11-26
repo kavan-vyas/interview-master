@@ -1,0 +1,131 @@
+id: sum-of-powers-telescoping
+title: Sums of k, k squared and k cubed by telescoping
+topics:
+- telescoping sums
+- summation formulas
+- induction
+- algebraic identities
+- polynomial sums
+warmup: false
+answer_source: pdf
+statement: '(i) By summing $(k+1)^2 - k^2$ from $k = 1$ to $n$, find $\sum_{k=1}^n k$. (ii) By summing
+  $(k+1)^3 - k^3$, show that $\sum_{k=1}^n k^2 = \frac{1}{6}n(n+1)(2n+1)$. (iii) Prove that $\sum_{k=1}^n
+  k^3 = \left(\sum_{k=1}^n k\right)^2$. (iv) Find $\sum_{k=1}^n k(k+1)$ in two ways: using (i) and (ii),
+  and by telescoping $k(k+1)(k+2) - (k-1)k(k+1)$.'
+stages:
+- goal: (i) Find sum_{k=1}^n k by telescoping (k+1)^2 - k^2.
+  expected: Sum of (k+1)^2 - k^2 = 2k + 1 over k = 1..n telescopes to (n+1)^2 - 1, and equals 2 sum k
+    + n. Hence sum k = n(n+1)/2.
+  solution: Since (k+1)^2 - k^2 = 2k + 1, summing from k = 1 to n telescopes the left side to (n+1)^2
+    - 1 = n^2 + 2n. The right side is 2 sum_{k=1}^n k + n. So 2 sum k = n^2 + n, giving sum_{k=1}^n k
+    = n(n+1)/2.
+  common_errors:
+  - Forgetting the +n term from the 1s in 2k + 1
+  - Writing (n+1)^2 instead of (n+1)^2 - 1 for the telescoped left side
+  - Dividing by 2 incorrectly to get n(n+1) instead of n(n+1)/2
+  hints:
+    rephrase: Write (k+1)^2 - k^2 in a simpler form, add the equations for k = 1 to n, and see what cancels.
+    smaller_case: Carry out the sum explicitly for n = 2 and n = 3, and check the telescoping.
+    key_idea: In a telescoping sum, consecutive terms cancel, leaving only the first and last boundary
+      terms.
+  check: summation(k, (k, 1, n)) - n*(n+1)/2 == 0
+  check_ok: false
+- goal: (ii) Show that sum_{k=1}^n k^2 = n(n+1)(2n+1)/6 by summing (k+1)^3 - k^3.
+  expected: (k+1)^3 - k^3 = 3k^2 + 3k + 1. Summing telescopes to (n+1)^3 - 1 = 3 sum k^2 + 3 sum k + n.
+    Substituting sum k = n(n+1)/2 gives sum k^2 = n(n+1)(2n+1)/6.
+  solution: (k+1)^3 - k^3 = 3k^2 + 3k + 1. Summing over k = 1..n gives (n+1)^3 - 1 = 3 sum k^2 + 3 sum
+    k + n. Using sum k = n(n+1)/2, we get 3 sum k^2 = n^3 + 3n^2 + 3n - (3n^2 + 3n)/2 - n = n(n+1)(2n+1)/2.
+    Dividing by 3 gives sum k^2 = n(n+1)(2n+1)/6.
+  common_errors:
+  - Dropping the 3k term or the +1 term in the expansion of (k+1)^3
+  - Substituting the wrong formula for sum k
+  - Making an algebra slip when collecting powers of n
+  hints:
+    rephrase: Expand (k+1)^3, sum both sides over k, and use the result of part (i).
+    smaller_case: Check the formula for n = 1 and n = 2 by direct computation.
+    key_idea: Expand the cube, sum, and solve for the sum of k squared.
+  check: summation(k**2, (k, 1, n)) - n*(n+1)*(2*n+1)/6 == 0
+  check_ok: false
+- goal: (iii) Prove that sum_{k=1}^n k^3 = (sum_{k=1}^n k)^2 by induction.
+  expected: Assume sum_{k<=n} k^3 = n^2(n+1)^2/4. Adding (n+1)^3 gives (n+1)^2 (n^2 + 4n + 4)/4 = (n+1)^2
+    (n+2)^2/4, which is the formula for n+1. Since sum k = n(n+1)/2, the square of this is n^2(n+1)^2/4,
+    so the identity holds.
+  solution: 'Let S_n = sum_{k=1}^n k^3 and T_n = sum_{k=1}^n k = n(n+1)/2. Base case: S_1 = 1 = T_1^2.
+    Inductive step: suppose S_n = T_n^2. Then S_(n+1) = T_n^2 + (n+1)^3. Now T_(n+1)^2 - T_n^2 = (T_(n+1)
+    - T_n)(T_(n+1) + T_n) = (n+1)(n+1)(n+1 + ... ) = (n+1)^3, since T_(n+1) - T_n = n+1 and T_(n+1) +
+    T_n = (n+1)^2. Hence S_(n+1) = T_(n+1)^2. Induction gives the identity for all n.'
+  common_errors:
+  - Checking only the base case and claiming the proof is complete
+  - Mistaking T_(n+1) - T_n for n+1 but then using the wrong sum T_(n+1) + T_n
+  - Working with the closed form for S_n without linking it to T_n^2
+  hints:
+    rephrase: Use induction on n, and see what adding (n+1)^3 does to the hypothesis.
+    smaller_case: Check the base case n = 1 for both sides, then compute the case n = 2 explicitly.
+    key_idea: Show that the difference of the squares of consecutive partial sums of k equals (n+1)^3.
+  check: summation(k**3, (k, 1, n)) - (summation(k, (k, 1, n)))**2 == 0
+  check_ok: false
+- goal: (iv, first method) Find sum_{k=1}^n k(k+1) using parts (i) and (ii).
+  expected: sum k(k+1) = sum k^2 + sum k = n(n+1)(2n+1)/6 + n(n+1)/2 = n(n+1)(n+2)/3.
+  solution: 'Split the sum: sum_{k=1}^n k(k+1) = sum k^2 + sum k. Substituting the formulas from parts
+    (i) and (ii) gives n(n+1)(2n+1)/6 + n(n+1)/2 = n(n+1)[(2n+1) + 3]/6 = n(n+1)(2n+4)/6 = n(n+1)(n+2)/3.'
+  common_errors:
+  - Forgetting to add the two sums, or adding them with the wrong sign
+  - Failing to factor out the common factor n(n+1) before simplifying
+  - Making an arithmetic error when combining (2n+1) with 3
+  hints:
+    rephrase: Expand k(k+1) into two separate sums and use the earlier results for each.
+    smaller_case: Compute the sum explicitly for n = 2 and compare with your formula.
+    key_idea: Factor the common term n(n+1) from both formulas before adding them.
+  check: summation(k*(k+1), (k, 1, n)) - n*(n+1)*(n+2)/3 == 0
+  check_ok: false
+- goal: (iv, second method) Find sum_{k=1}^n k(k+1) by telescoping k(k+1)(k+2) - (k-1)k(k+1).
+  expected: k(k+1)(k+2) - (k-1)k(k+1) = 3k(k+1). Summing from k = 1 to n telescopes to n(n+1)(n+2). Hence
+    sum k(k+1) = n(n+1)(n+2)/3, which agrees with the first method.
+  solution: 'Factor: k(k+1)(k+2) - (k-1)k(k+1) = k(k+1)[(k+2) - (k-1)] = 3k(k+1). Summing over k = 1..n,
+    the left side telescopes to n(n+1)(n+2) - 0 = n(n+1)(n+2), since the term for k = 0 is 0. So 3 sum
+    k(k+1) = n(n+1)(n+2), and sum k(k+1) = n(n+1)(n+2)/3. The two methods agree.'
+  common_errors:
+  - Forgetting that the k = 0 boundary term vanishes, which affects the telescoping limit
+  - Making a sign error when subtracting (k-1)k(k+1)
+  - Failing to divide by 3 at the end
+  hints:
+    rephrase: Factor k(k+1) out of both terms and simplify the bracket.
+    smaller_case: 'Check k = 1: compute the difference explicitly, then verify the telescoped sum for
+      n = 1.'
+    key_idea: Consecutive terms of the form f(k) = (k-1)k(k+1) cancel when summed, leaving only the last
+      term.
+  check: summation(3*k*(k+1), (k, 1, n)) - n*(n+1)*(n+2) == 0
+  check_ok: false
+extensions:
+  '3':
+  - Use telescoping on (k+1)^5 - k^5 to find the formula for sum of k^4.
+  - Show that sum_{k=1}^n k^3 = (n(n+1)/2)^2 without induction, using part (ii).
+  '4':
+  - Find sum_{k=1}^n k(k+1)(k+2) by telescoping.
+  - Find sum_{k=1}^n 1/(k(k+1)) by telescoping and state the limit as n tends to infinity.
+  '5':
+  - Find a general method for summing a polynomial of degree d using telescoping differences.
+  - Show that sum_{k=1}^n k^3 = (sum_{k=1}^n k)^2 has a geometric interpretation as a square of side n(n+1)/2.
+spoken_vocab:
+- sum from k equals one to n
+- k squared
+- k cubed
+- n times n plus one over two
+- n times n plus one times two n plus one over six
+- telescoping
+- induction
+- k times k plus one
+- k times k plus one times k plus two
+- sum of k cubed equals the square of sum of k
+source: jaymin/Jaymin Interview (1).pdf#p25
+verified: false
+rating:
+  score: 9
+  difficulty: 3
+  parts: 5
+  minutes: 22
+  flags: []
+  tagline: Telescoping builds k, k², k³ sums, then cross-checks two methods for k(k+1).
+  priority: 130
+  rank: 4
+  tier: S

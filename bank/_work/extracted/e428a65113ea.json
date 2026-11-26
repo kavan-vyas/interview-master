@@ -1,0 +1,9 @@
+[
+ {
+  "q": "An ant is at a vertex of a cube which has side length $1$. If the ant can only walk across the faces of the cube, what is the shortest distance to the opposite vertex?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "nextstepmaths/NextStepMaths Interview Questions/interview-question-20.pdf#0"
+ }
+]

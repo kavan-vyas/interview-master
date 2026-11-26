@@ -1,0 +1,102 @@
+id: abs-modulus-conic-lines
+title: Sketch |3x^2 + y^2 - 12| = |x^2 - y^2 + 4|
+topics:
+- modulus
+- conics
+- factorising
+- sketching
+warmup: false
+answer_source: generated
+statement: Sketch the curve $|3x^2+y^2-12|=|x^2-y^2+4|$.
+stages:
+- goal: Remove the modulus signs and factorise the resulting equation.
+  expected: (x^2 + y^2 - 8)(x^2 - 2) = 0.
+  solution: Two real numbers A and B satisfy |A| = |B| if and only if A^2 = B^2. So the equation is equivalent
+    to A^2 - B^2 = 0, which factorises as (A - B)(A + B) = 0. Here A - B = 2x^2 + 2y^2 - 16 and A + B
+    = 4x^2 - 8. Hence 8(x^2 + y^2 - 8)(x^2 - 2) = 0, i.e. (x^2 + y^2 - 8)(x^2 - 2) = 0.
+  common_errors:
+  - Only considering one sign case and losing a component
+  - Forgetting that the locus is a union of two sets
+  - Arithmetic error when expanding the squares
+  hints:
+    rephrase: What simple condition on squares is equivalent to two absolute values being equal?
+    smaller_case: Test whether the point (0, 0) satisfies the original equation, then whether a point
+      on your proposed curve does.
+    key_idea: Equal absolute values means equal squares, and the difference of two squares factorises.
+  check: expand((3*x**2+y**2-12)**2-(x**2-y**2+4)**2 - 8*(x**2+y**2-8)*(x**2-2))
+  check_ok: true
+- goal: Identify the two components of the curve.
+  expected: x^2 + y^2 = 8, a circle centred at the origin with radius 2√2 (about 2.83). And x^2 = 2, which
+    gives the two vertical lines x = ±√2 (about ±1.41).
+  solution: The first factor gives x^2 + y^2 = 8, a circle with centre (0, 0) and radius √8 = 2√2. The
+    second factor gives x^2 = 2, so x = ±√2. This does not involve y, so it gives two vertical lines extending
+    infinitely in both directions.
+  common_errors:
+  - Taking the radius to be 8 rather than √8
+  - Writing x = ±2 instead of ±√2
+  - Treating the lines as bounded segments
+  hints:
+    rephrase: Look at each factor on its own. What shape does x^2 + y^2 = constant describe?
+    smaller_case: What set of points satisfies x^2 = 2 if y can be anything?
+    key_idea: A factor that does not involve y produces lines parallel to the y-axis.
+  check: expand(2*x**2+2*y**2-16 - 2*(x**2+y**2-8))
+  check_ok: true
+- goal: Find where the circle meets the lines and describe the complete sketch.
+  expected: The intersection points are (±√2, ±√6). The sketch is a circle of radius 2√2 centred at the
+    origin, cut by two vertical lines x = ±√2 that continue beyond the circle.
+  solution: Substitute x^2 = 2 into x^2 + y^2 = 8 to get y^2 = 6, so y = ±√6 (about ±2.45). The four intersection
+    points are (±√2, ±√6). The sketch is the full circle together with the full lines x = √2 and x = -√2,
+    meeting the circle at these four points.
+  common_errors:
+  - Giving only the positive value of y
+  - Forgetting that the lines extend to infinity
+  - Drawing the lines inside the circle only
+  hints:
+    rephrase: Substitute the value of x from the line equation into the circle equation.
+    smaller_case: What is y when x = √2 on the circle?
+    key_idea: Each line meets the circle where the equation for the circle, with x fixed, has two solutions
+      for y.
+  check: sqrt(8-2)-sqrt(6)
+  check_ok: true
+extensions:
+  '3':
+  - Explain why squaring both sides loses no solutions in this problem.
+  '4':
+  - For the general equation |ax^2 + by^2 + c| = |dx^2 + ey^2 + f|, identify the two curves that make
+    up the locus.
+  '5':
+  - Show that the four intersection points are the only points where the circle and the lines meet, and
+    find the angle between the line x = √2 and the circle at (√2, √6).
+spoken_vocab:
+- modulus of three x squared plus y squared minus twelve
+- equals
+- modulus of x squared minus y squared plus four
+- x squared plus y squared equals eight
+- radius two root two
+- x equals plus or minus root two
+- difference of two squares
+- square both sides
+- circle
+- vertical line
+- intersection
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 3
+  minutes: 12
+  flags:
+  - needs_diagram
+  tagline: Case-splitting modulus gives a circle x²+y²=8 plus lines x=±√2.
+  priority: 83
+  rank: 180
+  tier: B
+  category: tbo
+  d10: 5.5
+  real: 6.0
+  by: deepseek-v4.1-flash-free
+tags:
+- curve_sketching
+- coordinate_geometry
+- algebra_and_functions

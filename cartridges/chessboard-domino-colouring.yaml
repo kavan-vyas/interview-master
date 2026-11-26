@@ -1,0 +1,100 @@
+id: chessboard-domino-colouring
+title: 'Chessboard with two corners removed: domino tiling'
+topics:
+- invariants
+- colouring argument
+- combinatorics
+- parity
+warmup: true
+answer_source: pdf
+statement: Two diagonally opposite corner squares are removed from an $8\times 8$ chessboard. Can the
+  remaining 62 squares be covered exactly by 31 dominoes, each covering two adjacent squares?
+stages:
+- goal: Count the black and white squares on the full 8 x 8 board.
+  expected: 32 black and 32 white.
+  solution: The board is coloured in the usual alternating pattern. Each row has 4 squares of each colour,
+    and there are 8 rows, so there are 32 of each colour.
+  common_errors:
+  - Counting 36 and 28 by mistake
+  - Assuming the corners are a different colour from the rest of the board
+  hints:
+    rephrase: Use the usual chessboard pattern and count one row at a time.
+    smaller_case: 'Count the squares in a 2 x 2 board: how many of each colour?'
+    key_idea: Within each row the colours alternate, so each row splits evenly.
+  check: 32-32
+  check_ok: true
+- goal: Find the colours of the two removed corners and the resulting imbalance between the colours.
+  expected: Both removed corners have the same colour, so the remaining board has 30 of one colour and
+    32 of the other, an imbalance of 2.
+  solution: Diagonally opposite corners such as a1 and h8 share the same colour, since the sum of their
+    row and column indices has the same parity. Removing two squares of this colour leaves 32 - 2 = 30
+    of that colour and 32 of the other, an imbalance of 2.
+  common_errors:
+  - Thinking opposite corners have different colours
+  - Forgetting to subtract both removed squares from the same colour count
+  - Reporting the imbalance as 1
+  hints:
+    rephrase: Check the colour of each removed corner using the row and column parity.
+    smaller_case: On a 2 x 2 board with opposite corners removed, what colour are the two removed squares?
+    key_idea: Compare the colours of the two removed squares using the parity of the sum of their coordinates.
+  check: (32-30)-2
+  check_ok: true
+- goal: Decide whether the 62 remaining squares can be tiled by 31 dominoes, and justify.
+  expected: No. Each domino covers one black and one white square, so a tiling needs equal numbers of
+    each colour, but there are 30 and 32.
+  solution: Any domino covers two adjacent squares, which always have opposite colours. A tiling by 31
+    dominoes would therefore cover exactly 31 black and 31 white squares. The remaining board has 30 black
+    and 32 white, so no such tiling exists.
+  common_errors:
+  - Saying the answer is yes because 62 is even
+  - Arguing that dominoes can cover same-colour squares
+  - Stating the invariant without linking it to the imbalance
+  hints:
+    rephrase: What can one domino do to the colour counts? Does that match the counts you found?
+    smaller_case: On a 2 x 2 board, what is true about the colours covered by each domino?
+    key_idea: 'This is an invariant argument: each piece changes the colour balance in a fixed way, and
+      the board must match that.'
+  check: null
+extensions:
+  '3':
+  - Remove one black corner and one white corner instead. Does the colour argument now rule out tiling?
+    Justify your answer.
+  '4':
+  - For an m x n board with m and n both odd, can it be tiled by dominoes? Justify your answer.
+  '5':
+  - Show that removing any one square from a 2^k x 2^k board leaves a region that can be tiled by L-trominoes.
+spoken_vocab:
+- chessboard
+- square
+- domino
+- colour
+- black
+- white
+- invariant
+- imbalance
+- diagonally opposite
+- corner
+- eight by eight
+- sixty two
+- thirty one
+- tiling
+- cover
+source: jaymin/Jaymin Interview (1).pdf#p73
+verified: false
+rating:
+  quality: 5
+  difficulty: 2
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: Classic colour-count parity argument with a crisp yes/no answer
+  priority: 76
+  rank: 266
+  tier: B
+  category: jaymin
+  d10: 4.0
+  real: 7.0
+  by: deepseek-v4.1-flash-free
+tags:
+- combinatorics
+- proof

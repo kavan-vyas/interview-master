@@ -1,0 +1,107 @@
+id: gas-can-circular-track
+title: Gas Cans on a Circular Track
+topics:
+- induction
+- greedy algorithms
+- algorithms
+warmup: false
+answer_source: pdf
+statement: Suppose you are on a one-way circular race track. There are $N$ gas cans randomly placed at
+  different locations on the track, and the total gas in the cans is enough for your car to run exactly
+  one circle. Your car starts with no gas, but you can place it at any location and pick up gas cans along
+  the way. Can you always choose a starting position so that your car can complete the entire circle?
+stages:
+- goal: For a track of length 10 with two cans, decide which starting can lets the car finish the circle.
+  expected: Start at can A. Starting at can B fails.
+  solution: 'Put can A (7 units of gas) at position 0 and can B (3 units of gas) at position 4 on a track
+    of length 10. Starting at A: take the 7 units from A, drive 4 units to B, leaving 3 units. Pick up
+    B''s 3 units to have 6 units, then drive the remaining 6 units back to A. The car completes the circle.
+    Starting at B: the car has 3 units and needs 6 units to reach A, so it fails. Starting at A works.'
+  common_errors:
+  - Assuming a start at any can works without checking the fuel level at each step.
+  - Measuring the distance in the wrong direction around the track.
+  - Forgetting to pick up gas at the start can.
+  hints:
+    rephrase: The car must never run out of gas between cans. Check the fuel level from each starting
+      can and follow the direction of travel.
+    smaller_case: With two cans, check whether the car can reach the second can from each starting point
+      using only the gas it has picked up so far.
+    key_idea: Compare each can's gas with the distance to the next can along the direction of travel.
+- goal: Show that some can always has enough gas to reach the next can, and use this to set up an induction
+    on N.
+  expected: Some can i has gas at least equal to the distance d_i from can i to can i+1. Merging cans
+    i and i+1 into one can gives a track with N−1 cans, which by induction has a valid start.
+  solution: Let g_i be the gas in can i and d_i the distance from can i to the next can. Since the total
+    gas equals the track length, sum of g_i = sum of d_i. If every g_i < d_i, then the sum of the g_i
+    would be less than the sum of the d_i, which is a contradiction. So some can i has g_i ≥ d_i. Merge
+    can i and can i+1 into a single can with gas g_i + g_{i+1} at position i. The new track has N−1 cans
+    with the same total gas and length. By the induction hypothesis, a valid start exists for it. Any
+    valid start on the merged track is also valid on the original, because the car can reach can i with
+    enough gas and then receive the merged fuel.
+  common_errors:
+  - Claiming that the can with the most gas always works, without a proof.
+  - Merging cans without checking that the car can reach the second can from the first.
+  - Forgetting that the total gas equals the track length, which is needed for the contradiction.
+  hints:
+    rephrase: Compare the total gas with the sum of the distances between consecutive cans.
+    smaller_case: With two cans, find a can whose gas is at least the distance to the other can.
+    key_idea: If every can had less gas than its gap to the next can, the total gas would fall short of
+      the track length.
+- goal: State the answer to the original question.
+  expected: Yes. A valid starting position always exists.
+  solution: The induction in the previous stage shows that for every N, a valid start exists. Starting
+    from N = 1, which is trivial, each merge step reduces N by one while keeping the total gas equal to
+    the track length. Therefore a valid starting can always exists.
+  common_errors:
+  - Answering no based on a single counterexample with an incorrect fuel calculation.
+  - Giving an answer without referring to the total gas being equal to the track length.
+  hints:
+    rephrase: Consider whether a valid start can always be found by the induction argument you have just
+      completed.
+    smaller_case: Recall the two-can example and what happened when you started from each can.
+    key_idea: The inductive merge argument covers every value of N.
+extensions:
+  '3':
+  - Describe an algorithm that finds a valid starting can in one pass around the track, keeping track
+    of the fuel level.
+  '4':
+  - Explain why the answer changes if the track is two-way instead of one-way.
+  '5':
+  - If the total gas is less than the track length, can the car ever complete the circle? Justify your
+    answer.
+spoken_vocab:
+- circular track
+- one way
+- gas cans
+- N cans
+- total gas
+- track length
+- start position
+- induction
+- merge
+- two cans
+- distance
+- fuel
+- greedy
+- sum of g i
+- sum of d i
+- contradiction
+source: zhou-quant/zhou-quant-guide.pdf#1
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: 'Classic gas-station proof: induction, merging cans, surprising yes answer.'
+  priority: 91
+  rank: 127
+  tier: A
+  category: zhou-quant
+  d10: 5.5
+  real: 4.5
+  by: deepseek-v4.1-flash-free
+tags:
+- proof
+- combinatorics

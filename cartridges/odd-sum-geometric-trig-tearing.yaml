@@ -1,0 +1,129 @@
+id: odd-sum-geometric-trig-tearing
+title: Odd-number sum, geometric series, trig series and paper tearing
+topics:
+- arithmetic series
+- geometric series
+- convergence
+- trigonometry
+- estimation
+warmup: false
+answer_source: generated
+statement: (i) Find the sum of all the odd integers from $11$ to $99$. (ii) Evaluate $6+3+\frac{3}{2}+\frac{3}{4}+\cdots$.
+  (iii) Find $\sin\theta+2\sin^3\theta+4\sin^5\theta+\cdots$ (what ranges of $\theta$ are allowed?). (iv)
+  Estimate roughly the number of times a piece of paper has to be torn in half, placing the results of
+  each tearing in a stack and then doing the next tearing, for the stack of paper to reach the moon.
+stages:
+- goal: Find the sum of the odd integers from 11 to 99 inclusive.
+  expected: '2475'
+  solution: The terms 11, 13, ..., 99 form an arithmetic progression with a = 11, d = 2 and last term
+    l = 99. Number of terms n = (99 - 11)/2 + 1 = 45. Sum S = n(a + l)/2 = 45 x 110 / 2 = 2475.
+  common_errors:
+  - Using n = 44 by forgetting to add 1 to (99 - 11)/2
+  - Summing all odd numbers from 1 to 99 instead (which gives 2500)
+  - Confusing n with l in the sum formula
+  hints:
+    rephrase: How many odd numbers lie between 11 and 99 inclusive, and what kind of sequence do they
+      form?
+    smaller_case: How many odd numbers lie between 11 and 19 inclusive, and what is their sum?
+    key_idea: Odd numbers form an arithmetic progression with common difference 2, so use the arithmetic
+      series sum formula with the correct number of terms.
+  check: summation(2*k+1, (k, 5, 49)) - 2475
+  check_ok: true
+- goal: Evaluate the infinite series 6 + 3 + 3/2 + 3/4 + ...
+  expected: '12'
+  solution: This is geometric with a = 6 and common ratio r = 1/2. Since |r| < 1 the series converges,
+    and S = a/(1 - r) = 6/(1/2) = 12.
+  common_errors:
+  - Using a/(1 + r) instead of a/(1 - r)
+  - Not checking that |r| < 1 before summing
+  - Taking r = 2 from the first two terms
+  hints:
+    rephrase: What is the ratio between consecutive terms, and does the series settle to a finite value?
+    smaller_case: Write the partial sums of 6 + 3 + 3/2 and see what they approach.
+    key_idea: An infinite geometric series with |r| < 1 has sum a/(1 - r).
+  check: 6/(1-Rational(1,2)) - 12
+  check_ok: true
+- goal: Sum the series sin(theta) + 2 sin^3(theta) + 4 sin^5(theta) + ... and state the allowed values
+    of theta.
+  expected: The sum is sin(theta)/(1 - 2 sin^2(theta)) = sin(theta)/cos(2 theta), valid when sin^2(theta)
+    < 1/2, i.e. -pi/4 + n pi < theta < pi/4 + n pi for integer n.
+  solution: Each term is sin(theta) times (2 sin^2(theta))^k, so this is geometric with a = sin(theta)
+    and r = 2 sin^2(theta). It converges when |r| < 1, i.e. sin^2(theta) < 1/2, i.e. |sin(theta)| < 1/sqrt(2).
+    This holds exactly when theta lies within pi/4 of a multiple of pi. The sum is sin(theta)/(1 - 2 sin^2(theta)),
+    and since 1 - 2 sin^2(theta) = cos(2 theta) this equals sin(theta)/cos(2 theta).
+  common_errors:
+  - Taking r = sin^2(theta) and missing the factor 2
+  - Giving the range as |theta| < pi/4 only and missing the repeats every pi
+  - Writing the sum without stating the convergence condition
+  hints:
+    rephrase: Write each term as a constant times a power of one fixed quantity. What is that quantity?
+    smaller_case: 'Compare the second term with the first: what do you multiply by to get from sin(theta)
+      to 2 sin^3(theta)?'
+    key_idea: This is a geometric series in sin^2(theta). Convergence needs the common ratio to have absolute
+      value less than 1.
+  check: simplify(sin(t)/(1-2*sin(t)**2) - sin(t)/cos(2*t))
+  check_ok: true
+- goal: Estimate how many tearings are needed for the stack to reach the Moon.
+  expected: About 42 tearings (2^n sheets of 0.1 mm must reach about 3.84 x 10^8 m, so n is about 41.8).
+  solution: Assume a sheet is about 0.1 mm = 1e-4 m thick and the Earth-Moon distance is about 3.84 x
+    10^5 km = 3.84 x 10^8 m. If the whole stack is torn in half each time, the number of layers doubles,
+    so after n tearings the stack is 2^n x 1e-4 m thick. Require 2^n x 1e-4 >= 3.84 x 10^8, so 2^n >=
+    3.84 x 10^12. Then n >= log2(3.84 x 10^12), which is about 41.8, so about 42 tearings are needed.
+  common_errors:
+  - Using log base 10 (giving about 12.6) instead of log base 2
+  - Treating the stack thickness as growing linearly with n instead of doubling
+  - Mixing units for the sheet thickness or the Earth-Moon distance
+  hints:
+    rephrase: If the whole stack is torn in half each time, how many layers do you have after n tearings?
+    smaller_case: After 3 tearings, how many layers are there, and how thick is the stack?
+    key_idea: Model the stack thickness as a geometric sequence in n, set it equal to the Earth-Moon distance
+      and solve with logarithms.
+  check: ceiling(log(Integer(3844)*10**9, 2)) - 42
+  check_ok: true
+extensions:
+  '3':
+  - Repeat part (iii) for the series sin(theta) + k sin^3(theta) + k^2 sin^5(theta) + ... and find the
+    condition on k and theta for convergence.
+  - Sum the series 1 + 1/3 + 1/9 + ... and compare the answer with the method used in part (ii).
+  '4':
+  - Find how many tearings would be needed to reach the Sun, using a mean Earth-Sun distance of about
+    1.5 x 10^8 km.
+  - Show that the odd-number sum in part (i) equals the sum of the first 50 odd numbers minus the first
+    five odd numbers.
+  '5':
+  - Discuss how the estimate in part (iv) changes if the paper thickness is 0.05 mm and whether the physical
+    limits of tearing make the idealised model unrealistic.
+  - Prove that the series in part (iii) is the same as sin(theta)/cos(2 theta) by writing the general
+    term as a function of theta and checking the boundary cases.
+spoken_vocab:
+- sum of all the odd integers from eleven to ninety nine
+- six plus three plus three over two plus three over four plus dot dot dot
+- sine theta plus two sine cubed theta plus four sine to the fifth theta
+- allowed ranges of theta
+- estimate the number of times a piece of paper has to be torn in half
+- stack
+- moon
+- common ratio
+- geometric series
+- pi over four plus n pi
+- cosine two theta
+- log base two
+source: step-workbook/Cambridge STEP Short Workbook.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 4
+  minutes: 20
+  flags: []
+  tagline: Broad mix ending in a Fermi estimate; trig series needs a convergence condition.
+  priority: 82
+  rank: 192
+  tier: B
+  category: step-workbook
+  d10: 3.0
+  real: 5.0
+  by: haiku
+tags:
+- sequences_and_series
+- trigonometry

@@ -1,0 +1,83 @@
+id: price-up-then-down-by-same-percent
+title: Price up x percent then down x percent
+topics:
+- percentages
+- algebra
+- quadratic equations
+warmup: true
+answer_source: pdf
+statement: A price is increased by $x\%$ and the new price is then decreased by $x\%$. The final price
+  is $4\%$ lower than the original price. What is the value of $x$?
+stages:
+- goal: Model the two changes as multipliers and write the net multiplier as an equation in x.
+  expected: (1 + x/100)(1 - x/100) = 0.96, which expands to 1 - x^2/10000 = 0.96
+  solution: Let the original price be P. After a rise of x% the price is P(1 + x/100). After a fall of
+    x% it is P(1 + x/100)(1 - x/100) = P(1 - x^2/10000). This must equal 0.96P, so 1 - x^2/10000 = 0.96.
+  common_errors:
+  - Treating the changes as adding to zero, so x - x = 0
+  - Writing x^2/100 instead of x^2/10000
+  - Setting the final price equal to P - 4 rather than 0.96P
+  hints:
+    rephrase: Each percentage change multiplies the current price by a factor. What factor does a rise
+      of x% give, and what does a fall of x% give?
+    smaller_case: A price of 200 rises by 10% and then falls by 10%. What is the final price?
+    key_idea: Work with multipliers. The net effect of the two steps is the product of the two multipliers,
+      and this must match the overall 4% drop.
+  check: simplify((1 + x/100)*(1 - x/100) - (1 - x**2/10000))
+  check_ok: true
+- goal: Solve for x and choose the valid root.
+  expected: x = 20
+  solution: '1 - x^2/10000 = 0.96 gives x^2 = 400, so x = 20 or x = -20. A percentage change here is a
+    positive rise, so x = 20. Check: 1.2 x 0.8 = 0.96.'
+  common_errors:
+  - Giving x = 4 by treating 4% as the difference between x and x
+  - Giving x = -20 without rejecting it
+  - Solving x^2 = 400 incorrectly as x = 200 or x = 40
+  hints:
+    rephrase: Rearrange the equation so x^2 is on one side. What values of x satisfy x^2 equal to that
+      number?
+    smaller_case: If 1 - x^2/10000 = 0.99, what is x^2?
+    key_idea: Solve the resulting equation for x^2 and take the square root. Then decide which root is
+      meaningful for a percentage increase.
+  check: (1 + Rational(20,100))*(1 - Rational(20,100)) - Rational(24,25)
+  check_ok: true
+extensions:
+  '3':
+  - A price rises by 25% and then falls by y%, leaving no net change. Find y.
+  '4':
+  - A price rises by a% and then falls by b%. Derive a formula for the net percentage change in terms
+    of a and b.
+  '5':
+  - Show that a rise of x% followed by a fall of x% always leaves the price lower than the original, for
+    any x > 0.
+spoken_vocab:
+- price
+- increased by x percent
+- decreased by x percent
+- final price
+- four percent lower
+- original price
+- x squared
+- over ten thousand
+- one minus x squared over ten thousand
+- equals zero point nine six
+- x equals twenty
+source: kclms/kclms-specimen-mcq-4.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 3
+  parts: 2
+  minutes: 4
+  flags:
+  - trivial
+  tagline: Classic percentage trap; answer x=20 but little depth.
+  priority: 27
+  rank: 633
+  tier: D
+  category: kclms
+  d10: 2.0
+  real: 4.0
+  by: haiku
+tags:
+- algebra_and_functions

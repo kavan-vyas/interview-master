@@ -1,0 +1,94 @@
+id: digits-of-100-factorial
+title: Digits of 100!
+topics:
+- logarithms
+- estimation
+- factorials
+- number of digits
+warmup: true
+answer_source: generated
+statement: 'How many digits does $100!$ have? (Hint: consider the function $\log_{10} x$.)'
+stages:
+- goal: Express the number of digits of a positive integer $N$ in terms of $\log_{10} N$.
+  expected: $\text{digits}(N)=\lfloor \log_{10} N\rfloor+1$
+  solution: If $10^{k-1}\le N<10^{k}$ then $N$ has $k$ digits. Taking $\log_{10}$ gives $k-1\le \log_{10}N<k$,
+    so $k-1=\lfloor\log_{10}N\rfloor$ and hence $k=\lfloor\log_{10}N\rfloor+1$.
+  common_errors:
+  - Using $\lceil\log_{10}N\rceil$, which is wrong when $N$ is an exact power of ten (e.g. $N=1000$).
+  - Forgetting the $+1$ and reporting the floor alone.
+  - Treating $\log_{10}N$ as if it were the digit count directly.
+  hints:
+    rephrase: Between which two consecutive powers of ten does the number lie, and how can a logarithm
+      read off the exponent?
+    smaller_case: 'Take $N=1000$: how many digits does it have, and what is $\log_{10}1000$?'
+    key_idea: The digit count is one more than the exponent of the leading power of ten, and $\log_{10}$
+      reads that exponent off.
+  check: floor(N(log(1000, 10))) + 1 - 4
+  check_ok: true
+- goal: Estimate $\log_{10}(100!)$ to within a fraction of a unit.
+  expected: $\log_{10}(100!)\approx 157.97$
+  solution: '$\log_{10}(100!)=\sum_{k=1}^{100}\log_{10}k$. Stirling''s approximation gives $\ln n!\approx
+    n\ln n-n+\tfrac12\ln(2\pi n)$. For $n=100$: $100\ln 100-100+\tfrac12\ln(200\pi)\approx 460.517-100+3.221=363.738$.
+    Dividing by $\ln 10\approx 2.302585$ gives $\approx 157.97$. This matches the known value $100!\approx
+    9.3326\times10^{157}$.'
+  common_errors:
+  - Using $100!<100^{100}$ and concluding about $200$ digits, which is too crude to fix the count.
+  - Dividing by $10$ instead of $\ln 10$ when converting to $\log_{10}$.
+  - Rounding $157.97$ down to $157$ and reporting 157 digits.
+  hints:
+    rephrase: Turn the product into a sum of logarithms. How can you estimate a sum of $\log k$ over many
+      terms?
+    smaller_case: Estimate $\log_{10}(10!)$ the same way and compare with the exact value $10!=3628800$.
+    key_idea: Use Stirling's approximation for $\ln n!$, then convert from natural log to $\log_{10}$
+      by dividing by $\ln 10$.
+  check: round(N(100*log(factorial(100), 10), 30)) - 15797
+  check_ok: true
+- goal: Determine the number of digits of $100!$.
+  expected: $158$ digits.
+  solution: Digits $=\lfloor\log_{10}(100!)\rfloor+1=\lfloor 157.97\rfloor+1=157+1=158$.
+  common_errors:
+  - Reporting 157, which is the floor without the $+1$.
+  - Rounding $157.97$ up to $158$ and then adding $1$ to get 159.
+  - Using the natural logarithm in place of $\log_{10}$.
+  hints:
+    rephrase: Combine your estimate of $\log_{10}(100!)$ with the digit-count formula from the previous
+      stage.
+    smaller_case: A number has $\log_{10}$ equal to $2.5$. How many digits does it have?
+    key_idea: Take the integer part of the logarithm, then add one.
+  check: floor(N(log(factorial(100), 10), 30)) + 1 - 158
+  check_ok: true
+extensions:
+  '3':
+  - 'How many digits does $1000!$ have? (Answer: 2568.)'
+  '4':
+  - 'How many trailing zeros does $100!$ end with? (Answer: 24.)'
+  '5':
+  - 'Find the smallest $n$ such that $n!$ has at least 100 digits. (Answer: 70.)'
+spoken_vocab:
+- hundred factorial
+- log base ten
+- floor
+- digits
+- Stirling's approximation
+- natural log
+- ten to the power
+- plus one
+source: past-interviews/Actual Past Interview Questions/B1.pdf#p1
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Log estimation of 100! invites discussion of accuracy and Stirling's formula.
+  priority: 81
+  rank: 241
+  tier: B
+  category: past-interviews
+  d10: 6.0
+  real: 8.5
+  by: deepseek-v4.1-flash-free
+tags:
+- exponentials_and_logarithms
+- limits_and_approximation

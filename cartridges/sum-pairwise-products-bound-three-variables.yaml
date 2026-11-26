@@ -1,0 +1,120 @@
+id: sum-pairwise-products-bound-three-variables
+title: Maximising the sum of pairwise products under a fixed total
+topics:
+- inequalities
+- algebra
+- quadratic identities
+- AM-GM
+- sums of squares
+warmup: false
+answer_source: generated
+statement: Let $a, b, c >0$ with $a+b+c= 1$. Prove that $ab+bc+ca\le \frac{1}{3}$. (a) When does equality
+  hold? (b) Can you generalise your argument to $n$ positive reals summing to 1?
+stages:
+- goal: Prove that $ab+bc+ca\le \frac{1}{3}$ for $a,b,c>0$ with $a+b+c=1$.
+  expected: 'Square the constraint: $1=(a+b+c)^2=a^2+b^2+c^2+2(ab+bc+ca)$. Then use $a^2+b^2+c^2\ge ab+bc+ca$,
+    which follows from $\tfrac12[(a-b)^2+(b-c)^2+(c-a)^2]\ge 0$, to get $1\ge 3(ab+bc+ca)$.'
+  solution: Since $(a+b+c)^2-3(ab+bc+ca)=a^2+b^2+c^2-ab-bc-ca=\tfrac12[(a-b)^2+(b-c)^2+(c-a)^2]\ge 0$
+    and $(a+b+c)^2=1$, we get $3(ab+bc+ca)\le 1$, so $ab+bc+ca\le\frac13$.
+  common_errors:
+  - Forgetting the constraint $a+b+c=1$ when squaring, so the total is never used.
+  - Dropping the factor 2 in the expansion of $(a+b+c)^2$.
+  - Applying AM-GM to the products $ab, bc, ca$ and getting a lower bound instead of the required upper
+    bound.
+  hints:
+    rephrase: You need an upper bound on a sum of pairwise products when the variables have a fixed sum.
+    smaller_case: 'Try two variables: if $a+b=1$ with $a,b>0$, how large can $ab$ be?'
+    key_idea: Relate $(a+b+c)^2$ to the pairwise products and to the squares $a^2,b^2,c^2$.
+  check: (a+b+c)**2 - 3*(a*b+b*c+c*a) - ((a-b)**2+(b-c)**2+(c-a)**2)/2
+  check_ok: true
+- goal: Determine exactly when equality holds in the bound for $n=3$.
+  expected: Equality holds if and only if $a=b=c=\frac13$.
+  solution: 'Equality requires $(a-b)^2+(b-c)^2+(c-a)^2=0$, so $a=b=c$. With $a+b+c=1$ this gives $a=b=c=\frac13$.
+    Check: $ab+bc+ca=3\cdot\frac19=\frac13$.'
+  common_errors:
+  - Concluding that $a=b$ alone gives equality, without forcing $c$ to equal them too.
+  - Stating the equality case without checking it satisfies $a+b+c=1$.
+  hints:
+    rephrase: When is a sum of squares of differences exactly zero?
+    smaller_case: In the two-variable case with $a+b=1$, for which values of $a$ and $b$ is $ab$ largest?
+    key_idea: The gap in the proof is exactly the sum of squared differences, so equality needs that gap
+      to vanish.
+  check: null
+- goal: 'Generalise: for $n$ positive reals $x_1,\dots,x_n$ with $\sum x_i=1$, show that $\sum_{i<j}x_ix_j\le\frac{n-1}{2n}$.'
+  expected: Use the identity $n\sum x_i^2-(\sum x_i)^2=\sum_{i<j}(x_i-x_j)^2\ge 0$ to get $\sum x_i^2\ge
+    \frac1n$. Then since $1=\sum x_i^2+2\sum_{i<j}x_ix_j$, we get $2\sum_{i<j}x_ix_j\le 1-\frac1n$.
+  solution: Let $e_2=\sum_{i<j}x_ix_j$ and $p=\sum x_i^2$. Then $1=(\sum x_i)^2=p+2e_2$. The identity
+    $np-(\sum x_i)^2=\sum_{i<j}(x_i-x_j)^2\ge0$ gives $p\ge\frac1n$. Hence $2e_2=1-p\le 1-\frac1n=\frac{n-1}{n}$,
+    so $e_2\le\frac{n-1}{2n}$. For $n=3$ this is $\frac13$.
+  common_errors:
+  - Writing the bound as $\frac{n-1}{n}$ and dropping the factor 2.
+  - Using $p\ge \frac{1}{n^2}$ instead of $p\ge\frac1n$.
+  - Assuming the identity $(\sum x_i)^2=\sum x_i^2+2e_2$ only holds for $n=3$.
+  hints:
+    rephrase: Express the sum of pairwise products in terms of the sum of squares and the square of the
+      total.
+    smaller_case: 'Do $n=2$ first: if $x+y=1$ with $x,y>0$, what bound does $xy$ satisfy?'
+    key_idea: Use the identity that $n$ times the sum of squares minus the square of the sum equals the
+      sum of squared pairwise differences.
+  check: 3*(a**2+b**2+c**2) - (a+b+c)**2 - ((a-b)**2+(b-c)**2+(c-a)**2)
+  check_ok: true
+- goal: State and justify when equality holds for general $n$.
+  expected: Equality holds if and only if $x_1=x_2=\cdots=x_n=\frac1n$.
+  solution: Equality in $\sum x_i^2\ge\frac1n$ requires all $x_i-x_j=0$, so all $x_i$ are equal. With
+    $\sum x_i=1$ each equals $\frac1n$. Then $\sum_{i<j}x_ix_j=\binom n2\cdot\frac1{n^2}=\frac{n-1}{2n}$,
+    so the bound is attained.
+  common_errors:
+  - Giving the equality case only for $n=3$.
+  - Checking the value of the bound without checking that the common value must be $\frac1n$.
+  hints:
+    rephrase: Which configurations of the $x_i$ make every squared difference zero?
+    smaller_case: For $n=2$, when is $xy$ maximal subject to $x+y=1$?
+    key_idea: Equality in the identity requires every pairwise difference to vanish.
+  check: null
+extensions:
+  '3':
+  - Prove that $a^2+b^2+c^2\ge\frac13$ under the same constraint, and explain how it relates to the bound
+    on $ab+bc+ca$.
+  - Using the same method, show that $ab+bc+ca\le \frac13$ still holds when $a,b,c$ are allowed to be
+    negative, provided $a+b+c=1$ and the expression is still a sum of pairwise products.
+  '4':
+  - Maximise $ab+bc+ca$ subject to $a+b+c=s$ for a general $s>0$, and state the maximising point and maximum
+    value.
+  - Explain why the maximum of $ab+bc+ca$ over positive reals with fixed sum occurs at equal values, without
+    using calculus.
+  '5':
+  - Give a Lagrange multiplier argument showing that equal variables maximise $\sum_{i<j}x_ix_j$ under
+    $\sum x_i=1$.
+  - Discuss how majorisation (Schur-convexity) gives the same conclusion for symmetric functions of several
+    variables.
+spoken_vocab:
+- a plus b plus c equals one
+- ab plus bc plus ca is less than or equal to one third
+- a squared plus b squared plus c squared
+- a minus b, squared
+- n positive reals summing to one
+- n minus one over two n
+- equality holds when a equals b equals c
+- one third
+- sum over i less than j of x i x j
+- Lagrange multiplier
+- majorisation
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 4
+  parts: 4
+  minutes: 15
+  flags: []
+  tagline: Classic squares-and-equality bound that generalises cleanly to n variables
+  priority: 82
+  rank: 184
+  tier: B
+  category: juan
+  d10: 4.5
+  real: 7.5
+  by: haiku
+tags:
+- inequalities
+- proof

@@ -1,0 +1,87 @@
+id: n-seventh-minus-n-div-42
+title: n to the seventh minus n is divisible by 42
+topics:
+- divisibility
+- factorisation
+- coprime numbers
+- modular arithmetic
+- proof
+warmup: false
+answer_source: generated
+statement: Prove that $n^7 - n$ is divisible by $42$, given that it is divisible by $7$.
+stages:
+- goal: Show that $n^7 - n$ is divisible by 6.
+  expected: Factor n^7 - n = (n-1)n(n+1)(n^4+n^2+1). The product (n-1)n(n+1) is a product of three consecutive
+    integers, so it is divisible by 2 and by 3, hence by 6.
+  solution: n^7 - n = n(n^6 - 1) = n(n^2 - 1)(n^4 + n^2 + 1) = (n-1)n(n+1)(n^4 + n^2 + 1). Among n-1,
+    n and n+1 there is an even number and a multiple of 3, so (n-1)n(n+1) is divisible by 6, and therefore
+    so is n^7 - n.
+  common_errors:
+  - Checking the divisibility by 2 and 3 only for small values of n.
+  - Factorising n^6 - 1 incorrectly, for example as (n^3 - 1)^2 or missing a factor.
+  - Concluding divisibility by 6 without showing that three consecutive integers are always even and contain
+    a multiple of 3.
+  hints:
+    rephrase: Which small numbers divide n^7 - n for every integer n, and how could you show it?
+    smaller_case: Compute n^7 - n for n = 2. Is the result divisible by 6?
+    key_idea: Factor out n and use the difference of squares on the remaining power of n. The resulting
+      product of consecutive integers is useful.
+  check: n**7 - n - (n-1)*n*(n+1)*(n**4+n**2+1)
+  check_ok: true
+- goal: Combine the divisibility by 6 and by 7 to conclude divisibility by 42.
+  expected: 6 and 7 are coprime, so their least common multiple is 42. Since n^7 - n is divisible by both,
+    it is divisible by 42.
+  solution: n^7 - n is divisible by 6 (stage 1) and by 7 (given). Because gcd(6, 7) = 1, the lcm of 6
+    and 7 is 42, so 42 divides n^7 - n. Equivalently, n^7 - n = 6k and 7 divides 6k, and since 7 does
+    not divide 6, 7 must divide k, so 42 divides n^7 - n.
+  common_errors:
+  - Multiplying the factors together without justifying that they share no common factor.
+  - Assuming that divisibility by 2, 3 and 7 separately implies divisibility by 42 without mentioning
+    coprimality or lcm.
+  - Claiming divisibility by 42 from divisibility by 14 and 3 without checking the overlap.
+  hints:
+    rephrase: If a number is divisible by 6 and also by 7, why is it divisible by their product?
+    smaller_case: Is 12 divisible by both 4 and 6? Why is 12 not divisible by 24 in general, and what
+      is different about 6 and 7?
+    key_idea: Split 42 into factors that share no common prime divisor.
+  check: lcm(6,7) - 42
+  check_ok: true
+extensions:
+  '3':
+  - Prove that n^7 - n is divisible by 7 for every integer n, without using the given fact.
+  '4':
+  - Prove that n^5 - n is divisible by 30 for every integer n.
+  '5':
+  - Prove that n^13 - n is divisible by 2730 for every integer n.
+spoken_vocab:
+- n to the seventh minus n
+- divisible by forty two
+- factorise
+- difference of squares
+- consecutive integers
+- coprime
+- least common multiple
+- divisible by six
+- divisible by seven
+- proof
+- given
+source: past-interviews/Actual Past Interview Questions/Maths & Philosophy Oxford Interview.doc
+verified: false
+rating:
+  quality: 3
+  difficulty: 2
+  parts: 2
+  minutes: 4
+  flags:
+  - trivial
+  tagline: Short two-step combination; mostly restates the 6 and 7 divisibilities.
+  priority: 27
+  rank: 635
+  tier: D
+  category: past-interviews
+  d10: 3.0
+  real: 5.5
+  by: haiku
+tags:
+- number_theory
+- proof

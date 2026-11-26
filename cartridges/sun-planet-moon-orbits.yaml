@@ -1,0 +1,118 @@
+id: sun-planet-moon-orbits
+title: 'Sun, planet and moon: position and resonance of orbits'
+topics:
+- trigonometry
+- complex numbers
+- parametric curves
+- geometry
+- orbital motion
+warmup: false
+answer_source: generated
+statement: There is a Sun with a planet orbiting it. The orbit is a perfect circle with radius $R$. There
+  is a moon orbiting the planet; this orbit is also a perfect circle, with radius $r$. Find an equation
+  for the position of the moon relative to the Sun. Based on your answer to the previous part, suppose
+  $\theta$ is the angle associated with the orbit of the planet around the Sun and $\gamma$ is the angle
+  associated with the orbit of the moon around the planet, where both $\theta$ and $\gamma$ are functions
+  of time. If $\theta = 12\gamma$, what can you say about the movement of the moon around the Sun?
+stages:
+- goal: Write the position of the moon relative to the Sun.
+  expected: Position of moon = (R cos θ + r cos γ, R sin θ + r sin γ), or in complex form R e^{iθ} + r
+    e^{iγ}. This is the planet's position (R cos θ, R sin θ) plus the moon's offset from the planet (r
+    cos γ, r sin γ).
+  solution: Place the Sun at the origin. The planet is at R(cos θ, sin θ). The moon is at the planet's
+    position plus r(cos γ, sin γ), since its angle γ is measured from the planet. Adding the two vectors
+    gives the moon's position.
+  common_errors:
+  - Using only the moon's position relative to the planet, which ignores the planet's motion around the
+    Sun.
+  - Mixing up which angle goes with which radius.
+  - Forgetting that the moon's offset is measured from the planet, not from the Sun.
+  hints:
+    rephrase: The moon's position relative to the Sun is a sum of two vectors. What are they?
+    smaller_case: Set r = 0. Where is the moon, and what does that tell you about the planet's contribution?
+    key_idea: 'Use vector addition: Sun to planet, then planet to moon.'
+  check: null
+- goal: Find the moon's distance from the Sun when θ = 12γ.
+  expected: Distance squared = R^2 + r^2 + 2Rr cos(11γ), so the distance oscillates between R - r and
+    R + r, going through 11 full oscillations per moon orbit.
+  solution: Using the position from stage 1, the squared distance is R^2 + r^2 + 2Rr cos(θ - γ). Substituting
+    θ = 12γ gives θ - γ = 11γ, so the distance squared is R^2 + r^2 + 2Rr cos(11γ). Because cos(11γ) ranges
+    between -1 and 1, the distance ranges between |R - r| and R + r.
+  common_errors:
+  - Using θ + γ instead of θ - γ in the cosine term.
+  - Forgetting that the squared distance has a cross term 2Rr cos(θ - γ).
+  - Claiming the distance is constant, which only happens when R = 0 or r = 0.
+  hints:
+    rephrase: Compute the squared length of the vector from the Sun to the moon using the dot product
+      of the two component vectors.
+    smaller_case: Take θ = γ. What does the moon's position look like in that special case?
+    key_idea: The cross term in the squared distance depends only on the angle difference θ - γ.
+  check: R**2 + r**2 + 2*R*r*cos(11*gamma) - (R**2 + r**2 + 2*R*r*cos(12*gamma - gamma))
+  check_ok: null
+- goal: Describe the moon's movement around the Sun when θ = 12γ.
+  expected: The moon does not move in a simple circle around the Sun unless R = 0 or r = 0. Its path is
+    a closed looping curve. Over one orbit of the moon around the planet (γ going from 0 to 2π), the moon
+    goes around the Sun 12 times, and its distance from the Sun oscillates 11 times. On average it circles
+    the Sun at the same rate as the planet, dθ/dt.
+  solution: Write the position as z = e^{iγ}(r + R e^{11iγ}). The factor e^{iγ} contributes one turn around
+    the origin, and the factor (r + R e^{11iγ}) winds 11 times around the origin because R > r. The total
+    winding is 1 + 11 = 12. The position is periodic in γ with period 2π, so the path is closed. Since
+    θ = 12γ, the planet's angle advances by 24π in the same interval, which matches the 12 turns of the
+    moon around the Sun.
+  common_errors:
+  - Concluding that the moon moves in a circle of radius R + r or R - r.
+  - Miscounting the number of loops by ignoring the planet's rotation or the moon's own rotation.
+  - Assuming the path is not closed, when it closes after one moon orbit.
+  - Stating that the moon's average angular speed about the Sun is zero.
+  hints:
+    rephrase: Ask how many times the moon's position winds around the Sun as γ runs through one full cycle.
+    smaller_case: Take r = 0 and then take R = 0. What does the moon's path look like in each case?
+    key_idea: Write the moon's position as a sum of two rotating vectors with frequencies 12 and 1 and
+      count the net winding about the origin.
+  check: 12 - (1 + 11)
+  check_ok: true
+extensions:
+  '3':
+  - Find the maximum and minimum distances of the moon from the Sun when R = 3 and r = 1.
+  '4':
+  - Repeat the analysis for θ = kγ with a general positive integer k. How many times does the moon loop
+    around the Sun per orbit about the planet?
+  '5':
+  - If γ = ωt, show that the moon's path closes after a time T, and find T in terms of ω and k.
+spoken_vocab:
+- R
+- r
+- theta
+- gamma
+- sun
+- planet
+- moon
+- R e to the i theta plus r e to the i gamma
+- cosine of eleven gamma
+- twelve
+- R minus r
+- R plus r
+- winding number
+- closed curve
+- angular speed
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions (anonymous).pdf#0
+verified: false
+rating:
+  quality: 4
+  difficulty: 6
+  parts: 3
+  minutes: 15
+  flags:
+  - missing_info
+  - needs_diagram
+  tagline: Rich epicycle idea, but the stated questions are ill-posed without setup.
+  priority: 35
+  rank: 594
+  tier: D
+  category: past-interviews
+  d10: 4.5
+  real: 6.0
+  by: haiku
+tags:
+- vectors
+- trigonometry

@@ -1,0 +1,111 @@
+id: cube-root-product-abc
+title: Cube root product gives abc
+topics:
+- algebra
+- radicals
+- cube roots
+- rationalising denominators
+warmup: true
+answer_source: pdf
+statement: Given that $(\sqrt[3]{4}-\sqrt[3]{2})(\sqrt[3]{a}+\sqrt[3]{b}+\sqrt[3]{c}) = 2$, what does
+  $abc$ equal?
+stages:
+- goal: Find a sum of three cube roots $\sqrt[3]{a}+\sqrt[3]{b}+\sqrt[3]{c}$ that makes the product equal
+    to 2.
+  expected: $\sqrt[3]{a}+\sqrt[3]{b}+\sqrt[3]{c} = \sqrt[3]{8}+\sqrt[3]{16}+\sqrt[3]{4}$, which simplifies
+    to $2+\sqrt[3]{16}+\sqrt[3]{4}$.
+  solution: 'Let $x=\sqrt[3]{2}$, so $x^3=2$ and $\sqrt[3]{4}=x^2$. The first factor is $x^2-x=x(x-1)$.
+    Since $x^3-1=(x-1)(x^2+x+1)$ and $x^3-1=1$, we get $\frac{1}{x-1}=x^2+x+1$. Then $\frac{1}{x^2-x}=\frac{x^2+x+1}{x}=x+1+\frac{1}{x}$.
+    Using $\frac{1}{x}=\frac{x^2}{2}$, this is $x+1+\frac{x^2}{2}$. Multiplying by 2 gives the second
+    factor $2x+2+x^2 = 2+\sqrt[3]{16}+\sqrt[3]{4}$. Check: $(x^2-x)(2+2x+x^2)=x^4+x^3-2x=2x+2-2x=2$, using
+    $x^3=2$ and $x^4=2x$.'
+  common_errors:
+  - Treating $\frac{1}{\sqrt[3]{4}-\sqrt[3]{2}}$ as $\sqrt[3]{4}+\sqrt[3]{2}$, which is the rationalising
+    trick for square roots, not cube roots.
+  - Forgetting that $\sqrt[3]{2}^3=2$ and $\sqrt[3]{2}^4=2\sqrt[3]{2}$ when expanding the product.
+  - Writing $\sqrt[3]{16}$ as $\sqrt[3]{8}$ or dropping the factor of 2 when moving between $2\sqrt[3]{2}$
+    and $\sqrt[3]{16}$.
+  - Stopping after finding one valid triple and not checking that the product really equals 2.
+  hints:
+    rephrase: You need a sum of cube roots that, multiplied by the given first factor, gives exactly 2.
+      Work out what the reciprocal of the first factor looks like.
+    smaller_case: Set $x=\sqrt[3]{2}$ and rewrite $\sqrt[3]{4}-\sqrt[3]{2}$ as a polynomial in $x$. Then
+      try to find its reciprocal using $x^3=2$.
+    key_idea: For $x=\sqrt[3]{2}$, the identity $x^3-1=(x-1)(x^2+x+1)$ gives a way to invert $x-1$. Combine
+      that with $x^3=2$ to invert $x^2-x$.
+  check: simplify((4**Rational(1,3)-2**Rational(1,3))*(8**Rational(1,3)+16**Rational(1,3)+4**Rational(1,3))
+    - 2) == 0
+  check_ok: true
+- goal: Use the values of $a$, $b$, $c$ found in the previous stage to compute $abc$.
+  expected: $abc = 512$
+  solution: Taking $a=8$, $b=16$, $c=4$ gives $\sqrt[3]{8}=2$, $\sqrt[3]{16}$, and $\sqrt[3]{4}$, which
+    match the sum found in stage 1. Then $abc = 8 \cdot 16 \cdot 4 = 512$.
+  common_errors:
+  - Multiplying the cube roots instead of the radicands, which gives $\sqrt[3]{512}=8$ rather than 512.
+  - Using the wrong radicand for one of the terms, such as $a=2$ instead of $a=8$ for the term $\sqrt[3]{8}=2$.
+  - Adding the values $8+16+4=28$ instead of multiplying them.
+  hints:
+    rephrase: The question asks for the product of the three numbers under the cube root signs, not the
+      sum of the cube roots.
+    smaller_case: Write each term from the stage 1 sum as a cube root of an integer, and identify those
+      three integers.
+    key_idea: Once $a$, $b$, $c$ are integers, $abc$ is their ordinary product.
+  check: 8*16*4 - 512 == 0
+  check_ok: true
+extensions:
+  '3':
+  - Show that $\sqrt[3]{a}+\sqrt[3]{b}+\sqrt[3]{c}$ is unique for positive integer $a,b,c$ with $abc$
+    minimal, or explain why the answer may not be unique.
+  - 'Generalise: for $\sqrt[3]{p^2}-\sqrt[3]{p}$ with prime $p$, find the cube-root sum that makes the
+    product equal to $p$.'
+  '4':
+  - Explain how the identity $x^3-1=(x-1)(x^2+x+1)$ generalises to rationalise $\sqrt[n]{2}-1$ for any
+    $n$.
+  - Find $a+b+c$ for the same setup and compare it with $abc$.
+  '5':
+  - Find a general rule for expressions $(\sqrt[3]{p}-\sqrt[3]{q})(\sqrt[3]{a}+\sqrt[3]{b}+\sqrt[3]{c})=k$
+    with integer $p,q,k$, and state when integer solutions $a,b,c$ exist.
+  - Prove that $\sqrt[3]{2}$ is irrational and use this to justify that the cube-root representation of
+    2 is not unique.
+spoken_vocab:
+- cube root of four
+- cube root of two
+- cube root of a
+- cube root of b
+- cube root of c
+- a b c
+- open bracket
+- close bracket
+- equals two
+- multiply
+- minus
+- plus
+- x cubed equals two
+- x to the fourth
+- reciprocal
+- rationalise
+- cube root of sixteen
+- cube root of eight
+- five hundred and twelve
+- x squared plus x plus one
+- x minus one
+- x cubed minus one
+source: nextstepmaths/NextStepMaths Interview Questions/interview-question-16.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 6
+  parts: 2
+  minutes: 10
+  flags: []
+  tagline: Rationalise using 1/(∛2−1); abc=512, and uniqueness of the representation is debatable.
+  priority: 65
+  rank: 391
+  tier: C
+  category: nextstepmaths
+  d10: 7.5
+  real: 3.5
+  by: deepseek-v4.1-flash-free
+tags:
+- algebra_and_functions
+- proof

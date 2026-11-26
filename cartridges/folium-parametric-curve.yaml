@@ -1,0 +1,159 @@
+id: folium-parametric-curve
+title: Folium of Descartes via y=tx
+topics:
+- parametric curves
+- substitution
+- symmetry
+- limits
+- oblique asymptotes
+- curve sketching
+warmup: false
+answer_source: pdf
+statement: 'Consider the curve $x^3+y^3=3xy$.
+
+
+  (i) By substituting $y=tx$, show that, apart from the origin, the curve is given by $x=\frac{3t}{1+t^3}$,
+  $y=\frac{3t^2}{1+t^3}$ with $t\neq-1$.
+
+
+  (ii) Show that the curve is symmetric in the line $y=x$, and find where it crosses this line.
+
+
+  (iii) Show that $x+y\to-1$ as $t\to-1$. What does this say about the curve?
+
+
+  (iv) Sketch the curve.'
+stages:
+- goal: Parametrise the curve by substituting y=tx, apart from the origin.
+  expected: Substituting gives $x^2\left(x(1+t^3)-3t\right)=0$. For $x\neq0$ this gives $x=\frac{3t}{1+t^3}$
+    and $y=tx=\frac{3t^2}{1+t^3}$, with $t\neq-1$ since $1+t^3\neq0$ is needed (and $t=-1$ would force
+    $x=0$).
+  solution: 'Put $y=tx$: $x^3+t^3x^3=3tx^2$, so $x^2\left(x(1+t^3)-3t\right)=0$. The factor $x^2=0$ gives
+    the origin. Otherwise $x(1+t^3)=3t$. If $t=-1$ this reads $0=-3$, which is impossible, so $t\neq-1$
+    and we may divide by $1+t^3$: $x=\frac{3t}{1+t^3}$, and $y=tx=\frac{3t^2}{1+t^3}$. Every point other
+    than the origin has $x\neq0$, so $t=y/x$ is defined and the point arises this way.'
+  common_errors:
+  - Dividing by $x^2$ and losing the origin without noting it separately.
+  - Forgetting that $t=-1$ must be excluded because $1+t^3=0$ there.
+  - Writing $y=\frac{3t}{1+t^3}$, forgetting the extra factor of $t$.
+  - Expanding $x^3+y^3$ incorrectly as $(x+y)^3$.
+  hints:
+    rephrase: Replace $y$ by $tx$ everywhere and collect the powers of $x$.
+    smaller_case: What does the equation say when $x=0$, and is that true for every $t$?
+    key_idea: Take out the common power of $x$. The remaining factor is linear in $x$, so ask when you
+      can solve it for $x$.
+  check: simplify((3*t/(1+t**3))**3 + (3*t**2/(1+t**3))**3 - 3*(3*t/(1+t**3))*(3*t**2/(1+t**3))) == 0
+  check_ok: true
+- goal: Show the curve is symmetric in y=x, and find where it crosses that line.
+  expected: Swapping $x$ and $y$ leaves $x^3+y^3=3xy$ unchanged, so the curve is symmetric in $y=x$. Setting
+    $y=x$ gives $2x^3=3x^2$, so it crosses at the origin and at $\left(\frac32,\frac32\right)$ (parameter
+    $t=1$).
+  solution: 'Swapping $x$ and $y$ gives $y^3+x^3=3yx$, the same equation, so reflection in $y=x$ maps
+    the curve to itself. On $y=x$: $2x^3=3x^2$, so $x^2(2x-3)=0$, giving $x=0$ or $x=\frac32$. In parametric
+    form $y=x$ means $t=1$ (for $x\neq0$), giving $x=y=\frac{3}{2}$. So the crossings are $(0,0)$ and
+    $\left(\frac32,\frac32\right)$.'
+  common_errors:
+  - Asserting symmetry without showing the equation is unchanged under swapping $x$ and $y$.
+  - Forgetting the origin as a crossing point.
+  - Using the wrong parameter value, such as $t=0$, to find the crossing.
+  - Dividing by $x^2$ in $2x^3=3x^2$ and losing $x=0$.
+  hints:
+    rephrase: Swap the letters $x$ and $y$ in the equation and see what changes.
+    smaller_case: Put $x=y$ directly into the original equation. What equation in $x$ do you get?
+    key_idea: Reflection in $y=x$ swaps coordinates. In parametric form, a point is on $y=x$ when its
+      two coordinate formulas agree.
+  check: (3*1/(1+1**3) == 3*1**2/(1+1**3)) and (3*1/(1+1**3) == Rational(3,2))
+  check_ok: true
+- goal: Find the limit of x+y as t tends to -1 and interpret it for the curve.
+  expected: $x+y=\frac{3t(1+t)}{1+t^3}=\frac{3t}{1-t+t^2}\to-1$ as $t\to-1$, while $x$ and $y$ become
+    unbounded. Hence the curve has the oblique asymptote $x+y=-1$.
+  solution: $x+y=\frac{3t+3t^2}{1+t^3}=\frac{3t(1+t)}{(1+t)(1-t+t^2)}=\frac{3t}{1-t+t^2}$ for $t\neq-1$.
+    As $t\to-1$ this tends to $\frac{-3}{3}=-1$. Meanwhile $1+t^3\to0$ while the numerators $3t\to-3$
+    and $3t^2\to3$ do not, so $|x|,|y|\to\infty$. A point going off to infinity with $x+y\to-1$ approaches
+    the line $x+y=-1$, which has gradient $-1$, so it is an oblique asymptote. Also $x+y+1=\frac{(t+1)^2}{1-t+t^2}>0$,
+    so the curve stays on one side of it.
+  common_errors:
+  - Substituting $t=-1$ into the unsimplified fraction and getting $\frac00$ instead of cancelling the
+    factor $1+t$.
+  - Concluding the asymptote is horizontal or vertical rather than oblique.
+  - Not explaining why $x$ and $y$ are unbounded near $t=-1$.
+  - 'Arithmetic slip: at $t=-1$ the denominator $1-t+t^2$ equals $3$, not $1$.'
+  hints:
+    rephrase: Add $x$ and $y$ using the parametric forms, and look at the numerator and denominator.
+    smaller_case: Does $x$ itself stay bounded as $t$ approaches $-1$?
+    key_idea: The denominator $1+t^3$ factorises, and so does the numerator of $x+y$. Then ask what it
+      means when a sum settles to a constant while each part blows up.
+  check: limit((3*t+3*t**2)/(1+t**3), t, -1) == -1
+  check_ok: true
+- goal: Sketch the curve by finding the signs of x and y on each interval of t and the behaviour at the
+    ends.
+  expected: For $t\ge0$ a loop in the first quadrant through the origin ($t=0$) and $\left(\frac32,\frac32\right)$
+    ($t=1$), returning to the origin as $t\to\infty$. For $-1<t<0$ a branch in the second quadrant from
+    the origin off to infinity along $x+y=-1$. For $t<-1$ a branch in the fourth quadrant coming in along
+    $x+y=-1$ and ending at the origin as $t\to-\infty$. The curve is symmetric in $y=x$.
+  solution: 'For $t\ge0$: $1+t^3>0$, so $x,y\ge0$, giving the first-quadrant loop through $(0,0)$ at $t=0$
+    and $\left(\frac32,\frac32\right)$ at $t=1$. As $t\to\infty$, $x\sim\frac3{t^2}\to0$ and $y\sim\frac3t\to0$,
+    so the loop closes at the origin. For $-1<t<0$: $1+t^3>0$, $3t<0$, so $x<0$ and $y>0$: second quadrant.
+    As $t\to-1^+$, $x\to-\infty$, $y\to+\infty$ along $x+y=-1$. For $t<-1$: $1+t^3<0$, so $x>0$ and $y<0$:
+    fourth quadrant. As $t\to-1^-$, $x\to+\infty$, $y\to-\infty$ along $x+y=-1$, and as $t\to-\infty$
+    the curve returns to the origin. Replacing $t$ by $1/t$ swaps $x$ and $y$, which matches the reflection
+    symmetry (the two infinite branches are mirror images). The asymptote $x+y=-1$ passes through $(-1,0)$
+    and $(0,-1)$.'
+  common_errors:
+  - Drawing the loop in the wrong quadrant because of a sign error.
+  - Forgetting that the curve returns to the origin both as $t\to+\infty$ and as $t\to-\infty$.
+  - Drawing the asymptote as $y=-x$ rather than $x+y=-1$.
+  - Treating $t=-1$ as giving a finite point on the curve.
+  hints:
+    rephrase: Work out the signs of $x$ and $y$ on each interval of $t$ separated by $t=0$ and $t=-1$.
+    smaller_case: Find $x$ and $y$ when $t=\frac12$ and when $t=-\frac12$, then try $t=-2$.
+    key_idea: Track the sign of the numerator and denominator on each interval, then ask where the curve
+      heads at each end of the interval and as $t\to-1$.
+extensions:
+  '3':
+  - Where does the asymptote $x+y=-1$ meet the axes, and how does that help the sketch?
+  - Show that the tangent to the first-quadrant loop is horizontal where $t^3=2$.
+  '4':
+  - Find the area enclosed by the first-quadrant loop.
+  - Show that the curve never meets the line $x+y=-1$.
+  '5':
+  - Find the polar equation of the curve and use it to compute the loop's area.
+  - Show that $x+y+1=\frac{(t+1)^2}{1-t+t^2}$ and deduce which side of the asymptote the curve lies on.
+spoken_vocab:
+- x cubed plus y cubed equals three x y
+- substitute y equals t x
+- t not equal to minus one
+- x equals three t over one plus t cubed
+- y equals three t squared over one plus t cubed
+- symmetric in the line y equals x
+- three halves
+- limit as t tends to minus one
+- x plus y tends to minus one
+- oblique asymptote
+- loop
+- origin
+- first quadrant
+- second quadrant
+- fourth quadrant
+- folium
+source: jaymin/Jaymin Interview (1).pdf#p57
+verified: false
+rating:
+  quality: 9
+  difficulty: 6
+  parts: 4
+  minutes: 30
+  flags: []
+  tagline: 'Folium of Descartes: parametrisation, symmetry, and a slant asymptote x+y=-1.'
+  priority: 120
+  rank: 9
+  tier: S
+  category: jaymin
+  d10: 6.7
+  real: 5.5
+  by: deepseek-v4.1-flash-free
+refined: true
+tags:
+- curve_sketching
+- coordinate_geometry
+- algebra_and_functions

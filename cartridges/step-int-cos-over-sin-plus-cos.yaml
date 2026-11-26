@@ -1,0 +1,138 @@
+id: step-int-cos-over-sin-plus-cos
+title: Symmetry trick for I and J, then parametric and quotient integrals
+topics:
+- definite integrals
+- logarithmic integrals
+- symmetry trick
+- integration of rational trigonometric functions
+warmup: false
+answer_source: pdf
+statement: 'Let $I=\int_0^a \frac{\cos x}{\sin x+\cos x}\,dx$ and $J=\int_0^a \frac{\sin x}{\sin x+\cos
+  x}\,dx$, where $0\leqslant a<\frac{3\pi}{4}$. By considering $I+J$ and $I-J$, show that $2I=a+\ln(\sin
+  a+\cos a)$. Find also: (i) $\int_0^{\pi/2}\frac{\cos x}{p\sin x+q\cos x}\,dx$, where $p$ and $q$ are
+  positive numbers; (ii) $\int_0^{\pi/2}\frac{\cos x+4}{3\sin x+4\cos x+25}\,dx$.'
+stages:
+- goal: Evaluate $I+J$ in terms of $a$.
+  expected: $I+J=a$
+  solution: Both integrands share the denominator $\sin x+\cos x$, so $I+J=\int_0^a\frac{\cos x+\sin x}{\sin
+    x+\cos x}\,dx=\int_0^a 1\,dx=a$.
+  common_errors:
+  - Trying a substitution or partial fractions when the sum of the integrands already simplifies
+  - Dropping the lower limit or evaluating $\int_0^a 1\,dx$ incorrectly
+  hints:
+    rephrase: What do the two integrands become when you add them together?
+    smaller_case: Think about what the sum of the two integrands looks like for any single value of $x$
+      before you integrate.
+    key_idea: Two integrals over the same interval with a common denominator can be combined into one
+      integral of the sum of their numerators.
+  check: N(Integral(cos(x)/(sin(x)+cos(x)),(x,0,1)) + Integral(sin(x)/(sin(x)+cos(x)),(x,0,1)) - 1, 30)
+  check_ok: false
+- goal: Evaluate $I-J$ in terms of $a$.
+  expected: $I-J=\ln(\sin a+\cos a)$
+  solution: Since $\frac{d}{dx}(\sin x+\cos x)=\cos x-\sin x$, the integrand of $I-J$ is $\frac{\cos x-\sin
+    x}{\sin x+\cos x}$, which is the logarithmic derivative of $\sin x+\cos x$. Hence $I-J=\left[\ln(\sin
+    x+\cos x)\right]_0^a=\ln(\sin a+\cos a)-\ln 1=\ln(\sin a+\cos a)$. Note $\sin x+\cos x>0$ on $[0,a]$
+    because $a<3\pi/4$.
+  common_errors:
+  - Using $\sin x-\cos x$ as the numerator instead of $\cos x-\sin x$
+  - Forgetting the lower-limit term $\ln(\sin 0+\cos 0)$
+  - Writing $\ln$ of a quantity that could be zero or negative without checking the domain
+  hints:
+    rephrase: Compare the numerator of $I-J$ with the derivative of the denominator.
+    smaller_case: Differentiate $\sin x+\cos x$ and compare the result with the numerator of the integrand
+      of $I-J$.
+    key_idea: When the numerator is the derivative of the denominator, the integrand is a logarithmic
+      derivative.
+  check: N(Integral((cos(x)-sin(x))/(sin(x)+cos(x)),(x,0,1)) - log(sin(1)+cos(1)), 30)
+  check_ok: false
+- goal: Deduce a closed form for $I$, and hence show $2I=a+\ln(\sin a+\cos a)$.
+  expected: $2I=a+\ln(\sin a+\cos a)$
+  solution: $2I=(I+J)+(I-J)=a+\ln(\sin a+\cos a)$.
+  common_errors:
+  - Subtracting instead of adding, giving $2I=a-\ln(\sin a+\cos a)$
+  - Forgetting the factor of 2 when solving for $I$
+  hints:
+    rephrase: You now have a sum and a difference of $I$ and $J$. Which combination isolates $I$?
+    smaller_case: Write $I$ as the average of $(I+J)$ and $(I-J)$ plus the average of their difference,
+      and check which term survives.
+    key_idea: Adding the sum and the difference of two quantities gives twice the one you want.
+  check: null
+- goal: Evaluate $\int_0^{\pi/2}\frac{\cos x}{p\sin x+q\cos x}\,dx$ for positive $p$ and $q$.
+  expected: $\int_0^{\pi/2}\frac{\cos x}{p\sin x+q\cos x}\,dx=\frac{q\pi/2+p\ln(p/q)}{p^2+q^2}$
+  solution: 'Let $D=p\sin x+q\cos x$, $I=\int_0^{\pi/2}\frac{\cos x}{D}dx$ and $J=\int_0^{\pi/2}\frac{\sin
+    x}{D}dx$. Then $qI+pJ=\int_0^{\pi/2}\frac{q\cos x+p\sin x}{D}dx=\int_0^{\pi/2}1\,dx=\pi/2$. Also $pI-qJ=\int_0^{\pi/2}\frac{p\cos
+    x-q\sin x}{D}dx=\left[\ln D\right]_0^{\pi/2}=\ln(p/q)$, since $D(\pi/2)=p$ and $D(0)=q$. Multiply
+    the first equation by $q$, the second by $p$, and add: $(p^2+q^2)I=q\pi/2+p\ln(p/q)$.'
+  common_errors:
+  - Solving only one linear relation and not using the second
+  - Getting the sign of the $\ln$ term wrong by evaluating $D$ at the limits in the wrong order
+  - Eliminating the wrong variable, which gives a denominator other than $p^2+q^2$
+  hints:
+    rephrase: Try the same symmetry idea as before, using $p\sin x+q\cos x$ as the denominator.
+    smaller_case: Set $p=q=1$ first and check that your method reproduces $\pi/4$.
+    key_idea: Pair the integral with a second integral and find combinations whose integrands simplify
+      to a constant or to a logarithmic derivative.
+  check: N(Integral(cos(x)/(2*sin(x)+cos(x)),(x,0,pi/2)) - (pi/2+2*log(2))/5, 30)
+  check_ok: false
+- goal: Evaluate $\int_0^{\pi/2}\frac{\cos x+4}{3\sin x+4\cos x+25}\,dx$.
+  expected: $\int_0^{\pi/2}\frac{\cos x+4}{3\sin x+4\cos x+25}\,dx=\frac{2\pi+3\ln(28/29)}{25}$
+  solution: 'Let $I=\int_0^{\pi/2}\frac{\cos x+4}{D}dx$ and $J=\int_0^{\pi/2}\frac{\sin x+3}{D}dx$, where
+    $D=3\sin x+4\cos x+25$. Then $4\cos x+16+3\sin x+9=D$, so $4I+3J=\int_0^{\pi/2}1\,dx=\pi/2$. Also
+    $3(\cos x+4)-4(\sin x+3)=3\cos x-4\sin x=D''(x)$, so $3I-4J=\left[\ln D\right]_0^{\pi/2}=\ln(28/29)$,
+    since $D(\pi/2)=28$ and $D(0)=29$. Multiply the first equation by 4, the second by 3, and add: $25I=2\pi+3\ln(28/29)$.'
+  common_errors:
+  - Not checking that the numerator of the auxiliary integrand is a combination of $\sin x$, $\cos x$
+    and a constant
+  - Evaluating $D$ at the limits incorrectly ($D(0)=29$, $D(\pi/2)=28$)
+  - Making an arithmetic error when multiplying the equations by 4 and 3
+  hints:
+    rephrase: Introduce a second integral whose numerator is $\sin x+3$, then look at what linear combinations
+      of the two integrands simplify.
+    smaller_case: Check that the numerator of the first integrand is a linear combination of $D$ and the
+      derivative of $D$ with the second integrand's numerator.
+    key_idea: The derivative of the denominator is $3\cos x-4\sin x$. Find the combination of the two
+      numerators that equals this derivative.
+  check: N(Integral((cos(x)+4)/(3*sin(x)+4*cos(x)+25),(x,0,pi/2)) - (2*pi+3*log(Rational(28,29)))/25,
+    30)
+  check_ok: false
+extensions:
+  '3':
+  - Evaluate $\int_0^{\pi/2}\frac{\sin x}{p\sin x+q\cos x}\,dx$ for positive $p$ and $q$ and check that
+    it satisfies the same linear relation as part (i).
+  '4':
+  - Generalise part (ii) to $\int_0^{\pi/2}\frac{\cos x+k}{m\sin x+n\cos x+c}\,dx$ with $m,n,c$ chosen
+    so that the denominator stays positive, and state when the logarithm term vanishes.
+  '5':
+  - Explain why the restriction $a<3\pi/4$ is needed for the logarithm in $2I=a+\ln(\sin a+\cos a)$ to
+    be defined, and what happens at $a=3\pi/4$.
+spoken_vocab:
+- integral from zero to a
+- cosine x over sine x plus cosine x
+- I plus J
+- I minus J
+- two I equals a plus natural log of sine a plus cosine a
+- pi over two
+- three pi over four
+- p sine x plus q cosine x
+- three sine x plus four cosine x plus twenty five
+- natural logarithm
+- sine
+- cosine
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#9
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 5
+  minutes: 22
+  flags: []
+  tagline: I+J and I−J symmetry trick, then parametric and quotient integrals.
+  priority: 93
+  rank: 66
+  tier: A
+  category: siklos
+  d10: 6.5
+  real: 3.5
+  by: haiku
+tags:
+- integration

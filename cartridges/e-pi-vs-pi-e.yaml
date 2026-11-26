@@ -1,0 +1,92 @@
+id: e-pi-vs-pi-e
+title: Which is larger, e^pi or pi^e?
+topics:
+- exponentials
+- logarithms
+- inequalities
+- calculus
+warmup: true
+answer_source: generated
+statement: Which is larger, $e^{\pi}$ or $\pi^{e}$? Justify your answer without using a calculator.
+stages:
+- goal: Decide which of $e^{\pi}$ and $\pi^{e}$ is larger, using logarithms to compare them.
+  expected: $e^{\pi}$ is larger. Taking natural logs, $\ln(e^{\pi})=\pi$ and $\ln(\pi^{e})=e\ln\pi$, and
+    $e\ln\pi\approx 3.112<\pi\approx 3.142$.
+  solution: Both quantities are positive, so compare their logarithms. $\ln(e^{\pi})=\pi\approx 3.1416$.
+    $\ln(\pi^{e})=e\ln\pi\approx 2.7183\times 1.1447\approx 3.1122$. Since $3.1122<3.1416$, we get $\pi^{e}<e^{\pi}$.
+    Numerically, $e^{\pi}\approx 23.14$ and $\pi^{e}\approx 22.46$.
+  common_errors:
+  - Assuming the bigger base wins because $\pi>e$, so $\pi^{e}$ must be larger.
+  - Sign or direction errors when taking logs of both sides.
+  - Using a rounded decimal approximation of $\ln\pi$ with too little precision to see the margin.
+  hints:
+    rephrase: Both numbers are positive, so which one has the larger natural logarithm?
+    smaller_case: Compare $2^{3}$ and $3^{2}$ by taking the natural log of each.
+    key_idea: Use $\ln(a^{b})=b\ln a$ to turn each power into a product you can compare.
+  check: E**pi > pi**E
+  check_ok: true
+- goal: 'Justify the comparison without numerics: reduce it to one inequality and prove it.'
+  expected: $\pi^{e}<e^{\pi}$ is equivalent to $e\ln\pi<\pi$, which is equivalent to $\frac{\ln\pi}{\pi}<\frac{1}{e}$.
+    Let $f(x)=\frac{\ln x}{x}$. Then $f'(x)=\frac{1-\ln x}{x^{2}}<0$ for $x>e$, so $f$ is decreasing on
+    $[e,\infty)$. Since $\pi>e$, $f(\pi)<f(e)=\frac{1}{e}$.
+  solution: Taking logs, $\pi^{e}<e^{\pi}\iff e\ln\pi<\pi\iff \frac{\ln\pi}{\pi}<\frac{1}{e}$ (dividing
+    by the positive number $e\pi$). Let $f(x)=\frac{\ln x}{x}$. Then $f'(x)=\frac{x\cdot\frac{1}{x}-\ln
+    x}{x^{2}}=\frac{1-\ln x}{x^{2}}$, which is negative for $x>e$. So $f$ is strictly decreasing on $[e,\infty)$.
+    Because $\pi>e$, $f(\pi)<f(e)=\frac{\ln e}{e}=\frac{1}{e}$. This gives $\frac{\ln\pi}{\pi}<\frac{1}{e}$,
+    hence $\pi^{e}<e^{\pi}$.
+  common_errors:
+  - Claiming $f$ is decreasing on its whole domain; it is increasing on $(0,e)$ and decreasing only for
+    $x>e$.
+  - Getting the derivative quotient rule wrong, e.g. writing $f'(x)=\frac{1}{x^{2}}$.
+  - Reversing the inequality when moving $f(\pi)$ and $f(e)$ around.
+  - Dividing by $\pi$ or $e$ without noting they are positive, so the direction is preserved.
+  hints:
+    rephrase: Rewrite $\pi^{e}$ versus $e^{\pi}$ as a single inequality involving $\ln\pi$ and $\pi$.
+    smaller_case: Take $g(x)=\frac{\ln x}{x}$ and ask whether $g$ is going up or down between $x=3$ and
+      $x=4$.
+    key_idea: Study $f(x)=\frac{\ln x}{x}$ with the derivative. Its maximum is at $x=e$, so it is decreasing
+      beyond that point.
+  check: E*log(pi) < pi
+  check_ok: true
+extensions:
+  '3':
+  - Which is larger, $3^{\pi}$ or $\pi^{3}$? Justify with logarithms.
+  '4':
+  - Without a calculator, prove $e^{\pi}>\pi^{e}$ using the function $f(x)=\frac{\ln x}{x}$ and its maximum.
+  '5':
+  - For which pairs of positive integers $a\neq b$ does $a^{b}=b^{a}$ hold? How does this relate to the
+    sign of $\frac{\ln x}{x}-\frac{\ln y}{y}$?
+spoken_vocab:
+- e to the pi
+- pi to the e
+- e
+- pi
+- natural log
+- ln
+- log x over x
+- derivative
+- decreasing
+- maximum
+- one over e
+- inequality
+- logarithm
+source: nextstepmaths/NextStepMaths Interview Questions/interview-question-10.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 5
+  parts: 1
+  minutes: 8
+  flags: []
+  tagline: Same comparison with less scaffolding; the final inequality step is vague.
+  priority: 55
+  rank: 481
+  tier: C
+  category: nextstepmaths
+  d10: 4.5
+  real: 5.0
+  by: deepseek-v4.1-flash-free
+tags:
+- exponentials_and_logarithms
+- differentiation
+- inequalities

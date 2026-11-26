@@ -1,0 +1,58 @@
+[
+ {
+  "q": "A rectangle's length is increased by 20% and its width is decreased by 20%. What happens to its area? a) It stays the same b) It increases by 4% c) It decreases by 4% d) It decreases by 2% e) It increases by 2%",
+  "kind": "maths",
+  "answer": "c) It decreases by 4%",
+  "short": true,
+  "source": "kclms/kclms-specimen-mcq-3.pdf#0"
+ },
+ {
+  "q": "$ABCD$ is a square of side $8$ cm. $E$ is the midpoint of $BC$ and $F$ is the midpoint of $CD$. What is the area of triangle $AEF$? a) $24$ cm$^2$ b) $16$ cm$^2$ c) $20$ cm$^2$ d) $28$ cm$^2$ e) $32$ cm$^2$",
+  "kind": "maths",
+  "answer": "a) 24 cm^2",
+  "short": true,
+  "source": "kclms/kclms-specimen-mcq-3.pdf#0"
+ },
+ {
+  "q": "Given that $37 \\times 27 = 999$, what is $999\\,999 \\div 27$? a) $3737$ b) $33\\,337$ c) $370\\,037$ d) $37\\,037$ e) $37\\,307$",
+  "kind": "maths",
+  "answer": "d) 37 037",
+  "short": true,
+  "source": "kclms/kclms-specimen-mcq-3.pdf#0"
+ },
+ {
+  "q": "$AB$ is a diameter of the circle with centre $O$. The point $C$ lies on the circle and $\\angle CAB = 28^\\circ$. The tangent to the circle at $C$ meets $AB$ extended at $T$. What is $\\angle CTB$? a) $28^\\circ$ b) $56^\\circ$ c) $62^\\circ$ d) $66^\\circ$ e) $34^\\circ$",
+  "kind": "maths",
+  "answer": "e) 34\u00b0",
+  "short": true,
+  "source": "kclms/kclms-specimen-mcq-3.pdf#0"
+ },
+ {
+  "q": "Water is poured at a constant rate into a container shaped like a cone with its point at the bottom and its circular top open (like a funnel). Which graph best shows the height $h$ of the water against time $t$? (Options a) to e) are graphs of $h$ against $t$, not reproduced in the source.)",
+  "kind": "maths",
+  "answer": "b)",
+  "short": true,
+  "source": "kclms/kclms-specimen-mcq-3.pdf#0"
+ },
+ {
+  "q": "A bag contains $4$ red and $6$ blue counters. Two counters are taken from the bag at random, one after the other, without replacement. What is the probability that they are different colours? a) $\\frac{8}{15}$ b) $\\frac{12}{25}$ c) $\\frac{2}{5}$ d) $\\frac{4}{9}$ e) $\\frac{1}{2}$",
+  "kind": "maths",
+  "answer": "a) 8/15",
+  "short": true,
+  "source": "kclms/kclms-specimen-mcq-3.pdf#0"
+ },
+ {
+  "q": "The ratio of boys to girls in a club is $3 : 5$. When $6$ more boys join the club, the numbers of boys and girls are equal. How many members did the club have originally? a) $16$ b) $20$ c) $32$ d) $24$ e) $40$",
+  "kind": "maths",
+  "answer": "d) 24",
+  "short": true,
+  "source": "kclms/kclms-specimen-mcq-3.pdf#0"
+ },
+ {
+  "q": "$p$ is a prime number greater than $3$. Which of the following statements is always true? a) $p + 2$ is prime b) $p - 1$ is a multiple of $6$ c) $p^2 - 1$ is a multiple of $24$ d) $p^2 + 1$ is a multiple of $5$ e) $p - 1$ and $p + 1$ are both prime",
+  "kind": "maths",
+  "answer": "c) p^2 - 1 is a multiple of 24",
+  "short": true,
+  "source": "kclms/kclms-specimen-mcq-3.pdf#0"
+ }
+]

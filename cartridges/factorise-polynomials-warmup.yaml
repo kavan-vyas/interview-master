@@ -1,0 +1,100 @@
+id: factorise-polynomials-warmup
+title: Factorising polynomials
+topics:
+- algebra
+- factorisation
+- polynomials
+- roots
+- factor theorem
+warmup: true
+answer_source: pdf
+statement: 'Factorize the following polynomials: (i) $x^2-3x+2$; (ii) $3x^3-3x^2-6x$; (iii) $x^2-x-1$;
+  (iv) $x^3-1$; (v) $x^4-3x^3-3x^2+11x-6$.'
+stages:
+- goal: Factorise (i) and (ii).
+  expected: (i) (x-1)(x-2); (ii) 3x(x-2)(x+1)
+  solution: '(i) Need two numbers with product 2 and sum -3, namely -1 and -2, so x^2-3x+2=(x-1)(x-2).
+    (ii) Take out the common factor 3x: 3x(x^2-x-2) = 3x(x-2)(x+1).'
+  common_errors:
+  - Forgetting the common factor 3x in (ii) and writing 3(x^3-x^2-2x)
+  - Sign slip in (i), e.g. (x+1)(x+2)
+  - Stopping at 3x(x^2-x-2) without factorising the quadratic
+  hints:
+    rephrase: What two numbers multiply to the constant term and add to the coefficient of x?
+    smaller_case: Use the same method on x^2-5x+6 first.
+    key_idea: Always look for a common factor before anything else.
+  check: sp.expand((x-1)*(x-2) - (x**2-3*x+2)) == 0 and sp.expand(3*x*(x-2)*(x+1) - (3*x**3-3*x**2-6*x))
+    == 0
+  check_ok: false
+- goal: Factorise (iii), which has no rational factorisation.
+  expected: (x-(1+sqrt(5))/2)(x-(1-sqrt(5))/2)
+  solution: The discriminant is 1+4=5, which is not a perfect square, so there are no rational roots.
+    The quadratic formula gives roots (1+sqrt5)/2 and (1-sqrt5)/2, so over the reals x^2-x-1 = (x-(1+sqrt5)/2)(x-(1-sqrt5)/2).
+  common_errors:
+  - Claiming the quadratic cannot be factorised at all (it can over the reals)
+  - Writing the wrong sign inside a bracket, e.g. (x+(1+sqrt5)/2)
+  - Arithmetic error in the discriminant
+  hints:
+    rephrase: Does the quadratic have rational roots? If not, what does the quadratic formula give?
+    smaller_case: Compare with x^2-2, which factorises over the reals using the same idea.
+    key_idea: A quadratic with real roots r and s factorises as (x-r)(x-s).
+  check: sp.expand((x-(1+sp.sqrt(5))/2)*(x-(1-sp.sqrt(5))/2) - (x**2-x-1)) == 0
+  check_ok: null
+- goal: Factorise (iv) and (v).
+  expected: (iv) (x-1)(x^2+x+1); (v) (x-1)^2(x-3)(x+2)
+  solution: '(iv) Difference of cubes: a^3-b^3=(a-b)(a^2+ab+b^2) gives (x-1)(x^2+x+1). (v) Setting x=1
+    gives 0, so (x-1) is a factor. Dividing gives x^3-2x^2-5x+6, which is zero at x=1 again. Dividing
+    again gives x^2-x-6=(x-3)(x+2). So the result is (x-1)^2(x-3)(x+2).'
+  common_errors:
+  - Sign error in (iv), writing (x-1)(x^2-x+1)
+  - Missing the repeated factor (x-1)^2 in (v)
+  - Not testing small integer values to find a root in (v)
+  - Arithmetic errors in the long division
+  hints:
+    rephrase: Is there a small value of x that makes the polynomial zero? Try small integers first.
+    smaller_case: For (iv), first check what the difference-of-cubes identity gives for x^3-8.
+    key_idea: 'Factor theorem: if p(a)=0 then (x-a) divides p(x). Repeat on the quotient.'
+  check: sp.expand((x-1)*(x**2+x+1) - (x**3-1)) == 0 and sp.expand((x-1)**2*(x-3)*(x+2) - (x**4-3*x**3-3*x**2+11*x-6))
+    == 0
+  check_ok: false
+extensions:
+  '3':
+  - Factorise x^3+8 and x^4-5x^2+4 completely over the reals.
+  '4':
+  - Factorise x^4+4 into two real quadratics.
+  '5':
+  - For which positive integers n is x^n-1 divisible by x+1?
+spoken_vocab:
+- factorise
+- x squared minus three x plus two
+- three x cubed
+- minus x squared
+- x cubed minus one
+- x to the power four
+- minus three x cubed
+- square root of five
+- plus or minus
+- open bracket
+- close bracket
+- divided by
+- repeated factor
+source: step-workbook/Cambridge STEP Short Workbook.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 3
+  parts: 5
+  minutes: 8
+  flags:
+  - trivial
+  tagline: Routine factorisation ladder; mostly recall-level, with a quartic needing root-finding.
+  priority: 35
+  rank: 605
+  tier: D
+  category: step-workbook
+  d10: 3.0
+  real: 3.5
+  by: deepseek-v4.1-flash-free
+tags:
+- algebra_and_functions
+- roots_of_polynomials

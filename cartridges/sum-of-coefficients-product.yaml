@@ -1,0 +1,75 @@
+id: sum-of-coefficients-product
+title: Sum of coefficients of a product of two polynomials
+topics:
+- polynomials
+- algebra
+- evaluation at a point
+warmup: true
+answer_source: generated
+statement: Find the sum of the coefficients of the polynomial obtained after expanding and collecting
+  terms of the product $(1-3x+3x^2-5x^3+5x^4)(1+3x-3x^2+5x^3-5x^4)$.
+stages:
+- goal: Recognise that the sum of the coefficients of a polynomial equals its value at $x=1$.
+  expected: The sum of the coefficients of $P(x)$ equals $P(1)$.
+  solution: If $P(x)=\sum_k a_k x^k$, then $P(1)=\sum_k a_k$. So the sum of the coefficients of the expanded
+    product equals the value of the product at $x=1$.
+  common_errors:
+  - Thinking the sum of coefficients is the coefficient of $x$, or the constant term.
+  - Expanding the full product unnecessarily and making arithmetic slips.
+  hints:
+    rephrase: If you plug a particular value into a polynomial, what do you get in terms of its coefficients?
+    smaller_case: For $3+2x+x^2$, what is the sum of the coefficients and what is the value at a simple
+      input?
+    key_idea: Evaluate the polynomial at a convenient input that makes every power of $x$ equal to 1.
+  check: sp.expand((1-3*x+3*x**2-5*x**3+5*x**4)*(1+3*x-3*x**2+5*x**3-5*x**4)).subs(x,1) - sum(sp.Poly(sp.expand((1-3*x+3*x**2-5*x**3+5*x**4)*(1+3*x-3*x**2+5*x**3-5*x**4)),x).coeffs())
+  check_ok: null
+- goal: Evaluate each factor at $x=1$ and multiply to get the final sum.
+  expected: The sum is $1$.
+  solution: $P(1)=1-3+3-5+5=1$ and $Q(1)=1+3-3+5-5=1$, so the product evaluated at $x=1$ is $1\cdot 1=1$.
+    Hence the sum of the coefficients is $1$.
+  common_errors:
+  - Sign slips when evaluating $-3$, $-5$, or $+5$ terms.
+  - Multiplying the factor values incorrectly.
+  hints:
+    rephrase: What do you get if you substitute $x=1$ into each factor separately?
+    smaller_case: Substitute $x=1$ into $1-3x$ and into $1+3x$ and compare the results.
+    key_idea: Substitution into a product equals the product of the substitutions.
+  check: sp.expand((1-3*x+3*x**2-5*x**3+5*x**4)*(1+3*x-3*x**2+5*x**3-5*x**4)).subs(x,1) - 1
+  check_ok: false
+extensions:
+  '3':
+  - Find the sum of the coefficients of the square of $1-3x+3x^2-5x^3+5x^4$.
+  '4':
+  - Find the sum of the coefficients of $(1-3x+3x^2-5x^3+5x^4)^{2}(1+3x-3x^2+5x^3-5x^4)^{3}$.
+  '5':
+  - For a general polynomial $P(x)$ with integer coefficients, show that the sum of the coefficients of
+    $P(x^2)$ equals $P(1)$.
+spoken_vocab:
+- sum of coefficients
+- polynomial
+- evaluate at x equals one
+- product
+- minus three x
+- plus three x squared
+- minus five x cubed
+- plus five x to the fourth
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 2
+  difficulty: 3
+  parts: 2
+  minutes: 4
+  flags:
+  - trivial
+  tagline: One substitution at x=1; recall-level with little room for discussion.
+  priority: 17
+  rank: 674
+  tier: D
+  category: tbo
+  d10: 2.0
+  real: 5.5
+  by: haiku
+tags:
+- algebra_and_functions
+- roots_of_polynomials

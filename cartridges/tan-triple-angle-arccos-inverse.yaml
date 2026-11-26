@@ -1,0 +1,128 @@
+id: tan-triple-angle-arccos-inverse
+title: Triple-angle tangent and inverse trigonometric equations
+topics:
+- trigonometry
+- triple angle formula
+- inverse trigonometric functions
+- principal range
+warmup: false
+answer_source: generated
+statement: Show that $\tan 3\theta = \frac{3\tan\theta - \tan^3\theta}{1 - 3\tan^2\theta}$. Given that
+  $\theta = \cos^{-1}(2/\sqrt{5})$ and $0 < \theta < \pi/2$, show that $\tan 3\theta = \frac{11}{2}$.
+  Hence, or otherwise, find all solutions of the equations (i) $\tan(3\cos^{-1}x) = \frac{11}{2}$, (ii)
+  $\cos\left(\frac{1}{3}\tan^{-1}y\right) = \frac{2}{\sqrt{5}}$.
+stages:
+- goal: Derive the triple-angle formula for tangent.
+  expected: $\tan 3\theta = \frac{3t - t^3}{1 - 3t^2}$ where $t = \tan\theta$.
+  solution: Write $\tan 3\theta = \tan(2\theta + \theta) = \frac{\tan 2\theta + \tan\theta}{1 - \tan 2\theta
+    \tan\theta}$ and use $\tan 2\theta = \frac{2t}{1 - t^2}$. The numerator is $\frac{2t + t(1-t^2)}{1-t^2}
+    = \frac{3t - t^3}{1-t^2}$. The denominator is $1 - \frac{2t^2}{1-t^2} = \frac{1 - 3t^2}{1-t^2}$. Dividing
+    gives the result.
+  common_errors:
+  - Using $\tan 2\theta = 2\tan\theta$ (forgetting the double-angle denominator).
+  - Cancelling the factor $1 - t^2$ in only one of numerator and denominator.
+  - Writing $\tan(A+B)$ with a plus sign in the denominator.
+  hints:
+    rephrase: Write $3\theta$ as $2\theta + \theta$ and use the compound-angle formula for tangent.
+    smaller_case: Write the double-angle formula for $\tan 2\theta$ in terms of $t$ and substitute it.
+    key_idea: Put everything over the common denominator $1 - t^2$ and simplify.
+  check: simplify(expand_trig(tan(3*th)) - (3*tan(th) - tan(th)**3)/(1 - 3*tan(th)**2))
+  check_ok: true
+- goal: Show that $\tan 3\theta = \frac{11}{2}$ for $\theta = \cos^{-1}(2/\sqrt{5})$.
+  expected: $\tan\theta = \frac{1}{2}$, and then $\tan 3\theta = \frac{11}{2}$.
+  solution: 'Since $\cos\theta = 2/\sqrt{5}$ and $0 < \theta < \pi/2$, $\sin\theta = 1/\sqrt{5}$, so $\tan\theta
+    = \frac{1}{2}$. Substituting $t = \frac{1}{2}$: $\frac{3/2 - 1/8}{1 - 3/4} = \frac{11/8}{1/4} = \frac{11}{2}$.'
+  common_errors:
+  - Taking $\tan\theta = 2$ (swapping opposite and adjacent sides).
+  - Arithmetic error in $\left(\frac{1}{2}\right)^3 = \frac{1}{8}$.
+  hints:
+    rephrase: Draw a right-angled triangle with adjacent side $2$ and hypotenuse $\sqrt{5}$ and find the
+      opposite side.
+    smaller_case: Find $\tan\theta$ first, then substitute into the formula from the previous stage.
+    key_idea: Use the identity $\sin^2\theta + \cos^2\theta = 1$ to find the missing side.
+  check: (3*Rational(1,2) - Rational(1,2)**3)/(1 - 3*Rational(1,2)**2) - Rational(11,2)
+  check_ok: true
+- goal: Solve (i) $\tan(3\cos^{-1}x) = \frac{11}{2}$ for all $x$ in the domain of $\cos^{-1}$.
+  expected: 'Three solutions: $x = \frac{2}{\sqrt{5}}$, $x = \frac{2 - \sqrt{3}}{2\sqrt{5}}$, $x = \frac{-2
+    - \sqrt{3}}{2\sqrt{5}}$.'
+  solution: 'Let $\theta = \cos^{-1}x \in [0, \pi]$, so $\cos\theta = x$ and we need $\tan 3\theta = \frac{11}{2}$.
+    Let $\theta_0 = \cos^{-1}(2/\sqrt{5})$, so $\tan 3\theta_0 = \frac{11}{2}$. Since $\tan$ has period
+    $\pi$, $\tan 3\theta = \frac{11}{2}$ iff $3\theta = 3\theta_0 + k\pi$, i.e. $\theta = \theta_0 + k\pi/3$.
+    Within $[0, \pi]$ this gives $k = 0, 1, 2$ only, since $\theta_0 + \pi$ is out of range. Then $\cos(\theta_0
+    + \pi/3) = \frac{2 - \sqrt{3}}{2\sqrt{5}}$ and $\cos(\theta_0 + 2\pi/3) = \frac{-2 - \sqrt{3}}{2\sqrt{5}}$.
+    So there are three solutions. The six-value list in the source is incorrect: $-\frac{2}{\sqrt{5}}$,
+    $\frac{2+\sqrt{3}}{2\sqrt{5}}$ and $\frac{-2+\sqrt{3}}{2\sqrt{5}}$ give $\tan 3\theta = -\frac{11}{2}$.'
+  common_errors:
+  - Copying the six-value list from the source. The extra three give $\tan 3\theta = -\frac{11}{2}$, which
+    is wrong.
+  - Forgetting that $\cos^{-1}$ restricts $\theta$ to $[0, \pi]$.
+  - Taking the period of $\tan 3\theta$ as $2\pi$ rather than $\pi/3$ in $\theta$.
+  - Sign errors in $\cos(\alpha + \beta)$ expansions.
+  hints:
+    rephrase: Let $\theta = \cos^{-1}x$ and rewrite the equation as a condition on $\theta$ in a fixed
+      interval.
+    smaller_case: Find all $\theta$ in $[0, \pi]$ with $\tan 3\theta = \frac{11}{2}$ by first considering
+      $3\theta$ over $[0, 3\pi]$.
+    key_idea: The tangent function repeats every $\pi$. Compare $3\theta$ with the angle $3\theta_0$ from
+      the previous stage, then take cosines.
+  check: simplify(((3*sqrt(1 - x**2) - 4*(1 - x**2)**Rational(3,2))/(4*x**3 - 3*x) - Rational(11,2)).subs(x,
+    (2 - sqrt(3))/(2*sqrt(5))))
+  check_ok: true
+- goal: Solve (ii) $\cos\left(\frac{1}{3}\tan^{-1}y\right) = \frac{2}{\sqrt{5}}$.
+  expected: $y = \pm\frac{11}{2}$
+  solution: Let $\varphi = \tan^{-1}y \in (-\pi/2, \pi/2)$, so $\varphi/3 \in (-\pi/6, \pi/6)$. Since
+    cosine is even, $|\varphi/3| = \theta_0$, where $\theta_0 = \cos^{-1}(2/\sqrt{5})$. So $\varphi =
+    \pm 3\theta_0$. Note $3\theta_0 \approx 1.39 < \pi/2$, so this lies in the range of $\tan^{-1}$. Then
+    $y = \tan(\pm 3\theta_0) = \pm\frac{11}{2}$.
+  common_errors:
+  - Forgetting the negative branch $\varphi = -3\theta_0$.
+  - Failing to check that $3\theta_0$ lies in the range of $\tan^{-1}$.
+  - Solving $\cos(\varphi/3) = 2/\sqrt{5}$ by taking $\varphi/3 = \theta_0 + 2k\pi$, which is outside
+    the range.
+  hints:
+    rephrase: Let $\varphi = \tan^{-1}y$ and find the range of $\varphi/3$.
+    smaller_case: Ignore the sign first and find $\varphi$ with $\varphi/3 \geq 0$.
+    key_idea: Cosine is even, and within the range of $\varphi/3$ it is one-to-one on $[0, \pi]$, so the
+      only possible angles are $\pm\theta_0$.
+  check: expand(y**2 - Rational(121,4))
+  check_ok: false
+extensions:
+  '3':
+  - For which $x$ in $[-1, 1]$ is $\tan(3\cos^{-1}x)$ undefined?
+  '4':
+  - Solve $\cos\left(\frac{1}{3}\tan^{-1}y\right) = -\frac{2}{\sqrt{5}}$.
+  '5':
+  - Find the sum of the three solutions to part (i).
+spoken_vocab:
+- tan three theta
+- tan theta
+- arccos
+- inverse cosine
+- two over root five
+- eleven over two
+- pi over two
+- tan inverse y
+- one third
+- root three
+- root five
+- theta naught
+- triple angle formula
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#15
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 4
+  minutes: 20
+  flags: []
+  tagline: Triple-angle formula, arccos link, and multiple solutions in inverse trig.
+  priority: 82
+  rank: 183
+  tier: B
+  category: siklos
+  d10: 5.0
+  real: 4.0
+  by: haiku
+tags:
+- trigonometry
+- algebra_and_functions

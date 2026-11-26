@@ -1,0 +1,108 @@
+id: first-order-odes-set-b
+title: General solutions of first-order ODEs
+topics:
+- differential equations
+- separation of variables
+- integrating factor
+- implicit solutions
+warmup: false
+answer_source: pdf
+statement: Find the general solution (i.e. with a constant of integration) of the following equations.
+  (i) $y\frac{dy}{dx}=x$; (ii) $\frac{dy}{dx}=my$; (iii) $x\frac{dy}{dx}=y+1$; (iv) $\frac{dy}{dx}-y\tan
+  x=1$; (v) $\frac{dy}{dx}=\sqrt{c^2-k^2y^2}$; (vi) $z\frac{dz}{dy}+k^2y=0$.
+stages:
+- goal: Solve (i) y dy/dx = x and (ii) dy/dx = my.
+  expected: (i) y^2 = x^2 + C. (ii) y = C e^(mx).
+  solution: '(i) Separate: y dy = x dx. Integrate: y^2/2 = x^2/2 + K, so y^2 = x^2 + C with C = 2K. (ii)
+    Separate: dy/y = m dx. Integrate: ln|y| = mx + K, so y = C e^(mx) with C = plus or minus e^K. C =
+    0 gives the trivial solution y = 0.'
+  common_errors:
+  - Writing y = x^2/2 + C without squaring properly
+  - Dropping the constant of integration
+  - Forgetting to exponentiate when solving ln|y| = mx + K
+  - Forgetting that C may take the value 0 in (ii)
+  hints:
+    rephrase: Can you separate the variables so that all the y terms are on one side and all the x terms
+      are on the other?
+    smaller_case: For (ii), write dy/dx = my as dy/y = m dx and integrate both sides.
+    key_idea: 'Separation of variables: g(y) dy = f(x) dx.'
+  check: simplify((sqrt(x**2+C)*diff(sqrt(x**2+C),x) - x)**2 + (diff(C*exp(m*x),x) - m*C*exp(m*x))**2)
+  check_ok: true
+- goal: Solve (iii) x dy/dx = y + 1 and (iv) dy/dx - y tan x = 1.
+  expected: (iii) y = C x - 1. (iv) y = C sec x + tan x.
+  solution: '(iii) Separate: dy/(y+1) = dx/x. Integrate: ln|y+1| = ln|x| + K, so y + 1 = C x and y = C
+    x - 1. (iv) This is linear. The integrating factor is exp(-integral of tan x dx) = exp(ln|cos x|)
+    = cos x. Then d/dx(y cos x) = cos x, so y cos x = sin x + C, giving y = tan x + C sec x.'
+  common_errors:
+  - Forgetting the -1 in (iii)
+  - Using the wrong integrating factor in (iv), such as sec x or exp(integral of tan x)
+  - Sign error in the integral of tan x
+  - Writing y = C sec x - tan x
+  hints:
+    rephrase: For (iii), can you separate the variables? For (iv), is this a linear first-order equation,
+      and which function would make the left side an exact derivative?
+    smaller_case: For (iv), compute the integrating factor by taking the exponential of minus the integral
+      of the coefficient of y.
+    key_idea: For y' + P(x) y = Q(x), multiply by mu = exp(integral of P dx).
+  check: simplify((x*diff(C*x-1,x) - (C*x-1+1))**2 + (diff(tan(x)+C/cos(x),x) - (tan(x)+C/cos(x))*tan(x)
+    - 1)**2)
+  check_ok: true
+- goal: Solve (v) dy/dx = sqrt(c^2 - k^2 y^2) and (vi) z dz/dy + k^2 y = 0.
+  expected: (v) k y = c sin(k(x - x0)), with x0 an arbitrary constant, i.e. y = (c/k) sin(k(x - x0)).
+    (vi) z^2 + k^2 y^2 = C.
+  solution: '(v) Let u = k y, so du/dx = k sqrt(c^2 - u^2). Separate: du/sqrt(c^2 - u^2) = k dx. Integrate:
+    arcsin(u/c) = kx + const, so u = c sin(k(x - x0)). This branch holds where |ky| <= c and the root
+    is positive. (vi) z dz/dy = -k^2 y, so d(z^2/2)/dy = -k^2 y. Integrate: z^2/2 = -k^2 y^2/2 + K, so
+    z^2 + k^2 y^2 = C.'
+  common_errors:
+  - Dropping the phase constant x0, or writing sin(kx) + C
+  - Forgetting the factor 1/k when converting from u = ky back to y
+  - Trying to integrate the square root directly instead of substituting
+  - Losing the factor 2 when integrating z dz
+  - Ignoring the sign of the square root or the restriction |ky| <= c
+  hints:
+    rephrase: For (v), can a substitution u = k y reduce this to a standard integral? For (vi), separate
+      the variables and integrate both sides.
+    smaller_case: For (vi), first set k = 1 and check the separated form.
+    key_idea: (v) uses the inverse sine after normalising. (vi) uses the fact that z dz = (1/2) d(z^2).
+  check: simplify(diff(c*sin(k*(x-x0))/k, x)**2 - (c**2 - k**2*(c*sin(k*(x-x0))/k)**2))**2 + simplify(sqrt(C-k**2*y**2)*diff(sqrt(C-k**2*y**2),
+    y) + k**2*y)**2
+  check_ok: true
+extensions:
+  '3':
+  - Solve y' = y^2 with y(0) = 1 and state the interval on which your solution is valid.
+  '4':
+  - Find the general solution of x dy/dx = 2y + x^3 using an integrating factor, then check it.
+  '5':
+  - Show that the solutions of (v) form the same family as the sine curves and identify the boundary solutions
+    where k y = plus or minus c.
+spoken_vocab:
+- y d y by d x equals x
+- d y by d x equals m y
+- x d y by d x equals y plus one
+- d y by d x minus y tan x equals one
+- d y by d x equals root c squared minus k squared y squared
+- z d z by d y plus k squared y equals zero
+- integrating factor
+- constant of integration
+- separation of variables
+source: step-workbook/Cambridge STEP Short Workbook.pdf#1
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 6
+  minutes: 15
+  flags: []
+  tagline: Six standard ODE types; variety good, but mostly routine recall.
+  priority: 64
+  rank: 406
+  tier: C
+  category: step-workbook
+  d10: 5.0
+  real: 2.0
+  by: deepseek-v4.1-flash-free
+tags:
+- differential_equations
+- integration
+- trigonometry

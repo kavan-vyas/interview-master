@@ -1,0 +1,142 @@
+id: log-integrals-mobius-substitution
+title: Logarithmic integrals via Möbius substitutions
+topics:
+- integration
+- substitution
+- logarithms
+- differentiation of rational functions
+- change of variable
+warmup: false
+answer_source: generated
+statement: Find $\frac{dy}{dx}$ if $y=\frac{ax+b}{cx+d}$ $(\ast)$. By using changes of variable of the
+  form $(\ast)$, or otherwise, show that $\int_0^1 \frac{1}{(x+3)^2}\ln\left(\frac{x+1}{x+3}\right)dx=\frac{1}{6}\ln
+  3-\frac{1}{4}\ln 2-\frac{1}{12}$, and evaluate the integrals $\int_0^1 \frac{1}{(x+3)^2}\ln\left(\frac{x^2+3x+2}{(x+3)^2}\right)dx$
+  and $\int_0^1 \frac{1}{(x+3)^2}\ln\left(\frac{x+1}{x+2}\right)dx$. By changing to the variable $y$ defined
+  by $y=\frac{2x-3}{x+1}$, evaluate the integral $\int_2^4 \frac{2x-3}{(x+1)^3}\ln\left(\frac{2x-3}{x+1}\right)dx$.
+  [Source text truncated here after 'Evaluate the inte...'; the final part of the question is not available,
+  so only the parts shown are covered.]
+stages:
+- goal: Differentiate the Möbius form $y=\frac{ax+b}{cx+d}$ with respect to x.
+  expected: $\frac{dy}{dx}=\frac{ad-bc}{(cx+d)^2}$
+  solution: By the quotient rule, $\frac{dy}{dx}=\frac{a(cx+d)-c(ax+b)}{(cx+d)^2}=\frac{ad-bc}{(cx+d)^2}$.
+  common_errors:
+  - Sign slip in the quotient rule numerator
+  - Writing ad+bc instead of ad-bc
+  hints:
+    rephrase: Use the quotient rule on a rational function whose numerator and denominator are both linear.
+    smaller_case: Differentiate (x+1)/(x+3) directly.
+    key_idea: The numerator of the derivative is constant, so the derivative has a simple form.
+  check: simplify(diff((a*x+b)/(c*x+d), x) - (a*d-b*c)/(c*x+d)**2)
+  check_ok: true
+- goal: Show that $\int_0^1 \frac{1}{(x+3)^2}\ln\left(\frac{x+1}{x+3}\right)dx=\frac{1}{6}\ln 3-\frac{1}{4}\ln
+    2-\frac{1}{12}$.
+  expected: Substitute $y=\frac{x+1}{x+3}$, so $dy=\frac{2}{(x+3)^2}dx$ and the limits are $\frac13$ and
+    $\frac12$. The integral is $\frac12\int_{1/3}^{1/2}\ln y\,dy$, which equals $\frac16\ln3-\frac14\ln2-\frac1{12}$.
+  solution: $\frac{d}{dx}\frac{x+1}{x+3}=\frac{2}{(x+3)^2}$. Using the antiderivative $y\ln y-y$ of $\ln
+    y$, the integral is $\frac12\left[(\tfrac12\ln\tfrac12-\tfrac12)-(\tfrac13\ln\tfrac13-\tfrac13)\right]$,
+    which simplifies to the stated value.
+  common_errors:
+  - Forgetting the factor 1/2 from dy/dx=2/(x+3)^2
+  - Using the wrong limits (x=0 gives y=1/3, x=1 gives y=1/2)
+  - Sign error evaluating ln(1/3) or ln(1/2)
+  hints:
+    rephrase: Pick a substitution of Möbius form whose derivative is a constant times the weight 1/(x+3)^2.
+    smaller_case: Evaluate the substituted limits at x=0 and x=1 first.
+    key_idea: The derivative of a Möbius substitution gives exactly the weight needed to convert the integral
+      into ∫ln y dy.
+  check: expand(Rational(1,2)*((Rational(1,2)*log(Rational(1,2)) - Rational(1,2)) - (Rational(1,3)*log(Rational(1,3))
+    - Rational(1,3))) - (log(3)/6 - log(2)/4 - Rational(1,12)))
+  check_ok: true
+- goal: Evaluate $\int_0^1 \frac{1}{(x+3)^2}\ln\left(\frac{x^2+3x+2}{(x+3)^2}\right)dx$.
+  expected: $\frac{19}{12}\ln3-\frac{29}{12}\ln2-\frac16$
+  solution: Note $\frac{x^2+3x+2}{(x+3)^2}=\frac{x+1}{x+3}\cdot\frac{x+2}{x+3}$, so the integral is $I_1+J_2$
+    where $I_1$ is the previous result and $J_2=\int_0^1\frac{1}{(x+3)^2}\ln\frac{x+2}{x+3}dx$. Substitute
+    $y=\frac{x+2}{x+3}$, with $dy=\frac{dx}{(x+3)^2}$ and limits $\frac23$ and $\frac34$, to get $J_2=\left[y\ln
+    y-y\right]_{2/3}^{3/4}=\frac{17}{12}\ln3-\frac{13}{6}\ln2-\frac1{12}$. Adding gives the result.
+  common_errors:
+  - Failing to split the log of a product into two logs
+  - Using the wrong substitution for the second factor
+  - Arithmetic slip in combining the ln 2 and ln 3 coefficients
+  hints:
+    rephrase: Factor the quadratic in the numerator and split the logarithm.
+    smaller_case: Compute the second piece on its own with a Möbius substitution of the form (ax+b)/(cx+d).
+    key_idea: Split the logarithm of a product, and treat each factor with its own Möbius substitution.
+  check: expand((Rational(19,12)*log(3) - Rational(29,12)*log(2) - Rational(1,6)) - ((Rational(1,6)*log(3)
+    - Rational(1,4)*log(2) - Rational(1,12)) + ((Rational(3,4)*log(Rational(3,4)) - Rational(3,4)) - (Rational(2,3)*log(Rational(2,3))
+    - Rational(2,3)))))
+  check_ok: true
+- goal: Evaluate $\int_0^1 \frac{1}{(x+3)^2}\ln\left(\frac{x+1}{x+2}\right)dx$.
+  expected: $\frac{23}{12}\ln2-\frac54\ln3$
+  solution: Write $\ln\frac{x+1}{x+2}=\ln\frac{x+1}{x+3}-\ln\frac{x+2}{x+3}$. The integral is $I_1-J_2=\left(\frac16\ln3-\frac14\ln2-\frac1{12}\right)-\left(\frac{17}{12}\ln3-\frac{13}{6}\ln2-\frac1{12}\right)=\frac{23}{12}\ln2-\frac54\ln3$.
+  common_errors:
+  - Sign error when subtracting the two logarithm terms
+  - Dropping the constant terms, which cancel
+  hints:
+    rephrase: Express the log of the ratio as a difference of two logs, each with denominator x+3.
+    smaller_case: Check the result numerically with x=0 and x=1 as rough sample points.
+    key_idea: Reuse the two integrals already computed by writing the new integrand as their difference.
+  check: expand((Rational(23,12)*log(2) - Rational(5,4)*log(3)) - ((Rational(1,6)*log(3) - Rational(1,4)*log(2)
+    - Rational(1,12)) - ((Rational(3,4)*log(Rational(3,4)) - Rational(3,4)) - (Rational(2,3)*log(Rational(2,3))
+    - Rational(2,3)))))
+  check_ok: true
+- goal: Using $y=\frac{2x-3}{x+1}$, evaluate $\int_2^4 \frac{2x-3}{(x+1)^3}\ln\left(\frac{2x-3}{x+1}\right)dx$.
+  expected: $\frac{\ln3}{90}-\frac{2}{45}$
+  solution: '$\frac{dy}{dx}=\frac{5}{(x+1)^2}$, so $\frac{2x-3}{(x+1)^3}dx=\frac{y}{5}dy$. Limits: x=2
+    gives y=1/3, x=4 gives y=1. The integral is $\frac15\int_{1/3}^{1}y\ln y\,dy=\frac15\left[\frac{y^2}{2}\ln
+    y-\frac{y^2}{4}\right]_{1/3}^{1}=\frac{\ln3}{90}-\frac{2}{45}$.'
+  common_errors:
+  - Using dy/dx = 3/(x+1)^2 or similar, from a wrong quotient-rule numerator
+  - Forgetting the factor 1/5
+  - 'Wrong limits: x=4 gives y=1, not 5'
+  hints:
+    rephrase: Differentiate y with respect to x and compare the result with the integrand's weight.
+    smaller_case: Evaluate y at x=2 and x=4 before doing anything else.
+    key_idea: The weight (2x-3)/(x+1)^3 is y/(x+1)^2, which matches the derivative of y up to a constant.
+  check: expand(Rational(1,5)*((Rational(1,2)*1*log(1) - Rational(1,4)) - (Rational(1,2)*Rational(1,9)*log(Rational(1,3))
+    - Rational(1,36))) - (log(3)/90 - Rational(2,45)))
+  check_ok: true
+extensions:
+  '3':
+  - Verify that the substitution $y=\frac{x+1}{x+3}$ maps the interval [0,1] onto [1/3,1/2] and explain
+    why this is monotone.
+  '4':
+  - Evaluate $\int_0^1 \frac{1}{(x+3)^2}\ln\left(\frac{x+2}{x+3}\right)dx$ using a substitution of the
+    form (*).
+  '5':
+  - Find a Möbius substitution that turns $\int \frac{1}{(x+1)(x+2)}\,dx$ into a standard logarithmic
+    integral.
+spoken_vocab:
+- y equals a x plus b over c x plus d
+- d y over d x
+- a d minus b c over c x plus d squared
+- x plus one over x plus three
+- x plus two over x plus three
+- two x minus three over x plus one
+- natural log
+- integral from zero to one
+- integral from two to four
+- one over x plus three squared
+- one sixth ln three
+- one quarter ln two
+- one twelfth
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#10
+verified: false
+rating:
+  quality: 6
+  difficulty: 7
+  parts: 5
+  minutes: 25
+  flags:
+  - missing_info
+  tagline: Möbius substitutions turn messy log integrals into tidy, checkable evaluations, though the
+    statement is truncated.
+  priority: 65
+  rank: 385
+  tier: C
+  category: siklos
+  d10: 6.5
+  real: 3.5
+  by: haiku
+tags:
+- integration
+- differentiation

@@ -1,0 +1,101 @@
+id: rectangle-perimeter-diagonal-area
+title: Rectangle from perimeter and diagonal
+topics:
+- algebra
+- rectangles
+- Pythagoras
+- expanding brackets
+- quadratics
+warmup: false
+answer_source: pdf
+statement: A rectangle has perimeter 34 cm and each of its diagonals is 13 cm long. Find the area of the
+  rectangle.
+stages:
+- goal: Find l + w, where l and w are the length and width of the rectangle.
+  expected: 17 cm
+  solution: The perimeter is 2(l + w) = 34, so l + w = 17.
+  common_errors:
+  - Treating 34 as l + w without halving
+  - Dividing 34 by 2 but then mis-stating the result
+  hints:
+    rephrase: How is the perimeter of a rectangle written in terms of its length and width?
+    smaller_case: A rectangle has perimeter 10. What is the value of its length plus its width?
+    key_idea: The perimeter is twice the sum of one length and one width.
+  check: ans - 17
+  check_ok: false
+- goal: Find the area lw of the rectangle.
+  expected: 60 cm squared
+  solution: Expand (l + w)^2 = l^2 + w^2 + 2lw. The diagonal gives l^2 + w^2 = 13^2 = 169, and l + w =
+    17 gives (l + w)^2 = 289. So 289 = 169 + 2lw, giving 2lw = 120 and lw = 60 cm squared.
+  common_errors:
+  - Dropping the 2lw cross term when expanding (l + w)^2
+  - Using 120 as the area, forgetting to halve 2lw
+  - Using l^2 + w^2 = 169 as the area
+  hints:
+    rephrase: Can you find a relation between (l + w) squared, l squared plus w squared, and lw?
+    smaller_case: 'Check the pattern with numbers: what is (3 + 4) squared, and how does it compare with
+      3 squared plus 4 squared?'
+    key_idea: 'Expand (l + w) squared and substitute the two quantities you already know: the sum l +
+      w and the value l squared plus w squared.'
+  check: ans - 60
+  check_ok: false
+- goal: Find the length of the longer side of the rectangle.
+  expected: 12 cm (the other side is 5 cm)
+  solution: 'l and w are the roots of t^2 - 17t + 60 = 0 (sum 17, product 60). Factorising gives (t -
+    12)(t - 5) = 0, so the sides are 12 cm and 5 cm. Check: 12^2 + 5^2 = 144 + 25 = 169, which matches
+    the diagonal.'
+  common_errors:
+  - Guessing factors without checking that they add to 17 and multiply to 60
+  - Giving only one side when the question asks for both, or stating the wrong one as the longer side
+  hints:
+    rephrase: Which two numbers have a sum of 17 and a product of 60?
+    smaller_case: Find two numbers with sum 5 and product 6.
+    key_idea: The length and width are the two roots of the quadratic t squared minus (sum) t plus (product)
+      equals zero.
+  check: ans - 12
+  check_ok: false
+extensions:
+  '3':
+  - A rectangle has perimeter 30 cm and diagonal 13 cm. Find its area, and say whether the sides are whole
+    numbers.
+  '4':
+  - A rectangle has area 60 cm squared and diagonal 13 cm. Find its perimeter.
+  '5':
+  - Show that for a rectangle with perimeter P and diagonal d, the area is ((P/2) squared minus d squared)
+    / 2. State the conditions on P and d that give real, positive side lengths.
+spoken_vocab:
+- rectangle
+- perimeter
+- diagonal
+- thirty-four centimetres
+- thirteen centimetres
+- l plus w
+- l squared plus w squared
+- two l w
+- area
+- sixty square centimetres
+- seventeen
+- one hundred and sixty-nine
+- two hundred and eighty-nine
+- twelve
+- five
+- factorise
+source: kclms/kclms-specimen-questions-3.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 3
+  parts: 3
+  minutes: 6
+  flags: []
+  tagline: Recover area from sum and Pythagorean diagonal; sides are 5 and 12.
+  priority: 61
+  rank: 439
+  tier: C
+  category: kclms
+  d10: 2.5
+  real: 4.0
+  by: haiku
+tags:
+- geometry
+- algebra_and_functions

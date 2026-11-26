@@ -1,0 +1,91 @@
+id: limit-sum-of-squares-over-n-cubed
+title: Limit of a sum of squares over n cubed
+topics:
+- limits
+- sums of squares
+- Riemann sums
+warmup: false
+answer_source: generated
+statement: Find $\lim_{n\to\infty}\left(\frac{1}{n}+\frac{(n-1)^2}{n^3}+\frac{(n-2)^2}{n^3}+\cdots+\frac{1}{n^3}\right)$.
+stages:
+- goal: Rewrite the sum as a single fraction with a sum of squares in the numerator.
+  expected: The sum equals (1/n^3) times the sum of k^2 for k from 1 to n, since 1/n = n^2/n^3 and 1/n^3
+    = 1^2/n^3.
+  solution: Each term has the form k^2/n^3. The first term 1/n equals n^2/n^3 (k=n), and the last term
+    1/n^3 equals 1^2/n^3 (k=1). So the sum is (1/n^3) sum_{k=1}^{n} k^2.
+  common_errors:
+  - Miscounting the terms and omitting the k=n term 1/n.
+  - Writing 1/n as 1/n^3 times something wrong, such as n instead of n^2.
+  - Using the wrong range for k, such as 0 to n.
+  hints:
+    rephrase: Write every term with denominator n^3.
+    smaller_case: For n=2 the sum is 1/2 + 1/8. Check which squared number each term corresponds to.
+    key_idea: Every term has the form k^2 over n^3 for a single index k.
+  check: null
+- goal: Give the closed form of the sum of squares and simplify the expression.
+  expected: Sum_{k=1}^n k^2 = n(n+1)(2n+1)/6, so the whole expression equals (n+1)(2n+1)/(6n^2).
+  solution: Using the standard formula, (1/n^3) * n(n+1)(2n+1)/6 = (n+1)(2n+1)/(6n^2).
+  common_errors:
+  - Using the formula n(n+1)/2 for the sum of squares.
+  - Dividing by n instead of n^2 when simplifying.
+  - Forgetting the factor 1/6.
+  hints:
+    rephrase: You need the standard formula for a sum of squares; recall it or derive it by induction.
+    smaller_case: Check the proposed closed form at n=1 and n=2 against direct summation.
+    key_idea: Use the known closed form for sum of squares, then cancel a factor of n.
+  check: sp.simplify(sp.summation(sp.Symbol('k')**2,(sp.Symbol('k'),1,sp.Symbol('n'))) - sp.Symbol('n')*(sp.Symbol('n')+1)*(2*sp.Symbol('n')+1)/6)
+  check_ok: null
+- goal: Take the limit as n tends to infinity.
+  expected: The limit equals 1/3.
+  solution: (n+1)(2n+1)/(6n^2) = (2n^2+3n+1)/(6n^2) tends to 2/6 = 1/3 as n tends to infinity.
+  common_errors:
+  - Answering 1/6 by dropping a factor of 2 in the leading coefficient.
+  - Answering 0 because the sum looks like it grows too slowly.
+  - Answering 1 by taking the leading coefficient from the sum of squares formula incorrectly.
+  hints:
+    rephrase: Look at the highest-degree terms in numerator and denominator.
+    smaller_case: Compare the sizes of the numerator and denominator for n=100.
+    key_idea: For a rational function, the limit depends only on the leading coefficients.
+  check: sp.limit((sp.Symbol('n')+1)*(2*sp.Symbol('n')+1)/(6*sp.Symbol('n')**2), sp.Symbol('n'), sp.oo)
+    - sp.Rational(1,3)
+  check_ok: null
+extensions:
+  '3':
+  - Evaluate the limit of (1/n^4) times the sum of k^3 for k from 1 to n.
+  '4':
+  - Evaluate the limit of (1/n^(p+1)) times the sum of k^p for k from 1 to n, for p=1, 2, 3, and conjecture
+    the pattern.
+  '5':
+  - Show that the limit of (1/n^(p+1)) times the sum of k^p tends to 1/(p+1) for every positive integer
+    p, using a Riemann sum argument.
+spoken_vocab:
+- limit as n tends to infinity
+- sum from k equals one to n
+- k squared
+- n cubed
+- one over n
+- n minus one squared over n cubed
+- Riemann sum
+- sum of squares
+- closed form
+- leading coefficient
+- one third
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 4
+  difficulty: 4
+  parts: 3
+  minutes: 6
+  flags: []
+  tagline: Sum-of-squares formula and limit; routine but clearly staged.
+  priority: 51
+  rank: 528
+  tier: C
+  category: tbo
+  d10: 3.0
+  real: 3.0
+  by: haiku
+tags:
+- limits_and_approximation
+- sequences_and_series

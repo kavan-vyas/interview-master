@@ -1,0 +1,69 @@
+id: infinitely-many-primes
+title: Infinitely many primes
+topics:
+- number theory
+- proof by contradiction
+- divisibility
+warmup: true
+answer_source: generated
+statement: Consider the set of prime numbers. Is this set infinite? Outline a proof that there are infinitely
+  many prime numbers.
+stages:
+- goal: Decide whether the set of primes is infinite and say why you believe it.
+  expected: Yes, the set of primes is infinite.
+  solution: Yes. Euclid showed no finite list of primes can be complete, so the set is infinite.
+  common_errors:
+  - Claiming primes become rarer so the list must end, without a proof.
+  - Confusing infinitely many primes with the primes being spread evenly.
+  hints:
+    rephrase: Could a finite list of primes ever contain every prime?
+    smaller_case: Look at the first few primes 2, 3, 5 and ask what new number you could build from them.
+    key_idea: Build a new object from any finite list and see whether it forces a new prime.
+- goal: Outline a proof that there are infinitely many primes.
+  expected: Assume finitely many primes p_1,...,p_n. Let N = p_1 p_2 ... p_n + 1. N > 1 so it has a prime
+    factor q. q must equal some p_i, but then q divides 1, a contradiction. So there are infinitely many
+    primes.
+  solution: 'Suppose the primes are finite: p_1,...,p_n. Let N = p_1 p_2 ... p_n + 1. Then N leaves remainder
+    1 when divided by each p_i, so no p_i divides N. But N > 1 has a prime factor, which must be some
+    prime in the list, contradiction. Hence infinitely many primes.'
+  common_errors:
+  - Using N = p_1 p_2 ... p_n without adding 1.
+  - Saying N is prime without justification (N need not be prime).
+  - Forgetting that N > 1 is needed so it has a prime factor.
+  hints:
+    rephrase: Assume the list is complete and build a number that none of the listed primes divides.
+    smaller_case: Take the list {2, 3} and build a number from them that no element of the list divides.
+    key_idea: Multiply the assumed primes together and add a constant that prevents divisibility by each
+      of them.
+  check: Mod(2*3*5*7*11*13 + 1, 13) - 1
+  check_ok: true
+extensions:
+  '3':
+  - Show that the product of two consecutive primes plus one need not be prime, using an example.
+  - Explain why the same argument shows there are infinitely many primes of the form 4k+3 if you use 4
+    times a product minus 1, and identify where it breaks down.
+  '4':
+  - Explain why Euclid's argument gives no explicit formula for the nth prime.
+  - Discuss whether the argument proves the existence of arbitrarily large gaps between primes.
+  '5':
+  - Prove that the sum of reciprocals of primes diverges, sketching Euler's argument.
+  - Compare Euclid's proof with the proof via the zeta function, and say what each gives beyond infinitude.
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 5 (anonymous).pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 2
+  parts: 2
+  minutes: 10
+  flags: []
+  tagline: Classic Euclid proof that invites discussion of variants and other arguments.
+  priority: 55
+  rank: 476
+  tier: C
+  category: past-interviews
+  d10: 2.5
+  real: 6.0
+  by: big-pickle
+tags:
+- number_theory
+- proof

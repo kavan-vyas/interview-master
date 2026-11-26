@@ -1,0 +1,91 @@
+id: warehouse-three-towns-line
+title: Warehouse between three towns on a road
+topics:
+- optimisation
+- absolute value
+- median
+- distance on a line
+warmup: true
+answer_source: generated
+statement: Three towns on a straight road, $A$, $B$ and $C$. Distances between them are unknown. You must
+  build a warehouse so that every day you go from the warehouse to each town and back. Where should you
+  build the warehouse?
+stages:
+- goal: Decide which location minimises the total daily round-trip distance.
+  expected: Build the warehouse at the middle town B, the one lying between A and C on the road.
+  solution: Put the towns at coordinates a < b < c on the line and let the warehouse be at x. The total
+    daily distance is D(x) = 2(|x-a| + |x-b| + |x-c|). For a <= x <= b the sum of distances is b + c -
+    a - x, which decreases as x increases. For b <= x <= c it is x + c - a - b, which increases. So the
+    minimum is at x = b. The unknown distances do not matter, only the order of the towns.
+  common_errors:
+  - Choosing the midpoint of A and C, which is only optimal if B happens to sit exactly there.
+  - Assuming the actual distances are needed before a decision can be made.
+  - Thinking the warehouse should go at the town that is closest to the others, instead of the one that
+    minimises the sum of distances to all three.
+  - Forgetting that the round trip doubles every distance, so the warehouse location does not change but
+    the total does.
+  hints:
+    rephrase: Which single spot makes the total of all your there-and-back trips as small as possible?
+    smaller_case: Suppose there are only two towns, A and B. Where would you build the warehouse, and
+      why?
+    key_idea: The total distance is a sum of absolute differences. Look at how its slope changes as the
+      warehouse moves past each town.
+- goal: State the minimum total daily distance in terms of the towns.
+  expected: 2(AC), that is twice the distance from A to C, or 2(c - a).
+  solution: With the warehouse at B, the distances are (b - a), (b - b) = 0 and (c - b). The round trip
+    total is 2((b - a) + (c - b)) = 2(c - a) = 2AC.
+  common_errors:
+  - Giving AB + BC without doubling for the return trips.
+  - Forgetting to include the zero-length trip to B itself, or counting it as an extra leg.
+  - Writing the answer as AC without the factor of 2.
+  hints:
+    rephrase: If you stand at the warehouse and visit each town and come back, how far do you travel in
+      total?
+    smaller_case: If the warehouse is at town B, how far is it to A and back?
+    key_idea: Each town costs a return trip, so every distance counts twice. Add up the legs from the
+      warehouse.
+  check: 2*((b-a)+(c-b)) - 2*(c-a)
+  check_ok: true
+extensions:
+  '3':
+  - Four towns A, B, C, D lie in that order on a straight road. Which positions for the warehouse minimise
+    the total daily round-trip distance, and what is that minimum in terms of the distances?
+  '4':
+  - The three towns are not on a straight road but at the corners of a triangle in the plane. Explain
+    why the point that minimises the total distance is no longer simply one of the towns, and describe
+    the Fermat point.
+  '5':
+  - The towns lie on a tree-shaped road network with branching roads. Explain how to find the warehouse
+    location that minimises the sum of distances to all towns, and what role the centroid plays.
+spoken_vocab:
+- warehouse
+- town A
+- town B
+- town C
+- straight road
+- round trip
+- there and back
+- median
+- absolute value
+- minimise
+- distance A to C
+- two times
+- middle town
+source: past-interviews/Actual Past Interview Questions/Maths & Philosophy Oxford Interview.doc
+verified: false
+rating:
+  quality: 5
+  difficulty: 3
+  parts: 2
+  minutes: 6
+  flags: []
+  tagline: Median-point intuition; answer independent of distances, good for probing reasoning.
+  priority: 55
+  rank: 469
+  tier: C
+  category: past-interviews
+  d10: 2.0
+  real: 5.5
+  by: haiku
+tags:
+- inequalities

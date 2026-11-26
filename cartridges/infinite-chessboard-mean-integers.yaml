@@ -1,0 +1,105 @@
+id: infinite-chessboard-mean-integers
+title: 'Infinite chessboard: four-neighbour mean'
+topics:
+- extremal principle
+- well-ordering
+- discrete harmonic functions
+- connectedness
+warmup: false
+answer_source: generated
+statement: An infinite chessboard has every square filled with a positive integer. Each integer is the
+  arithmetic mean of the four integers on its neighbouring squares (above, below, left, right). Show that
+  all the integers are equal.
+stages:
+- goal: Find a value that the extremal principle can grab hold of.
+  expected: The positive integers are well-ordered, so the set of values on the board has a smallest element
+    $m$. Pick a square $S$ with value $m$. Its four neighbours have values at least $m$ and average to
+    $m$, so each must equal $m$.
+  solution: Let $m$ be the least value on the board. It exists because positive integers are well-ordered
+    and at least one value is attained. If square $S$ has value $m$, then $m=\frac{a+b+c+d}{4}$ with each
+    of $a,b,c,d\ge m$. Then $a+b+c+d=4m$ forces $a=b=c=d=m$, since if any term exceeded $m$ the sum would
+    exceed $4m$.
+  common_errors:
+  - Assuming the board has a largest value. The board is infinite, so no maximum need exist; the argument
+    must use the minimum.
+  - Concluding only that the neighbours are at least m, without using the mean to force equality.
+  - Forgetting that positivity and integrality give the well-ordering needed for the minimum to exist.
+  hints:
+    rephrase: Among all the numbers written on the board, which one is the least? What does the averaging
+      condition say about a square carrying that least value?
+    smaller_case: Imagine a finite row of squares where each interior square is the mean of its two neighbours.
+      What can you say about the neighbours of a square holding the smallest value?
+    key_idea: Look at the smallest number present and track what the averaging rule forces around any
+      square that carries it.
+  check: null
+- goal: Spread the minimum over the whole board.
+  expected: The set of squares with value $m$ is nonempty and closed under moving to an adjacent square.
+    Since any two squares are joined by a finite path of up, down, left and right steps, every square
+    has value $m$.
+  solution: By stage one, if a square has value $m$ then all four neighbours have value $m$. Starting
+    from $S$, any square $T$ is reached by a finite sequence of horizontal and vertical steps. Induction
+    along that path shows $T$ has value $m$. Hence every square equals $m$, so all the integers are equal.
+  common_errors:
+  - Stopping after showing the neighbours of S equal m, without arguing that the propagation reaches every
+    square.
+  - Claiming the propagation needs a finite board. The path from S to T is finite even on an infinite
+    board.
+  hints:
+    rephrase: If you know one square has the smallest value, how far can that information travel using
+      only neighbour steps?
+    smaller_case: On a single row of squares, if one square has the minimum and each square's mean forces
+      its neighbours, what happens to the squares next to it?
+    key_idea: Move step by step between squares. The property that spreads from one minimal square can
+      be chained along a route to any other square.
+  check: null
+extensions:
+  '3':
+  - Show the same conclusion holds when each square is the mean of its eight surrounding neighbours, including
+    diagonals.
+  - Why does the argument fail if the integers are allowed to be negative? Give a non-constant example
+    satisfying the four-neighbour mean condition.
+  '4':
+  - Explain exactly where positivity is used, and whether the existence of a minimum is the only thing
+    the argument really needs.
+  - Could the minimum be replaced by a maximum in the infinite setting? Justify your answer.
+  '5':
+  - Generalise the argument to the three-dimensional integer lattice, where each cell is the mean of its
+    six face-neighbours.
+  - Compare the finite-board version of the problem with the infinite-board version. Where does the infinite
+    setting make a difference?
+spoken_vocab:
+- chessboard
+- four neighbours
+- arithmetic mean
+- positive integers
+- minimum
+- maximum
+- well-ordered
+- square
+- above
+- below
+- left
+- right
+- diagonal
+- lattice
+- face neighbours
+- extremal principle
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 4
+  parts: 1
+  minutes: 8
+  flags: []
+  tagline: Extremal principle on a minimum; leads naturally to harmonic-function discussion.
+  priority: 75
+  rank: 272
+  tier: B
+  category: tbo
+  d10: 6.5
+  real: 9.0
+  by: big-pickle
+tags:
+- proof
+- number_theory

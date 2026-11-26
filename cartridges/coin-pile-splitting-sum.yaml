@@ -1,0 +1,110 @@
+id: coin-pile-splitting-sum
+title: Coin Pile Splitting Sum
+topics:
+- strong induction
+- recursion
+- combinatorics
+warmup: false
+answer_source: pdf
+statement: You split $1000$ coins into two piles and count the number of coins in each pile. If there
+  are $x$ coins in pile one and $y$ coins in pile two, you multiply $x$ by $y$ to get $xy$. Then you split
+  both piles further, repeat the same counting and multiplication process, and add the new multiplication
+  results to the original. The process repeats until you only have piles of 1 coin each. What is the final
+  sum (the final 1's are not included)? Prove that you always get the same answer no matter how the piles
+  are divided.
+stages:
+- goal: Compute the final sum for a pile of 4 coins using one specific split, and check that a different
+    split gives the same total.
+  expected: 6 for both the 2+2 split and the 1+3 split.
+  solution: 'Let f(n) be the final sum for n coins. f(1)=0. f(2)=1·1=1. f(3): split 1+2 gives 1·2 + f(1)
+    + f(2) = 2 + 0 + 1 = 3. For 4 coins, split 2+2: 2·2 + f(2) + f(2) = 4 + 1 + 1 = 6. Split 1+3: 1·3
+    + f(1) + f(3) = 3 + 0 + 3 = 6. Both splits give 6.'
+  common_errors:
+  - Forgetting to add the recursive results of the sub-piles, so only the first product is counted.
+  - Counting the final piles of 1 coin as contributing to the sum.
+  - Checking only one split and assuming the result is general.
+  hints:
+    rephrase: Each split adds a product, and then each resulting pile is split again. Track the total
+      of all products added until only single coins remain.
+    smaller_case: Start with 2 coins. There is only one way to split them. What is the total of products
+      added?
+    key_idea: Write the total as one product for the first split plus the totals for the two smaller piles.
+  check: 6 - 4*(4-1)/2
+  check_ok: true
+- goal: Show that for any split of N coins into x and N-x, the total equals N(N-1)/2, assuming the formula
+    holds for smaller piles.
+  expected: f(N) = N(N-1)/2, since x(N-x) + x(x-1)/2 + (N-x)(N-x-1)/2 = N(N-1)/2 for every x.
+  solution: By strong induction, assume f(k)=k(k-1)/2 for all k<N. For a split into x and N-x with 1≤x≤N-1,
+    f(N) = x(N-x) + f(x) + f(N-x) = x(N-x) + x(x-1)/2 + (N-x)(N-x-1)/2. Expanding, the numerator is 2x(N-x)
+    + x² - x + (N-x)² - (N-x) = (x+(N-x))² - N = N² - N, so f(N) = N(N-1)/2. The value does not depend
+    on x, so the final sum is the same for every split.
+  common_errors:
+  - Plugging in one value of x and concluding independence without algebra.
+  - Expanding (N-x)(N-x-1) incorrectly.
+  - Using the formula for the sub-piles without stating the induction hypothesis.
+  hints:
+    rephrase: Assume the formula holds for every smaller pile size. Substitute into the recurrence for
+      the split into x and N-x and simplify.
+    smaller_case: Take N=4 with x=1. Write out f(4) using f(1) and f(3), then compare the expression to
+      what you expect for N=4.
+    key_idea: 'Strong induction: combine the two sub-pile expressions over a common denominator, then
+      simplify the numerator to a perfect square minus a linear term.'
+  check: N*(N-1)/2 - (x*(N-x) + x*(x-1)/2 + (N-x)*(N-x-1)/2)
+  check_ok: null
+- goal: State the final sum for 1000 coins.
+  expected: '499500'
+  solution: f(1000) = 1000·999/2 = 999000/2 = 499500.
+  common_errors:
+  - Using 1000·1000/2 instead of 1000·999/2.
+  - Arithmetic slip when dividing 999000 by 2.
+  hints:
+    rephrase: Use the closed form from the previous stage and substitute N = 1000.
+    smaller_case: Compute the formula for N = 4 and check it against your earlier answer of 6.
+    key_idea: The closed form is independent of the split, so one substitution gives the answer.
+  check: 499500 - 1000*999/2
+  check_ok: true
+extensions:
+  '3':
+  - Compare the total for N coins with the number of pairs of coins. Why might the two be related?
+  '4':
+  - Prove that the sum equals the number of pairs of coins by a combinatorial argument, without using
+    induction.
+  '5':
+  - Generalise to a process where the product is x^2 + y^2 instead of xy. Does the final sum still not
+    depend on the splits?
+spoken_vocab:
+- one thousand
+- coins
+- piles
+- x
+- y
+- x times y
+- f of n
+- n times n minus one over two
+- strong induction
+- base case
+- split
+- final sum
+- four coins
+- two and two
+- one and three
+- four hundred ninety nine thousand five hundred
+source: zhou-quant/zhou-quant-guide.pdf#1
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: 'Elegant invariant proof: each pair of coins multiplies exactly once.'
+  priority: 81
+  rank: 245
+  tier: B
+  category: zhou-quant
+  d10: 4.5
+  real: 5.5
+  by: deepseek-v4.1-flash-free
+tags:
+- proof
+- algebra_and_functions

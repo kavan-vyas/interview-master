@@ -1,0 +1,97 @@
+id: sum-squares-equals-2xyz-only-zero
+title: x^2+y^2+z^2=2xyz has only the zero solution
+topics:
+- number theory
+- parity
+- modular arithmetic
+- infinite descent
+warmup: false
+answer_source: generated
+statement: Prove that the only solution to the equation $x^2+y^2+z^2=2xyz$ for integers $x, y, z$ is $x=y=z=0$.
+stages:
+- goal: Show that a solution with any variable equal to zero must be the trivial one.
+  expected: If z=0 then x^2+y^2=0, so x=y=0. The same holds for any zero variable, so a non-trivial solution
+    has x, y, z all nonzero.
+  solution: Setting z=0 gives x^2+y^2=0. Both squares are nonnegative, so x=y=0. The equation is symmetric
+    in x, y, z, so any zero variable forces all three to be zero.
+  common_errors:
+  - Stopping after z=0 without concluding x=y=0
+  - Treating x^2+y^2=0 as possible with nonzero integers
+  hints:
+    rephrase: What does setting one variable to zero do to the equation?
+    smaller_case: Set z=0 and look at what the remaining equation says about x and y.
+    key_idea: A sum of squares of real numbers is zero only when each square is zero.
+- goal: Remove the largest common power of 2 from x, y, z.
+  expected: Let 2^d be the largest power of 2 dividing all of x, y, z (d >= 0). Write x=2^d a, y=2^d b,
+    z=2^d c with a, b, c integers, not all even. Then a^2+b^2+c^2 = 2^(d+1) abc.
+  solution: The left side becomes 4^d (a^2+b^2+c^2) and the right side becomes 2 * 8^d abc = 2^(3d+1)
+    abc. Dividing both sides by 4^d = 2^(2d) gives a^2+b^2+c^2 = 2^(d+1) abc. Since 2^d is the largest
+    common power of 2, at least one of a, b, c is odd.
+  common_errors:
+  - Dividing by 2 only once instead of by the full power of 2 in each variable
+  - 'Losing track of the exponent: 2*8^d divided by 4^d is 2^(d+1)'
+  hints:
+    rephrase: Factor out the greatest power of 2 that divides x, y and z together.
+    smaller_case: Take x=y=z=2 and see how each side of the equation scales.
+    key_idea: Replacing x, y, z by 2^d times new variables scales the two sides by different powers of
+      2, which you can cancel.
+  check: (2**d*a)**2+(2**d*b)**2+(2**d*c)**2-2*(2**d*a)*(2**d*b)*(2**d*c) - 2**(2*d)*(a**2+b**2+c**2-2**(d+1)*a*b*c)
+  check_ok: true
+- goal: Derive a contradiction from parity and mod 4 for the reduced equation.
+  expected: The left side has the same parity as the number of odd values among a, b, c, and the right
+    side is even, so that number is even. It cannot be 0, so exactly two of a, b, c are odd. Then the
+    left side is 2 mod 4 but the right side is divisible by 4. Contradiction, so no non-trivial solution
+    exists.
+  solution: The left side is odd when one or three of a, b, c are odd, but the right side 2^(d+1)abc is
+    even. So exactly two are odd, or none are odd. None is impossible since not all are even. Say a, b
+    are odd and c is even. Odd squares are 1 mod 8, so a^2+b^2 is 2 mod 4. Also c^2 is 0 mod 4, so the
+    left side is 2 mod 4. The right side contains the factor 2^(d+1)*c, which is divisible by 4. This
+    is a contradiction. Hence the only solution is x=y=z=0.
+  common_errors:
+  - Forgetting that a, b, c cannot all be even
+  - Concluding from parity alone without the mod 4 step
+  - Forgetting the case of three odd variables
+  hints:
+    rephrase: Compare the parity of each side, then look at the equation modulo 4.
+    smaller_case: Check which combinations of odd and even values of a, b, c make the left side even.
+    key_idea: An odd square leaves remainder 1 mod 8, while an even square is divisible by 4.
+extensions:
+  '3':
+  - Show that x^2+y^2+z^2=3xyz has the solution (1,1,1), then find a second solution by Vieta jumping
+    in x.
+  '4':
+  - Prove that x^2+y^2+z^2=4xyz has no non-trivial integer solution.
+  '5':
+  - Explain why the same argument shows that x^2+y^2+z^2=2^k xyz has only the trivial solution for every
+    k>=1.
+spoken_vocab:
+- x squared plus y squared plus z squared equals two x y z
+- integers
+- zero
+- parity
+- modulo four
+- infinite descent
+- largest power of two
+- two to the power d plus one
+- odd
+- even
+- contradiction
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 7
+  parts: 3
+  minutes: 20
+  flags: []
+  tagline: Descent-style parity argument; a satisfying non-obvious integer contradiction proof.
+  priority: 91
+  rank: 99
+  tier: A
+  category: tbo
+  d10: 6.5
+  real: 6.5
+  by: haiku
+tags:
+- number_theory
+- proof

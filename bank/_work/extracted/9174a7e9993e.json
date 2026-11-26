@@ -1,0 +1,30 @@
+[
+ {
+  "q": "Let $H(t)=\\frac{R'(t)}{R(t)}$. (i) Sketch a graph of $R(t)$. By considering a tangent to the graph, show that $t<\\frac{1}{H(t)}$. (ii) Observations reveal that $H(t)=\\frac{a}{t}$, where $a$ is constant. Derive an expression for $R(t)$. What range of values of $a$ is consistent with the three conditions $(\\ast)$? (iii) Suppose, instead, that observations reveal that $H(t)=bt^{-2}$, where $b$ is constant. Show that this is not consistent with conditions $(\\ast)$ for any value of $b$.",
+  "kind": "maths",
+  "answer": "(i) The right-angled triangle formed by the tangent at $t$ has height $R(t)$ and hypotenuse slope $R'(t)$, so its base is $R(t)/R'(t)=1/H(t)$. The tangent meets the negative $t$-axis, so $1/H(t)>t$. (ii) Integrating $\\frac{R'}{R}=\\frac{a}{t}$ gives $\\ln R=a\\ln t+C$, so $R(t)=At^a$. The first two conditions need $a>0$ and $A>0$. $R''(t)=a(a-1)At^{a-2}$ is negative provided $a<1$, so $0<a<1$. (iii) Integrating $\\frac{R'}{R}=bt^{-2}$ gives $R(t)=Ae^{-b/t}$. Then $R'(t)=\\frac{Ab}{t^2}e^{-b/t}$, which requires $A>0$ and $b$ such that $R'>0$, and $R''(t)=\\frac{Ab}{t^4}e^{-b/t}(b-2t)$. This is positive for $t<b/2$, contradicting $R''<0$, so no value of $b$ works.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#8"
+ },
+ {
+  "q": "Question 17. Show that the equation of any circle passing through the points of intersection of the ellipse $(x+2)^2+2y^2=18$ and the ellipse $9(x-1)^2+16y^2=25$ can be written in the form $x^2-2ax+y^2=5-4a$.",
+  "kind": "maths",
+  "answer": "Eliminating $y$ by multiplying the first equation by 8 and subtracting gives $8(x+2)^2-9(x-1)^2=144-25$, i.e. $x^2-50x+96=0$, so $(x-2)(x-48)=0$. For $x=48$ there are no real $y$, so the intersections are $(2,1)$ and $(2,-1)$. A circle with centre $(p,q)$ through both points gives $q=0$. The circle is then $(x-p)^2+y^2=(2-p)^2+1$, which simplifies to $x^2-2px+y^2=5-4p$ with $a=p$.",
+  "short": true,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#8"
+ },
+ {
+  "q": "Let $f(x)=x^m(x-1)^n$, where $m$ and $n$ are integers greater than 1. Show that $f'(x)=\\left(\\frac{m}{x}-\\frac{n}{1-x}\\right)f(x)$. Show that the curve $y=f(x)$ has a stationary point with $0<x<1$. By considering $f''(x)$, show that this stationary point is a maximum if $n$ is even and a minimum if $n$ is odd. Sketch the graphs of $f(x)$ in the four cases that arise according to the values of $m$ and $n$.",
+  "kind": "maths",
+  "answer": "Take $\\ln f = m\\ln x+n\\ln(x-1)$ and differentiate logarithmically to get $\\frac{f'}{f}=\\frac{m}{x}+\\frac{n}{x-1}$, which is the stated form. Stationary points occur where $\\frac{m}{x}-\\frac{n}{1-x}=0$, i.e. $x=\\frac{m}{m+n}\\in(0,1)$. At this point $f''(x)=\\left(-\\frac{m}{x^2}-\\frac{n}{(x-1)^2}\\right)f(x)$, and the bracket is always negative. So $f''<0$ when $f>0$ (maximum) and $f''>0$ when $f<0$ (minimum). On $0<x<1$ the sign of $f$ is the sign of $(x-1)^n$, which is positive for $n$ even and negative for $n$ odd. Hence maximum for $n$ even and minimum for $n$ odd. For the sketches, consider $x^m$ and $(x-1)^n$ separately, behaviour for large $|x|$, and the single turning point between 0 and 1. If $m$ is odd, $x=0$ is a point of inflection; if $m$ is even it is a turning point.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#8"
+ },
+ {
+  "q": "Give a sketch of the curve $y=\\frac{1}{1+x^2}$, for $x\\geq 0$. Find the equation of the line that intersects the curve at $x=0$ and is tangent to the curve at some point with $x>0$. Prove that there are no further intersections between the line and the curve. Draw the line on your sketch. By considering the area under the curve for $0\\leq x\\leq 1$, show that $\\pi>3$. Show also, by considering the volume formed by rotating the curve about the $y$ axis, that $\\ln 2>\\frac{2}{3}$. [Note: $\\int_0^1\\frac{1}{1+x^2}\\,dx=\\frac{\\pi}{4}$.]",
+  "kind": "maths",
+  "answer": "The curve has gradient 0 at $(0,1)$ and tends to the $x$-axis as $x$ grows. The tangent at $(p,q)$ has gradient $-2pq^2$ and must pass through $(0,1)$, giving $(1+p^2)^2=1+3p^2$, i.e. $p^4=p^2$. The positive solution is $p=1$, so $q=\\frac12$ and the tangent has gradient $-\\frac12$, giving the line $y=1-\\frac{x}{2}$. The source solution is cut off before the remaining parts (no further intersections, the $\\pi>3$ bound from the area, and the $\\ln 2>\\frac{2}{3}$ bound from the volume).",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#8"
+ }
+]

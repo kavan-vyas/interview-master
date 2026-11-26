@@ -1,0 +1,107 @@
+id: cube-vertex-face-sums
+title: Cube vertices with equal face sums
+topics:
+- combinatorics
+- invariants
+- counting arguments
+warmup: false
+answer_source: generated
+statement: Place numbers $1$–$8$ at the vertices of a cube (A, B, C, D and the remaining vertices) so
+  that the $4$ numbers at the corners of each face have the same sum. What do you notice about the $2$
+  numbers at A and B, and the $2$ numbers at C and D? Explain clearly why this is not an accident.
+stages:
+- goal: Find the common sum of the four corners of each face.
+  expected: Each face sums to 18.
+  solution: The numbers 1 to 8 total 36. Two opposite faces use all eight vertices exactly once, so their
+    two sums add to 36. Equal face sums therefore each equal 18.
+  common_errors:
+  - Forgetting that opposite faces partition the vertices
+  - Counting each vertex only once per face instead of noticing the total is split across faces
+  hints:
+    rephrase: What is the total of all eight numbers, and which pair of faces together contains every
+      vertex exactly once?
+    smaller_case: Take a square with corners numbered 1 to 4 and ask how the two pairs of opposite sides
+      relate to the total.
+    key_idea: Two opposite faces are disjoint and together cover the whole cube.
+  check: 18 - 36/2
+  check_ok: true
+- goal: Relate the two numbers at A and B to the two numbers at C and D. Assume the figure shows AB and
+    CD as two opposite parallel edges of the cube, the standard reading of this question.
+  expected: The sum at A and B equals the sum at C and D.
+  solution: 'Let the two faces that meet along edge AB be F1 and F2. Each has sum 18, so together they
+    total 36 minus the edge AB, counted once: 18 + 18 - (A+B). Their union misses exactly the two vertices
+    of the opposite edge CD, since that edge lies on neither face. So the union also totals 36 - (C+D).
+    Equating gives A+B = C+D.'
+  common_errors:
+  - Concluding the pairs must each sum to 9 without proof
+  - Checking one example and generalising
+  - Misreading which vertices the two faces miss
+  hints:
+    rephrase: Look at the two faces that share edge AB. Which vertices are missing from their union?
+    smaller_case: On a square, consider two adjacent sides. Which corners do they cover, and which corners
+      are left?
+    key_idea: Use inclusion-exclusion on the two faces that meet along AB, then compare the total with
+      what is left out.
+- goal: Explain why the result is forced, and decide whether opposite corners must sum to 9.
+  expected: The equal-sum result is forced by the face condition. Opposite corners do not have to sum
+    to 9.
+  solution: 'The argument uses only that each face sums to 18, so it holds for every valid placement.
+    The stronger claim fails. Take coordinates in {0,1}^3 with values: (0,0,0)=8, (1,1,0)=7, (1,0,1)=5,
+    (0,1,1)=6, (1,1,1)=4, (0,0,1)=3, (0,1,0)=1, (1,0,0)=2. All six faces sum to 18. Space-diagonal pairs
+    give 8+4=12, 7+3=10, 5+1=6 and 6+2=8, none equal to 9. Parallel edge pairs such as 8+3 and 7+4 both
+    give 11, which matches the forced result.'
+  common_errors:
+  - Claiming opposite corners always sum to 9
+  - Giving a proof that depends on a particular placement
+  hints:
+    rephrase: Does the face condition pin down anything about pairs of corners beyond what the edge argument
+      gives?
+    smaller_case: Try to build a placement of 1 to 8 with equal face sums in which one pair of diagonally
+      opposite corners does not sum to 9.
+    key_idea: Constraints from the face sums are linear, so look for a placement that satisfies them but
+      breaks a pattern that looks natural.
+extensions:
+  '3':
+  - Give one valid placement of 1 to 8 on the cube and verify that all six face sums are 18.
+  '4':
+  - Show that the two numbers on any pair of diagonally opposite parallel edges have equal sums, using
+    only the face-sum condition.
+  '5':
+  - Does every valid placement have space-diagonal corners summing to 9? Prove it or give a counterexample.
+spoken_vocab:
+- one to eight
+- cube
+- vertices
+- face
+- sum
+- opposite faces
+- edge
+- A B
+- C D
+- eighteen
+- thirty six
+- inclusion exclusion
+- space diagonal
+- parallel edges
+source: past-interviews/Actual Past Interview Questions/H1.jpg
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 3
+  minutes: 15
+  flags:
+  - missing_info
+  - needs_diagram
+  tagline: Face relations force opposite parallel edges to equal sums; opposite corners need not sum to
+    9.
+  priority: 65
+  rank: 390
+  tier: C
+  category: past-interviews
+  d10: 7.0
+  real: 5.0
+  by: deepseek-v4.1-flash-free
+tags:
+- combinatorics
+- proof

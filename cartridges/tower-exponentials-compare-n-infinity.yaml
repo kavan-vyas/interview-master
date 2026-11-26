@@ -1,0 +1,107 @@
+id: tower-exponentials-compare-n-infinity
+title: Compare two towers of exponentials as n tends to infinity
+topics:
+- limits
+- exponential growth
+- logarithms
+- growth rates
+warmup: true
+answer_source: pdf
+statement: What is larger as $n \to \infty$, $2^{2^{2n}}$ or $100^{100^n}$?
+stages:
+- goal: Decide which of the two expressions is larger as $n \to \infty$ and justify the decision briefly.
+  expected: $100^{100^n}$ is larger. Its exponent-tower grows far faster than that of $2^{2^{2n}}$.
+  solution: 'Note $2^{2n}=4^n$, so the first expression is $2^{4^n}$. The second is $100^{100^n}$. Taking
+    natural logs: $\ln\left(2^{4^n}\right)=4^n\ln 2$ and $\ln\left(100^{100^n}\right)=100^n\ln 100$. Since
+    $100^n$ grows much faster than $4^n$, the second log dominates, so $100^{100^n}$ is larger. A concrete
+    check: at $n=1$, the values are $2^{4}=16$ and $100^{100}$, and the second is larger.'
+  common_errors:
+  - Comparing only the bases 2 and 100 and concluding the first is smaller without looking at the exponents.
+  - Reading $2^{2^{2n}}$ as $2^{2n}$ or $2^{2^{n}}$, which changes the growth rate.
+  - Concluding from a single small value of $n$ without arguing for all large $n$.
+  hints:
+    rephrase: 'Both expressions are towers: a power inside a power. Which one has the bigger inner exponent
+      once you simplify $2^{2n}$?'
+    smaller_case: Try $n=1$ and compare the two numbers directly. Then ask what changes as $n$ grows.
+    key_idea: Take logarithms to pull the outer exponents down, then compare the resulting exponential
+      expressions in $n$.
+  check: Gt(100**(100**1), 2**(2**(2*1)))
+  check_ok: true
+- goal: Show that the ratio of the natural logarithms of the two expressions tends to infinity as $n \to
+    \infty$, and state the limit.
+  expected: The ratio $\dfrac{\ln\left(100^{100^n}\right)}{\ln\left(2^{2^{2n}}\right)}=\dfrac{100^n\ln
+    100}{4^n\ln 2}=\dfrac{\ln 100}{\ln 2}\cdot 25^n$ tends to $\infty$.
+  solution: $\ln\left(100^{100^n}\right)=100^n\ln 100$ and $\ln\left(2^{2^{2n}}\right)=4^n\ln 2$. The
+    ratio is $\dfrac{100^n\ln 100}{4^n\ln 2}=\dfrac{\ln 100}{\ln 2}\cdot\left(\dfrac{100}{4}\right)^n=\dfrac{\ln
+    100}{\ln 2}\cdot 25^n$. Since $\ln 100/\ln 2>0$ is a constant and $25^n\to\infty$, the ratio tends
+    to $\infty$. So the log of the second expression is unboundedly larger than the log of the first,
+    which confirms $100^{100^n}$ wins.
+  common_errors:
+  - Forgetting that the logarithm of $a^b$ is $b\ln a$, so the exponent $100^n$ must be multiplied by
+    $\ln 100$.
+  - Writing the ratio as $\dfrac{100^n}{4^n}$ and dropping the constant factor, which is harmless here
+    but hides the structure.
+  - Asserting that $100^n/4^n\to\infty$ without showing it, for example by writing it as $25^n$.
+  hints:
+    rephrase: Take the natural log of each expression, then form the ratio of the two logs and simplify
+      it using $100^n/4^n$.
+    smaller_case: Compute the ratio of logs for $n=1$ and $n=2$ and see whether it grows.
+    key_idea: Rewrite the ratio as a constant times an exponential in $n$, then decide what happens as
+      $n$ goes to infinity.
+  check: Eq(limit(100**n*log(100)/(4**n*log(2)), n, oo), oo)
+  check_ok: true
+extensions:
+  '3':
+  - 'Generalise: for which constants $a,b>1$ does $a^{a^{n}}$ versus $b^{b^{n}}$ behave the same way?
+    Give the criterion in terms of $a$ and $b$.'
+  - Explain why $2^{2^{2n}}$ equals $2^{4^n}$ and why this matters for comparing growth rates.
+  '4':
+  - Show that $\lim_{n\to\infty}\dfrac{2^{2^{2n}}}{100^{100^n}}=0$ and explain what the result says about
+    the relative size of the two towers.
+  - Find the smallest integer $N$ such that $100^{100^n}>2^{2^{2n}}$ for all $n\ge N$, or argue why no
+    such threshold is needed.
+  '5':
+  - Compare $n^{n}$ with $2^{2^{n}}$ as $n\to\infty$, using the same logarithm technique, and state which
+    dominates.
+  - Given $f(n)=\underbrace{2^{2^{\cdots^{2}}}}_{n\text{ twos}}$ and $g(n)=\underbrace{100^{100^{\cdots^{100}}}}_{n\text{
+    hundreds}}$, discuss whether $g(n)\gg f(n)$ for all $n\ge 1$ and where the argument breaks down for
+    higher towers.
+spoken_vocab:
+- two to the power two to the power two n
+- one hundred to the power one hundred to the power n
+- tends to infinity
+- natural log
+- ln
+- four to the power n
+- ratio of logs
+- constant times twenty five to the power n
+- limit
+- greater than
+- is larger
+- exponent
+- base
+- tower
+- growth rate
+- dominates
+- log base two
+- n tends to infinity
+source: nextstepmaths/NextStepMaths Interview Questions/interview-question-17.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 2
+  parts: 2
+  minutes: 5
+  flags:
+  - trivial
+  tagline: Quick growth-rate comparison; mainly a warm-up with little extension.
+  priority: 27
+  rank: 623
+  tier: D
+  category: nextstepmaths
+  d10: 3.0
+  real: 5.0
+  by: haiku
+tags:
+- exponentials_and_logarithms
+- limits_and_approximation

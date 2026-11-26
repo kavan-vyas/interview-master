@@ -1,0 +1,88 @@
+id: consecutive-odd-squares
+title: Two consecutive odd numbers whose squares sum to 202
+topics:
+- quadratic equations
+- consecutive integers
+warmup: false
+answer_source: pdf
+statement: The sum of the squares of two consecutive odd positive whole numbers is $202$. Find the two
+  numbers.
+stages:
+- goal: Set up an equation for the two numbers and reduce it to a quadratic.
+  expected: Let the numbers be $n$ and $n+2$. Then $n^2 + (n+2)^2 = 202$, which simplifies to $n^2 + 2n
+    - 99 = 0$.
+  solution: $n^2 + (n^2 + 4n + 4) = 202$ gives $2n^2 + 4n - 198 = 0$. Dividing by 2 gives $n^2 + 2n -
+    99 = 0$.
+  common_errors:
+  - Using $n$ and $n+1$, which are consecutive but not both odd.
+  - Expanding $(n+2)^2$ as $n^2 + 4$.
+  - Forgetting to divide the whole equation by 2 consistently.
+  hints:
+    rephrase: Consecutive odd numbers differ by 2. Name the smaller one and express the larger in terms
+      of it.
+    smaller_case: Try the consecutive odd numbers 1 and 3. What is the sum of their squares?
+    key_idea: Expand the squares carefully, collect like terms, and move everything to one side.
+  check: expand(n**2+(n+2)**2-202 - (2*n**2+4*n-198))
+  check_ok: true
+- goal: Solve the quadratic and select the valid solution.
+  expected: $(n+11)(n-9) = 0$, so $n = 9$ or $n = -11$. Since the numbers are positive, $n = 9$.
+  solution: Factorise $n^2 + 2n - 99 = (n+11)(n-9)$. Solutions are $n = -11$ or $n = 9$. Only $n = 9$
+    gives positive whole numbers.
+  common_errors:
+  - Keeping $n = -11$ as an answer without checking the positivity condition.
+  - Factorising incorrectly, for example as $(n-11)(n+9)$.
+  hints:
+    rephrase: Find two numbers that multiply to $-99$ and add to $2$.
+    smaller_case: Factorise $n^2 + 2n - 3$ and check your factors by expanding them.
+    key_idea: Check each root against the problem's conditions before accepting it.
+  check: And(9**2+2*9-99==0, (-11)**2+2*(-11)-99==0)
+  check_ok: true
+- goal: State the two numbers and verify the sum of their squares.
+  expected: The numbers are 9 and 11, since $9^2 + 11^2 = 81 + 121 = 202$.
+  solution: 'With $n = 9$, the numbers are $9$ and $11$. Check: $81 + 121 = 202$.'
+  common_errors:
+  - Giving only the smaller number.
+  - Arithmetic error in $11^2$.
+  hints:
+    rephrase: Once you have the smaller number, find the other one and check the sum of squares.
+    smaller_case: Check that $1^2 + 3^2 = 10$.
+    key_idea: Always verify your final pair against the original condition.
+  check: 9**2+11**2-202
+  check_ok: true
+extensions:
+  '3':
+  - Find two consecutive odd positive whole numbers whose squares sum to $290$.
+  '4':
+  - Find three consecutive odd positive whole numbers whose squares sum to $515$.
+  '5':
+  - Prove that the sum of the squares of any two consecutive odd integers leaves remainder $2$ when divided
+    by $8$.
+spoken_vocab:
+- consecutive odd positive whole numbers
+- n squared plus n plus two squared
+- two n squared plus four n
+- n squared plus two n minus ninety nine
+- n plus eleven times n minus nine
+- two hundred and two
+- nine
+- eleven
+- eighty one plus one hundred and twenty one
+source: kclms/kclms-specimen-questions-3.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 3
+  parts: 3
+  minutes: 5
+  flags: []
+  tagline: Routine quadratic warm-up; fine as a gentle opener.
+  priority: 41
+  rank: 581
+  tier: D
+  category: kclms
+  d10: 2.0
+  real: 4.5
+  by: deepseek-v4.1-flash-free
+tags:
+- algebra_and_functions
+- number_theory

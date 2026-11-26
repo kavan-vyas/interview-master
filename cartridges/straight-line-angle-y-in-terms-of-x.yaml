@@ -1,0 +1,82 @@
+id: straight-line-angle-y-in-terms-of-x
+title: Angle y in terms of x on a straight line AB
+topics:
+- angles on a straight line
+- angle facts
+- algebra with angles
+warmup: true
+answer_source: pdf
+statement: "In the diagram, $AB$ is a straight line. Find angle $y^\\circ$ in terms of $x$.\n a) $y =\
+  \ 140^\\circ$\n b) $y = 180^\\circ - 2x^\\circ$\n c) $y = 140^\\circ + x^\\circ$\n d) $y = 40^\\circ\
+  \ + 2x^\\circ$\n e) Need more information"
+stages:
+- goal: Use the straight line AB, together with the 140 degree angle and the angle relationship involving
+    x, to form an expression for y.
+  expected: y = 180 - 140 + 2x, which simplifies to 40 + 2x.
+  solution: Angles on a straight line sum to $180^\circ$, so y is the supplement of the 140 degree angle,
+    giving 180 - 140 = 40. The 2x term comes from the angle relationship given in the diagram. Adding
+    these gives y = 40 + 2x.
+  common_errors:
+  - Forgetting to subtract 140 from 180 and leaving 180 in the expression.
+  - Adding x instead of 2x, which comes from misreading the diagram's angle relationship.
+  hints:
+    rephrase: Which angles lie on the straight line AB, and what must they add up to?
+    smaller_case: Set x to a specific value, such as 10, and work out y from the diagram. Then check which
+      option gives the same value.
+    key_idea: Angles on a straight line add to 180 degrees. Use that to remove the known angle, then add
+      the x-dependent part from the diagram.
+  check: candidate_y - (40 + 2*x)
+  check_ok: false
+- goal: Give y in terms of x and choose the matching option.
+  expected: y = 40 + 2x degrees, which is option d.
+  solution: y = 40 + 2x, so the answer is option d.
+  common_errors:
+  - Choosing option b (180 - 2x) by taking the supplement of the x-dependent part.
+  - Choosing option e because the diagram is assumed to be incomplete, when all needed angle information
+    is given.
+  hints:
+    rephrase: Substitute your expression for y into the options and compare the constant term and the
+      coefficient of x.
+    smaller_case: Test each option with x = 0. Which options match the constant part you found?
+    key_idea: Match both the constant and the coefficient of x to find the correct option.
+  check: candidate_y - (40 + 2*x)
+  check_ok: false
+extensions:
+  '3':
+  - If the 140 degree angle changes to 130 degrees, what is y in terms of x?
+  '4':
+  - Explain why the 2x term has a coefficient of 2 rather than 1, using the angle relationship in the
+    diagram.
+  '5':
+  - Given that y = 40 + 2x, find x if y is a right angle.
+spoken_vocab:
+- AB is a straight line
+- angle y
+- degrees
+- x
+- one hundred and forty degrees
+- one hundred and eighty degrees
+- forty plus two x
+- forty plus two x degrees
+- need more information
+- option d
+source: kclms/kclms-mcq-specimen-questions-answers-included.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 2
+  minutes: 3
+  flags:
+  - needs_diagram
+  - missing_info
+  tagline: Trivial angle chase that depends entirely on an absent diagram.
+  priority: 9
+  rank: 705
+  tier: D
+  category: kclms
+  d10: 1.5
+  real: 3.0
+  by: haiku
+tags:
+- geometry

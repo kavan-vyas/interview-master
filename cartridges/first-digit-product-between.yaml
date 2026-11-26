@@ -1,0 +1,85 @@
+id: first-digit-product-between
+title: Can the product's first digit fall between the factors' first digits?
+topics:
+- number sense
+- leading digits
+- inequalities
+warmup: true
+answer_source: generated
+statement: Two positive numbers, $a$ and $b$, with distinct first digits are multiplied together. Is it
+  possible for the first digit of the product to fall strictly between the first digits of the two numbers?
+stages:
+- goal: Show that when the product's leading part is below 10, its first digit cannot lie strictly between
+    the two factor first digits.
+  expected: Its first digit is at least the larger first digit d_b, so it is not strictly between.
+  solution: Write a = m_a x 10^p and b = m_b x 10^q with 1 <= m_a, m_b < 10. Let d_a < d_b be the first
+    digits, so d_a <= m_a < d_a+1 and d_b <= m_b < d_b+1 (WLOG d_a < d_b). Then d_a d_b <= m_a m_b < (d_a+1)(d_b+1).
+    If m_a m_b < 10, the product's first digit is floor(m_a m_b) >= d_a d_b >= d_b, which is not strictly
+    less than d_b, so it is not strictly between.
+  common_errors:
+  - Testing a few examples and concluding from them without a general argument.
+  - Ignoring the powers of ten, so the leading digits of the factors are misread.
+  - Assuming the product is always larger, so its first digit must be larger.
+  hints:
+    rephrase: First rescale each number so that it lies between 1 and 10. What does the first digit of
+      each rescaled number tell you?
+    smaller_case: Try a = 1.5 and b = 3.2. What is the product's first digit, and how does it compare
+      with the first digits 1 and 3?
+    key_idea: Work with mantissas in [1,10). Their product lies in [d_a d_b, (d_a+1)(d_b+1)).
+  check: null
+- goal: Handle the case where the product's leading part is at least 10, and state the final answer.
+  expected: 'Then the first digit is at most d_a, so it is not strictly between. Therefore it is impossible:
+    the answer is No.'
+  solution: 'If m_a m_b >= 10, the first digit of the product is floor(m_a m_b / 10). Since d_b <= 9,
+    (d_a+1)(d_b+1) <= 10(d_a+1), so m_a m_b / 10 < d_a+1. Hence the first digit is at most d_a, which
+    is not strictly greater than d_a. Combining both cases, the first digit of the product can never lie
+    strictly between the two first digits. Answer: No.'
+  common_errors:
+  - Forgetting that the product's first digit can be a power of ten shift, so the mantissa must be divided
+    by 10.
+  - Claiming that the product's first digit can equal one of the factor digits and so is between them.
+  - Stating the answer without covering both cases.
+  hints:
+    rephrase: If the product's leading part is at least 10, what is the largest it can be, given the two
+      first digits?
+    smaller_case: Take d_a = 1 and d_b = 9. What range do the mantissas of the product lie in?
+    key_idea: Compare (d_a+1)(d_b+1) with 10(d_a+1), using that d_b is at most 9.
+  check: null
+extensions:
+  '3':
+  - Can the product's first digit equal the first digit of one of the two factors? Give an example.
+  '4':
+  - Repeat the question for three positive numbers with distinct first digits, multiplied together.
+  '5':
+  - Repeat the question for the sum a plus b instead of the product. Can the first digit of the sum fall
+    strictly between the first digits of the two numbers?
+spoken_vocab:
+- two positive numbers
+- first digit
+- distinct first digits
+- multiplied together
+- product
+- strictly between
+- mantissa
+- powers of ten
+- is it possible
+- yes or no
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 2
+  minutes: 12
+  flags: []
+  tagline: Mantissa-bound argument gives a surprising no; rich justification.
+  priority: 75
+  rank: 273
+  tier: B
+  category: tbo
+  d10: 5.2
+  real: 5.0
+  by: deepseek-v4.1-flash-free
+tags:
+- inequalities
+- number_theory

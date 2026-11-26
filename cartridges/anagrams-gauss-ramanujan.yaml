@@ -1,0 +1,76 @@
+id: anagrams-gauss-ramanujan
+title: Anagrams of Gauss and Ramanujan
+topics:
+- counting
+- permutations with repetition
+- multinomial coefficients
+warmup: true
+answer_source: generated
+statement: How many anagrams, or arrangements of the letters, of $\text{Gauss}$ are there? What about
+  $\text{Ramanujan}$?
+stages:
+- goal: Count the arrangements of the letters of $\text{Gauss}$.
+  expected: $60$
+  solution: $\text{Gauss}$ has 5 letters, G, A, U, S, S, with the letter S repeated twice and all others
+    distinct. The number of arrangements is $\frac{5!}{2!}=\frac{120}{2}=60$.
+  common_errors:
+  - Answering 120, which treats both S's as distinct.
+  - Answering 24, which is $4!$ and only applies when the two S's are glued together.
+  - Dividing by $2!$ for each letter, which over-counts the arrangements.
+  hints:
+    rephrase: How many letters are there, and does any letter repeat?
+    smaller_case: How many arrangements does the word SS have? How about the word SAS?
+    key_idea: Divide the total number of orderings by the factorial of each repeated letter's count.
+  check: answer - factorial(5)/factorial(2) == 0
+  check_ok: false
+- goal: Count the arrangements of the letters of $\text{Ramanujan}$.
+  expected: $30240$
+  solution: '$\text{Ramanujan}$ has 9 letters: R, A, M, A, N, U, J, A, N. The letter A appears 3 times
+    and N appears 2 times, with all others appearing once. The number of arrangements is $\frac{9!}{3!\,2!}=\frac{362880}{12}=30240$.'
+  common_errors:
+  - Using 8 letters, or miscounting the number of A's or N's.
+  - Dividing only by $3!$ or only by $2!$.
+  - Using $9!$ with no division, which ignores the repeated letters.
+  hints:
+    rephrase: Count how many times each letter appears in Ramanujan before doing any arithmetic.
+    smaller_case: How many arrangements does the word AAB have? How about AANN?
+    key_idea: The general count is $n!$ divided by the product of the factorials of the repetition counts
+      of each letter.
+  check: answer - factorial(9)/(factorial(3)*factorial(2)) == 0
+  check_ok: false
+extensions:
+  '3':
+  - How many arrangements of the letters of Mississippi are there?
+  '4':
+  - How many arrangements of Ramanujan have no two A's next to each other?
+  '5':
+  - How many arrangements of Gauss have the two S's next to each other?
+spoken_vocab:
+- anagrams
+- arrangements of the letters
+- Gauss
+- Ramanujan
+- factorial
+- five factorial over two factorial
+- nine factorial over three factorial times two factorial
+- repeated letters
+- multinomial
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 7 (anonymous).pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 2
+  minutes: 4
+  flags:
+  - trivial
+  tagline: Routine multiset counting; recall-level, useful only as a warm-up.
+  priority: 17
+  rank: 701
+  tier: D
+  category: past-interviews
+  d10: 2.0
+  real: 5.5
+  by: deepseek-v4.1-flash-free
+tags:
+- combinatorics

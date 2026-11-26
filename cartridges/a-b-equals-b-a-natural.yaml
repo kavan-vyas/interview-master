@@ -1,0 +1,109 @@
+id: a-b-equals-b-a-natural
+title: Natural solutions of a^b = b^a via y = ln(x)/x
+topics:
+- calculus
+- monotonicity
+- curve sketching
+- logarithms
+- number theory
+warmup: false
+answer_source: generated
+statement: Sketch $y=\dfrac{\ln(x)}{x}$ and hence find all natural solutions of the equation $a^b=b^a$.
+stages:
+- goal: 'Sketch y=ln(x)/x: find the monotonicity, maximum, zero and limits.'
+  expected: Increasing on (0,e] and decreasing on [e,infinity). Maximum 1/e at x=e. Zero at x=1. y ->
+    -infinity as x -> 0+, and y -> 0 from above as x -> infinity.
+  solution: By the quotient rule, y' = (1 - ln x)/x^2. So y'>0 for 0<x<e and y'<0 for x>e, giving a maximum
+    at x=e with value 1/e. y=0 only when ln x=0, so x=1. As x -> 0+, ln x -> -infinity while 1/x -> +infinity,
+    so y -> -infinity. As x -> infinity, ln x / x -> 0 with y>0 for x>1.
+  common_errors:
+  - Forgetting the quotient rule
+  - Placing the maximum at x=1
+  - Claiming y tends to 0 as x -> 0+
+  - Misreading the sign of 1 - ln x
+  hints:
+    rephrase: Use the quotient rule and find where the derivative changes sign.
+    smaller_case: Compare the values of y at x=1 and x=3.
+    key_idea: Study the sign of the numerator 1 - ln x. The turning point is the maximum.
+  check: diff(log(x)/x, x).subs(x, E)
+  check_ok: true
+- goal: Rewrite a^b=b^a as an equation between values of y, and handle the case a=b.
+  expected: For a=b every pair works. For a≠b, a^b=b^a is equivalent to ln(a)/a = ln(b)/b, i.e. y(a)=y(b).
+    Equal values can only occur for a<=e<=b, or the reverse.
+  solution: 'Take natural logs (ln is injective on positive reals): b ln a = a ln b. Divide by ab>0 to
+    get ln a / a = ln b / b. If a=b this holds trivially. For a≠b we need y(a)=y(b). y is strictly increasing
+    on (0,e] and strictly decreasing on [e,infinity), so two distinct points with equal y-values must
+    lie on opposite sides of e.'
+  common_errors:
+  - Forgetting the trivial solutions a=b
+  - Dividing by ab without noting ab>0
+  - Assuming y is one-to-one on its whole domain
+  - Losing the reversed case a>b
+  hints:
+    rephrase: Take logarithms of both sides, then divide by ab.
+    smaller_case: Check directly whether a=b always satisfies the equation, and test a=2, b=3.
+    key_idea: The equation says two points on the graph of y have the same height. Monotonicity on each
+      side of e controls where that can happen.
+  check: log(a)/a - log(b)/b
+  check_ok: false
+- goal: Find all natural number pairs (a,b) with a^b=b^a.
+  expected: All pairs with a=b, together with (a,b)=(2,4) and (a,b)=(4,2).
+  solution: 'Natural numbers here are positive integers (0^0 is undefined, so 0 is excluded). Suppose
+    a<b and y(a)=y(b). If a>=3, then e<a<b, and strict decrease on [e,infinity) gives y(b)<y(a), a contradiction.
+    So a is 1 or 2. For a=1: y(1)=0 would force y(b)=0, so b=1, contradicting a<b. For a=2 with b>2: y(2)=y(b)
+    means ln(b)/b = ln(2)/2, i.e. 2 ln b = b ln 2, i.e. b^2 = 2^b. b=3 gives 9≠8. For b>=5, 2^b > b^2
+    (true at b=5, and 2^(b+1) = 2·2^b > 2b^2 >= (b+1)^2 for b>=3). So b=4 is the only solution, and 4^2
+    = 16 = 2^4. The solutions are a=b, (2,4) and (4,2).'
+  common_errors:
+  - Missing (4,2) by considering only a<b
+  - Counting 0 as a natural number solution
+  - Listing only the trivial solutions a=b
+  - Applying the decreasing-argument to a<=2 incorrectly
+  - Asserting b^2=2^b has no solutions beyond small cases without proof
+  hints:
+    rephrase: Use that y is strictly monotone on each side of e, so equal values can only happen across
+      e.
+    smaller_case: Test whether a=1 or a=2 can pair with a small b.
+    key_idea: Fix a below e and look for b above e with the same y-value, then reduce the equation to
+      a comparison of powers.
+  check: 2**4 - 4**2
+  check_ok: true
+extensions:
+  '3':
+  - Show that a=(1+1/t)^t and b=(1+1/t)^(t+1) satisfy a^b=b^a for every t>0. Which pair does t=1 give?
+  '4':
+  - Without calculus, prove that the only positive integers with b^2=2^b are b=2 and b=4.
+  '5':
+  - Show that every real solution of a^b=b^a with a≠b is given by the parametrisation in extension 3 for
+    some t>0.
+spoken_vocab:
+- y equals natural log of x over x
+- a to the power b equals b to the power a
+- natural numbers
+- e
+- two to the power b
+- four
+- quotient rule
+- maximum at x equals e
+- one over e
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 3
+  minutes: 15
+  flags:
+  - needs_diagram
+  tagline: Classic a^b=b^a via y=ln x/x; natural solutions 2,4 emerge.
+  priority: 83
+  rank: 181
+  tier: B
+  category: tbo
+  d10: 6.0
+  real: 8.0
+  by: deepseek-v4.1-flash-free
+tags:
+- exponentials_and_logarithms
+- curve_sketching
+- number_theory

@@ -1,0 +1,165 @@
+id: larger-root-sum-normal-approx
+title: 'Larger root of a quadratic: mean, variance and normal approximation for a sum'
+topics:
+- probability
+- expectation
+- variance
+- quadratic roots
+- central limit theorem
+- normal approximation
+warmup: false
+answer_source: pdf
+statement: A random variable $T$ is uniformly distributed on $[0,1]$. The quadratic $x^2+2x+T=0$ has real
+  roots, and $X$ denotes its larger root. (a) What is the probability that $X > -\frac{1}{3}$? (b) Find
+  $E(X)$ and show that $\operatorname{Var}(X) = \frac{1}{18}$. (c) The experiment is repeated independently
+  800 times, generating the larger roots $X_1, X_2, \ldots, X_{800}$. Let $Y = X_1 + X_2 + \cdots + X_{800}$.
+  Find an approximate value for $K$ such that $P(Y \leq K) = 0.08$.
+stages:
+- goal: Find P(X > -1/3) by writing X in terms of T and solving the inequality for T.
+  expected: 5/9
+  solution: The roots of x^2+2x+T=0 are x = -1 ± sqrt(1-T), so the larger root is X = -1 + sqrt(1-T).
+    Then X > -1/3 is equivalent to sqrt(1-T) > 2/3, which gives 1-T > 4/9, i.e. T < 5/9. Since T is uniform
+    on [0,1], P(T < 5/9) = 5/9.
+  common_errors:
+  - Taking the smaller root -1 - sqrt(1-T) instead of the larger one.
+  - Solving the inequality in the wrong direction when squaring or rearranging.
+  - Using P(T > 5/9) = 4/9 instead of P(T < 5/9).
+  - Forgetting that the uniform probability of an interval equals its length.
+  hints:
+    rephrase: Find the two roots of the quadratic, pick the larger one, and then ask for which values
+      of T that root exceeds -1/3.
+    smaller_case: Check what the larger root equals when T = 0. Does it exceed -1/3 there?
+    key_idea: Rewrite the event X > -1/3 as an inequality on T alone, then use that T is uniform on [0,1]
+      so probabilities are interval lengths.
+  check: Rational(5,9) - integrate(1,(t,0,Rational(5,9)))
+  check_ok: true
+- goal: Find E(X) by integrating over the distribution of T.
+  expected: -1/3
+  solution: E(X) = E(-1 + sqrt(1-T)) = -1 + E(sqrt(1-T)). Since T is uniform on [0,1], so is 1-T, hence
+    E(sqrt(1-T)) = integral from 0 to 1 of sqrt(u) du = 2/3. Therefore E(X) = -1 + 2/3 = -1/3.
+  common_errors:
+  - Forgetting the -1 shift when taking expectations.
+  - Using E(sqrt(T)) and E(sqrt(1-T)) incorrectly, e.g. integrating sqrt(u) over the wrong range.
+  - Integrating the density wrongly, for example by using 1/2 instead of the uniform density 1 on [0,1].
+  - Arithmetic slips when combining -1 and the integral value.
+  hints:
+    rephrase: Use linearity of expectation on X = -1 + sqrt(1-T), then compute the expectation of the
+      square-root term as an integral against the uniform density.
+    smaller_case: Consider the simpler quantity E(T). Then consider E(sqrt(T)) and compare how the two
+      integrals differ.
+    key_idea: Because 1-T is also uniform on [0,1], the expectation of sqrt(1-T) is the integral of sqrt(u)
+      over [0,1].
+  check: integrate(-1+sqrt(u),(u,0,1)) - Rational(-1,3)
+  check_ok: true
+- goal: Compute E(X^2) and show Var(X) = 1/18.
+  expected: Var(X) = 1/6 - 1/9 = 1/18
+  solution: 'Write S = sqrt(1-T). Then X = -1 + S and X^2 = 1 - 2S + S^2 = 1 - 2 sqrt(1-T) + (1-T). Taking
+    expectations: E(X^2) = 1 - 2(2/3) + 1/2 = 1/6. Then Var(X) = E(X^2) - (E(X))^2 = 1/6 - 1/9 = 1/18.'
+  common_errors:
+  - Using Var(X) = E(X^2) alone and forgetting to subtract the square of the mean.
+  - Squaring -1 + sqrt(1-T) incorrectly, e.g. dropping the cross term -2 sqrt(1-T).
+  - Mistaking E((1-T)) for E(T) or getting the value 1/2 wrong.
+  - Subtracting fractions with inconsistent denominators.
+  hints:
+    rephrase: Use the formula Var(X) = E(X^2) - (E(X))^2 and expand the square of -1 + sqrt(1-T) before
+      taking expectations.
+    smaller_case: Expand (-1 + s)^2 for a generic number s and check the cross term carefully.
+    key_idea: 'Expand X^2 into terms that are each easy to take expectations of: a constant, a square-root
+      term, and a polynomial in T.'
+  check: (integrate((-1+sqrt(u))**2,(u,0,1)) - Rational(1,9)) - Rational(1,18)
+  check_ok: true
+- goal: Find the mean and standard deviation of Y, and justify a normal approximation.
+  expected: E(Y) = -800/3, Var(Y) = 800/18 = 400/9, sigma = 20/3, normal approximation by the central
+    limit theorem
+  solution: The X_i are independent and identically distributed, so by the central limit theorem Y is
+    approximately normal. Its mean is 800 times E(X) = 800 * (-1/3) = -800/3. Its variance is 800 times
+    Var(X) = 800/18 = 400/9, so the standard deviation is sigma = sqrt(400/9) = 20/3.
+  common_errors:
+  - Multiplying the standard deviation by 800 instead of the variance.
+  - Forgetting that independent variances add, or taking sqrt(800) times the standard deviation of X.
+  - Giving the mean of a single X rather than the mean of the sum.
+  - Claiming Y is exactly normal instead of approximately normal.
+  hints:
+    rephrase: Y is a sum of 800 independent copies of X. Find its mean and variance using the rules for
+      sums of independent random variables, then take the square root of the variance.
+    smaller_case: Consider a sum of just 2 independent copies of X. How would its mean and variance be
+      related to a single X?
+    key_idea: Means add for any sum, variances add for independent terms, and the central limit theorem
+      justifies treating the sum as normal.
+  check: (800*Rational(-1,3) + Rational(800,3)) + (sqrt(800*Rational(1,18)) - Rational(20,3))
+  check_ok: true
+- goal: Find an approximate value of K with P(Y <= K) = 0.08 using standardisation.
+  expected: K approximately -276
+  solution: 'Standardise: P(Y <= K) = P(Z <= (K - mu)/sigma) with mu = -800/3 and sigma = 20/3. Since
+    0.08 lies in the lower tail, (K - mu)/sigma is about -1.40 (more precisely -1.405). So K = mu - 1.40
+    * sigma = -800/3 - 1.40 * 20/3 = -800/3 - 28/3 = -828/3 = -276. With the more precise z = -1.405 we
+    get K approximately -276.03, so K is about -276 to the nearest integer.'
+  common_errors:
+  - Using a positive z-value of 1.40 for the lower 8% tail.
+  - Adding sigma times z to the mean with the wrong sign.
+  - Forgetting to subtract the mean when inverting the standardisation.
+  - Confusing the 8% quantile with the 92% quantile.
+  hints:
+    rephrase: Standardise Y using its mean and standard deviation, then find the value of the standard
+      normal variable whose lower-tail probability is 0.08.
+    smaller_case: Think about whether the 8% point of a normal distribution is above or below its mean,
+      and check the sign of your z-value against that.
+    key_idea: 'Invert the standardisation: K = mu + z * sigma, where z is the standard normal quantile
+      for probability 0.08.'
+  check: Rational(-800,3) + Rational(20,3)*Rational(-14,10) + 276
+  check_ok: true
+extensions:
+  '3':
+  - 'Show that the smaller root of x^2+2x+T=0 has the same expectation as X but a different distribution:
+    find E of the smaller root.'
+  - Find the probability density function of X and verify your answer to part (a) by integrating it.
+  '4':
+  - Use the continuity correction to refine the estimate of K, and compare with the answer obtained without
+    it.
+  - Find P(Y > -270) approximately, and explain why this differs from P(Y <= -276) by 0.92 in the normal
+    approximation.
+  '5':
+  - Let T have a general distribution with density f on [0,1]. Find E(X) in terms of f and discuss when
+    E(X) = -1/3 holds.
+  - Estimate how many independent repetitions n are needed so that P(Y/n <= -1/3 - 0.01) is at most 0.05,
+    using the normal approximation.
+spoken_vocab:
+- probability
+- random variable T
+- uniformly distributed on the interval zero to one
+- quadratic x squared plus two x plus T equals zero
+- larger root X
+- X greater than minus one third
+- expectation of X
+- variance of X
+- one eighteenth
+- independent repetitions
+- 800 repetitions
+- sum Y
+- central limit theorem
+- normal approximation
+- standard deviation
+- standardise
+- K such that P of Y less than or equal to K equals 0.08
+- minus 800 over 3
+- 20 over 3
+- z-value
+- lower tail
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#22
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 3
+  minutes: 25
+  flags: []
+  tagline: 'Multi-stage: probability, moments, and normal approximation in one flow.'
+  priority: 93
+  rank: 69
+  tier: A
+  category: siklos
+  d10: 4.0
+  real: 3.0
+  by: haiku
+tags:
+- probability

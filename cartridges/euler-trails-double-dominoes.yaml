@@ -1,0 +1,159 @@
+id: euler-trails-double-dominoes
+title: 'Euler trails: double-six domino ring and double-five line'
+topics:
+- graph theory
+- Eulerian trails
+- vertex degree parity
+- connectivity
+- handshake lemma
+warmup: false
+answer_source: pdf
+statement: '(i) Show that if a connected graph has a closed trail using every edge exactly once, then
+  every vertex has even degree.
+
+
+  (ii) Conversely, sketch a proof that if a connected graph has every vertex of even degree, then such
+  a closed trail exists.
+
+
+  (iii) A double-six domino set has $28$ dominoes, one for each unordered pair of numbers from $0$ to
+  $6$ (including doubles). Can all $28$ be laid in a closed ring, with touching ends matching?
+
+
+  (iv) What about a double-five set of $21$ dominoes? Can they be laid in an open line?'
+stages:
+- goal: Prove that a closed trail using every edge exactly once forces every vertex to have even degree.
+  expected: Each internal visit to a vertex uses one edge in and one edge out, contributing 2 to its degree.
+    The start vertex is left by the first edge and entered by the last edge, which also form a pair. Every
+    edge-end is used in exactly one pair, so every degree is even.
+  solution: Write the closed trail as $v_0e_1v_1e_2\dots e_kv_k$ with $v_k=v_0$, each edge used once.
+    Each internal visit $v_i$ ($1\le i\le k-1$) is entered by $e_i$ and left by $e_{i+1}$, giving two
+    edge-ends at $v_i$. The start and finish at $v_0$ give the pair $e_1$ (leaving) and $e_k$ (entering).
+    Since the trail uses every edge exactly once, every edge-end at every vertex belongs to exactly one
+    such pair, so each degree is even. A loop has two edge-ends at its vertex and contributes 2 to the
+    degree, consistent with this count.
+  common_errors:
+  - Forgetting that the start vertex needs its first and last edges paired too
+  - Counting degree per visit of the trail rather than per edge-end
+  - Claiming a loop contributes 1 to the degree
+  hints:
+    rephrase: Think about which two edges meet a vertex each time the trail passes through it.
+    smaller_case: Take a triangle traversed once around. What is the degree of each vertex, and how do
+      its two edges meet it?
+    key_idea: Count the edge-ends at each vertex and group them into pairs by the visits the trail makes.
+- goal: Sketch why every connected graph with all degrees even has a closed trail using all its edges.
+  expected: Start anywhere and walk along unused edges until stuck. Even degrees mean you can only get
+    stuck at the start, giving a closed trail $T$. Take $T$ with the most edges. If some edge is unused,
+    connectedness gives a vertex $v$ on $T$ with an unused edge. The unused edges have all degrees even
+    (by part (i) $T$ contributes even degrees). A walk from $v$ in the unused edges returns to $v$, and
+    splicing it into $T$ gives a longer closed trail, a contradiction.
+  solution: Let $G$ be connected with all degrees even and at least one edge. Walk from any vertex along
+    unused edges. Whenever you enter a vertex other than the start, you have used an odd number of its
+    edges, so one is still unused; hence you can only get stuck at the start. This gives a closed trail
+    $T$. Choose $T$ with as many edges as possible. Suppose some edge is unused. Since $G$ is connected,
+    some vertex $v$ on $T$ is incident with an unused edge. Let $H$ be the graph of unused edges. Every
+    degree in $G$ is even and every degree in $T$ is even, so every degree in $H$ is even. Hence there
+    is a closed trail in $H$ starting and ending at $v$. Splicing it into $T$ at $v$ gives a longer closed
+    trail, a contradiction. So $T$ uses every edge.
+  common_errors:
+  - Asserting a closed trail exists without any argument
+  - Forgetting that splicing needs a shared vertex, which connectedness provides
+  - Forgetting to check that the unused-edge graph still has all degrees even
+  hints:
+    rephrase: Start with the longest closed trail and ask what could still be added to it.
+    smaller_case: Consider two triangles sharing one vertex. Which closed trail would you start with,
+      and what is left over?
+    key_idea: Removing a closed trail leaves all degrees even, and a walk in an even-degree graph can
+      only get stuck where it started.
+- goal: Decide whether the double-six set can be laid in a closed ring.
+  expected: Yes. Model numbers $0,\dots,6$ as vertices and dominoes as edges, with doubles as loops. Each
+    vertex has degree $6+2=8$, which is even, and the graph is connected, so by part (ii) a closed trail
+    through all 28 dominoes exists, which is a ring with matching ends.
+  solution: 'Make each number $0,\dots,6$ a vertex and each domino $\{a,b\}$ an edge. A double $\{a,a\}$
+    is a loop, adding 2 to the degree of $a$. Vertex $a$ meets one ordinary domino with each of the other
+    six numbers, plus its double, so its degree is $6+2=8$. Any two numbers are joined directly by a domino,
+    so the graph is connected. All degrees are even, so by (ii) there is a closed trail using every edge
+    once. Reading the dominoes along it gives a closed ring with matching ends. Check: $7\times 8=56=2\times
+    28$.'
+  common_errors:
+  - Counting a double as contributing 1 to the degree, giving 7 and a wrong conclusion
+  - Checking only that each number appears, not that all 28 dominoes are used once in a single ring
+  - Forgetting to confirm connectedness
+  hints:
+    rephrase: Turn each number into a point and each domino into a line. What does a double look like
+      in this picture?
+    smaller_case: Try only the numbers 0, 1, 2, which give 6 dominoes. Can those 6 form a ring?
+    key_idea: Check the parity of each vertex's degree and connectedness, then apply part (ii).
+  check: 7*(6+2) - 2*28
+  check_ok: true
+- goal: Decide whether the double-five set can be laid in an open line.
+  expected: No. Each of the six numbers $0,\dots,5$ has degree $5+2=7$, which is odd. An open trail using
+    every edge once has exactly two odd-degree vertices, and a closed one has none, so six odd vertices
+    rule out both a line and a ring.
+  solution: 'Each number $a$ lies on 5 ordinary dominoes plus its double, which contributes 2, so its
+    degree is $5+2=7$, odd. All six vertices are odd. In a trail using each edge once, every internal
+    visit pairs two edge-ends, so only the two endpoints can have an unpaired edge-end; hence at most
+    two vertices have odd degree. With six odd vertices, no open line and no ring is possible. Check:
+    the degree sum is $6\times 7=42=2\times 21$.'
+  common_errors:
+  - Thinking odd degrees are fine because a line has two free ends, without counting how many odd vertices
+    there are
+  - Forgetting that the double adds 2 to the degree
+  - Stopping at 'no ring' without ruling out an open line
+  hints:
+    rephrase: Count how many dominoes touch each number, then ask how many free ends an open line can
+      have.
+    smaller_case: 'Try the double-one set (3 dominoes: 0|0, 0|1, 1|1). Count its odd-degree vertices and
+      compare with the double-five case.'
+    key_idea: An open Euler trail needs exactly 2 odd-degree vertices, and a closed one needs 0.
+  check: (5+2)%2 - 1
+  check_ok: true
+extensions:
+  '3':
+  - Show that a double-$n$ set (numbers $0$ to $n$) can be laid in a closed ring if and only if $n$ is
+    even.
+  '4':
+  - For a double-$n$ set, determine exactly when the dominoes can be laid in an open line with distinct
+    free ends. Which $n$ work?
+  '5':
+  - Show that the complete graph $K_m$ has a closed trail using every edge exactly once if and only if
+    $m$ is odd.
+  - For which $m$ can the edges of $K_m$ be covered by a single open trail using each edge once?
+spoken_vocab:
+- Euler trail
+- closed trail
+- open line
+- closed ring
+- degree
+- even
+- odd
+- double six
+- double five
+- domino
+- loop
+- vertex
+- edge
+- connected
+- splice
+- sum of degrees
+- if and only if
+source: jaymin/Jaymin Interview (1).pdf#p65
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 4
+  minutes: 25
+  flags: []
+  tagline: Degree parity decides both the double-six ring and the double-five line, with proof sketches.
+  priority: 110
+  rank: 34
+  tier: S
+  category: jaymin
+  d10: 6.0
+  real: 8.0
+  by: deepseek-v4.1-flash-free
+refined: true
+tags:
+- combinatorics
+- proof

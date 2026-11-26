@@ -1,0 +1,106 @@
+id: sqrt2-plus-sqrt3-minimal-poly
+title: Polynomial with integer coefficients having root sqrt(2)+sqrt(3)
+topics:
+- algebra
+- polynomials
+- irrational numbers
+- field extensions
+warmup: true
+answer_source: pdf
+statement: Find a polynomial with integer coefficients that has $\sqrt{2} + \sqrt{3}$ as a root.
+stages:
+- goal: Let x = sqrt(2)+sqrt(3). Square x to get a rational-plus-radical expression for x^2.
+  expected: x^2 = 5 + 2*sqrt(6)
+  solution: x^2 = (sqrt(2))^2 + 2*sqrt(2)*sqrt(3) + (sqrt(3))^2 = 2 + 2*sqrt(6) + 3 = 5 + 2*sqrt(6).
+  common_errors:
+  - Dropping the cross term and writing x^2 = 5 instead of 5 + 2*sqrt(6).
+  - Writing sqrt(2)*sqrt(3) as sqrt(5) or leaving it as 2*sqrt(2)*sqrt(3) without simplifying.
+  hints:
+    rephrase: Name the number x and write out x squared term by term, including the middle term.
+    smaller_case: Try squaring sqrt(2)+1 first and see what the middle term becomes.
+    key_idea: The cross term from squaring a sum of two radicals is twice the product of the radicals.
+  check: simplify((sqrt(2)+sqrt(3))**2 - (5 + 2*sqrt(6))) == 0
+  check_ok: true
+- goal: Eliminate the remaining radical by isolating sqrt(6) and squaring again, to get a polynomial in
+    x with integer coefficients.
+  expected: x^4 - 10*x^2 + 1 = 0
+  solution: 'From x^2 - 5 = 2*sqrt(6), square both sides: (x^2 - 5)^2 = 4*6 = 24. Expand: x^4 - 10x^2
+    + 25 = 24, so x^4 - 10x^2 + 1 = 0.'
+  common_errors:
+  - Squaring 2*sqrt(6) to get 2*6 = 12 instead of 4*6 = 24.
+  - Expanding (x^2 - 5)^2 with a sign error, giving x^4 + 10x^2 + 1.
+  - Forgetting to subtract 24 from the constant term.
+  hints:
+    rephrase: Move the rational part to one side so the radical is alone, then square both sides.
+    smaller_case: 'Check the method on y = sqrt(2)+1: rearrange y-1 = sqrt(2) and square.'
+    key_idea: Isolating the radical and squaring removes it. Keep track of the constant after expanding.
+  check: simplify((x**4 - 10*x**2 + 1).subs(x, sqrt(2)+sqrt(3))) == 0
+  check_ok: true
+- goal: Justify that x^4 - 10x^2 + 1 is the correct polynomial by checking it against all four conjugate
+    roots.
+  expected: (x - sqrt(2) - sqrt(3))(x - sqrt(2) + sqrt(3))(x + sqrt(2) - sqrt(3))(x + sqrt(2) + sqrt(3))
+    = x^4 - 10x^2 + 1
+  solution: 'Pair the factors: (x - sqrt(2) - sqrt(3))(x - sqrt(2) + sqrt(3)) = (x - sqrt(2))^2 - 3 =
+    x^2 - 2*sqrt(2)*x - 1, and (x + sqrt(2) - sqrt(3))(x + sqrt(2) + sqrt(3)) = x^2 + 2*sqrt(2)*x - 1.
+    Multiply: (x^2 - 1)^2 - 8x^2 = x^4 - 10x^2 + 1.'
+  common_errors:
+  - Listing only the root sqrt(2)+sqrt(3) and forgetting its conjugates, so the degree is not justified.
+  - Mishandling the sign of the sqrt(3) terms when pairing factors.
+  - Computing (x^2-1)^2 - 8x^2 as x^4 - 8x^2 + 1 by missing the -2x^2 from the square.
+  hints:
+    rephrase: A degree-4 polynomial with this root must have four roots. Which numbers are the other three?
+    smaller_case: Pair two conjugate factors that differ only in the sign of sqrt(3) and multiply them.
+    key_idea: Changing the sign of each radical gives the other roots. Pair factors so that the radicals
+      cancel.
+  check: expand((x - sqrt(2) - sqrt(3))*(x - sqrt(2) + sqrt(3))*(x + sqrt(2) - sqrt(3))*(x + sqrt(2) +
+    sqrt(3)) - (x**4 - 10*x**2 + 1)) == 0
+  check_ok: true
+extensions:
+  '3':
+  - Find a polynomial with integer coefficients that has sqrt(2) + cbrt(3) as a root. What degree do you
+    expect and why?
+  '4':
+  - Show that 1/(sqrt(2)+sqrt(3)) = sqrt(3) - sqrt(2) is also a root of x^4 - 10x^2 + 1, and explain why
+    this is not a coincidence.
+  '5':
+  - Prove that x^4 - 10x^2 + 1 is irreducible over the rationals. What does this say about the minimal
+    polynomial of sqrt(2)+sqrt(3)?
+spoken_vocab:
+- square root of two
+- plus
+- square root of three
+- x squared
+- x to the fourth
+- minus ten x squared plus one
+- integer coefficients
+- root
+- polynomial
+- conjugate
+- cross term
+- square root of six
+- cube root of three
+- degree
+- irreducible
+- rationals
+- multiply out
+- expand
+- isolate the radical
+source: nextstepmaths/NextStepMaths Interview Questions/interview-question-23.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 6
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: Repeated squaring to x^4-10x^2+1, then conjugate-root verification and extension.
+  priority: 71
+  rank: 325
+  tier: B
+  category: nextstepmaths
+  d10: 3.0
+  real: 5.0
+  by: haiku
+tags:
+- roots_of_polynomials
+- algebra_and_functions

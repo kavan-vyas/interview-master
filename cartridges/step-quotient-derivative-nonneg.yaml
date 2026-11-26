@@ -1,0 +1,106 @@
+id: step-quotient-derivative-nonneg
+title: 'STEP: f(x)=ax - x^3/(1+x^2), show f'' >= 0 when a >= 9/8'
+topics:
+- calculus
+- differentiation
+- quotient rule
+- inequalities
+- completing the square
+warmup: false
+answer_source: pdf
+statement: Let $f(x) = ax - \frac{x^3}{1 + x^2}$, where $a$ is a constant. Show that, if $a \geq \frac{9}{8}$,
+  then $f'(x) \geq 0$ for all $x$.
+stages:
+- goal: Differentiate f(x) and write f'(x) as a single fraction.
+  expected: $f'(x)=\frac{a+(2a-3)x^2+(a-1)x^4}{(1+x^2)^2}$
+  solution: 'Apply the quotient rule to x^3/(1+x^2): the numerator derivative is 3x^2(1+x^2) - x^3(2x)
+    = 3x^2 + x^4, over (1+x^2)^2. So f''(x) = a - (3x^2+x^4)/(1+x^2)^2 = [a(1+x^2)^2 - 3x^2 - x^4]/(1+x^2)^2.
+    Expanding a(1+x^2)^2 = a + 2ax^2 + ax^4 gives numerator a + (2a-3)x^2 + (a-1)x^4.'
+  common_errors:
+  - Dropping the minus sign that comes from subtracting the fraction.
+  - Differentiating x^3 incorrectly, e.g. writing x^2 instead of 3x^2 in the quotient rule numerator.
+  - Failing to expand a(1+x^2)^2 when combining over the common denominator.
+  hints:
+    rephrase: Split f into the term ax and a fraction, then differentiate the fraction using the quotient
+      rule.
+    smaller_case: Set a=0. What is f'(0) from your expression, and does it make sense?
+    key_idea: Put both terms over the common denominator (1+x^2)^2 and expand carefully.
+  check: simplify(ans - (a + (2*a-3)*x**2 + (a-1)*x**4)/(1+x**2)**2) == 0
+  check_ok: false
+- goal: For a >= 9/8, show the numerator N(x)=a+(2a-3)x^2+(a-1)x^4 is non-negative for all real x.
+  expected: $N(x)=\left(a-\frac{9}{8}\right)(1+x^2)^2+\frac{(x^2-3)^2}{8}$, and both terms are non-negative
+    when $a\geq\frac{9}{8}$.
+  solution: Note N = a(1+x^2)^2 - 3x^2 - x^4. Write this as (a - 9/8)(1+x^2)^2 + [(9/8)(1+x^2)^2 - 3x^2
+    - x^4]. The bracket expands to 9/8 + (9/4 - 3)x^2 + (1/8)x^4 = (1/8)(x^4 - 6x^2 + 9) = (x^2-3)^2/8.
+    Since a >= 9/8, the first term is non-negative, and the square term is non-negative for all x.
+  common_errors:
+  - Only checking the case a = 9/8 and not explaining why larger a is also fine.
+  - Confusing x^2 with x when deciding the sign of the terms.
+  - Claiming (x^2-3)^2 is zero for all x.
+  hints:
+    rephrase: Think about how N changes as a increases, with x fixed, and compare with the value at the
+      boundary a = 9/8.
+    smaller_case: Set x=0. What does N become, and what constraint on a does that give? Then consider
+      x^2 = 3 on its own.
+    key_idea: Compare N with its value at a = 9/8. The leftover part should be a non-negative multiple
+      of (1+x^2)^2 plus a perfect square.
+  check: simplify(ans - ((a - sympy.Rational(9, 8))*(1 + x**2)**2 + (x**2 - 3)**2/8)) == 0
+  check_ok: null
+- goal: Conclude the sign of f'(x) for all real x.
+  expected: Since the denominator (1+x^2)^2 is strictly positive and the numerator is non-negative, f'(x)
+    >= 0 for all real x.
+  solution: f'(x) is a non-negative numerator divided by a strictly positive denominator, so f'(x) >=
+    0 for every real x. Equality holds only where the numerator vanishes, for example x^2 = 3 when a =
+    9/8, which is consistent with f' >= 0 (not > 0 everywhere).
+  common_errors:
+  - Forgetting that the denominator is never zero, so the quotient is always defined.
+  - Claiming f'(x) > 0 strictly for all x, which fails at x = plus or minus sqrt(3) when a = 9/8.
+  hints:
+    rephrase: What can you say about the sign of a quotient when the numerator is non-negative and the
+      denominator is positive?
+    smaller_case: What is the sign of 0 divided by a positive number, and does that matter for the inequality?
+    key_idea: A non-negative number divided by a positive number is non-negative.
+  check: null
+extensions:
+  '3':
+  - 'Show that a >= 9/8 is also necessary: f''(x) >= 0 for all x forces a >= 9/8. Hint direction: find
+    the largest value of (x^4+3x^2)/(1+x^2)^2 over x.'
+  '4':
+  - For a = 9/8, find all x at which f'(x) = 0, and explain why f is still strictly increasing on the
+    real line.
+  '5':
+  - Discuss whether f is strictly increasing for a < 9/8 by considering large x, and identify the exact
+    threshold where the monotonicity argument changes.
+spoken_vocab:
+- f of x equals a x minus x cubed over one plus x squared
+- f prime of x
+- quotient rule
+- x squared
+- x to the fourth
+- a is at least nine eighths
+- nine over eight
+- completing the square
+- numerator
+- denominator
+- t equals x squared
+- perfect square
+- strictly increasing
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#2
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 1
+  minutes: 10
+  flags: []
+  tagline: Discriminant 9-8a explains exactly why the 9/8 threshold appears.
+  priority: 81
+  rank: 215
+  tier: B
+  category: siklos
+  d10: 6.0
+  real: 5.5
+  by: haiku
+tags:
+- differentiation
+- inequalities

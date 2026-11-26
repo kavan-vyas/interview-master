@@ -1,0 +1,98 @@
+id: n2-n2-1-n2-4-divisible-by-360
+title: n^2(n^2-1)(n^2-4) is divisible by 360
+topics:
+- number theory
+- divisibility
+- modular arithmetic
+- consecutive integers
+warmup: false
+answer_source: generated
+statement: Prove that $n^2(n^2-1)(n^2-4)$ is divisible by 360 whenever $n$ is a natural number.
+stages:
+- goal: Rewrite the expression as n times a product of five consecutive integers.
+  expected: n^2(n^2-1)(n^2-4) = n(n-2)(n-1)n(n+1)(n+2) = n * P, where P = (n-2)(n-1)n(n+1)(n+2).
+  solution: Since (n^2-1)(n^2-4) = (n-1)(n+1)(n-2)(n+2), the expression is n^2 * (n-2)(n-1)(n+1)(n+2)
+    = n * [(n-2)(n-1)n(n+1)(n+2)].
+  common_errors:
+  - Dropping one factor of n
+  - Factoring n^2-4 incorrectly
+  hints:
+    rephrase: Factor n^2-1 and n^2-4 completely.
+    smaller_case: Factor the expression for n=3 and check that it matches.
+    key_idea: Five consecutive integers appear once you factor n^2-1 and n^2-4 and keep one copy of n.
+  check: n**2*(n**2-1)*(n**2-4) - n*(n-2)*(n-1)*n*(n+1)*(n+2)
+  check_ok: true
+- goal: Show that P is divisible by 8 and by 5.
+  expected: The product of any five consecutive integers is divisible by 5! = 120, so 8 and 5 both divide
+    P.
+  solution: Five consecutive integers contain a multiple of 5, so 5 divides P. Among five consecutive
+    integers, the product is a multiple of 5! = 120, because P = 120 * C(n+2, 5). Hence 8 divides P, and
+    5 divides P.
+  common_errors:
+  - Only checking divisibility by 2 and not by 8
+  - Claiming divisibility by 5 without listing a multiple of 5 in the five integers
+  hints:
+    rephrase: Among five consecutive integers, which ones are multiples of 2, 4, and 5?
+    smaller_case: Check the product of five consecutive integers starting at 1 and at 2.
+    key_idea: The product of k consecutive integers is always divisible by k factorial.
+  check: all(((k-2)*(k-1)*k*(k+1)*(k+2))%120==0 for k in range(2,300))
+  check_ok: null
+- goal: Show that n*P is divisible by 9, then combine the three prime-power factors.
+  expected: 9 divides n^2(n^2-1)(n^2-4). If 3 divides n, then n and P each contribute a factor 3. If n
+    is congruent to 1 mod 3, then n-1 and n+2 are both multiples of 3; if n is congruent to 2 mod 3, then
+    n+1 and n-2 are. Either way, 9 divides the expression. Since 8, 9 and 5 are pairwise coprime, 360
+    divides the expression.
+  solution: 'Case 1: 3 divides n. Then 3 divides n and 3 divides P (since P is a product of 5 consecutive
+    integers), so 9 divides nP. Case 2: n is congruent to 1 mod 3. Then n-1 and n+2 are both multiples
+    of 3, so 9 divides P. Case 3: n is congruent to 2 mod 3. Then n+1 and n-2 are both multiples of 3,
+    so 9 divides P. In every case 9 divides the expression. Combined with 8 and 5 from the previous stage,
+    and since 8, 9, 5 are pairwise coprime with product 360, 360 divides n^2(n^2-1)(n^2-4).'
+  common_errors:
+  - Checking only the case 3 divides n and forgetting the cases n congruent to 1 or 2 mod 3
+  - Assuming one multiple of 3 is enough for 9 when n is not divisible by 3
+  - Forgetting to combine the three prime-power factors
+  hints:
+    rephrase: Split into cases according to the remainder of n when divided by 3.
+    smaller_case: Take n=4 and find which two factors are multiples of 3.
+    key_idea: Two multiples of 3 that differ by 3 always multiply to a multiple of 9, and the expression's
+      factors give such a pair in each case.
+  check: all((k**2*(k**2-1)*(k**2-4))%360==0 for k in range(0,300))
+  check_ok: null
+extensions:
+  '3':
+  - Show that 360 is the greatest common divisor of the values of n^2(n^2-1)(n^2-4) over all natural numbers
+    n >= 3.
+  '4':
+  - Prove that any product of k consecutive integers is divisible by k factorial.
+  '5':
+  - Prove that n^5 - n is divisible by 30 for every integer n.
+spoken_vocab:
+- n squared times n squared minus one times n squared minus four
+- divisible by 360
+- natural number
+- five consecutive integers
+- factorial
+- modulo three
+- coprime
+- divisible by eight
+- divisible by nine
+- divisible by five
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 6
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Prime-power splitting of consecutive integers; good modular case-work practice.
+  priority: 71
+  rank: 338
+  tier: B
+  category: tbo
+  d10: 4.0
+  real: 5.0
+  by: haiku
+tags:
+- number_theory
+- proof

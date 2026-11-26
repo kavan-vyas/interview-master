@@ -1,0 +1,65 @@
+[
+ {
+  "q": "Prove that $n^5 - n$ is divisible by $30$ for every integer $n$.",
+  "kind": "maths",
+  "answer": "Factorise $n^5-n=(n-1)n(n+1)(n^2+1)$. Since $30=2\\cdot3\\cdot5$ with coprime factors, show $2$, $3$ and $5$ each divide it. Three consecutive integers $(n-1)n(n+1)$ contain a multiple of $2$ and of $3$. Modulo $5$, if $n\\equiv 0,1,4$ then one of $n-1,n,n+1$ is divisible by $5$; if $n\\equiv 2,3$ then $n^2+1\\equiv 0 \\pmod 5$.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p1"
+ },
+ {
+  "q": "Find all integer solutions of $x^2+y^2=3z^2$.",
+  "kind": "maths",
+  "answer": "The only solution is $x=y=z=0$. Squares are $0$ or $1$ mod $3$, so $3\\mid x$ and $3\\mid y$, then $9\\mid 3z^2$ gives $3\\mid z$. Dividing by $3$ gives a smaller solution, so infinite descent forces $x=y=z=0$.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p1"
+ },
+ {
+  "q": "Find the last two digits of $7^{2026}$.",
+  "kind": "maths",
+  "answer": "$49$. Since $7^2=49$ and $7^4=2401\\equiv 1 \\pmod{100}$, and $2026=4\\cdot506+2$, we get $7^{2026}\\equiv 7^2=49 \\pmod{100}$.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p1"
+ },
+ {
+  "q": "Prove that $\\sqrt{2}+\\sqrt{3}$ is irrational.",
+  "kind": "maths",
+  "answer": "Suppose $r=\\sqrt2+\\sqrt3$ is rational. Then $r^2=5+2\\sqrt6$ is rational, so $\\sqrt6=\\frac{r^2-5}{2}$ is rational. But $\\sqrt6=p/q$ in lowest terms leads to $p^2=6q^2$, so $p=2m$, then $2m^2=3q^2$, so $q$ is even too. This contradicts lowest terms.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p1"
+ },
+ {
+  "q": "Given any $n$ integers $a_1,a_2,\\ldots,a_n$ (not necessarily distinct), prove that some non-empty collection of them has a sum divisible by $n$.",
+  "kind": "maths",
+  "answer": "Let $S_k=a_1+\\cdots+a_k$ for $k=1,\\ldots,n$. If some $S_k\\equiv 0 \\pmod n$, done. Otherwise the $n$ values $S_k$ lie in the $n-1$ non-zero residue classes, so by pigeonhole $S_i\\equiv S_j$ for some $i<j$. Then $a_{i+1}+\\cdots+a_j=S_j-S_i\\equiv 0 \\pmod n$. The block found is consecutive.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p1"
+ },
+ {
+  "q": "Find all integers $n$ such that $n+1$ divides $n^2+7$.",
+  "kind": "maths",
+  "answer": "Since $n^2+7=(n+1)(n-1)+8$, we need $n+1\\mid 8$. The divisors of $8$ are $\\pm1,\\pm2,\\pm4,\\pm8$, giving $n\\in\\{-9,-5,-3,-2,0,1,3,7\\}$.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p1"
+ },
+ {
+  "q": "How many zeros are there at the end of $100!$?",
+  "kind": "maths",
+  "answer": "$24$. Zeros come from pairs of factors $2$ and $5$, and $5$ is the scarcer prime. There are $\\lfloor 100/5\\rfloor=20$ multiples of $5$ and $\\lfloor 100/25\\rfloor=4$ multiples of $25$, giving $20+4=24$.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p1"
+ },
+ {
+  "q": "Prove that if $2^n-1$ is prime then $n$ is prime. Is the converse true?",
+  "kind": "maths",
+  "answer": "Contrapositive: if $n=ab$ with $1<a,b<n$, then using $x^b-1=(x-1)(x^{b-1}+\\cdots+x+1)$ with $x=2^a$, $2^n-1=(2^a-1)(\\cdots)$ with $1<2^a-1<2^n-1$, so $2^n-1$ is composite. The converse is false: $11$ is prime but $2^{11}-1=2047=23\\times89$.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p1"
+ },
+ {
+  "q": "Find all primes $p$ such that $p^2+2$ is also prime.",
+  "kind": "maths",
+  "answer": "Only $p=3$, giving $11$. For $p\\neq 3$, $3\\nmid p$ so $p^2\\equiv 1 \\pmod 3$ and $p^2+2\\equiv 0 \\pmod 3$. Since $p^2+2>3$, it is not prime.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p1"
+ }
+]

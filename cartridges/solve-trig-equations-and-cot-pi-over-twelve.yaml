@@ -1,0 +1,116 @@
+id: solve-trig-equations-and-cot-pi-over-twelve
+title: Solving trig equations and finding cot(pi/12)
+topics:
+- trigonometric equations
+- sum-to-product
+- double angle formulae
+- surds
+- cotangent
+warmup: false
+answer_source: generated
+statement: '(i) Solve the following equations: (a) $\sin\left(x+\frac{\pi}{6}\right)+\sin\left(x-\frac{\pi}{6}\right)=\frac{\sqrt3}{2}$;
+  (b) $\cos x+\cos 2x+\cos 3x=0$. (ii) Write down the value of $\cot(\pi/6)$ and use a double angle formula
+  to show that $\cot(\pi/12)$ satisfies $c^2-2\sqrt3\,c-1=0$. Deduce that $\cot(\pi/12)=2+\sqrt3$.'
+stages:
+- goal: Solve sin(x + pi/6) + sin(x - pi/6) = sqrt(3)/2.
+  expected: x = pi/6 + 2n pi or x = 5pi/6 + 2n pi, for integer n.
+  solution: Using the sum formula, sin(x + pi/6) + sin(x - pi/6) = 2 sin x cos(pi/6) = sqrt(3) sin x.
+    So sqrt(3) sin x = sqrt(3)/2, giving sin x = 1/2. The solutions are x = pi/6 + 2n pi and x = 5pi/6
+    + 2n pi.
+  common_errors:
+  - Giving only the principal solution x = pi/6 without the 2 n pi periodicity
+  - Missing the second solution 5pi/6 from the symmetric branch of sine
+  - Expanding incorrectly and getting cos(pi/6) = 1/2
+  hints:
+    rephrase: Combine the two sines using a sum-to-product or addition formula. What single trig function
+      of x remains?
+    smaller_case: Expand sin(x + pi/6) and sin(x - pi/6) separately, then add them and see what cancels.
+    key_idea: 'Use the addition formulae: the cos(pi/6) terms double and the sin(pi/6) terms cancel.'
+  check: expand_trig(sin(x+pi/6)+sin(x-pi/6)) - sqrt(3)*sin(x)
+  check_ok: true
+- goal: Solve cos x + cos 2x + cos 3x = 0.
+  expected: x = pi/4 + k pi/2 (k integer), or x = 2pi/3 + 2n pi, or x = -2pi/3 + 2n pi (n integer).
+  solution: Use cos x + cos 3x = 2 cos 2x cos x. Then the equation becomes cos 2x (2 cos x + 1) = 0. Either
+    cos 2x = 0, giving 2x = pi/2 + m pi and so x = pi/4 + m pi/2, or cos x = -1/2, giving x = +/- 2pi/3
+    + 2n pi.
+  common_errors:
+  - Giving only one family of solutions, e.g. just x = pi/4
+  - Solving cos 2x = 0 as 2x = pi/4 instead of 2x = pi/2 + m pi
+  - Missing the negative solution -2pi/3 when solving cos x = -1/2
+  hints:
+    rephrase: Can you pair two of the three cosine terms into a product?
+    smaller_case: Look only at cos x + cos 3x. What does sum-to-product give you?
+    key_idea: Use cos x + cos 3x = 2 cos 2x cos x and factorise the equation.
+  check: expand_trig(cos(x)+cos(2*x)+cos(3*x)) - (2*cos(x)+1)*cos(2*x)
+  check_ok: true
+- goal: Write down cot(pi/6) and use a double angle formula to show that c = cot(pi/12) satisfies c^2
+    - 2 sqrt(3) c - 1 = 0.
+  expected: cot(pi/6) = sqrt(3), and c^2 - 2 sqrt(3) c - 1 = 0.
+  solution: cot(pi/6) = sqrt(3). With theta = pi/12, the double angle formula gives cot(2 theta) = (cot^2
+    theta - 1)/(2 cot theta). Since 2 theta = pi/6, (c^2 - 1)/(2c) = sqrt(3), so c^2 - 1 = 2 sqrt(3) c
+    and c^2 - 2 sqrt(3) c - 1 = 0.
+  common_errors:
+  - Using tan(2 theta) = 2 tan theta/(1 + tan^2 theta) but then forgetting to take the reciprocal
+  - Writing cot(2 theta) = 2 cot theta
+  - Sign error giving c^2 + 2 sqrt(3) c - 1 = 0
+  hints:
+    rephrase: Which double angle relates pi/12 to a known angle, and how is cot of a double angle written
+      in terms of cot of the single angle?
+    smaller_case: Use your cot double angle formula with theta = pi/4. Does it give cot(pi/2) = 0 when
+      you substitute cot(pi/4) = 1?
+    key_idea: Express cot(2 theta) in terms of cot theta using cot = cos/sin, then equate it to cot(pi/6).
+  check: cot(pi/6) - sqrt(3)
+  check_ok: true
+- goal: Deduce the value of cot(pi/12).
+  expected: cot(pi/12) = 2 + sqrt(3).
+  solution: The roots of c^2 - 2 sqrt(3) c - 1 = 0 are c = (2 sqrt(3) +/- sqrt(12 + 4))/2 = sqrt(3) +/-
+    2. Since pi/12 lies in (0, pi/2), cot(pi/12) is positive, and sqrt(3) - 2 is negative, so c = 2 +
+    sqrt(3).
+  common_errors:
+  - Keeping both roots without using the sign of cot on (0, pi/2)
+  - Making an error in the discriminant (for example writing 12 - 4 instead of 12 + 4)
+  - Failing to simplify (2 sqrt(3) +/- 4)/2 to sqrt(3) +/- 2
+  hints:
+    rephrase: Given a quadratic with two roots, what sign must cot(pi/12) have, and which root does that
+      choose?
+    smaller_case: Solve x^2 - 2x - 1 = 0 by completing the square, then check the root signs.
+    key_idea: Use the quadratic formula and the sign of cot on the interval (0, pi/2) to choose the correct
+      root.
+  check: cot(pi/12) - (2+sqrt(3))
+  check_ok: true
+extensions:
+  '3':
+  - Solve sin x + sin 2x + sin 3x = 0 for real x, using a sum-to-product step similar to part (i)(b).
+  '4':
+  - Show that tan(pi/12) = 2 - sqrt(3) without a calculator, using the value of cot(pi/12).
+  '5':
+  - Use the same double angle argument to find cot(pi/24) in the form 2 + sqrt(3) + sqrt(8 + 4 sqrt(3)).
+spoken_vocab:
+- solve sine x plus pi over six
+- cosine x plus cosine two x plus cosine three x equals zero
+- cotangent pi over six
+- cotangent pi over twelve
+- double angle formula
+- root three
+- two plus root three
+- quadratic
+- discriminant
+- sum-to-product
+source: step-workbook/Cambridge STEP Short Workbook.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 4
+  minutes: 15
+  flags: []
+  tagline: Sum-to-product, factorising cos sums, and a cot double-angle deduction.
+  priority: 82
+  rank: 190
+  tier: B
+  category: step-workbook
+  d10: 4.0
+  real: 4.0
+  by: haiku
+tags:
+- trigonometry

@@ -1,0 +1,100 @@
+[
+ {
+  "q": "Suppose there's an invisible rabbit which is moving along a train track from an unknown initial position, and it jumps by an unknown amount every second. Every second, before it jumps, you can pick a point on the train track to try and catch the rabbit. Prove that you can catch it in a finite time. (This question is way harder than the others, so probably try every other question first.)",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.37.58.png"
+ },
+ {
+  "q": "Suppose we have a 6-sided die and roll it 6 times. What is the probability that the rolls are strictly increasing?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.37.58.png"
+ },
+ {
+  "q": "Consider a polynomial with integer coefficients. Is it always prime for every positive integer input?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.37.58.png"
+ },
+ {
+  "q": "Evaluate the limit of $\\frac{n+n^2+\\cdots+n^n}{1^n+2^n+\\cdots+n^n}$ as $n$ goes to infinity.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.37.58.png"
+ },
+ {
+  "q": "Sketch $x^y=y^x$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.37.58.png"
+ },
+ {
+  "q": "Sketch $y=\\ln(\\sin x)$ for $0<x<\\pi$ and $y=\\ln(\\cos x)$ for $0<x<\\frac{\\pi}{2}$. Evaluate the integral of $\\ln(\\sin x)$ from $0$ to $\\frac{\\pi}{2}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.37.58.png"
+ },
+ {
+  "q": "Take 5 points in an equilateral triangle of side length 1. Prove that there are two of them at a distance of no greater than 0.5.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.37.58.png"
+ },
+ {
+  "q": "Consider a square of side length 2. If we have 9 points inside it, do three of the points necessarily form a triangle of area less than $\\frac{1}{2}$?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.37.58.png"
+ },
+ {
+  "q": "A grid of size $2\\times n$ is covered with $2\\times 1$ dominoes. How many ways are there to do this? What about a grid of size $3\\times n$ and $3\\times 1$ dominoes?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.37.58.png"
+ },
+ {
+  "q": "Given 5 points on a sphere, can we split the sphere in two so that 4 points lie on one of the hemispheres?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.37.58.png"
+ },
+ {
+  "q": "Solve the equation $\\frac{1}{x}+\\frac{1}{y}+\\frac{1}{z}=1$ for positive integers $x,y,z$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.37.58.png"
+ },
+ {
+  "q": "We roll a 6-sided die $n$ times. What's the probability that all faces have appeared?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.37.58.png"
+ },
+ {
+  "q": "There are $n$ ants on a rope of length 10m. They all move at a speed of 10 m/s. If two ants bump into each other on the rope, they instantly reverse their direction and move at the same speed. The ants can be facing in any direction. If an ant gets to the end of the rope, then it falls off. Prove that they all fall off eventually. Can you give an upper bound on the amount of time until all the ants fall off the rope?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.37.58.png"
+ },
+ {
+  "q": "There are 50 ants on a 10m line. The 25 left-most ants are moving right, and the 25 right-most ants are moving left. When 2 ants collide, they will both reverse direction. How many collisions will there have been in total once all ants have fallen off the end of the line?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "screenshots/Screenshot 2026-11-19 at 14.37.58.png"
+ }
+]

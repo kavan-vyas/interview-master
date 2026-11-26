@@ -1,0 +1,30 @@
+[
+ {
+  "q": "Use the first four terms of the binomial expansion of $(1 - \\frac{1}{50})^{\\frac{1}{2}}$ to derive the approximation $\\sqrt{2} \\approx 1.414214$. Calculate similarly an approximation to the cube root of 2 to six decimal places by considering $(1 + \\frac{N}{125})^{\\frac{1}{3}}$, where $N$ is a suitable number. [You need not justify the accuracy of your approximations.]",
+  "kind": "maths",
+  "answer": "$(1-\\frac{1}{50})^{1/2} \\approx 1 - \\frac{1}{100} - \\frac{0.5}{10^4} - \\frac{0.5}{10^6} = 0.9899495$, and since $(\\frac{98}{100})^{1/2} = \\frac{7\\sqrt{2}}{10}$, we get $\\sqrt{2} \\approx 9.899495/7 \\approx 1.414214$. For the cube root, take $N=3$: $(1+\\frac{3}{125})^{1/3} \\approx 1.007937$, and since $(\\frac{128}{125})^{1/3} = \\frac{8\\sqrt[3]{2}}{10}$, we get $\\sqrt[3]{2} \\approx 10.07937/8 \\approx 1.259921$.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#6"
+ },
+ {
+  "q": "How many integers greater than or equal to zero and less than 1000 are not divisible by 2 or 5? What is the average value of these integers? How many integers greater than or equal to zero and less than 9261 are not divisible by 3 or 7? What is the average value of these integers?",
+  "kind": "maths",
+  "answer": "First part: 400 integers, with average 500 (pairing or symmetry). Second part: 5292 integers, with average $9261/2$ (pairing or symmetry), using blocks of 21 in which 12 integers are not divisible by 3 or 7.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#6"
+ },
+ {
+  "q": "How many integers greater than or equal to zero and less than $(pq)^3$ are not divisible by $p$ or $q$? What is the average value of these integers?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#6"
+ },
+ {
+  "q": "Sketch the following subsets of the $x$-$y$ plane: (i) $|x| + |y| \\leqslant 1$; (ii) $|x - 1| + |y - 1| \\leqslant 1$; (iii) $|x - 1| - |y + 1| \\leqslant 1$; (iv) $|x|\\,|y - 2| \\leqslant 1$.",
+  "kind": "maths",
+  "answer": "Part (i): in the first quadrant the region is $x + y \\leqslant 1$, i.e. the region below the line $x+y=1$. The other quadrants follow by symmetry, since the inequality is unchanged when $x$ is replaced by $-x$ or $y$ by $-y$. Parts (ii) to (iv) are obtained by translating the origin as appropriate.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#6"
+ }
+]

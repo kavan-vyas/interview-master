@@ -1,0 +1,116 @@
+id: quadratic-in-beta-squared-impact-distance
+title: Impact points and chord distance via Vieta
+topics:
+- quadratic equations
+- Vieta's formulas
+- trigonometry
+warmup: false
+answer_source: pdf
+statement: Question 51 [stem truncated in source; a quadratic in $\beta^2$ ends with $\ldots + 4R^2\omega^4
+  = 0$]. Deduce that there are exactly two possible values of $\beta$. Let $\beta_1$ and $\beta_2$ be
+  the possible values of $\beta$ and let $P_1$ and $P_2$ be the corresponding points of impact. By considering
+  $\beta_1^2+\beta_2^2$ and $\beta_1^2\beta_2^2$, or otherwise, show that the linear distance between
+  $P_1$ and $P_2$ is $2R\sin\left(\frac{\omega}{g}\sqrt{V^2-Rg}\right)$.
+stages:
+- goal: Solve the quadratic in $\beta^2$ and show it gives exactly two positive values of $\beta$. The
+    reconstructed quadratic is $g^2\beta^4-4\omega^2V^2\beta^2+4R^2\omega^4=0$, consistent with the source
+    roots.
+  expected: $\beta^2=\dfrac{2\omega^2\left(V^2\pm\sqrt{V^4-g^2R^2}\right)}{g^2}$. Both are positive because
+    $V^2>gR$, so taking $\beta>0$ gives exactly two values.
+  solution: 'Put $X=\beta^2$: $g^2X^2-4\omega^2V^2X+4R^2\omega^4=0$. The discriminant is $16\omega^4(V^4-g^2R^2)>0$
+    because $V^2>gR$ gives $V^4>g^2R^2$. Hence $X=\dfrac{2\omega^2(V^2\pm\sqrt{V^4-g^2R^2})}{g^2}$. Since
+    $\sqrt{V^4-g^2R^2}<V^2$, both values of $X$ are positive, so each gives $\beta=\sqrt{X}$ as one positive
+    value.'
+  common_errors:
+  - Treating the quartic in $\beta$ as having only two roots and forgetting the substitution $X=\beta^2$
+  - Dropping the $\pm$ when applying the quadratic formula
+  - Not checking that both values of $X$ are positive
+  hints:
+    rephrase: The equation is quadratic in $\beta^2$. Replace $\beta^2$ by a single letter and solve.
+    smaller_case: Try numbers, for example $g=1$, $R=1$, $\omega=1$, $V=2$, and count the positive values
+      of $\beta$.
+    key_idea: Use the discriminant to confirm two real roots, then check the sign of each root.
+  check: (g**2*X**2 - 4*omega**2*V**2*X + 4*R**2*omega**4).subs(X, 2*omega**2*(V**2+sqrt(V**4-g**2*R**2))/g**2)
+  check_ok: true
+- goal: Use Vieta's formulas to find $\beta_1^2+\beta_2^2$ and $\beta_1^2\beta_2^2$.
+  expected: $\beta_1^2+\beta_2^2=\dfrac{4\omega^2V^2}{g^2}$ and $\beta_1^2\beta_2^2=\dfrac{4R^2\omega^4}{g^2}$.
+  solution: For $g^2X^2-4\omega^2V^2X+4R^2\omega^4=0$ the sum of roots is $4\omega^2V^2/g^2$ and the product
+    is $4R^2\omega^4/g^2$. These are the sum and product of the two values of $\beta^2$ found in stage
+    1.
+  common_errors:
+  - Getting the sign of the sum wrong
+  - Writing the product as $4R\omega^4/g^2$, missing the square on $R$
+  - Forgetting the division by $g^2$
+  hints:
+    rephrase: For $aX^2+bX+c=0$, the sum of roots is $-b/a$ and the product is $c/a$.
+    smaller_case: Check the rule on $X^2-5X+6=0$, whose roots are 2 and 3.
+    key_idea: Read the sum and product from the coefficients without solving for each root.
+  check: (2*omega**2*(V**2+sqrt(V**4-g**2*R**2))/g**2 + 2*omega**2*(V**2-sqrt(V**4-g**2*R**2))/g**2 -
+    4*omega**2*V**2/g**2) + (2*omega**2*(V**2+sqrt(V**4-g**2*R**2))/g**2)*(2*omega**2*(V**2-sqrt(V**4-g**2*R**2))/g**2)
+    - 4*R**2*omega**4/g**2
+  check_ok: true
+- goal: Show that $(\beta_2-\beta_1)^2=\beta_1^2+\beta_2^2-2\beta_1\beta_2$ gives the distance $2R\sin\left(\frac{\omega}{g}\sqrt{V^2-Rg}\right)$.
+  expected: $(\beta_2-\beta_1)^2=\dfrac{4\omega^2(V^2-Rg)}{g^2}$, so $\tfrac12(\beta_2-\beta_1)=\dfrac{\omega}{g}\sqrt{V^2-Rg}$,
+    and the distance is $2R\sin\left(\frac{\omega}{g}\sqrt{V^2-Rg}\right)$.
+  solution: In the source geometry the points $P_1$ and $P_2$ subtend angle $\beta_2-\beta_1$ at the centre
+    of a circle of radius $R$, so the chord is $2R\sin\tfrac12(\beta_2-\beta_1)$. Since $\beta_1,\beta_2>0$,
+    $\beta_1\beta_2=\sqrt{\beta_1^2\beta_2^2}=\dfrac{2R\omega^2}{g}$. Then $(\beta_2-\beta_1)^2=\dfrac{4\omega^2V^2}{g^2}-\dfrac{4R\omega^2}{g}=\dfrac{4\omega^2(V^2-Rg)}{g^2}$.
+    Taking the positive root and halving gives the result.
+  common_errors:
+  - Using $\sqrt{\beta_1^2+\beta_2^2}$ instead of $\sqrt{\beta_1^2\beta_2^2}$ for the product
+  - Forgetting the factor 2 in $-2\beta_1\beta_2$
+  - Using $\sin(\beta_2-\beta_1)$ rather than $\sin\tfrac12(\beta_2-\beta_1)$
+  hints:
+    rephrase: The chord is $2R\sin$ of half the angle between the two impact points, and that half-angle
+      is $\tfrac12(\beta_2-\beta_1)$.
+    smaller_case: Expand $(y-x)^2$ with $x=1$, $y=3$ and compare with $x^2+y^2-2xy$.
+    key_idea: Express $(\beta_2-\beta_1)^2$ using the sum from stage 2 and $\beta_1\beta_2$ as the square
+      root of the product.
+  check: (sqrt(2*omega**2*(V**2+sqrt(V**4-g**2*R**2))/g**2) - sqrt(2*omega**2*(V**2-sqrt(V**4-g**2*R**2))/g**2))**2
+    - 4*omega**2*(V**2-R*g)/g**2
+  check_ok: false
+extensions:
+  '3':
+  - Show that $P_1$ and $P_2$ are distinct exactly when $V^2>Rg$.
+  '4':
+  - Explain why the distance tends to zero as $V^2\to Rg^{+}$, and interpret this physically.
+  '5':
+  - Find $V$ in terms of $R$, $g$ and $\omega$ for which $P_1$ and $P_2$ are diametrically opposite.
+spoken_vocab:
+- beta one
+- beta two
+- omega
+- V
+- R
+- g
+- P one
+- P two
+- linear distance
+- two R sine
+- omega over g
+- square root of V squared minus R g
+- Vieta
+- discriminant
+- sum of roots
+- product of roots
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#18
+verified: false
+rating:
+  quality: 4
+  difficulty: 7
+  parts: 3
+  minutes: 15
+  flags:
+  - garbled
+  - missing_info
+  tagline: Vieta-driven distance derivation, but the stem is truncated and must be reconstructed.
+  priority: 35
+  rank: 598
+  tier: D
+  category: siklos
+  d10: 6.0
+  real: 2.0
+  by: haiku
+tags:
+- trigonometry
+- roots_of_polynomials

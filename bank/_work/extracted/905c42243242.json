@@ -1,0 +1,9 @@
+[
+ {
+  "q": "On what day of the week did 3 April 1905 fall, given that 26 June 1992 was a Friday?",
+  "kind": "maths",
+  "answer": "Monday. Each common year shifts the weekday by 1 and each leap year by 2. Between 1905 and 1992 there are 65 years and 22 leap years, giving 2(22)+65 = 109 = 7\u00d715+4 total shifts. Counting back from Friday 26 June 1992 gives Monday 26 June 1905. From 3 April to 26 June 1905 is 84 = 7\u00d712 days, so 3 April 1905 was also a Monday. Alternative check: there are 31,861 days from 3 April 1905 to 26 June 1992, which leaves remainder 4 mod 7, so going back 4 days from Friday gives Monday.",
+  "short": true,
+  "source": "step1/Approachable STEP I paper.pdf#0"
+ }
+]

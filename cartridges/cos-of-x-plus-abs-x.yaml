@@ -1,0 +1,80 @@
+id: cos-of-x-plus-abs-x
+title: Sketch cos of x plus absolute value of x
+topics:
+- absolute value
+- piecewise functions
+- trigonometric graphs
+- periodicity
+warmup: true
+answer_source: generated
+statement: Sketch $y=\cos(x+|x|)$ for $-2\pi<x<2\pi$.
+stages:
+- goal: Simplify $x+|x|$ on each side of $0$ and write $y$ as a piecewise function.
+  expected: For $x<0$, $y=1$. For $x\ge0$, $y=\cos(2x)$.
+  solution: For $x<0$, $|x|=-x$, so $x+|x|=0$ and $y=\cos0=1$. For $x\ge0$, $|x|=x$, so $x+|x|=2x$ and
+    $y=\cos2x$.
+  common_errors:
+  - Writing cos(2x) for all x
+  - Assuming x+|x| is always 0 or always 2x
+  - Forgetting to check the boundary point x=0
+  hints:
+    rephrase: What does $|x|$ equal when $x$ is positive, and what does it equal when $x$ is negative?
+    smaller_case: Compute $x+|x|$ for $x=1$ and for $x=-1$ separately.
+    key_idea: Split the domain at the point where the absolute value changes its formula.
+  check: cos(-2+Abs(-2)) - 1 + cos(1+Abs(1)) - cos(2)
+  check_ok: true
+- goal: Sketch the graph on $-2\pi<x<2\pi$. Give the key points on the right-hand part and the period
+    there.
+  expected: A horizontal segment at $y=1$ for $-2\pi<x<0$. On $[0,2\pi)$ the curve starts at $(0,1)$,
+    reaches minimum $-1$ at $x=\pi/2$, returns to $1$ at $x=\pi$, reaches $-1$ at $x=3\pi/2$, and comes
+    back to $1$ at $x=2\pi$, which is an open endpoint. The period on this part is $\pi$.
+  solution: On $[0,2\pi)$, $y=\cos2x$ has period $\pi$, maxima $1$ at $x=0,\pi$, and minima $-1$ at $x=\pi/2,3\pi/2$.
+    The two pieces meet at $(0,1)$, so the curve is continuous there.
+  common_errors:
+  - Drawing the right part with period 2π
+  - Putting the minima at x=π/4 instead of π/2
+  - Including x=2π as a closed endpoint
+  hints:
+    rephrase: Where does the cosine of twice x take its largest and smallest values?
+    smaller_case: Find the value of $\cos(2\cdot\pi/2)$ and compare it with the minimum you expect.
+    key_idea: Multiplying the input by 2 halves the period of the cosine.
+  check: cos(2*(pi/2)) + 1
+  check_ok: true
+extensions:
+  '3':
+  - Sketch $y=\cos(x+|x|)$ on $-4\pi<x<4\pi$ and say whether the whole graph is periodic.
+  '4':
+  - Sketch $y=\cos(x-|x|)$ and compare it with $y=\cos(x+|x|)$.
+  '5':
+  - Find all $x$ in $(-2\pi,2\pi)$ with $\cos(x+|x|)=\tfrac12$.
+spoken_vocab:
+- cosine of x plus absolute value of x
+- absolute value
+- piecewise
+- pi
+- period
+- maximum
+- minimum
+- open endpoint
+- continuous
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 2
+  minutes: 6
+  flags:
+  - needs_diagram
+  tagline: Simplifying x+|x| turns the sketch into a piecewise task, but the content is shallow.
+  priority: 37
+  rank: 588
+  tier: D
+  category: tbo
+  d10: 3.0
+  real: 5.0
+  by: deepseek-v4.1-flash-free
+tags:
+- curve_sketching
+- trigonometry
+- algebra_and_functions

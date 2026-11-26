@@ -1,0 +1,9 @@
+[
+ {
+  "q": "How many trailing zeros does $365!$ have? (Trailing zeros are the sequence of 0's of a number after which no other digits follow. For example, $14000$ has 3 trailing zeros.)",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "nextstepmaths/NextStepMaths Interview Questions/interview-question-5.pdf#0"
+ }
+]

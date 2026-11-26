@@ -1,0 +1,95 @@
+id: chameleons-three-colours-mod-3
+title: 'Chameleons: can all become one colour?'
+topics:
+- invariants
+- modular arithmetic
+- proof
+- combinatorics
+warmup: false
+answer_source: pdf
+statement: 'A remote island has three types of chameleons: $13$ red, $15$ green and $17$ blue. Each time
+  two chameleons of different colours meet, they both change to the third colour. For example, if a green
+  chameleon meets a red chameleon, they both become blue. Is it ever possible for all chameleons to become
+  the same colour? Why or why not?'
+stages:
+- goal: Find a quantity that stays unchanged under every meeting, and state its value for the starting
+    counts.
+  expected: The difference between the red and green counts is invariant modulo $3$. Starting from $13$
+    red and $15$ green, $13-15 \equiv 1 \pmod 3$.
+  solution: A meeting of red and green gives $(r,g,b)\to(r-1,g-1,b+2)$, so $r-g$ is unchanged. A meeting
+    of green and blue gives $(r+2,g-1,b-1)$, so $g-b$ changes by $0$. A meeting of red and blue gives
+    $(r-1,g+2,b-1)$, so $r-b$ changes by $0$. In each case the change to any pairwise difference is $0$
+    or $\pm3$, so every pairwise difference is invariant modulo $3$. At the start, $13-15=-2\equiv 1 \pmod
+    3$, so $r-g\equiv 1 \pmod 3$ always.
+  common_errors:
+  - Checking only one type of meeting and assuming the invariant holds for all of them.
+  - Claiming the difference itself is invariant, when only its value modulo $3$ is preserved.
+  - Computing $13-15$ as $2$ rather than reducing to a residue class modulo $3$.
+  hints:
+    rephrase: Look at what a single meeting does to each pair of counts, and whether that change is a
+      multiple of something.
+    smaller_case: Start with one red and one green chameleon. After they meet, what are the counts, and
+      how did the red-minus-green difference change?
+    key_idea: Track the counts modulo $3$, not their exact values.
+  check: Eq(Mod(13-15,3), 1)
+  check_ok: true
+- goal: Decide whether all chameleons can ever become one colour, and justify the answer.
+  expected: No. If all chameleons had one colour, two of the counts would be $0$, so their difference
+    would be $0 \pmod 3$. But the invariant forces $r-g\equiv 1 \pmod 3$, a contradiction.
+  solution: Suppose all $45$ chameleons become one colour. Then two of the three counts are $0$. Each
+    of the three possible differences is $0$ modulo $3$ in that final state. But from stage 1, the red-minus-green
+    difference is always $\equiv 1 \pmod 3$. This is a contradiction, so it is impossible for all chameleons
+    to become one colour. The total $45$ being divisible by $3$ does not help, because the constraint
+    is on differences, not the total.
+  common_errors:
+  - Concluding it is possible because the total $45$ is divisible by $3$.
+  - Forgetting that the final state needs two counts equal to zero, so the difference must be $0$.
+  - Arguing only with a few example moves instead of an invariant that holds for every sequence of meetings.
+  hints:
+    rephrase: Ask what the counts must look like if all chameleons share one colour, and which difference
+      that forces.
+    smaller_case: Consider a small example with the same kind of invariant. What would the final state
+      need to look like for it to be reachable?
+    key_idea: Compare the value of one pairwise difference modulo $3$ at the start with its value at the
+      end.
+  check: Ne(Mod(13-15,3), Mod(0-0,3))
+  check_ok: true
+extensions:
+  '3':
+  - For starting counts $(a,b,c)$, characterise exactly when all chameleons can end up as one colour.
+  '4':
+  - Does the answer change if meetings are allowed only between red and green chameleons? Explain.
+  '5':
+  - Generalise to $k$ colours where two different colours meet and both change to a third colour, and
+    find the invariant for that setting.
+spoken_vocab:
+- chameleons
+- thirteen red
+- fifteen green
+- seventeen blue
+- modulo three
+- invariant
+- difference
+- one colour
+- meet
+- third colour
+- forty five
+source: zhou-quant/zhou-quant-guide.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 2
+  minutes: 12
+  flags: []
+  tagline: Classic mod-3 invariant argument with a clean impossibility proof
+  priority: 65
+  rank: 395
+  tier: C
+  category: zhou-quant
+  d10: 5.0
+  real: 8.0
+  by: deepseek-v4.1-flash-free
+tags:
+- number_theory
+- proof

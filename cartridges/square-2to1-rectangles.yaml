@@ -1,0 +1,150 @@
+id: square-2to1-rectangles
+title: Cutting a unit square into 2:1 rectangles
+topics:
+- dissections
+- combinatorial geometry
+- ratios
+- case analysis
+- guillotine cuts
+warmup: false
+answer_source: generated
+statement: I am given a square of unit length. I would like to cut this into rectangles with side lengths
+  of ratio $2:1$ (they do not all need to be the same size). How many rectangles can I cut this into?
+stages:
+- goal: Show that the square can be cut into exactly 2 such rectangles.
+  expected: 'Yes, 2 rectangles: cut the square through the middle, giving two rectangles of size $1\times\tfrac12$.'
+  solution: Cut horizontally at height $\tfrac12$. Each piece is $1\times\tfrac12$, whose sides have ratio
+    $2:1$.
+  common_errors:
+  - Cutting into two squares of side $\tfrac12$ (ratio $1:1$, not allowed).
+  - Cutting into two rectangles of ratio $4:1$ (for example $1\times\tfrac14$).
+  hints:
+    rephrase: Look for a straight cut that makes two pieces with sides in the ratio 2 to 1.
+    smaller_case: Start with a $1\times 2$ rectangle and ask how it could be split into two pieces of
+      the same shape.
+    key_idea: A single straight cut across the full width or height is enough.
+  check: simplify(N - 2)  (N is the stated number of pieces)
+  check_ok: null
+- goal: Show that the square can be cut into exactly 5 such rectangles.
+  expected: 'Yes: one $1\times\tfrac12$ rectangle on top, and the bottom $1\times\tfrac12$ strip cut into
+    four $\tfrac14\times\tfrac12$ rectangles (ratio $2:1$).'
+  solution: 'Cut at height $\tfrac12$. Keep the top $1\times\tfrac12$ piece. Cut the bottom $1\times\tfrac12$
+    strip into four equal vertical pieces of width $\tfrac14$ and height $\tfrac12$. Each has ratio $\tfrac12:\tfrac14=2:1$.
+    Total: $1+4=5$.'
+  common_errors:
+  - Splitting the bottom strip into two pieces, which cannot each have ratio $2:1$.
+  - Using pieces of width $\tfrac14$ and height $\tfrac14$ (square, not allowed).
+  hints:
+    rephrase: Keep one piece as it is and see how the rest can be divided into rectangles of the same
+      shape.
+    smaller_case: Look at a single strip of size $1\times\tfrac12$. What is the largest number of same-shape
+      pieces you can fit in it?
+    key_idea: Any piece of ratio $2:1$ can be cut into four smaller pieces of the same ratio, which increases
+      the count by 3.
+  check: simplify(N - 5)  (N is the stated number of pieces)
+  check_ok: null
+- goal: Show that a cut into exactly 3 such rectangles is impossible.
+  expected: Impossible.
+  solution: A dissection of a rectangle into 3 rectangles always contains a cut running the full length
+    of the figure (a guillotine cut). So the first cut splits the square into a full-width strip $1\times
+    s$ and a rectangle $1\times(1-s)$ (or the same with the roles of the axes swapped). For the strip
+    to have ratio $2:1$ we need $s=\tfrac12$. The remaining $1\times\tfrac12$ rectangle must then be split
+    into two rectangles of ratio $2:1$. A horizontal split gives pieces $1\times u$ with $u=\tfrac12$
+    or $2$, which fails. A vertical split gives pieces $a\times\tfrac12$ with $a=1$ or $a=\tfrac14$, and
+    two such widths cannot sum to 1. So no 3-piece cut exists.
+  common_errors:
+  - Assuming a 3-piece cut can be non-guillotine, for example a pinwheel.
+  - Only checking one orientation of the cut.
+  - Forgetting that the leftover rectangle must itself be cut into exactly two 2:1 rectangles.
+  hints:
+    rephrase: Ask which straight line must run all the way across the square, and what size the strip
+      beside it must be.
+    smaller_case: Try to cut a $1\times\tfrac12$ rectangle into two pieces of ratio $2:1$. Which cuts
+      are possible?
+    key_idea: With only three pieces, one of the cuts must go the full length of the figure, which fixes
+      the size of the first piece.
+  check: null
+- goal: Show that a cut into exactly 4 such rectangles is impossible.
+  expected: Impossible.
+  solution: Any dissection into at most 4 rectangles is guillotine, since the smallest non-guillotine
+    (pinwheel) dissection needs 5 pieces. So there is a full cut at $x=s$ (the vertical case is symmetric).
+    The two sides are $s\times1$ and $(1-s)\times1$. Possible splits are (1,3), (3,1), or (2,2). In the
+    (1,3) and (3,1) cases, one side is a single piece, so $s=\tfrac12$ and the other side is a $\tfrac12\times1$
+    region, which cannot be split into 3 pieces (same argument as the 3-piece case). In the (2,2) case,
+    a side of width $w<1$ cannot be split by a vertical line, since that would need full-height pieces
+    of width $\tfrac12$. So it is split by a horizontal line at $t$, and each piece $w\times t$ or $w\times(1-t)$
+    needs $t\in\{w/2,2w\}$ and $1-t\in\{w/2,2w\}$. This forces $w\in\{\tfrac14,\tfrac25\}$. Both $s$ and
+    $1-s$ must lie in $\{\tfrac14,\tfrac25\}$, but the possible sums of two such values are $\tfrac12,\tfrac{13}{20},\tfrac45$,
+    none equal to 1. So no 4-piece cut exists.
+  common_errors:
+  - Forgetting that a dissection into 4 pieces can still have a horizontal first cut (handle by symmetry).
+  - Missing the constraint $w\in\{\tfrac14,\tfrac25\}$ and claiming a 2+2 split works without checking
+    both sides.
+  - Assuming the pinwheel can be used with four pieces.
+  hints:
+    rephrase: Argue by cases on how the four pieces are distributed on the two sides of a full-length
+      cut.
+    smaller_case: Find all values of $w$ for which a $w\times1$ rectangle splits into two rectangles of
+      ratio $2:1$ by a horizontal line.
+    key_idea: 'Reduce to the 3-piece and 2-piece results: a full cut splits the square, and each side
+      must be dissected with the right counts.'
+  check: null
+- goal: State which numbers of rectangles are achievable and which are not, answering the question as
+    asked.
+  expected: The square can be cut into 2 or 5 such rectangles, and also 8, 11, and so on (adding 3 each
+    time by splitting a piece into four). It cannot be cut into 1, 3, or 4 such rectangles.
+  solution: 1 is impossible because the square itself has ratio $1:1$. 2 and 5 are achieved by the constructions
+    above. Any $a\times 2a$ piece can be split into four pieces of size $\tfrac a2\times a$, each of ratio
+    $2:1$. This adds 3 to the count, giving $2, 5, 8, 11,\dots$. 3 and 4 are impossible by the arguments
+    above. Whether counts such as 6 or 7 are achievable is not settled here.
+  common_errors:
+  - Answering just one number, such as 2 or 4, instead of the full set of possibilities.
+  - Claiming any number $\ge 2$ works without a construction.
+  - Claiming 4 works because two pieces can each be split into two.
+  hints:
+    rephrase: The question asks which counts can occur, not for one example. Summarise the constructions
+      and impossibility results you have.
+    smaller_case: Which of the counts 1 through 5 have you already decided?
+    key_idea: Constructions show what is possible. Case analysis shows what is not.
+  check: null
+extensions:
+  '3':
+  - Find a cut of the square into 6 such rectangles, or argue that none exists.
+  '4':
+  - Explain why every dissection of a rectangle into 4 rectangles must be guillotine.
+  '5':
+  - Show that a $2:1$ rectangle can be cut into four congruent $2:1$ rectangles, and deduce the count
+    sequence $2,5,8,\dots$ from that.
+spoken_vocab:
+- unit square
+- two to one rectangle
+- one by one half
+- one quarter by one half
+- full length cut
+- guillotine cut
+- pinwheel
+- three pieces
+- four pieces
+- five pieces
+- case analysis
+- achievable counts
+source: screenshots/Screenshot 2026-11-19 at 14.36.06.png
+verified: false
+rating:
+  quality: 9
+  difficulty: 8
+  parts: 5
+  minutes: 30
+  flags:
+  - needs_diagram
+  tagline: Open tiling problem with construction, impossibility arguments, and general answer.
+  priority: 95
+  rank: 62
+  tier: A
+  category: screenshots
+  d10: 6.0
+  real: 7.5
+  by: haiku
+tags:
+- combinatorics
+- geometry

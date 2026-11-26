@@ -1,0 +1,79 @@
+id: integer-power-equation-a-b-b-a
+title: Integer solutions of a^b = b^a with a < b
+topics:
+- number theory
+- calculus
+- inequalities
+warmup: true
+answer_source: pdf
+statement: Find all pairs of positive integers $a<b$ with $a^b=b^a$.
+stages:
+- goal: Reduce a^b=b^a to a comparison of ln x / x and analyse f(x)=ln x / x to restrict the candidates.
+  expected: Taking logs gives ln a / a = ln b / b. The function f(x)=ln x / x increases on (0,e] and decreases
+    on [e,infinity), with f(1)=0. Equal values at integers a<b force a=2 (since a=1 forces b=1 and a>=3
+    lies in the strictly decreasing region). Then f(b)=ln2/2 gives b=4.
+  solution: 'Take logarithms: b ln a = a ln b, so f(a)=f(b) for f(x)=ln x / x. f is strictly increasing
+    on (0,e) and strictly decreasing on (e,infinity). If a=1 then b=1, which is excluded. If a>=3 both
+    a and b lie in the decreasing region, so f(a)=f(b) forces a=b. Hence a=2, and f(b)=ln 2/2 has b=4
+    as its only integer solution with b>2.'
+  common_errors:
+  - Concluding a=b without examining the case a=1 properly
+  - Forgetting that f is not monotone on the whole range
+  - Stopping after finding (2,4) without ruling out other pairs
+  hints:
+    rephrase: Take logarithms of both sides, then compare both sides as values of a single function.
+    smaller_case: Check whether a=1 can ever satisfy the equation with a<b.
+    key_idea: 'Study f(x)=ln x / x: where it increases, where it decreases, and when two integer points
+      can share a value.'
+  check: simplify(diff(log(x)/x,x) - (1-log(x))/x**2)
+  check_ok: true
+- goal: State all pairs of positive integers a<b with a^b=b^a.
+  expected: The only pair is (2,4).
+  solution: 2^4 = 16 = 4^2, and the analysis in stage 1 shows no other pair with a<b exists.
+  common_errors:
+  - Listing (4,2) instead of (2,4), which violates a<b
+  - Including the excluded case (1,1)
+  - Missing the requirement a<b and reporting equal pairs
+  hints:
+    rephrase: Test small values of a and find the matching b from your analysis.
+    smaller_case: Compute 2 to the power 3 and 3 to the power 2 and compare.
+    key_idea: Use the uniqueness from stage 1 and check the candidate pair directly.
+  check: 2**4 - 4**2
+  check_ok: true
+extensions:
+  '3':
+  - Show that a^b=b^a has no solutions with a<b if a and b are both odd.
+  '4':
+  - Find all positive integer pairs (a,b) with a^b=b^a when a and b need not satisfy a<b.
+  '5':
+  - Explain why ln x / x has its maximum at x=e and how that location controls the search.
+spoken_vocab:
+- a to the power b
+- b to the power a
+- a less than b
+- positive integers
+- natural log of x over x
+- f of x
+- e
+- pair two four
+- two to the power four
+source: jaymin/Jaymin Interview (1).pdf#p41
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 2
+  minutes: 12
+  flags: []
+  tagline: Analysing ln x / x yields a complete, surprising answer with clear structure.
+  priority: 100
+  rank: 48
+  tier: A
+  category: jaymin
+  d10: 5.5
+  real: 8.0
+  by: big-pickle
+tags:
+- number_theory
+- differentiation
+- exponentials_and_logarithms

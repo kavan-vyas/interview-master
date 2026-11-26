@@ -1,0 +1,113 @@
+id: quartic-ap-roots
+title: Quartic with four real roots in arithmetic progression
+topics:
+- polynomials
+- quadratic substitution
+- arithmetic progressions
+- discriminant
+- symmetry of roots
+warmup: false
+answer_source: generated
+statement: Determine $m$, an integer, so that the equation $x^4-(3m+2)x^2+m^2=0$ has four real solutions
+  for $x$ that form an arithmetic progression.
+stages:
+- goal: Substitute $y=x^2$ and state what must hold for four distinct real roots in $x$.
+  expected: $y^2-(3m+2)y+m^2=0$ must have two distinct positive roots, so $3m+2>0$, $m^2>0$ and $(m+2)(5m+2)>0$.
+    Together these give $m>-\tfrac{2}{5}$ and $m\neq 0$.
+  solution: 'Let $y=x^2$, giving $y^2-(3m+2)y+m^2=0$. Each positive root $y$ gives two real $x=\pm\sqrt{y}$.
+    A zero or negative root gives fewer than four distinct real $x$. So we need two distinct positive
+    roots: sum $3m+2>0$, product $m^2>0$, and discriminant $(3m+2)^2-4m^2=(m+2)(5m+2)>0$. Combining these
+    with $3m+2>0$ gives $m>-\tfrac{2}{5}$ and $m\neq 0$.'
+  common_errors:
+  - Forgetting that $y=x^2$ must be positive for four real values of $x$
+  - Using $m^2\ge 0$ and forgetting $m\neq 0$, which would give repeated roots
+  - Expanding the discriminant incorrectly as $(3m+2)^2-m^2$
+  hints:
+    rephrase: Can you turn the equation into a quadratic by replacing $x^2$ with a new letter? What does
+      each root of that quadratic give you in $x$?
+    smaller_case: Take $m=1$. How many distinct real $x$ satisfy $x^4-5x^2+1=0$, and what does that tell
+      you about the roots of the quadratic in $x^2$?
+    key_idea: Real $x$ come in pairs $\pm\sqrt{y}$, so the quadratic in $y=x^2$ must have two distinct
+      positive roots.
+  check: (3*m+2)**2 - 4*m**2 - (5*m**2 + 12*m + 4)
+  check_ok: true
+- goal: Use the symmetry of the root set and the arithmetic progression condition to relate the two values
+    of $y$.
+  expected: The outer roots are three times the inner roots in size, so the $y$-roots satisfy $y_1=9y_2$.
+    This gives $9(3m+2)^2=100m^2$.
+  solution: The roots are symmetric about $0$, so an arithmetic progression of four terms must be centred
+    at $0$. Write the roots as $-u,-v,v,u$ with $u>v>0$. Equal spacing gives $u-v=2v$, so $u=3v$. Hence
+    $y_1=u^2=9y_2$ where $y_2=v^2$. Then $y_1+y_2=10y_2=3m+2$ and $y_1y_2=9y_2^2=m^2$. So $y_2=\tfrac{3m+2}{10}$,
+    and $9\cdot\tfrac{(3m+2)^2}{100}=m^2$, i.e. $9(3m+2)^2=100m^2$.
+  common_errors:
+  - Writing $y_1=3y_2$ instead of $y_1=9y_2$, because the condition is on $x$ and the roots are squared
+  - Ignoring the symmetry and assuming the middle roots are not $\pm v$
+  - Dropping the factor $100$ when substituting $y_2=\tfrac{3m+2}{10}$
+  hints:
+    rephrase: Why must the four roots be symmetric about $0$? Write four numbers in arithmetic progression
+      with that symmetry and look at the gaps.
+    smaller_case: Consider four numbers $-u,-v,v,u$ with $u>v>0$ in arithmetic progression. Which gap
+      is bigger, and what equation must $u$ and $v$ satisfy?
+    key_idea: Write the roots as $\pm u,\pm v$, impose equal spacing, then express $u^2$ and $v^2$ through
+      Vieta's sum and product.
+  check: 9*(3*m+2)**2 - 100*m**2
+  check_ok: false
+- goal: Solve the relation for $m$ and keep only the integer values that give four distinct real roots.
+  expected: $m=6$
+  solution: 'From $9(3m+2)^2=100m^2$ we get $3(3m+2)=\pm 10m$. The $+$ case gives $9m+6=10m$, so $m=6$.
+    The $-$ case gives $9m+6=-10m$, so $m=-\tfrac{6}{19}$, which is not an integer. Check $m=6$: $y^2-20y+36=0$
+    gives $y=18$ or $y=2$. Both are positive and distinct, so $x=\pm3\sqrt2,\pm\sqrt2$, which form the
+    progression $-3\sqrt2,-\sqrt2,\sqrt2,3\sqrt2$ with common difference $2\sqrt2$. Also $(m+2)(5m+2)=256>0$.'
+  common_errors:
+  - Losing the negative branch when square-rooting, i.e. missing $3(3m+2)=-10m$
+  - Accepting $m=-\tfrac{6}{19}$ even though the question requires an integer
+  - Discarding $m=6$ without checking the roots are positive and distinct
+  hints:
+    rephrase: When two squares are equal, what relations can their square roots satisfy? Keep every possibility.
+    smaller_case: Solve $(3m+2)^2=4m^2$ and note how many separate linear equations appear after square-rooting.
+    key_idea: Take square roots of both sides keeping both signs, then test each candidate against the
+      integer requirement and the positivity conditions from stage 1.
+  check: m - 6
+  check_ok: false
+extensions:
+  '3':
+  - Show that when the four real roots of $x^4+px^2+q=0$ exist, they are symmetric about $0$, and explain
+    why an arithmetic progression of them must be centred at $0$.
+  '4':
+  - Find all real values of $m$, not only integers, for which the four roots of $x^4-(3m+2)x^2+m^2=0$
+    form an arithmetic progression.
+  '5':
+  - Prove that $x^4+px^2+q=0$ has four distinct real roots in arithmetic progression if and only if $9p^2=100q$
+    and $p<0$.
+spoken_vocab:
+- x to the fourth minus open bracket three m plus two close bracket x squared plus m squared equals zero
+- m
+- arithmetic progression
+- y equals x squared
+- discriminant
+- Vieta
+- plus or minus
+- common difference
+- root
+- integer
+- sum of roots
+- product of roots
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 6
+  difficulty: 6
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Symmetry forces roots ±a, ±3a; a unique integer m emerges.
+  priority: 71
+  rank: 329
+  tier: B
+  category: tbo
+  d10: 4.5
+  real: 4.0
+  by: haiku
+tags:
+- roots_of_polynomials
+- algebra_and_functions

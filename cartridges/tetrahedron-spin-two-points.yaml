@@ -1,0 +1,111 @@
+id: tetrahedron-spin-two-points
+title: Spinning a pyramid held at two points
+topics:
+- geometry
+- symmetry
+- rotations
+- regular tetrahedron
+- rotation groups
+warmup: false
+answer_source: generated
+statement: 'A wooden triangle-based pyramid is held at two points: an apex vertex and a point on the base.
+  If it spins $120^\circ$ about the line through those points, it fills the same space again. Can you
+  find two points such that spinning the pyramid $180^\circ$ about the line through them also fills the
+  same space?'
+stages:
+- goal: Identify the shape from the $120^\circ$ symmetry.
+  expected: 'A regular tetrahedron: all six edges equal, with the apex directly above the centroid of
+    the base.'
+  solution: A $120^\circ$ spin about the apex and base centroid is a 3-fold symmetry. This requires the
+    three base faces to be symmetric about that axis, so the base is equilateral and the apex sits over
+    its centroid with lateral edges equal to base edges. That is a regular tetrahedron.
+  common_errors:
+  - Assuming any triangular pyramid has a 3-fold axis through the apex.
+  - Treating the apex-to-base-centroid axis as only a line of reflection.
+  hints:
+    rephrase: Which points of the pyramid must stay in place for a $120^\circ$ spin to map it back to
+      itself?
+    smaller_case: Consider a flat equilateral triangle spun $120^\circ$ about its centre. What does that
+      tell you about the base?
+    key_idea: A rotational symmetry of order 3 about a vertex-to-face-centre axis forces the three lateral
+      faces to be congruent.
+  check: null
+- goal: Choose two held points so that a $180^\circ$ spin is a symmetry.
+  expected: The midpoints of two opposite edges, for example the midpoint of AB and the midpoint of CD.
+  solution: 'A 180-degree rotation symmetry of a regular tetrahedron is a 2-fold axis. Each such axis
+    passes through the midpoints of a pair of opposite edges. Hold the pyramid at the midpoints of AB
+    and CD. Spinning 180 degrees about that line swaps A and B and swaps C and D, so the pyramid returns
+    to its original space. Coordinates: vertices (1,1,1), (1,-1,-1), (-1,1,-1), (-1,-1,1). Midpoints of
+    edges through (1,1,1)-(1,-1,-1) and (-1,1,-1)-(-1,-1,1) are (1,0,0) and (-1,0,0).'
+  common_errors:
+  - Choosing the apex and the midpoint of an opposite base edge, which gives a reflection, not a rotation.
+  - Choosing the apex and the base centroid again, which gives the 120-degree symmetry, not 180.
+  hints:
+    rephrase: Find a line through two points of the pyramid's surface around which a half-turn leaves
+      all four vertices in the set of vertices.
+    smaller_case: For a square-based pyramid with a symmetric base, which half-turn axes exist? Where
+      do they pass?
+    key_idea: Half-turn axes of a regular tetrahedron pass through midpoints of opposite edges, not through
+      a vertex.
+  check: Matrix([1,1,1]) + Matrix([1,-1,-1]) - 2*Matrix([1,0,0]) == zero vector, which holds iff (1,0,0)
+    is the midpoint of the chosen edge
+  check_ok: null
+- goal: Verify that the $180^\circ$ spin maps the pyramid onto itself.
+  expected: The rotation about the x-axis, given by diag(1,-1,-1), permutes the four vertices.
+  solution: 'The rotation by 180 degrees about the x-axis is (x,y,z) to (x,-y,-z). Applied to the vertices:
+    (1,1,1) to (1,-1,-1), (1,-1,-1) to (1,1,1), (-1,1,-1) to (-1,-1,1), (-1,-1,1) to (-1,1,-1). The vertex
+    set is unchanged, so the solid returns to the same space.'
+  common_errors:
+  - Checking only one vertex, which does not prove the whole solid is preserved.
+  - Using the wrong rotation matrix for a half-turn, such as a 90-degree turn.
+  hints:
+    rephrase: Apply the half-turn to each corner. Does each corner land on another corner?
+    smaller_case: Apply the half-turn to just one vertex and its opposite edge's endpoints. Where does
+      each point go?
+    key_idea: A rotation maps the solid onto itself exactly when it permutes the vertices.
+  check: sorted([(M*Matrix(v)).T for v in V]) == sorted(V), where M = diag(1,-1,-1) and V = [(1,1,1),(1,-1,-1),(-1,1,-1),(-1,-1,1)];
+    True iff the spin is a symmetry
+  check_ok: null
+extensions:
+  '3':
+  - Explain why a regular tetrahedron has no half-turn axis through a vertex and a point in the interior
+    of an opposite face.
+  '4':
+  - How many distinct 180-degree axes does a regular tetrahedron have, and what is the order of its rotation
+    group?
+  '5':
+  - A cube is held at the centres of two opposite faces. Which spin angles fill the same space, and why?
+spoken_vocab:
+- triangle based pyramid
+- apex
+- base
+- regular tetrahedron
+- one hundred and twenty degrees
+- one hundred and eighty degrees
+- half turn
+- spin
+- axis of rotation
+- midpoint of an edge
+- opposite edges
+- vertex
+- centroid
+- fills the same space
+source: past-interviews/Actual Past Interview Questions/G3.jpg
+verified: false
+rating:
+  quality: 6
+  difficulty: 6
+  parts: 3
+  minutes: 12
+  flags:
+  - needs_diagram
+  tagline: 'Spatial symmetry puzzle: regular tetrahedron''s 180° axis through opposite edge midpoints.'
+  priority: 63
+  rank: 408
+  tier: C
+  category: past-interviews
+  d10: 6.5
+  real: 4.0
+  by: haiku
+tags:
+- geometry

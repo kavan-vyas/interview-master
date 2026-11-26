@@ -1,0 +1,93 @@
+id: card-front-back-probability
+title: Probability of consistent cards with independent faces
+topics:
+- probability
+- independence
+- counting
+warmup: true
+answer_source: generated
+statement: i) You are given 4 cards, with the front saying 1 or 2 and the back saying A or B. These happen
+  independently and have an equal chance of occurring. What is the probability that if a card says 1 it
+  also says A? Hence, generalize this for any $n$ cards $\in \mathbb{Z}^+$.
+stages:
+- goal: 'Find the probability that a single card satisfies: front $1$ implies back $A$.'
+  expected: $\frac{3}{4}$.
+  solution: The rule is violated only when the front is $1$ and the back is $B$. That has probability
+    $\frac12\cdot\frac12=\frac14$. So the probability the rule holds is $1-\frac14=\frac34$.
+  common_errors:
+  - Answering $\frac12$ by looking only at the back.
+  - Answering $\frac14$, which is the probability of front $1$ and back $A$, not the implication.
+  hints:
+    rephrase: Which single combination of front and back breaks the rule?
+    smaller_case: Consider one card showing $1$ on the front. Which backs are allowed?
+    key_idea: $P(\text{rule holds}) = 1 - P(\text{rule violated})$, and the violation is one specific
+      pair.
+  check: sp.Rational(3,4) - ans
+  check_ok: null
+- goal: Find the probability that all 4 cards satisfy the rule.
+  expected: $\left(\frac34\right)^4=\frac{81}{256}$.
+  solution: 'The cards are independent, so the probabilities multiply: $\left(\frac34\right)^4=\frac{81}{256}$.'
+  common_errors:
+  - Adding the per-card probabilities.
+  - Using $1-\left(\frac14\right)^4$, which mixes up the violation event.
+  hints:
+    rephrase: Independence lets you combine the cards by multiplication.
+    smaller_case: With two cards, what is the chance that both satisfy the rule?
+    key_idea: For independent events, $P(\text{all})=\prod P(\text{each})$.
+  check: sp.Rational(81,256) - ans
+  check_ok: null
+- goal: Generalise to any number $n$ of cards.
+  expected: $\left(\frac34\right)^n$.
+  solution: Each card independently satisfies the rule with probability $\frac34$, so for $n$ cards the
+    probability is $\left(\frac34\right)^n$. For $n=4$ this gives $\frac{81}{256}$, and for $n=1$ it gives
+    $\frac34$.
+  common_errors:
+  - Writing $\frac{n}{4}$ or $\frac{3n}{4}$ instead of a power.
+  - Forgetting to multiply by independence.
+  hints:
+    rephrase: Replace the $4$ in the previous step with $n$.
+    smaller_case: Check your formula at $n=1$. Does it agree with stage 1?
+    key_idea: Each card contributes an independent factor of $\frac34$.
+  check: sp.simplify(ans - sp.Rational(3,4)**n)
+  check_ok: null
+extensions:
+  '3':
+  - Find the probability that at least one of the $n$ cards violates the rule, and show it equals $1-\left(\frac34\right)^n$.
+  '4':
+  - Find the smallest $n$ for which the probability that all $n$ cards satisfy the rule is below $0.1$.
+  '5':
+  - Find the expected number of cards (out of $n$) that satisfy the rule, and justify it with linearity
+    of expectation.
+spoken_vocab:
+- one
+- two
+- A
+- B
+- front
+- back
+- card
+- probability
+- independent
+- three quarters
+- n cards
+- positive integers
+- 81 over 256
+source: screenshots/Screenshot 2026-11-19 at 14.36.02.png
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 3
+  minutes: 4
+  flags:
+  - trivial
+  tagline: Trivial complement counting; generalisation to n cards is immediate.
+  priority: 23
+  rank: 663
+  tier: D
+  category: screenshots
+  d10: 2.5
+  real: 4.0
+  by: deepseek-v4.1-flash-free
+tags:
+- probability

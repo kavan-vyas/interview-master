@@ -1,0 +1,99 @@
+id: pi-bound-from-integral-22-over-7
+title: Integral identity giving pi less than 22 over 7
+topics:
+- polynomial division
+- definite integrals
+- arctan
+- inequalities
+- approximations of pi
+warmup: false
+answer_source: pdf
+statement: Show that $\int_0^1\frac{x^4(1-x)^4}{1+x^2}\,dx=\frac{22}{7}-\pi$, and deduce that $\pi<\frac{22}{7}$.
+stages:
+- goal: Divide the numerator by $1+x^2$ to get a polynomial plus a remainder term.
+  expected: $\frac{x^4(1-x)^4}{1+x^2}=x^6-4x^5+5x^4-4x^2+4-\frac{4}{1+x^2}$.
+  solution: 'Expand $x^4(1-x)^4=x^8-4x^7+6x^6-4x^5+x^4$. Dividing by $x^2+1$ gives quotient $x^6-4x^5+5x^4-4x^2+4$
+    and remainder $-4$. Check: $(x^2+1)(x^6-4x^5+5x^4-4x^2+4)=x^8-4x^7+6x^6-4x^5+x^4+4$, which is the
+    numerator plus $4$.'
+  common_errors:
+  - Dropping the remainder term $-\frac{4}{1+x^2}$
+  - Sign error in the remainder, writing $+\frac{4}{1+x^2}$
+  - Arithmetic slip in expanding $(1-x)^4$
+  hints:
+    rephrase: Expand the numerator and perform polynomial long division by $x^2+1$. What is left over
+      at the end?
+    smaller_case: Divide $x^4$ by $x^2+1$ first and see what the remainder looks like.
+    key_idea: Long division of $N(x)$ by $x^2+1$ gives $N(x)=Q(x)(x^2+1)+R$ with a constant remainder
+      $R$.
+  check: simplify(x**4*(1-x)**4/(1+x**2) - (x**6-4*x**5+5*x**4-4*x**2+4-4/(1+x**2)))
+  check_ok: true
+- goal: Integrate term by term from $0$ to $1$ and show the result is $\frac{22}{7}-\pi$.
+  expected: $\frac{1}{7}-\frac{4}{6}+1-\frac{4}{3}+4-4\cdot\frac{\pi}{4}=\frac{22}{7}-\pi$.
+  solution: 'Integrate each term: $\int_0^1 x^6=\frac17$, $\int_0^1 -4x^5=-\frac{2}{3}$, $\int_0^1 5x^4=1$,
+    $\int_0^1 -4x^2=-\frac43$, $\int_0^1 4=4$, and $\int_0^1\frac{-4}{1+x^2}=-4\cdot\frac{\pi}{4}=-\pi$.
+    The rational parts sum to $\frac{1}{7}+3=\frac{22}{7}$.'
+  common_errors:
+  - Using $\int \frac{1}{1+x^2}=\ln(1+x^2)$
+  - Forgetting the factor 4 in front of $\arctan$, giving $-\frac{\pi}{4}$ instead of $-\pi$
+  - Adding fractions incorrectly
+  hints:
+    rephrase: Integrate the polynomial part termwise, then handle the $\frac{1}{1+x^2}$ term separately.
+    smaller_case: Integrate $x^6-4x^5$ alone from $0$ to $1$ and check the result.
+    key_idea: $\int_0^1\frac{dx}{1+x^2}=\frac{\pi}{4}$, so the remainder term contributes a multiple of
+      $\pi$.
+  check: simplify(integrate(x**6-4*x**5+5*x**4-4*x**2+4-4/(1+x**2),(x,0,1)) - (Rational(22,7)-pi))
+  check_ok: true
+- goal: Show the integral is positive and deduce $\pi<\frac{22}{7}$.
+  expected: The integrand is positive on $(0,1)$, so the integral is positive. Hence $\frac{22}{7}-\pi>0$,
+    i.e. $\pi<\frac{22}{7}$.
+  solution: For $0<x<1$, $x^4>0$ and $(1-x)^4>0$ and $1+x^2>0$, so the integrand is positive. A positive
+    continuous function has a positive integral over $[0,1]$, so $\frac{22}{7}-\pi>0$.
+  common_errors:
+  - Claiming the integral is zero or negative without checking the sign of the integrand
+  - Concluding the wrong direction of the inequality for $\pi$
+  hints:
+    rephrase: What is the sign of the integrand for $x$ between $0$ and $1$?
+    smaller_case: Check the integrand at $x=1/2$. What sign does it have?
+    key_idea: Integral of a positive function is positive, and this gives the inequality on $\pi$.
+  check: Gt(integrate(x**4*(1-x)**4/(1+x**2),(x,0,1)), 0)
+  check_ok: true
+extensions:
+  '3':
+  - Compare the bound $\pi<\frac{22}{7}$ with the Archimedes bounds $\frac{223}{71}<\pi<\frac{22}{7}$
+    and say which is tighter.
+  '4':
+  - Show $\int_0^1 x^4(1-x)^4\,dx=\frac{1}{630}$ using the Beta function or direct expansion.
+  '5':
+  - Estimate $\frac{22}{7}-\pi$ numerically and compare it with the value of the integral.
+spoken_vocab:
+- integral from 0 to 1
+- x to the fourth
+- one minus x to the fourth
+- over one plus x squared
+- polynomial division
+- remainder
+- twenty two over seven
+- minus pi
+- arctan
+- pi over 4
+- less than
+- positive integrand
+source: jaymin/Jaymin Interview (1).pdf#p41
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Famous Dalzell identity with clear proof structure and natural extensions.
+  priority: 96
+  rank: 56
+  tier: A
+  category: jaymin
+  d10: 5.5
+  real: 4.0
+  by: haiku
+tags:
+- integration
+- algebra_and_functions

@@ -1,0 +1,84 @@
+id: ratio-sharing-cat-ana
+title: Sharing money in a ratio
+topics:
+- ratio
+- proportion
+- sharing in a ratio
+warmup: true
+answer_source: pdf
+statement: £1260 is shared between Ana, Ben and Cat in the ratio $2:3:4$. How much more does Cat receive
+  than Ana?
+stages:
+- goal: Find the value of one part of the ratio.
+  expected: £140 per part (total of 9 parts)
+  solution: The ratio parts add to 2 + 3 + 4 = 9. Each part is worth 1260 ÷ 9 = £140.
+  common_errors:
+  - Dividing by 3 (the number of people) instead of the total number of parts
+  - Forgetting to add all three ratio numbers, so dividing by 6 or 7
+  - Sharing equally, giving £420 each
+  hints:
+    rephrase: Each person gets a whole number of equal parts. How many parts are there altogether?
+    smaller_case: Share £100 in the ratio $1:4$. How many parts are there, and what is one part worth?
+    key_idea: Find the total number of parts first, then find the value of a single part.
+  check: Eq(Rational(1260,9), 140)
+  check_ok: true
+- goal: Work out how much more Cat receives than Ana.
+  expected: £280
+  solution: Cat has 4 parts = 4 × 140 = £560. Ana has 2 parts = 2 × 140 = £280. Difference = £560 − £280
+    = £280. Equivalently, the difference is 4 − 2 = 2 parts, and 2 × 140 = 280.
+  common_errors:
+  - Giving the difference as £560 (Cat's share alone)
+  - Comparing Cat with Ben instead of Ana
+  - Using the wrong ratio numbers for Cat or Ana
+  hints:
+    rephrase: Work out how many parts Cat has and how many parts Ana has, then compare them.
+    smaller_case: If Ana gets 1 part and Cat gets 3 parts, and one part is £10, how much more does Cat
+      get than Ana?
+    key_idea: The difference in money is the difference in parts multiplied by the value of one part.
+  check: Eq(4*Rational(1260,9) - 2*Rational(1260,9), 280)
+  check_ok: true
+extensions:
+  '3':
+  - Ben receives £60 more than Ana in a split of $2:3$. What is the total amount shared?
+  - If Cat's share were £800 in the ratio $2:3:4$, what would the total be?
+  '4':
+  - After sharing £1260 in the ratio $2:3:4$, Ben gives £50 to Ana. What are their new amounts?
+  - Ana, Ben and Cat share a sum in the ratio $2:3:4$. Ben gets £30 more than Ana. How much does Cat get?
+  '5':
+  - Explain how the answer changes if the ratio is written as $2:3:4$ but the money is shared by the proportion
+    of each person's age instead, and identify the assumption needed.
+  - A sum is shared in the ratio $a:b:c$. Derive a general expression for the amount the third person
+    gets as a fraction of the total.
+spoken_vocab:
+- pounds
+- ratio
+- two to three to four
+- Ana
+- Ben
+- Cat
+- one part
+- total parts
+- how much more
+- divide by nine
+- times four
+- minus
+- total
+source: kclms/kclms-specimen-questions-3.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 2
+  minutes: 3
+  flags:
+  - trivial
+  tagline: Pure ratio arithmetic; answer £280 with no real depth.
+  priority: 17
+  rank: 680
+  tier: D
+  category: kclms
+  d10: 1.0
+  real: 2.0
+  by: haiku
+tags:
+- algebra_and_functions

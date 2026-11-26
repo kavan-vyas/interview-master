@@ -1,0 +1,113 @@
+id: quadratic-k-roots
+title: 'Quadratic x^2 - kx + k + 3 = 0: real, positive, unit-difference and integer roots'
+topics:
+- quadratics
+- discriminant
+- Vieta's formulas
+- integer roots
+- algebra
+warmup: false
+answer_source: pdf
+statement: Consider the equation $x^2-kx+k+3=0$, where $k$ is real. (i) For which $k$ does the equation
+  have real roots? (ii) For which $k$ are both roots real and positive? (iii) For which $k$ do the roots
+  differ by exactly 1? (iv) Find all $k$ for which both roots are integers.
+stages:
+- goal: Find all real k for which the quadratic has real roots.
+  expected: The discriminant is k^2 - 4(k+3) = k^2 - 4k - 12 = (k-6)(k+2). Real roots need this to be
+    nonnegative, so k <= -2 or k >= 6.
+  solution: The discriminant is $\Delta=k^2-4(k+3)=k^2-4k-12=(k-6)(k+2)$. Real roots require $\Delta\geq0$.
+    The product $(k-6)(k+2)$ is non-negative exactly when $k\le -2$ or $k\ge 6$.
+  common_errors:
+  - Solving the sign condition as -2 <= k <= 6, which reverses the inequality between the roots.
+  - Expanding the discriminant wrongly, for example forgetting the constant term k+3 multiplied by 4.
+  - Writing the answer as k < -2 or k > 6, which excludes the repeated-root case.
+  hints:
+    rephrase: Find the condition under which a quadratic with real coefficients has real roots, then substitute
+      these coefficients.
+    smaller_case: Test k = 0 and k = 7 in the discriminant to see which side of the answer each one lies
+      on.
+    key_idea: A real quadratic has real roots if and only if its discriminant is nonnegative.
+- goal: Find all k for which both roots are real and positive.
+  expected: Positivity of both roots needs sum k > 0 and product k + 3 > 0. Combined with the discriminant
+    condition from stage 1, the answer is k >= 6, and k = 6 gives the repeated root 3.
+  solution: If the roots are $\alpha,\beta$ then $\alpha+\beta=k$ and $\alpha\beta=k+3$. Both roots positive
+    forces $k>0$ and $k+3>0$, so $k>0$. Intersecting with the discriminant condition $k\le-2$ or $k\ge
+    6$ leaves $k\ge 6$. At $k=6$ the equation is $(x-3)^2=0$, so the repeated root is 3, which is positive.
+  common_errors:
+  - Forgetting to intersect with the discriminant condition, so the answer k > 0 is given.
+  - Excluding k = 6 because the roots are repeated, although the question only asks for positive roots.
+  - Using the sum condition alone and ignoring the product condition.
+  hints:
+    rephrase: Express the sum and product of the roots in terms of k, and decide what sign each needs
+      to be.
+    smaller_case: Substitute k = 6 and decide whether the roots are positive.
+    key_idea: Vieta's formulas give the sum and product of the roots directly from the coefficients.
+- goal: Find all k for which the roots differ by exactly 1.
+  expected: (alpha - beta)^2 = (alpha + beta)^2 - 4 alpha beta = k^2 - 4k - 12. Setting this equal to
+    1 gives k^2 - 4k - 13 = 0, so k = 2 plus or minus sqrt(17).
+  solution: Using Vieta, $(\alpha-\beta)^2=(\alpha+\beta)^2-4\alpha\beta=k^2-4(k+3)=k^2-4k-12$. The roots
+    differ by exactly 1 when $|\alpha-\beta|=1$, that is $(\alpha-\beta)^2=1$. So $k^2-4k-13=0$, giving
+    $k=2\pm\sqrt{17}$. Both values satisfy the real-root condition, since $2-\sqrt{17}\approx-2.12\le-2$
+    and $2+\sqrt{17}\approx6.12\ge6$.
+  common_errors:
+  - Setting alpha - beta = 1 and ignoring the other order, which misses the negative case.
+  - Expanding (alpha - beta)^2 incorrectly, for example as alpha^2 - beta^2.
+  - Forgetting to check that the solutions satisfy the discriminant condition.
+  hints:
+    rephrase: Express the square of the difference of the roots using only their sum and product.
+    smaller_case: Consider a quadratic whose roots are 0 and 1, and check the identity you are using.
+    key_idea: (alpha - beta)^2 equals (alpha + beta)^2 minus 4 alpha beta.
+  check: k**2 - 4*k - 13
+  check_ok: false
+- goal: Find all k for which both roots are integers.
+  expected: From alpha beta = alpha + beta + 3, (alpha - 1)(beta - 1) = 4. The integer factor pairs give
+    {alpha, beta} = {2,5}, {3,3}, {0,-3}, {-1,-1}, so k = 7, 6, -3, -2.
+  solution: 'Vieta gives $\alpha\beta=\alpha+\beta+3$, so $\alpha\beta-\alpha-\beta+1=4$, i.e. $(\alpha-1)(\beta-1)=4$.
+    For integer $\alpha,\beta$ the pairs $(\alpha-1,\beta-1)$ are the ordered integer factorisations of
+    4: $(1,4),(4,1),(2,2),(-1,-4),(-4,-1),(-2,-2)$. These give $\{\alpha,\beta\}=\{2,5\},\{3,3\},\{0,-3\},\{-1,-1\}$
+    with sums $7,6,-3,-2$. Checks: $x^2-7x+10=(x-2)(x-5)$, $x^2-6x+9=(x-3)^2$, $x^2+3x=x(x+3)$, $x^2+2x+1=(x+1)^2$.
+    So $k\in\{-3,-2,6,7\}$.'
+  common_errors:
+  - Listing only positive factor pairs of 4 and missing the negative ones.
+  - Forgetting the repeated root case (2,2), which gives k = 6.
+  - Not checking that each candidate k actually gives the claimed integer roots.
+  - Factoring alpha beta - alpha - beta + 1 incorrectly, for example as (alpha + 1)(beta + 1).
+  hints:
+    rephrase: Rewrite the product condition as a single factorised equation in alpha and beta.
+    smaller_case: Try the case alpha = beta and see which k it forces.
+    key_idea: Add a constant to both sides of alpha beta = alpha + beta + 3 so the left side factorises.
+  check: (k+3)*(k+2)*(k-6)*(k-7)
+  check_ok: false
+extensions:
+  '3':
+  - Show that there is no k for which the two roots are negatives of each other.
+  - Show that x = 1 is never a root of the equation, for any real k.
+  '4':
+  - Find all k for which one root is exactly twice the other.
+  - Find all k for which both roots lie strictly between 0 and 3.
+  '5':
+  - Among the four values of k found in part (iv), find the one for which the sum of squares of the two
+    roots is largest.
+spoken_vocab:
+- x squared minus k x plus k plus three equals zero
+- discriminant
+- alpha and beta
+- Vieta's formulas
+- sum of roots
+- product of roots
+- square root of seventeen
+- two plus or minus root seventeen
+- factor pairs of four
+- integer roots
+source: jaymin/Jaymin Interview (1).pdf#p17
+verified: false
+rating:
+  score: 9
+  difficulty: 4
+  parts: 4
+  minutes: 25
+  flags: []
+  tagline: Discriminant, Vieta and (r-1)(s-1)=4 factorisation give rich, connected parts.
+  priority: 130
+  rank: 8
+  tier: S

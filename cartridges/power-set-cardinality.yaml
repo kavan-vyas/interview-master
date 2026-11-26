@@ -1,0 +1,81 @@
+id: power-set-cardinality
+title: Cardinality of a power set and subsets containing a fixed element
+topics:
+- sets
+- power set
+- counting
+- binary choices
+warmup: true
+answer_source: generated
+statement: The Power Set is formed from all subsets of a given set. If a set contains $n$ elements what
+  is the cardinality of its Power Set? How many subsets contain a given element $x_1$?
+stages:
+- goal: Find the cardinality of the power set of a set with n elements.
+  expected: 2^n
+  solution: Each element is either in a given subset or not, so each subset is determined by n independent
+    yes/no choices. That gives 2 * 2 * ... * 2 (n times) = 2^n subsets, including the empty set and the
+    whole set.
+  common_errors:
+  - Answering n! because ordering seems relevant
+  - Answering 2n by adding rather than multiplying the choices
+  - Forgetting the empty set or the full set
+  hints:
+    rephrase: For each element, how many choices does a subset make, and how do the choices combine across
+      elements?
+    smaller_case: Take the set {a, b}. List all of its subsets and count them.
+    key_idea: Independent yes/no decisions multiply together.
+  check: ans - 2**n
+  check_ok: false
+- goal: Count the subsets that contain a fixed element x_1.
+  expected: 2^(n-1)
+  solution: Fix x_1 as a member, so that decision is forced. The other n-1 elements are still free, each
+    in or out, giving 2^(n-1) subsets. Equivalently, exactly half of the 2^n subsets contain x_1.
+  common_errors:
+  - Answering 2^n, forgetting that x_1 is forced to be included
+  - Answering 2^(n-2), removing one element too many
+  - Answering 2^(n/2)
+  hints:
+    rephrase: Once x_1 is required to be in the subset, which elements still have an open yes/no choice?
+    smaller_case: For the set {x_1, x_2}, list the subsets that contain x_1.
+    key_idea: Fix one decision, then count the remaining free decisions with the same multiplication principle.
+  check: ans - 2**(n-1)
+  check_ok: false
+extensions:
+  '3':
+  - How many subsets of an n-element set contain neither x_1 nor x_2?
+  - How many subsets contain at least one of x_1 and x_2?
+  '4':
+  - How many subsets have exactly k elements, and what do these counts sum to?
+  - If you pick a subset uniformly at random, what is the probability that it contains x_1?
+  '5':
+  - Show that the sum of the sizes of all subsets of an n-element set equals n*2^(n-1).
+  - How many pairs (A, B) of subsets of an n-element set satisfy A contained in B?
+spoken_vocab:
+- power set
+- cardinality
+- subsets
+- n elements
+- two to the power n
+- two to the power n minus one
+- fixed element x one
+- empty set
+- binary choices
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 2
+  minutes: 4
+  flags:
+  - trivial
+  tagline: Standard 2^n and 2^(n-1) recall with little room for discussion.
+  priority: 17
+  rank: 683
+  tier: D
+  category: tbo
+  d10: 1.5
+  real: 4.0
+  by: haiku
+tags:
+- combinatorics

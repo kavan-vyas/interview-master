@@ -1,0 +1,77 @@
+id: one-plus-one-equals-two-invented
+title: Does 1 + 1 = 2 if numbers are invented?
+topics:
+- foundations
+- Peano axioms
+- philosophy of mathematics
+warmup: false
+answer_source: generated
+statement: How do we know if $1 + 1 = 2$ if the concept of numbers was in fact 'invented' by humans?
+stages:
+- goal: Derive $1 + 1 = 2$ from the Peano definitions of successor and addition.
+  expected: Let 1 = S(0) and 2 = S(1). Addition satisfies a + 0 = a and a + S(b) = S(a + b). Then 1 +
+    1 = 1 + S(0) = S(1 + 0) = S(1) = 2.
+  solution: Using the recursive definition of addition, 1 + S(0) = S(1 + 0) = S(1), and S(1) is by definition
+    2. So 1 + 1 = 2 follows from the axioms with no appeal to physical objects.
+  common_errors:
+  - Using apples or counting as the proof, which does not establish the result for all cases.
+  - Using addition on the right-hand side without unwinding its definition.
+  hints:
+    rephrase: If the numbers are defined by a rule for 'the next number', how would you define adding
+      one?
+    smaller_case: Compute 0 + 1 using the same definition.
+    key_idea: Addition is defined recursively using successor.
+- goal: Explain the sense in which the result is 'known' even if numbers are invented.
+  expected: Given the axioms, the result is a logical consequence and is certain relative to them. Whether
+    the axioms describe reality is a separate question, which philosophers address through Platonism versus
+    formalism or empiricism.
+  solution: Invention refers to the choice of axioms. Once they are chosen, 1 + 1 = 2 is forced by logic.
+    The deeper question is why these axioms describe the world so well, and different philosophical positions
+    give different answers.
+  common_errors:
+  - Claiming the axioms are provably true of reality, which is not something proof alone can show.
+  - Treating the question as having a single agreed answer.
+  hints:
+    rephrase: Separate 'given the rules, is the result forced?' from 'are the rules the right ones?'
+    smaller_case: Ask whether 1 + 1 = 2 would still follow in a world where you swapped the symbols for
+      different ones.
+    key_idea: Logical consequence versus truth of the starting assumptions.
+extensions:
+  '3':
+  - Prove 2 + 2 = 4 from the Peano axioms.
+  '4':
+  - Is 1 + 1 = 2 true in every model of arithmetic? Discuss Platonism versus formalism.
+  '5':
+  - Explain how Gödel's incompleteness theorems bear on whether arithmetic truths are invented or discovered.
+spoken_vocab:
+- one plus one equals two
+- Peano axioms
+- successor
+- addition
+- recursive definition
+- zero
+- logical consequence
+- Platonism
+- formalism
+- Gödel
+- incompleteness
+check: 1 + 1 == 2
+source: oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 3
+  parts: 2
+  minutes: 15
+  flags: []
+  tagline: Philosophical discussion anchored by a short, checkable Peano derivation.
+  priority: 65
+  rank: 381
+  tier: C
+  category: oxbridge-random
+  d10: 2.5
+  real: 5.5
+  by: haiku
+tags:
+- proof
+- number_theory

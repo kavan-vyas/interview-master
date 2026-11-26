@@ -1,0 +1,108 @@
+id: cauchy-schwarz-integral-bound
+title: Cauchy–Schwarz for integrals and a square-root bound
+topics:
+- integration
+- inequalities
+- Cauchy-Schwarz
+- quadratics
+- discriminant
+warmup: false
+answer_source: generated
+statement: 'By considering the inequality $\int_0^t (f(x)+\mu g(x))^2\,dx \ge 0$, where $\mu$ is a constant,
+  prove that, for all functions $f(x)$ and $g(x)$: $\left(\int_0^t f(x)g(x)\,dx\right)^2\le\left(\int_0^t
+  (f(x))^2\,dx\right)\left(\int_0^t (g(x))^2\,dx\right)$ (Cauchy–Schwarz Inequality). Hence show that
+  $\int_0^1 (1+x^5)^{\frac{1}{2}}\,dx\le\sqrt{\dfrac{7}{6}}$.'
+stages:
+- goal: Use the non-negativity of the integral of a square to get a quadratic in mu, then deduce the Cauchy–Schwarz
+    inequality.
+  expected: With A = integral of g^2, B = integral of fg, C = integral of f^2, the expression A*mu^2 +
+    2*B*mu + C is at least 0 for every real mu. If A is positive, the discriminant is at most 0, so B^2
+    <= AC, which is the inequality.
+  solution: 'Expand (f+mu g)^2 = f^2 + 2 mu fg + mu^2 g^2 and integrate over [0,t]: integral of (f+mu
+    g)^2 dx = A mu^2 + 2 B mu + C >= 0 for every real mu. If A > 0, this quadratic in mu never goes negative,
+    so its discriminant is at most zero: (2B)^2 - 4AC <= 0, i.e. B^2 <= AC. That is (integral of fg)^2
+    <= (integral of f^2)(integral of g^2). If A = 0, then integral of g^2 = 0 forces g = 0 (almost everywhere),
+    so B = 0 and the inequality holds trivially.'
+  common_errors:
+  - Dropping the factor 2 on the cross term when expanding the square.
+  - Stating the discriminant condition as >= 0 instead of <= 0.
+  - Ignoring the case A = 0, where the expression is linear in mu rather than quadratic.
+  hints:
+    rephrase: What can you say about the sign of an integral of a square? What does that tell you about
+      a quadratic in mu that is never negative?
+    smaller_case: Fix one value of mu, say mu = 1, and write out the integral. Then ask how the integral
+      depends on mu as a polynomial.
+    key_idea: A quadratic that is non-negative for all real inputs cannot have two distinct real roots.
+  check: discriminant(A*mu**2 + 2*B*mu + C, mu) - (4*B**2 - 4*A*C)
+  check_ok: true
+- goal: Evaluate the integral of 1 + x^5 from 0 to 1.
+  expected: 7/6
+  solution: integral from 0 to 1 of (1 + x^5) dx = [x + x^6/6] from 0 to 1 = 1 + 1/6 = 7/6.
+  common_errors:
+  - Integrating x^5 as x^4/5 (wrong power rule).
+  - Writing 1 + 1/5 by confusing x^6/6 with x^5/5.
+  - Forgetting to include the integral of the constant 1.
+  hints:
+    rephrase: Integrate each term separately and apply the power rule carefully to x^5.
+    smaller_case: Find the integral of x^2 from 0 to 1 first, then adapt the method to x^5.
+    key_idea: The power rule raises the exponent by one before dividing.
+  check: integrate(1 + x**5, (x, 0, 1)) - Rational(7, 6)
+  check_ok: true
+- goal: Apply the inequality with f = 1 and g = sqrt(1 + x^5) to bound the integral.
+  expected: Let I = integral from 0 to 1 of sqrt(1+x^5) dx. Then I^2 <= 1 * (7/6), and since I > 0, I
+    <= sqrt(7/6).
+  solution: Take f = 1 and g = sqrt(1+x^5) on [0,1]. Then integral of fg = I, integral of f^2 = 1, and
+    integral of g^2 = integral of (1+x^5) = 7/6. Cauchy–Schwarz gives I^2 <= 7/6. The integrand is positive,
+    so I > 0, and taking square roots gives I <= sqrt(7/6).
+  common_errors:
+  - Using g instead of g^2 when computing the integral of g^2.
+  - Forgetting to take the square root at the end.
+  - Choosing f and g so the integral of f g does not equal the target integral.
+  hints:
+    rephrase: Which simple function can you pair with sqrt(1+x^5) so that the product is exactly the integrand
+      you want to bound?
+    smaller_case: Apply the inequality with f = 1 and g = x instead, and check what it gives on [0,1].
+    key_idea: Choose one factor to be the constant 1, so the left side becomes the integral you want.
+extensions:
+  '3':
+  - Show that equality holds in Cauchy–Schwarz if and only if f and g are linearly dependent.
+  '4':
+  - Use Cauchy–Schwarz with f = 1 to show that the integral from 0 to 1 of sqrt(1+x^4) dx is at most sqrt(6/5).
+  '5':
+  - 'Deduce the discrete form: for real numbers a_i and b_i, (sum of a_i b_i)^2 <= (sum of a_i^2)(sum
+    of b_i^2).'
+spoken_vocab:
+- integral from zero to t
+- f of x
+- g of x
+- mu
+- squared
+- less than or equal to
+- integral from zero to one
+- one plus x to the fifth
+- square root of seven over six
+- Cauchy Schwarz
+- discriminant
+- A equals integral of g squared
+- B equals integral of f g
+- C equals integral of f squared
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 2
+  minutes: 15
+  flags: []
+  tagline: Proves Cauchy–Schwarz via a quadratic discriminant, then applies it to a real integral bound
+  priority: 81
+  rank: 248
+  tier: B
+  category: tbo
+  d10: 5.0
+  real: 5.5
+  by: deepseek-v4.1-flash-free
+tags:
+- integration
+- inequalities
+- proof

@@ -1,0 +1,93 @@
+id: pens-profit-percentage
+title: Pen profit with free pens
+topics:
+- percentages
+- profit and loss
+- arithmetic
+warmup: true
+answer_source: pdf
+statement: Priya buys 40 pens for £0.75 each. She gives away 8 of them, and sells the rest at £1.25 each.
+  What percentage profit does she make?
+stages:
+- goal: Work out Priya's total cost of the 40 pens.
+  expected: £30
+  solution: Cost = 40 × 0.75 = £30. All 40 pens are paid for, including the 8 given away.
+  common_errors:
+  - Subtracting the 8 free pens before working out the cost (cost becomes £24).
+  - Multiplying 0.75 by the wrong number of pens.
+  hints:
+    rephrase: How much did Priya pay in total, counting every pen she bought?
+    smaller_case: If she bought 4 pens at £0.75 each, what would she have paid?
+    key_idea: Total cost = number of items bought × price per item.
+  check: 40*Rational(3,4)-30
+  check_ok: true
+- goal: Work out Priya's total revenue from selling pens.
+  expected: £40
+  solution: Pens sold = 40 − 8 = 32. Revenue = 32 × 1.25 = £40.
+  common_errors:
+  - Using 40 pens instead of the 32 that were sold.
+  - Miscalculating 32 × 1.25 (e.g. getting £35 or £45).
+  hints:
+    rephrase: Which pens actually brought in money, and what does each one bring in?
+    smaller_case: If she sold 2 pens at £1.25 each, how much would she receive?
+    key_idea: Revenue counts only the items sold, multiplied by the selling price.
+  check: 32*Rational(5,4)-40
+  check_ok: true
+- goal: Work out the profit and the percentage profit on cost.
+  expected: Profit £10; percentage profit $33\frac{1}{3}\%$ (on cost)
+  solution: Profit = 40 − 30 = £10. Percentage profit on cost = 10/30 × 100 = $33\frac{1}{3}\%$.
+  common_errors:
+  - Dividing profit by revenue (10/40 = 25%) instead of cost.
+  - Forgetting to multiply by 100 to get a percentage.
+  - Rounding too early to 33% and losing accuracy.
+  hints:
+    rephrase: Percentage profit compares the profit with what the thing cost.
+    smaller_case: If something cost £10 and was sold for £12, what is the profit as a percentage of cost?
+    key_idea: Percentage profit = (profit ÷ cost price) × 100.
+  check: Rational(10,30)*100-Rational(100,3)
+  check_ok: true
+extensions:
+  '3':
+  - If she sold all 40 pens at £1.25 with no giveaways, what would her percentage profit on cost be?
+  '4':
+  - Express the profit as a percentage of revenue instead of cost. Which measure is the 'percentage profit'
+    normally meant to be?
+  '5':
+  - She wants a 20% profit on the total cost, with the 8 pens still given away. What price per pen should
+    she charge for the remaining 32 pens?
+spoken_vocab:
+- pounds
+- pens
+- per cent
+- percentage profit
+- cost
+- revenue
+- profit
+- times
+- divided by
+- one third
+- thirty
+- forty
+- eight
+- thirty-two
+- one point two five
+- zero point seven five
+source: kclms/kclms-specimen-questions-2.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 3
+  minutes: 3
+  flags:
+  - trivial
+  tagline: Straightforward cost-revenue arithmetic with little room for discussion.
+  priority: 23
+  rank: 659
+  tier: D
+  category: kclms
+  d10: 1.0
+  real: 2.0
+  by: haiku
+tags:
+- algebra_and_functions

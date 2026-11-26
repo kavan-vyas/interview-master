@@ -1,0 +1,129 @@
+id: polar-conics
+title: Polar equations as Cartesian conics
+topics:
+- polar coordinates
+- conic sections
+- trigonometric identities
+warmup: false
+answer_source: generated
+statement: 'By converting to cartesian coordinates, show that: (i) $r\cos(\theta-\alpha)=c$ describes
+  a straight line; (ii) $r=\ell\cos\theta$ describes a circle; (iii) $r^2\cos(\theta+\alpha)\cos(\theta-\alpha)=c^2$
+  describes a hyperbola; (iv) $r^{-1}=k\cos\theta+m$ can describe any conic section, the type depending
+  on the values of $k$ and $m$.'
+stages:
+- goal: Convert $r\cos(\theta-\alpha)=c$ to Cartesian form and identify the curve.
+  expected: $x\cos\alpha+y\sin\alpha=c$, a straight line at distance $|c|$ from the origin.
+  solution: Using $x=r\cos\theta$ and $y=r\sin\theta$, expand $r\cos(\theta-\alpha)=r\cos\theta\cos\alpha+r\sin\theta\sin\alpha=x\cos\alpha+y\sin\alpha$.
+    So the equation is $x\cos\alpha+y\sin\alpha=c$, which is a straight line in normal form. Its distance
+    from the origin is $|c|$.
+  common_errors:
+  - Expanding $\cos(\theta-\alpha)$ with the wrong sign on the $\sin$ term.
+  - Concluding the curve is a circle or conic because of the trigonometric form.
+  - Forgetting that $r\cos\theta=x$ and $r\sin\theta=y$ are both needed.
+  hints:
+    rephrase: Expand the cosine of a difference and multiply through by $r$.
+    smaller_case: 'Take $\alpha=0$: what does the equation become in Cartesian form?'
+    key_idea: Use $x=r\cos\theta$ and $y=r\sin\theta$ to rewrite the expanded expression.
+  check: simplify(expand_trig(r*cos(theta - alpha)) - (r*cos(theta)*cos(alpha) + r*sin(theta)*sin(alpha)))
+  check_ok: true
+- goal: Convert $r=\ell\cos\theta$ to Cartesian form and identify the circle.
+  expected: '$x^2+y^2=\ell x$, equivalently $(x-\tfrac{\ell}{2})^2+y^2=\tfrac{\ell^2}{4}$: a circle with
+    centre $(\tfrac{\ell}{2},0)$ and radius $\tfrac{|\ell|}{2}$.'
+  solution: 'Multiply $r=\ell\cos\theta$ by $r$ to get $r^2=\ell r\cos\theta$. Using $r^2=x^2+y^2$ and
+    $r\cos\theta=x$, this gives $x^2+y^2=\ell x$. Completing the square: $(x-\tfrac{\ell}{2})^2+y^2=\tfrac{\ell^2}{4}$.'
+  common_errors:
+  - Dividing by $r$ and losing the origin (the origin does lie on the curve).
+  - Completing the square incorrectly, e.g. getting radius $\ell$ rather than $\tfrac{\ell}{2}$.
+  - Writing $r\cos\theta = y$ instead of $x$.
+  hints:
+    rephrase: Multiply both sides by $r$ and use the standard substitutions.
+    smaller_case: 'Take $\ell=2$: what is the centre and radius of the resulting circle?'
+    key_idea: Complete the square in $x$ to read off the centre and radius.
+  check: expand((x-l/2)**2 + y**2 - l**2/4 - (x**2 + y**2 - l*x))
+  check_ok: true
+- goal: Convert $r^2\cos(\theta+\alpha)\cos(\theta-\alpha)=c^2$ to Cartesian form and identify the conic.
+  expected: $x^2\cos^2\alpha-y^2\sin^2\alpha=c^2$, i.e. $\frac{x^2}{c^2\sec^2\alpha}-\frac{y^2}{c^2\csc^2\alpha}=1$.
+    This is a hyperbola provided $c\neq0$ and $\sin\alpha\cos\alpha\neq0$.
+  solution: Use $\cos(A+B)\cos(A-B)=\cos^2A-\sin^2B$ with $A=\theta$, $B=\alpha$, giving $\cos(\theta+\alpha)\cos(\theta-\alpha)=\cos^2\theta-\sin^2\alpha$.
+    Then $r^2\cos^2\theta=x^2$ and $r^2=x^2+y^2$, so $x^2-\sin^2\alpha(x^2+y^2)=c^2$. Simplifying, $x^2\cos^2\alpha-y^2\sin^2\alpha=c^2$.
+    Dividing by $c^2$ gives the standard form, a hyperbola.
+  common_errors:
+  - Using the wrong product identity for $\cos(A+B)\cos(A-B)$.
+  - Writing $r^2\sin^2\theta=x^2$ in place of $r^2\cos^2\theta=x^2$.
+  - Forgetting to note the degenerate cases $c=0$ or $\sin\alpha\cos\alpha=0$.
+  hints:
+    rephrase: Expand the product of cosines into a difference of squares, then multiply through by $r^2$.
+    smaller_case: 'Take $\alpha=0$: what does the product become and what curve results?'
+    key_idea: Use the identity for $\cos(A+B)\cos(A-B)$ and then the substitutions $x=r\cos\theta$, $y=r\sin\theta$.
+  check: expand((x**2*cos(alpha)**2 - y**2*sin(alpha)**2 - c**2) - (x**2 - sin(alpha)**2*(x**2 + y**2)
+    - c**2))
+  check_ok: true
+- goal: Convert $r^{-1}=k\cos\theta+m$ to a Cartesian quadratic.
+  expected: $(m^2-k^2)x^2+m^2y^2+2kx-1=0$.
+  solution: Multiply $r^{-1}=k\cos\theta+m$ by $r$ to get $1=kr\cos\theta+mr=kx+m\sqrt{x^2+y^2}$. So $m\sqrt{x^2+y^2}=1-kx$.
+    Squaring gives $m^2(x^2+y^2)=1-2kx+k^2x^2$, i.e. $(m^2-k^2)x^2+m^2y^2+2kx-1=0$.
+  common_errors:
+  - Forgetting to multiply by $r$ before substituting.
+  - Writing $2kx$ with the wrong sign after squaring $1-kx$.
+  - Stopping at the square-root form without squaring.
+  hints:
+    rephrase: Multiply both sides by $r$ and isolate the term involving $\sqrt{x^2+y^2}$.
+    smaller_case: 'Take $k=0$: what is the Cartesian equation of $r=\tfrac{1}{m}$?'
+    key_idea: Isolate the square root and then square both sides.
+  check: expand((m**2 - k**2)*x**2 + m**2*y**2 + 2*k*x - 1 - (m**2*(x**2 + y**2) - (1 - k*x)**2))
+  check_ok: true
+- goal: Classify the conic in part (iv) according to $k$ and $m$.
+  expected: Ellipse if $|k|<|m|$; parabola if $|k|=|m|$; hyperbola if $|k|>|m|$. (Here $m\neq0$, since
+    $m=0$ gives the line $x=\tfrac{1}{k}$.)
+  solution: The quadratic $(m^2-k^2)x^2+m^2y^2+2kx-1=0$ has $x^2$-coefficient $m^2-k^2$ and $y^2$-coefficient
+    $m^2$. If $m^2>k^2$, both coefficients are positive, giving an ellipse. If $m^2=k^2$ (with $m\neq0$,
+    so $k\neq0$), the $x^2$ term vanishes and the equation $2kx+m^2y^2-1=0$ is a parabola. If $m^2<k^2$,
+    the coefficients have opposite signs, giving a hyperbola.
+  common_errors:
+  - Swapping the roles of $k$ and $m$, so that $|k|<|m|$ is read as a hyperbola.
+  - Treating the parabola case $|k|=|m|$ as a degenerate pair of lines.
+  - Forgetting the case $m=0$.
+  hints:
+    rephrase: Look at the signs of the coefficients of $x^2$ and $y^2$ in the quadratic.
+    smaller_case: Substitute $k=1$, $m=2$ into the quadratic and read off the signs of the $x^2$ and $y^2$
+      coefficients.
+    key_idea: The coefficient of $x^2$ is $m^2-k^2$; compare it with the coefficient of $y^2$.
+extensions:
+  '3':
+  - Show that $r=\frac{p}{1+e\cos\theta}$ describes a conic with focus at the origin and eccentricity
+    $e$.
+  '4':
+  - Find the eccentricity of $r^{-1}=k\cos\theta+m$ in terms of $k$ and $m$.
+  '5':
+  - Sketch the conics $r^{-1}=k\cos\theta+1$ for $k=0,\tfrac{1}{2},1,2$.
+spoken_vocab:
+- r cos theta minus alpha equals c
+- polar coordinates
+- r squared cos theta plus alpha cos theta minus alpha equals c squared
+- r equals l cos theta
+- reciprocal of r equals k cos theta plus m
+- straight line
+- circle
+- hyperbola
+- parabola
+- ellipse
+- conic section
+source: step-workbook/Cambridge STEP Short Workbook.pdf#1
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 5
+  minutes: 25
+  flags: []
+  tagline: Polar-to-Cartesian conversions unify lines, circles, hyperbolas and all conics
+  priority: 93
+  rank: 68
+  tier: A
+  category: step-workbook
+  d10: 5.0
+  real: 4.0
+  by: haiku
+tags:
+- polar_coordinates
+- coordinate_geometry

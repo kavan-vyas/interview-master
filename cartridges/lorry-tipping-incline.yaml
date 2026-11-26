@@ -1,0 +1,130 @@
+id: lorry-tipping-incline
+title: 'Lorry on an inclined plane: friction and tipping'
+topics:
+- statics
+- moments
+- resolving forces
+- trigonometric identities
+- inequalities
+warmup: false
+answer_source: pdf
+statement: A lorry of weight $W$ stands on a plane inclined at angle $\alpha$ to the horizontal. Its wheels
+  are a distance $2d$ apart, measured along the slope, and its centre of gravity $G$ is at height $h$
+  above the plane, halfway between its wheels. A horizontal force $P$ acts on the lorry through $G$, pointing
+  horizontally up the slope. Let $N_1$ and $F_1$ be the normal reaction and friction at the lower wheel,
+  and $N_2$ and $F_2$ those at the higher wheel. (i) If the normal reactions on the lower and higher wheels
+  are equal, show that the sum of the frictional forces between the wheels and the plane is zero. (ii)
+  If the lorry does not tip over, show that $W\tan(\alpha-\beta)\leqslant P\leqslant W\tan(\alpha+\beta)$,
+  where $\tan\beta=d/h$.
+stages:
+- goal: Take moments about G to relate the normal reactions and friction forces, and deduce that F1 +
+    F2 = 0 when N1 = N2.
+  expected: (N1 - N2) d = (F1 + F2) h, so N1 = N2 gives F1 + F2 = 0
+  solution: The weight and P both act through G, so they have no moment about G. The normal reactions
+    at the wheels have moment (N1 - N2) d about G, and the friction forces, acting along the slope at
+    height h below G, have moment (F1 + F2) h. Hence (N1 - N2) d = (F1 + F2) h. If N1 = N2, then (F1 +
+    F2) h = 0, and since h > 0, F1 + F2 = 0.
+  common_errors:
+  - Including the weight or P in the moment about G, though both pass through G
+  - Sign error between the normal-reaction moment and the friction moment
+  - Concluding that F1 and F2 are each zero rather than only their sum
+  hints:
+    rephrase: Which forces have a line of action through G, and which do not?
+    smaller_case: Imagine P = 0 and the plane horizontal. What can you say about the two normal reactions?
+    key_idea: Moments about the centre of gravity remove the weight and P; only the wheel reactions and
+      friction contribute.
+  check: sp.simplify(((N1-N2)*d - (F1+F2)*h).subs(N2, N1))
+  check_ok: null
+- goal: Resolve perpendicular to the plane, and take moments about one wheel, to express 2dN1 and 2dN2
+    in terms of W, P, alpha, d and h.
+  expected: 2dN1 = W(d cos alpha + h sin alpha) + P(d sin alpha - h cos alpha); 2dN2 = W(d cos alpha -
+    h sin alpha) + P(d sin alpha + h cos alpha)
+  solution: 'Perpendicular to the plane: N1 + N2 = W cos alpha + P sin alpha (P pushes into the plane
+    with component P sin alpha). Take moments about the lower wheel''s contact point, where the friction
+    forces have zero moment about that point''s own line of action along with the lower reaction. This
+    gives 2dN2 = W(d cos alpha - h sin alpha) + P(d sin alpha + h cos alpha). Subtracting from the perpendicular
+    equation times 2d gives 2dN1 = W(d cos alpha + h sin alpha) + P(d sin alpha - h cos alpha).'
+  common_errors:
+  - Taking the normal component of P with the wrong sign
+  - Using 2d where d is the correct lever arm from G to a wheel
+  - Dropping the h term from the moment of the weight
+  hints:
+    rephrase: Use the perpendicular equation together with one moment equation. Choose the moment point
+      so that friction at one wheel drops out.
+    smaller_case: Set alpha = 0 and P = 0. What reactions should you obtain, and does your formula agree?
+    key_idea: Taking moments about a wheel's contact point removes that wheel's reaction and the friction
+      forces acting along the plane, leaving one equation for the other reaction.
+  check: sp.simplify((W*(d*sp.cos(al)+h*sp.sin(al))+P*(d*sp.sin(al)-h*sp.cos(al))) + (W*(d*sp.cos(al)-h*sp.sin(al))+P*(d*sp.sin(al)+h*sp.cos(al)))
+    - 2*d*(W*sp.cos(al)+P*sp.sin(al)))
+  check_ok: null
+- goal: Use the no-tipping conditions N1 >= 0 and N2 >= 0 to deduce W tan(alpha - beta) <= P <= W tan(alpha
+    + beta), stating the assumptions on the angles.
+  expected: W tan(alpha - beta) <= P <= W tan(alpha + beta), valid when cos(alpha - beta) > 0 and cos(alpha
+    + beta) > 0 (that is, alpha + beta < pi/2)
+  solution: Divide 2dN2 >= 0 by h and use tan beta = d/h. Then tan beta cos alpha - sin alpha = -sin(alpha
+    - beta)/cos beta and tan beta sin alpha + cos alpha = cos(alpha - beta)/cos beta, so P cos(alpha -
+    beta) >= W sin(alpha - beta). With cos(alpha - beta) > 0 this gives P >= W tan(alpha - beta). Similarly
+    2dN1 >= 0 gives W sin(alpha + beta) >= P cos(alpha + beta), since tan beta cos alpha + sin alpha =
+    sin(alpha + beta)/cos beta and tan beta sin alpha - cos alpha = -cos(alpha + beta)/cos beta. With
+    cos(alpha + beta) > 0 this gives P <= W tan(alpha + beta). If cos(alpha + beta) < 0 the upper inequality
+    reverses, so the stated bound needs alpha + beta < pi/2.
+  common_errors:
+  - Forgetting to divide by cos beta, or mishandling its sign
+  - Presenting the bounds as unconditional when cos(alpha + beta) can be negative
+  - Swapping N1 and N2, which reverses the two bounds
+  hints:
+    rephrase: Each no-tipping condition is an inequality linear in P. Divide by h and rewrite the trigonometric
+      combinations using tan beta = d/h.
+    smaller_case: Set P = 0. What condition on alpha and beta does N2 >= 0 give?
+    key_idea: Compound-angle identities turn each condition into a sine and cosine of alpha plus or minus
+      beta. Keep track of the sign of each cosine when you divide.
+  check: sp.simplify((W*(h*sp.sin(al)+d*sp.cos(al)) + P*(d*sp.sin(al)-h*sp.cos(al))).subs(P, W*sp.tan(al+be)).subs(be,
+    sp.atan(d/h)))
+  check_ok: null
+extensions:
+  '3':
+  - Discuss the limit h tending to 0 of the bounds in part (ii), and explain the physical meaning.
+  '4':
+  - For a horizontal plane (alpha = 0), find the bounds on P and interpret them physically.
+  '5':
+  - For alpha = 30 degrees and d/h = 1, find the largest horizontal force P that can be applied at G without
+    tipping, in terms of W.
+spoken_vocab:
+- W
+- P
+- alpha
+- beta
+- d
+- h
+- N one
+- N two
+- F one
+- F two
+- tan beta equals d over h
+- two d N one
+- two d N two
+- W tan alpha minus beta
+- W tan alpha plus beta
+- cos alpha plus beta
+- cos alpha minus beta
+- less than or equal to
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#16
+verified: false
+rating:
+  quality: 8
+  difficulty: 7
+  parts: 2
+  minutes: 18
+  flags:
+  - needs_diagram
+  tagline: Moments and tipping conditions give a satisfying inequality with real physical meaning.
+  priority: 83
+  rank: 173
+  tier: B
+  category: siklos
+  d10: 5.0
+  real: 4.0
+  by: haiku
+tags:
+- mechanics
+- trigonometry

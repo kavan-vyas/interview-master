@@ -1,0 +1,82 @@
+id: sphere-five-points-hemisphere
+title: Five points on a sphere and a hemisphere with four
+topics:
+- geometry
+- pigeonhole principle
+- hemispheres
+warmup: false
+answer_source: generated
+statement: Given 5 points on a sphere, can we split the sphere in two so that 4 points lie on one of the
+  hemispheres? (Points on the dividing great circle may be assigned to either side.)
+stages:
+- goal: Choose a great circle through two of the points.
+  expected: Pick two points that are not antipodal. The plane through them and the centre O cuts the sphere
+    in a great circle, and the two closed hemispheres it defines both contain those two points.
+  solution: If every pair of the five points were antipodal, then p1 would be antipodal to p2, p3, p4
+    and p5, but a point has only one antipode. So some pair p1, p2 is not antipodal. Then O, p1, p2 are
+    not collinear and the plane through them is determined. It splits the sphere into two closed hemispheres
+    with p1 and p2 on the dividing great circle.
+  common_errors:
+  - Choosing an antipodal pair, which does not determine a plane through the centre
+  - Assuming the dividing circle must avoid all five points
+  hints:
+    rephrase: Which plane through the centre is guaranteed to exist using only two of the five points?
+    smaller_case: Take 3 points on a sphere. Can you always find two of them that are not diametrically
+      opposite?
+    key_idea: Two non-antipodal points together with the centre determine a plane through the centre.
+  check: null
+- goal: Assign the other three points to the two hemispheres and count the points in one hemisphere.
+  expected: 'Some closed hemisphere contains p1, p2 and at least two of p3, p4, p5, so it contains 4 points.
+    Answer: yes.'
+  solution: Each of p3, p4, p5 lies in the closed upper or closed lower hemisphere; a point on the circle
+    may go to either side. Three points are placed into two hemispheres, so by pigeonhole one hemisphere
+    receives at least two of them. That hemisphere already contains p1 and p2 (on its boundary), giving
+    4 points.
+  common_errors:
+  - Forgetting that p1 and p2 lie on the circle and count toward the hemisphere
+  - Counting only open hemispheres, where a boundary point is not allowed on either side
+  hints:
+    rephrase: After fixing the circle, how many of the remaining three points must end up on the same
+      side?
+    smaller_case: If 3 pigeons go into 2 holes, what can you say about one of the holes?
+    key_idea: Pigeonhole on the three remaining points, with p1 and p2 belonging to both hemispheres.
+  check: null
+extensions:
+  '3':
+  - With 4 points on a sphere, the same argument guarantees a closed hemisphere containing how many of
+    them?
+  '4':
+  - Can all 4 vertices of a regular tetrahedron lie in one closed hemisphere?
+  '5':
+  - Why does the pigeonhole step fail if only 2 points remain instead of 3?
+spoken_vocab:
+- sphere
+- hemisphere
+- great circle
+- centre
+- origin O
+- antipodal
+- pigeonhole
+- five points
+- four points
+- closed hemisphere
+source: screenshots/Screenshot 2026-11-19 at 14.37.58.png
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 2
+  minutes: 10
+  flags:
+  - needs_diagram
+  tagline: Rotating a great circle through two points gives a clean argument.
+  priority: 57
+  rank: 464
+  tier: C
+  category: screenshots
+  d10: 5.5
+  real: 6.5
+  by: haiku
+tags:
+- geometry
+- proof

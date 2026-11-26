@@ -1,0 +1,106 @@
+id: basel-bound-telescoping
+title: Bounding 1 + 1/2^2 + ... + 1/n^2 below 2
+topics:
+- inequalities
+- telescoping sums
+- induction
+- series
+- bounds
+warmup: false
+answer_source: pdf
+statement: Prove that for every positive integer $n$, $1+\frac{1}{2^2}+\frac{1}{3^2}+\cdots+\frac{1}{n^2}<2$.
+stages:
+- goal: Bound each term 1/k^2 for k >= 2 by a difference of simpler fractions.
+  expected: For k >= 2, 1/k^2 < 1/(k(k-1)) = 1/(k-1) - 1/k. The inequality is strict because k^2 > k(k-1)
+    when k >= 2.
+  solution: For $k\ge2$ we have $k^2>k(k-1)>0$, so $\frac1{k^2}<\frac1{k(k-1)}$. Partial fractions give
+    $\frac1{k(k-1)}=\frac1{k-1}-\frac1k$, which is the difference of two consecutive terms of the sequence
+    $\frac1{k-1}$.
+  common_errors:
+  - Comparing 1/k^2 with 1/(k+1)(k) instead of 1/(k(k-1)), which gives the wrong bound.
+  - Writing the partial fraction decomposition with the wrong signs.
+  - Dropping the strict inequality, which matters for the final statement.
+  hints:
+    rephrase: Find a fraction with a larger denominator structure that is easy to split, and show it is
+      bigger than 1/k^2.
+    smaller_case: Take k = 2 and compare 1/4 with a product of two consecutive integers in the denominator.
+    key_idea: Compare 1/k^2 with the reciprocal of a product of two consecutive integers, then split that
+      reciprocal into two terms.
+- goal: Sum the bound over k = 2 to n and conclude that the total is less than 2.
+  expected: The sum of 1/(k(k-1)) from k = 2 to n telescopes to 1 - 1/n. Adding the first term 1 gives
+    S_n < 2 - 1/n < 2.
+  solution: Let $S_n=\sum_{k=1}^n\frac1{k^2}$. Then $\sum_{k=2}^n\frac1{k(k-1)}=\sum_{k=2}^n\left(\frac1{k-1}-\frac1k\right)=1-\frac1n$,
+    since consecutive terms cancel. Summing the strict bounds from stage 1 gives $\sum_{k=2}^n\frac1{k^2}<1-\frac1n$
+    (for $n\ge2$). Hence $S_n=1+\sum_{k=2}^n\frac1{k^2}<2-\frac1n<2$. For n = 1 the sum is exactly 1,
+    which is less than 2.
+  common_errors:
+  - 'Miscounting the telescoping: the sum runs from k = 2 to n and leaves 1 - 1/n, not 1 - 1/(n+1).'
+  - Forgetting to add the first term 1 when concluding.
+  - Not handling the case n = 1 separately, where the inner sum is empty.
+  hints:
+    rephrase: Write out the sum of the differences term by term, and see which terms cancel.
+    smaller_case: Write out the sum for n = 3 and check which terms survive.
+    key_idea: In a telescoping sum, only the first and last terms of the list remain.
+  check: summation(1/(k*(k-1)), (k, 2, n)) - (1 - 1/n)
+  check_ok: true
+- goal: Explain why induction directly on S_n < 2 fails, then prove the stronger claim S_n <= 2 - 1/n
+    by induction.
+  expected: Induction on S_n < 2 fails because the inductive hypothesis is too weak to close the step.
+    Prove S_n <= 2 - 1/n instead. Base case n = 1 gives 1 <= 1. In the step, S_(n+1) = S_n + 1/(n+1)^2
+    <= 2 - 1/n + 1/(n+1)^2, and 1/(n+1)^2 <= 1/(n(n+1)) = 1/n - 1/(n+1), so S_(n+1) <= 2 - 1/(n+1).
+  solution: 'Claim: $S_n\le 2-\frac1n$ for all $n\ge1$. Base case: $S_1=1=2-1$. Inductive step: assume
+    $S_n\le2-\frac1n$. Then $S_{n+1}=S_n+\frac{1}{(n+1)^2}\le2-\frac1n+\frac1{(n+1)^2}$. Now $\frac1{(n+1)^2}\le\frac1{n(n+1)}=\frac1n-\frac1{n+1}$,
+    because $n(n+1)\le(n+1)^2$. Hence $S_{n+1}\le2-\frac1{n+1}$. By induction the claim holds for all
+    $n$, and so $S_n\le 2-\frac1n<2$.'
+  common_errors:
+  - Assuming S_n < 2 and trying to prove S_(n+1) < 2 directly, which gives no usable bound on the new
+    term.
+  - Getting the inequality n(n+1) <= (n+1)^2 the wrong way round.
+  - Stating the stronger claim without checking the base case.
+  hints:
+    rephrase: Find a stronger statement that carries information about the size of the tail, so the induction
+      step has something to use.
+    smaller_case: Check the candidate stronger statement for n = 1 and n = 2 by direct computation.
+    key_idea: Choose a bound that depends on n, and check the step by comparing 1/(n+1)^2 with the difference
+      1/n minus 1/(n+1).
+extensions:
+  '3':
+  - Show that S_n < 2 - 1/n holds for every n >= 2, and explain why the strictness is only needed from
+    k = 2 onwards.
+  - Deduce that the infinite series 1 + 1/4 + 1/9 + ... converges.
+  '4':
+  - Use the same telescoping method to bound the sum of 1/k^2 from k = 2 to n by a value less than 1.
+  - Show that the bound 2 is not sharp, using the known value of the infinite sum.
+  '5':
+  - Find a bound of the form S_n <= c - d/n that is sharper than 2 - 1/n, using a finer comparison for
+    the terms 1/k^2.
+spoken_vocab:
+- one plus one over two squared, plus one over three squared, and so on up to one over n squared
+- less than two
+- telescoping sum
+- partial fractions
+- induction
+- base case
+- inductive step
+- two minus one over n
+- pi squared over six
+source: jaymin/Jaymin Interview (1).pdf#p17
+verified: false
+rating:
+  quality: 8
+  difficulty: 5
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Telescoping bound leads to strengthened induction and Basel extension.
+  priority: 106
+  rank: 42
+  tier: A
+  category: jaymin
+  d10: 5.0
+  real: 7.5
+  by: deepseek-v4.1-flash-free
+tags:
+- inequalities
+- proof
+- sequences_and_series

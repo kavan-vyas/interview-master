@@ -1,0 +1,135 @@
+[
+ {
+  "q": "Priya buys 40 pens for \u00a30.75 each. She gives away 8 of them, and sells the rest at \u00a31.25 each. What percentage profit does she make?",
+  "kind": "maths",
+  "answer": "Cost \u00a330; revenue $32 \\times 1.25 = \u00a340$; profit $10/30 = 33\\frac{1}{3}\\%$.",
+  "short": true,
+  "source": "kclms/kclms-specimen-questions-2.pdf#0"
+ },
+ {
+  "q": "A Regular fruit smoothie is sold in bottles of 360 ml which contain 84 ml of fruit juice. A Deluxe fruit smoothie is sold in bottles of 250 ml which contain 60 ml of fruit juice. Which smoothie contains the greater proportion of fruit juice?",
+  "kind": "maths",
+  "answer": "$\\frac{84}{360} = \\frac{7}{30} \\approx 0.233$; $\\frac{60}{250} = 0.24$. The Deluxe smoothie has the greater proportion.",
+  "short": true,
+  "source": "kclms/kclms-specimen-questions-2.pdf#0"
+ },
+ {
+  "q": "Solve the equations. a $\\frac{1}{3}x - \\frac{1}{5}(x - 4) = 2$ b $\\frac{x}{x + 1} = \\frac{x - 3}{x + 2}$",
+  "kind": "maths",
+  "answer": "a: $5x - 3(x - 4) = 30 \\Rightarrow x = 9$. b: $x(x + 2) = (x - 3)(x + 1) \\Rightarrow 4x = -3 \\Rightarrow x = -\\frac{3}{4}$.",
+  "short": true,
+  "source": "kclms/kclms-specimen-questions-2.pdf#0"
+ },
+ {
+  "q": "The area of this trapezium is 105 cm\u00b2. Parallel sides are 8 cm and x cm, and the perpendicular height is 7 cm. What is the length x cm of its base?",
+  "kind": "maths",
+  "answer": "$\\frac{(8 + x)}{2} \\times 7 = 105 \\Rightarrow 8 + x = 30 \\Rightarrow x = 22$.",
+  "short": true,
+  "source": "kclms/kclms-specimen-questions-2.pdf#0"
+ },
+ {
+  "q": "From January 1st 2005 until January 1st 2014, average house prices in Leeds rose by 80%. From January 1st 2005 until January 1st 2008, average house prices in Leeds rose by 25%. By what percentage did average house prices in Leeds rise from January 1st 2008 until January 1st 2014?",
+  "kind": "maths",
+  "answer": "$1.8 \\div 1.25 = 1.44$, so a 44% rise.",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-2.pdf#0"
+ },
+ {
+  "q": "The three-digit numbers 523 and 641 use all six digits from 1 to 6 between them. The difference between these numbers is 641 \u2212 523 = 118. Find two three-digit numbers which use all six digits from 1 to 6 between them and which have the smallest possible difference.",
+  "kind": "maths",
+  "answer": "412 and 365, difference $412 - 365 = 47$ (smallest possible). Make the hundreds digits consecutive (3 and 4), then make the larger number's remaining digits as small as possible and the smaller number's as large as possible.",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-2.pdf#0"
+ },
+ {
+  "q": "Find all pairs of different positive whole numbers a and b, with a < b, such that $\\frac{1}{a} + \\frac{1}{b} = \\frac{1}{6}$.",
+  "kind": "maths",
+  "answer": "$(a - 6)(b - 6) = 36$ with $a - 6 < b - 6$, giving (a, b) = (7, 42), (8, 24), (9, 18), (10, 15).",
+  "short": true,
+  "source": "kclms/kclms-specimen-questions-2.pdf#0"
+ },
+ {
+  "q": "A lift in a building with 7 floors, numbered 1 to 7, stops at floors in the order 1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1, 2, 3, ... and so on, travelling up and down the building continuously. If the first stop is at floor 1, at which floor will the lift make its 2025th stop? Explain clearly how you decided.",
+  "kind": "maths",
+  "answer": "The pattern repeats every 12 stops. Stop n is at position $(n - 1) \\bmod 12$ in the cycle 1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2. Since $2024 = 12 \\times 168 + 8$, the position is 8 (counting from 0), which is floor 5.",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-2.pdf#0"
+ },
+ {
+  "q": "In the diagram, AB = AC and line DE is parallel to line BC. The point Q lies on BC extended. Angle ABC = 65\u00b0. Find angles i BAC, ii DAB, iii ACQ, showing and explaining each step in your working.",
+  "kind": "maths",
+  "answer": "i: $180 - 2 \\times 65 = 50\u00b0$ (isosceles triangle, angle sum). ii: $65\u00b0$ (alternate angles, DE \u2225 BC). iii: $180 - 65 = 115\u00b0$ (angles on a line, with angle ACB = 65\u00b0).",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-2.pdf#0"
+ },
+ {
+  "q": "You are given that N is a whole number which is a multiple of 4 and a multiple of 6. For each of the following statements say whether you can be sure it is true, it might or might not be true or it definitely isn't true. Explain your answer in each case. a N is a multiple of 12. b N is a multiple of 8. c N is odd. d N is a factor of 24.",
+  "kind": "maths",
+  "answer": "a: Sure. Multiples of 4 and 6 are multiples of their lowest common multiple, 12. b: Might. 24 works, 12 does not. c: Definitely not. Multiples of 4 are even. d: Might. 12 works, 36 does not.",
+  "short": true,
+  "source": "kclms/kclms-specimen-questions-2.pdf#0"
+ },
+ {
+  "q": "In a school, there are 50 pupils in year nine. Eleven girls are in the drama club and fourteen girls are in the choir. Four girls are in both, and six girls are in neither. Fifteen boys are in the chess club and twelve boys are in the coding club. Three boys are in neither club. How many boys in year nine are in the chess club and the coding club?",
+  "kind": "maths",
+  "answer": "Girls: $11 + 14 - 4 + 6 = 27$. Boys: $50 - 27 = 23$; boys in a club = 20. $15 + 12 - \\text{both} = 20 \\Rightarrow 7$ boys are in both clubs.",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-2.pdf#0"
+ },
+ {
+  "q": "The diagram shows an irregular pentagon. The lengths of three of the sides are 31 cm, 5 cm and 17 cm. Three of the angles in the pentagon are right angles. The sloping side is 20 cm long. Find the length of the side marked s.",
+  "kind": "maths",
+  "answer": "Horizontal part of the slope: $\\sqrt{20^2 - 12^2} = 16$ (add a horizontal line to form a right-angled triangle with vertical side 17 \u2212 5 = 12). So $s = 31 - 16 = 15$ cm.",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-2.pdf#0"
+ },
+ {
+  "q": "A woman is going to cycle from her house to a village 42 km away. She cycles at 18 km per hour for the first forty-five minutes, then at 30 km per hour for the next 12 km until she reaches a stream. She then rests for fifteen minutes. After this, she continues to the village at a gentle pace through the fields. Altogether, she has taken two and a half hours to travel the 42 km. What is her average speed when she is cycling at a gentle pace through the fields?",
+  "kind": "maths",
+  "answer": "Distances: $13.5 + 12 = 25.5$ km, leaving 16.5 km. Times: $45 + 24 + 15 = 84$ min, leaving 66 min = 1.1 h. Speed = $16.5 \\div 1.1 = 15$ km/h.",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-2.pdf#0"
+ },
+ {
+  "q": "Two players take turns to remove counters from a pile of 33 counters. On each turn a player must remove 1, 2, 3 or 4 counters. The player who removes the last counter wins. a Show that if it is your turn and there are 5 counters left, you cannot force a win, however you play. b Show that the player who goes first can always force a win, and describe how. c Which player can always force a win if the game starts with 40 counters? Explain your answer.",
+  "kind": "maths",
+  "answer": "a: Leaving a multiple of 5 is winning. With 5 left, any move (1 to 4) leaves 1 to 4 for the opponent, who takes all. b: The first player takes 3 (leaving 30), then always takes $5 - $ (opponent's number). c: The second player. Whatever the first player takes, reply to make each round total 5; 40 is a multiple of 5.",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-2.pdf#0"
+ },
+ {
+  "q": "To bump a number means to add five to it, and to mirror a number means to subtract it from 10. a If you bump a number and then bump the answer, the overall effect is to add ten. What is the overall effect if you: i mirror a number and then mirror the answer? ii bump a number and then mirror the answer? iii mirror a number and then bump the answer? b Show that if you bump a number, mirror the answer and then bump the answer to that, this has the same overall effect as just mirroring the number once. c Find a sequence of three operations, each a bump or a mirror, that has the overall effect of just changing the sign of the number. d i Find a sequence of six operations, each a bump or a mirror, that leaves every number unchanged. ii Is it possible to find an odd number of operations, each a bump or a mirror, that leaves every number unchanged? Justify your answer.",
+  "kind": "maths",
+  "answer": "a i: no change. ii: $5 - n$. iii: $15 - n$. b: $n \\to n + 5 \\to 5 - n \\to 10 - n$, which is mirroring. c: bump, bump, mirror: $10 - (n + 10) = -n$. d i: bump, bump, mirror, bump, bump, mirror: $n \\to n + 10 \\to -n \\to -n + 10 \\to n$. d ii: No. Write each result as $\\pm n + c$. A mirror flips the sign, so the number of mirrors must be even. Also $c/5$ changes parity with every bump and keeps its parity under a mirror ($c \\to 10 - c$), and $c = 0$ is needed, so the number of bumps is even too. The total is therefore even.",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-2.pdf#0"
+ },
+ {
+  "q": "Four apples and three pears cost \u00a33.20, and five apples and two pears cost \u00a32.95. How much would it cost to buy one apple and one pear?",
+  "kind": "maths",
+  "answer": "$5a + 2p = 2.95$ and $4a + 3p = 3.20$ give $a = \u00a30.35$, $p = \u00a30.60$. Total \u00a30.95.",
+  "short": true,
+  "source": "kclms/kclms-specimen-questions-2.pdf#0"
+ },
+ {
+  "q": "In September, there were four times as many boys as girls in a class. In October, three new girls joined the class and two of the boys left. Then there were only three times as many boys as girls in the class. How many boys and girls were there in the class in September?",
+  "kind": "maths",
+  "answer": "Girls $g$, boys $4g$: $4g - 2 = 3(g + 3) \\Rightarrow g = 11$. So 11 girls and 44 boys.",
+  "short": true,
+  "source": "kclms/kclms-specimen-questions-2.pdf#0"
+ },
+ {
+  "q": "The two shaded rectangles have equal area. The dimensions given are 14 cm, 4 cm and 3 cm. What is the total shaded area?",
+  "kind": "maths",
+  "answer": "Let the left widths be x cm: $3x = 4(14 - x) \\Rightarrow x = 8$. Each area is 24, so the total shaded area is 48 cm\u00b2.",
+  "short": true,
+  "source": "kclms/kclms-specimen-questions-2.pdf#0"
+ },
+ {
+  "q": "PROBLEM: Find x, y and z if x + y = 7, y + z = 10, z + x = 13. METHOD: Adding the three equations gives 2x + 2y + 2z = 30, so x + y + z = 15. Since x + y = 7, z = 15 \u2212 7 = 8. In the same way, x = 15 \u2212 10 = 5 and y = 15 \u2212 13 = 2. a Use the METHOD above to solve: find x, y and z if x + y = 11, y + z = 16, z + x = 19. b Adapt the METHOD to solve: find w, x, y and z if w + x + y = 9, x + y + z = 12, y + z + w = 15, z + w + x = 18. c Try to adapt the METHOD to solve: i find x, y and z if x \u2212 y = 8, z \u2212 y = 3, x \u2212 z = 5; ii find x, y and z if x \u2212 y = 8, z \u2212 y = 3, x \u2212 z = 4. What goes wrong? d One of the PROBLEMs in c has many solutions, even though the METHOD does not work; the other has no solutions. Identify which is which, and explain the difference.",
+  "kind": "maths",
+  "answer": "a: Sum = 23, so z = 23 \u2212 11 = 12, x = 23 \u2212 16 = 7, y = 23 \u2212 19 = 4. b: Sum all four equations: $3(w + x + y + z) = 54$, total 18, so z = 9, w = 6, x = 3, y = 0. c: Substituting gives x \u2212 z = 5 (or 4) from the first two equations, so the third equation either holds for every y or never. No value of y is fixed. d: i has many solutions. The third equation is the first minus the second, so it is redundant. y is free, x = 8 + y, z = 3 + y. ii has no solutions, since subtracting gives x \u2212 z = 5, contradicting x \u2212 z = 4.",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-2.pdf#0"
+ }
+]

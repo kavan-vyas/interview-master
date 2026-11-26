@@ -1,0 +1,30 @@
+[
+ {
+  "q": "Given that $\\tan\\frac{\\pi}{4}=1$, show that $\\tan\\frac{\\pi}{8}=\\sqrt{2}-1$. Let $I=\\int_{-1}^{1}\\frac{1}{\\sqrt{1+x}+\\sqrt{1-x}+2}\\,dx$. Show, by using the change of variable $x=\\sin 4t$, that $I=\\int_0^{\\pi/8}\\frac{2\\cos 4t}{\\cos^2 t}\\,dt$. Hence show that $I=4\\sqrt{2}-\\pi-2$.",
+  "kind": "maths",
+  "answer": "Let $t=\\tan\\frac{\\pi}{8}$. Then $\\frac{2t}{1-t^2}=1$ gives $t^2+2t-1=0$, so $t=-1\\pm\\sqrt{2}$; taking the positive root gives $\\sqrt{2}-1$. Substituting $x=\\sin 4t$ and using $1\\pm\\sin 4t=(\\cos 2t\\pm\\sin 2t)^2$ (taking the positive root) gives $I=2\\int_0^{\\pi/8}\\frac{4\\cos 4t}{(\\cos 2t+\\sin 2t)+(\\cos 2t-\\sin 2t)+2}\\,dt$, which simplifies to the stated form. Using $\\cos 4t=8\\cos^4 t-8\\cos^2 t+1$ gives $I=2\\int_0^{\\pi/8}(8\\cos^2 t-4+\\sec^2 t)\\,dt=\\left[4\\sin 2t-8t+\\tan t\\right]_0^{\\pi/8}=4\\sqrt{2}-\\pi-2$.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#13"
+ },
+ {
+  "q": "(i) Show that, for $0\\leqslant x\\leqslant 1$, the largest value of $\\frac{x^6}{(x^2+1)^4}$ is $\\frac{1}{16}$. What is the smallest value? (ii) Find constants $A$, $B$, $C$ and $D$ such that, for all $x$, $\\frac{1}{(x^2+1)^4}\\equiv\\frac{d}{dx}\\left(\\frac{Ax^5+Bx^3+Cx}{(x^2+1)^3}\\right)+\\frac{Dx^6}{(x^2+1)^4}$. (iii) Hence, or otherwise, prove that $\\frac{11}{24}\\leqslant\\int_0^1\\frac{1}{(x^2+1)^4}\\,dx\\leqslant\\frac{11}{24}+\\frac{1}{16}$.",
+  "kind": "maths",
+  "answer": "(i) The derivative is $\\frac{2(3-x^2)x^5}{(x^2+1)^5}>0$ on $(0,1)$, so the function increases from 0 to 1. The largest value is $\\frac{1}{16}$ at $x=1$ and the smallest is $0$ at $x=0$. (ii) $A=1$, $B=\\frac{5}{3}$, $C=1$, $D=1$. (iii) Using (i) and (ii), $\\frac{d}{dx}\\left(\\frac{x^5+\\frac{5}{3}x^3+x}{(x^2+1)^3}\\right)\\leqslant\\frac{1}{(x^2+1)^4}\\leqslant\\frac{d}{dx}\\left(\\frac{x^5+\\frac{5}{3}x^3+x}{(x^2+1)^3}\\right)+\\frac{1}{16}$ on $[0,1]$. Integrating over $[0,1]$, the bracketed term evaluates to $\\frac{11}{24}$ at $x=1$ and $0$ at $x=0$, and $\\int_0^1\\frac{1}{16}\\,dx=\\frac{1}{16}$, giving the result.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#13"
+ },
+ {
+  "q": "Show that $\\int_{-1}^{1}|xe^x|\\,dx=-\\int_{-1}^{0}xe^x\\,dx+\\int_{0}^{1}xe^x\\,dx$ and hence evaluate the integral. Evaluate the following integrals: (i) $\\int_0^4\\left|x^3-2x^2-x+2\\right|\\,dx$; (ii) $\\int_{-\\pi}^{\\pi}\\left|\\sin x+\\cos x\\right|\\,dx$.",
+  "kind": "maths",
+  "answer": "For the first integral, $|xe^x|=-xe^x$ for $x<0$; integrating by parts on each piece gives $2-2e^{-1}$. (i) Since $x^3-2x^2-x+2=(x-1)(x+1)(x-2)$, split the range at $x=1$ and $x=2$ and integrate piecewise to get $22\\frac{1}{6}$. (ii) $\\sin x+\\cos x$ changes sign at $x=-\\frac{\\pi}{4}$ and $x=\\frac{3\\pi}{4}$; splitting there gives $4\\sqrt{2}$.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#13"
+ },
+ {
+  "q": "A unit fraction is $\\frac{1}{N}$, where $N$ is an integer greater than 1. Noting that $\\frac{1}{2}=\\frac{1}{3}+\\frac{1}{6}$ and $\\frac{1}{3}=\\frac{1}{4}+\\frac{1}{12}$, guess a general result of the form $\\frac{1}{N}=\\frac{1}{a}+\\frac{1}{b}$ $(*)$ and hence prove that any unit fraction can be expressed as the sum of two distinct unit fractions. By writing $(*)$ in the form $(a-N)(b-N)=N^2$ and considering the factors of $N^2$, show that if $N$ is prime, then there is only one way of expressing $\\frac{1}{N}$ as the sum of two distinct unit fractions. Prove similarly that any fraction of the form $\\frac{2}{N}$, where $N$ is a prime number greater than 2, can be expressed uniquely as the sum of two distinct unit fractions.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#13"
+ }
+]

@@ -1,0 +1,91 @@
+id: leibniz-variable-limit-and-integrand
+title: Differentiate an integral with variable limit and parameter in the integrand
+topics:
+- calculus
+- differentiation under the integral sign
+- Leibniz rule
+- substitution
+warmup: true
+answer_source: generated
+statement: Find $\dfrac{dy}{dx}$ when $y=\int_0^{x} t^8e^{tx}\,dt$.
+stages:
+- goal: Differentiate $y$ with respect to $x$, noting that $x$ appears both in the upper limit and in
+    the integrand.
+  expected: $\frac{dy}{dx}=x^8e^{x^2}+\int_0^x t^9e^{tx}\,dt$
+  solution: Use the Leibniz rule $\frac{d}{dx}\int_0^x F(t,x)\,dt=F(x,x)+\int_0^x \frac{\partial F}{\partial
+    x}\,dt$ with $F(t,x)=t^8e^{tx}$. Then $F(x,x)=x^8e^{x^2}$ and $\frac{\partial F}{\partial x}=t^9e^{tx}$.
+  common_errors:
+  - Treating $x$ as a constant inside the integral and dropping the $\int_0^x t^9e^{tx}\,dt$ term.
+  - Substituting $t=x$ incorrectly, giving $x^8e^{x}$ instead of $x^8e^{x^2}$.
+  - Forgetting that the upper limit contributes $F(x,x)$ with a factor of 1.
+  hints:
+    rephrase: 'Notice that $x$ appears in two places: the upper limit and inside the integrand. What does
+      each one contribute when you differentiate?'
+    smaller_case: Try differentiating $\int_0^x t\,e^{tx}\,dt$ and identify the two separate contributions.
+    key_idea: 'Use the Leibniz rule for a variable limit combined with a parameter inside the integrand:
+      differentiate the limit term and the integrand term separately.'
+  check: sp.simplify(sp.diff(x**-9*sp.integrate(u**8*sp.exp(u),(u,0,x**2)),x) - (x**8*sp.exp(x**2) + x**-10*sp.integrate(u**9*sp.exp(u),(u,0,x**2))))
+  check_ok: null
+- goal: Simplify the result by substituting $u=tx$ so that the answer is written using a single integral
+    in $u$.
+  expected: $\frac{dy}{dx}=2x^8e^{x^2}-9x^{-10}\int_0^{x^2}u^8e^u\,du$
+  solution: With $u=tx$, $t=u/x$ and $dt=du/x$, so $y=x^{-9}\int_0^{x^2}u^8e^u\,du$. Differentiating with
+    the product and chain rules gives $-9x^{-10}\int_0^{x^2}u^8e^u\,du+x^{-9}\cdot 2x\cdot x^{16}e^{x^2}$,
+    which simplifies to the expected form. This agrees with stage 1 because integration by parts gives
+    $\int_0^{s}u^9e^u\,du=s^9e^s-9\int_0^{s}u^8e^u\,du$.
+  common_errors:
+  - Forgetting the factor 2 from differentiating the upper limit $x^2$.
+  - Forgetting the $x^{-9}$ prefactor when differentiating, or applying the product rule incorrectly.
+  - Making an arithmetic error in the powers of $x$ (for example $x^{-8}$ instead of $x^{-9}$).
+  hints:
+    rephrase: Try a substitution that removes the $x$ from the integrand so that the only remaining $x$
+      dependence is in the limits and in a prefactor.
+    smaller_case: Check the substitution with a simpler integrand, such as $\int_0^x t\,e^{tx}\,dt$, before
+      applying it to the full problem.
+    key_idea: A substitution $u=tx$ turns the integral into a function of $x^2$ times a power of $x$,
+      so the chain rule and product rule give a one-variable expression.
+  check: sp.simplify(sp.diff(x**-9*sp.integrate(u**8*sp.exp(u),(u,0,x**2)),x) - (2*x**8*sp.exp(x**2) -
+    9*x**-10*sp.integrate(u**8*sp.exp(u),(u,0,x**2))))
+  check_ok: null
+extensions:
+  '3':
+  - Find $\frac{dy}{dx}$ for $y=\int_0^{x} t^n e^{tx}\,dt$ in terms of $n$ and $x$.
+  - Find $\frac{d}{dx}\int_0^{x^2} e^{xt}\,dt$.
+  '4':
+  - Find $\frac{dy}{dx}$ for $y=\int_x^{2x} \sin(xt)\,dt$.
+  - Evaluate $\frac{d^2y}{dx^2}$ for $y=\int_0^{x} t^8e^{tx}\,dt$ at $x=1$.
+  '5':
+  - Show that $\frac{d}{dx}\int_0^{x} f(t,x)\,dt$ equals $f(x,x)+\int_0^x \partial_x f(t,x)\,dt$ under
+    suitable continuity conditions, and state those conditions.
+  - Use the Leibniz rule to evaluate $\int_0^1 \frac{t^a-1}{\ln t}\,dt$ by differentiating under the integral
+    sign.
+spoken_vocab:
+- d y over d x
+- y equals the integral from zero to x of t to the eighth times e to the t x d t
+- x to the eighth e to the x squared
+- Leibniz rule
+- substitution u equals t x
+- integral from zero to x squared of u to the eighth e to the u d u
+- x to the power minus nine
+- x to the power minus ten
+- two x to the eighth e to the x squared
+- minus nine x to the power minus ten
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 6
+  difficulty: 6
+  parts: 2
+  minutes: 10
+  flags: []
+  tagline: Variable limit and parameter in the integrand; substitution gives scope for alternative methods.
+  priority: 65
+  rank: 386
+  tier: C
+  category: tbo
+  d10: 5.5
+  real: 3.0
+  by: haiku
+tags:
+- differentiation
+- integration

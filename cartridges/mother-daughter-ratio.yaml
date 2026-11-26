@@ -1,0 +1,92 @@
+id: mother-daughter-ratio
+title: Mother and daughter ages
+topics:
+- ratio
+- linear equations
+- algebra
+warmup: false
+answer_source: pdf
+statement: The ratio of a mother's age to her daughter's age is $7:2$. In 12 years' time the ratio will
+  be $5:2$. How old is the mother now?
+stages:
+- goal: Set up an equation linking the two ratios using a single unknown.
+  expected: 'Let the daughter be $2k$ and the mother $7k$. In 12 years: $\frac{7k+12}{2k+12}=\frac{5}{2}$.'
+  solution: Ratios describe multiples of a common unit, so write the present ages as $2k$ (daughter) and
+    $7k$ (mother). Both people age 12 years, so add 12 to each age in the future ratio, giving $\frac{7k+12}{2k+12}=\frac{5}{2}$.
+  common_errors:
+  - Adding 12 to the ratio parts (for example turning 7:2 into 19:14) instead of to the ages.
+  - Treating 7 and 2 as the actual ages rather than as multiples of k.
+  - Adding 12 to only one of the two ages.
+  hints:
+    rephrase: Ratios only give relative sizes, so what single unknown can scale both ages? Then ask what
+      happens to each age after 12 years.
+    smaller_case: If the ratio now were 3:1, how would you write both ages in terms of one unknown?
+    key_idea: Each age is a common multiple of its ratio part, and the same time gap is added to both
+      ages.
+- goal: Solve the equation for the unknown $k$.
+  expected: $k=9$
+  solution: 'Cross-multiply: $2(7k+12)=5(2k+12)$, so $14k+24=10k+60$, so $4k=36$, so $k=9$.'
+  common_errors:
+  - Cross-multiplying incorrectly, for example $7k\cdot 5 = 2k\cdot 12$.
+  - Arithmetic slip when collecting terms, for example getting $4k=32$.
+  - Forgetting to divide by 4 at the end.
+  hints:
+    rephrase: Clear the fraction first, then gather the terms in $k$ on one side.
+    smaller_case: How would you solve $3(x+1)=2(x+4)$?
+    key_idea: Cross-multiplying a proportion turns it into a linear equation in $k$.
+  check: Eq(answer, 9)
+  check_ok: null
+- goal: State the mother's current age.
+  expected: 63 years old (the daughter is 18; in 12 years the ages are 75 and 30, ratio 5:2).
+  solution: 'The mother''s age is $7k = 7\times 9 = 63$. Check: now $63:18 = 7:2$; in 12 years $75:30
+    = 5:2$.'
+  common_errors:
+  - Giving the daughter's age (18) or the value of $k$ (9) as the answer.
+  - Computing $2k$ instead of $7k$ for the mother.
+  hints:
+    rephrase: Substitute your value of $k$ back into the expression you wrote for the mother.
+    smaller_case: If $k$ were 1, what would the mother's age be?
+    key_idea: The mother's age uses the ratio part 7, not 2.
+  check: Eq(answer, 63)
+  check_ok: null
+extensions:
+  '3':
+  - After how many years will the mother be exactly twice her daughter's age?
+  '4':
+  - If the current ratio is $a:b$ and it becomes $c:d$ after $n$ years, find the mother's current age
+    in terms of $a,b,c,d,n$. State when this gives a unique answer.
+  '5':
+  - For which values of $a,b,c,d$ does the general formula from the previous question break down? What
+    does that mean for the family's ages?
+spoken_vocab:
+- mother
+- daughter
+- ratio
+- seven to two
+- five to two
+- twelve years
+- k
+- cross multiply
+- sixty three
+- nine
+- eighteen
+- seventy five
+- thirty
+source: kclms/kclms-specimen-questions-4.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 3
+  parts: 3
+  minutes: 4
+  flags: []
+  tagline: Routine ratio-equation word problem with a checkable answer and little room for extension.
+  priority: 41
+  rank: 572
+  tier: C
+  category: kclms
+  d10: 2.0
+  real: 3.5
+  by: haiku
+tags:
+- algebra_and_functions

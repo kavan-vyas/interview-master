@@ -1,0 +1,96 @@
+id: min-area-triangle-parabola
+title: Minimum area triangle with a vertex on a parabola
+topics:
+- area of a triangle
+- coordinate geometry
+- quadratic optimisation
+- calculus
+warmup: false
+answer_source: generated
+statement: The points $A(6,0)$ and $B(0,-4)$ are points on a triangle, the third point lies on the graph
+  of $y=x^2$, find the co-ordinates of the third point which minimises the area of the triangle.
+stages:
+- goal: Write the area of the triangle in terms of the parameter $t$ for the third point $C=(t,t^2)$.
+  expected: $\text{Area}=3t^2-2t+12$
+  solution: 'Use the shoelace or determinant formula. With $\vec{AB}=(-6,-4)$ and $\vec{AC}=(t-6,t^2)$,
+    the signed cross product is $(-6)(t^2)-(-4)(t-6)=-6t^2+4t-24$. The area is half its absolute value:
+    $\frac12|-6t^2+4t-24|=\frac12(6t^2-4t+24)=3t^2-2t+12$, since the quadratic inside is always negative.'
+  common_errors:
+  - Forgetting the factor $\frac12$ in the area formula
+  - Taking the absolute value of the wrong sign, which gives a negative area
+  - Using the wrong coordinates for $C$, such as $(t,t)$ instead of $(t,t^2)$
+  hints:
+    rephrase: Use the determinant formula for the area of a triangle with vertices $A$, $B$, $C$.
+    smaller_case: Plug in $t=0$, so $C$ is the origin, and compute the area directly by the base and height.
+    key_idea: Check the sign of the quadratic before you remove the absolute value.
+  check: simplify(Rational(1,2)*(-(-6*t**2+4*t-24)) - (3*t**2-2*t+12))
+  check_ok: true
+- goal: Find the value of $t$ that minimises the area.
+  expected: $t=\frac13$
+  solution: Differentiate $A(t)=3t^2-2t+12$. Then $A'(t)=6t-2=0$, so $t=\frac13$. Since $A''(t)=6>0$ this
+    is a minimum.
+  common_errors:
+  - Solving $6t+2=0$ with a sign error
+  - Using $A(t)=6t^2-4t+24$ from Stage 1 without the factor $\frac12$, which gives the same $t$ but a
+    wrong area
+  - Failing to check that the critical point is a minimum
+  hints:
+    rephrase: The area is a quadratic in $t$. Where does its derivative vanish?
+    smaller_case: Compare the area at $t=0$ and $t=1$, then check $t=\frac13$ lies between them.
+    key_idea: A quadratic with positive leading coefficient has its minimum at its single turning point.
+  check: simplify(diff(3*t**2-2*t+12, t).subs(t, Rational(1,3)))
+  check_ok: true
+- goal: Give the coordinates of the third point and the minimum area.
+  expected: The third point is $\left(\frac13,\frac19\right)$, and the minimum area is $\frac{35}{3}$.
+  solution: With $t=\frac13$, the point is $C=\left(\frac13,\left(\frac13\right)^2\right)=\left(\frac13,\frac19\right)$.
+    The area is $3\cdot\frac19-\frac23+12=\frac13-\frac23+12=\frac{35}{3}$.
+  common_errors:
+  - Giving $t$ as the answer instead of the full coordinates
+  - Reporting the $y$-coordinate as $\frac13$, which is $t$ rather than $t^2$
+  - Arithmetic slips in $3\cdot\frac19-\frac23+12$
+  hints:
+    rephrase: Substitute the optimal $t$ back into the curve to get the full point, then into the area
+      formula to get its value.
+    smaller_case: Substitute $t=1$ into the area formula and the curve, and see what the pair of values
+      looks like.
+    key_idea: The point on $y=x^2$ is determined by $x$ alone, so the $y$-coordinate follows from $t$.
+  check: simplify((3*t**2-2*t+12).subs(t, Rational(1,3)) - Rational(35,3))
+  check_ok: true
+extensions:
+  '3':
+  - Repeat with $B(0,k)$ for a general constant $k$ and find the optimal $t$ in terms of $k$.
+  '4':
+  - Replace $y=x^2$ with $y=x^3$ and state whether a minimum still exists.
+  '5':
+  - Show that for any fixed segment $AB$, the minimum area triangle with third vertex on a parabola is
+    the one whose tangent is parallel to $AB$, and verify this with the example.
+spoken_vocab:
+- A six comma zero
+- B zero comma minus four
+- y equals x squared
+- third point
+- minimum area
+- one third comma one ninth
+- thirty five over three
+- determinant formula
+- half the absolute value
+- t equals one third
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Minimise a quadratic signed area; the wording 'points on a triangle' needs tidying.
+  priority: 71
+  rank: 340
+  tier: B
+  category: tbo
+  d10: 2.5
+  real: 4.0
+  by: haiku
+tags:
+- coordinate_geometry
+- algebra_and_functions

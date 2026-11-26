@@ -1,0 +1,114 @@
+id: binomial-expansions
+title: Binomial expansions and coefficients
+topics:
+- binomial theorem
+- binomial series
+- power series
+- coefficients
+warmup: false
+answer_source: pdf
+statement: (i) Find the coefficient of $x^k$ (for $0\le k\le 10$) in the binomial expansion of $(2+3x)^{10}$.
+  (ii) Use the binomial theorem to find the expansion in powers of $x$ up to $x^4$ of $(1+x+x^2)^6$, writing
+  it as $\left(1+(x+x^2)\right)^6$. (iii) Use binomial expansions to find the expansion in powers of $x$
+  up to $x^4$ of $(1-x^3)^6(1-x)^{-6}$. (iv) Find the first four terms in the binomial expansion of $(2+x)^{\frac{1}{2}}$.
+stages:
+- goal: (i) Find the general coefficient of $x^k$ in $(2+3x)^{10}$.
+  expected: $\binom{10}{k}2^{10-k}3^k$
+  solution: By the binomial theorem, $(2+3x)^{10}=\sum_{k=0}^{10}\binom{10}{k}2^{10-k}(3x)^k$. The coefficient
+    of $x^k$ is therefore $\binom{10}{k}2^{10-k}3^k$.
+  common_errors:
+  - Swapping the powers, giving 2^k 3^{10-k}.
+  - Forgetting the factor 3^k that comes from (3x)^k.
+  - Using the wrong binomial coefficient, such as C(k,10).
+  hints:
+    rephrase: Write the general term of the expansion of (A+B)^n, with A=2 and B=3x.
+    smaller_case: Expand (2+3x)^2 and read off the coefficient of x^1.
+    key_idea: The x^k term comes from choosing the factor 3x in exactly k of the 10 brackets.
+  check: sympy.expand((2+3*x)**10).coeff(x,4) - sympy.binomial(10,4)*2**6*3**4
+  check_ok: null
+- goal: (ii) Expand $(1+x+x^2)^6$ up to $x^4$ by writing it as $(1+u)^6$ with $u=x+x^2$.
+  expected: $1+6x+21x^2+50x^3+90x^4$
+  solution: Let $u=x+x^2$. Then $(1+u)^6=1+6u+15u^2+20u^3+15u^4+\cdots$. Now $u=x+x^2$, $u^2=x^2+2x^3+x^4$,
+    $u^3=x^3+3x^4+\cdots$, and $u^4=x^4+\cdots$. Collecting terms up to $x^4$ gives $1+6x+(6+15)x^2+(30+20)x^3+(15+60+15)x^4=1+6x+21x^2+50x^3+90x^4$.
+  common_errors:
+  - Dropping the contributions of u^2, u^3, u^4 to the higher powers of x.
+  - Using binomial coefficients for the wrong power, e.g. 15 for u^3 instead of 20.
+  - Forgetting to expand u^3 = x^3(1+x)^3 up to x^4.
+  hints:
+    rephrase: Treat x+x^2 as one quantity u and expand (1+u)^6 as a series in u.
+    smaller_case: Expand (1+u)^2 for u=x+x^2 and keep terms up to x^2.
+    key_idea: Collect powers of x separately from each power of u, then add.
+  check: sympy.expand(sympy.series((1+x+x**2)**6,x,0,5).removeO() - (1+6*x+21*x**2+50*x**3+90*x**4))==0
+  check_ok: false
+- goal: (iii) Expand $(1-x^3)^6(1-x)^{-6}$ up to $x^4$ by expanding each factor.
+  expected: $1+6x+21x^2+50x^3+90x^4$
+  solution: '$(1-x^3)^6=1-6x^3+O(x^6)$ and $(1-x)^{-6}=\sum_{n\ge0}\binom{n+5}{5}x^n=1+6x+21x^2+56x^3+126x^4+\cdots$.
+    Multiplying and keeping terms up to $x^4$: $1+6x+21x^2+(56-6)x^3+(126-36)x^4=1+6x+21x^2+50x^3+90x^4$.'
+  common_errors:
+  - Using C(6,n) for the coefficients of (1-x)^{-6}.
+  - Forgetting the cross term -6x^3 times 6x that contributes to x^4.
+  - Dropping signs when expanding (1-x)^{-6}.
+  hints:
+    rephrase: Expand each factor separately as a series up to x^4, then multiply.
+    smaller_case: Find the first three terms of (1-x)^{-6}.
+    key_idea: The negative power binomial series has coefficients given by a formula with n+5 in place
+      of n.
+  check: sympy.expand(sympy.series((1-x**3)**6*(1-x)**(-6),x,0,5).removeO() - (1+6*x+21*x**2+50*x**3+90*x**4))==0
+  check_ok: false
+- goal: (iv) Find the first four terms of the binomial expansion of $(2+x)^{1/2}$.
+  expected: $\sqrt{2}+\frac{\sqrt{2}}{4}x-\frac{\sqrt{2}}{32}x^2+\frac{\sqrt{2}}{128}x^3$
+  solution: Write $(2+x)^{1/2}=\sqrt{2}\left(1+\frac{x}{2}\right)^{1/2}$. With $y=\frac{x}{2}$, $(1+y)^{1/2}=1+\frac{y}{2}-\frac{y^2}{8}+\frac{y^3}{16}-\cdots$.
+    Substituting gives $1+\frac{x}{4}-\frac{x^2}{32}+\frac{x^3}{128}$, so multiplying by $\sqrt{2}$ gives
+    the first four terms above.
+  common_errors:
+  - Forgetting to factor out the sqrt(2) before using the binomial series.
+  - Dropping the alternating signs in the series.
+  - Using the coefficients for (1+y)^{-1/2} instead of (1+y)^{1/2}.
+  hints:
+    rephrase: Factor out the constant so the expression has the form (1+something)^(1/2).
+    smaller_case: Find the first two terms of (1+y)^{1/2} for a general y.
+    key_idea: Put y=x/2 into the binomial series for (1+y)^{1/2}, then multiply through by the constant
+      factored out.
+  check: sympy.simplify(sympy.series(sympy.sqrt(2+x),x,0,4).removeO() - (sympy.sqrt(2)+sympy.sqrt(2)*x/4
+    - sympy.sqrt(2)*x**2/32 + sympy.sqrt(2)*x**3/128))==0
+  check_ok: null
+extensions:
+  '3':
+  - Find the coefficient of $x^k$ in $(1+x)^{-2}$ and deduce the coefficient of $x^k$ in $(1-x)^{-2}$.
+  '4':
+  - Expand $(1-x)^{-1/2}$ up to $x^3$.
+  '5':
+  - Use the binomial series to find the first four terms of $(1+x)^{-1/3}$.
+spoken_vocab:
+- binomial theorem
+- binomial coefficient
+- ten choose k
+- two to the power ten minus k
+- three to the power k
+- x to the k
+- one plus x plus x squared
+- to the power six
+- one minus x cubed
+- one minus x to the minus six
+- square root
+- two plus x
+- half
+source: step-workbook/Cambridge STEP Short Workbook.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 4
+  minutes: 15
+  flags: []
+  tagline: Four varied expansion techniques, though mostly routine practice.
+  priority: 72
+  rank: 316
+  tier: B
+  category: step-workbook
+  d10: 4.5
+  real: 2.5
+  by: deepseek-v4.1-flash-free
+tags:
+- algebra_and_functions
+- sequences_and_series

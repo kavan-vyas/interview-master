@@ -1,0 +1,121 @@
+id: six-digit-permutations-1-to-6
+title: Six-digit numbers from the digits 1 to 6
+topics:
+- permutations
+- counting
+- block method
+- symmetry
+- inclusion-exclusion
+warmup: false
+answer_source: generated
+statement: How many ways can you arrange each of the digits $1$ to $6$ to create distinct $6$-digit numbers?
+  How many of these contain the digits $1$, $2$ and $3$ next to each other and in that order? In how many
+  arrangements does $5$ occur before $1$? How many distinct $6$-digit numbers are there in which all of
+  the digits $1$ to $5$ appear?
+stages:
+- goal: Count the arrangements of the digits 1 to 6, each used exactly once.
+  expected: '720'
+  solution: There are 6 positions and 6 distinct digits, each used once, so the count is 6! = 720.
+  common_errors:
+  - Using 6^6, which ignores the rule that each digit is used once
+  - Counting only some of the orderings, for example by forgetting that the first digit can be any of
+    the six
+  hints:
+    rephrase: How many choices do you have for the first digit, then for the second, and so on, if no
+      digit may repeat?
+    smaller_case: List all 3-digit numbers made from 1, 2, 3 using each digit once. How many are there?
+    key_idea: Each position takes a different digit, so the choices shrink by one at each step.
+  check: ans - 720
+  check_ok: false
+- goal: Count the arrangements in which 1, 2 and 3 appear next to each other in the order 1, 2, 3.
+  expected: '24'
+  solution: Glue 1, 2, 3 into a single block 123. You now arrange four objects (the block, 4, 5, 6), giving
+    4! = 24. The order inside the block is fixed by the question, so there is no extra factor.
+  common_errors:
+  - Multiplying by 3! for the internal order of the block, even though the order is fixed
+  - Counting the case where 1, 2, 3 are adjacent in any order (that would give 3!*4! = 144)
+  hints:
+    rephrase: Does the question ask for 1, 2, 3 in any order, or in one specific order?
+    smaller_case: Among 3-digit strings using 1, 2, 3 once each, how many have 1 immediately followed
+      by 2?
+    key_idea: Objects that must stay together can be treated as one object.
+  check: ans - 24
+  check_ok: false
+- goal: Count the arrangements in which 5 occurs before 1.
+  expected: '360'
+  solution: Take any arrangement. Either 5 comes before 1 or 1 comes before 5. Swapping the digits 1 and
+    5 is a one-to-one correspondence between these two sets, so they have equal size. Half of the 720
+    arrangements have 5 before 1, giving 360.
+  common_errors:
+  - Dividing by 6 instead of 2
+  - Trying to count the positions of 5 and 1 directly and getting the wrong number of placements
+  hints:
+    rephrase: Take an arrangement where 1 comes before 5. What happens to the order if you swap the digits
+      1 and 5?
+    smaller_case: Among arrangements of 1, 2, 3, how many have 2 before 1?
+    key_idea: 'Symmetry: two classes that are mapped onto each other by a swap have equal size.'
+  check: ans - 360
+  check_ok: false
+- goal: Count the 6-digit numbers, with digits chosen from 1 to 6, in which each of the digits 1 to 5
+    appears at least once.
+  expected: '2520'
+  solution: 'Digits may repeat here, since the earlier no-repeat condition is dropped. Split by whether
+    6 appears. If 6 does not appear, the six positions use exactly the digits 1 to 5 with each appearing
+    at least once, so one digit repeats: 6-to-5 surjections, 5! * S(6,5) = 120 * 15 = 1800. If 6 appears,
+    the six positions must hold 1 to 6 each exactly once: 720. Total 1800 + 720 = 2520. Check by inclusion-exclusion:
+    6^6 - 5*5^6 + 10*4^6 - 10*3^6 + 5*2^6 - 1 = 2520.'
+  common_errors:
+  - Answering 720, which assumes no repeats and makes the condition trivial
+  - Using 5^6 without subtracting the arrangements that miss a required digit
+  - Forgetting that the repeated digit can be any of the five digits
+  hints:
+    rephrase: Six positions must contain five required digits. What must the remaining position do, and
+      what if it holds 6?
+    smaller_case: Count 3-digit strings using digits from 1 to 3 that contain every one of 1, 2 and 3.
+    key_idea: 'Inclusion-exclusion: subtract the strings that miss at least one required digit.'
+  check: ans - 2520
+  check_ok: false
+extensions:
+  '3':
+  - How many arrangements of 1 to 6 have 1 and 6 not next to each other?
+  - How many arrangements of 1 to 6 have 1 and 2 next to each other, in either order?
+  '4':
+  - 'Generalise to digits 1 to n arranged in n-digit numbers: how many have 1, 2, 3 consecutive in that
+    order?'
+  - If the digits 1 to 6 may repeat, how many 6-digit numbers use every one of the digits 1 to 6?
+  '5':
+  - How many 6-digit numbers from digits 1 to 6 (repeats allowed) have exactly five distinct digits?
+  - Given a 6-digit arrangement, what is the probability that 5 occurs before 1 if all 6-digit numbers
+    with repeats are equally likely?
+spoken_vocab:
+- six factorial
+- distinct six digit numbers
+- digits one to six
+- one two three next to each other
+- in that order
+- five occurs before one
+- inclusion exclusion
+- block method
+- symmetry
+- surjection
+- six to the power of six
+- sum from j equals zero to five
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 5
+  parts: 4
+  minutes: 15
+  flags:
+  - missing_info
+  tagline: Varied counting techniques, but the final part's repetition scope is never stated.
+  priority: 54
+  rank: 491
+  tier: C
+  category: tbo
+  d10: 3.0
+  real: 5.0
+  by: haiku
+tags:
+- combinatorics

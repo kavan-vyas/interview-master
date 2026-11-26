@@ -1,0 +1,86 @@
+id: rotation-about-point-90-anticlockwise
+title: Rotate a point 90° anticlockwise about another point
+topics:
+- coordinate geometry
+- transformations
+- rotation
+warmup: true
+answer_source: pdf
+statement: The point $P = (3, 1)$ is rotated through $90^\circ$ anticlockwise about the point $(1, 2)$.
+  What are the coordinates of the image of $P$?
+stages:
+- goal: Express P relative to the centre of rotation (1, 2).
+  expected: (2, -1)
+  solution: 'Subtract the centre from P: (3 - 1, 1 - 2) = (2, -1).'
+  common_errors:
+  - Adding the centre instead of subtracting it, giving (4, 3).
+  - Rotating about the origin and ignoring the centre entirely.
+  hints:
+    rephrase: Where is P measured from the centre, horizontally and vertically?
+    smaller_case: If the centre were the origin, P would already be in the right place. What shifts the
+      centre to the origin?
+    key_idea: Translate so the centre of rotation sits at the origin, rotate, then translate back.
+  check: (x-2)**2 + (y+1)**2
+  check_ok: false
+- goal: Rotate that vector 90° anticlockwise, then restore the centre to get the image of P.
+  expected: (2, 4)
+  solution: 'An anticlockwise rotation through 90° maps (a, b) to (-b, a). So (2, -1) maps to (1, 2).
+    Add the centre back: (1 + 1, 2 + 2) = (2, 4). Check: the image is the same distance from (1, 2) as
+    P, since sqrt(5) = sqrt(5). Note: the PDF key gives (0, 4), which does not match this calculation.
+    The answer (2, 4) is the correct image. Flag the key for review.'
+  common_errors:
+  - Using the clockwise rule (a, b) to (b, -a), giving (0, 0).
+  - Forgetting to add the centre back after rotating, giving (1, 2).
+  - Swapping coordinates without changing a sign.
+  hints:
+    rephrase: What happens to a vector's direction when it turns a quarter-turn anticlockwise?
+    smaller_case: Take the simpler vector (1, 0). Where does it go after a quarter-turn anticlockwise?
+    key_idea: A quarter-turn anticlockwise maps the components (a, b) using a rule that swaps them and
+      changes one sign.
+  check: (x-2)**2 + (y-4)**2
+  check_ok: false
+extensions:
+  '3':
+  - Find the image of P = (3, 1) under a 180° rotation about (1, 2).
+  - Find the image of P = (3, 1) under a 90° clockwise rotation about the origin.
+  '4':
+  - Find the image of P = (3, 1) under a 90° clockwise rotation about the origin.
+  - Find the image of P = (3, 1) under a 90° anticlockwise rotation about (0, 0) followed by a translation
+    of (1, 2).
+  '5':
+  - Show that the anticlockwise 90° rotation about (a, b) maps (x, y) to (a - (y - b), b + (x - a)).
+  - Using the result above, find the image of the origin under a 90° anticlockwise rotation about (1,
+    2).
+spoken_vocab:
+- point P
+- three comma one
+- centre
+- one comma two
+- ninety degrees
+- anticlockwise
+- clockwise
+- image
+- rotation
+- minus
+- plus
+- origin
+- translation
+source: kclms/kclms-specimen-mcq-4.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 2
+  parts: 2
+  minutes: 4
+  flags:
+  - trivial
+  tagline: Mechanical translate-rotate-translate with little room for discussion.
+  priority: 27
+  rank: 630
+  tier: D
+  category: kclms
+  d10: 1.5
+  real: 2.0
+  by: haiku
+tags:
+- coordinate_geometry

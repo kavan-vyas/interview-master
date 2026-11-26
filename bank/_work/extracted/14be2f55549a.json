@@ -1,0 +1,23 @@
+[
+ {
+  "q": "Let $I=\\int_0^a \\frac{\\cos x}{\\sin x+\\cos x}\\,dx$ and $J=\\int_0^a \\frac{\\sin x}{\\sin x+\\cos x}\\,dx$, where $0\\leqslant a<\\frac{3\\pi}{4}$. By considering $I+J$ and $I-J$, show that $2I=a+\\ln(\\sin a+\\cos a)$. Find also: (i) $\\int_0^{\\pi/2}\\frac{\\cos x}{p\\sin x+q\\cos x}\\,dx$, where $p$ and $q$ are positive numbers; (ii) $\\int_0^{\\pi/2}\\frac{\\cos x+4}{3\\sin x+4\\cos x+25}\\,dx$.",
+  "kind": "maths",
+  "answer": "$I+J=\\int_0^a dx=a$ and $I-J=\\ln(\\cos a+\\sin a)$ (the numerator of the second integral is the derivative of the denominator). Adding gives $2I=a+\\ln(\\sin a+\\cos a)$. (i) With $J=\\int_0^{\\pi/2}\\frac{\\sin x}{p\\sin x+q\\cos x}\\,dx$: $qI+pJ=\\frac{\\pi}{2}$ and $pI-qJ=\\ln(p/q)$. Multiplying the first by $q$, the second by $p$ and adding gives $(p^2+q^2)I=\\frac{q\\pi}{2}+p\\ln(p/q)$. (ii) With $J=\\int_0^{\\pi/2}\\frac{\\sin x+3}{3\\sin x+4\\cos x+25}\\,dx$: $4I+3J=\\frac{\\pi}{2}$ and $3I-4J=\\ln(28/29)$. Multiplying the first by 4, the second by 3 and adding gives $25I=2\\pi+3\\ln(28/29)$.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#9"
+ },
+ {
+  "q": "In this question, you may assume that if $k_1,\\ldots,k_n$ are distinct positive real numbers, then $\\frac{1}{n}\\sum_{r=1}^n k_r>\\left(\\prod_{r=1}^n k_r\\right)^{1/n}$. Suppose that $a$, $b$, $c$ and $d$ are positive real numbers such that the polynomial $f(x)=x^4-4ax^3+6b^2x^2-4c^3x+d^4$ has four distinct positive roots. (i) By considering the relationship between the coefficients of $f$ and its roots, show that $c>d$. (ii) By differentiating $f$, show that $b>c$. (iii) Show that $a>b$.",
+  "kind": "maths",
+  "answer": "(i) Write $f(x)\\equiv(x-p)(x-q)(x-r)(x-s)$. Then $pqrs=d^4$ and $pqr+qrs+rsp+spq=4c^3$. Applying the AM-GM inequality to the four distinct positive numbers $pqr, qrs, rsp, spq$ gives $c^3>[(pqr)(qrs)(rsp)(spq)]^{1/4}=[p^3q^3r^3s^3]^{1/4}=d^3$, so $c>d$. The numbers are distinct because the roots are distinct and non-zero. (ii) $f'(x)=4x^3-12ax^2+12b^2x-4c^3$ has three distinct positive zeros $u,v,w$ lying between the zeros of $f$. Comparing $x^3-3ax^2+3b^2x-c^3$ with $(x-u)(x-v)(x-w)$ gives $uvw=c^3$ and $vw+wu+uv=3b^2$. AM-GM applied to $vw, wu, uv$ gives $b>c$. (iii) Apply similar arguments to $f''(x)/12$.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#9"
+ },
+ {
+  "q": "The $n$th Fermat number, $F_n$, is defined by $F_n=2^{2^n}+1$, $n=0,1,2,\\ldots$. Calculate $F_0$, $F_1$, $F_2$ and $F_3$. Show that, for $k=1$, $k=2$ and $k=3$, $F_0F_1\\cdots F_{k-1}=F_k-2$ (*). Prove, by induction or otherwise, that (*) holds for all $k\\geqslant 1$. Deduce that no two Fermat numbers have a common factor greater than 1. Hence show that there are infinitely many prime numbers.",
+  "kind": "maths",
+  "answer": "$F_0=3$, $F_1=5$, $F_2=17$, $F_3=257$, so (*) is checked directly for $k=1,2,3$. Induction step: assuming $F_0F_1\\cdots F_{m-1}=F_m-2$, then $F_0\\cdots F_m=(F_m-2)F_m=(2^{2^m}-1)(2^{2^m}+1)=2^{2^{m+1}}-1=F_{m+1}-2$. Coprimality: if prime $p$ divides $F_l$ and $F_m$ with $l<m$, then $p$ divides $F_0\\cdots F_{m-1}$ and hence $F_m-2$. Since $p$ also divides $F_m$, $p$ divides 2, but all Fermat numbers are odd, so no common factor greater than 1 exists. The source's final step (deducing infinitely many primes) is truncated in the excerpt.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#9"
+ }
+]

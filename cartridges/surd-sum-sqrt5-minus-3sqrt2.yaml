@@ -1,0 +1,81 @@
+id: surd-sum-sqrt5-minus-3sqrt2
+title: Value of √5 − 3√2
+topics:
+- surds
+- simplifying radicals
+- decimal approximation
+warmup: true
+answer_source: generated
+statement: Find the value of $\sqrt{5} - 3\sqrt{2}$
+stages:
+- goal: Decide whether the expression can be simplified further, and give its exact form.
+  expected: $\sqrt{5} - 3\sqrt{2}$ is already in simplest form. The two surds have different radicands,
+    so they cannot be combined.
+  solution: √5 and √2 are surds with different radicands (5 and 2), so they are unlike terms and cannot
+    be combined. The term 3√2 is also already simplified, since 2 has no square factor. Therefore √5 −
+    3√2 is in simplest exact form.
+  common_errors:
+  - Subtracting the numbers under the roots, e.g. writing √5 − 3√2 = √3 or similar.
+  - Multiplying the coefficient through the root incorrectly, e.g. writing −3√2 as √(−18) without care
+    about sign handling.
+  - Thinking 3√2 can be rewritten as √6 by treating 3 as a surd factor incorrectly.
+  hints:
+    rephrase: Can you combine the two terms into a single surd, or are they alike?
+    smaller_case: Would √5 + √2 simplify to a single surd? What would make two surds combinable?
+    key_idea: Surds combine by addition only when they have the same radicand, just as like terms need
+      the same variable part.
+  check: radsimp(sqrt(5) - 3*sqrt(2)) - (sqrt(5) - 3*sqrt(2)) == 0
+  check_ok: true
+- goal: Give the numerical value of the expression as a decimal correct to 3 decimal places.
+  expected: −2.007
+  solution: √5 ≈ 2.236068 and 3√2 ≈ 4.242641, so √5 − 3√2 ≈ 2.236068 − 4.242641 ≈ −2.006573, which rounds
+    to −2.007 to 3 decimal places.
+  common_errors:
+  - Reversing the subtraction and giving +2.007.
+  - Rounding 2.006573 to 2.006 instead of 2.007.
+  - Using an inaccurate value of √2 such as 1.41, which gives a visibly wrong answer.
+  hints:
+    rephrase: Work out √5 and 3√2 separately as decimals first, then subtract.
+    smaller_case: What is √2 to two decimal places, and what is 3 times that?
+    key_idea: Since 3√2 is bigger than √5, the result must be negative; check the size of the answer before
+      rounding.
+  check: Abs(N(sqrt(5) - 3*sqrt(2)) + 2.007) < 0.0005
+  check_ok: true
+extensions:
+  '3':
+  - Simplify $\sqrt{50} + \sqrt{8} - \sqrt{18}$ and give the result as a single surd.
+  '4':
+  - Rationalise $\dfrac{1}{\sqrt{5} - \sqrt{2}}$ and simplify the result.
+  '5':
+  - Show that $\sqrt{5} - 3\sqrt{2}$ is irrational, giving a clear proof by contradiction.
+spoken_vocab:
+- square root of five
+- minus
+- three times the square root of two
+- square root of two
+- decimal places
+- simplest form
+- surd
+- radicand
+- rationalise
+- irrational
+- contradiction
+source: nextstepmaths/NextStepMaths Interview Questions/interview-question-19.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 1
+  parts: 2
+  minutes: 2
+  flags:
+  - trivial
+  tagline: Essentially a calculator task; the simplification question is vague.
+  priority: 17
+  rank: 673
+  tier: D
+  category: nextstepmaths
+  d10: 1.0
+  real: 2.0
+  by: haiku
+tags:
+- algebra_and_functions

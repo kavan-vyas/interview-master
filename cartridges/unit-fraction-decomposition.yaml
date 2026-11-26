@@ -1,0 +1,117 @@
+id: unit-fraction-decomposition
+title: Unit fractions as sums of two distinct unit fractions
+topics:
+- number theory
+- algebraic manipulation
+- factors and divisors
+- proof
+- prime numbers
+warmup: false
+answer_source: pdf
+statement: A unit fraction is $\frac{1}{N}$, where $N$ is an integer greater than 1. Noting that $\frac{1}{2}=\frac{1}{3}+\frac{1}{6}$
+  and $\frac{1}{3}=\frac{1}{4}+\frac{1}{12}$, guess a general result of the form $\frac{1}{N}=\frac{1}{a}+\frac{1}{b}$
+  $(*)$ and hence prove that any unit fraction can be expressed as the sum of two distinct unit fractions.
+  By writing $(*)$ in the form $(a-N)(b-N)=N^2$ and considering the factors of $N^2$, show that if $N$
+  is prime, then there is only one way of expressing $\frac{1}{N}$ as the sum of two distinct unit fractions.
+  Prove similarly that any fraction of the form $\frac{2}{N}$, where $N$ is a prime number greater than
+  2, can be expressed uniquely as the sum of two distinct unit fractions.
+stages:
+- goal: Guess and prove a general decomposition $\frac{1}{N}=\frac{1}{a}+\frac{1}{b}$ with $a\ne b$.
+  expected: $\frac{1}{N}=\frac{1}{N+1}+\frac{1}{N(N+1)}$, and these two unit fractions are distinct.
+  solution: 'The examples give $(a,b)=(3,6)$ for $N=2$ and $(4,12)$ for $N=3$, suggesting $a=N+1$ and
+    $b=N(N+1)$. Check: $\frac{1}{N+1}+\frac{1}{N(N+1)}=\frac{N+1}{N(N+1)}=\frac{1}{N}$. They are distinct
+    because $N(N+1)=N+1$ would require $N=1$, which is excluded. So every unit fraction is a sum of two
+    distinct unit fractions.'
+  common_errors:
+  - Proposing $a=b=2N$, which satisfies the equation but is not distinct.
+  - Checking only the given examples instead of proving the identity for all $N$.
+  - Forgetting to verify that the two denominators differ.
+  hints:
+    rephrase: Look at the denominators in the two given examples and find a pattern in terms of $N$.
+    smaller_case: Try $N=5$ by hand and find a pair of unit fractions summing to $\frac{1}{5}$.
+    key_idea: Try making $a-N$ equal to $1$ and see what $b$ must be, then verify the sum algebraically.
+  check: sympy.simplify(1/(N+1) + 1/(N*(N+1)) - 1/N) == 0
+  check_ok: null
+- goal: Show that $(a-N)(b-N)=N^2$ and that for prime $N$ there is exactly one unordered pair of distinct
+    unit fractions.
+  expected: The unordered pair is $\{N+1,\;N(N+1)\}$, and no other pair works.
+  solution: Multiply $\frac{1}{N}=\frac{1}{a}+\frac{1}{b}$ by $Nab$ to get $ab=Nb+Na$, so $(a-N)(b-N)=N^2$.
+    Since $a,b>0$, if both $a-N$ and $b-N$ are negative, say $a-N=-d$ and $b-N=-e$, then $0<d,e<N$ and
+    $de=N^2$, which is impossible. So both factors are positive, and since $N$ is prime, the positive
+    factor pairs of $N^2$ are $(1,N^2)$, $(N,N)$ and $(N^2,1)$. The pair $(N,N)$ gives $a=b=2N$, which
+    is excluded. The pair $(1,N^2)$ gives $\{a,b\}=\{N+1,N(N+1)\}$. So there is exactly one unordered
+    pair.
+  common_errors:
+  - Forgetting to rule out the negative factor pairs.
+  - Counting $(a,b)$ and $(b,a)$ as different decompositions.
+  - Forgetting that $a=b$ is excluded by the word distinct.
+  - Not using the fact that a prime has only the divisors $1$, $N$ and $N^2$ of $N^2$ in the relevant
+    range.
+  hints:
+    rephrase: Clear the fractions in $\frac{1}{N}=\frac{1}{a}+\frac{1}{b}$ and rearrange into a product.
+    smaller_case: Try $N=6$ and list the factor pairs of $36$ to see which give positive $a$ and $b$.
+    key_idea: Since $a$ and $b$ are positive, consider the possible signs of $a-N$ and $b-N$ and which
+      divisors of $N^2$ are possible.
+  check: sympy.simplify((N+1-N)*(N*(N+1)-N) - N**2) == 0
+  check_ok: null
+- goal: For prime $N>2$, show that $\frac{2}{N}$ has exactly one expression as a sum of two distinct unit
+    fractions.
+  expected: $\frac{2}{N}=\frac{1}{(N+1)/2}+\frac{1}{N(N+1)/2}$, and this is the only such expression.
+  solution: From $\frac{2}{N}=\frac{1}{a}+\frac{1}{b}$ we get $N(a+b)=2ab$. Then $(2a-N)(2b-N)=4ab-2N(a+b)+N^2=N^2$.
+    As in stage 2, both factors must be positive, since negative factors would force $2a,2b<N$ and a product
+    less than $N^2$. Since $N$ is an odd prime, the factor pairs of $N^2$ are $(1,N^2)$, $(N,N)$ and $(N^2,1)$.
+    The pair $(N,N)$ gives $a=b=N$, which is excluded. The pair $(1,N^2)$ gives $a=\frac{N+1}{2}$ and
+    $b=\frac{N(N+1)}{2}$, which are integers because $N$ is odd. So the unordered pair is unique.
+  common_errors:
+  - Factorising as $(a-N)(b-N)$ instead of $(2a-N)(2b-N)$.
+  - Mishandling fractions when using $\left(a-\frac{N}{2}\right)\left(b-\frac{N}{2}\right)$.
+  - Forgetting to check that $a$ and $b$ are integers.
+  - Missing the excluded case $a=b=N$.
+  hints:
+    rephrase: Clear the fractions and try to factor using $2a$ and $2b$.
+    smaller_case: Try $N=5$ and test small values of $a$ to see which give a valid integer $b$.
+    key_idea: After clearing fractions, complete the product $(2a-N)(2b-N)$ and use the same divisor argument
+      as before.
+  check: sympy.simplify(2/N - (2/(N+1) + 2/(N*(N+1)))) == 0
+  check_ok: null
+extensions:
+  '3':
+  - Show that $\frac{1}{N}$ can be written as a sum of three distinct unit fractions for every $N>2$.
+  '4':
+  - For composite $N$, count the ways to write $\frac{1}{N}$ as a sum of two distinct unit fractions using
+    the divisors of $N^2$.
+  '5':
+  - Give an example of composite $N$ for which $\frac{2}{N}$ has more than one decomposition into two
+    distinct unit fractions.
+spoken_vocab:
+- unit fraction
+- one over N
+- N squared
+- one over a plus one over b
+- a minus N times b minus N equals N squared
+- prime number
+- factor pairs
+- distinct unit fractions
+- two over N
+- N plus one over two
+- N times N plus one over two
+- integer greater than one
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#13
+verified: false
+rating:
+  quality: 8
+  difficulty: 5
+  parts: 3
+  minutes: 20
+  flags: []
+  tagline: Guess-and-prove unit fraction decomposition leading to a uniqueness argument for primes.
+  priority: 91
+  rank: 95
+  tier: A
+  category: siklos
+  d10: 5.5
+  real: 6.5
+  by: haiku
+tags:
+- proof
+- number_theory

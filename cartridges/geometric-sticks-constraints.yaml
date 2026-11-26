@@ -1,0 +1,73 @@
+id: geometric-sticks-constraints
+title: Three sticks in geometric progression
+topics:
+- sequences
+- geometric progression
+- inequalities
+warmup: true
+answer_source: generated
+statement: I have three sticks whose lengths form a geometric progression. Let the length of the shortest
+  stick be $a$ and the common ratio be $r$. What are the constraints on the values of $a$ and $r$?
+stages:
+- goal: Constraint on a.
+  expected: $a>0$
+  solution: Stick lengths are positive, and the shortest stick has length $a$, so $a$ must be strictly
+    positive.
+  common_errors:
+  - Allowing a=0 (a zero-length stick)
+  - Requiring a to be an integer
+  hints:
+    rephrase: What must be true of any physical length?
+    smaller_case: Could a stick of length zero exist?
+    key_idea: Every stick length is a physical measurement, so it must be strictly positive.
+  check: null
+- goal: Constraint on r, given that a is the shortest stick.
+  expected: $r\ge 1$
+  solution: The sticks are $a$, $ar$, $ar^2$. Since $a$ is the shortest, $a\le ar$. Dividing by $a>0$
+    gives $r\ge 1$. The condition $ar\le ar^2$ gives the same result. Equal sticks ($r=1$) are allowed.
+  common_errors:
+  - Giving only r>0 and forgetting that a is the shortest
+  - Writing r>1 strictly, which wrongly excludes equal sticks
+  - Allowing r<1, which makes a the longest stick
+  hints:
+    rephrase: If a is the shortest, how does the second stick compare with the first?
+    smaller_case: Take a=2 and r=0.5. Is a still the shortest stick?
+    key_idea: Compare a with ar, then divide the inequality by the positive number a.
+  check: null
+extensions:
+  '3':
+  - Can the three sticks form a triangle? Find the constraint on r.
+  '4':
+  - If the sticks must form a triangle with a as the shortest, find the exact range of r.
+  '5':
+  - Suppose a is now the longest stick instead. Which constraints on r change?
+spoken_vocab:
+- geometric progression
+- common ratio
+- a
+- r
+- a r squared
+- shortest stick
+- greater than or equal to
+- zero
+source: screenshots/Screenshot 2026-11-19 at 14.36.06.png
+verified: false
+rating:
+  quality: 3
+  difficulty: 2
+  parts: 2
+  minutes: 4
+  flags:
+  - trivial
+  tagline: Simple constraints; discussion of triangle version could add depth.
+  priority: 27
+  rank: 641
+  tier: D
+  category: screenshots
+  d10: 3.0
+  real: 4.5
+  by: deepseek-v4.1-flash-free
+tags:
+- inequalities
+- geometry
+- algebra_and_functions

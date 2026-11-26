@@ -1,0 +1,99 @@
+id: integrate-arctan
+title: Integrate arctan x
+topics:
+- integration
+- integration by parts
+- inverse trigonometric functions
+warmup: false
+answer_source: generated
+statement: Integrate $\arctan x$ with respect to $x$, that is, find $\int \arctan x\,dx$.
+stages:
+- goal: Choose the parts for integration by parts.
+  expected: $u=\arctan x$ and $dv=dx$, so $du=\dfrac{dx}{1+x^2}$ and $v=x$.
+  solution: Take $u=\arctan x$ because its derivative is simple, and $dv=dx$ because its antiderivative
+    is $x$. Then $du=\frac{1}{1+x^2}\,dx$ and $v=x$.
+  common_errors:
+  - Choosing $u=x$ and $dv=\arctan x\,dx$, which requires the integral you are trying to find
+  - Misremembering the derivative of $\arctan x$
+  hints:
+    rephrase: Which factor has a simple derivative, and which has a simple antiderivative?
+    smaller_case: Try $\int \ln x\,dx$ by parts, with $u=\ln x$ and $dv=dx$.
+    key_idea: Integration by parts uses $\int u\,dv=uv-\int v\,du$.
+  check: diff(atan(x), x) - 1/(1+x**2)
+  check_ok: true
+- goal: Evaluate the remaining integral $\int \dfrac{x}{1+x^2}\,dx$.
+  expected: $\tfrac12\ln(1+x^2)+C$
+  solution: Let $w=1+x^2$, so $dw=2x\,dx$. Then $\int \frac{x}{1+x^2}\,dx=\frac12\int\frac{dw}{w}=\frac12\ln(1+x^2)+C$.
+  common_errors:
+  - Forgetting the factor $\tfrac12$
+  - Treating it as an arctan integral
+  - Sign error when substituting
+  hints:
+    rephrase: Substitute $w=1+x^2$ and see what happens to $x\,dx$.
+    smaller_case: Compare $\int \frac{2x}{1+x^2}\,dx$ with a known logarithmic integral.
+    key_idea: When the numerator is a constant multiple of the derivative of the denominator, the integral
+      is a logarithm.
+  check: diff(log(1+x**2)/2, x) - x/(1+x**2)
+  check_ok: true
+- goal: Assemble the antiderivative from the two parts.
+  expected: $\int \arctan x\,dx = x\arctan x-\tfrac12\ln(1+x^2)+C$
+  solution: 'Apply $\int u\,dv=uv-\int v\,du$: $\int \arctan x\,dx = x\arctan x-\int \frac{x}{1+x^2}\,dx
+    = x\arctan x-\tfrac12\ln(1+x^2)+C$.'
+  common_errors:
+  - Dropping the minus sign in front of the remaining integral
+  - Writing $+\tfrac12\ln(1+x^2)$
+  - Forgetting the $+C$
+  hints:
+    rephrase: Combine the $uv$ term with the negative of the integral of $v\,du$.
+    smaller_case: Using the same method, what is $\int \ln x\,dx$?
+    key_idea: The result is $uv$ minus the integral you just evaluated.
+  check: diff(x*atan(x) - log(1+x**2)/2, x) - atan(x)
+  check_ok: true
+- goal: Check the constant and confirm the antiderivative at a test point.
+  expected: At $x=0$ the expression $x\arctan x-\tfrac12\ln(1+x^2)$ equals $0$, so $C=0$ gives a particular
+    antiderivative vanishing at the origin.
+  solution: 'Substitute $x=0$: $0\cdot\arctan 0-\tfrac12\ln 1=0$. Choosing $C=0$ gives the particular
+    antiderivative that vanishes at the origin, and any other antiderivative differs from it by a constant.'
+  common_errors:
+  - Thinking the constant must be nonzero
+  - Miscalculating $\ln 1$
+  hints:
+    rephrase: Evaluate the expression at a simple point where both terms are easy to compute.
+    smaller_case: What is the value of $\ln 1$ and of $\arctan 0$?
+    key_idea: The constant of integration can be fixed by a condition, such as the value at one point.
+  check: (x*atan(x) - log(1+x**2)/2).subs(x, 0)
+  check_ok: true
+extensions:
+  '3':
+  - Integrate $\operatorname{arccot} x$ and compare the result with the answer to this question.
+  '4':
+  - Evaluate $\int_0^1 \arctan x\,dx$ and show the result is $\tfrac{\pi}{4}-\tfrac12\ln 2$.
+  '5':
+  - Find a reduction formula for $\int x^n\arctan x\,dx$ using integration by parts.
+spoken_vocab:
+- integral of arctan x
+- arctan
+- integration by parts
+- u equals arctan x
+- d v equals d x
+- natural log of one plus x squared
+- plus C
+- constant of integration
+source: oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 4
+  minutes: 6
+  flags: []
+  tagline: Routine parts setup; the constant and test-point check add some discussion.
+  priority: 52
+  rank: 515
+  tier: C
+  category: oxbridge-random
+  d10: 2.5
+  real: 4.0
+  by: haiku
+tags:
+- integration

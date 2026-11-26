@@ -1,0 +1,130 @@
+id: tangent-circle-angle-ctb
+title: Tangent at C meeting diameter AB extended at T
+topics:
+- circle theorems
+- tangents
+- angles in a semicircle
+- angles at centre
+- angle sum of triangles
+warmup: true
+answer_source: pdf
+statement: $AB$ is a diameter of the circle with centre $O$. The point $C$ lies on the circle and $\angle
+  CAB = 28^\circ$. The tangent to the circle at $C$ meets $AB$ extended at $T$. What is $\angle CTB$?
+  a) $28^\circ$ b) $56^\circ$ c) $62^\circ$ d) $66^\circ$ e) $34^\circ$
+stages:
+- goal: Find $\angle ACB$.
+  expected: $\angle ACB = 90^\circ$.
+  solution: AB is a diameter and C is on the circle, so triangle ACB is inscribed in a semicircle. By
+    Thales' theorem, the angle at C is a right angle.
+  common_errors:
+  - Assuming the triangle is isosceles or that the angle is $90^\circ$ without a reason.
+  - Confusing the angle at the centre with the angle at the circumference.
+  hints:
+    rephrase: Look at the triangle formed by A, B and C. What special property does its position in the
+      circle give it?
+    smaller_case: Draw a circle, a diameter, and a point on the circle. What is special about the angle
+      the point subtends at the ends of the diameter?
+    key_idea: Thales' theorem applies to any triangle with a diameter as one side and the third vertex
+      on the circle.
+  check: 90 - 90
+  check_ok: true
+- goal: Find $\angle ABC$.
+  expected: $\angle ABC = 62^\circ$.
+  solution: In triangle ABC, angles sum to $180^\circ$. $\angle ABC = 180^\circ - 90^\circ - 28^\circ
+    = 62^\circ$.
+  common_errors:
+  - Using $180^\circ - 28^\circ = 152^\circ$ and forgetting the right angle.
+  - Subtracting the wrong angle from $180^\circ$.
+  hints:
+    rephrase: The three angles of triangle ABC add to a fixed total. You know two of them. What is the
+      third?
+    smaller_case: If $\angle CAB$ were $30^\circ$ and the right angle was at C, what would $\angle ABC$
+      be?
+    key_idea: Use the angle sum of a triangle, $180^\circ$, together with the right angle from the previous
+      stage.
+  check: 180 - 90 - 28 - 62
+  check_ok: true
+- goal: Find the angle at the centre, $\angle COB$.
+  expected: $\angle COB = 56^\circ$.
+  solution: Angle COB is the angle at the centre subtending arc CB. Angle CAB is an angle at the circumference
+    subtending the same arc. The angle at the centre is twice the angle at the circumference, so $\angle
+    COB = 2 \times 28^\circ = 56^\circ$.
+  common_errors:
+  - Using $\angle COB = \angle CAB = 28^\circ$.
+  - Using $\angle COB = 180^\circ - 28^\circ$ or some other incorrect supplementary relation.
+  - Confusing which arc is subtended by which angle.
+  hints:
+    rephrase: Angle COB sits at the centre O. Which angle on the circumference subtends the same arc CB,
+      and how do the two compare?
+    smaller_case: If $\angle CAB$ were $10^\circ$, what would the angle at the centre subtending the same
+      arc be?
+    key_idea: Recall the relationship between an angle at the centre and an angle at the circumference
+      that subtend the same arc.
+  check: 2*28 - 56
+  check_ok: true
+- goal: Find $\angle CTB$ using the tangent and triangle OCT, and choose the matching option.
+  expected: $\angle CTB = 34^\circ$, which is option e.
+  solution: 'The radius OC is perpendicular to the tangent at C, so $\angle OCT = 90^\circ$. Since T lies
+    on line AB beyond B, $\angle COT = \angle COB = 56^\circ$. In triangle OCT: $\angle CTO = 180^\circ
+    - 90^\circ - 56^\circ = 34^\circ$. Since B lies on segment OT, $\angle CTB = \angle CTO = 34^\circ$.
+    Option e.'
+  common_errors:
+  - Choosing option b ($56^\circ$) by reading off the angle at the centre.
+  - Choosing option c ($62^\circ$) by using $\angle ABC$ instead of the triangle at T.
+  - Forgetting that the radius is perpendicular to the tangent, and so omitting the $90^\circ$ angle in
+    triangle OCT.
+  hints:
+    rephrase: The tangent and the radius to C meet at a special angle. Which triangle contains both C
+      and T and has a known angle?
+    smaller_case: Suppose $\angle COT$ were $40^\circ$. Using the same triangle, what would $\angle CTO$
+      be?
+    key_idea: Use the right angle between radius and tangent, then the angle sum in triangle OCT, to find
+      the angle at T.
+  check: 90 - 56 - 34
+  check_ok: true
+extensions:
+  '3':
+  - Let $\angle CAB = x$. Show that $\angle CTB = 90^\circ - 2x$ and check it with $x = 28^\circ$.
+  '4':
+  - Prove in general that $\angle CTB = 90^\circ - \angle CAB$ for a tangent at C meeting AB extended
+    at T.
+  '5':
+  - If the radius is $5$ and $\angle CAB = 28^\circ$, find the length $CT$ in terms of trigonometric functions.
+spoken_vocab:
+- circle
+- centre O
+- diameter AB
+- point C
+- point T
+- angle CAB
+- angle CTB
+- twenty eight degrees
+- thirty four degrees
+- fifty six degrees
+- sixty two degrees
+- tangent
+- radius
+- semicircle
+- Thales
+- perpendicular
+- triangle OCT
+- option e
+source: kclms/kclms-specimen-mcq-3.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 3
+  parts: 4
+  minutes: 5
+  flags:
+  - trivial
+  tagline: Standard tangent-chord angle chase with MCQ answer; little discussion value.
+  priority: 24
+  rank: 650
+  tier: D
+  category: kclms
+  d10: 2.5
+  real: 2.0
+  by: haiku
+tags:
+- geometry

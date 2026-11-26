@@ -1,0 +1,77 @@
+/* setup flow */
+.step.adv { display: none; }
+body.irl .step.adv { display: block; }
+.go { display: none; }
+body.irl .go { display: flex; }
+.flow-go { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; align-items: center; margin: 26px auto 10px; max-width: 980px; }
+.flow-go .flow-solo { flex-basis: 100%; text-align: center; }
+.flow-go .flow-solo summary { cursor: pointer; font-size: 13px; color: var(--mute); list-style: none; }
+.flow-go .flow-solo summary::-webkit-details-marker { display: none; }
+.flow-go .flow-solo[open] summary { margin-bottom: 10px; }
+.flow-go .solo-box { text-align: left; max-width: 620px; margin: 0 auto; }
+.prep.collapsed { display: flex; justify-content: center; padding: 8px 14px; margin: 18px auto 0; width: fit-content; }
+.prep.collapsed :is(.prep-plan, .prep-btns) { display: none; }
+.prep .prep-cd { cursor: pointer; }
+.prep.collapsed .prep-cd b { font-size: 18px; }
+.prep.collapsed .prep-cd small br { display: none; }
+.prep .cd-chev { opacity: .6; transition: transform .2s; } .prep:not(.collapsed) .cd-chev { transform: rotate(180deg); }
+
+/* live, both modes: tame */
+body[data-view="live"] .grain, body[data-view="live"] .spot { display: none; }
+body[data-view="live"] #aurora { opacity: .16; }
+body[data-view="live"] #live :is(.panel, .act, .card, .problem) { box-shadow: none !important; text-shadow: none !important; }
+body[data-view="live"] :is(#vu, #aiPill, .panel.two, #adaptNote, #ghost) { display: none !important; }
+body[data-view="live"] .actions .act { font-size: 12px; padding: 5px 10px; opacity: .55; transition: opacity .2s; }
+body[data-view="live"] .actions .act:hover, body[data-view="live"] .actions .act:focus-visible { opacity: 1; }
+body[data-view="live"] .actions kbd { font-size: 10px; }
+
+/* 1-to-1 live: side panels folded unless toggled */
+body[data-view="live"]:not(.solo):not(.side-open) #live { grid-template-columns: minmax(0, 1fr); grid-template-areas: "problem" "cards" "actions" "transcript"; }
+body[data-view="live"]:not(.solo):not(.side-open) #live .side { display: none; }
+body.side-open .act.panels { opacity: 1; }
+
+/* solo live: problem top, captions centre, small board mirror, nothing else */
+body.solo[data-view="live"] :is(.top .meta, #phasePill) { display: none !important; }
+body.solo[data-view="live"] #live { display: block; max-width: 900px; margin: 0 auto; padding-top: 5vh; }
+body.solo[data-view="live"] #live :is(#cards, .transcript) { display: none !important; }
+body.solo[data-view="live"] #live .side > :not(.solo-panel) { display: none !important; }
+body.solo[data-view="live"] #live .side { position: fixed; right: 18px; bottom: 64px; top: auto; height: auto; max-height: none; width: 240px; background: none; border: 0; padding: 0; z-index: 40; opacity: .85; }
+body.solo[data-view="live"] .solo-panel img { max-height: 170px; }
+body.solo[data-view="live"] .problem { justify-content: center; text-align: center; }
+body.solo[data-view="live"] .actions { position: fixed; left: 0; right: 0; bottom: 14px; justify-content: center; z-index: 39; flex-wrap: wrap; }
+body.solo[data-view="live"] .caption { top: 46vh; bottom: auto; left: 0; right: 0; margin: 0 auto; width: fit-content; transform: none;
+  max-width: min(760px, 78vw); background: transparent !important; border: 0 !important; box-shadow: none !important; text-align: center; font-size: 24px; line-height: 1.45; }
+.flow-go .mic-row { flex-basis: 100%; justify-content: center; font-size: 13px; color: var(--mute); }
+/* solo live: current part + captions, nothing else (keyboard shortcuts still work) */
+body.solo[data-view="live"] :is(.top, #live .side, #live .actions, #problem > :not(.stmt), .toasts, #aurora) { display: none !important; }
+body.solo[data-view="live"] #problem .stmt { font-size: 22px; line-height: 1.5; max-width: 820px; margin: 0 auto; }
+.hud { display: none; }
+body.solo[data-view="live"] .hud { display: block; position: fixed; left: 0; right: 0; bottom: 6vh; z-index: 61; text-align: center; pointer-events: none; }
+.hud-me { display: inline-flex; flex-direction: column; align-items: center; gap: 6px; max-width: min(760px, 80vw); }
+.hud-lvl { width: 160px; height: 4px; border-radius: 4px; background: rgba(127,127,127,.2); overflow: hidden; }
+.hud-lvl i { display: block; height: 100%; width: 0; background: var(--mute); transition: width .08s linear; }
+.hud-lvl i.hot { background: var(--leaf); }
+.hud-me small { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--mute); }
+.hud-txt { font-size: 18px; color: var(--ink); opacity: .8; line-height: 1.4; }
+.hud.in .hud-txt { animation: msgIn .4s ease; }
+.hud-txt.partial { opacity: .55; }
+
+/* iPad connect step before a solo interview */
+.qrstep { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; background: rgba(0,0,0,.45); backdrop-filter: blur(6px); }
+.qrcard { background: var(--card, #fff); color: var(--ink, #111); border: 1px solid var(--line, #ddd); border-radius: 14px; padding: 28px 32px; max-width: min(640px, 92vw); text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,.25); }
+.qrcard h2 { margin: 0 0 6px; font-size: 26px; }
+.qrcard > p { margin: 0 0 16px; color: var(--mute, #666); }
+.qrcard .solo-qr { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+.qrcard .solo-qr img { width: 200px; height: 200px; background: #fff; padding: 8px; border-radius: 8px; }
+.qr-acts { display: flex; gap: 10px; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 18px; }
+.ar-wb { margin-left: 8px; }
+.ar-bd { font-size: 11px; color: var(--mute); }
+.qrcard .solo-qr .solo-help { display: none; }
+.qrcard .qr-acts .btn { font-size: 15px !important; padding: 10px 18px !important; width: auto !important; }
+.qrcard .qr-acts [data-a="go"] { order: 3; }
+
+.hud-st { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--mute); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; justify-content: center; }
+.hud-st::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #3fb950; }
+.hud-st[data-s="thinking"]::before { background: #d29922; animation: hudp 1s infinite; }
+.hud-st[data-s="speaking"]::before { background: #58a6ff; }
+@keyframes hudp { 50% { opacity: .3; } }

@@ -1,0 +1,90 @@
+id: log-product-base-3-and-13
+title: Product of logarithms with bases 3 and 13
+topics:
+- logarithms
+- power rule
+- change of base
+- reciprocal of logarithms
+warmup: true
+answer_source: pdf
+statement: Without using a calculator, evaluate $(\log_3 169)(\log_{13} 729)$
+stages:
+- goal: Rewrite $\log_3 169$ and $\log_{13} 729$ in terms of $\log_3 13$ and $\log_{13} 3$ respectively.
+  expected: $\log_3 169 = 2\log_3 13$ and $\log_{13} 729 = 6\log_{13} 3$
+  solution: Since $169 = 13^2$, $\log_3 169 = \log_3 13^2 = 2\log_3 13$. Since $729 = 3^6$, $\log_{13}
+    729 = \log_{13} 3^6 = 6\log_{13} 3$.
+  common_errors:
+  - Writing $169 = 13\cdot 13$ and then splitting the log as a product of logs, i.e. $\log_3 13 \cdot
+    \log_3 13$.
+  - Confusing $729 = 3^6$ with $729 = 3^5$ or $729 = 9^3$ and getting the exponent wrong.
+  - Dropping the base when applying the power rule, e.g. writing $\log 13^2 = 2\log 13$ with the wrong
+    base.
+  hints:
+    rephrase: Ask yourself which whole-number powers of 13 and 3 give 169 and 729. Then move the exponent
+      out in front of each logarithm.
+    smaller_case: Consider $\log_2 8$. Write 8 as a power of 2, then move the exponent out front of the
+      logarithm.
+    key_idea: 'Power rule for logarithms: $\log_b (x^n) = n\log_b x$.'
+  check: expand_log(log(169,3)-2*log(13,3), force=True)+expand_log(log(729,13)-6*log(3,13), force=True)
+  check_ok: true
+- goal: Multiply the two rewritten expressions and simplify to a single number.
+  expected: $12$
+  solution: $(\log_3 169)(\log_{13} 729) = (2\log_3 13)(6\log_{13} 3) = 12(\log_3 13)(\log_{13} 3)$. Because
+    $\log_{13} 3 = \dfrac{1}{\log_3 13}$, the product $(\log_3 13)(\log_{13} 3) = 1$, so the answer is
+    $12$.
+  common_errors:
+  - Multiplying the coefficients incorrectly, e.g. $2\cdot 6 = 8$ or $2+6 = 8$.
+  - Treating $\log_3 13\cdot\log_{13}3$ as $\log_3 3$ or as $\log_{13}13$ with an incorrect cancellation.
+  - Forgetting that $\log_a b\cdot\log_b a = 1$ and leaving the answer as an unsimplified product of logs.
+  hints:
+    rephrase: Once both logs are rewritten, look at the two remaining logarithms. Do they cancel each
+      other in some way?
+    smaller_case: What is $\log_2 8 \cdot \log_8 2$? Use the fact that $\log_8 2 = \dfrac{1}{\log_2 8}$.
+    key_idea: 'Reciprocal property: $\log_a b\cdot \log_b a = 1$, which follows from the change-of-base
+      formula.'
+  check: expand_log(log(169,3)*log(729,13)-12, force=True)
+  check_ok: true
+extensions:
+  '3':
+  - Evaluate $(\log_2 81)(\log_9 32)$ without a calculator.
+  '4':
+  - Evaluate $(\log_5 49)(\log_7 125)$ without a calculator.
+  '5':
+  - Evaluate $(\log_5 8)(\log_2 125)$ without a calculator, then explain in general when $(\log_a b)(\log_c
+    d)$ can be simplified to a whole number.
+spoken_vocab:
+- log
+- log base three of one hundred and sixty-nine
+- log base thirteen of seven hundred and twenty-nine
+- times
+- open bracket
+- close bracket
+- base
+- power rule
+- change of base
+- reciprocal
+- thirteen squared
+- three to the power of six
+- two log base three of thirteen
+- six log base thirteen of three
+- evaluate
+- without a calculator
+source: nextstepmaths/NextStepMaths Interview Questions/interview-question-24.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 3
+  parts: 2
+  minutes: 4
+  flags:
+  - trivial
+  tagline: A neat base-change routine with a tidy answer, but little room for discussion.
+  priority: 27
+  rank: 639
+  tier: D
+  category: nextstepmaths
+  d10: 2.5
+  real: 4.5
+  by: haiku
+tags:
+- exponentials_and_logarithms

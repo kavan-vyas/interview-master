@@ -1,0 +1,85 @@
+id: tbo-lattice-points-absolute-value-diamond
+title: Integer Solutions of |x|+|y| <= 100
+topics:
+- counting
+- lattice points
+- absolute value
+- summation
+- combinatorics
+warmup: false
+answer_source: generated
+statement: Find the number of integer solutions the equation $|x|+|y|\leq 100$.
+stages:
+- goal: Count the integer points with |x|+|y| = k for a fixed k >= 1.
+  expected: There are 4k integer points with |x|+|y| = k when k >= 1.
+  solution: 'For |x|+|y|=k with k>=1, choose |x| = j with 0 <= j <= k. If j=0 then x=0 and y=+-k, giving
+    2 points. If 1 <= j <= k-1 then x = +-j and y = +-(k-j), giving 4 points per j. If j=k then y=0 and
+    x=+-k, giving 2 points. Total: 2 + 4(k-1) + 2 = 4k.'
+  common_errors:
+  - Counting the four quadrants of the diamond but forgetting the axis points, which are counted only
+    twice in naive symmetry arguments.
+  - Writing 4k+1 or 4(k-1) and not checking with a small case.
+  - Confusing |x|+|y| = k with the square max(|x|,|y|) = k.
+  hints:
+    rephrase: Fix the value of |x|+|y| and list the points on that diamond-shaped boundary.
+    smaller_case: Take k=1 and list every integer point with |x|+|y|=1. How many are there?
+    key_idea: Split the count by the value of |x|; each value strictly between 0 and k gives four points,
+      while the two extreme values each give two.
+  check: null
+- goal: Sum over all k to count all integer solutions.
+  expected: '20201'
+  solution: Add the points on each diamond. The origin contributes 1 point (k=0). For k = 1 to 100 we
+    have 4k points each, so the total is 1 + 4(1+2+...+100) = 1 + 4*5050 = 20201.
+  common_errors:
+  - Summing only up to 99 and missing the boundary layer k=100.
+  - Forgetting the origin, which gives an off-by-one error.
+  - Using the formula for the sum 1+...+100 incorrectly, such as 100*100/2 instead of 100*101/2.
+  hints:
+    rephrase: Split the region into nested diamond-shaped layers, one for each value of |x|+|y|, and add
+      the counts.
+    smaller_case: Count for |x|+|y| <= 1 by adding the layers. Do this carefully, including the origin.
+    key_idea: Add the layer counts from the previous stage over every layer from the origin to |x|+|y|
+      = 100, and remember the origin is its own layer.
+  check: Eq(p, 20201)
+  check_ok: null
+extensions:
+  '3':
+  - Count the integer solutions of |x|+|y| < 100 (strict inequality).
+  '4':
+  - Count the integer solutions of |x|+|y| <= 100 with both x and y strictly positive.
+  '5':
+  - Show that the number of integer solutions of |x|+|y| <= n is 2n^2+2n+1, and check it for n=100.
+spoken_vocab:
+- absolute value of x
+- absolute value of y
+- less than or equal to one hundred
+- integer solutions
+- lattice points
+- diamond
+- layer
+- sum
+- origin
+- four k points
+- two n squared plus two n plus one
+- one plus four times the sum
+- fifty fifty fifty fifty
+- twenty thousand two hundred and one
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 2
+  minutes: 8
+  flags: []
+  tagline: Counting diamond lattice points by layers; closed form 2N^2+2N+1
+  priority: 45
+  rank: 541
+  tier: C
+  category: tbo
+  d10: 3.0
+  real: 6.5
+  by: haiku
+tags:
+- combinatorics
+- coordinate_geometry

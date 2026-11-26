@@ -1,0 +1,180 @@
+id: roots-of-unity-product-identities
+title: 'Roots of unity: distance product and the product of sines'
+topics:
+- complex numbers
+- roots of unity
+- polynomial factorisation
+- geometric series
+- trigonometry
+- product of sines
+warmup: false
+answer_source: pdf
+statement: 'Let $n\ge 2$ and $\omega=e^{2\pi i/n}$.
+
+
+  (i) Show that the roots of $z^n=1$ are $1,\omega,\dots,\omega^{n-1}$, and that they form a regular $n$-gon.
+
+
+  (ii) Show that the sum of these roots is $0$.
+
+
+  (iii) By factorising $z^n-1$, show that $\prod_{k=1}^{n-1}(1-\omega^k)=n$.
+
+
+  (iv) Deduce that the product of the distances from one vertex of a regular $n$-gon inscribed in the
+  unit circle to all the other vertices is $n$.
+
+
+  (v) Show that $|1-\omega^k|=2\sin\frac{k\pi}{n}$ for $1\le k\le n-1$, and deduce that $\prod_{k=1}^{n-1}\sin\frac{k\pi}{n}=\frac{n}{2^{n-1}}$.'
+stages:
+- goal: Show that the roots of $z^n=1$ are $1,\omega,\dots,\omega^{n-1}$ and that they form a regular
+    $n$-gon.
+  expected: $(\omega^k)^n=e^{2\pi ik}=1$, so each $\omega^k$ is a root. The $n$ numbers $\omega^k$ ($0\le
+    k\le n-1$) are distinct, and a degree-$n$ polynomial has at most $n$ roots, so these are all of them.
+    They lie on the unit circle with consecutive arguments differing by $\frac{2\pi}{n}$, so they form
+    a regular $n$-gon.
+  solution: Each $\omega^k$ satisfies $(\omega^k)^n=e^{2\pi ik}=1$, so it is a root. The numbers $\omega^0,\dots,\omega^{n-1}$
+    are distinct because their arguments $\frac{2\pi k}{n}$ are distinct in $[0,2\pi)$. Since $z^n-1$
+    has degree $n$, it has at most $n$ roots, so these $n$ roots are all of them. They all have modulus
+    $1$ and consecutive arguments differ by $\frac{2\pi}{n}$, so they are equally spaced on the unit circle
+    and form a regular $n$-gon.
+  common_errors:
+  - Checking that each $\omega^k$ is a root without showing there are no others.
+  - Not checking that the $n$ values are distinct.
+  - Stating equal spacing without linking it to the argument step $\frac{2\pi}{n}$ and modulus $1$.
+  hints:
+    rephrase: Raise $\omega^k$ to the power $n$ using the exponential form. Then think about how many
+      roots a degree-$n$ polynomial can have.
+    smaller_case: For $n=4$, list $\omega^0,\dots,\omega^3$ and check that each satisfies $z^4=1$. Where
+      do they sit in the plane?
+    key_idea: A polynomial of degree $n$ has at most $n$ roots, so $n$ distinct roots must be all of them.
+- goal: Show that the sum of the roots is $0$.
+  expected: The sum is the geometric series $\frac{\omega^n-1}{\omega-1}=0$, since $\omega^n=1$ and $\omega\ne1$.
+  solution: $1+\omega+\dots+\omega^{n-1}=\frac{\omega^n-1}{\omega-1}$ by the geometric series formula,
+    which is valid because $\omega\ne1$ for $n\ge2$. Since $\omega^n=1$, the numerator is $0$, so the
+    sum is $0$.
+  common_errors:
+  - Using the geometric series formula without checking that $\omega\ne1$.
+  - Arguing from symmetry alone without a valid calculation.
+  - Wrongly computing $\omega^n$ as $0$, or leaving it as $e^{2\pi i}$ without simplifying to $1$.
+  hints:
+    rephrase: The roots form a geometric progression with common ratio $\omega$. Use the sum formula for
+      such a progression.
+    smaller_case: For $n=2$ the roots are $1$ and $-1$. Add them, then ask why the same argument works
+      for general $n$.
+    key_idea: Use the geometric series formula, and remember to check that the common ratio is not $1$.
+  check: simplify(expand_complex(1 + exp(2*pi*I/3) + exp(4*pi*I/3)))
+  check_ok: true
+- goal: Factorise $z^n-1$ and show that $\prod_{k=1}^{n-1}(1-\omega^k)=n$.
+  expected: $z^n-1=\prod_{k=0}^{n-1}(z-\omega^k)$, so $\prod_{k=1}^{n-1}(z-\omega^k)=\frac{z^n-1}{z-1}=1+z+\dots+z^{n-1}$.
+    Setting $z=1$ gives $\prod_{k=1}^{n-1}(1-\omega^k)=n$.
+  solution: 'By part (i), $z^n-1$ has the $n$ distinct roots $\omega^k$, so $z^n-1=\prod_{k=0}^{n-1}(z-\omega^k)$
+    (both sides are monic of degree $n$). Since $\omega^0=1$, divide by $z-1$: $\prod_{k=1}^{n-1}(z-\omega^k)=\frac{z^n-1}{z-1}=1+z+\dots+z^{n-1}$.
+    This is an identity between polynomials, so we may substitute $z=1$ into the right-hand polynomial:
+    $\prod_{k=1}^{n-1}(1-\omega^k)=1+1+\dots+1=n$.'
+  common_errors:
+  - Substituting $z=1$ into $\frac{z^n-1}{z-1}$ directly, getting $\frac00$, instead of using the polynomial
+    form $1+z+\dots+z^{n-1}$.
+  - Forgetting to divide out the factor $z-1$.
+  - Starting the product at $k=0$, which gives $0$, instead of $k=1$.
+  hints:
+    rephrase: Write $z^n-1$ as a product over all its roots, then cancel the factor corresponding to the
+      root $1$.
+    smaller_case: For $n=2$, factorise $z^2-1$ over its roots and compare with $1+z$. Then try $n=3$.
+    key_idea: After cancelling $(z-1)$ you have a genuine polynomial $1+z+\dots+z^{n-1}$ with no division,
+      which you can evaluate at $z=1$.
+  check: simplify(expand_complex((1-exp(2*pi*I/3))*(1-exp(4*pi*I/3))) - 3)
+  check_ok: true
+- goal: Deduce that the product of the distances from one vertex of a regular $n$-gon inscribed in the
+    unit circle to all the other vertices is $n$.
+  expected: Taking the modulus of $\prod_{k=1}^{n-1}(1-\omega^k)=n$ gives $\prod_{k=1}^{n-1}|1-\omega^k|=n$.
+    Each $|1-\omega^k|$ is the distance from vertex $1$ to vertex $\omega^k$.
+  solution: Take vertices $\omega^0=1,\omega,\dots,\omega^{n-1}$ (any regular $n$-gon inscribed in the
+    unit circle can be rotated so that a chosen vertex is at $1$, which preserves distances). The modulus
+    of a product is the product of the moduli, so $\prod_{k=1}^{n-1}|1-\omega^k|=|n|=n$. For points $1$
+    and $w$ in the complex plane, $|1-w|$ is the distance between them. Hence the product of the distances
+    from vertex $1$ to the other $n-1$ vertices is $n$.
+  common_errors:
+  - Using $|\omega^k|$ (which is $1$) as the distance instead of $|1-\omega^k|$.
+  - Forgetting that the modulus of a product equals the product of the moduli.
+  - Not justifying that the chosen vertex can be placed at $1$ on the unit circle, so that the vertices
+    are the $\omega^k$.
+  hints:
+    rephrase: Think about what $|1-w|$ means geometrically for the two points $1$ and $w$ in the plane.
+    smaller_case: For a square inscribed in the unit circle, compute the distance from one vertex to each
+      of the other three directly, and multiply.
+    key_idea: The modulus of a difference is the distance between the two points, and the modulus is multiplicative
+      over products.
+  check: Abs(1-I)*Abs(1-(-1))*Abs(1-(-I)) - 4
+  check_ok: true
+- goal: Show that $|1-\omega^k|=2\sin\frac{k\pi}{n}$ and deduce that $\prod_{k=1}^{n-1}\sin\frac{k\pi}{n}=\frac{n}{2^{n-1}}$.
+  expected: With $\phi=\frac{2k\pi}{n}$, $|1-e^{i\phi}|=\left|e^{-i\phi/2}-e^{i\phi/2}\right|=2\left|\sin\frac{\phi}{2}\right|=2\sin\frac{k\pi}{n}$,
+    positive for $0<k<n$. Then $2^{n-1}\prod_{k=1}^{n-1}\sin\frac{k\pi}{n}=n$.
+  solution: 'Write $1-e^{i\phi}=e^{i\phi/2}\left(e^{-i\phi/2}-e^{i\phi/2}\right)=-2i\sin\frac{\phi}{2}\,e^{i\phi/2}$.
+    Taking the modulus, $|1-e^{i\phi}|=2\left|\sin\frac{\phi}{2}\right|$. With $\phi=\frac{2k\pi}{n}$
+    and $0<k<n$ we have $\frac{\phi}{2}=\frac{k\pi}{n}\in(0,\pi)$, so the sine is positive and $|1-\omega^k|=2\sin\frac{k\pi}{n}$.
+    Substituting into the product from part (iv): $\prod_{k=1}^{n-1}2\sin\frac{k\pi}{n}=n$, i.e. $2^{n-1}\prod_{k=1}^{n-1}\sin\frac{k\pi}{n}=n$,
+    so the product of sines is $\frac{n}{2^{n-1}}$. Check $n=3$: $\sin60^\circ\sin120^\circ=\frac{\sqrt3}{2}\cdot\frac{\sqrt3}{2}=\frac34=\frac{3}{2^2}$.'
+  common_errors:
+  - Dropping the absolute value, or forgetting that $\frac{k\pi}{n}\in(0,\pi)$ makes the sine positive.
+  - Using $\phi$ instead of $\frac{\phi}{2}$ inside the sine.
+  - 'Miscounting the factors of $2$: there are $n-1$ of them, giving $2^{n-1}$, not $2^n$.'
+  hints:
+    rephrase: Factor $e^{i\phi/2}$ out of $1-e^{i\phi}$, then find the modulus of what remains.
+    smaller_case: For $\phi=\pi$, compute $|1-e^{i\pi}|$ directly and compare it with a sine of a suitable
+      half-angle.
+    key_idea: The bracket $e^{-i\phi/2}-e^{i\phi/2}$ is purely imaginary, with size $2\sin\frac{\phi}{2}$;
+      then use the product from part (iv).
+  check: sin(pi/3)*sin(2*pi/3) - Rational(3,4)
+  check_ok: true
+extensions:
+  '3':
+  - Check the identity $\prod_{k=1}^{n-1}\sin\frac{k\pi}{n}=\frac{n}{2^{n-1}}$ directly for $n=4$ and
+    $n=6$. Which sines can you pair up?
+  - Show that $\sum_{k=1}^{n-1}\frac{1}{1-\omega^k}=\frac{n-1}{2}$ by pairing the terms for $k$ and $n-k$.
+  '4':
+  - Use $|1-\omega^k|^2=2-2\cos\frac{2k\pi}{n}$ to evaluate $\prod_{k=1}^{n-1}\left(2-2\cos\frac{2k\pi}{n}\right)$.
+  - Replace $z^n=1$ by $z^n=-1$. What is the product of the distances from the point $1$ to all the roots,
+    and what trigonometric identity does it give?
+  '5':
+  - Prove $\sum_{k=1}^{n-1}\csc^2\frac{k\pi}{n}=\frac{n^2-1}{3}$ using the polynomial $1+z+\dots+z^{n-1}$
+    whose roots are the $\omega^k$.
+spoken_vocab:
+- omega
+- e to the two pi i over n
+- roots of unity
+- z to the n equals one
+- regular n-gon
+- unit circle
+- geometric series
+- factorise
+- product from k equals one to n minus one
+- modulus
+- distance from vertex one
+- sine k pi over n
+- two to the power n minus one
+- n over two to the n minus one
+- n equals three check
+- sine sixty degrees
+- sine one hundred and twenty degrees
+source: jaymin/Jaymin Interview (1).pdf#p65
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 5
+  minutes: 30
+  flags: []
+  tagline: Linked stages build from roots of unity to the sine product identity.
+  priority: 111
+  rank: 14
+  tier: S
+  category: jaymin
+  d10: 5.0
+  real: 6.0
+  by: haiku
+refined: true
+tags:
+- complex_numbers
+- geometry
+- trigonometry

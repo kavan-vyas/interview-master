@@ -1,0 +1,107 @@
+id: kclms-specimen-2-q1-divisible-by-6-or-15-not-both
+title: Count integers below 1000 divisible by 6 or 15 but not both
+topics:
+- number theory
+- divisibility
+- inclusion-exclusion
+- counting
+warmup: false
+answer_source: pdf
+statement: How many positive integers less than 1000 are divisible by 6 or by 15, but not by both? a)
+  33 b) 133 c) 166 d) 199 e) 232
+stages:
+- goal: Count the positive integers less than 1000 that are divisible by 6.
+  expected: '166'
+  solution: Multiples of 6 below 1000 are 6, 12, ..., 996, so there are floor(999/6) = 166 of them.
+  common_errors:
+  - Using 1000/6 and rounding to 167 (includes 1000 or miscounts the endpoint).
+  - Forgetting that 'less than 1000' excludes 1000 itself.
+  hints:
+    rephrase: How many multiples of 6 fit in the range 1 to 999?
+    smaller_case: How many positive integers less than 20 are divisible by 6? List them and count.
+    key_idea: The number of multiples of k up to N is floor(N/k).
+  check: floor(Integer(999)/6) - 166
+  check_ok: true
+- goal: Count the positive integers less than 1000 that are divisible by 15.
+  expected: '66'
+  solution: Multiples of 15 below 1000 run up to 990, so there are floor(999/15) = 66 of them.
+  common_errors:
+  - Dividing 1000 by 15 and rounding up to 67.
+  - Miscounting by treating 15 as 16 or confusing it with 5.
+  hints:
+    rephrase: How many multiples of 15 lie between 1 and 999 inclusive?
+    smaller_case: How many positive integers less than 50 are divisible by 15?
+    key_idea: 'Use the same floor rule: the count of multiples of k below N is floor((N-1)/k) when N itself
+      is excluded.'
+  check: floor(Integer(999)/15) - 66
+  check_ok: true
+- goal: Count the positive integers less than 1000 divisible by both 6 and 15, i.e. by their lowest common
+    multiple.
+  expected: '33'
+  solution: A number is divisible by both 6 and 15 exactly when it is divisible by lcm(6,15) = 30. Multiples
+    of 30 below 1000 are floor(999/30) = 33 in number.
+  common_errors:
+  - Using 6*15 = 90 instead of lcm(6,15) = 30.
+  - Using gcd(6,15) = 3 instead of the lcm.
+  hints:
+    rephrase: Which single number must a number be divisible by if it is divisible by both 6 and 15?
+    smaller_case: Which numbers below 20 are divisible by both 2 and 3?
+    key_idea: Divisible by both a and b means divisible by lcm(a,b).
+  check: floor(Integer(999)/30) - 33
+  check_ok: true
+- goal: Combine the counts to find the number divisible by exactly one of 6 and 15.
+  expected: '166'
+  solution: Divisible by 6 or 15 but not both = (multiples of 6 not of 30) + (multiples of 15 not of 30)
+    = (166 - 33) + (66 - 33) = 133 + 33 = 166. This is option c.
+  common_errors:
+  - Answering with the union 166 + 66 - 33 = 199, which counts the overlap.
+  - Subtracting the overlap only once when it should be removed from both sets.
+  - Subtracting 33 from the sum instead of from each count.
+  hints:
+    rephrase: Remove the overlap from each set separately, then add what is left.
+    smaller_case: Among integers below 13, how many are divisible by 2 or 3 but not both? Count them directly.
+    key_idea: '''Exactly one'' means the symmetric difference: |A| + |B| - 2|A and B|.'
+  check: (floor(Integer(999)/6) - floor(Integer(999)/30)) + (floor(Integer(999)/15) - floor(Integer(999)/30))
+    - 166
+  check_ok: true
+extensions:
+  '3':
+  - Repeat the question with 4 and 10 instead of 6 and 15, using numbers below 500.
+  - 'Generalise: how many integers below N are divisible by a or b but not both?'
+  '4':
+  - Why does subtracting the multiples of lcm(a,b) from each set fix the overcount?
+  - How many integers below 1000 are divisible by exactly one of 6, 10 and 15?
+  '5':
+  - Prove the two-set inclusion-exclusion formula from first principles.
+  - Extend inclusion-exclusion to three divisors and state the sign pattern.
+spoken_vocab:
+- positive integers
+- less than one thousand
+- divisible by six
+- divisible by fifteen
+- divisible by thirty
+- lowest common multiple
+- floor of N over k
+- inclusion exclusion
+- exclusive or
+- symmetric difference
+- option c
+source: kclms/kclms-specimen-mcq-2.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 3
+  parts: 4
+  minutes: 4
+  flags: []
+  tagline: Routine inclusion-exclusion MCQ; the 133 distractor is the only real trap.
+  priority: 42
+  rank: 566
+  tier: C
+  category: kclms
+  d10: 2.0
+  real: 3.0
+  by: haiku
+tags:
+- number_theory
+- combinatorics

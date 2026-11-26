@@ -1,0 +1,85 @@
+id: three-dice-at-least-one-six
+title: 'Three dice: probability of at least one six'
+topics:
+- probability
+- complementary counting
+- independent events
+warmup: true
+answer_source: pdf
+statement: Three fair six-sided dice are rolled. What is the probability that at least one of them shows
+  a six?
+stages:
+- goal: Find the probability that none of the three dice shows a six.
+  expected: 125/216
+  solution: Each die fails to show a six with probability 5/6. The dice are independent, so the probability
+    none shows a six is (5/6)^3 = 125/216.
+  common_errors:
+  - Computing (1/6)^3 instead, which is the probability all three are sixes.
+  - Writing 5/6 + 5/6 + 5/6 or adding the probabilities instead of multiplying.
+  hints:
+    rephrase: For one die, what is the probability it is not a six? What happens when you need that for
+      all three dice?
+    smaller_case: Take just one die. What is the probability it is not a six?
+    key_idea: The dice are independent, so the probabilities of 'not a six' multiply.
+  check: 216*x - 125
+  check_ok: false
+- goal: Use the complement to find the probability that at least one die shows a six.
+  expected: 91/216
+  solution: P(at least one six) = 1 - P(no six) = 1 - 125/216 = 91/216.
+  common_errors:
+  - Adding the individual probabilities 3 x 1/6 = 1/2 (this double counts outcomes with two or more sixes).
+  - Stopping at 125/216, which is the answer to the previous stage.
+  - Taking 1 - 5/6 = 1/6 as the answer.
+  hints:
+    rephrase: Is it easier to count the outcomes with a six, or the outcomes without one? How do the two
+      relate?
+    smaller_case: With two dice, how would you use the complement to get the chance of at least one six?
+    key_idea: '''At least one'' is the complement of ''none''. Subtract the ''none'' probability from
+      1.'
+  check: 216*x - 91
+  check_ok: false
+extensions:
+  '3':
+  - Four fair dice are rolled. What is the probability that at least one shows a six?
+  - Three fair dice are rolled. What is the probability that the total of the three dice is 3?
+  '4':
+  - Three fair dice are rolled. What is the probability that exactly one shows a six?
+  - Three fair dice are rolled. Given that at least one shows a six, what is the probability that exactly
+    one shows a six?
+  '5':
+  - Three fair dice are rolled. What is the probability that at least two show a six?
+  - Three fair dice are rolled. What is the probability that all three show different numbers?
+spoken_vocab:
+- three dice
+- fair
+- six sided
+- at least one
+- six
+- probability
+- complement
+- none
+- five sixths
+- one sixth
+- cubed
+- one hundred and twenty five over two hundred and sixteen
+- ninety one over two hundred and sixteen
+- independent
+source: kclms/kclms-specimen-mcq-4.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 1
+  parts: 2
+  minutes: 3
+  flags:
+  - trivial
+  tagline: Single complement trick; too trivial to probe much beyond recall.
+  priority: 17
+  rank: 672
+  tier: D
+  category: kclms
+  d10: 1.0
+  real: 3.0
+  by: haiku
+tags:
+- probability

@@ -1,0 +1,110 @@
+id: exp-equals-square-real-roots
+title: How many real solutions does e^x = x^2 have?
+topics:
+- real analysis
+- exponential function
+- monotonicity
+- intermediate value theorem
+- root counting
+warmup: true
+answer_source: pdf
+statement: How many real solutions does $e^x=x^2$ have?
+stages:
+- goal: Show there are no positive solutions by studying $g(x)=e^x/x^2$ on $x>0$.
+  expected: On $x>0$, $g'(x)=\frac{e^x(x-2)}{x^3}$, so $g$ has its minimum at $x=2$ with $g(2)=\frac{e^2}{4}>1$.
+    Hence $e^x>x^2$ for all $x>0$, and there are no positive solutions.
+  solution: Let $g(x)=e^x/x^2$ for $x>0$. Then $g'(x)=\frac{e^x x^2-2xe^x}{x^4}=\frac{e^x(x-2)}{x^3}$.
+    This is negative on $(0,2)$ and positive on $(2,\infty)$, so $g$ has a minimum at $x=2$. Since $e^2/4\approx
+    1.847>1$, $g(x)>1$ for all $x>0$, so $e^x>x^2$. Also $x=0$ is not a solution because $e^0=1\ne 0$.
+  common_errors:
+  - Assuming no positive solution because $e^x$ grows faster than $x^2$ without checking the minimum of
+    the ratio.
+  - Computing $g'$ incorrectly (dropping the $-2x$ term from the quotient rule).
+  - Stating the minimum is at $x=1$ instead of $x=2$.
+  hints:
+    rephrase: Divide both sides by $x^2$ and ask how small the resulting ratio can get on $x>0$.
+    smaller_case: Check the ratio at a few positive points, such as $x=1$ and $x=3$, to see the trend.
+    key_idea: A function that stays above 1 everywhere has no level-1 crossings, found by locating its
+      minimum.
+  check: simplify(diff(exp(x)/x**2, x) - exp(x)*(x - 2)/x**3)
+  check_ok: true
+- goal: Show that $h(x)=e^x-x^2$ is strictly increasing on $(-\infty,0)$, so it has at most one root there.
+  expected: $h'(x)=e^x-2x$. For $x<0$ we have $e^x>0$ and $-2x>0$, so $h'(x)>0$. Hence $h$ is strictly
+    increasing on $(-\infty,0)$.
+  solution: 'Differentiate: $h''(x)=e^x-2x$. When $x<0$, $e^x>0$ and $-2x>0$, so $h''(x)>0$ throughout
+    $(-\infty,0)$. A strictly increasing function crosses zero at most once, so there is at most one root
+    with $x<0$.'
+  common_errors:
+  - Forgetting the sign of $-2x$ when $x$ is negative.
+  - Concluding monotonicity on all of $\mathbb{R}$, which fails for positive x.
+  - Differentiating $x^2$ as $x$ instead of $2x$.
+  hints:
+    rephrase: If a curve only ever goes upward on an interval, how many times can it cross the x-axis
+      there?
+    smaller_case: Pick $x=-1$ and compute the sign of $h'(-1)$.
+    key_idea: Show the derivative has a fixed sign on the interval, then use that a strictly monotone
+      function has at most one zero.
+  check: simplify(diff(exp(x) - x**2, x) - (exp(x) - 2*x))
+  check_ok: true
+- goal: Confirm existence of exactly one negative root, locating it between $-1$ and $0$ and estimating
+    its value.
+  expected: Exactly one real solution, which is negative. $h(-1)=e^{-1}-1<0$ and $h(0)=1>0$, so the root
+    lies in $(-1,0)$, approximately $x\approx -0.70347$.
+  solution: Compute $h(-1)=e^{-1}-1\approx -0.632<0$ and $h(0)=1>0$. Since $h$ is continuous, the intermediate
+    value theorem gives a root in $(-1,0)$. By the previous stage it is unique there. Newton's method
+    from $x_0=-0.7$ gives $x\approx -0.70347$, and substituting confirms $|h(-0.70347)|$ is tiny.
+  common_errors:
+  - Reporting two solutions by counting one on each side of zero without checking the positive case.
+  - Checking the sign at the wrong endpoints (for example $h(-2)$ and $h(-1)$ without sign information).
+  - Giving an estimate far from $-0.70$ due to an arithmetic error in $e^{-0.7}$.
+  hints:
+    rephrase: Where does $h$ change sign on the negative axis? Use two simple points.
+    smaller_case: Evaluate $h$ at $x=-1$ and at $x=0$ and compare signs.
+    key_idea: Intermediate value theorem for existence, combined with monotonicity for uniqueness.
+  check: abs(N((exp(x) - x**2).subs(x, -0.70347), 10)) < 1e-3
+  check_ok: true
+extensions:
+  '3':
+  - For which real values of a does $e^x=a x^2$ have exactly two real solutions?
+  - Show that $e^x = x^3$ has exactly one positive solution and find an interval containing it.
+  '4':
+  - Prove that $e^x=x^2$ has exactly one real solution without splitting into positive and negative cases.
+  - Find the number of real solutions of $e^x = k x^2$ as a function of $k>0$, and identify the critical
+    value of $k$.
+  '5':
+  - Show that the negative root of $e^x=x^2$ can be written in terms of the Lambert W function, and identify
+    the branch.
+  - Analyse the number of real solutions of $e^{x}=x^{n}$ for general positive integer n, distinguishing
+    even and odd n.
+spoken_vocab:
+- e to the x equals x squared
+- real solutions
+- derivative
+- quotient rule
+- strictly increasing
+- intermediate value theorem
+- negative one
+- e to the minus one minus one
+- Newton's method
+- critical point
+- minimum
+source: jaymin/Jaymin Interview (1).pdf#p49
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Clean monotonicity argument locating a negative root between -1 and 0
+  priority: 96
+  rank: 59
+  tier: A
+  category: jaymin
+  d10: 5.0
+  real: 8.5
+  by: deepseek-v4.1-flash-free
+tags:
+- exponentials_and_logarithms
+- curve_sketching
+- differentiation

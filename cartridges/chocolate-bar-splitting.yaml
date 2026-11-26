@@ -1,0 +1,125 @@
+id: chocolate-bar-splitting
+title: Chocolate bar breaking game
+topics:
+- invariants
+- parity
+- combinatorial games
+warmup: false
+answer_source: pdf
+statement: A chocolate bar is a rectangle made of $4 \times 6$ squares. A move consists of breaking one
+  piece along a straight grid line into two smaller pieces. (a) Show that, however you choose the breaks,
+  exactly $23$ moves are needed to separate the bar into $24$ single squares. (b) Two players take turns
+  to make a move on a $5 \times 7$ bar. The player who makes the last possible move wins. Which player
+  can always win? Explain your answer.
+stages:
+- goal: Explain what a single move does to the number of pieces.
+  expected: Each move splits one piece into two, so the number of pieces increases by exactly 1 per move,
+    whatever line is chosen.
+  solution: A break takes one piece and produces two pieces. Net change in piece count is +1. This holds
+    for every possible move, so the piece count is an invariant in the sense that it always goes up by
+    exactly one.
+  common_errors:
+  - Focusing on the shape of the pieces rather than the count.
+  - Claiming the number of moves depends on which line is chosen.
+  - Saying a move can add more than one piece.
+  hints:
+    rephrase: Forget the shapes. Ask what one break does to the number of pieces.
+    smaller_case: Take a 1 by 2 bar. How many pieces before and after one break?
+    key_idea: Track the piece count; it changes by a fixed amount on every move.
+  check: 'True'
+  check_ok: true
+- goal: Use this to count the moves needed for the $4 \times 6$ bar.
+  expected: Start with 1 piece and end with 24 pieces. Each move adds 1, so 23 moves.
+  solution: The count goes from 1 to 24, an increase of 23. Each move contributes exactly 1, so exactly
+    23 moves are needed, independent of break choices.
+  common_errors:
+  - Using 24 as the number of moves.
+  - Forgetting the starting single piece.
+  - Counting 24 squares minus 1 incorrectly as 22 or 24.
+  hints:
+    rephrase: If a number goes from a start value to an end value in fixed steps, how many steps are there?
+    smaller_case: A 1 by 3 bar goes from 1 piece to 3 pieces. How many breaks are needed?
+    key_idea: Number of moves equals total increase in piece count divided by the increase per move.
+  check: Eq(24 - 1, 23)
+  check_ok: true
+- goal: Find the number of moves needed to split the $5 \times 7$ bar into single squares.
+  expected: 35 squares, so 34 moves.
+  solution: 'The same reasoning applies: start with 1 piece, end with 35 single squares, and each move
+    adds 1. So 35 minus 1 equals 34 moves, whatever the breaks.'
+  common_errors:
+  - Answering 35 moves, equal to the number of squares.
+  - Answering 36 by adding rather than subtracting the starting piece.
+  hints:
+    rephrase: Each piece must end as one square. Use the same counting argument as before.
+    smaller_case: How many moves would separate a 2 by 3 bar (6 squares) into single squares?
+    key_idea: 'The total number of moves is fixed: squares minus one.'
+  check: Eq(35 - 1, 34)
+  check_ok: true
+- goal: Decide which player can always make the last move, and explain why.
+  expected: The second player. There are 34 moves in total, an even number, so the second player makes
+    move 34, the last move, whatever either player does.
+  solution: Since the total number of moves is fixed at 34, the players alternate, with the first player
+    making odd-numbered moves and the second player making even-numbered moves. Move 34 is even, so it
+    is made by the second player, who therefore makes the last move and wins regardless of play.
+  common_errors:
+  - Saying the first player wins because they start.
+  - Arguing from strategy about particular breaks instead of the fixed total.
+  - Confusing odd and even move numbers.
+  hints:
+    rephrase: The total number of moves is fixed. Who makes the final one depends only on whether that
+      total is odd or even.
+    smaller_case: On a 1 by 2 bar (2 squares), there is one move in total. Who makes it if the first player
+      starts?
+    key_idea: Label the moves 1, 2, 3, and so on. Which player plays the final-numbered move?
+  check: Eq(34 % 2, 0)
+  check_ok: true
+extensions:
+  '3':
+  - Show that a $3 \times 3$ bar needs the same number of moves as its squares minus one, and explain
+    why the total does not depend on the chosen breaks.
+  '4':
+  - For an $m \times n$ bar, show that the number of moves is always $mn - 1$. Hence state which player
+    wins the game for any $m$ and $n$.
+  '5':
+  - Suppose a move may instead split a piece into three pieces in one go. Does the number of moves still
+    stay fixed? Explain your reasoning.
+spoken_vocab:
+- chocolate bar
+- rectangle
+- squares
+- move
+- break
+- piece
+- grid line
+- four by six
+- five by seven
+- twenty three
+- twenty four
+- thirty four
+- thirty five
+- even
+- odd
+- second player
+- first player
+- last move
+- modulo
+- minus one
+source: kclms/kclms-specimen-questions-3.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 5
+  parts: 2
+  minutes: 12
+  flags: []
+  tagline: Move-count invariant leads to a parity-based winning strategy game on 5×7.
+  priority: 92
+  rank: 92
+  tier: A
+  category: kclms
+  d10: 3.0
+  real: 6.0
+  by: deepseek-v4.1-flash-free
+tags:
+- combinatorics
+- proof

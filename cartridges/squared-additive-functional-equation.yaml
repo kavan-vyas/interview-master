@@ -1,0 +1,98 @@
+id: squared-additive-functional-equation
+title: Real functions with f(x+y)^2 = f(x)^2 + f(y)^2
+topics:
+- functional equations
+- Cauchy equation
+- monotonicity
+- real analysis basics
+warmup: false
+answer_source: generated
+statement: Find all real valued functions $f$ which satisfy $(f(x+y))^2\equiv(f(x))^2+(f(y))^2$ for all
+  real $x$ and $y$.
+stages:
+- goal: Determine f(0).
+  expected: f(0) = 0.
+  solution: Put x = y = 0. The equation gives f(0)^2 = 2f(0)^2, so f(0)^2 = 0 and hence f(0) = 0.
+  common_errors:
+  - Assuming f(0) = 1 by analogy with exponentials.
+  - Solving f(0)^2 = 2f(0)^2 as f(0) = 2f(0) or similar algebra slips.
+  - Forgetting that f is real-valued, so f(0)^2 = 0 gives f(0) = 0.
+  hints:
+    rephrase: Try a special choice of x and y that makes the arguments simple.
+    smaller_case: What does the equation say when x = y = 0?
+    key_idea: Substituting x = y = 0 turns the equation into a statement about f(0) alone.
+  check: set(sp.solve(sp.Eq(t**2, 2*t**2), t)) == {0}
+  check_ok: null
+- goal: Show that g(x) = f(x)^2 is additive and nondecreasing, and hence linear.
+  expected: g(x+y) = g(x) + g(y) and g >= 0. Then g is nondecreasing, and g(x) = k x for the constant
+    k = g(1), with k >= 0.
+  solution: Let g(x) = f(x)^2. Then g(x) >= 0 for all x, and the equation becomes g(x+y) = g(x) + g(y).
+    For y >= 0, g(x+y) = g(x) + g(y) >= g(x), so g is nondecreasing. Additivity with g(0) = 0 gives g(q)
+    = q g(1) for every rational q. For real x, choose rationals p < x < q. Then p k <= g(x) <= q k with
+    k = g(1), and letting p and q approach x gives g(x) = k x. Also k = g(1) >= 0 since g >= 0.
+  common_errors:
+  - Concluding g(x) = kx without justifying it through monotonicity or continuity.
+  - Treating f itself as additive rather than f squared.
+  - Assuming f is linear, which is not implied.
+  hints:
+    rephrase: Is there a quantity built from f that satisfies an additive equation?
+    smaller_case: Show that g(2x) = 2g(x) and then that g(n) = n g(1) for positive integers n.
+    key_idea: Nonnegative additive functions are nondecreasing, and monotone additive functions are linear.
+  check: null
+- goal: Use nonnegativity to force the constant to zero and conclude the only solution.
+  expected: k = 0, so f(x)^2 = 0 for all x. The only solution is f identically 0.
+  solution: g(x) = kx must be >= 0 for all real x. At x = -1 this gives -k >= 0, so k <= 0. Together with
+    k >= 0 from stage 2, k = 0. Hence f(x)^2 = 0 for every x, so f(x) = 0 for every x. The zero function
+    satisfies the equation (0 = 0 + 0), so it is the only solution.
+  common_errors:
+  - Forgetting to check negative x, which is where nonnegativity forces k = 0.
+  - Stating that f(x) = sqrt(kx) or similar solutions exist, which fail for negative x.
+  - Omitting the check that the zero function really satisfies the equation.
+  hints:
+    rephrase: If g(x) = kx and k is positive, what happens for negative x?
+    smaller_case: Take k = 1 and x = -1. Does g still satisfy g >= 0?
+    key_idea: A linear function kx is nonnegative on all of the real line only when k = 0.
+  check: sp.solveset(sp.And(k >= 0, -k >= 0), k, sp.S.Reals) == sp.FiniteSet(0)
+  check_ok: null
+extensions:
+  '3':
+  - Without using nonnegativity, show that a non-linear additive function g exists on the reals assuming
+    a Hamel basis. Explain why this shows that some regularity or sign condition is needed.
+  '4':
+  - Repeat for complex-valued f. Show that f(x)^2 = lambda x, for any complex constant lambda and any
+    choice of square root at each x, satisfies the equation.
+  '5':
+  - Explain why nonnegativity is the decisive ingredient in the real case, by contrasting with the complex
+    case.
+spoken_vocab:
+- f of x plus y squared equals f of x squared plus f of y squared
+- functional equation
+- for all real x and y
+- f of zero
+- additive
+- monotone
+- nondecreasing
+- rational numbers
+- constant k
+- zero function
+- Cauchy equation
+- Hamel basis
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Reduces to Cauchy's equation; nonnegativity forces the only solution zero.
+  priority: 81
+  rank: 218
+  tier: B
+  category: tbo
+  d10: 4.5
+  real: 6.5
+  by: haiku
+tags:
+- functional_equations
+- algebra_and_functions

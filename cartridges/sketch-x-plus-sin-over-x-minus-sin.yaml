@@ -1,0 +1,150 @@
+id: sketch-x-plus-sin-over-x-minus-sin
+title: Sketch y = (x + sin x)/(x - sin x)
+topics:
+- curve sketching
+- domain and symmetry
+- limits and asymptotes
+- trigonometric inequalities
+- stationary points and the quotient rule
+warmup: false
+answer_source: generated
+statement: Sketch $y = \frac{x+\sin x}{x-\sin x}$.
+stages:
+- goal: Find the domain of the function and decide whether it is odd, even or neither.
+  expected: 'Domain: all real x except x = 0. The only solution of x = sin x is x = 0, because |sin x|
+    < |x| for every x ≠ 0. Replacing x by -x gives f(-x) = (-x - sin x)/(-x + sin x) = (x + sin x)/(x
+    - sin x) = f(x), so f is even and its graph is symmetric about the y-axis.'
+  solution: The denominator x - sin x is zero only when |sin x| = |x|. Since |sin x| <= 1 and |sin x|
+    < |x| for x ≠ 0, the only zero is x = 0, so the domain is R \ {0}. Then f(-x) = (-x - sin x)/(-x +
+    sin x). Multiply top and bottom by -1 to get (x + sin x)/(x - sin x) = f(x). So f is even.
+  common_errors:
+  - Concluding the denominator vanishes at many points near multiples of pi, rather than only at x = 0.
+  - Calling the function odd because the numerator and denominator are each odd-looking; the ratio is
+    even.
+  - Forgetting to exclude x = 0 from the domain.
+  hints:
+    rephrase: 'Ask two things: for which x can the denominator be zero, and what does the expression become
+      when x is replaced by -x?'
+    smaller_case: Compare x and sin x for x = 1 and x = -1 and think about their absolute values.
+    key_idea: Sine is bounded by 1 in absolute value, so compare |sin x| with |x|.
+  check: sp.simplify((-x+sp.sin(-x))/(-x-sp.sin(-x)) - (x+sp.sin(x))/(x-sp.sin(x)))
+  check_ok: null
+- goal: Find the behaviour of the curve near x = 0 and as x tends to plus or minus infinity.
+  expected: 'As x tends to plus or minus infinity, sin x stays bounded while x grows, so y tends to 1
+    on both sides: y = 1 is a horizontal asymptote. Near x = 0 the numerator is about 2x and the denominator
+    is about x^3/6, so y is about 12/x^2. Hence y tends to +infinity from both sides and x = 0 is a vertical
+    asymptote, not a removable point.'
+  solution: As x -> infinity, f = (1 + sin x / x)/(1 - sin x / x) and sin x / x -> 0, so f -> 1. Near
+    0, x + sin x = 2x - x^3/6 + ... and x - sin x = x^3/6 - x^5/120 + ..., so f = (2x - x^3/6 + ...)/(x^3/6
+    - ...) ~ 12/x^2. Therefore x^2 f -> 12 as x -> 0, and f -> +infinity on both sides.
+  common_errors:
+  - Treating x = 0 as a removable discontinuity because both numerator and denominator vanish, without
+    finding the limit.
+  - Giving a finite limit at 0 by dividing the leading terms incorrectly.
+  - Stating y -> 1 only as x -> +infinity and forgetting the other end.
+  hints:
+    rephrase: At x = 0 the top and bottom both go to zero. Ask how fast each one goes to zero.
+    smaller_case: Look at the numerator and denominator separately for a very small x, such as x = 0.1,
+      and then for a very large x.
+    key_idea: For huge x, the x terms dominate sin x. For tiny x, the lowest-order terms of the Taylor
+      series dominate.
+  check: sp.limit(x**2*(x+sp.sin(x))/(x-sp.sin(x)), x, 0) - 12 + sp.limit((x+sp.sin(x))/(x-sp.sin(x)),
+    x, sp.oo) - 1
+  check_ok: null
+- goal: Find where the curve meets the line y = 1, and whether it meets the x-axis.
+  expected: 'Write y - 1 = 2 sin x/(x - sin x). For x ≠ 0 the denominator is non-zero, so y = 1 exactly
+    when sin x = 0, i.e. x = n*pi with n a non-zero integer. The curve never meets the x-axis: y = 0 requires
+    x + sin x = 0, which only holds at x = 0, and that point is excluded. In fact y > 0 for all x in the
+    domain.'
+  solution: y - 1 = [(x + sin x) - (x - sin x)]/(x - sin x) = 2 sin x/(x - sin x). For x ≠ 0 the denominator
+    is non-zero, so y = 1 iff sin x = 0, i.e. x = n*pi with n ∈ Z \ {0}. Since x + sin x = 0 only at x
+    = 0, y is never 0. For x > 0 both x + sin x and x - sin x are positive, so y > 0, and y > 0 for x
+    < 0 by evenness.
+  common_errors:
+  - Claiming the curve crosses the x-axis at multiples of pi.
+  - Including n = 0, which is not in the domain.
+  - Solving y = 1 by treating it as the equation x = sin x, which is a different equation.
+  hints:
+    rephrase: Subtract 1 from the function and simplify the resulting fraction.
+    smaller_case: Check the sign of sin x at x = pi/2 and at x = 3pi/2, and see whether the curve is above
+      or below y = 1 there.
+    key_idea: After subtracting 1, the sign of the difference is controlled by the sine term when the
+      denominator is positive.
+  check: sp.sin(sp.Symbol('n', integer=True)*sp.pi)
+  check_ok: null
+- goal: Compute f'(x), locate the turning points for x > 0, and describe the shape of the curve.
+  expected: f'(x) = 2(x cos x - sin x)/(x - sin x)^2. Turning points occur where tan x = x. There are
+    none in (0, pi). For x > 0 the curve decreases from +infinity to a minimum near x = 4.493 (y ≈ 0.643),
+    rises to a maximum near x = 7.725 (y ≈ 1.294), falls to a minimum near x = 10.904 (y ≈ 0.833), and
+    so on. The curve oscillates about y = 1 with decreasing amplitude, and the function is even, so the
+    picture is mirrored for x < 0.
+  solution: Using the quotient rule, f' = [(1 + cos x)(x - sin x) - (x + sin x)(1 - cos x)]/(x - sin x)^2.
+    The numerator expands to 2x cos x - 2 sin x, so f' = 2(x cos x - sin x)/(x - sin x)^2. Stationary
+    points satisfy x cos x = sin x, i.e. tan x = x (cos x ≠ 0 at such points). On (0, pi/2) tan x > x,
+    and on (pi/2, pi) tan x < 0 < x, so there are no roots there. The roots lie one in each interval (k*pi,
+    k*pi + pi/2) for k >= 1, giving approximately 4.4934, 7.7253 and 10.9041. Evaluating f at these points
+    gives the values above.
+  common_errors:
+  - Making a sign slip in the quotient rule, for example getting 2(sin x - x cos x).
+  - Placing turning points at x = n*pi or n*pi/2 instead of solving tan x = x.
+  - Claiming the curve is monotonic on x > 0 because it tends to 1.
+  hints:
+    rephrase: Use the quotient rule. Many terms cancel, and you should find that the numerator is a simple
+      combination of x cos x and sin x.
+    smaller_case: Try the quotient rule on (x + k)/(x - k) with a constant k and see what the numerator
+      becomes.
+    key_idea: Turning points are the zeros of the numerator of f'. Set that numerator to zero and look
+      at the resulting equation in x and trig functions.
+  check: sp.simplify(sp.diff((x+sp.sin(x))/(x-sp.sin(x)), x) - 2*(x*sp.cos(x)-sp.sin(x))/(x-sp.sin(x))**2)
+  check_ok: null
+extensions:
+  '3':
+  - Show that y - 1 = 2 sin x/(x - sin x) and use it to bound |y - 1| for x > 1 by 2/(x - 1).
+  - Explain why the peaks above y = 1 and the troughs below y = 1 get closer to 1 as x grows.
+  '4':
+  - Prove that tan x = x has exactly one positive root in each interval (k*pi, k*pi + pi/2) for k >= 1.
+  - Use the equation tan x = x to justify the approximate turning-point values without a graphing tool.
+  '5':
+  - Show that f' has infinitely many zeros for x > 0 and that the local extrema of f accumulate towards
+    y = 1.
+  - Find the limit of the peak and trough heights as x tends to infinity, and prove it is 1.
+spoken_vocab:
+- sketch y equals x plus sine x over x minus sine x
+- x
+- sine of x
+- cosine of x
+- pi
+- n pi
+- tan x equals x
+- vertical asymptote
+- horizontal asymptote y equals one
+- even function
+- domain
+- turning point
+- derivative
+- quotient rule
+- limit as x tends to zero
+- limit as x tends to infinity
+- plus infinity
+- minus infinity
+- removable discontinuity
+source: nextstepmaths/NextStepMaths Interview Questions/interview-question-26.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 4
+  minutes: 15
+  flags: []
+  tagline: 'Layered sketch: domain, parity, asymptotics, and a hidden y=1 intersection at nπ.'
+  priority: 92
+  rank: 78
+  tier: A
+  category: nextstepmaths
+  d10: 6.0
+  real: 4.0
+  by: haiku
+tags:
+- curve_sketching
+- limits_and_approximation
+- trigonometry

@@ -1,0 +1,142 @@
+id: digit-sums-alternating-sums-divisibility-99
+title: Digit sums, alternating digit sums and divisibility
+topics:
+- modular arithmetic
+- divisibility rules
+- digit sums
+- perfect squares
+warmup: false
+answer_source: pdf
+statement: (i) Show that every positive integer is congruent modulo $9$ to the sum of its digits. (ii)
+  Show that every positive integer is congruent modulo $11$ to its alternating digit sum (units digit,
+  minus tens digit, plus hundreds digit, and so on). (iii) Show that every six-digit number of the form
+  $\overline{abcabc}$ is divisible by $7$, $11$ and $13$. (iv) Show that no perfect square has digit sum
+  $2027$. (v) Find the smallest positive multiple of $99$ whose digits are all $0$ or $1$.
+stages:
+- goal: Prove that every positive integer is congruent modulo 9 to the sum of its digits.
+  expected: Write N as the sum of d_i times 10^i. Since 10 is congruent to 1 modulo 9, every power 10^i
+    is congruent to 1, so N is congruent to the sum of the digits d_i.
+  solution: Let N = sum d_i 10^i with 0 <= d_i <= 9. Since 10 = 1 + 9, we have 10 congruent to 1 modulo
+    9, so 10^i congruent to 1 for all i >= 0. Hence N congruent to sum d_i modulo 9.
+  common_errors:
+  - Treating 10 as congruent to 0 modulo 9
+  - Checking a few examples instead of giving a general argument
+  hints:
+    rephrase: Write the number as a sum of its digits times powers of ten.
+    smaller_case: Take N = 365 and compare 365 modulo 9 with the digit sum of 365.
+    key_idea: Find out what each power of 10 leaves as a remainder when divided by 9.
+- goal: Prove the alternating digit sum rule modulo 11, then find the alternating digit sum of 2718.
+  expected: Since 10 is congruent to -1 modulo 11, 10^i is congruent to (-1)^i, so N is congruent to the
+    sum of (-1)^i d_i. For 2718 the alternating digit sum is 8 - 1 + 7 - 2 = 12.
+  solution: '10 = 11 - 1 gives 10 congruent to -1 modulo 11, so 10^i congruent to (-1)^i and N congruent
+    to sum (-1)^i d_i modulo 11. For 2718: units 8, tens 1, hundreds 7, thousands 2, so 8 - 1 + 7 - 2
+    = 12. Check: 2718 = 11 * 247 + 1 and 12 congruent to 1 modulo 11.'
+  common_errors:
+  - Using the ordinary digit sum instead of the alternating sum
+  - Sign error on the tens digit
+  - Taking 10 congruent to 1 modulo 11 instead of -1
+  check: (8-1+7-2) - 12
+  hints:
+    rephrase: Look at the powers of 10 modulo 11 and see what pattern they follow.
+    smaller_case: 'Try 23: compare 23 modulo 11 with units digit minus tens digit.'
+    key_idea: Relate 10 to a number that is one away from a multiple of 11, and track the sign of each
+      power.
+  check_ok: true
+- goal: Show that every number of the form abcabc is divisible by 7, 11 and 13.
+  expected: abcabc = abc * 1000 + abc = abc * 1001, and 1001 = 7 * 11 * 13, so 7, 11 and 13 each divide
+    the number.
+  solution: Let m = 100a + 10b + c. Then abcabc = 1000m + m = 1001m. Since 1001 = 7 * 11 * 13, the number
+    is divisible by 7, 11 and 13.
+  common_errors:
+  - Trying to check divisibility digit by digit instead of spotting the common factor
+  - Miscalculating 7 * 11 * 13
+  check: 1001 - 7*11*13
+  hints:
+    rephrase: Write the six-digit number as a three-digit block multiplied by something simple.
+    smaller_case: 'Try the two-digit analogue: 2323 has the form abab with ab = 23. Factor 2323.'
+    key_idea: Find a fixed multiplier that turns the three-digit block into the repeated pattern, then
+      factor that multiplier.
+  check_ok: true
+- goal: Show that no perfect square has digit sum 2027.
+  expected: A number is congruent to its digit sum modulo 9, so a square with digit sum 2027 would be
+    congruent to 2027, which is 2, modulo 9. The squares are congruent to 0, 1, 4 or 7 modulo 9, so this
+    is impossible.
+  solution: By part (i), N is congruent to its digit sum modulo 9. Since 2027 = 9 * 225 + 2, a square
+    N with digit sum 2027 would satisfy N congruent to 2 modulo 9. The squares of 0 to 8 give residues
+    0, 1, 4, 0, 7, 7, 0, 4, 1 modulo 9, i.e. {0, 1, 4, 7}. Since 2 is not among them, no such square exists.
+  common_errors:
+  - Checking square residues modulo 10 or 11 instead of 9
+  - Missing the residue 7 when listing squares
+  - Forgetting to reduce 2027 modulo 9 first
+  check: 2027 % 9 - 2
+  hints:
+    rephrase: Connect the digit sum of a number to a residue of the number itself.
+    smaller_case: Check 16 modulo 9 and compare it with the digit sum of 16.
+    key_idea: List every possible square residue modulo 9 and see whether the residue of 2027 is among
+      them.
+  check_ok: true
+- goal: Find the smallest positive multiple of 99 whose digits are all 0 or 1.
+  expected: Let x be the number of 1s in odd positions and y the number in even positions. We need 9 dividing
+    x + y and 11 dividing x - y. The case x + y = 9 is impossible because x - y is odd with absolute value
+    at most 9. So x + y is at least 18, and eighteen 1s works (x = y = 9). The answer is 111111111111111111
+    (eighteen 1s) = (10^18 - 1)/9.
+  solution: Modulo 9, the digit sum is x + y, so 9 divides x + y. Modulo 11, the alternating sum is x
+    - y, so 11 divides x - y. A positive multiple of 9 for x + y is 9, 18, and so on. If x + y = 9, then
+    x - y has the same parity as x + y, so it is odd, and |x - y| <= 9; no nonzero such value is divisible
+    by 11, so x + y = 9 fails. Hence x + y >= 18. A number with at least 18 ones has at least 18 digits,
+    and the only 18-digit option is all ones. The all-ones number has digit sum 18 (divisible by 9) and
+    x = y = 9, so x - y = 0 (divisible by 11). Any longer number is larger, so the smallest is eighteen
+    1s.
+  common_errors:
+  - Forgetting the digit sum must be divisible by 9
+  - Accepting x + y = 9 without checking parity against the condition for 11
+  - Proposing a number with fewer than 18 ones
+  check: ((10**18 - 1)//9) % 99
+  hints:
+    rephrase: Think about what the digit sum and the alternating digit sum must each be divisible by.
+    smaller_case: Find the smallest multiple of 11 whose digits are all 0 or 1, for example by testing
+      11, 110 and 1001.
+    key_idea: Count the 1s in odd and even positions separately; the two divisibility conditions constrain
+      those two counts.
+  check_ok: true
+extensions:
+  '3':
+  - Find the smallest positive multiple of 9 whose digits are all 1 or 2.
+  - Show that a number is divisible by 3 exactly when its digit sum is divisible by 3.
+  '4':
+  - Show that 10^n + 1 is divisible by 11 exactly when n is odd.
+  '5':
+  - Prove that 10^n + 1 is never divisible by 9 for any n >= 0.
+spoken_vocab:
+- congruent
+- modulo nine
+- modulo eleven
+- modulo seven
+- modulo thirteen
+- digit sum
+- alternating digit sum
+- units digit
+- tens digit
+- hundreds digit
+- overline a b c a b c
+- six-digit number
+- perfect square
+- two thousand twenty seven
+- ninety-nine
+- one hundred and eleven
+- divisible by
+- smallest positive multiple
+source: jaymin/Jaymin Interview (1).pdf#p9
+verified: false
+rating:
+  quality: 8
+  difficulty: 7
+  parts: 5
+  minutes: 25
+  flags: []
+  tagline: Modular arithmetic across 9, 11, 7, 13 with a genuine search for a minimal 0/1 multiple of
+    99.
+  priority: 108
+  rank: 28
+  tier: S
+  category: jaymin

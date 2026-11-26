@@ -1,0 +1,103 @@
+id: shaded-area-three-unit-circles-equilateral
+title: Shaded area between three unit circles on an equilateral triangle
+topics:
+- geometry
+- areas
+- circles
+- equilateral triangle
+- sectors
+warmup: false
+answer_source: pdf
+statement: Three circles of unit radius, each touching the other two, have their centres at the corners
+  of an equilateral triangle. The shaded region is the part of the triangle lying outside the three circles.
+  Find the area of the shaded region.
+stages:
+- goal: Find the side length of the triangle.
+  expected: '2'
+  solution: Two touching unit circles have centres a distance 1 + 1 = 2 apart, so each side of the triangle
+    has length 2.
+  common_errors:
+  - Using 1 as the side length (confusing radius with centre distance)
+  - Using 4 as the side length by adding radii incorrectly
+  hints:
+    rephrase: How far apart are the centres of two circles that touch each other?
+    smaller_case: Draw two touching circles and mark their centres and the contact point.
+    key_idea: Tangent circles lie end to end along the line joining their centres.
+  check: 2*1 - 2
+  check_ok: true
+- goal: Find the area of the equilateral triangle.
+  expected: \sqrt{3}
+  solution: Area = (\sqrt{3}/4) s^2. With s = 2, the area is (\sqrt{3}/4)(4) = \sqrt{3}.
+  common_errors:
+  - Using the formula for a right-angled triangle
+  - Forgetting the factor of 1/4 in the equilateral area formula
+  hints:
+    rephrase: Find the area of an equilateral triangle with the side length you just found.
+    smaller_case: Split an equilateral triangle into two right-angled triangles and find the height.
+    key_idea: The height of an equilateral triangle is (\sqrt{3}/2) times its side.
+  check: sqrt(3)/4*2**2 - sqrt(3)
+  check_ok: true
+- goal: Find the total area of the three circular sectors inside the triangle.
+  expected: \frac{\pi}{2}
+  solution: Each interior angle of the equilateral triangle is 60 degrees = \pi/3. Each sector has area
+    (1/2) r^2 \theta = (1/2)(1)(\pi/3) = \pi/6. The three sectors total 3 \cdot \pi/6 = \pi/2.
+  common_errors:
+  - Using the full circle area \pi for each circle
+  - Using 60 radians instead of 60 degrees, or the wrong sector formula
+  hints:
+    rephrase: What angle does each circle occupy inside the triangle, and what fraction of a full circle
+      is that?
+    smaller_case: Find the sector area for one circle with angle 60 degrees.
+    key_idea: The three angles of a triangle add up to a straight half-turn, so the three sectors together
+      make half a circle.
+  check: 3*(pi/3)*1**2/2 - pi/2
+  check_ok: true
+- goal: Find the shaded area.
+  expected: \sqrt{3}-\frac{\pi}{2}
+  solution: Shaded area = (triangle area) - (total sector area) = \sqrt{3} - \pi/2.
+  common_errors:
+  - Subtracting the full circle areas instead of the sectors
+  - Adding the sectors instead of subtracting them
+  hints:
+    rephrase: Take the triangle area and remove only the parts of the circles that lie inside it.
+    smaller_case: Subtract the sector area from one circle from one corner of the triangle.
+    key_idea: Only the sectors at the corners lie inside the triangle, so only they should be removed.
+  check: sqrt(3)/4*2**2 - 3*(pi/3)*1**2/2 - (sqrt(3) - pi/2)
+  check_ok: true
+extensions:
+  '3':
+  - Check that the shaded region's area is about 0.3 when evaluated numerically.
+  '4':
+  - Replace the equilateral triangle with a square of side 2 with unit circles at its corners, and find
+    the shaded area.
+  '5':
+  - Generalise the answer to circles of radius R whose centres form an equilateral triangle with pairwise
+    tangency.
+spoken_vocab:
+- shaded area
+- equilateral triangle
+- unit circle
+- radius
+- square root of three
+- pi over two
+- sector
+- tangent
+source: past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2012.docx
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 4
+  minutes: 6
+  flags:
+  - needs_diagram
+  tagline: 'Routine geometry: equilateral side length, sector angles, and subtracting areas; a warm-up.'
+  priority: 44
+  rank: 558
+  tier: C
+  category: past-interviews
+  d10: 3.0
+  real: 4.0
+  by: haiku
+tags:
+- geometry

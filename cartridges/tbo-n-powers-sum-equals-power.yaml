@@ -1,0 +1,101 @@
+id: tbo-n-powers-sum-equals-power
+title: 'Powers of a common base: n^x + n^y = n^z'
+topics:
+- number theory
+- exponents
+- divisibility
+- integer solutions
+warmup: false
+answer_source: pdf
+statement: If $n, x, y, z$ are all positive integers, find all solutions of the equation $n^x+n^y=n^z$.
+stages:
+- goal: Rule out n = 1, then show that x and y must be equal.
+  expected: If n = 1 the equation reads 2 = 1, which is false, so n ≥ 2. WLOG x ≤ y. If x < y, then n^x(1
+    + n^(y-x)) = n^z. The factor 1 + n^(y-x) is at least 3 and is ≡ 1 (mod n), so it is coprime to n and
+    cannot be a power of n greater than 1. Hence x = y.
+  solution: n = 1 gives 1 + 1 = 1, impossible. Assume x ≤ y. Suppose x < y. Then 1 + n^(y-x) ≡ 1 (mod
+    n), so it is not divisible by n. Dividing n^z = n^x(1 + n^(y-x)) by n^x gives 1 + n^(y-x) = n^(z-x).
+    The left side is not divisible by n, so z - x = 0, which gives 1 + n^(y-x) = 1, impossible. Therefore
+    x = y.
+  common_errors:
+  - Forgetting to dismiss n = 1 before dividing by anything.
+  - Assuming x = y without a WLOG or proof, so the case x < y is never ruled out.
+  - Claiming 1 + n^k is a power of n by inspection, e.g. for n = 2 only checking small cases.
+  hints:
+    rephrase: Suppose the two exponents on the left are different. What common factor can you pull out
+      of the left side?
+    smaller_case: Try n = 2 with x = 1, y = 2. What is the left side, and can it equal a power of 2?
+    key_idea: Look at the remainder of the factor 1 + n^k when divided by n, for k ≥ 1.
+- goal: With x = y, find the possible n and z.
+  expected: 2n^x = n^z, so n^(z-x) = 2. Hence n = 2 and z = x + 1. The solutions are (n, x, y, z) = (2,
+    x, x, x+1) for any positive integer x.
+  solution: With x = y the equation is 2·n^x = n^z. Dividing by n^x gives n^(z-x) = 2. Since z - x must
+    be a positive integer (n^0 = 1 ≠ 2), n divides 2 and n ≥ 2, so n = 2 and z - x = 1.
+  common_errors:
+  - Writing n = 2 but forgetting that z = x + 1 is forced, not free.
+  - Missing that x can be any positive integer, so the answer is a family, not a single triple.
+  - Dividing by n^x when z < x is possible; here z - x must be positive so this is fine, but the exponent
+    sign should be checked.
+  check: (n-2)**2+(z-x-1)**2
+  hints:
+    rephrase: Both sides are powers of n once x = y. Can you write the left side as a single power times
+      a constant?
+    smaller_case: Take x = 1. What values of n and z make 2n = n^z true?
+    key_idea: Divide both sides by n^x and see which base can produce the number 2.
+  check_ok: false
+- goal: Verify the family and state the full solution set.
+  expected: 'Solutions are exactly (n, x, y, z) = (2, x, x, x+1) for x a positive integer. Example: 2^1
+    + 2^1 = 2^2.'
+  solution: 'Substitute n = 2, y = x, z = x + 1: 2^x + 2^x = 2·2^x = 2^(x+1), which holds. Together with
+    the earlier steps (n ≥ 2, x = y, n = 2, z = x + 1) this is the complete set.'
+  common_errors:
+  - Listing only the first solution and missing that x is arbitrary.
+  - Stating y ≠ x in the final answer.
+  - Reporting solutions with n = 1 or with z free.
+  check: expand_power_exp(2**x+2**x-2**(x+1))
+  hints:
+    rephrase: Plug your candidate into the original equation. Does the left side equal the right side
+      for every value of the free variable?
+    smaller_case: Check the candidate with x = 2 numerically.
+    key_idea: Combine like terms on the left first, then compare exponents.
+  check_ok: true
+extensions:
+  '3':
+  - Find all positive integers n, x, y, z with n^x + n^y + n^z = n^w.
+  - Does the answer change if n is allowed to be 0 or a negative integer?
+  '4':
+  - Solve 2^x + 2^y = 2^z over the positive integers without assuming x = y first, and say why the case
+    split works.
+  '5':
+  - Find all positive integer solutions of n^x - n^y = n^z with x > y.
+spoken_vocab:
+- n to the power x plus n to the power y equals n to the power z
+- positive integers
+- n equals one
+- n equals two
+- x equals y
+- z equals x plus one
+- without loss of generality
+- divides
+- congruent to one modulo n
+- coprime
+- the solution set
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Divisibility argument forces x=y and unique base 2; rich extensions
+  priority: 81
+  rank: 206
+  tier: B
+  category: tbo
+  d10: 5.5
+  real: 7.5
+  by: haiku
+tags:
+- number_theory
+- algebra_and_functions

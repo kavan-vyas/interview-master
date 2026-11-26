@@ -1,0 +1,122 @@
+id: dice-two-of-each-and-increasing-rolls
+title: 'Dice: two of each face, and increasing rolls'
+topics:
+- probability
+- counting
+- multinomial coefficients
+- combinations
+- sequences
+warmup: false
+answer_source: generated
+statement: i) A regular fair dice is rolled twelve times, what is the probability of getting two of each
+  number? ii) A fair ten-sided dice is rolled four times, what is the probability that your sequence of
+  rolls is increasing?
+stages:
+- goal: Count the sequences of twelve rolls of a fair six-sided die in which each number from 1 to 6 appears
+    exactly twice.
+  expected: 12!/(2!)^6 = 7484400 favourable sequences.
+  solution: 'Arranging 12 positions with six values each used twice is a multinomial count: 12!/(2!·2!·2!·2!·2!·2!)
+    = 479001600/64 = 7484400.'
+  common_errors:
+  - Using 12!/2 or C(12,2)^6 instead of the multinomial coefficient
+  - Forgetting to divide by 2! for each number
+  - Treating the rolls as unordered
+  hints:
+    rephrase: Think of arranging twelve positions where six different values each occupy exactly two of
+      the positions.
+    smaller_case: How many sequences of length 4 use the numbers 1 and 2 exactly twice each?
+    key_idea: The number of arrangements of a multiset with repeated items is n! divided by the factorial
+      of each repetition count.
+  check: factorial(12)/2**6 - 7484400
+  check_ok: true
+- goal: Give the probability that twelve rolls of a fair six-sided die contain two of each number.
+  expected: 1925/559872, which is about 0.00344.
+  solution: Each of the 6^12 = 2176782336 sequences is equally likely. Probability = 7484400/2176782336.
+    Since 12! = 2^10 * 3^5 * 5^2 * 7 * 11, the favourable count is 2^4 * 3^5 * 5^2 * 7 * 11, and dividing
+    by 2^12 * 3^12 gives 5^2 * 7 * 11 / (2^8 * 3^7) = 1925/559872.
+  common_errors:
+  - Dividing by 12*6 or 6*12 instead of 6^12
+  - Arithmetic slips when reducing the fraction
+  - Using the wrong favourable count from stage 1
+  hints:
+    rephrase: Divide your count of favourable sequences by the total number of equally likely sequences
+      of twelve rolls.
+    smaller_case: For two rolls of a fair die, how many sequences are there in total?
+    key_idea: Independent fair rolls make every sequence equally likely, so the total is the number of
+      choices per roll raised to the number of rolls.
+  check: Rational(7484400, 6**12) - Rational(1925, 559872)
+  check_ok: true
+- goal: Count the strictly increasing sequences of four rolls of a fair ten-sided die.
+  expected: C(10,4) = 210. Each choice of four different values from 1 to 10 gives exactly one increasing
+    sequence.
+  solution: A strictly increasing sequence is determined by its set of four distinct values, and listing
+    the set in increasing order gives exactly one sequence. So the count is the number of 4-element subsets
+    of {1,...,10}, which is C(10,4) = 210.
+  common_errors:
+  - Counting non-strict increasing sequences (C(13,4) = 715) without saying so
+  - Counting all 10^4 sequences
+  - Counting permutations of four values instead of sets
+  hints:
+    rephrase: Each increasing sequence is fixed once you choose which four values appear. How many ways
+      are there to make that choice?
+    smaller_case: With a four-sided die rolled twice, how many strictly increasing sequences are there?
+    key_idea: Choosing a set of values fixes the order, so increasing sequences correspond to subsets.
+  check: binomial(10,4) - 210
+  check_ok: true
+- goal: Find the probability that four rolls of a fair ten-sided die form a strictly increasing sequence.
+  expected: 210/10000 = 21/1000 = 0.021.
+  solution: There are 10^4 = 10000 equally likely sequences of four rolls, and 210 of them are strictly
+    increasing. So the probability is 210/10000 = 21/1000.
+  common_errors:
+  - Dividing by 4! or 10! instead of 10^4
+  - Using 715 as the favourable count when the question asks for strictly increasing
+  - Simplifying the fraction incorrectly
+  hints:
+    rephrase: Divide the number of favourable sequences from the last stage by the total number of equally
+      likely sequences of four rolls.
+    smaller_case: With two rolls of a ten-sided die, what is the probability that the second roll is bigger
+      than the first?
+    key_idea: Each roll is independent and uniform on 1 to 10, so the total number of sequences of four
+      rolls is 10 to the power 4.
+  check: Rational(210, 10**4) - Rational(21, 1000)
+  check_ok: true
+extensions:
+  '3':
+  - Find the probability that a fair six-sided die rolled twelve times shows every number from 1 to 6
+    at least once.
+  '4':
+  - Repeat part ii for non-strict increasing sequences, where each roll is at least as large as the one
+    before.
+  '5':
+  - Find the probability that four rolls of a ten-sided die all show different values.
+spoken_vocab:
+- twelve rolls
+- fair dice
+- two of each number
+- probability
+- ten-sided dice
+- four rolls
+- increasing sequence
+- factorial
+- binomial ten choose four
+- six to the power of twelve
+- ten to the power of four
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 4
+  minutes: 10
+  flags: []
+  tagline: Two counting problems with clean combinatorial reasoning and extension potential.
+  priority: 72
+  rank: 313
+  tier: B
+  category: tbo
+  d10: 6.0
+  real: 6.5
+  by: deepseek-v4.1-flash-free
+tags:
+- probability
+- combinatorics

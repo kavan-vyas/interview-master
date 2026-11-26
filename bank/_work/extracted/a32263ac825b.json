@@ -1,0 +1,114 @@
+[
+ {
+  "q": "Factorize the following polynomials: (i) $x^2-3x+2$; (ii) $3x^3-3x^2-6x$; (iii) $x^2-x-1$; (iv) $x^3-1$; (v) $x^4-3x^3-3x^2+11x-6$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "step-workbook/Cambridge STEP Short Workbook.pdf#0"
+ },
+ {
+  "q": "Find the values of $x$ for which $x^3 < 2x^2+3x$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "step-workbook/Cambridge STEP Short Workbook.pdf#0"
+ },
+ {
+  "q": "Express in partial fractions: (i) $\\frac{2}{(x+1)(x-1)}$; (ii) $\\frac{1}{x^3+1}$; (iii) $\\frac{4x+1}{(x+1)^2(x-2)}$; (iv) $\\frac{x^2-7}{(x-2)(x+1)}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "step-workbook/Cambridge STEP Short Workbook.pdf#0"
+ },
+ {
+  "q": "Find the smallest value (for real $x$ and $y$) of: (i) $x^2-2x+6$; (ii) $x^4+2x^2+y^4-2y^2+3$; (iii) $\\sin^2 x+4\\sin x$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "step-workbook/Cambridge STEP Short Workbook.pdf#0"
+ },
+ {
+  "q": "(i) Using $e^x=1+x+\\frac{x^2}{2!}+\\frac{x^3}{3!}+\\cdots$, show that $\\frac{d e^x}{dx}=e^x$. (ii) Define $\\ln t$ for $t>0$ as the inverse of the exponential, so $\\ln e^x=x$. Set $t=e^x$ and use $\\frac{dx}{dt}=\\frac{1}{dt/dx}$ to show $\\frac{d\\ln t}{dt}=\\frac{1}{t}$. (iii) Assuming $e^s e^t=e^{s+t}$, prove $\\ln(xy)=\\ln x+\\ln y$. (iv) Given $a^x=e^{x\\ln a}$, prove $a^x a^y=a^{x+y}$ and $a^x b^x=(ab)^x$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "step-workbook/Cambridge STEP Short Workbook.pdf#0"
+ },
+ {
+  "q": "(i) Find the coefficient of $x^k$ (for $0\\le k\\le 10$) in the binomial expansion of $(2+3x)^{10}$. (ii) Use the binomial theorem to find the expansion in powers of $x$ up to $x^4$ of $(1+x+x^2)^6$, writing it as $\\left(1+(x+x^2)\\right)^6$. (iii) Use binomial expansions to find the expansion in powers of $x$ up to $x^4$ of $(1-x^3)^6(1-x)^{-6}$. (iv) Find the first four terms in the binomial expansion of $(2+x)^{\\frac{1}{2}}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "step-workbook/Cambridge STEP Short Workbook.pdf#0"
+ },
+ {
+  "q": "Using only the series expansions of $\\sin x$, $\\cos x$, $e^x$ and $\\ln(1+x)$, find the series expansions of: (i) $\\tan x$ (up to the $x^5$ term); (ii) $\\sin x\\cos x$ (up to the $x^5$ term); (iii) $\\frac{e^x+e^{-x}}{2}$ (up to the $x^5$ term); (iv) $\\ln(e^x)$ (up to the $x^3$ term); (v) $\\frac{1-\\cos^2 x}{x^2}$ (up to the $x^2$ term).",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "step-workbook/Cambridge STEP Short Workbook.pdf#0"
+ },
+ {
+  "q": "Prove by induction that: (i) $a+ar+ar^2+\\cdots+ar^{n-1}=a\\left(\\frac{1-r^n}{1-r}\\right)$; (ii) $\\sum_{r=1}^{n} r^3=\\frac{1}{4}n^2(n+1)^2$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "step-workbook/Cambridge STEP Short Workbook.pdf#0"
+ },
+ {
+  "q": "(i) Find the sum of all the odd integers from 11 to 99. (ii) Evaluate $6+3+\\frac{3}{2}+\\frac{3}{4}+\\cdots$. (iii) Find $\\sin\\theta+2\\sin^3\\theta+4\\sin^5\\theta+\\cdots$ (what ranges of $\\theta$ are allowed?). (iv) Estimate roughly the number of times a piece of paper has to be torn in half, placing the results of each tearing in a stack and then doing the next tearing, for the stack of paper to reach the moon.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "step-workbook/Cambridge STEP Short Workbook.pdf#0"
+ },
+ {
+  "q": "Starting from $\\sin(A+B)=\\sin A\\cos B+\\cos A\\sin B$, use basic properties of the trig functions to prove: (i) $\\sin(A-B)=\\sin A\\cos B-\\cos A\\sin B$; (ii) $\\cos(A+B)=\\cos A\\cos B-\\sin A\\sin B$; (iii) $\\tan(A+B)=\\frac{\\tan A+\\tan B}{1-\\tan A\\tan B}$; (iv) $\\sin C+\\sin D=2\\sin\\frac{1}{2}(C+D)\\cos\\frac{1}{2}(C-D)$; (v) $\\tan^{-1}a+\\tan^{-1}b=\\tan^{-1}\\left(\\frac{a+b}{1-ab}\\right)+n\\pi$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "step-workbook/Cambridge STEP Short Workbook.pdf#0"
+ },
+ {
+  "q": "(i) Solve the following equations: (a) $\\sin\\left(x+\\frac{\\pi}{6}\\right)+\\sin\\left(x-\\frac{\\pi}{6}\\right)=\\frac{\\sqrt3}{2}$; (b) $\\cos x+\\cos 2x+\\cos 3x=0$. (ii) Write down the value of $\\cot(\\pi/6)$ and use a double angle formula to show that $\\cot(\\pi/12)$ satisfies $c^2-2\\sqrt3\\,c-1=0$. Deduce that $\\cot(\\pi/12)=2+\\sqrt3$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "step-workbook/Cambridge STEP Short Workbook.pdf#0"
+ },
+ {
+  "q": "Prove the following identities: (i) $\\tan\\theta+\\cot\\theta=\\sec\\theta\\,\\mathrm{cosec}\\,\\theta$; (ii) $(\\cot\\theta+\\mathrm{cosec}\\,\\theta)^2=\\frac{1+\\cos\\theta}{1-\\cos\\theta}$; (iii) where $t=\\tan\\frac{1}{2}\\theta$: $\\cos\\theta=\\frac{1-t^2}{1+t^2}$, $\\sin\\theta=\\frac{2t}{1+t^2}$, $\\tan\\theta=\\frac{2t}{1-t^2}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "step-workbook/Cambridge STEP Short Workbook.pdf#0"
+ },
+ {
+  "q": "Using $z_1=x_1+iy_1$ and $z_2=x_2+iy_2$, show: (i) $z_1z_2=(x_1x_2-y_1y_2)+i(x_1y_2+y_1x_2)$; (ii) $|z|^2=z\\bar{z}$; (iii) $z^{-1}=\\frac{\\bar{z}}{|z|^2}$; (iv) $|z_1z_2|=|z_1||z_2|$; (v) $\\arg(z_1z_2)=\\arg z_1+\\arg z_2$ (assume $0<\\arg z_1\\le\\pi/4$ and $0<\\arg z_2\\le\\pi/4$). Also sketch the points $z_1=1-i$ and $z_2=-\\sqrt3+i$ on the Argand diagram and verify results (iii), (iv) and (v) for these numbers.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "step-workbook/Cambridge STEP Short Workbook.pdf#0"
+ },
+ {
+  "q": "(i) By means of series expansions, show that $\\cos\\theta+i\\sin\\theta=e^{i\\theta}$, and deduce that $\\cos\\theta-i\\sin\\theta=e^{-i\\theta}$, that $z=re^{i\\theta}$, that $\\cos\\theta=\\frac{1}{2}(e^{i\\theta}+e^{-i\\theta})$ and that $\\sin\\theta=\\frac{1}{2i}(e^{i\\theta}-e^{-i\\theta})$. (ii) Use the above to show that $re^{i\\theta}=1$ (for real $\\theta$ and $r>0$) if and only if $r=1$ and $\\theta=2n\\pi$ for some integer $n$. (iii) Use part (ii) to find the three distinct roots of $z^3=1$, draw them on the complex plane, and convert them from modulus-argument form to real-imaginary form.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "step-workbook/Cambridge STEP Short Workbook.pdf#0"
+ },
+ {
+  "q": "(i) Show by transforming to cartesian coordinates that $|z-c|=r$, where $c$ is a complex number, describes a circle or a point. (ii) Show that $\\arg z=\\alpha$, where $\\alpha$ is a constant, describes a line segment. (iii) Show by means of a diagram that $|z_1+z_2|\\le|z_1|+|z_2|$ for any two complex numbers. Deduce that $|z_1-z_3|\\le|z_1|+|z_3|$ and $|z_4-z_2|\\ge|z_4|-|z_2|$ for any complex numbers $z_1,z_2,z_3,z_4$. Under what circumstances does $|z_1+z_2|=|z_1|+|z_2|$ hold?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "step-workbook/Cambridge STEP Short Workbook.pdf#0"
+ },
+ {
+  "q": "Give a rough sketch of the graphs of the six hyperbolic functions. Show from the definitions that: (i) $\\cosh^2 x-\\sinh^2 x=1$; (ii) $\\frac{d(\\sinh x)}{dx}=\\cosh x$ and $\\frac{d(\\cosh x)}{dx}=\\sinh x$; (iii) $\\cosh(x+y)=\\cosh x\\cosh y+\\sinh x\\sinh y$; (iv) $\\cosh(ix)=\\cos x$, $\\sinh(ix)=i\\sin x$, $\\cos(ix)=\\cosh x$, $\\sin(ix)=i\\sinh x$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "step-workbook/Cambridge STEP Short Workbook.pdf#0"
+ }
+]

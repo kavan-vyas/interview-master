@@ -1,0 +1,140 @@
+id: x-to-the-x-curve-and-solutions
+title: 'The function x^x: limit, minimum, sketch, and counting solutions'
+topics:
+- limits
+- calculus
+- stationary points
+- graph sketching
+- logarithms
+- counting solutions
+warmup: false
+answer_source: pdf
+statement: Let $f(x)=x^x$ for $x>0$. (i) By writing $x^x=e^{x\ln x}$, find the limit of $f(x)$ as $x\to0^+$,
+  justifying your answer. (ii) Find $f'(x)$, and find the coordinates and nature of the stationary point
+  of $f$. (iii) Sketch the graph of $y=f(x)$. (iv) For each real number $k$, find the number of positive
+  solutions of $x^x=k$. (v) Show that $x=\frac14$ and $x=\frac12$ both satisfy $x^x=\frac{1}{\sqrt2}$,
+  and explain how this is consistent with your answer to (iv).
+stages:
+- goal: Find the limit of x^x as x tends to 0 from the right, with justification.
+  expected: The limit is 1. Write x^x=e^(x ln x). Then x ln x tends to 0 as x tends to 0+, because (ln
+    x)/(1/x) tends to 0 by L'Hopital's rule. Since exp is continuous, f(x) tends to e^0=1. Substituting
+    x=e^(-t) with t tending to infinity gives x ln x=-t e^(-t), which tends to 0.
+  solution: x^x=e^(x ln x). Let g(x)=x ln x=(ln x)/(1/x). As x tends to 0+, ln x tends to minus infinity
+    and 1/x tends to infinity, so L'Hopital gives g(x) = (1/x)/(-1/x^2) = -x tends to 0. Therefore f(x)=e^(g(x))
+    tends to e^0=1.
+  common_errors:
+  - Saying x^x tends to 0 because x tends to 0.
+  - Treating 0^0 as 0 without taking the limit from the right.
+  - Applying L'Hopital to x ln x without rewriting it as a quotient.
+  hints:
+    rephrase: 'Take logs first: what is x times ln x as x shrinks towards 0?'
+    smaller_case: Compute x ln x at x=0.01 and at x=0.0001.
+    key_idea: Rewrite x^x as an exponential, then use continuity of exp and a quotient form for x ln x.
+  check: Limit(x**x,x,0,dir='+')-1
+  check_ok: true
+- goal: Find f'(x), the stationary point, and its nature.
+  expected: f'(x)=x^x(ln x+1). The stationary point is x=1/e with value f(1/e)=e^(-1/e), approximately
+    (0.37, 0.69). It is a minimum because f''(1/e)=e^(1-1/e)>0.
+  solution: Write f=e^(x ln x). Then f'=f*(ln x+1) by the chain and product rules, so f'(x)=x^x(ln x+1).
+    Since x^x>0, the derivative is zero when ln x=-1, so x=1/e. f(1/e)=(1/e)^(1/e)=e^(-1/e). Differentiating
+    again gives f''=x^x[(ln x+1)^2+1/x]. At x=1/e this is e^(-1/e)*e=e^(1-1/e)>0, so the stationary point
+    is a minimum.
+  common_errors:
+  - Differentiating x^x as x*x^(x-1) and forgetting the ln term.
+  - Confusing the stationary point with a maximum.
+  - Giving the coordinates as x=e^(-1) and forgetting the y-value.
+  hints:
+    rephrase: Differentiate e^(x ln x) using the chain rule, and look for where the derivative vanishes.
+    smaller_case: Find the derivative at x=1 and check the sign of f' just either side of x=1/e.
+    key_idea: The derivative of x ln x is ln x+1, which changes sign at a single point.
+  check: simplify(diff(x**x,x).subs(x,1/E))
+  check_ok: true
+- goal: Sketch y=f(x) and identify its key features.
+  expected: The curve approaches (0,1) from below but does not include it, then decreases steeply to the
+    minimum at (1/e, e^(-1/e)) approximately (0.37,0.69). It then increases through (1,1) and (2,4) and
+    grows very fast for large x. The curve passes through (1,1) and (2,4).
+  solution: f(0+)=1 from part (i), and f(x)<1 for 0<x<1 because x ln x<0. The stationary point at 1/e
+    is a minimum. For x>1/e the derivative is positive, so f increases. f(1)=1 and f(2)=4.
+  common_errors:
+  - Drawing the curve approaching (0,1) from above.
+  - Putting the minimum at x=1 or at x=0.
+  - Forgetting that the point (0,1) is not on the graph.
+  hints:
+    rephrase: Use the points you already know and the sign of f' on each side of 1/e.
+    smaller_case: Evaluate f at x=1/2 and check whether it lies above or below 1.
+    key_idea: f is decreasing on (0,1/e) and increasing on (1/e, infinity). Combine this with known points
+      and the limit at 0.
+  check: (x**x).subs(x,2)-4
+  check_ok: true
+- goal: For each real k, count the positive solutions of x^x=k.
+  expected: 'k<e^(-1/e): no solutions. k=e^(-1/e): one solution, x=1/e. e^(-1/e)<k<1: two solutions, one
+    on each side of 1/e. k=1: exactly one solution, x=1, since the value 1 is approached but never attained
+    as x tends to 0+. k>1: exactly one solution with x>1.'
+  solution: 'f decreases from 1 (not attained) to the minimum e^(-1/e) on (0,1/e], then increases to infinity
+    on [1/e,infinity). Horizontal line y=k therefore meets the graph: zero times if k<e^(-1/e); once at
+    the minimum if k equals it; twice if e^(-1/e)<k<1, one on each side; once at x=1 if k=1; and once
+    with x>1 if k>1, because f(x)>1 exactly when x>1. The threshold e^(-1/e) is approximately 0.6922.'
+  common_errors:
+  - Forgetting that k=1 has only x=1, since 1 is not attained on the left branch.
+  - Stating two solutions for k>1.
+  - Using 1/sqrt(2) as the threshold instead of e^(-1/e).
+  hints:
+    rephrase: Consider horizontal lines y=k and count how many times each one crosses the graph.
+    smaller_case: Take k=1/2 and find the crossings numerically using the sketch from part (iii).
+    key_idea: Use the minimum value and the behaviour near 0 and at infinity. The value 1 is special because
+      the left branch approaches it without reaching it.
+  check: And(exp(-1/E) > Rational(69,100), exp(-1/E) < 1/sqrt(2))
+  check_ok: true
+- goal: Show that 1/4 and 1/2 both satisfy x^x=1/sqrt(2), and explain the consistency with part (iv).
+  expected: (1/4)^(1/4)=2^(-1/2)=1/sqrt(2) and (1/2)^(1/2)=1/sqrt(2). Since e^(-1/e) is approximately
+    0.692 < 1/sqrt(2) approximately 0.707 < 1, part (iv) predicts two solutions, one on each side of 1/e.
+    Indeed 1/4 < 1/e < 1/2 with 1/e approximately 0.368.
+  solution: (1/4)^(1/4)=(2^(-2))^(1/4)=2^(-1/2)=1/sqrt(2). (1/2)^(1/2)=1/sqrt(2). Both values lie in the
+    interval (e^(-1/e),1), so two solutions are expected. Since 1/4 < 1/e < 1/2 and f is decreasing on
+    (0,1/e) and increasing on (1/e,1), these are exactly the two solutions.
+  common_errors:
+  - Showing the two values are equal numerically without algebraic justification.
+  - Forgetting to check that 1/sqrt(2) lies between the minimum and 1.
+  - Claiming both solutions lie on the same side of 1/e.
+  hints:
+    rephrase: Write 1/4 and 1/2 as powers of 2 and simplify the roots.
+    smaller_case: Compare 1/4, 1/e and 1/2 numerically.
+    key_idea: Use the monotonicity on each side of 1/e to place the two solutions.
+  check: simplify(Rational(1,4)**Rational(1,4)-1/sqrt(2))+simplify(Rational(1,2)**Rational(1,2)-1/sqrt(2))
+  check_ok: true
+extensions:
+  '3':
+  - Show without a calculator that the minimum value e^(-1/e) is less than 1/sqrt(2).
+  '4':
+  - For which k does x^x=k have exactly two positive solutions? Find an interval containing the smaller
+    solution.
+  '5':
+  - Show that x^y=y^x has solutions with x not equal to y for x,y>1, and describe them using part (ii).
+spoken_vocab:
+- x to the power x
+- e to the x log x
+- natural log
+- limit as x tends to zero from the right
+- one over e
+- e to the minus one over e
+- stationary point
+- minimum
+- one quarter
+- one half
+- root two
+- one over root two
+- k
+- positive solutions
+- L'Hopital's rule
+source: jaymin/Jaymin Interview (1).pdf#p57
+verified: false
+rating:
+  score: 9
+  difficulty: 4
+  parts: 5
+  minutes: 25
+  flags: []
+  tagline: Limit, minimum at 1/e, sketch, solution counting, and a consistency check.
+  priority: 130
+  rank: 1
+  tier: S

@@ -1,0 +1,154 @@
+id: twelve-coins-three-weighings
+title: Find the counterfeit coin among 12 in 3 weighings
+topics:
+- combinatorics
+- information counting
+- balance-scale problems
+- logic
+warmup: false
+answer_source: generated
+statement: You have $12$ coins, identical in appearance. Exactly one is counterfeit and has a different
+  weight from the rest (you do not know if it is heavier or lighter). You have a balance scale and may
+  use it exactly $3$ times. (a) Describe a strategy that is guaranteed to identify the counterfeit coin
+  and determine whether it is heavier or lighter. (b) Why is $3$ weighings the fewest that could possibly
+  work, for $12$ coins?
+stages:
+- goal: Choose the first weighing and state the three possible outcomes and what each implies.
+  expected: 'Weigh coins {1,2,3,4} against {5,6,7,8}; coins {9,10,11,12} stay off. Balanced: counterfeit
+    is among 9-12 and 1-8 are all genuine. Left heavier: counterfeit is among 1-4 (heavy) or 5-8 (light).
+    Right heavier: counterfeit is among 5-8 (heavy) or 1-4 (light).'
+  solution: Any weighing has three outcomes (left heavier, right heavier, balanced). Putting 4 coins on
+    each side and leaving 4 off gives 4+4+4=12. If the scale balances, every coin on it is genuine, and
+    the counterfeit is one of the four untouched coins. If the left pan is heavier, the counterfeit is
+    either heavy and on the left (1-4) or light and on the right (5-8). Coins 9-12 are then known genuine,
+    since an off-scale counterfeit would have left the balance level. The right-heavier case is the mirror
+    image with heavy and light swapped.
+  common_errors:
+  - Putting an unequal number of coins on the pans without a reason, which leaves more ambiguous cases.
+  - Forgetting that coins off the scale are candidates when the scale balances.
+  - Assuming the direction (heavier or lighter) is known for the counterfeit.
+  - Not recognising that coins 9-12 become genuine after an unbalanced first weighing.
+  hints:
+    rephrase: Each weighing gives one of three results. How can you split the coins so that each result
+      leaves a small set of suspects?
+    smaller_case: Imagine only 3 coins and one weighing. What would you put on the scale to separate the
+      suspects?
+    key_idea: Use the weighing to split the coins into three groups of equal size, and track which coins
+      could cause each result.
+  check: sp.Integer(12) - (4+4+4)
+  check_ok: null
+- goal: Resolve the branch where coins 1-4 are heavier-candidates, using a second weighing that leaves
+    at most three suspects for each outcome.
+  expected: 'Second weighing: {1,2,5} against {3,6,9}, with coin 9 known genuine. Left heavier: suspects
+    {1 heavy, 2 heavy, 6 light}. Right heavier: suspects {3 heavy, 5 light}. Balanced: suspects {4 heavy,
+    7 light, 8 light}.'
+  solution: 'Eight suspects remain (1-4 heavy, 5-8 light). Weighing {1,2,5} against {3,6,9}: a left-heavier
+    result arises only from 1 or 2 being heavy, or 6 being light (3 heavy would tip right, 5 light would
+    tip left). A right-heavier result arises only from 3 heavy or 5 light. A balance excludes all weighed
+    suspects, leaving the untouched 4 (heavy), 7 and 8 (light). Each outcome leaves at most three suspects,
+    which the third weighing can separate. Counts: 3+2+3=8.'
+  common_errors:
+  - Choosing a second weighing that leaves four or more suspects in one outcome, which a single weighing
+    cannot resolve.
+  - Forgetting that coin 4 (untouched in weighing two) remains a suspect in the balanced case.
+  - Treating 9 as unknown when it is in fact genuine in this branch.
+  - Mixing up which candidate direction (heavy or light) each suspect carries.
+  hints:
+    rephrase: After the first weighing, which coins could make the scale tip left? Which could make it
+      tip right?
+    smaller_case: Suppose only coins 1 and 2 are suspects. How would you tell which one is heavy?
+    key_idea: Put some suspects of each type on each pan, and include one known genuine coin so you can
+      compare. Track the suspect set for each outcome separately.
+  check: sp.Integer(8) - (3+2+3)
+  check_ok: null
+- goal: Finish the full strategy so that the counterfeit and its direction are found within 3 weighings
+    in every branch.
+  expected: 'Balanced first weighing: weigh {9,10,11} against {1,2,3}. If balanced, coin 12 is counterfeit:
+    weigh 12 against genuine 1 to get its direction. If {9,10,11} is heavier (or lighter), weigh 9 against
+    10: the heavier (lighter) pan''s coin is the counterfeit; if they balance, it is 11. After first weighing
+    left heavier, second weighing {1,2,5} against {3,6,9}, third: 1 against 2 (the heavier coin is heavy;
+    balance means 6 is light). After right heavier, third weighing is 3 against 9 (heavier means 3 heavy;
+    balance means 5 is light). After balanced second, third is 7 against 8 (the lighter coin is light;
+    balance means 4 is heavy). The branch where 5-8 are heavier is handled by the mirror image, with heavy
+    and light swapped.'
+  solution: 'Each branch ends with at most three suspects, each with a known direction, and one weighing
+    against a known genuine coin or against another suspect separates them into three outcomes. Balanced
+    first branch: after weighing {9,10,11} vs {1,2,3}, if balanced the suspect is 12 with unknown direction,
+    resolved by comparing it with genuine coin 1. If unbalanced, suspects are 9,10,11 with a known direction,
+    resolved by 9 vs 10. In the 1-4-heavier branch, the three sub-branches each resolve as described.
+    The mirror branch uses identical comparisons with ''heavier'' and ''lighter'' interchanged.'
+  common_errors:
+  - Using a genuine coin in a comparison without verifying it is genuine.
+  - Assuming the counterfeit's direction is known when it is not, in the balanced-first-weighing branch.
+  - Missing a mirror case when coins 5-8 are heavier after the first weighing.
+  - Failing to check that each third weighing gives three distinct outcomes for the remaining suspects.
+  hints:
+    rephrase: After each weighing, list the suspects and their possible directions. Which single comparison
+      separates them into three distinct results?
+    smaller_case: Suppose you already know the counterfeit is among three coins whose direction is known.
+      How would you find it in one weighing?
+    key_idea: Compare suspects with each other or with a known genuine coin so that the three possible
+      results point to three different suspects.
+  check: sp.Integer(3)**3 >= 24
+  check_ok: null
+- goal: Explain why 3 is the fewest weighings that could possibly work for 12 coins.
+  expected: There are 24 possibilities (12 coins, each heavier or lighter). A strategy with k weighings
+    has at most 3^k distinguishable outcomes. Two weighings give at most 9 < 24 outcomes, so they cannot
+    work. Three weighings give 27 >= 24, so the bound does not rule out 3, and the strategy above achieves
+    it.
+  solution: The final answer must be one of 24 possibilities (which coin, and whether heavy or light),
+    so the outcome sequences must number at least 24. Each weighing has three outcomes, so k weighings
+    produce at most 3^k outcome sequences. For k=2, 3^2=9<24, impossible. For k=3, 3^3=27>=24, which is
+    consistent with the strategy in (a).
+  common_errors:
+  - Counting only 12 coins (giving 3^2=9>=12) and concluding 2 weighings might work.
+  - Forgetting that direction (heavy or light) must also be determined, which doubles the possibilities.
+  - Claiming 3 is minimal only because the strategy happens to use 3, without proving 2 fails.
+  - Stating that 3^3 >= 24 proves the strategy works, when the strategy itself must be shown.
+  hints:
+    rephrase: How many different final answers must the weighings be able to distinguish?
+    smaller_case: Count the number of distinct results you can get from one weighing, then from two.
+    key_idea: Compare the number of possible answers with the maximum number of distinct outcome sequences
+      from k weighings.
+  check: sp.Integer(3)**2 < 24
+  check_ok: null
+extensions:
+  '3':
+  - If you are told in advance that the counterfeit is definitely heavier, how does your strategy change?
+  '4':
+  - If you are told the counterfeit is definitely heavier, how many coins could you handle in 3 weighings
+    with no spare genuine coin?
+  '5':
+  - For k weighings, find the largest n such that n coins can be solved when the direction is unknown
+    and no genuine reference coin is given. Justify it with an outcome-counting argument.
+spoken_vocab:
+- twelve coins
+- counterfeit
+- balance scale
+- heavier
+- lighter
+- three weighings
+- one two three four versus five six seven eight
+- nine ten eleven versus one two three
+- three to the power of three
+- twenty four
+- greater than or equal to
+- three to the power of two
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 4
+  minutes: 20
+  flags: []
+  tagline: Classic with information-counting proof; natural extension to other coin counts.
+  priority: 92
+  rank: 72
+  tier: A
+  category: juan
+  d10: 6.0
+  real: 6.5
+  by: haiku
+tags:
+- combinatorics

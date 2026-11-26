@@ -1,0 +1,1 @@
+Good evening. I have had a look at your working, and I must say the second line is rather interesting. Shall we take it one step further, and see whether the pattern really holds for every n?

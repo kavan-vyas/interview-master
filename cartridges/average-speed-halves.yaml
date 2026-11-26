@@ -1,0 +1,83 @@
+id: average-speed-halves
+title: Average speed over two equal halves
+topics:
+- rates
+- harmonic mean
+- algebra
+warmup: false
+answer_source: pdf
+statement: A car travels the first half of a journey at an average speed of 40 mph, and the second half
+  of the same journey at an average speed of 60 mph. What is its average speed for the whole journey?
+stages:
+- goal: Write the total time for the journey in terms of the distance d of each half.
+  expected: Total distance is 2d. Time for first half is d/40, time for second half is d/60, so total
+    time is d/40 + d/60 = d/24.
+  solution: 'Time = distance / speed. First half: d/40. Second half: d/60. Sum: d/40 + d/60 = (3d + 2d)/120
+    = d/24.'
+  common_errors:
+  - 'Averaging the speeds: (40+60)/2 = 50 mph, which ignores that the car spends longer at 40 mph.'
+  - Adding the speeds' reciprocals without the distance factor, or mixing up which half has which speed.
+  hints:
+    rephrase: How long does each half take? Work out the time for each half separately, then add them.
+    smaller_case: Suppose each half is 40 miles long. How long does each half take at its speed?
+    key_idea: Average speed is total distance divided by total time, not the mean of the two speeds.
+  check: d/40 + d/60 - d/24
+  check_ok: true
+- goal: Find the average speed for the whole journey.
+  expected: 48 mph.
+  solution: 'Average speed = total distance / total time = 2d / (d/24) = 48 mph. This is the harmonic
+    mean of 40 and 60: 2*40*60/(40+60) = 48.'
+  common_errors:
+  - Answering 50 mph (the arithmetic mean of the two speeds).
+  - Forgetting to double the single-half distance to get the total distance.
+  hints:
+    rephrase: Divide the total distance by the total time you found in the previous step.
+    smaller_case: If both speeds were 50 mph, what would the average be? Does your method give 50?
+    key_idea: Speed is distance over time, so the average over equal distances is a harmonic-type mean,
+      not an arithmetic one.
+  check: 48 - 2*d/(d/24)
+  check_ok: true
+extensions:
+  '3':
+  - The car travels one third of the distance at 40 mph and two thirds at 60 mph. What is its average
+    speed for the whole journey?
+  '4':
+  - The car travels for the first half of the time at 40 mph and the second half of the time at 60 mph.
+    What is its average speed?
+  '5':
+  - For a journey split into two equal distances at speeds a and b, show the average speed is the harmonic
+    mean and is never more than the arithmetic mean of a and b.
+spoken_vocab:
+- average speed
+- first half
+- second half
+- miles per hour
+- mph
+- distance
+- time
+- divided by
+- total distance
+- harmonic mean
+- arithmetic mean
+- d over forty
+- d over sixty
+- d over twenty four
+source: kclms/kclms-specimen-questions-3.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 2
+  parts: 2
+  minutes: 5
+  flags: []
+  tagline: Classic harmonic-mean trap; extends to equal times versus distances.
+  priority: 55
+  rank: 487
+  tier: C
+  category: kclms
+  d10: 2.0
+  real: 7.0
+  by: deepseek-v4.1-flash-free
+tags:
+- mechanics
+- algebra_and_functions

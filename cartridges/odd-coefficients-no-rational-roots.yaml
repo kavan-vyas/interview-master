@@ -1,0 +1,98 @@
+id: odd-coefficients-no-rational-roots
+title: Odd-coefficient quadratic has no rational roots
+topics:
+- number theory
+- parity
+- rational root theorem
+warmup: false
+answer_source: generated
+statement: Prove that if $a, b, c$ are all odd then the quadratic equation $ax^2+bx+c=0$ cannot have rational
+  roots.
+stages:
+- goal: Assume a rational root exists and set up an integer equation by clearing denominators.
+  expected: Write the root as p/q with gcd(p,q)=1 and q>=1. Substituting and multiplying by q^2 gives
+    a p^2 + b p q + c q^2 = 0.
+  solution: If x=p/q is a root with gcd(p,q)=1, q>=1, then a(p/q)^2 + b(p/q) + c = 0. Multiplying by q^2
+    gives a p^2 + b p q + c q^2 = 0.
+  common_errors:
+  - Forgetting to assume lowest terms, so the parity argument has no force.
+  - Multiplying by the wrong power of q and getting a non-homogeneous equation.
+  - Dropping the sign or the cross term b p q.
+  hints:
+    rephrase: Suppose the equation has a rational root and write that root as a fraction.
+    smaller_case: Take a=b=c=1 and a rational candidate such as p/q = 1/2. Substitute and clear denominators.
+    key_idea: Clear denominators and use the condition that p and q share no common factor.
+  check: sp.simplify((a*p**2+b*p*q+c*q**2) - q**2*(a*(p/q)**2+b*(p/q)+c))
+  check_ok: null
+- goal: Reduce the integer equation mod 2 and show the left side is odd unless p and q are both even.
+  expected: Since a, b, c are odd and x^2 is congruent to x mod 2, the left side is congruent to p + pq
+    + q (mod 2). This is odd for (p,q) = (1,0), (0,1), (1,1), which covers every case not both even.
+  solution: 'Mod 2, a p^2 + b p q + c q^2 is congruent to p^2 + p q + q^2, which is congruent to p + pq
+    + q. Cases: (p,q) = (1,0) gives 1; (0,1) gives 1; (1,1) gives 3, which is 1 mod 2. Since gcd(p,q)=1,
+    the pair (p,q) is never both even, so the left side is always odd.'
+  common_errors:
+  - Checking only one parity case and claiming the result for all cases.
+  - Treating p^2 as even when p is odd.
+  - Confusing the sum mod 2 with the sum mod 4.
+  hints:
+    rephrase: Reduce each coefficient and each power mod 2, then consider which of p and q are even.
+    smaller_case: Set a=b=c=1 and test (p,q)=(1,1), (1,2) and (2,1) in the reduced equation.
+    key_idea: 'Work mod 2: an odd number squared stays odd, and an even number times anything is even.'
+  check: sp.And(*[sp.Mod(p+p*q+q,2)==1 for p,q in [(1,0),(0,1),(1,1)]])
+  check_ok: null
+- goal: Conclude that no rational root exists.
+  expected: The left side is odd, so it cannot equal 0 (which is even). Hence no rational p/q is a root,
+    and the equation has no rational roots.
+  solution: By stage 2 the left side a p^2 + b p q + c q^2 is odd for every coprime pair (p,q). Zero is
+    even, so the equation a p^2 + b p q + c q^2 = 0 is impossible. Therefore no rational root exists.
+  common_errors:
+  - Stating the conclusion without linking the parity result to the contradiction.
+  - Forgetting that a must be nonzero, so the equation is genuinely quadratic.
+  - Claiming the discriminant must be negative, which does not follow.
+  hints:
+    rephrase: What parity must the left side have, and what parity is 0?
+    smaller_case: Ask whether 0 is odd or even.
+    key_idea: Finish with a parity contradiction.
+extensions:
+  '3':
+  - What if only a and c are odd and b is even? Find an example with a rational root.
+  '4':
+  - Which of the three odd-coefficient hypotheses are actually needed? Test each one by removing it.
+  '5':
+  - Does the parity argument extend to a cubic with all odd coefficients? Find a counterexample if one
+    exists.
+spoken_vocab:
+- a b c odd
+- a x squared plus b x plus c equals zero
+- rational root
+- p over q
+- greatest common divisor
+- lowest terms
+- q squared
+- p squared
+- mod two
+- parity
+- odd
+- even
+- contradiction
+- clear denominators
+- discriminant
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 3
+  minutes: 6
+  flags: []
+  tagline: Clean parity argument on coprime p, q; good structure with a classic proof idea.
+  priority: 71
+  rank: 337
+  tier: B
+  category: tbo
+  d10: 4.5
+  real: 6.5
+  by: haiku
+tags:
+- number_theory
+- proof

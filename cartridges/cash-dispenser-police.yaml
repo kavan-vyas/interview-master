@@ -1,0 +1,140 @@
+id: cash-dispenser-police
+title: Cash dispenser and police race
+topics:
+- probability
+- geometric series
+- geometric distribution
+- conditional probability
+warmup: false
+answer_source: pdf
+statement: 'In order to get money from a cash dispenser I must punch in an identification number. I have
+  forgotten it, but it is equally likely to be any integer $1,2,\ldots,n$. I can punch integers at $r$
+  per minute. The police are alerted at the first wrong number and arrive within time $t$ minutes with
+  probability $1-e^{-\lambda t}$. Plan A: punch integers in order $1,2,\ldots$ until I get the right one.
+  Show that the probability the police arrive before I get my money is $\sum_{k=1}^{n}\frac{1-e^{-\lambda(k-1)/r}}{n}$,
+  and simplify the sum. Plan B: I punch uniformly random integers, not noticing repeats. Find the probability
+  that the police arrive before I get my money under Plan B and compare it with the claimed value $1-\frac1n-(n-1)e^{-\lambda/r}$.'
+stages:
+- goal: Derive the probability for Plan A as a sum over the possible correct number k.
+  expected: If the correct number is $k$, the police are alerted at time $1/r$ and the money arrives at
+    time $k/r$. The police arrive first with probability $1-e^{-\lambda(k-1)/r}$, which is $0$ for $k=1$.
+    Averaging over $k$ with probability $1/n$ each gives $P = \sum_{k=1}^{n}\frac{1-e^{-\lambda(k-1)/r}}{n}$.
+  solution: Punch number $j$ happens at time $j/r$. If the correct number is $k$, the first $k-1$ punches
+    are all wrong, and the first wrong punch is at time $1/r$ (for $k\ge2$). The police arrive at $1/r
+    + T$, where $T$ is their delay with $P(T\le t)=1-e^{-\lambda t}$. The police arrive before the money
+    at time $k/r$ if $1/r+T < k/r$, i.e. $T<(k-1)/r$, which has probability $1-e^{-\lambda(k-1)/r}$. For
+    $k=1$ there is no wrong punch, so the probability is $0$, consistent with the formula. Each $k$ occurs
+    with probability $1/n$.
+  common_errors:
+  - Measuring the police delay from time zero instead of from the first wrong punch at time 1/r, which
+    gives $k/r$ instead of $(k-1)/r$.
+  - Forgetting that the case k=1 contributes zero.
+  - Using $P(T>t)$ instead of $P(T\le t)$.
+  hints:
+    rephrase: When is the alarm raised if the correct number is k, and when does the money arrive?
+    smaller_case: What happens if the correct number is 1? Does the police alarm ever sound?
+    key_idea: The police delay is measured from the first wrong punch, so only time beyond that first
+      punch matters.
+  check: null
+- goal: Simplify the sum to a closed form, writing q = exp(-lambda/r).
+  expected: $P = 1 - \dfrac{1-q^n}{n(1-q)}$ with $q = e^{-\lambda/r}$.
+  solution: Since $e^{-\lambda(k-1)/r} = q^{k-1}$, the sum equals $1 - \frac1n\sum_{j=0}^{n-1} q^j$. The
+    geometric sum gives $\sum_{j=0}^{n-1}q^j = \dfrac{1-q^n}{1-q}$ for $q\ne 1$, that is $\lambda \ne
+    0$. Hence $P = 1-\dfrac{1-q^n}{n(1-q)}$.
+  common_errors:
+  - Starting the geometric sum at the wrong index.
+  - Forgetting that the closed form requires $q \ne 1$, which means $\lambda\neq 0$.
+  - Mixing up $\frac{1-q^n}{1-q}$ with $\frac{1-q^{n+1}}{1-q}$.
+  hints:
+    rephrase: Each term is a power of one fixed number. Which standard sum is this?
+    smaller_case: Write out the sum explicitly for n = 2 and n = 3 and look for the pattern.
+    key_idea: Recognise a geometric series in q = exp(-lambda/r).
+  check: simplify((1-(1-q**3)/(3*(1-q))) - ((1-q**0)+(1-q**1)+(1-q**2))/3)
+  check_ok: null
+- goal: Find the probability that the police arrive first under Plan B, where each punch is uniform and
+    independent.
+  expected: $P = \dfrac{(n-1)(1-q)}{n-(n-1)q}$, equivalently $\dfrac{n-1}{n}\left(1-\dfrac{q}{n-(n-1)q}\right)$
+    with $q = e^{-\lambda/r}$.
+  solution: With probability $1/n$ the first punch is correct, giving money at time $1/r$ with no alarm.
+    With probability $(n-1)/n$ the first punch is wrong, the alarm sounds at $1/r$, and further punches
+    are independent and uniform. Let $M$ be the number of further punches until the correct number, so
+    $P(M=m) = \tfrac1n\left(\tfrac{n-1}{n}\right)^{m-1}$ and the money arrives at $(M+1)/r$. The police
+    arrive first if $T<M/r$, which has probability $1-q^M$. Then $E[q^M] = \dfrac{q/n}{1-(n-1)q/n} = \dfrac{q}{n-(n-1)q}$.
+    So $P = \dfrac{n-1}{n}\left(1-\dfrac{q}{n-(n-1)q}\right) = \dfrac{(n-1)(1-q)}{n-(n-1)q}$.
+  common_errors:
+  - Assuming wrong numbers are not repeated, which changes the waiting-time distribution.
+  - Forgetting that a correct first punch avoids any alert.
+  - Using the Plan A sum, which assumes each number is tried once in order.
+  hints:
+    rephrase: Under independent uniform punches, how is the number of further punches before the right
+      one distributed?
+    smaller_case: Take n = 2. Given that the first punch was wrong, what is the probability that the next
+      punch is right?
+    key_idea: Condition on the first punch, then the wait for the correct number is geometric with success
+      probability 1/n, and P(police first | M=m) = 1 - q^m.
+  check: (n-1)/n*(1-q/(n-(n-1)*q)) - (n-1)*(1-q)/(n-(n-1)*q)
+  check_ok: null
+- goal: Compare the derived Plan B probability with the claimed value 1 - 1/n - (n-1) exp(-lambda/r).
+  expected: The claimed value cannot be correct. At $\lambda=0$ it gives $1-\frac1n-(n-1) = -\frac{(n-1)^2}{n}$,
+    which is negative for $n\ge2$; for example $n=2$ gives $-\tfrac12$. The correct probability is $\dfrac{(n-1)(1-e^{-\lambda/r})}{n-(n-1)e^{-\lambda/r}}$,
+    which is $0$ at $\lambda=0$ as it must be.
+  solution: At $\lambda=0$ the police never arrive, so the probability must be $0$. The claimed formula
+    gives $1-\tfrac1n-(n-1)<0$ for $n\ge2$, which is impossible. The derivation in stage 3 gives $0$ at
+    $q=1$. Also, Plan B is worse than Plan A for every $n$ and $\lambda$, because random repeats waste
+    time. For $n=2$, Plan A gives $(1-q)/2$ and Plan B gives $(1-q)/(2-q)$, which is larger. So the target
+    expression is not the right answer for this model.
+  common_errors:
+  - Accepting the claimed formula without checking a limiting case such as lambda equal to zero.
+  - Assuming the random model without repeats, which gives the Plan A sum instead.
+  - Making an algebra slip in the expansion of $\frac{n-1}{n}\left(1-\frac{q}{n-(n-1)q}\right)$.
+  hints:
+    rephrase: Test the claimed formula at a value of lambda where the answer is known. What must the probability
+      be when the police never come?
+    smaller_case: Substitute n = 2 into the claimed formula and into the derived formula, and compare.
+    key_idea: Limiting cases and simple values of n act as sanity checks on a derived probability.
+  check: null
+extensions:
+  '3':
+  - For n = 3, compare the Plan A and Plan B probabilities as lambda/r tends to 0 and to infinity.
+  - Show that Plan B is never better than Plan A for n = 2.
+  '4':
+  - Find the expected time, in minutes, until the money is obtained under Plan B.
+  '5':
+  - Show that for every n and lambda the Plan B probability is at least the Plan A probability.
+spoken_vocab:
+- cash dispenser
+- identification number
+- punch in
+- n integers
+- rate r per minute
+- police
+- lambda
+- one minus e to the minus lambda t
+- sum from k equals one to n
+- one minus e to the minus lambda k minus one over r
+- closed form
+- geometric series
+- q equals e to the minus lambda over r
+- Plan A
+- Plan B
+- one minus one over n minus n minus one e to the minus lambda over r
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#19
+verified: false
+rating:
+  quality: 7
+  difficulty: 7
+  parts: 4
+  minutes: 25
+  flags:
+  - wrong_or_unclear_solution
+  tagline: Plan A sum is clean; stated Plan B value is wrong, a strong probe.
+  priority: 74
+  rank: 290
+  tier: B
+  category: siklos
+  d10: 7.0
+  real: 5.0
+  by: deepseek-v4.1-flash-free
+tags:
+- probability
+- sequences_and_series

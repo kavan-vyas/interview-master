@@ -1,0 +1,58 @@
+[
+ {
+  "q": "This shape was made from a square (a cm x a cm) by sliding a parallelogram-shaped section out. What is the perimeter of the new shape? Options: a) Need more information b) $4a+2c$ c) $4a$ d) $4a+2b$ e) $4a+4b$",
+  "kind": "maths",
+  "answer": "e) $4a+4b$",
+  "short": true,
+  "source": "kclms/kclms-mcq-specimen-questions-answers-included.pdf#0"
+ },
+ {
+  "q": "In this diagram AB is a straight line. What is angle $y^\\circ$? Options: a) $y = 140^\\circ$ b) $y = 180^\\circ - 2x^\\circ$ c) $y = 140^\\circ + x^\\circ$ d) $y = 40^\\circ + 2x^\\circ$ e) Need more information",
+  "kind": "maths",
+  "answer": "d) $y = 40^\\circ + 2x^\\circ$",
+  "short": true,
+  "source": "kclms/kclms-mcq-specimen-questions-answers-included.pdf#0"
+ },
+ {
+  "q": "This rectangle and triangle have the same area (rectangle sides $3x-1$ and $7$, triangle with base $8$ and height $x+2$, per the diagram). What is the value of $x$? Options: a) $x=\\frac{6}{5}$ b) $x=2$ c) $x=\\frac{18}{5}$ d) $x=3$ e) $x=\\frac{22}{17}$",
+  "kind": "maths",
+  "answer": "c) $x=\\frac{18}{5}$",
+  "short": true,
+  "source": "kclms/kclms-mcq-specimen-questions-answers-included.pdf#0"
+ },
+ {
+  "q": "A recipe uses 28 g of butter and 130 ml cream. If the recipe is scaled up so that 98 g butter is used, how much cream will be required? Options: a) 400 ml b) 455 ml c) 910 ml d) 520 ml e) 425 ml",
+  "kind": "maths",
+  "answer": "b) 455 ml",
+  "short": true,
+  "source": "kclms/kclms-mcq-specimen-questions-answers-included.pdf#0"
+ },
+ {
+  "q": "This glass is made from frustums of two circular cones. Water is poured into the glass at a constant rate. Which of the following graphs (options a to e) best shows the height of water in the glass against time?",
+  "kind": "maths",
+  "answer": "c)",
+  "short": true,
+  "source": "kclms/kclms-mcq-specimen-questions-answers-included.pdf#0"
+ },
+ {
+  "q": "Given that $1001 = 7 \\times 11 \\times 13$, what is $123123 \\div 143$? Options: a) 821 b) 1599 c) 901 d) 861 e) 1353",
+  "kind": "maths",
+  "answer": "d) 861",
+  "short": true,
+  "source": "kclms/kclms-mcq-specimen-questions-answers-included.pdf#0"
+ },
+ {
+  "q": "This diagram shows a shape on a 1 cm square grid. An enlargement of the shape takes point A to $(9,6)$ and B to $(18,6)$. What is the area of the enlarged shape? Options: a) $4\\,\\text{cm}^2$ b) $16\\,\\text{cm}^2$ c) $36\\,\\text{cm}^2$ d) $21\\,\\text{cm}^2$ e) $12\\,\\text{cm}^2$",
+  "kind": "maths",
+  "answer": "c) 36 cm\u00b2",
+  "short": true,
+  "source": "kclms/kclms-mcq-specimen-questions-answers-included.pdf#0"
+ },
+ {
+  "q": "Two fair standard dice are thrown. If they both show an even number, or both an odd number, you add these to get the score. If one shows an even number and one shows an odd number, you subtract the smaller number from the larger one to get the score. Which of the following statements is correct? Options: a) 7 is the most likely score. b) Scoring 3 is more likely than scoring 6. c) You can score 9. d) Scoring 5 is more likely than scoring 4. e) Scoring 1 and scoring 11 are equally likely.",
+  "kind": "maths",
+  "answer": "b) Scoring 3 is more likely than scoring 6.",
+  "short": true,
+  "source": "kclms/kclms-mcq-specimen-questions-answers-included.pdf#0"
+ }
+]

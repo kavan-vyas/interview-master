@@ -1,0 +1,78 @@
+id: fixed-points-shuffle
+title: Cards in their original position
+topics:
+- expectation
+- indicator variables
+- linearity of expectation
+- permutations
+warmup: true
+answer_source: pdf
+statement: A deck of $n$ cards numbered 1 to $n$ is shuffled uniformly at random. What is the expected
+  number of cards that end up in their original position?
+stages:
+- goal: For a fixed card j, find the probability that it ends in position j, using an indicator variable.
+  expected: 1/n
+  solution: Let I_j = 1 if card j is in position j, else 0. E[I_j] = P(card j is in position j) = 1/n,
+    since each of the n positions is equally likely for card j.
+  common_errors:
+  - Using 1/(n-1) or 1/n! instead of 1/n
+  - Confusing the probability that card j is in position j with the probability that some card is fixed
+  hints:
+    rephrase: For one particular card, how many positions could it land in, and how many of those are
+      its own?
+    smaller_case: With 2 cards, list both orderings and check which cards are in their original positions.
+    key_idea: The expectation of an indicator variable equals the probability of its event.
+  check: sympy.simplify(sympy.Integer(1)/n - 1/n)
+  check_ok: null
+- goal: Sum the indicators and give the expected number of fixed cards.
+  expected: '1'
+  solution: The number of fixed cards is X = sum from j=1 to n of I_j. By linearity of expectation, E[X]
+    = sum of 1/n over n terms = n * (1/n) = 1. Independence of the I_j is not needed.
+  common_errors:
+  - Assuming the indicators must be independent before applying linearity
+  - Answering n/2 or n by treating each card as equally likely to stay or move
+  hints:
+    rephrase: The count of fixed cards is a sum of indicators. What does linearity say about the expectation
+      of a sum?
+    smaller_case: Take n = 3 and add up the expected values of the three indicators.
+    key_idea: Linearity of expectation holds for any random variables, dependent or not.
+  check: sympy.simplify(n*(1/n) - 1)
+  check_ok: null
+extensions:
+  '3':
+  - For n at least 2, what is the variance of the number of cards in their original position?
+  '4':
+  - For a deck of 4 cards, what is the probability that exactly 2 cards are in their original positions?
+  '5':
+  - What is the limit, as n tends to infinity, of the probability that no card is in its original position?
+spoken_vocab:
+- n cards
+- numbered one to n
+- shuffled uniformly
+- expected number
+- original position
+- indicator variable
+- linearity of expectation
+- one over n
+- n times one over n
+- equals one
+- fixed points
+source: jaymin/Jaymin Interview (1).pdf#p33
+verified: false
+rating:
+  quality: 5
+  difficulty: 3
+  parts: 2
+  minutes: 8
+  flags: []
+  tagline: Expectation via indicators; a famous answer with rich follow-up discussion.
+  priority: 70
+  rank: 366
+  tier: C
+  category: jaymin
+  d10: 4.0
+  real: 7.0
+  by: deepseek-v4.1-flash-free
+tags:
+- probability
+- combinatorics

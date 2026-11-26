@@ -1,0 +1,135 @@
+[
+ {
+  "q": "Meera invests \u00a32500 in an account paying 4% compound interest per year. How much interest has she earned after two years?",
+  "kind": "maths",
+  "answer": "2500 \u00d7 1.04\u00b2 = 2704, so interest is \u00a3204.",
+  "short": true,
+  "source": "kclms/kclms-specimen-questions-4.pdf#0"
+ },
+ {
+  "q": "Without using a calculator, evaluate $8^{\\\\frac{2}{3}} \\\\times 27^{-\\\\frac{1}{3}}$.",
+  "kind": "maths",
+  "answer": "$8^{2/3} = 4$ and $27^{-1/3} = 1/3$, so the result is $4/3$.",
+  "short": true,
+  "source": "kclms/kclms-specimen-questions-4.pdf#0"
+ },
+ {
+  "q": "Solve (a) $2x^2 - 5x - 3 = 0$; (b) $\\\\frac{x+1}{3} - \\\\frac{x-2}{4} = 2$.",
+  "kind": "maths",
+  "answer": "a) $(2x+1)(x-3)=0$, so $x=3$ or $x=-\\\\frac{1}{2}$. b) $4(x+1) - 3(x-2) = 24 \\\\Rightarrow x+10 = 24 \\\\Rightarrow x = 14$.",
+  "short": true,
+  "source": "kclms/kclms-specimen-questions-4.pdf#0"
+ },
+ {
+  "q": "In a sale, every price in a shop is reduced by 15%. A customer then uses a voucher to take a further \u00a310 off the sale price of a jacket. She pays \u00a392. What was the price of the jacket before the sale?",
+  "kind": "maths",
+  "answer": "$0.85p - 10 = 92 \\\\Rightarrow p = 120$. The original price was \u00a3120.",
+  "short": true,
+  "source": "kclms/kclms-specimen-questions-4.pdf#0"
+ },
+ {
+  "q": "The ratio of a mother's age to her daughter's age is $7:2$. In 12 years' time the ratio will be $5:2$. How old is the mother now?",
+  "kind": "maths",
+  "answer": "Daughter $2k$, mother $7k$: $\\\\frac{7k+12}{2k+12} = \\\\frac{5}{2} \\\\Rightarrow 14k + 24 = 10k + 60 \\\\Rightarrow k = 9$. The mother is 63.",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-4.pdf#0"
+ },
+ {
+  "q": "The product of three consecutive whole numbers is 1716. Find the three numbers, without using trial and error on large numbers.",
+  "kind": "maths",
+  "answer": "$\\\\sqrt[3]{1716} \\\\approx 12$, so try $11 \\\\times 12 \\\\times 13 = 1716$. The numbers are 11, 12, 13.",
+  "short": true,
+  "source": "kclms/kclms-specimen-questions-4.pdf#0"
+ },
+ {
+  "q": "In a $3 \\\\times 3$ magic square the numbers 1 to 9 are each used once, and every row, every column and both diagonals add up to the same total. Find that total, and show that the number in the centre must be 5.",
+  "kind": "maths",
+  "answer": "The numbers 1 to 9 sum to 45, and three rows give $3T = 45$, so $T = 15$. The four lines through the centre cover every number once except the centre $c$, which is counted 4 times: $4 \\\\times 15 = 45 + 3c \\\\Rightarrow c = 5$.",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-4.pdf#0"
+ },
+ {
+  "q": "Explain why the product of any two consecutive even numbers is always a multiple of 8.",
+  "kind": "maths",
+  "answer": "Write the numbers as $2k$ and $2k+2$. Their product is $2k(2k+2) = 4k(k+1)$. One of $k$ and $k+1$ is even, so $k(k+1)$ is even, and the product is a multiple of $4 \\\\times 2 = 8$.",
+  "short": true,
+  "source": "kclms/kclms-specimen-questions-4.pdf#0"
+ },
+ {
+  "q": "In triangle ABC, $\\\\angle ABC = 70^\\\\circ$ and $\\\\angle ACB = 40^\\\\circ$. The bisectors of angles ABC and ACB meet at I. (i) Find $\\\\angle BIC$. (ii) Show that, whatever the size of triangle ABC, $\\\\angle BIC = 90^\\\\circ + \\\\frac{1}{2}\\\\angle BAC$.",
+  "kind": "maths",
+  "answer": "i) $\\\\angle IBC = 35^\\\\circ$ and $\\\\angle ICB = 20^\\\\circ$, so $\\\\angle BIC = 180^\\\\circ - 35^\\\\circ - 20^\\\\circ = 125^\\\\circ$. ii) Let $\\\\angle BAC = a$. Then $\\\\angle B + \\\\angle C = 180^\\\\circ - a$, so half of that is $90^\\\\circ - \\\\frac{a}{2}$. Hence $\\\\angle BIC = 180^\\\\circ - (90^\\\\circ - \\\\frac{a}{2}) = 90^\\\\circ + \\\\frac{a}{2}$.",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-4.pdf#0"
+ },
+ {
+  "q": "x and y are whole numbers and x + y is even. For each of the following statements say whether you can be sure it is true, it might or might not be true, or it definitely isn't true. Explain your answer in each case. (a) $x - y$ is even. (b) $xy$ is even. (c) x and y are both even. (d) $x^2 + y^2$ is odd.",
+  "kind": "maths",
+  "answer": "a) Sure true: x and y have the same parity, so x \u2212 y is even. b) Might be true: 3 \u00d7 5 is odd, 2 \u00d7 4 is even. c) Might be true: 2 and 4 are both even, but 3 and 5 are not. d) Definitely not: if both are odd, the sum of squares is odd + odd = even; if both are even it is even; either way it is even.",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-4.pdf#0"
+ },
+ {
+  "q": "A full cylindrical jug has radius 5 cm and height 12 cm. All of the water in it is poured into an empty rectangular tank whose base measures 10 cm by 15 cm. How deep is the water in the tank? Give your answer in terms of $\\\\pi$.",
+  "kind": "maths",
+  "answer": "Volume $= \\\\pi \\\\times 25 \\\\times 12 = 300\\\\pi$. The base area is 150, so the depth is $2\\\\pi$ cm (\u2248 6.3 cm).",
+  "short": true,
+  "source": "kclms/kclms-specimen-questions-4.pdf#0"
+ },
+ {
+  "q": "ABCD is a trapezium with AB parallel to DC. AB = 9 cm, DC = 30 cm, AD = 10 cm and BC = 17 cm. Find the area of the trapezium.",
+  "kind": "maths",
+  "answer": "Draw perpendiculars from A and B to DC. With AD = 10 the horizontal part is 6 and the height is 8 (a 6-8-10 triangle). With BC = 17 the horizontal part is 15 (an 8-15-17 triangle). Check: $6 + 9 + 15 = 30$. Area $= \\\\frac{9+30}{2} \\\\times 8 = 156$ cm\u00b2.",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-4.pdf#0"
+ },
+ {
+  "q": "A mobile phone plan costs \u00a315 per month. It includes 300 minutes of calls and 100 texts. Extra minutes cost 8p each and extra texts cost 3p each. In March, Dev used 420 minutes and sent 160 texts. In April he used 280 minutes and sent 90 texts. How much more did his plan cost in March than in April?",
+  "kind": "maths",
+  "answer": "March: \u00a315 + 120 \u00d7 \u00a30.08 + 60 \u00d7 \u00a30.03 = \u00a315 + \u00a39.60 + \u00a31.80 = \u00a326.40. April: \u00a315 (within allowances). Difference: \u00a311.40.",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-4.pdf#0"
+ },
+ {
+  "q": "A row of coins is placed on a table, all showing heads. A move consists of turning over any two coins that are next to each other. (a) Show that a row of 6 coins can be changed so that all show tails. (b) Show that a row of 7 coins can never be changed so that all show tails.",
+  "kind": "maths",
+  "answer": "a) Turn the pairs (1,2), (3,4), (5,6). b) Each move changes the number of heads by \u22122, 0 or +2, so the number of heads stays odd (starting from 7). All tails would mean 0 heads, which is even, so this is impossible.",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-4.pdf#0"
+ },
+ {
+  "q": "For a whole number n, let S(n) be the sum of the squares of the digits of n. For example, $S(23) = 2^2 + 3^2 = 13$. A number is called happy if repeatedly applying S eventually gives 1. For example, $23 \\\\to 13 \\\\to 10 \\\\to 1$, so 23 is happy. (a) Work out S(7) and S(49). (b) Show that 44 is happy. (c) Show that 4 is not happy. (d) Show that 22 is not happy. (e) Show that if a number is happy, then the number formed by writing a 0 after any of its digits (for example 23 gives 203) is also happy. Explain your answer.",
+  "kind": "maths",
+  "answer": "a) S(7) = 49; S(49) = 16 + 81 = 97. b) $44 \\\\to 32 \\\\to 13 \\\\to 10 \\\\to 1$. c) $4 \\\\to 16 \\\\to 37 \\\\to 58 \\\\to 89 \\\\to 145 \\\\to 42 \\\\to 20 \\\\to 4$, a cycle that never reaches 1. d) $22 \\\\to 8 \\\\to 64 \\\\to 52 \\\\to 29 \\\\to 85 \\\\to 89$, which is in the cycle in (c). e) A zero digit contributes $0^2 = 0$ to S, so S is unchanged and the sequence is identical from then on.",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-4.pdf#0"
+ },
+ {
+  "q": "Make x the subject of $y = \\\\frac{2x+1}{x-3}$.",
+  "kind": "maths",
+  "answer": "$y(x-3) = 2x + 1 \\\\Rightarrow x(y-2) = 3y + 1 \\\\Rightarrow x = \\\\frac{3y+1}{y-2}$.",
+  "short": true,
+  "source": "kclms/kclms-specimen-questions-4.pdf#0"
+ },
+ {
+  "q": "A positive number and its reciprocal add up to $\\\\frac{10}{3}$. Find the two possible values of the number.",
+  "kind": "maths",
+  "answer": "$x + \\\\frac{1}{x} = \\\\frac{10}{3} \\\\Rightarrow 3x^2 - 10x + 3 = 0 \\\\Rightarrow (3x-1)(x-3) = 0$. The values are $x = 3$ or $x = \\\\frac{1}{3}$.",
+  "short": true,
+  "source": "kclms/kclms-specimen-questions-4.pdf#0"
+ },
+ {
+  "q": "A boat travels 12 km upstream and then 12 km back downstream again. The stream flows at 1 km/h and the whole journey takes 5 hours. What is the speed of the boat in still water?",
+  "kind": "maths",
+  "answer": "Let the boat's speed in still water be $v$ km/h. Then $\\\\frac{12}{v-1} + \\\\frac{12}{v+1} = 5 \\\\Rightarrow 5v^2 - 24v - 5 = 0 \\\\Rightarrow (5v+1)(v-5) = 0$. So the speed is 5 km/h.",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-4.pdf#0"
+ },
+ {
+  "q": "Using the method of writing a sum twice, once in reverse order, and adding term by term (which gives $1 + 2 + \\\\cdots + 100 = 5050$): (a) Find $5 + 8 + 11 + \\\\cdots + 101$. (b) Find $7 + 14 + 21 + \\\\cdots + 700$. (c) Show that the sum of the first n odd numbers, $1 + 3 + 5 + \\\\cdots + (2n-1)$, is $n^2$. (d) The sum $1 + 2 + 3 + \\\\cdots + n$ equals 276. Find n. (e) Explain why $1 + 2 + 3 + \\\\cdots + n$ can never equal 100.",
+  "kind": "maths",
+  "answer": "a) 33 terms, sum $= \\\\frac{33 \\\\times 106}{2} = 1749$. b) $7 \\\\times 5050 = 35\\\\,350$. c) Pair first and last terms: each pair adds to $2n$, there are $n$ terms, so $2S = n \\\\times 2n$ and $S = n^2$. d) $n(n+1) = 552 = 23 \\\\times 24$, so $n = 23$. e) $n(n+1) = 200$, but $13 \\\\times 14 = 182$ and $14 \\\\times 15 = 210$, so no whole number works.",
+  "short": false,
+  "source": "kclms/kclms-specimen-questions-4.pdf#0"
+ }
+]

@@ -1,0 +1,144 @@
+id: step-vector-line-angle-and-circle-locus
+title: Line with varying direction, fixed angle, and the locus of an intersection point
+topics:
+- vectors
+- 3D geometry
+- angle between lines
+- dot product
+- loci
+- circles in space
+warmup: false
+answer_source: pdf
+statement: The line $\ell$ has vector equation $\mathbf{r}=\lambda\mathbf{s}$, where $\mathbf{s}=(\cos\theta+\sqrt{3})\mathbf{i}+(\sqrt{2}\sin\theta)\mathbf{j}+(\cos\theta-\sqrt{3})\mathbf{k}$
+  and $\lambda$ is a scalar parameter. Find an expression for the angle between $\ell$ and the line $\mathbf{r}=\mu(a\mathbf{i}+b\mathbf{j}+c\mathbf{k})$.
+  Show that there is a line $m$ through the origin such that, whatever the value of $\theta$, the acute
+  angle between $\ell$ and $m$ is $\frac{\pi}{6}$. A plane has equation $x-z=4\sqrt{3}$. The line $\ell$
+  meets this plane at $P$. Show that, as $\theta$ varies, $P$ describes a circle, with its centre on $m$.
+  Find the radius of this circle.
+stages:
+- goal: Find an expression for the acute angle $\alpha$ between $\ell$ and the line with direction $(a,b,c)$.
+  expected: $\cos\alpha=\frac{(a+c)\cos\theta+\sqrt{2}\,b\sin\theta+\sqrt{3}(a-c)}{2\sqrt{2}\sqrt{a^2+b^2+c^2}}$,
+    using the absolute value so that $\alpha$ is acute.
+  solution: The direction of $\ell$ is $\mathbf{s}$, and $|\mathbf{s}|^2=(\cos\theta+\sqrt3)^2+2\sin^2\theta+(\cos\theta-\sqrt3)^2=2\cos^2\theta+2\sin^2\theta+6=8$,
+    so $|\mathbf{s}|=2\sqrt2$ for all $\theta$. The dot product is $\mathbf{s}\cdot(a,b,c)=a(\cos\theta+\sqrt3)+\sqrt2
+    b\sin\theta+c(\cos\theta-\sqrt3)=(a+c)\cos\theta+\sqrt2 b\sin\theta+\sqrt3(a-c)$. Then $\cos\alpha=\frac{|\mathbf{s}\cdot(a,b,c)|}{|\mathbf{s}|\,|(a,b,c)|}$,
+    which gives the stated formula when the absolute value is taken.
+  common_errors:
+  - Treating $|\mathbf{s}|$ as depending on $\theta$. It is constant, equal to $2\sqrt2$.
+  - Dropping the absolute value, which gives an obtuse angle rather than the acute one.
+  - Mis-expanding $(\cos\theta+\sqrt3)a+(\cos\theta-\sqrt3)c$ so that the $\sqrt3$ terms have the wrong
+    sign.
+  hints:
+    rephrase: Write the angle formula using the dot product, then find the modulus of $\mathbf{s}$.
+    smaller_case: Take $(a,b,c)=(1,0,0)$ and compute the dot product with $\mathbf{s}$ as a function of
+      $\theta$.
+    key_idea: Compute $|\mathbf{s}|^2$ using $\cos^2\theta+\sin^2\theta=1$, then write the dot product
+      as a linear combination of $\cos\theta$, $\sin\theta$ and a constant.
+  check: simplify(a*(cos(t)+sqrt(3)) + sqrt(2)*b*sin(t) + c*(cos(t)-sqrt(3)) - ((a+c)*cos(t) + sqrt(2)*b*sin(t)
+    + sqrt(3)*(a-c)))
+  check_ok: true
+- goal: Show that there is a line $m$ through the origin such that the acute angle between $\ell$ and
+    $m$ is $\frac{\pi}{6}$ for every $\theta$, and identify $m$.
+  expected: Take $(a,b,c)\propto(1,0,-1)$, so $m$ is $\mathbf{r}=\mu(\mathbf{i}-\mathbf{k})$. Then the
+    acute angle is $\frac{\pi}{6}$ for all $\theta$.
+  solution: 'The numerator of the formula must not depend on $\theta$, so $a+c=0$ and $b=0$. Then $(a,b,c)=(a,0,-a)$
+    and the numerator is $\sqrt3(2a)$. The denominator is $2\sqrt2\cdot\sqrt{2}|a|=4|a|$. So $\cos\alpha=\frac{2\sqrt3|a|}{4|a|}=\frac{\sqrt3}{2}$,
+    giving $\alpha=\frac{\pi}{6}$. Taking $a=1$ gives $m:\mathbf r=\mu(\mathbf i-\mathbf k)$. Check: $\frac{2\sqrt3}{2\sqrt2\cdot\sqrt2}=\frac{\sqrt3}{2}$.'
+  common_errors:
+  - Choosing $a+c=0$ but forgetting $b=0$, so the $\sin\theta$ term stays.
+  - Getting $\cos\alpha=-\frac{\sqrt3}{2}$ and not replacing it by its absolute value, which gives the
+    obtuse angle.
+  - Choosing $m$ with direction $(1,0,1)$ instead of $(1,0,-1)$.
+  hints:
+    rephrase: Which parts of the numerator depend on $\theta$, and what conditions would remove them?
+    smaller_case: Try the direction $(1,0,0)$ and see whether the angle with $\ell$ changes as $\theta$
+      changes.
+    key_idea: The numerator is a linear combination of $\cos\theta$, $\sin\theta$ and a constant. Make
+      the $\theta$-dependent part vanish.
+  check: ((1+(-1))*cos(t) + sqrt(2)*0*sin(t) + sqrt(3)*(1-(-1)))/(2*sqrt(2)*sqrt(1+0+1)) - sqrt(3)/2
+  check_ok: true
+- goal: Find the point $P$ where $\ell$ meets the plane $x-z=4\sqrt3$.
+  expected: $\lambda=2$, so $P=2\mathbf{s}=(2\cos\theta+2\sqrt3)\mathbf i+2\sqrt2\sin\theta\,\mathbf j+(2\cos\theta-2\sqrt3)\mathbf
+    k$.
+  solution: For the point $\lambda\mathbf s$ we have $x-z=\lambda[(\cos\theta+\sqrt3)-(\cos\theta-\sqrt3)]=2\sqrt3\lambda$.
+    Setting this equal to $4\sqrt3$ gives $\lambda=2$. The value of $\lambda$ does not depend on $\theta$,
+    so $P=2\mathbf s$.
+  common_errors:
+  - Trying to solve for $\theta$ instead of noticing that $\cos\theta$ cancels in $x-z$.
+  - Making a sign error in $x-z$, which gives $\lambda=-2$.
+  - Forgetting to multiply all three components of $\mathbf s$ by $\lambda=2$.
+  hints:
+    rephrase: Substitute the general point $\lambda\mathbf s$ into the plane equation and see whether
+      $\theta$ appears.
+    smaller_case: Take $\theta=0$ and find $\lambda$ for that case, then check whether the same value
+      works at $\theta=\frac{\pi}{2}$.
+    key_idea: Compute $x-z$ for the general point $\lambda\mathbf s$ and simplify.
+  check: simplify(2*(cos(t)+sqrt(3)) - 2*(cos(t)-sqrt(3)) - 4*sqrt(3))
+  check_ok: true
+- goal: Show that $P$ traces a circle as $\theta$ varies, with centre on $m$, and find its radius.
+  expected: The circle has centre $C=(2\sqrt3,0,-2\sqrt3)=2\sqrt3(\mathbf i-\mathbf k)$, which lies on
+    $m$, and radius $2\sqrt2$.
+  solution: Let $C=(2\sqrt3,0,-2\sqrt3)$. Then $\mathbf P-\mathbf C=(2\cos\theta)\mathbf i+(2\sqrt2\sin\theta)\mathbf
+    j+(2\cos\theta)\mathbf k$. This lies in the plane through $C$ perpendicular to $\mathbf i-\mathbf
+    k$, since $2\cos\theta-2\cos\theta=0$, and $C$ lies in the plane $x-z=4\sqrt3$, so $P$ stays in that
+    plane. The distance is $|\mathbf P-\mathbf C|^2=8\cos^2\theta+8\sin^2\theta=8$, so the radius is $2\sqrt2$,
+    and as $\theta$ runs over all reals $P$ traces the full circle. Also $C=2\sqrt3(1,0,-1)$, so the centre
+    lies on $m$.
+  common_errors:
+  - Giving the radius as $|\mathbf P|=4\sqrt2$, which is the distance from the origin, not from the centre.
+  - Failing to find the centre from the constant part of $\mathbf P$, that is the $\pm2\sqrt3$ terms.
+  - Not checking that $C$ is on the plane and on $m$.
+  hints:
+    rephrase: Split $\mathbf P$ into a constant vector plus a part that depends on $\theta$.
+    smaller_case: Find the points $P$ at $\theta=0$ and $\theta=\pi$, then find their midpoint.
+    key_idea: Write $\mathbf P=\mathbf C+R(\cos\theta\,\mathbf e_1+\sin\theta\,\mathbf e_2)$ for some
+      orthogonal unit vectors $\mathbf e_1$, $\mathbf e_2$ in the plane.
+  check: simplify((2*cos(t))**2 + (2*sqrt(2)*sin(t))**2 + (2*cos(t))**2 - (2*sqrt(2))**2)
+  check_ok: true
+extensions:
+  '3':
+  - Show that the acute angle between $\ell$ and a fixed line is independent of $\theta$ only when $a+c=0$
+    and $b=0$. Use the fact that a continuous function of $\theta$ with constant absolute value must be
+    constant.
+  '4':
+  - For the plane $x-z=k$ with general $k$, find the centre and radius of the circle traced by $P$, and
+    show that the radius is $\frac{|k|}{\sqrt6}$.
+  '5':
+  - Show that all the points $P$ lie on a sphere centred at the origin, and find its radius. Then find
+    the distance from the origin to the plane of the circle, and check that it is consistent with the
+    centre and radius of the circle.
+spoken_vocab:
+- lambda
+- s vector
+- cosine theta plus root three
+- root two sine theta
+- cosine theta minus root three
+- dot product
+- modulus
+- pi over six
+- acute angle
+- x minus z equals four root three
+- circle
+- centre
+- radius
+- plane
+- locus
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#14
+verified: false
+rating:
+  quality: 7
+  difficulty: 7
+  parts: 4
+  minutes: 20
+  flags: []
+  tagline: Hidden constant norm and plane intersection yield a clean circle; rich vector geometry.
+  priority: 82
+  rank: 186
+  tier: B
+  category: siklos
+  d10: 6.0
+  real: 4.0
+  by: haiku
+tags:
+- vectors
+- coordinate_geometry

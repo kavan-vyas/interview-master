@@ -1,0 +1,106 @@
+id: floor-square-over-four-sum
+title: Sum of a staircase sequence and a difference identity
+topics:
+- sequences
+- sums
+- floor function
+- algebraic identities
+- integer arithmetic
+warmup: false
+answer_source: generated
+statement: Consider the sequence $0,1,1,2,2,\ldots,r,r,r+1,r+1,\ldots$, deduce the sum of the first $n$
+  terms $S(n)$. Prove that $S(s+t)-S(s-t)=st$ where $s$ and $t$ are positive integers and $s>t$.
+stages:
+- goal: Find a formula for the m-th term a_m of the sequence 0,1,1,2,2,... with positions starting at
+    m = 1.
+  expected: a_m = floor(m/2)
+  solution: 'The sequence is 0 (position 1), then each value r >= 1 appears twice in positions 2r and
+    2r+1. So position m gets the value floor(m/2): for m = 1, 2, 3, 4, 5 the values are 0, 1, 1, 2, 2.'
+  common_errors:
+  - Using ceiling(m/2) instead of floor(m/2)
+  - Off-by-one error in the starting position
+  - Treating the first term 0 as repeated
+  hints:
+    rephrase: Write the positions 1, 2, 3, 4, 5 beside the values and see what single operation on the
+      position produces each value.
+    smaller_case: Look at positions 1 to 4 only.
+    key_idea: Each value appears in two consecutive positions, so halve the position and round down.
+  check: sum(sp.floor(sp.Rational(m,2))-v for m,v in zip(range(1,8),[0,1,1,2,2,3,3]))
+  check_ok: null
+- goal: Deduce a closed form for S(n), the sum of the first n terms.
+  expected: S(n) = floor(n^2/4), which equals k^2 when n = 2k and k^2 + k when n = 2k+1.
+  solution: For n = 2k, the sum is k(k-1) from the paired values j, j for j = 1..k-1, plus k from the
+    final term at position 2k, giving k^2. For n = 2k+1, add the term at position 2k+1, which equals k,
+    to get k^2 + k. Both cases agree with floor(n^2/4).
+  common_errors:
+  - Computing S(n) for only even n and generalising wrongly
+  - Adding one term too few or too many
+  - Misreading floor(n^2/4) as n^2/4 with no floor for odd n
+  hints:
+    rephrase: Split the sum into even and odd n and compute small cases to find the pattern.
+    smaller_case: Compute S(1), S(2), S(3), S(4) by summing the terms directly.
+    key_idea: Pair up the terms with equal values and count the pairs. Then compare the result with (n^2)/4
+      using rounding down.
+  check: sum(sp.floor(sp.Rational(m,2)) for m in range(1,11)) - sp.floor(sp.Rational(100,4))
+  check_ok: null
+- goal: Prove that S(s+t) - S(s-t) = st for positive integers s > t.
+  expected: S(s+t) - S(s-t) = floor((s+t)^2/4) - floor((s-t)^2/4). Since (s+t)^2 - (s-t)^2 = 4st, the
+    two squares have the same remainder mod 4, so the floors differ by exactly (4st)/4 = st.
+  solution: Using S(n) = floor(n^2/4), S(s+t) - S(s-t) = floor((s+t)^2/4) - floor((s-t)^2/4). Write a
+    = (s+t)^2 and b = (s-t)^2. Then a - b = 4st, which is divisible by 4, so a and b leave the same remainder
+    when divided by 4. Writing a = 4q + r and b = 4q' + r with the same r gives floor(a/4) - floor(b/4)
+    = q - q' = (a-b)/4 = st. Since s > t, s - t >= 1, so S(s-t) is defined.
+  common_errors:
+  - Forgetting to justify that the two squares have the same remainder mod 4
+  - Using S(n) = n^2/4 without the floor and getting a non-integer result
+  - Expanding incorrectly, e.g. getting (s+t)^2 - (s-t)^2 = 2st
+  hints:
+    rephrase: Substitute your closed form for S(n) at both arguments and simplify the difference of the
+      two squares.
+    smaller_case: Take s = 3 and t = 1 and compute S(4) - S(2) using the formula.
+    key_idea: Compare the two squares modulo 4. Their difference is a multiple of 4, which controls the
+      difference of their floors.
+  check: sp.floor(sp.Rational(49,4)) - sp.floor(sp.Rational(9,4)) - 5*2
+  check_ok: null
+extensions:
+  '3':
+  - Check S(n) = floor(n^2/4) for n = 1 to 6 by direct summation, then use the identity to find S(7) -
+    S(3) without listing terms.
+  - Find a symmetric closed form for S(s+t)+S(s-t) and compare it with the difference identity.
+  '4':
+  - Use the identity S(s+t) - S(s-t) = st to compute S(10) - S(4) without listing terms.
+  - Explain why the condition s > t is needed for S(s-t) to be defined in this setting.
+  '5':
+  - Prove S(n) = floor(n^2/4) by induction on n using the recurrence S(n) = S(n-1) + floor(n/2).
+  - Prove the difference identity by a second method that uses the even and odd cases separately.
+spoken_vocab:
+- S of n
+- floor of n squared over four
+- s plus t
+- s minus t
+- s times t
+- a sub m
+- floor of m over two
+- sum of the first n terms
+- staircase sequence
+- difference of two sums
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Staircase sum closes to floor(n²/4); parity argument gives the difference identity.
+  priority: 81
+  rank: 233
+  tier: B
+  category: tbo
+  d10: 5.0
+  real: 4.8
+  by: deepseek-v4.1-flash-free
+tags:
+- sequences_and_series
+- proof
+- algebra_and_functions

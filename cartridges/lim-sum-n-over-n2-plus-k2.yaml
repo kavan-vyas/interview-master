@@ -1,0 +1,73 @@
+id: lim-sum-n-over-n2-plus-k2
+title: Limit of a sum via Riemann sums
+topics:
+- limits
+- Riemann sums
+- definite integrals
+warmup: true
+answer_source: pdf
+statement: Find $\lim_{n\to\infty}\sum_{k=1}^{n}\frac{n}{n^2+k^2}$.
+stages:
+- goal: Rewrite the sum as a Riemann sum for a suitable function on $[0,1]$.
+  expected: $\sum_{k=1}^{n}\frac{n}{n^2+k^2}=\frac{1}{n}\sum_{k=1}^{n}\frac{1}{1+(k/n)^2}$, a right-endpoint
+    Riemann sum for $f(x)=\frac{1}{1+x^2}$ on $[0,1]$ with $\Delta x=\frac{1}{n}$ and sample points $x_k=k/n$.
+  solution: 'Divide top and bottom by $n^2$: $\frac{n}{n^2+k^2}=\frac{1}{n}\cdot\frac{1}{1+(k/n)^2}$.
+    Summing over $k$ gives a right-endpoint Riemann sum with $\Delta x=1/n$ and sample points $k/n\in[0,1]$.'
+  common_errors:
+  - Forgetting the factor $1/n$, so the sum looks like it has no width term
+  - Treating $n$ in the numerator as if it were a function of $k/n$
+  hints:
+    rephrase: Divide the top and bottom of each term by a suitable power of $n$. Which part should become
+      a function of $k/n$?
+    smaller_case: Write out the terms for $n=2$ and divide each one by $n^2$.
+    key_idea: A sum of the form $\frac{1}{n}\sum g(k/n)$ is a Riemann sum for $\int_0^1 g(x)\,dx$.
+  check: simplify(n/(n**2+k**2) - (1/n)/(1+(k/n)**2))
+  check_ok: true
+- goal: Evaluate the limit by identifying and computing the integral.
+  expected: $\int_0^1\frac{dx}{1+x^2}=\left[\arctan x\right]_0^1=\frac{\pi}{4}$, so the limit is $\frac{\pi}{4}$.
+  solution: The Riemann sums converge to $\int_0^1\frac{dx}{1+x^2}=\arctan 1-\arctan 0=\frac{\pi}{4}$.
+  common_errors:
+  - Integrating to $\ln(1+x^2)$ instead of $\arctan x$
+  - Taking $\arctan 1=1$ instead of $\pi/4$
+  hints:
+    rephrase: Which standard antiderivative has derivative $\frac{1}{1+x^2}$?
+    smaller_case: Recall the derivative of $\arctan x$ and evaluate it at the endpoints $0$ and $1$.
+    key_idea: Recognise $\frac{1}{1+x^2}$ as the derivative of an inverse trigonometric function.
+  check: simplify(integrate(1/(1+x**2),(x,0,1)) - pi/4)
+  check_ok: true
+extensions:
+  '3':
+  - Evaluate $\lim_{n\to\infty}\sum_{k=1}^{n}\frac{1}{n+k}$ (answer $\ln 2$).
+  '4':
+  - Evaluate $\lim_{n\to\infty}\sum_{k=1}^{n}\frac{n}{(n+k)^2}$ (answer $\frac{1}{2}$).
+  '5':
+  - Evaluate $\lim_{n\to\infty}\frac{1}{n}\sum_{k=1}^{n}\sqrt{\frac{k}{n}}$ (answer $\frac{2}{3}$).
+spoken_vocab:
+- limit
+- n tends to infinity
+- sum from k equals 1 to n
+- n over n squared plus k squared
+- Riemann sum
+- integral from 0 to 1
+- d x over 1 plus x squared
+- arctan
+- pi over 4
+source: jaymin/Jaymin Interview (1).pdf#p41
+verified: false
+rating:
+  quality: 5
+  difficulty: 6
+  parts: 2
+  minutes: 6
+  flags: []
+  tagline: Neat Riemann-sum-to-integral trick, but a single idea.
+  priority: 70
+  rank: 365
+  tier: C
+  category: jaymin
+  d10: 4.5
+  real: 4.0
+  by: haiku
+tags:
+- limits_and_approximation
+- integration

@@ -1,0 +1,86 @@
+id: kclms-specimen-q1-boys-girls-ratio
+title: Boys and girls ratio before and after October changes
+topics:
+- linear equations
+- ratio
+- word problems
+warmup: true
+answer_source: pdf
+statement: In September, there were four times as many boys as girls in a class. In October, three new
+  girls joined the class and two of the boys left. Then there were only three times as many boys as girls
+  in the class. How many boys and girls were there in the class in September?
+stages:
+- goal: Set up and solve an equation for the number of girls in September.
+  expected: 11 girls in September.
+  solution: Let g be the number of girls in September, so there were 4g boys. In October there are 4g
+    - 2 boys and g + 3 girls. The ratio condition gives 4g - 2 = 3(g + 3), so 4g - 2 = 3g + 9 and g =
+    11.
+  common_errors:
+  - Adding 2 to the boys instead of subtracting, giving 4g + 2
+  - Forgetting that the three new girls raise the girl count to g + 3
+  - Setting up the ratio the wrong way round, boys = 3 times girls in September instead of October
+  hints:
+    rephrase: Track the number of boys and the number of girls separately, before and after the October
+      changes.
+    smaller_case: Pick a September girl count and work out what the October numbers would be from it.
+    key_idea: Write the 'three times as many boys' condition as an equation using the October counts.
+  check: solve(Eq(4*g - 2, 3*(g + 3)), g)[0] - 11
+  check_ok: true
+- goal: Find the number of boys in September and state both September numbers.
+  expected: 44 boys and 11 girls in September.
+  solution: 'Boys in September = 4g = 4 x 11 = 44. Check: October has 42 boys and 14 girls, and 42 = 3
+    x 14.'
+  common_errors:
+  - Giving the October boy count (42) as the September answer
+  - Reporting only the number of girls and not the boys
+  hints:
+    rephrase: The question asks for both September numbers, so go back to your expression for boys.
+    smaller_case: Check your answer by recounting the October class from your September numbers.
+    key_idea: Substitute the value of g back into the expression for September boys.
+  check: 4*11 - 44
+  check_ok: true
+extensions:
+  '3':
+  - Repeat the problem with 'five times as many boys' in September and 'twice as many boys' in October.
+  - Two girls leave in October and three boys join. The ratio then becomes 2:1. Find the September numbers.
+  '4':
+  - Set up a system if the class also had a fixed total number of pupils at all times.
+  - A school has three classes, each with the same boy-to-girl ratio change. Find a general formula for
+    the September girl count.
+  '5':
+  - Generalise to find conditions on the four multiplier numbers so that the September numbers are whole
+    numbers.
+  - Explain why the answer is unique and when a negative or zero count would arise.
+spoken_vocab:
+- g
+- four times
+- three times
+- minus two
+- plus three
+- equals
+- boys
+- girls
+- September
+- October
+- forty four
+- eleven
+- fifty five
+source: kclms/kclms-specimen-questions-2.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 2
+  parts: 2
+  minutes: 3
+  flags:
+  - trivial
+  tagline: Two-line linear equation word problem with little room for extension.
+  priority: 27
+  rank: 640
+  tier: D
+  category: kclms
+  d10: 1.5
+  real: 2.5
+  by: haiku
+tags:
+- algebra_and_functions

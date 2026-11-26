@@ -1,0 +1,107 @@
+id: broken-stick-triangle
+title: Broken stick forms a triangle
+topics:
+- probability
+- geometry
+- geometric probability
+warmup: false
+answer_source: pdf
+statement: A stick of length $1$ is broken at two points, chosen independently and uniformly at random
+  along its length. What is the probability that the three pieces can be arranged to form a triangle?
+stages:
+- goal: State the condition on the three piece lengths for them to form a triangle.
+  expected: Three lengths summing to $1$ form a triangle exactly when each length is less than $\frac12$.
+  solution: A triangle needs each side strictly shorter than the sum of the other two. With perimeter
+    $1$, that means each side is less than $\frac12$. Conversely, if each piece is below $\frac12$, the
+    triangle inequalities hold.
+  common_errors:
+  - Stating the condition as each piece being at least $\frac12$.
+  - Forgetting that the condition must hold for all three pieces, not just the longest one.
+  - Using a strict versus non-strict inequality loosely; the boundary has probability zero, so it does
+    not matter here.
+  hints:
+    rephrase: Think about the triangle inequality. What must be true of each side compared with the other
+      two, given the total length?
+    smaller_case: Take three sides of lengths 0.4, 0.4, 0.2. Do they form a triangle? Now try 0.6, 0.3,
+      0.1.
+    key_idea: The sides sum to a fixed total, so compare each side with half of that total.
+  check: null
+- goal: Set up the sample space and find the area of the favourable region for the cut points $X<Y$.
+  expected: Under the ordering $X<Y$, the favourable region is $X<\frac12$, $Y>\frac12$, $Y-X<\frac12$,
+    which has area $\frac18$. The half-square $X<Y$ has area $\frac12$.
+  solution: Let $X<Y$ be the two cut points, with pieces $X$, $Y-X$, and $1-Y$. The triangle conditions
+    are $X<\frac12$, $Y-X<\frac12$, and $1-Y<\frac12$, i.e. $Y>\frac12$. For $X$ in $[0,\frac12]$, $Y$
+    ranges over $[\frac12, X+\frac12]$, a length of $X$. So the area is $\int_0^{1/2} X\,dX=\frac18$.
+  common_errors:
+  - Forgetting the ordering symmetry and integrating over the full square with the wrong normalisation.
+  - Writing the constraint $Y<X+\frac12$ as $Y>X+\frac12$.
+  - Confusing the area of the favourable region with the probability before dividing by the half-square
+    area.
+  hints:
+    rephrase: Name the two cut points in increasing order. Which of the three pieces could be too long,
+      and what must each cut satisfy to prevent that?
+    smaller_case: Suppose the first cut is at $0.3$. Which values of the second cut give a triangle?
+    key_idea: Use symmetry to restrict to $X<Y$, then describe the allowed $Y$ values for each $X$ and
+      integrate the length.
+  check: integrate(x,(x,0,Rational(1,2))) - Rational(1,8)
+  check_ok: true
+- goal: Give the probability that the three pieces form a triangle.
+  expected: $\frac14$
+  solution: The ordered-cut region has area $\frac18$ within the half-square of area $\frac12$, so the
+    probability is $\frac{1/8}{1/2}=\frac14$.
+  common_errors:
+  - Dividing by the full unit square area $1$ instead of the half-square area $\frac12$, giving $\frac18$.
+  - Forgetting to divide by the favourable area ratio after the symmetry reduction.
+  - Reporting $\frac12$ by miscounting the favourable region.
+  hints:
+    rephrase: Compare the favourable area with the area of the region you actually sampled from after
+      using symmetry.
+    smaller_case: If you only restricted to the half where $X<Y$, what total area should you divide by?
+    key_idea: Probability is favourable area divided by the area of the restricted sample space.
+  check: Rational(1,8)/Rational(1,2) - Rational(1,4)
+  check_ok: true
+extensions:
+  '3':
+  - Break the stick at one uniform random point, then break the longer piece at a uniform random point.
+    What is the probability of a triangle?
+  - What is the probability that the three pieces form a right-angled triangle?
+  '4':
+  - Repeat the problem with the stick broken into four pieces by three uniform cuts. What is the probability
+    that the pieces can form a quadrilateral?
+  '5':
+  - For $n$ uniform cuts giving $n+1$ pieces, what is the probability that the pieces can form a polygon?
+spoken_vocab:
+- stick
+- length one
+- break
+- two points
+- uniform
+- independent
+- triangle
+- one half
+- one quarter
+- X less than Y
+- Y minus X
+- integral from zero to one half
+- half square
+- probability
+source: jaymin/Jaymin Interview (1).pdf#p33
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: Classic geometric probability with clean 1/4 answer; symmetry discussion possible.
+  priority: 86
+  rank: 153
+  tier: B
+  category: jaymin
+  d10: 6.0
+  real: 8.0
+  by: deepseek-v4.1-flash-free
+tags:
+- probability
+- geometry
+- inequalities

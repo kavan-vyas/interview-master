@@ -1,0 +1,104 @@
+id: x-to-the-x-and-x-to-one-over-x
+title: Sketch f(x)=x^x and y=x^{1/x}
+topics:
+- logarithmic differentiation
+- stationary points
+- curve sketching
+- limits
+- exponential and logarithm
+warmup: false
+answer_source: pdf
+statement: (a) Find $f'(x)$ when $f(x)=x^x$. (b) Hence sketch the graph of $f(x)$ for $x>0$. (c) Sketch
+  the graph of $y=x^{1/x}$.
+stages:
+- goal: Find $f'(x)$ for $f(x)=x^x$ using logarithmic differentiation.
+  expected: $f'(x)=x^x(\ln x+1)$.
+  solution: 'Take logs: $\ln f=x\ln x$. Differentiate implicitly: $\dfrac{f''}{f}=\ln x+1$. Multiply by
+    $f=x^x$ to get $f''(x)=x^x(\ln x+1)$.'
+  common_errors:
+  - Differentiating as if $x^x$ were a power function $nx^{n-1}$ with $n=x$.
+  - Dropping the $+1$ from the product rule on $x\ln x$.
+  - Writing $f'(x)=x\cdot x^{x-1}$ and forgetting the logarithmic term.
+  hints:
+    rephrase: Take the natural logarithm of both sides. Which rule do you need to differentiate $x\ln
+      x$?
+    smaller_case: Differentiate $x^2$ and $2^x$ separately, then consider how $x^x$ combines them.
+    key_idea: Logarithmic differentiation turns a variable exponent into a product that the product rule
+      can handle.
+  check: simplify(diff(x**x, x) - x**x*(log(x)+1))
+  check_ok: true
+- goal: Find the stationary point of $f(x)=x^x$ for $x>0$, decide whether it is a maximum or minimum,
+    and find the limit as $x\to0^+$.
+  expected: Stationary point at $x=1/e$, where $f(1/e)=e^{-1/e}\approx0.692$. This is a minimum, since
+    $f'<0$ for $0<x<1/e$ and $f'>0$ for $x>1/e$. As $x\to0^+$, $f(x)\to1$, and $f'(x)\to-\infty$ there.
+    As $x\to\infty$, $f(x)\to\infty$.
+  solution: 'Solve $f''(x)=0$: $\ln x+1=0$, so $x=1/e$. For $x<1/e$, $\ln x+1<0$ so $f''<0$. For $x>1/e$,
+    $f''>0$. So the stationary point is a minimum with value $f(1/e)=(1/e)^{1/e}=e^{-1/e}$. As $x\to0^+$,
+    $x\ln x\to0$, so $f\to e^0=1$.'
+  common_errors:
+  - Claiming the minimum is at $x=1$ or $x=0$.
+  - Forgetting that $x^x\to1$ as $x\to0^+$, not $0$.
+  - Finding the stationary point correctly but not checking its sign to decide min or max.
+  hints:
+    rephrase: Where is $\ln x+1$ equal to zero? What is the sign of $f'$ on either side?
+    smaller_case: Evaluate $f$ at $x=1/2$, $x=1$ and $x=2$ to see the trend.
+    key_idea: Use the sign pattern of $f'$, not just the stationary point, to classify it.
+  check: log(exp(-1)) + 1
+  check_ok: true
+- goal: Sketch $y=x^{1/x}$ for $x>0$, finding its maximum, its limits, and where it meets $y=1$.
+  expected: Maximum at $x=e$, with value $y=e^{1/e}\approx1.444$. $y=1$ exactly when $x=1$. As $x\to0^+$,
+    $y\to0$. As $x\to\infty$, $y\to1$ from above. The curve is below 1 on $(0,1)$ and above 1 on $(1,\infty)$.
+  solution: 'Take logs: $\ln y=\dfrac{\ln x}{x}$. Differentiate: $\dfrac{d}{dx}\left(\dfrac{\ln x}{x}\right)=\dfrac{1-\ln
+    x}{x^2}$. This is zero at $x=e$, positive for $x<e$, negative for $x>e$, so $x=e$ gives the maximum
+    $y=e^{1/e}$. $\ln y=0$ gives $x=1$. Since $\ln x/x\to-\infty$ as $x\to0^+$, $y\to0$. Since $\ln x/x\to0$
+    as $x\to\infty$, $y\to1$.'
+  common_errors:
+  - Assuming the maximum is at $x=1$ because the curve passes through $(1,1)$.
+  - Forgetting that $x^{1/x}\to0$ as $x\to0^+$.
+  - Using the wrong derivative of $\ln x/x$, such as $1/x$ instead of $(1-\ln x)/x^2$.
+  hints:
+    rephrase: Take logs and differentiate $\ln x/x$ with the quotient rule.
+    smaller_case: Evaluate $y$ at $x=1$, $x=2$, $x=3$ to find where it is largest.
+    key_idea: Maximising $\ln y$ is equivalent to maximising $y$, which is easier to handle with the quotient
+      rule.
+  check: diff(log(x)/x, x).subs(x, E)
+  check_ok: true
+extensions:
+  '3':
+  - Find the minimum of $y=x^{2x}$ for $x>0$ and sketch the curve.
+  '4':
+  - Show without a calculator that $e^\pi>\pi^e$.
+  '5':
+  - For which $c>0$ does $x^{1/x}=c$ have exactly two positive solutions?
+spoken_vocab:
+- f of x equals x to the power of x
+- f prime of x
+- natural log of x plus one
+- x to the power of one over x
+- stationary point
+- minimum
+- maximum
+- limit as x tends to zero from above
+- e to the power of minus one over e
+- quotient rule
+- logarithmic differentiation
+source: waleed/Curve Sketching Questions - Waleed.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 3
+  minutes: 12
+  flags:
+  - needs_diagram
+  tagline: Standard log-differentiation sketches; solid but overlaps the x^x curve problem.
+  priority: 63
+  rank: 407
+  tier: C
+  category: waleed
+  d10: 5.0
+  real: 6.0
+  by: haiku
+tags:
+- curve_sketching
+- differentiation

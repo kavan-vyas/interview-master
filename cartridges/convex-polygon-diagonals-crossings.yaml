@@ -1,0 +1,89 @@
+id: convex-polygon-diagonals-crossings
+title: Diagonals and crossing points of a convex n-gon
+topics:
+- combinatorics
+- counting
+- polygons
+- binomial coefficients
+warmup: false
+answer_source: pdf
+statement: A convex $n$-gon has all its diagonals drawn, and no three diagonals meet at a single interior
+  point. How many diagonals are there, and how many crossing points inside the polygon?
+stages:
+- goal: Count the diagonals of the convex $n$-gon.
+  expected: $\frac{1}{2}n(n-3)$
+  solution: 'Every pair of vertices gives a segment, so there are $\binom{n}{2}$ segments. Removing the
+    $n$ sides leaves the diagonals: $\binom{n}{2}-n=\frac{n(n-1)}{2}-n=\frac{n(n-3)}{2}$. Equivalently,
+    each vertex joins to $n-3$ non-adjacent vertices, and each diagonal is counted at both of its ends,
+    so the total is $\frac{n(n-3)}{2}$.'
+  common_errors:
+  - Forgetting to halve, giving $n(n-3)$ (each diagonal counted from both ends).
+  - Subtracting the wrong number of sides, or using $\binom{n}{2}$ alone, which includes the sides.
+  - Off-by-one in the non-adjacent count, e.g. $n-2$ instead of $n-3$.
+  hints:
+    rephrase: Every pair of vertices gives a segment. Which of those segments are not diagonals?
+    smaller_case: Take a pentagon. How many diagonals leave one vertex, and how do you avoid counting
+      each diagonal twice?
+    key_idea: Count from the vertices' side, then correct for each diagonal being seen from both of its
+      ends.
+  check: expand_func(binomial(n,2)) - n - n*(n-3)/2
+  check_ok: true
+- goal: Count the interior crossing points, assuming no three diagonals meet at one interior point.
+  expected: $\binom{n}{4}=\frac{n(n-1)(n-2)(n-3)}{24}$
+  solution: Two diagonals cross inside the polygon exactly when their four endpoints are distinct and
+    interlace around the boundary. Any four vertices of a convex polygon form a convex quadrilateral,
+    whose two diagonals cross exactly once inside, and these are the only diagonals among those four vertices.
+    So each 4-subset of vertices gives exactly one crossing. Conversely, each crossing comes from exactly
+    one 4-subset, since no three diagonals are concurrent, so each crossing is a single pair of diagonals.
+    Hence the number of crossings is $\binom{n}{4}$.
+  common_errors:
+  - Using $\binom{n}{2}$ or $\binom{n}{3}$ instead of $\binom{n}{4}$.
+  - Counting all pairs of diagonals, including pairs that share an endpoint and so do not cross inside.
+  - Assuming a 4-subset can give more than one crossing, or missing that each 4-subset gives exactly one.
+  hints:
+    rephrase: Find a small set of vertices that by itself forces exactly one crossing. What is the minimum
+      size of such a set?
+    smaller_case: Take a convex quadrilateral. How many interior crossings do its two diagonals make,
+      and does any other diagonal of the polygon play a role there?
+    key_idea: Ask which choice of vertices determines a crossing, and whether each crossing corresponds
+      to exactly one such choice.
+  check: expand_func(binomial(n,4)) - n*(n-1)*(n-2)*(n-3)/24
+  check_ok: true
+extensions:
+  '3':
+  - How many regions do the diagonals divide the polygon into, if no three diagonals are concurrent?
+  '4':
+  - What changes if three diagonals are allowed to meet at a single interior point?
+  '5':
+  - Count the triangles whose sides lie along sides or diagonals of the polygon, under the same no-three-concurrent
+    assumption.
+spoken_vocab:
+- convex n-gon
+- n
+- diagonals
+- crossing points
+- n choose 2
+- n choose 4
+- n times n minus 3 over 2
+- no three diagonals meet at a single interior point
+- vertices
+- sides
+source: jaymin/Jaymin Interview (1).pdf#p25
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 2
+  minutes: 10
+  flags: []
+  tagline: Diagonal count is easy, but seeing crossings as four-vertex choices is a good insight.
+  priority: 90
+  rank: 137
+  tier: A
+  category: jaymin
+  d10: 4.0
+  real: 6.5
+  by: deepseek-v4.1-flash-free
+tags:
+- combinatorics
+- geometry

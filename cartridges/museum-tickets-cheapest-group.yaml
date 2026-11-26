@@ -1,0 +1,107 @@
+id: museum-tickets-cheapest-group
+title: Cheapest museum tickets for a mixed group
+topics:
+- optimisation
+- integer reasoning
+- costs
+- case analysis
+warmup: false
+answer_source: pdf
+statement: A museum charges £8 for an adult ticket and £5 for a child ticket. A family ticket, which admits
+  exactly 2 adults and 2 children, costs £20. Tickets for under-3s are free. A group of 3 adults, 5 children
+  and two under-3s visits the museum. Tickets may be mixed in any way, and a family ticket may be used
+  for fewer people than it allows. What is the cheapest total cost for the group?
+stages:
+- goal: Find the cost if no family tickets are bought.
+  expected: £49
+  solution: Three adult tickets cost 3 x £8 = £24. Five child tickets cost 5 x £5 = £25. The two under-3s
+    are free. Total = £24 + £25 = £49.
+  common_errors:
+  - Charging for the under-3s
+  - Miscounting the children
+  - Including a family ticket in a case with no family tickets
+  hints:
+    rephrase: Price each type of person separately, and remember which people need no ticket.
+    smaller_case: What would one adult and two children cost with only single tickets?
+    key_idea: Work out the cost for each ticket type separately, then add the totals.
+  check: ans - 49
+  check_ok: false
+- goal: Find the cheapest cost when exactly one family ticket is used.
+  expected: £43
+  solution: One family ticket covers 2 adults and 2 children for £20. The remaining group is 1 adult and
+    3 children, costing £8 + 3 x £5 = £23. Total = £20 + £23 = £43.
+  common_errors:
+  - Using the family ticket for only 1 adult and 2 children, which leaves a more expensive remainder
+  - Forgetting to price the people the family ticket does not cover
+  - Assuming a family ticket must cover four people to be used
+  hints:
+    rephrase: Which people does the family ticket cover, and who is left over?
+    smaller_case: Compare a family ticket for 2 adults and 2 children with buying single tickets for the
+      same four people.
+    key_idea: A family ticket can cover up to 2 adults and 2 children. Check whether using it for fewer
+      people could ever be cheaper, and price whoever is left separately.
+  check: ans - 43
+  check_ok: false
+- goal: Show whether using two family tickets is cheaper, and state the cheapest total.
+  expected: £43 is the cheapest total. Two family tickets would cost £45.
+  solution: Two family tickets cost £40 and cover 4 adults and 4 children. The group needs only 3 adults
+    and 5 children, so one more child ticket is needed at £5. Total = £40 + £5 = £45, which is more than
+    £43. Three or more family tickets cost at least £60. So the cheapest total is £43.
+  common_errors:
+  - Stopping at the first option found without checking the others
+  - Forgetting the extra child ticket needed with two family tickets
+  - Assuming two family tickets cover everyone exactly
+  hints:
+    rephrase: How many adults and children do two family tickets cover, and does the group need all of
+      them?
+    smaller_case: What would it cost to cover the group with one family ticket plus the single tickets
+      for the people it does not cover?
+    key_idea: Enumerate the number of family tickets, 0, 1, 2 and so on. For each, price the remaining
+      people individually, and stop once more family tickets cannot reduce the cost.
+  check: ans - 43
+  check_ok: false
+extensions:
+  '3':
+  - Redo the question for a group of 4 adults and 5 children with no under-3s. What is the cheapest total
+    cost?
+  '4':
+  - A family ticket used for 1 adult and 2 children costs £20. Explain whether this is ever worth buying
+    compared with single tickets at the original prices.
+  '5':
+  - Formulate the problem as an integer linear programme. Minimise 20f + 8a + 5c, where f, a and c are
+    the numbers of family, adult and child tickets, subject to the coverage constraints. Explain why an
+    optimal solution has f = 1.
+spoken_vocab:
+- family ticket
+- adult ticket
+- child ticket
+- under three
+- forty-nine pounds
+- forty-three pounds
+- forty-five pounds
+- three adults
+- five children
+- two under-threes
+- pounds sterling
+- cheapest total
+- eight pounds
+- five pounds
+- twenty pounds
+source: kclms/kclms-specimen-questions-3.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 3
+  parts: 3
+  minutes: 7
+  flags: []
+  tagline: Practical cost-minimisation casework; under-3s and partial family tickets add useful traps.
+  priority: 61
+  rank: 446
+  tier: C
+  category: kclms
+  d10: 2.5
+  real: 4.0
+  by: haiku
+tags:
+- algebra_and_functions

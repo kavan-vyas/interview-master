@@ -1,0 +1,139 @@
+id: planar-graph-bounds
+title: Planarity and Edge Bounds
+topics:
+- Euler's formula
+- handshaking lemma
+- planar graphs
+- K5 and K3,3
+- degeneracy
+warmup: false
+answer_source: pdf
+statement: 'A graph is simple if it has no loops and no repeated edges, and planar if it can be drawn
+  in the plane with no edges crossing. Assume Euler''s formula: a connected planar graph with $V$ vertices,
+  $E$ edges and $F$ faces (including the outer face) satisfies $V-E+F=2$. (i) Show that in any graph the
+  sum of the degrees is $2E$, and deduce that the number of odd-degree vertices is even. (ii) Show that
+  a connected simple planar graph with $V\ge3$ satisfies $E\le3V-6$. (iii) Deduce that $K_5$ is not planar.
+  (iv) Show that the three-houses-and-three-utilities graph $K_{3,3}$ is not planar. (v) Show that every
+  simple planar graph has a vertex of degree at most $5$.'
+stages:
+- goal: 'Part (i): show the degree sum is $2E$ and deduce that the number of odd-degree vertices is even.'
+  expected: The degree sum equals $2E$. Since $2E$ is even and the even-degree vertices contribute an
+    even total, the odd-degree vertices contribute an even total, so there is an even number of them.
+  solution: Each edge contributes 1 to the degree of each of its two endpoints, so the total degree is
+    $2E$. Even-degree vertices contribute an even amount to this total. Therefore the odd-degree vertices
+    contribute an even total, which forces an even number of them.
+  common_errors:
+  - Counting each edge only once
+  - Concluding parity without noting that even-degree vertices contribute evenly
+  hints:
+    rephrase: 'Count edge-ends: how many ends does each edge have, and where do they land?'
+    smaller_case: Take a triangle. Compare its degree sum with its number of edges.
+    key_idea: Parity of the total is determined by the odd-degree vertices alone.
+  check: (2 + 2 + 2) - 2*3
+  check_ok: true
+- goal: 'Part (ii): show $E\le3V-6$ for a connected simple planar graph with $V\ge3$.'
+  expected: Each face has boundary length at least 3, so $3F\le2E$. Substituting $F=2-V+E$ gives $E\le3V-6$.
+  solution: Count the sides of faces around their boundaries. Each edge has two sides, so the total boundary
+    length is at most $2E$ when we count each edge side once. Since the graph is simple with at least
+    three vertices, every face boundary has length at least 3, so the total is at least $3F$. Hence $3F\le2E$.
+    Substituting $F=2-V+E$ gives $3(2-V+E)\le2E$, so $E\le3V-6$.
+  common_errors:
+  - Using a face length of 2 or 1, which is impossible for a simple graph with at least three vertices
+  - Substituting into Euler's formula with the wrong sign
+  hints:
+    rephrase: Count the sides of faces. How many sides does each edge contribute, and how many does each
+      face need?
+    smaller_case: Take $K_4$, which has 4 faces of length 3 each (counting the sides). Compare the total
+      with the number of edges.
+    key_idea: Count the total boundary length in two ways and combine with Euler's formula.
+  check: 3*4 - 6 - 6
+  check_ok: true
+- goal: 'Part (iii): deduce that $K_5$ is not planar.'
+  expected: $K_5$ has $V=5$ and $E=10$, but planar graphs need $E\le9$, so $K_5$ is not planar.
+  solution: The bound from part (ii) gives $E\le3\cdot5-6=9$ for a connected simple planar graph with
+    five vertices. $K_5$ is connected, simple, has $V=5\ge3$ and $E=10$. Since $10>9$, $K_5$ is not planar.
+  common_errors:
+  - Miscounting the edges of $K_5$ as 5 or 9
+  - Applying the bound without checking that the graph is connected and simple
+  hints:
+    rephrase: How many edges does $K_5$ have, and what is the largest number allowed for a planar graph
+      with five vertices?
+    smaller_case: Compute the largest number of edges allowed for a planar graph with 4 vertices and compare
+      it with $K_4$.
+    key_idea: Compare the number of edges of $K_5$ with the bound from part (ii).
+  check: 3*5 - 6 - 9
+  check_ok: true
+- goal: 'Part (iv): show that $K_{3,3}$ is not planar.'
+  expected: $K_{3,3}$ has no triangles, so each face has length at least 4, giving $F\le4$. But Euler's
+    formula requires $F=2-V+E=5$. Contradiction.
+  solution: $K_{3,3}$ has $V=6$ and $E=9$. It is bipartite, so it has no odd cycles, and in particular
+    no triangles. Every face boundary therefore has length at least 4, so $4F\le2E=18$, giving $F\le4$.
+    A planar drawing would need $F=2-V+E=2-6+9=5$ faces. This is a contradiction, so $K_{3,3}$ is not
+    planar. (The bound $E\le3V-6=12$ from part (ii) alone is not enough here.)
+  common_errors:
+  - Using only the bound from part (ii), which gives $9\le12$ and says nothing
+  - Claiming that a 4-cycle face is impossible without justification
+  hints:
+    rephrase: Model the houses and utilities as a graph. Does this graph contain any triangles?
+    smaller_case: Look at a 4-cycle in $K_{3,3}$. Can a face of a drawing be bounded by only 3 edges?
+    key_idea: A bipartite graph has no odd cycles, so faces must be longer than triangles.
+  check: 2 - 6 + 9 - 5
+  check_ok: true
+- goal: 'Part (v): show that every simple planar graph has a vertex of degree at most 5.'
+  expected: Treat components separately. Components with at most two vertices have all degrees at most
+    1. For a component with $V\ge3$ vertices, the degree sum is less than $6V$, so some vertex has degree
+    at most 5.
+  solution: Consider a connected component with $V\ge3$ vertices and $E$ edges. Part (ii) gives $E\le3V-6$,
+    so its degree sum is $2E\le6V-12<6V$. So the average degree is less than 6, and some vertex has degree
+    at most 5. A component with one or two vertices has all degrees at most 1. So every simple planar
+    graph has a vertex of degree at most 5.
+  common_errors:
+  - Applying the bound to a disconnected graph without splitting into components
+  - Forgetting small components with one or two vertices
+  hints:
+    rephrase: Why does an average less than 6 force some vertex to have degree at most 5?
+    smaller_case: Check the icosahedron, a planar graph with 12 vertices and 30 edges. What are its degrees?
+    key_idea: If every degree were at least 6, the degree sum would be at least $6V$, which contradicts
+      part (ii).
+  check: 2*30 - (6*12 - 12)
+  check_ok: true
+extensions:
+  '3':
+  - Show that a simple planar graph with $V\ge3$ and no triangles satisfies $E\le2V-4$.
+  '4':
+  - Prove that every simple planar graph is 6-colourable, using part (v) and induction on the number of
+    vertices.
+  '5':
+  - Show that the Petersen graph, which has $V=10$, $E=15$ and no cycles of length less than 5, is not
+    planar.
+spoken_vocab:
+- planar
+- simple graph
+- degree
+- handshaking lemma
+- Euler's formula
+- vertices
+- edges
+- faces
+- K sub five
+- K sub three comma three
+- three houses and three utilities
+- odd-degree vertices
+- bipartite
+- triangle
+- average degree
+- at most five
+- minus six
+- three V minus six
+source: jaymin/Jaymin Interview (1).pdf#p65
+verified: false
+rating:
+  score: 9
+  difficulty: 4
+  parts: 5
+  minutes: 35
+  flags: []
+  tagline: Euler-based proof chain from degree sums to K5 and K3,3 non-planarity.
+  priority: 130
+  rank: 11
+  tier: S

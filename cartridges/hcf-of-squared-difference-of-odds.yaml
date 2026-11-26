@@ -1,0 +1,90 @@
+id: hcf-of-squared-difference-of-odds
+title: Highest common factor of the squared difference of two odd numbers
+topics:
+- number theory
+- divisibility
+- highest common factor
+warmup: true
+answer_source: generated
+statement: What is the highest common factor of the difference of two odd numbers squared?
+stages:
+- goal: Show that the difference of two odd numbers is even.
+  expected: With $a=2m+1$ and $b=2n+1$, $a-b=2(m-n)$, which is even.
+  solution: $a-b=(2m+1)-(2n+1)=2m-2n=2(m-n)$. Since $m-n$ is an integer, $a-b$ is even.
+  common_errors:
+  - Assuming the difference of two odd numbers is odd.
+  - Treating the two odd numbers as the same number.
+  hints:
+    rephrase: What happens to the odd part of each number when you subtract them?
+    smaller_case: Subtract 5 from 9 and decide whether the result is even or odd.
+    key_idea: Write both odd numbers as 2 times something plus 1, then subtract.
+  check: expand((2*m+1) - (2*n+1) - 2*(m - n))
+  check_ok: true
+- goal: Show that the square of the difference is always divisible by 4.
+  expected: $(a-b)^2=4(m-n)^2$, which is divisible by 4.
+  solution: $(a-b)^2=(2(m-n))^2=4(m-n)^2$. Since $m-n$ is an integer, every value is a multiple of 4.
+  common_errors:
+  - Stating only that the square is even, which misses the factor 4.
+  - Squaring $2(m-n)$ incorrectly as $2(m-n)^2$.
+  hints:
+    rephrase: What is the largest power of 2 that must divide the square?
+    smaller_case: Take a=3 and b=1. Find the difference, square it, and see what divides the result.
+    key_idea: Pull out the factor 2 from the difference before squaring.
+  check: expand((2*(m-n))**2 - 4*(m-n)**2)
+  check_ok: true
+- goal: Find the highest common factor of all possible values of the squared difference.
+  expected: $4$
+  solution: Every value is $4k^2$ for integer $k=m-n$, so 4 divides all of them. With $a=3,b=1$ the value
+    is 4, and with $a=5,b=1$ the value is 16. The highest common factor of 4 and 16 is 4, and no larger
+    number divides 4 itself. So the answer is 4.
+  common_errors:
+  - Answering 2, which divides the difference but not the square.
+  - Answering 16 or 8 by checking only one or two pairs.
+  - Confusing highest common factor with lowest common multiple.
+  hints:
+    rephrase: What is the largest number that divides every value of the squared difference?
+    smaller_case: Compare the squared differences from the pairs (3,1) and (5,1), then find their highest
+      common factor.
+    key_idea: The highest common factor of a set of numbers is the largest whole number that divides all
+      of them.
+  check: gcd(4*1**2, 4*2**2) - 4
+  check_ok: true
+extensions:
+  '3':
+  - Find the highest common factor of the squared differences of two even numbers.
+  - Find the highest common factor of the difference of two odd numbers cubed.
+  '4':
+  - Explain why the answer does not change if you use the absolute value of the difference.
+  '5':
+  - Show that for any two integers a and b, the difference of their squares is always divisible by...
+    use $a^2-b^2=(a-b)(a+b)$ to find the highest common factor over all odd pairs.
+spoken_vocab:
+- two odd numbers
+- a equals two m plus one
+- b equals two n plus one
+- difference
+- squared
+- highest common factor
+- four
+- k equals m minus n
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions (anonymous).pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 3
+  minutes: 5
+  flags:
+  - trivial
+  tagline: Mechanical divisibility argument; the answer is simply 4.
+  priority: 23
+  rank: 661
+  tier: D
+  category: past-interviews
+  d10: 4.0
+  real: 6.5
+  by: deepseek-v4.1-flash-free
+tags:
+- number_theory
+- proof
+- algebra_and_functions

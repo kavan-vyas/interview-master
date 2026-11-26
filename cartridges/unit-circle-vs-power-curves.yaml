@@ -1,0 +1,117 @@
+id: unit-circle-vs-power-curves
+title: Curves x^n+y^n=1 in the first quadrant
+topics:
+- curve sketching
+- inequalities
+- nested regions
+- Fermat's Last Theorem
+- rational points
+warmup: false
+answer_source: generated
+statement: Focusing on the first quadrant, sketch the curve $x^2+y^2=1$. Now sketch $x^3+y^3=1$, using
+  the line $y=x$ to help you. Is the curve $x^3+y^3=1$ inside or outside $x^2+y^2=1$? Now sketch $x^4+y^4=1$
+  and $x^5+y^5=1$. Is there a maximum number of such curves that can be drawn within the square $0\le
+  x\le 1$, $0\le y\le 1$? Use Fermat's Last Theorem to discuss whether rational points can lie on curves
+  of the form $x^n+y^n=1$, $n\ge 3$.
+stages:
+- goal: Decide whether the cubic $x^3+y^3=1$ lies inside or outside the circle $x^2+y^2=1$ in the first
+    quadrant, using the diagonal $y=x$ as a guide.
+  expected: Outside. The cubic meets $y=x$ at $x=2^{-1/3}\approx 0.794$, further out than the circle's
+    $x=1/\sqrt2\approx 0.707$. Apart from the shared points $(1,0)$ and $(0,1)$, every point of the cubic
+    lies strictly outside the circle.
+  solution: 'On $y=x$: the circle gives $2x^2=1$, so $x=1/\sqrt2\approx0.707$. The cubic gives $2x^3=1$,
+    so $x=2^{-1/3}\approx0.794$. For a general argument, take $0\le x,y\le 1$. Then $x^2\ge x^3$ and $y^2\ge
+    y^3$, so $x^2+y^2\ge x^3+y^3=1$. Every point of the cubic therefore lies on or outside the circle.
+    Equality needs $x^2=x^3$ and $y^2=y^3$, i.e. $x,y\in\{0,1\}$, which gives only $(1,0)$ and $(0,1)$.'
+  common_errors:
+  - Saying the cubic is inside because it looks flatter near the axes
+  - Forgetting that the two curves meet at $(1,0)$ and $(0,1)$
+  - Comparing the curves only near the axes and not along the diagonal
+  hints:
+    rephrase: Where does each curve cross the diagonal $y=x$, and which crossing is farther from the origin?
+    smaller_case: For one value $t$ with $0\le t\le1$, compare $t^2$ with $t^3$.
+    key_idea: On $[0,1]$, higher powers are smaller, so compare the terms of $x^2+y^2$ and $x^3+y^3$ one
+      at a time.
+  check: 2**Rational(-1,3) > 1/sqrt(2)
+  check_ok: true
+- goal: Decide whether there is a maximum number of such curves that can be drawn inside the unit square.
+  expected: 'No maximum. There are infinitely many distinct curves, one for each $n\ge1$, and they are
+    nested: each one lies inside the next.'
+  solution: 'For $0\le x\le1$ and $m>n$ we have $x^m\le x^n$. So $x^n+y^n\le1$ implies $x^m+y^m\le1$ on
+    the square, and the region bounded by the $n$-curve sits inside the region bounded by the $m$-curve.
+    The curves are distinct: on the diagonal, $x=y$ gives $x=2^{-1/n}$, which strictly increases with
+    $n$ and tends to $1$. Since $n$ can be any integer $\ge1$, there are infinitely many curves.'
+  common_errors:
+  - Concluding a finite maximum from the four curves in the sketch
+  - Claiming the curves must cross each other inside the square
+  - Forgetting that every curve passes through $(1,0)$ and $(0,1)$, which does not stop them being distinct
+  hints:
+    rephrase: Could you keep drawing curves for $n=6,7,8,\dots$? Does the picture ever stop changing?
+    smaller_case: Compare $x^4$ and $x^5$ for a single $x$ in $[0,1]$.
+    key_idea: For values in $[0,1]$, increasing the exponent shrinks the value, so the curves nest.
+  check: null
+- goal: Use Fermat's Last Theorem to decide which rational points lie on $x^n+y^n=1$ for $n\ge3$ in the
+    first quadrant.
+  expected: Only the trivial points $(1,0)$ and $(0,1)$. There are no rational points with both coordinates
+    positive.
+  solution: Let $x=a/d$ and $y=b/d$ with integers $a,b,d$ and $d\ne0$. Then $x^n+y^n=1$ becomes $a^n+b^n=d^n$.
+    If $a$ and $b$ are both nonzero, this contradicts Fermat's Last Theorem for $n\ge3$. So $ab=0$, which
+    means $x=0$ or $y=0$. Then the other coordinate satisfies $t^n=1$, so $t=1$ on the nonnegative axes.
+    The rational points in the first quadrant are therefore $(1,0)$ and $(0,1)$.
+  common_errors:
+  - Saying there are no rational points at all and forgetting $(1,0)$ and $(0,1)$
+  - Forgetting to clear denominators, so the FLT form $a^n+b^n=d^n$ is never reached
+  - Applying FLT when $a$ or $b$ is zero, where it does not apply
+  hints:
+    rephrase: Write $x$ and $y$ as fractions with a common denominator. What equation do the numerators
+      satisfy?
+    smaller_case: Take $n=3$. If $a^3+b^3=d^3$ with $a,b,d$ integers, what does FLT say about $ab$?
+    key_idea: Clearing denominators turns $x^n+y^n=1$ into an integer equation of the form $a^n+b^n=d^n$.
+  check: null
+extensions:
+  '3':
+  - Show that for $n\ge3$ the only rational points of $x^n+y^n=1$ with $x=0$ or $y=0$ are $(0,\pm1)$ and
+    $(\pm1,0)$, and explain why negative coordinates are allowed here.
+  '4':
+  - Describe what happens to the curves $x^n+y^n=1$ inside the square as $n\to\infty$, and identify the
+    limiting boundary.
+  '5':
+  - Parametrise the rational points on $x^2+y^2=1$ in the first quadrant, then explain why the same method
+    cannot work for $n\ge3$.
+spoken_vocab:
+- x squared plus y squared equals one
+- x cubed plus y cubed equals one
+- x to the power n plus y to the power n equals one
+- first quadrant
+- unit square
+- nested curves
+- Fermat's Last Theorem
+- rational points
+- two to the power minus one third
+- root two
+- greater than or equal to
+- less than or equal to
+- n greater than or equal to three
+- diagonal y equals x
+- clearing denominators
+- a to the n plus b to the n equals d to the n
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 3 (anonymous).pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 5
+  parts: 3
+  minutes: 15
+  flags:
+  - needs_diagram
+  tagline: Nested power curves, diagonal comparison, and FLT on rational points.
+  priority: 83
+  rank: 169
+  tier: B
+  category: past-interviews
+  d10: 5.0
+  real: 6.5
+  by: haiku
+tags:
+- curve_sketching
+- number_theory

@@ -1,0 +1,83 @@
+id: imaginary-power-i-to-i
+title: Computing i raised to the power i
+topics:
+- complex numbers
+- complex logarithm
+- Euler's formula
+- principal branch
+warmup: true
+answer_source: pdf
+statement: Calculate $i^i$.
+stages:
+- goal: Find the principal value of $\ln i$.
+  expected: $\ln i=\frac{i\pi}{2}$
+  solution: Write $i=e^{i\pi/2}$, using Euler's formula $e^{i\theta}=\cos\theta+i\sin\theta$ at $\theta=\frac{\pi}{2}$
+    (which gives $\cos\frac{\pi}{2}+i\sin\frac{\pi}{2}=i$). The modulus is $1$, so $\ln|i|=0$, and the
+    principal argument is $\frac{\pi}{2}$. So $\ln i=i\frac{\pi}{2}$.
+  common_errors:
+  - Taking $\ln i=0$ because the modulus is $1$ and ignoring the argument.
+  - Using $\ln i=\frac{\pi}{2}$ without the factor $i$.
+  - Using the argument $-\frac{3\pi}{2}$ instead of the principal argument $\frac{\pi}{2}$.
+  hints:
+    rephrase: Complex logarithm has a real part, which is the log of the modulus, and an imaginary part,
+      which is the argument. What is the modulus of $i$, and what is its argument?
+    smaller_case: What is $\ln(-1)$ when written as $\ln(e^{i\theta})$ for $\theta=\pi$?
+    key_idea: 'Write $i$ in polar form $e^{i\theta}$ and take the logarithm: $\ln z=\ln|z|+i\arg z$.'
+  check: 'simplify(log(I) - I*pi/2)  # zero iff the principal log is correct'
+  check_ok: true
+- goal: Evaluate $i^i$ using $a^b=e^{b\ln a}$.
+  expected: $i^i=e^{-\pi/2}$
+  solution: Define $i^i=e^{i\ln i}$. Substitute $\ln i=\frac{i\pi}{2}$ to get $i^i=e^{i\cdot\frac{i\pi}{2}}=e^{i^2\pi/2}=e^{-\pi/2}$.
+    This value is real and positive, approximately $0.2079$.
+  common_errors:
+  - Writing $i^i=i\cdot i=-1$.
+  - Getting $e^{\pi/2}$ by a sign error in $i^2$.
+  - Forgetting that $i^i$ is multivalued and not stating the principal branch.
+  hints:
+    rephrase: Any power $a^b$ with $a\neq 0$ can be written in terms of exponentials and logarithms. How
+      would you write $a^b$ using $e$ and $\ln a$?
+    smaller_case: Compute $2^3$ by writing it as $e^{3\ln 2}$.
+    key_idea: Use $a^b=e^{b\ln a}$, substitute the value of $\ln i$ from stage 1, and simplify using $i^2=-1$.
+  check: 'simplify(exp(I*log(I)) - exp(-pi/2))  # zero iff i^i = e^(-pi/2)'
+  check_ok: true
+extensions:
+  '3':
+  - Calculate $i^{-i}$ using the principal branch.
+  - Calculate $(-1)^i$ using the principal branch.
+  '4':
+  - List all values of $i^i$ when $\ln i=i\left(\frac{\pi}{2}+2\pi k\right)$ for integer $k$.
+  - Show that $i^i$ is real, and state why $|i^i|=e^{-\pi/2}$.
+  '5':
+  - Prove Euler's formula $e^{i\theta}=\cos\theta+i\sin\theta$ from the Taylor series of $e^x$, $\cos
+    x$ and $\sin x$.
+  - Find all complex $z$ with $z^z=1$ under the principal branch.
+spoken_vocab:
+- i to the power of i
+- natural log of i
+- i pi over two
+- e to the power of minus pi over two
+- Euler's formula
+- cosine theta plus i sine theta
+- modulus
+- principal argument
+- principal branch
+- i squared equals minus one
+source: zhou-quant/zhou-quant-guide.pdf#3
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 2
+  minutes: 6
+  flags: []
+  tagline: Surprising real answer invites discussion of principal branches and multivalued logarithms.
+  priority: 55
+  rank: 477
+  tier: C
+  category: zhou-quant
+  d10: 5.0
+  real: 8.0
+  by: big-pickle
+tags:
+- complex_numbers
+- exponentials_and_logarithms

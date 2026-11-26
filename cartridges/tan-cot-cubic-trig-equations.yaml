@@ -1,0 +1,130 @@
+id: tan-cot-cubic-trig-equations
+title: 'Trig equations: tan θ = 2 + tan 3θ and cot φ = 2 + cot 3φ'
+topics:
+- trigonometry
+- trigonometric equations
+- cubic equations
+- identities
+warmup: false
+answer_source: generated
+statement: Show that, if $\tan 2\theta = 2\tan\theta + 1$, then $\tan 2\theta = -1$. Find all solutions
+  of the equation $\tan\theta = 2 + \tan 3\theta$ which satisfy $0 < \theta < 2\pi$, expressing your answers
+  as rational multiples of $\pi$. Find all solutions of the equation $\cot\varphi = 2 + \cot 3\varphi$
+  which satisfy $-\frac{3\pi}{2} < \varphi < \frac{\pi}{2}$, expressing your answers as rational multiples
+  of $\pi$.
+stages:
+- goal: 'Test the first claim: if tan 2θ = 2 tan θ + 1, must tan 2θ = -1?'
+  expected: No. With t = tan θ, the equation becomes 2t^3 + t^2 - 1 = 0. Its only real root is t ≈ 0.657,
+    which gives tan 2θ = 2t + 1 ≈ 2.315, not -1. The claim is false for real θ as stated.
+  solution: Using tan 2θ = 2t/(1 - t^2), the equation 2t/(1 - t^2) = 2t + 1 gives 2t = (2t + 1)(1 - t^2),
+    so 2t^3 + t^2 - 1 = 0. The derivative 6t^2 + 2t has zeros at 0 and -1/3, where the cubic is negative,
+    so there is only one real root, t ≈ 0.657. Then tan 2θ = 2t + 1 ≈ 2.315 ≠ -1. The claim is probably
+    a transcription error. The second part gives the factor t^2 - 2t - 1 = 0, which is the condition tan
+    2θ = -1 for the tangent of θ.
+  common_errors:
+  - Assuming tan 2θ = -1 follows without substituting back
+  - Algebra errors when clearing the denominator 1 - t^2
+  - Forgetting to check that the real root is the only one
+  hints:
+    rephrase: Write tan 2θ in terms of t = tan θ and find what equation t must satisfy.
+    smaller_case: Clear the denominator in the equation and collect the terms.
+    key_idea: Compare the resulting cubic in t with the condition that tan 2θ = -1, which would need a
+      different quadratic in t.
+  check: null
+- goal: Solve tan θ = 2 + tan 3θ, writing t = tan θ.
+  expected: t = 1, t = 1 + sqrt(2) or t = 1 - sqrt(2).
+  solution: Use tan 3θ = (3t - t^3)/(1 - 3t^2). Then t(1 - 3t^2) = 2(1 - 3t^2) + 3t - t^3, which simplifies
+    to t^3 - 3t^2 + t + 1 = 0. This factors as (t - 1)(t^2 - 2t - 1) = 0, so t = 1 or t = 1 ± sqrt(2).
+  common_errors:
+  - Using the wrong triple-angle formula for tan 3θ
+  - Losing a root when dividing by 1 - 3t^2
+  - Making a sign error in the cubic
+  hints:
+    rephrase: Write tan 3θ in terms of t and clear denominators.
+    smaller_case: Try small integer values of t in the cubic.
+    key_idea: Factor the cubic. A quadratic factor is related to the condition tan 2θ = -1.
+  check: (1**3-3*1**2+1+1)*((1+sqrt(2))**3-3*(1+sqrt(2))**2+(1+sqrt(2))+1)*((1-sqrt(2))**3-3*(1-sqrt(2))**2+(1-sqrt(2))+1)
+  check_ok: true
+- goal: Find all θ with 0 < θ < 2π that satisfy tan θ = 2 + tan 3θ.
+  expected: θ = π/4, 3π/8, 7π/8, 5π/4, 11π/8, 15π/8.
+  solution: 'tan θ = 1 gives θ = π/4 + kπ, so π/4 and 5π/4. tan θ = 1 + sqrt(2) = tan(3π/8) gives θ =
+    3π/8 + kπ, so 3π/8 and 11π/8. tan θ = 1 - sqrt(2) = tan(-π/8) gives θ = -π/8 + kπ, so 7π/8 and 15π/8.
+    Each one is checked: for example at θ = 3π/8, tan 3θ = tan(9π/8) = sqrt(2) - 1 = tan θ - 2. At θ =
+    π/4 the value tan 2θ is undefined, which is consistent with the first claim being false.'
+  common_errors:
+  - Listing only one solution per branch
+  - Using the wrong reference angle for 1 - sqrt(2)
+  - Missing solutions near 2π
+  hints:
+    rephrase: For each value of tan θ, find the general solution θ = α + kπ and restrict it to the range.
+    smaller_case: Find all θ in (0, 2π) with tan θ = 1.
+    key_idea: Solutions of tan θ = c are spaced π apart, so each value of c gives two solutions in a range
+      of length 2π.
+  check: N(sum((tan(th)-2-tan(3*th))**2 for th in [pi/4, 3*pi/8, 7*pi/8, 5*pi/4, 11*pi/8, 15*pi/8]), 30)
+  check_ok: null
+- goal: Find all φ with -3π/2 < φ < π/2 that satisfy cot φ = 2 + cot 3φ.
+  expected: φ = -11π/8, -7π/8, -3π/4, -3π/8, π/8, π/4.
+  solution: Let c = cot φ. Using cot 3φ = (c^3 - 3c)/(3c^2 - 1), the equation becomes c^3 - 3c^2 + c +
+    1 = 0, which factors as (c - 1)(c^2 - 2c - 1) = 0. So cot φ = 1, 1 + sqrt(2) or 1 - sqrt(2). Then
+    cot φ = 1 gives φ = π/4 + kπ, which is -3π/4 and π/4 in the range. cot φ = 1 + sqrt(2) gives φ = π/8
+    + kπ, which is -7π/8 and π/8. cot φ = 1 - sqrt(2) gives φ = -3π/8 + kπ, which is -11π/8 and -3π/8.
+    Each value is checked against the original equation.
+  common_errors:
+  - Using tan instead of cot when inverting the values
+  - Missing solutions at the ends of the interval
+  - Forgetting that the interval has length 2π, so each branch gives exactly two solutions
+  hints:
+    rephrase: Let c = cot φ and derive the cubic in c, as in the tan version.
+    smaller_case: Find all φ in this range with cot φ = 1.
+    key_idea: Cot has period π, and the interval -3π/2 < φ < π/2 has length 2π, so each branch contributes
+      two solutions.
+  check: N(sum((cot(p)-2-cot(3*p))**2 for p in [-11*pi/8, -7*pi/8, -3*pi/4, -3*pi/8, pi/8, pi/4]), 30)
+  check_ok: null
+extensions:
+  '3':
+  - Solve tan θ = 3 + tan 3θ for 0 < θ < 2π.
+  - Show that tan 2θ = -1 holds exactly when tan θ = 1 ± sqrt(2).
+  '4':
+  - Find all solutions of tan θ = a + tan 3θ for a general constant a.
+  - Explain the relationship between the solutions of the tan and cot versions of the equation.
+  '5':
+  - Classify the solutions of tan nθ = c + tan (n+1)θ for general n.
+  - Discuss when the cubic reduction from tan 3θ introduces spurious solutions.
+spoken_vocab:
+- tan two theta
+- tan theta
+- tan three theta
+- cot phi
+- cot three phi
+- two plus tan three theta
+- pi
+- two pi
+- three pi over two
+- pi over four
+- three pi over eight
+- seven pi over eight
+- root two
+- one plus root two
+- one minus root two
+- theta
+- phi
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#4
+verified: false
+rating:
+  quality: 3
+  difficulty: 6
+  parts: 4
+  minutes: 20
+  flags:
+  - wrong_or_unclear_solution
+  tagline: Hidden false show-that claim, then genuine tan/cot equation discussion.
+  priority: 34
+  rank: 609
+  tier: D
+  category: siklos
+  d10: 6.0
+  real: 4.0
+  by: haiku
+tags:
+- trigonometry
+- algebra_and_functions

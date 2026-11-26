@@ -1,0 +1,30 @@
+[
+ {
+  "q": "Given $\\cos x - x\\alpha - \\beta = 0$ has 2 solutions, show that $\\sin x = -\\alpha$ has a solution.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/G1.jpg"
+ },
+ {
+  "q": "$N$ people at a party. If $A$ is friends with $B$, then $B$ is friends with $A$. Claim: at least 2 people have the same amount of friends. Is this true?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/G1.jpg"
+ },
+ {
+  "q": "Let $x \\geq y > 0$ and $a \\geq b > 0$. Show that $\\frac{x}{b} + \\frac{y}{a} \\geq \\frac{x}{a} + \\frac{y}{b}$.\n\nExtension: Let $x \\geq y \\geq z > 0$ and $a \\geq b \\geq c > 0$. By placing each of $a, b, c$ as denominators, make $\\frac{x}{\\square} + \\frac{y}{\\square} + \\frac{z}{\\square}$ as large as possible.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/G1.jpg"
+ },
+ {
+  "q": "3 balls $A, B, C$: one is heavier or lighter than the others. You can discover which, and if heavier or lighter, using the scales only twice. How many balls can ...",
+  "kind": "other",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/G1.jpg"
+ }
+]

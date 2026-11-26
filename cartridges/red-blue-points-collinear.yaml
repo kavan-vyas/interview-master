@@ -1,0 +1,125 @@
+id: red-blue-points-collinear
+title: Red and blue points must be collinear
+topics:
+- geometry
+- extremal principle
+- areas of triangles
+- pigeonhole
+- case analysis
+warmup: false
+answer_source: generated
+statement: 'Say you have finitely many red and blue points on a plane with the interesting property: every
+  line segment that joins two points of the same colour contains a point of the other colour. Prove that
+  all the points lie on a single straight line.'
+stages:
+- goal: Set up the argument by choosing a non-degenerate triangle of smallest area among the given points.
+  expected: Assume the points are not all collinear. Then choose a triangle ABC with vertices among the
+    points, with positive area, and with the smallest area among all such triangles.
+  solution: Suppose the points are not all on one line. Then some three of them form a non-degenerate
+    triangle. There are only finitely many triples, so among all non-degenerate triangles with vertices
+    in the set, choose one, ABC, of minimal positive area. Every later step will produce a smaller positive-area
+    triangle, which is a contradiction.
+  common_errors:
+  - Choosing the minimal triangle without first noting that the points are finite, so that a minimum exists.
+  - Treating the situation as having only one colour, which is impossible here since a single colour would
+    violate the property.
+  hints:
+    rephrase: Suppose the points are not all on one line. Which triangle would you like to be as small
+      as possible, so that you can shrink it further?
+    smaller_case: Take three points, not on a line, with two red and one blue. What does the property
+      say about the segment joining the two red points?
+    key_idea: 'Extremal principle: choose the non-degenerate triangle with the smallest area, then find
+      a smaller one inside or near it to get a contradiction.'
+  check: null
+- goal: Use pigeonhole and the property to find a point P of the opposite colour on a side of ABC.
+  expected: Two of A, B, C share a colour X. Say A and B have colour X. Then segment AB contains a point
+    P of the other colour Y, strictly between A and B, and C does not lie on line AB.
+  solution: Among three points coloured with two colours, two share a colour. Relabel so that A and B
+    have colour X and let Y be the other colour. By the property, the segment AB contains a point P of
+    colour Y. Since ABC is non-degenerate, C is not on line AB, and P is strictly between A and B.
+  common_errors:
+  - Forgetting that P must lie strictly inside segment AB, so that P differs from A and B.
+  - Assuming C must have the same colour as A and B without considering the case where C has colour Y.
+  hints:
+    rephrase: Among the three vertices, which two must share a colour? What does the property give you
+      on the segment joining them?
+    smaller_case: Consider two red points and one blue point forming a triangle. Where must a blue point
+      lie relative to the reds?
+    key_idea: Pigeonhole on the colours of the three vertices, then apply the property to the side joining
+      two same-coloured vertices.
+  check: null
+- goal: Derive a contradiction by finding, in each colour case for C, a triangle of smaller positive area
+    than ABC.
+  expected: 'Case C has colour X: segment AC contains a point Q of colour Y, and triangle QBC has area
+    (QC/AC) times area(ABC), which is smaller. Case C has colour Y: segment CP contains a point Q of colour
+    X, and triangle QAB has area (PQ/PC) times area(ABC), which is smaller. Both contradict minimality.'
+  solution: 'Case 1, C has colour X. Then A and C are both X, so segment AC contains a point Q of colour
+    Y, with Q strictly between A and C. Triangle QBC is non-degenerate, since B is not on line AC and
+    Q is not C. Triangles QBC and ABC share apex B, and their bases lie on line AC, so area(QBC)/area(ABC)
+    = QC/AC < 1. This contradicts minimality.
+
+
+    Case 2, C has colour Y. Then C and P are both Y, so segment CP contains a point Q of colour X, with
+    Q strictly between C and P. Line CP meets line AB only at P, and Q is not P, so Q is not on AB and
+    triangle QAB is non-degenerate. Triangles QAB and CAB share base AB, and their heights are proportional
+    to the distances from Q and C to line AB, which are in the ratio PQ/PC < 1. So area(QAB) < area(ABC),
+    again contradicting minimality.
+
+
+    Hence no non-degenerate triangle exists, so all the points are collinear.'
+  common_errors:
+  - Forgetting to check that the new triangle is non-degenerate, for example that B is not on line AC.
+  - Using the wrong ratio for areas, for example PQ/CQ instead of PQ/PC.
+  - Overlooking that Q could equal C or P, which must be ruled out because Q is strictly inside the segment.
+  hints:
+    rephrase: In each colour case, find a point strictly inside one side of the triangle that has the
+      opposite colour, then replace one vertex by that point. Does the new triangle have smaller area?
+    smaller_case: 'Take A, C red and B blue? Use the segment AC: where is the blue point on it, and which
+      triangle does it give you?'
+    key_idea: Replacing a vertex of a triangle by a point on the opposite side strictly inside it shrinks
+      the area in proportion to the distance moved.
+  check: null
+extensions:
+  '3':
+  - Investigate whether the conclusion survives when there are three colours and each segment joining
+    two points of the same colour must contain a point of a different colour.
+  '4':
+  - Replace 'segment' by 'the whole line through them' and decide whether the conclusion still follows.
+  '5':
+  - Determine whether the same argument works when points are in three dimensions and the property asks
+    for a point of the other colour on the segment, and what can be concluded.
+spoken_vocab:
+- red points
+- blue points
+- finitely many points
+- line segment
+- same colour
+- other colour
+- triangle
+- non-degenerate triangle
+- minimal area
+- pigeonhole
+- collinear
+- strictly between
+- ratio of areas
+- point Q
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 7
+  parts: 1
+  minutes: 20
+  flags: []
+  tagline: Minimal-area triangle forces a smaller triangle; clean extremal-principle proof.
+  priority: 91
+  rank: 108
+  tier: A
+  category: tbo
+  d10: 7.5
+  real: 6.0
+  by: haiku
+tags:
+- proof
+- combinatorics
+- geometry

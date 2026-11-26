@@ -1,0 +1,155 @@
+id: necklaces-burnside-prime
+title: Necklaces, orbit sizes and Fermat's little theorem
+topics:
+- necklaces
+- group actions
+- orbit counting
+- Burnside lemma
+- Fermat's little theorem
+- modular arithmetic
+warmup: false
+answer_source: pdf
+statement: 'A necklace has beads at the vertices of a regular polygon, each coloured with one of $n$ colours.
+  Two necklaces are the same if one is a rotation of the other.
+
+
+  (i) How many ways are there to colour the corners of a square with $2$ colours, if the square is fixed
+  in place? How many different necklaces are there?
+
+
+  (ii) Let $p$ be prime. Show that a colouring of a $p$-bead necklace that is not all one colour has exactly
+  $p$ different rotations.
+
+
+  (iii) Deduce that there are $n+\frac{n^p-n}{p}$ different $p$-bead necklaces, and hence that $p$ divides
+  $n^p-n$.
+
+
+  (iv) Find the number of different $6$-bead necklaces with $2$ colours. Why does the formula in (iii)
+  not apply?'
+stages:
+- goal: Count the 2-colourings of a fixed square, then count the distinct necklaces under rotation.
+  expected: 'Fixed square: $2^4=16$ colourings. Necklaces up to rotation: $6$.'
+  solution: 'A fixed square has 4 beads, each with 2 colour choices, giving $2^4=16$. Under rotation,
+    group by the number of black beads. 0, 1, 3 or 4 black beads give one necklace each (4 necklaces).
+    With 2 black beads there are two classes: adjacent (4 colourings, one necklace) and opposite (2 colourings,
+    one necklace). Total $4+2=6$. Burnside agrees: rotations by $0^\circ,90^\circ,180^\circ,270^\circ$
+    fix $16,2,4,2$ colourings, so $(16+2+4+2)/4=6$.'
+  common_errors:
+  - Reporting 16 as the number of necklaces, which ignores rotation.
+  - Treating the two-black-bead case as one class, ignoring adjacent versus opposite.
+  - Using $2^4/4=4$, which ignores colourings fixed by some rotation.
+  hints:
+    rephrase: Two colourings are the same necklace if one can be rotated into the other. Group the colourings
+      by something rotation preserves.
+    smaller_case: For a triangle with 2 colours, list the necklaces by the number of black beads.
+    key_idea: Rotation preserves the number of black beads. Within a fixed count, check whether the pattern
+      can be rotated onto another.
+  check: (2**4 + 2**1 + 2**2 + 2**1)/sympy.Integer(4) - 6
+  check_ok: null
+- goal: Show that a non-constant colouring of a $p$-bead necklace has exactly $p$ distinct rotations.
+  expected: A rotation by $r$ with $0<r<p$ fixing the colouring would force it to be constant. So the
+    $p$ rotations are all distinct and the orbit has size $p$.
+  solution: Label beads by residues mod $p$. The rotations are $\rho_r$ for $r=0,1,\dots,p-1$, so there
+    are at most $p$ rotated colourings. Suppose $\rho_r$ with $0<r<p$ fixes a colouring. Then bead $i$
+    and bead $i+r$ have the same colour for all $i$. Since $p$ is prime and $0<r<p$, $\gcd(r,p)=1$, so
+    $0,r,2r,\dots,(p-1)r$ cover every residue mod $p$. Hence all beads share one colour, contradicting
+    non-constancy. Now if $\rho_r$ and $\rho_s$ ($r\ne s$) gave the same colouring, then $\rho_{r-s}$
+    would fix it, which is impossible by the above. So the $p$ rotations give $p$ distinct colourings.
+  common_errors:
+  - Assuming the orbit has size $p$ without showing that distinct rotations give distinct colourings.
+  - Not using that $p$ is prime, so $\gcd(r,p)=1$ for every $0<r<p$.
+  - Only checking that a single rotation by 1 does not fix the colouring.
+  hints:
+    rephrase: Suppose a rotation leaves the colouring unchanged. What does that say about the colours
+      of beads a fixed distance $r$ apart?
+    smaller_case: For $p=3$, which rotations of a non-constant 3-bead colouring could leave it unchanged?
+    key_idea: For $0<r<p$ with $p$ prime, repeatedly stepping by $r$ visits every bead.
+- goal: Deduce the count of $p$-bead necklaces with $n$ colours, and deduce $p \mid n^p-n$.
+  expected: $n+\frac{n^p-n}{p}$ necklaces; since this is an integer, $p\mid n^p-n$.
+  solution: The $n$ constant colourings each form their own necklace. The remaining $n^p-n$ colourings
+    split into orbits (necklaces), each of size exactly $p$ by (ii), giving $\frac{n^p-n}{p}$ necklaces.
+    The total is $n+\frac{n^p-n}{p}$. The number of orbits of non-constant colourings is an integer, so
+    $p\mid n^p-n$. This is Fermat's little theorem.
+  common_errors:
+  - Forgetting to add the $n$ constant necklaces.
+  - Concluding $p\mid n^p-n$ without noting that the count of orbits must be an integer.
+  - Using orbit size 1 for non-constant colourings.
+  hints:
+    rephrase: Split the colourings into constant ones and the rest, then count the orbits of each part.
+    smaller_case: For $p=3$ and $n=2$, count the 3-bead necklaces by hand and compare with the formula.
+    key_idea: The non-constant colourings split into orbits all of size $p$, so divide their number by
+      $p$.
+  check: sympy.Integer(2) + (sympy.Integer(2)**3 - 2)/3 - 4
+  check_ok: null
+- goal: Count the 6-bead necklaces with 2 colours, and explain why the formula in (iii) fails for 6 beads.
+  expected: 14 necklaces. The formula gives a non-integer because 6 is not prime, so some non-constant
+    colourings have fewer than 6 rotations.
+  solution: 'Count by black beads: 0 (1), 1 (1), 2 (3 classes: adjacent, distance 2, opposite), 3 (4 classes:
+    BBBWWW, BBWBWW, BBWWBW, BWBWBW), 4 (3), 5 (1), 6 (1). Total $14$. Burnside: rotation by $k$ fixes
+    $2^{\gcd(k,6)}$ colourings, so $(2^6+2^1+2^2+2^3+2^2+2^1)/6=84/6=14$. The formula would give $2+\frac{2^6-2}{6}=2+\frac{31}{3}$,
+    not an integer. The reason is that 6 is not prime, so rotations by 2 or 3 can fix non-constant colourings
+    (e.g. BWBWBW is fixed by rotation by 2, BWWBWW by rotation by 3). Orbit sizes are then 1, 2, 3 or
+    6, not all 6.'
+  common_errors:
+  - Counting 3-black-bead necklaces as 3, missing that BBWBWW and BBWWBW are different under rotation.
+  - Claiming all non-constant orbits have size 6, which fails for periodic colourings.
+  - Getting a wrong total from a Burnside sum that uses $2^k$ instead of $2^{\gcd(k,6)}$.
+  hints:
+    rephrase: Group the colourings by number of black beads, then check which colourings are unchanged
+      by some rotation.
+    smaller_case: For 4 beads with 2 colours, find a non-constant colouring with fewer than 4 distinct
+      rotations.
+    key_idea: The argument in (ii) uses that $p$ is prime. Look for a rotation $r$ with $\gcd(r,6)>1$
+      that fixes a non-constant colouring.
+  check: (2**6 + 2**1 + 2**2 + 2**3 + 2**2 + 2**1)/sympy.Integer(6) - 14
+  check_ok: null
+extensions:
+  '3':
+  - Count 5-bead necklaces with 2 colours and check the result against $2+\frac{2^5-2}{5}$.
+  - How many 4-bead necklaces are there with 3 colours? Does $4$ divide $3^4-3$?
+  '4':
+  - Count 8-bead necklaces with 2 colours using Burnside's lemma.
+  - Count 6-bead necklaces with 3 colours using Burnside's lemma.
+  '5':
+  - Derive the Burnside count of $m$-bead necklaces with $n$ colours as $\frac1m\sum_{k=0}^{m-1}n^{\gcd(k,m)}$,
+    and show it reduces to the formula in (iii) when $m=p$ is prime.
+  - What changes if reflections are also allowed? Count 6-bead bracelets with 2 colours.
+spoken_vocab:
+- necklace
+- bead
+- regular polygon
+- square
+- two colours
+- n colours
+- rotation
+- prime p
+- orbit
+- n plus n to the power p minus n over p
+- p divides n to the power p minus n
+- Fermat's little theorem
+- Burnside
+- six beads
+- adjacent
+- opposite
+- greatest common divisor
+source: jaymin/Jaymin Interview (1).pdf#p33
+verified: false
+rating:
+  quality: 9
+  difficulty: 7
+  parts: 4
+  minutes: 35
+  flags: []
+  tagline: Burnside-style counting leading to Fermat, with a non-prime counterexample.
+  priority: 120
+  rank: 5
+  tier: S
+  category: jaymin
+  d10: 5.5
+  real: 6.0
+  by: haiku
+refined: true
+tags:
+- combinatorics
+- number_theory

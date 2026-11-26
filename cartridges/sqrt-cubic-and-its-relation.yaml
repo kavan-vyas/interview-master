@@ -1,0 +1,118 @@
+id: sqrt-cubic-and-its-relation
+title: Sketch y equals square root of x cubed minus x, and y squared equals x cubed minus x
+topics:
+- domain
+- sign analysis
+- turning points
+- implicit curves
+- limits at infinity
+warmup: false
+answer_source: generated
+statement: Sketch $y=\sqrt{x^3-x}$ and $y^2=x^3-x$.
+stages:
+- goal: Find the domain of $y=\sqrt{x^3-x}$.
+  expected: $[-1,0]\cup[1,\infty)$
+  solution: We need $x^3-x=x(x-1)(x+1)\ge0$. The sign is negative for $x<-1$, positive on $(-1,0)$, negative
+    on $(0,1)$ and positive for $x>1$. Including the zeros $-1,0,1$ gives the domain $[-1,0]\cup[1,\infty)$.
+  common_errors:
+  - Forgetting the equality cases -1, 0 and 1
+  - Taking the domain as x≥-1 only
+  - Concluding that x^3-x≥0 means x≥0
+  hints:
+    rephrase: Factor $x^3-x$ and decide for which $x$ the product is non-negative.
+    smaller_case: Test the sign of $x(x-1)(x+1)$ at $x=-2,\,-\tfrac12,\,\tfrac12,\,2$.
+    key_idea: A sign chart with the roots of the factors as the boundary points.
+  check: solve_univariate_inequality(x**3 - x >= 0, x, relational=False) == Union(Interval(-1, 0), Interval(1,
+    oo))
+  check_ok: true
+- goal: Find the x-coordinate of the turning point on the loop and the maximum height of the loop.
+  expected: The turning point on the loop is at $x=-1/\sqrt3$, and the maximum height is $y=\dfrac{\sqrt{2\sqrt3}}{3}\approx0.62$.
+    The loop meets the x-axis at $x=-1$ and $x=0$ with vertical tangents there.
+  solution: On the loop $y=\sqrt{x^3-x}$ is largest where $x^3-x$ is largest. $\frac{d}{dx}(x^3-x)=3x^2-1=0$
+    gives $x=-1/\sqrt3$ on $[-1,0]$. Then $x^3-x=\frac{2}{3\sqrt3}=\frac{2\sqrt3}{9}$, so $y_{\max}=\sqrt{2\sqrt3/9}=\frac{\sqrt{2\sqrt3}}{3}\approx0.62$.
+  common_errors:
+  - Using x=+1/√3, which is not on the loop
+  - Giving the maximum of y as the maximum of x^3-x without the square root
+  - Stating the loop has a corner at its endpoints instead of vertical tangents
+  hints:
+    rephrase: Where does the function $x^3-x$ have a stationary point between $-1$ and $0$?
+    smaller_case: Differentiate $x^3-x$ and find where the derivative equals zero.
+    key_idea: The largest value of $\sqrt{g}$ occurs where $g$ is largest, so find the stationary point
+      of $g$.
+  check: diff(x**3 - x, x).subs(x, -1/sqrt(3))
+  check_ok: true
+- goal: Describe the right-hand branch of $y=\sqrt{x^3-x}$ for $x\ge1$, including the tangent at $(1,0)$
+    and the behaviour as $x\to\infty$.
+  expected: The branch starts at $(1,0)$ with a vertical tangent, increases steadily, and behaves like
+    $y\sim x^{3/2}$ as $x\to\infty$.
+  solution: For $x\ge1$, $x^3-x$ has derivative $3x^2-1\ge2>0$, so it increases. Implicit differentiation
+    of $y^2=x^3-x$ gives $\frac{dy}{dx}=\frac{3x^2-1}{2y}$, which tends to infinity as $x\to1^+$, so the
+    tangent is vertical. Also $y/x^{3/2}\to1$ as $x\to\infty$.
+  common_errors:
+  - Saying the branch has a corner at (1,0)
+  - Predicting a horizontal asymptote
+  - Using x^2 as the growth rate instead of x^{3/2}
+  hints:
+    rephrase: How does the slope $dy/dx$ behave as you approach $x=1$ from the right?
+    smaller_case: Evaluate $\sqrt{x^3-x}$ at $x=1.01$ and at $x=10$ and compare it with $x^{3/2}$.
+    key_idea: Use implicit differentiation on $y^2=x^3-x$ and look at the denominator $2y$.
+  check: limit(sqrt(x**3 - x)/x**Rational(3,2), x, oo) - 1
+  check_ok: true
+- goal: Explain how the full relation $y^2=x^3-x$ relates to $y=\sqrt{x^3-x}$, and describe its symmetry.
+  expected: The full relation is $y=\pm\sqrt{x^3-x}$. It is symmetric about the x-axis, and the graph
+    of $y=\sqrt{x^3-x}$ is its upper half.
+  solution: Squaring $y=\sqrt{x^3-x}$ gives $y^2=x^3-x$ with $y\ge0$. Any point $(x,y)$ on the relation
+    has $(x,-y)$ also on it, so the full curve is the union of $y=\sqrt{x^3-x}$ and $y=-\sqrt{x^3-x}$,
+    and the upper half is the square-root graph.
+  common_errors:
+  - Describing the relation as only the square-root graph
+  - Forgetting the lower half
+  - Thinking the relation has a domain different from the square-root function
+  hints:
+    rephrase: What does squaring the square root give back, and what does a relation in $y^2$ say about
+      the sign of $y$?
+    smaller_case: Take $x=2$ and compare $\left(\sqrt{2^3-2}\right)^2$ with $2^3-2$.
+    key_idea: A relation in $y^2$ is unchanged when $y$ is replaced by $-y$.
+  check: simplify(sqrt(x**3 - x)**2 - (x**3 - x))
+  check_ok: true
+extensions:
+  '3':
+  - Sketch $y^2=x^3+x$ and decide whether it has a loop.
+  '4':
+  - Show that the loop of $y^2=x^3-x$ is symmetric about the x-axis and find its maximum height.
+  '5':
+  - Show that the tangent to $y^2=x^3-x$ at $(1,0)$ is vertical, and explain why no finite-slope tangent
+    exists there.
+spoken_vocab:
+- square root of x cubed minus x
+- y squared equals x cubed minus x
+- domain
+- sign chart
+- turning point
+- loop
+- vertical tangent
+- upper half
+- lower half
+- square root
+- absolute value
+- implicit differentiation
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 4
+  minutes: 15
+  flags:
+  - needs_diagram
+  tagline: Sketch-led calculus with domain, loop maximum, tangent, and relation symmetry.
+  priority: 74
+  rank: 282
+  tier: B
+  category: tbo
+  d10: 4.0
+  real: 4.5
+  by: haiku
+tags:
+- curve_sketching
+- algebra_and_functions

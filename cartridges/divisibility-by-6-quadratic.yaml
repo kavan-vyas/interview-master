@@ -1,0 +1,85 @@
+id: divisibility-by-6-quadratic
+title: Divisibility of a quadratic by 6
+topics:
+- divisibility
+- factorisation
+- parity
+- proof by cases
+warmup: true
+answer_source: generated
+statement: Show that $3n^2+9n+6$ is divisible by $6$ for all $n \in \mathbb{Z}$.
+stages:
+- goal: Factorise the expression.
+  expected: 3(n+1)(n+2)
+  solution: 3n^2+9n+6 = 3(n^2+3n+2) = 3(n+1)(n+2).
+  common_errors:
+  - Factoring out 3 but dropping it from the bracket
+  - Factorising n^2+3n+2 as (n+1)(n+3)
+  hints:
+    rephrase: Is there a common factor in all three terms? Then factor the remaining quadratic.
+    smaller_case: 'Check n=1: 3+9+6 = 18. Which pair of brackets could multiply to give the quadratic?'
+    key_idea: Factor out the common factor 3, then factor the monic quadratic by finding two numbers that
+      add to 3 and multiply to 2.
+  check: 3*(n+1)*(n+2) - (3*n**2 + 9*n + 6)
+  check_ok: true
+- goal: Show that (n+1)(n+2) is always even.
+  expected: Of the consecutive integers n+1 and n+2, one is even, so their product is even and (n+1)(n+2)
+    = 2k for some integer k.
+  solution: If n is even then n+2 is even. If n is odd then n+1 is even. Either way the product has a
+    factor of 2, so (n+1)(n+2) = 2k with k an integer.
+  common_errors:
+  - Only checking positive n
+  - Checking a few values of n instead of arguing for all integers n
+  hints:
+    rephrase: Split into cases on the parity of n.
+    smaller_case: 'Look at n=-3 and n=-2: what are n+1 and n+2 there?'
+    key_idea: Any two consecutive integers include an even one.
+- goal: Conclude divisibility by 6.
+  expected: 3(n+1)(n+2) = 3 x 2k = 6k, so 6 divides 3n^2+9n+6 for every integer n.
+  solution: Substituting gives 3 x 2k = 6k with k an integer, so 6 divides 3n^2+9n+6.
+  common_errors:
+  - Concluding divisibility by 2 and by 3 separately without combining them
+  - Forgetting that k must be an integer
+  hints:
+    rephrase: Substitute your result from the previous stage back into the factorised form.
+    smaller_case: What is 3 times an even number?
+    key_idea: Write the expression as a constant times an integer multiple of 2, then identify the factor
+      of 6.
+extensions:
+  '3':
+  - Show that n^3+5n is divisible by 6 for all integers n.
+  '4':
+  - Show that n(n+1)(n+2) is divisible by 6 for all integers n.
+  '5':
+  - Show that n^5 - n is divisible by 30 for all integers n.
+spoken_vocab:
+- three n squared plus nine n plus six
+- divisible by six
+- factorise
+- n plus one
+- n plus two
+- consecutive integers
+- even
+- integers
+- k
+- product
+source: past-interviews/Actual Past Interview Questions/H1.jpg
+verified: false
+rating:
+  quality: 3
+  difficulty: 2
+  parts: 3
+  minutes: 5
+  flags:
+  - trivial
+  tagline: Scripted factorise-and-parity argument with little depth for discussion.
+  priority: 33
+  rank: 618
+  tier: D
+  category: past-interviews
+  d10: 1.8
+  real: 5.5
+  by: deepseek-v4.1-flash-free
+tags:
+- number_theory
+- algebra_and_functions

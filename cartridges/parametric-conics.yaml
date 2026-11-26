@@ -1,0 +1,103 @@
+id: parametric-conics
+title: Parametric curves are conic sections
+topics:
+- parametric curves
+- conics
+- hyperbolic functions
+warmup: false
+answer_source: generated
+statement: Show that the curves with parametric form $(x,y)=(at^2,2at)$, $(a\cos\theta, b\sin\theta)$
+  and $(a\cosh\theta, b\sinh\theta)$ are conic sections.
+stages:
+- goal: Show that the parabola $(x,y)=(at^2,2at)$ satisfies a Cartesian equation.
+  expected: $y^2=4ax$.
+  solution: With $x=at^2$ and $y=2at$, $y^2=4a^2t^2=4a(at^2)=4ax$. So the curve satisfies $y^2-4ax=0$.
+  common_errors:
+  - Forgetting to square $2at$, giving $2a^2t^2$.
+  - Writing the relation as $y=4ax$ or $y^2=2ax$.
+  hints:
+    rephrase: Eliminate $t$ between the two parametric equations.
+    smaller_case: Take $t=1$ and compute $x$ and $y$; check which relation they satisfy.
+    key_idea: Square the expression for $y$ and compare with the expression for $x$.
+  check: expand((2*a*t)**2 - 4*a*(a*t**2))
+  check_ok: true
+- goal: Show that $(a\cos\theta, b\sin\theta)$ satisfies a Cartesian equation.
+  expected: $\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$.
+  solution: With $x=a\cos\theta$ and $y=b\sin\theta$, $\frac{x^2}{a^2}+\frac{y^2}{b^2}=\cos^2\theta+\sin^2\theta=1$.
+  common_errors:
+  - Forgetting to divide by $a^2$ or $b^2$.
+  - Using $\cos^2\theta-\sin^2\theta=1$ in place of the Pythagorean identity.
+  hints:
+    rephrase: Write $\cos\theta$ and $\sin\theta$ in terms of $x$, $y$, $a$ and $b$, and use a standard
+      trigonometric identity.
+    smaller_case: Take $\theta=0$ and then $\theta=\tfrac{\pi}{2}$ and check the equation at each point.
+    key_idea: Use the Pythagorean identity for $\cos$ and $\sin$.
+  check: simplify((a*cos(t))**2/a**2 + (b*sin(t))**2/b**2 - 1)
+  check_ok: true
+- goal: Show that $(a\cosh\theta, b\sinh\theta)$ satisfies a Cartesian equation.
+  expected: $\frac{x^2}{a^2}-\frac{y^2}{b^2}=1$.
+  solution: With $x=a\cosh\theta$ and $y=b\sinh\theta$, $\frac{x^2}{a^2}-\frac{y^2}{b^2}=\cosh^2\theta-\sinh^2\theta=1$,
+    using the exponential definitions.
+  common_errors:
+  - Using $\cosh^2\theta+\sinh^2\theta=1$ (sign error).
+  - Forgetting to divide by $a^2$ or $b^2$.
+  hints:
+    rephrase: Replace $x$ and $y$ in the standard form and simplify using hyperbolic identities.
+    smaller_case: Take $\theta=0$ and check the equation at that point.
+    key_idea: Use the hyperbolic identity relating $\cosh^2$ and $\sinh^2$.
+  check: simplify(((a*cosh(t))**2/a**2 - (b*sinh(t))**2/b**2 - 1).rewrite(exp))
+  check_ok: true
+- goal: Explain why each Cartesian equation is a conic section.
+  expected: 'Each curve satisfies a second-degree equation in $x$ and $y$: $y^2-4ax=0$ (parabola), $b^2x^2+a^2y^2-a^2b^2=0$
+    (ellipse), and $b^2x^2-a^2y^2-a^2b^2=0$ (hyperbola). Each has the general form $Ax^2+Bxy+Cy^2+Dx+Ey+F=0$,
+    so each is a conic section.'
+  solution: Multiplying the ellipse equation by $a^2b^2$ gives $b^2x^2+a^2y^2-a^2b^2=0$. Multiplying the
+    hyperbola equation by $a^2b^2$ gives $b^2x^2-a^2y^2-a^2b^2=0$. The parabola equation is already second-degree
+    in $x$ and $y$ (it is linear in $x$ and quadratic in $y$). Each equation is therefore of the general
+    conic form, which is what defines a conic section.
+  common_errors:
+  - Claiming a curve is a conic only from its parametric form, without a Cartesian equation.
+  - Failing to multiply through to clear the denominators.
+  hints:
+    rephrase: Clear fractions in each Cartesian equation and look at the degrees of the terms.
+    smaller_case: Multiply the ellipse equation by $a^2$ and by $b^2$ separately to see what you get.
+    key_idea: A conic section is any curve given by a second-degree equation in $x$ and $y$.
+  check: expand(a**2*b**2*(x**2/a**2 + y**2/b**2 - 1) - (b**2*x**2 + a**2*y**2 - a**2*b**2))
+  check_ok: true
+extensions:
+  '3':
+  - Show that the tangent to $(at^2,2at)$ at parameter $t$ has equation $ty=x+at^2$.
+  '4':
+  - Show that $(a\sec\theta, b\tan\theta)$ satisfies a hyperbola equation.
+  '5':
+  - Identify the focus of the ellipse $(a\cos\theta,b\sin\theta)$ when $b^2=a^2(1-e^2)$.
+spoken_vocab:
+- parametric form
+- at squared comma two a t
+- a cosine theta comma b sine theta
+- a cosh theta comma b sinh theta
+- conic section
+- second-degree equation
+- x squared over a squared plus y squared over b squared equals one
+- Pythagorean identity
+- cosh squared minus sinh squared equals one
+source: step-workbook/Cambridge STEP Short Workbook.pdf#1
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 4
+  minutes: 10
+  flags: []
+  tagline: Routine elimination of parameters, but the 'explain why conic' step is thin.
+  priority: 52
+  rank: 514
+  tier: C
+  category: step-workbook
+  d10: 2.5
+  real: 3.5
+  by: haiku
+tags:
+- coordinate_geometry
+- hyperbolic_functions
+- trigonometry

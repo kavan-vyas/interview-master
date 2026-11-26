@@ -1,0 +1,116 @@
+id: gordon-brown-causation
+title: University Earnings and the Causation Claim
+topics:
+- correlation versus causation
+- confounding
+- statistical reasoning
+- experimental design
+- natural experiments
+warmup: false
+answer_source: generated
+statement: What would you say if Gordon Brown were to take a report which shows that people who go to
+  university earn more than those who do not, and then proclaim that going to university causes you to
+  earn more?
+stages:
+- goal: Identify what kind of evidence the report provides and what claim it fails to support.
+  expected: The report shows an association (correlation) in observational data. It does not by itself
+    show that attending university causes higher earnings, because the groups differ in other ways.
+  solution: Comparing people who did and did not attend university is an observational comparison. The
+    people who attend differ systematically from those who do not, so the earnings gap could reflect those
+    differences rather than the effect of the degree. The proclamation moves from association to causation
+    without justification.
+  common_errors:
+  - Saying the report is simply wrong, rather than that it does not support the causal claim.
+  - Saying correlation is useless, rather than that it is insufficient for causation.
+  - Focusing on the policy rather than the inferential step.
+  hints:
+    rephrase: What does it mean for two groups to differ in more than one way?
+    smaller_case: Ice cream sales and drownings both rise in summer. What does that tell you about ice
+      cream causing drownings?
+    key_idea: Ask whether something other than the treatment could drive both the outcome and the choice
+      to take the treatment.
+- goal: Propose plausible alternative explanations for the earnings gap.
+  expected: 'Confounders such as innate ability, motivation, family income and social networks could affect
+    both the decision to attend university and later earnings. Selection effects also apply: those who
+    would earn more anyway may be more likely to attend.'
+  solution: 'Any factor that affects both attending and earning creates a confounder. Ability and family
+    background are classic examples. Reverse or indirect causation is also possible: expectations of high
+    earnings might encourage people to attend, or the gap might reflect the type of job that requires
+    a degree. Each of these explanations would produce the same observed correlation without any causal
+    effect of university.'
+  common_errors:
+  - Listing only one confounder.
+  - Describing a confounder that does not affect the outcome.
+  - Treating alternative explanations as proof that the causal claim is false.
+  hints:
+    rephrase: Name a trait that might make someone both more likely to go to university and more likely
+      to earn more.
+    smaller_case: Imagine two people with the same ability and background who differ only in whether they
+      attend. Would you still expect a gap?
+    key_idea: Look for a common cause of the decision and the outcome, and for the possibility that the
+      arrow runs the other way.
+- goal: Describe how you would test whether university causes higher earnings.
+  expected: 'Ideal test: random assignment of university access, which is impractical and raises ethical
+    questions. Practical alternatives include natural experiments (for example, changes in admission rules
+    or grade cut-offs), instrumental variables (for example, distance to a university), regression discontinuity
+    around admissions thresholds, and controlled comparisons using rich data on confounders, with caveats
+    about unobserved factors.'
+  solution: A randomised experiment would break the link between attendance and confounders, but it is
+    unrealistic here. Quasi-experimental designs look for variation in attendance that is unrelated to
+    ability or background. Regression discontinuity compares people just above and below an admission
+    cut-off. Instrumental variables use a factor that affects attendance but not earnings directly. Regression
+    controlling for observed confounders helps, but cannot rule out unobserved ones. Good answers state
+    the assumptions each method needs.
+  common_errors:
+  - Proposing a randomised trial without discussing feasibility or ethics.
+  - Claiming that controlling for variables eliminates all confounding.
+  - Naming a method without stating its key assumption.
+  hints:
+    rephrase: Which method would let you compare people who differ in attendance but are otherwise similar?
+    smaller_case: Suppose only students with grades just above and just below a cut-off could enter. What
+      would that let you compare?
+    key_idea: You need variation in the treatment that is unrelated to the confounders, and you must justify
+      that it is unrelated.
+extensions:
+  '3':
+  - Construct a simple simulated dataset where ability drives both university attendance and earnings,
+    and no direct effect exists. Show that a naive comparison still gives a gap.
+  '4':
+  - Explain the difference between a confounder and a collider, and say why conditioning on a collider
+    can create a spurious association.
+  '5':
+  - Given an observational study with a strong correlation, list the steps you would take to decide whether
+    a causal claim is plausible before running any new experiment.
+spoken_vocab:
+- Gordon Brown
+- university
+- earnings
+- correlation
+- causation
+- confounder
+- selection effect
+- reverse causation
+- ability
+- randomised trial
+- natural experiment
+- regression discontinuity
+- instrumental variable
+- observational data
+source: oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 2
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: 'Correlation versus causation: classic, open-ended, invites discussion of experimental design.'
+  priority: 71
+  rank: 345
+  tier: B
+  category: oxbridge-random
+  d10: 2.5
+  real: 5.0
+  by: deepseek-v4.1-flash-free
+tags:
+- probability

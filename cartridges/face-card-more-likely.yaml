@@ -1,0 +1,80 @@
+id: face-card-more-likely
+title: 'Three cards: is a face card more likely than not?'
+topics:
+- probability
+- combinatorics
+warmup: true
+answer_source: generated
+statement: If you pick 3 cards from a randomly shuffled pack of cards are you more likely to see a face
+  card than not?
+stages:
+- goal: Find the probability that three cards drawn without replacement from a standard 52-card pack include
+    at least one face card.
+  expected: 47/85, about 0.553.
+  solution: Face cards are J, Q, K in each suit, so there are 12 of them and 40 non-face cards. P(no face
+    card) = C(40,3)/C(52,3) = 9880/22100 = 38/85. So P(at least one face card) = 1 - 38/85 = 47/85.
+  common_errors:
+  - Multiplying 12/52 three times, which ignores that cards are drawn without replacement.
+  - Finding only P(exactly one face card) and stopping there.
+  - Using 3/13 as the chance of a face card and then treating draws as independent.
+  hints:
+    rephrase: 'Work with the complement: what is the chance that none of the three cards is a face card?'
+    smaller_case: Try two cards first. How many 2-card hands contain no face card, out of all 2-card hands?
+    key_idea: Count hands with no face cards using combinations, divide by all hands, then take the complement.
+  check: Rational(47,85) - (1 - binomial(40,3)/binomial(52,3))
+  check_ok: true
+- goal: Decide whether a face card is more likely than not.
+  expected: Yes. 47/85 is greater than 1/2, since 94 is greater than 85.
+  solution: More likely than not means probability greater than 1/2. Since 47/85 > 1/2 (47*2 = 94 > 85),
+    yes, a face card is more likely.
+  common_errors:
+  - Comparing against 1/3 or 1/4 instead of 1/2.
+  - Answering 'probably' without actually comparing the value to 1/2.
+  - Confusing the no-face-card probability (about 0.447) with the face-card probability.
+  hints:
+    rephrase: What threshold does 'more likely than not' correspond to?
+    smaller_case: Compare 1/2 with your result by cross-multiplying, so no decimals are needed.
+    key_idea: '''More likely than not'' means the probability exceeds one half.'
+  check: Rational(47,85) > Rational(1,2)
+  check_ok: true
+extensions:
+  '3':
+  - Repeat the problem with 4 cards drawn. Is a face card now more likely than not?
+  '4':
+  - Find the smallest number of cards k such that the probability of at least one face card is at least
+    0.9.
+  '5':
+  - Show that the probability of at least one face card in k draws without replacement increases as k
+    increases.
+spoken_vocab:
+- three cards
+- pack of cards
+- face card
+- jack queen king
+- without replacement
+- combinations
+- forty choose three
+- fifty two choose three
+- complement
+- more likely than not
+- forty seven over eighty five
+- one half
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 2
+  minutes: 4
+  flags: []
+  tagline: 'Counterintuitive result: at least one face card exceeds 55%.'
+  priority: 45
+  rank: 551
+  tier: C
+  category: tbo
+  d10: 3.5
+  real: 7.0
+  by: deepseek-v4.1-flash-free
+tags:
+- probability
+- combinatorics

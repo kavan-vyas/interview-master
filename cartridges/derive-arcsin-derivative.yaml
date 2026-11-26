@@ -1,0 +1,103 @@
+id: derive-arcsin-derivative
+title: Derive the derivative of arcsin x
+topics:
+- inverse functions
+- implicit differentiation
+- trigonometric identities
+warmup: true
+answer_source: pdf
+statement: Derive $\frac{d}{dx}(\arcsin x)=\frac{1}{\sqrt{1-x^2}}$.
+stages:
+- goal: Set up the inverse relation and state the range of $y=\arcsin x$.
+  expected: Let $y=\arcsin x$. Then $x=\sin y$ with $-\frac{\pi}{2}\le y\le\frac{\pi}{2}$.
+  solution: By definition, $y=\arcsin x$ means $\sin y=x$ and $y$ lies in the principal range $[-\pi/2,\pi/2]$.
+  common_errors:
+  - Forgetting the range, which later is needed to fix the sign of cosine.
+  - Writing $\sin x=y$ instead of $\sin y=x$.
+  hints:
+    rephrase: If $y$ is the arcsine of $x$, what does the sine of $y$ equal, and where must $y$ sit?
+    smaller_case: Set $y=\arccos x$ and state the relation and range it satisfies.
+    key_idea: An inverse function undoes the original function, and its output is restricted to a principal
+      range.
+  check: sp.sin(sp.asin(x)) - x
+  check_ok: null
+- goal: Differentiate $x=\sin y$ with respect to $x$.
+  expected: $1=\cos y\cdot\frac{dy}{dx}$
+  solution: 'Differentiate both sides with respect to $x$ using the chain rule: $\frac{d}{dx}(x)=1$ and
+    $\frac{d}{dx}(\sin y)=\cos y\cdot\frac{dy}{dx}$.'
+  common_errors:
+  - Writing $\frac{d}{dx}\sin y=\cos y$ with no $\frac{dy}{dx}$ factor.
+  - Differentiating the wrong way round and writing $\frac{dx}{dy}$ on the left without changing the rest.
+  hints:
+    rephrase: You have an equation linking $x$ and $y$. Differentiate both sides with respect to $x$,
+      remembering $y$ depends on $x$.
+    smaller_case: Differentiate $x=\sin(y(x))$ where $y$ is a function of $x$, writing the chain rule
+      explicitly.
+    key_idea: 'Implicit differentiation: any term in $y$ picks up a factor $\frac{dy}{dx}$.'
+  check: sp.diff(sp.sin(y), y) - sp.cos(y)
+  check_ok: null
+- goal: Express $\cos y$ in terms of $x$.
+  expected: $\cos y=\sqrt{1-x^2}$
+  solution: Use $\cos^2 y=1-\sin^2 y=1-x^2$, so $\cos y=\pm\sqrt{1-x^2}$. On $[-\pi/2,\pi/2]$ we have
+    $\cos y\ge 0$, so take the positive root.
+  common_errors:
+  - Keeping the $\pm$ sign without justification.
+  - Writing $\cos y=1-x^2$ by taking the square root incorrectly.
+  - Using $\cos y=\sqrt{1+x^2}$ from a sign error in the identity.
+  hints:
+    rephrase: Find a relation between $\cos y$ and $\sin y$, then substitute $\sin y=x$.
+    smaller_case: What is $\cos^2\theta$ if $\sin\theta=\tfrac{3}{5}$?
+    key_idea: Use $\sin^2y+\cos^2y=1$, then decide the sign of cosine on the principal range of arcsine.
+  check: sp.cos(sp.asin(x)) - sp.sqrt(1-x**2)
+  check_ok: null
+- goal: Combine the results to get $\frac{dy}{dx}$.
+  expected: $\frac{dy}{dx}=\frac{1}{\sqrt{1-x^2}}$
+  solution: From $1=\cos y\,\frac{dy}{dx}$ we get $\frac{dy}{dx}=\frac{1}{\cos y}=\frac{1}{\sqrt{1-x^2}}$,
+    valid for $|x|<1$.
+  common_errors:
+  - Writing $\frac{dy}{dx}=\cos y$ by inverting the wrong way.
+  - Leaving the answer in terms of $y$ and not converting back to $x$.
+  - Forgetting the restriction $|x|<1$.
+  hints:
+    rephrase: Solve your differentiated equation for $\frac{dy}{dx}$, then replace $\cos y$ using the
+      previous stage.
+    smaller_case: If $1=3\cdot\frac{dy}{dx}$, what is $\frac{dy}{dx}$?
+    key_idea: Divide both sides by the coefficient of $\frac{dy}{dx}$, then substitute the expression
+      for cosine in terms of $x$.
+  check: sp.diff(sp.asin(x), x) - 1/sp.sqrt(1-x**2)
+  check_ok: null
+extensions:
+  '3':
+  - Derive $\frac{d}{dx}(\arccos x)$.
+  '4':
+  - Derive $\frac{d}{dx}(\arctan x)$.
+  '5':
+  - Derive $\frac{d}{dx}(\operatorname{arcsec} x)$ for $x>1$.
+spoken_vocab:
+- d by d x
+- arc sine of x
+- sine y equals x
+- cosine y
+- square root of one minus x squared
+- implicit differentiation
+- principal range
+- pi over two
+source: past-interviews/Actual Past Interview Questions/G4.jpg
+verified: false
+rating:
+  quality: 4
+  difficulty: 4
+  parts: 4
+  minutes: 8
+  flags: []
+  tagline: Standard inverse-function derivation with useful range and sign discussion.
+  priority: 52
+  rank: 516
+  tier: C
+  category: past-interviews
+  d10: 4.3
+  real: 5.8
+  by: deepseek-v4.1-flash-free
+tags:
+- differentiation
+- trigonometry

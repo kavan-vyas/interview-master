@@ -1,0 +1,107 @@
+id: square-midpoints-triangle-area
+title: Triangle AEF in a square of side 8 cm
+topics:
+- coordinate geometry
+- area of triangles
+- midpoints
+- shoelace formula
+warmup: true
+answer_source: pdf
+statement: $ABCD$ is a square of side $8$ cm. $E$ is the midpoint of $BC$ and $F$ is the midpoint of $CD$.
+  What is the area of triangle $AEF$? a) $24$ cm$^2$ b) $16$ cm$^2$ c) $20$ cm$^2$ d) $28$ cm$^2$ e) $32$
+  cm$^2$
+stages:
+- goal: Place the square on coordinate axes and find the coordinates of E.
+  expected: 'With $A=(0,0)$, $B=(8,0)$, $C=(8,8)$, $D=(0,8)$: $E=(8,4)$.'
+  solution: Put A at the origin with AB along the x-axis. Then B=(8,0), C=(8,8), D=(0,8). E is the midpoint
+    of BC, so E = ((8+8)/2, (0+8)/2) = (8,4).
+  common_errors:
+  - Placing the square with an inconsistent orientation, so B, C, D do not form a square in order.
+  - Taking E as the midpoint of AB or of the wrong side.
+  - Arithmetic slip in the midpoint average, e.g. giving (8,8) or (4,4).
+  hints:
+    rephrase: Put the square on a grid with A at the origin. Where do B, C and D go, and how do you find
+      the middle of segment BC?
+    smaller_case: Use a square of side 2 with the same setup. Where would the midpoint of its right-hand
+      side be?
+    key_idea: The midpoint of a segment has coordinates equal to the averages of the endpoint coordinates.
+  check: (Rational(8+8,2) - 8) + (Rational(0+8,2) - 4)
+  check_ok: true
+- goal: Find the coordinates of F, the midpoint of CD.
+  expected: $F=(4,8)$.
+  solution: C=(8,8) and D=(0,8). F = ((8+0)/2, (8+8)/2) = (4,8).
+  common_errors:
+  - Using the midpoint of AD or BC instead of CD.
+  - Averaging the wrong coordinates, e.g. giving (8,4) or (0,8).
+  hints:
+    rephrase: Which two corners does F sit between, and how do you locate the point halfway along that
+      edge?
+    smaller_case: In the square of side 2, find the midpoint of its top edge using the same method.
+    key_idea: Average the x-coordinates and the y-coordinates of the two endpoints separately.
+  check: (Rational(8+0,2) - 4) + (Rational(8+8,2) - 8)
+  check_ok: true
+- goal: Compute the area of triangle AEF and choose the matching option.
+  expected: Area $= 24$ cm$^2$, which is option a.
+  solution: 'Using the shoelace formula with A=(0,0), E=(8,4), F=(4,8): Area = (1/2)|8·8 − 4·4| = (1/2)(64
+    − 16) = 24 cm². Option a.'
+  common_errors:
+  - Answering option e ($32$) by taking half of the whole square's area.
+  - Answering option b ($16$) by miscalculating the shoelace terms or the determinant.
+  - Forgetting the factor of $\frac{1}{2}$ in the shoelace formula.
+  hints:
+    rephrase: You have three vertices with coordinates. Which formula or decomposition gives the area
+      of a triangle from its vertices?
+    smaller_case: Use the same method on a triangle with vertices (0,0), (2,0), (0,2) and check that the
+      answer is what you expect.
+    key_idea: Either use the shoelace determinant formula for a triangle, or subtract the three corner
+      triangles from the square.
+  check: Rational(1,2)*Abs(8*8 - 4*4) - 24
+  check_ok: true
+extensions:
+  '3':
+  - Repeat with E as the midpoint of $AB$ and F as the midpoint of $AD$. What is the area of triangle
+    $CEF$?
+  '4':
+  - Show that the area of triangle $AEF$ is independent of the side length $s$ when E and F are midpoints,
+    and express it as a fraction of the square's area.
+  '5':
+  - Let E divide BC in ratio $1:3$ (from B) and F the midpoint of CD. Find the area of triangle AEF in
+    terms of the side length $s$.
+spoken_vocab:
+- square
+- side
+- eight centimetres
+- triangle
+- area
+- midpoint
+- point E
+- point F
+- vertex
+- square centimetres
+- coordinates
+- shoelace
+- twenty four
+- sixteen
+- thirty two
+- twenty eight
+- twenty
+source: kclms/kclms-specimen-mcq-3.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 2
+  parts: 3
+  minutes: 3
+  flags:
+  - trivial
+  tagline: Multiple-choice coordinate area calculation with a single routine step.
+  priority: 23
+  rank: 654
+  tier: D
+  category: kclms
+  d10: 1.5
+  real: 3.0
+  by: haiku
+tags:
+- geometry
+- coordinate_geometry

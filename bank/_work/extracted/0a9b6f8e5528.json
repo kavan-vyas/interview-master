@@ -1,0 +1,107 @@
+[
+ {
+  "q": "Let $E$ be the expected number of tosses of a fair coin until the first head. (i) Find $E$. (ii) Find the expected number of tosses until $HH$ first appears. (iii) Find the expected number of tosses until $HT$ first appears. (iv) Explain, without calculation, why the answers to (ii) and (iii) are different. (v) Alice and Bob watch the same sequence of tosses. Alice wins if $HH$ appears before $HT$, and Bob wins if $HT$ appears before $HH$. Who is more likely to win? (Parts (i)\u2013(iii) are stated before this excerpt begins; the excerpt shows (iv) and (v) and the solution to all parts.)",
+  "kind": "maths",
+  "answer": "(i) $E=2$. (ii) $E=6$ for $HH$. (iii) $E=4$ for $HT$. (iv) A failure after an $H$ in $HT$ is another $H$, so no progress is lost. A failure after an $H$ in $HH$ is a $T$, which sends us back to the start. $HH$ overlaps with itself and $HT$ does not. (v) Neither pattern can appear before the first $H$, and the next toss decides the game immediately, so each wins with probability $\\frac{1}{2}$.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p41"
+ },
+ {
+  "q": "Penney's game with patterns $HHT$ and $THH$: which pattern appears first in a sequence of fair tosses, and with what probability?",
+  "kind": "maths",
+  "answer": "$THH$ appears first with probability $\\frac{3}{4}$, even though both patterns have the same expected waiting time of 8 tosses.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p41"
+ },
+ {
+  "q": "A gambler starts with \u00a3$k$ and repeatedly bets \u00a31, winning each bet with probability $p$ and losing with probability $q=1-p$. She stops on reaching \u00a3$N$ or \u00a30, and $p_k$ is the probability she reaches \u00a3$N$. (i) Show that $p_k = p\\,p_{k+1} + q\\,p_{k-1}$ for $0<k<N$, with $p_0=0$ and $p_N=1$. (ii) For a fair game ($p=\\frac{1}{2}$) show that $p_k=\\frac{k}{N}$. (iii) For $p\\neq\\frac{1}{2}$ show that $p_k=\\frac{1-r^k}{1-r^N}$, where $r=\\frac{q}{p}$. (iv) In roulette, a bet on red wins with probability $\\frac{18}{38}$. Estimate the probability of turning \u00a310 into \u00a320 by betting \u00a31 at a time. (v) For the fair game, show that the expected number of bets is $k(N-k)$.",
+  "kind": "maths",
+  "answer": "(i) Condition on the first bet. (ii) With $p=q=\\frac{1}{2}$ the differences are constant, so $p_k$ is linear in $k$, and the boundary values give $p_k=\\frac{k}{N}$. (iii) Try $p_k=A+B\\lambda^k$ with roots $\\lambda=1$ and $\\lambda=r$; then $B=-A$ and $A(1-r^N)=1$. (iv) $r=\\frac{20}{18}=\\frac{10}{9}$, $k=10$, $N=20$, so $p_{10}=\\frac{1}{1+r^{10}}$. Since $r^{10}\\approx e^{1.05}\\approx 2.9$, the probability is about $0.26$, compared with $0.5$ in a fair game. (v) $E_k=1+\\frac{1}{2}(E_{k-1}+E_{k+1})$ with $E_0=E_N=0$. $E_k=k(N-k)$ satisfies this and the boundary conditions.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p41"
+ },
+ {
+  "q": "A disease affects 1% of a population. A test detects it in 99% of people who have it, but also gives a positive result for 5% of people who do not. (i) A randomly chosen person tests positive. What is the probability they have the disease? (ii) Show that, in terms of odds, posterior odds = prior odds $\\times$ likelihood ratio, where the likelihood ratio is $\\frac{P(+\\mid D)}{P(+\\mid D^c)}$. (iii) The person takes a second, independent test, also positive. What is the probability now? (iv) How many consecutive positive results are needed before the probability of disease exceeds 99%? (v) Comment on the assumption of independence.",
+  "kind": "maths",
+  "answer": "(i) Out of 10 000 people, 100 are ill and 99 test positive; of the 9900 healthy, 495 test positive. So $P(D\\mid +)=\\frac{99}{594}=\\frac{1}{6}$. (ii) By Bayes' theorem, the posterior odds equal the prior odds times $\\frac{P(+\\mid D)}{P(+\\mid D^c)}$, since $P(+)$ cancels. (iii) Prior odds are $1:99$ and the likelihood ratio is $19.8$. After two positives the odds are $\\frac{19.8^2}{99}\\approx 3.96$, so the probability is about $0.80$. (iv) We need $\\frac{19.8^n}{99}>99$. $19.8^3\\approx 7762$ is too small and $19.8^4\\approx 153\\,700$ is enough, so 4 tests are needed. (v) Repeat tests on the same person are often not independent, since whatever caused a false positive may cause it again. The odds then grow more slowly than the calculation suggests.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p41"
+ },
+ {
+  "q": "Let $X$ and $Y$ be independent and uniform on $[0,1]$. (i) Show that $P(\\max(X,Y)\\le t)=t^2$ for $0\\le t\\le 1$, and hence find $E[\\max(X,Y)]$. (ii) Find $E[\\min(X,Y)]$. (iii) Find $E|X-Y|$. (iv) If $X_1,\\dots,X_n$ are independent and uniform on $[0,1]$, show that $E[\\max X_i]=\\frac{n}{n+1}$. (v) Serial numbers are uniform on $[0,\\theta]$ for an unknown $\\theta$. You observe $n$ of them, with maximum $m$. Explain why $\\frac{n+1}{n}m$ is a sensible estimate of $\\theta$.",
+  "kind": "maths",
+  "answer": "(i) The density of the maximum is $2t$, so $E[\\max]=\\frac{2}{3}$. (ii) $\\max+\\min=X+Y$, which has expectation 1, so $E[\\min]=\\frac{1}{3}$. (iii) $|X-Y|=\\max-\\min$, so $E|X-Y|=\\frac{2}{3}-\\frac{1}{3}=\\frac{1}{3}$. (iv) $P(\\max X_i\\le t)=t^n$, the density is $nt^{n-1}$, and $E=\\int_0^1 nt^n\\,dt=\\frac{n}{n+1}$. (v) Scaling (iv), $E[M]=\\frac{n}{n+1}\\theta$, so $E\\left[\\frac{n+1}{n}M\\right]=\\theta$: the estimator is unbiased. The observed maximum systematically underestimates $\\theta$, and the factor corrects for the expected gap below it. This is the idea behind the German tank problem.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p41"
+ },
+ {
+  "q": "Candidates $1,\\dots,n$ for a job arrive in uniformly random order. After each interview you learn only how the candidate ranks against those already seen, and must accept or reject immediately. Strategy $S_r$: reject the first $r-1$ candidates, then accept the first one who is better than everyone seen so far. (i) For $n=3$, find the probability that $S_r$ picks the best candidate for $r=1,2,3$. (ii) Show that for $2\\le r\\le n$, $S_r$ succeeds with probability $P_r=\\frac{r-1}{n}\\sum_{k=r}^{n}\\frac{1}{k-1}$. (iii) By approximating the sum with an integral, show that for large $n$ and $r\\approx xn$, $P_r\\approx -x\\ln x$. Deduce the best $x$ and the resulting probability.",
+  "kind": "maths",
+  "answer": "(i) $S_1$ succeeds with probability $\\frac{1}{3}$, $S_2$ with $\\frac{1}{2}$, and $S_3$ with $\\frac{1}{3}$. So the best is $r=2$. (ii) The best candidate is in position $k\\ge r$ with probability $\\frac{1}{n}$ each. Success then requires the best of the first $k-1$ candidates to be among the first $r-1$, which has probability $\\frac{r-1}{k-1}$. Summing over $k$ gives the formula. (iii) $\\sum_{k=r}^{n}\\frac{1}{k-1}\\approx\\int_r^n\\frac{dt}{t}=\\ln\\frac{n}{r}$, so $P_r\\approx\\frac{r}{n}\\ln\\frac{n}{r}=-x\\ln x$. Differentiating gives $x=\\frac{1}{e}$, and the success probability tends to $\\frac{1}{e}\\approx 0.37$.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p41"
+ },
+ {
+  "q": "Without using a calculator, decide which is larger: $e^{\\pi}$ or $\\pi^{e}$.",
+  "kind": "maths",
+  "answer": "Taking logarithms, $e^\\pi>\\pi^e \\iff \\frac{1}{e}>\\frac{\\ln\\pi}{\\pi}$. Let $f(x)=\\frac{\\ln x}{x}$. Then $f'(x)=\\frac{1-\\ln x}{x^2}$, so $f$ has a strict global maximum at $x=e$ with $f(e)=\\frac{1}{e}$. Since $\\pi\\neq e$, $f(\\pi)<\\frac{1}{e}$, so $e^\\pi>\\pi^e$.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p41"
+ },
+ {
+  "q": "Find all pairs of positive integers $a<b$ with $a^b=b^a$.",
+  "kind": "maths",
+  "answer": "The only pair is $(2,4)$. The case $a=1$ forces $b=1$, which is excluded, and $a=2$ gives $b=4$.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p41"
+ },
+ {
+  "q": "Evaluate $\\int_0^{\\pi/2}\\frac{\\sin x}{\\sin x+\\cos x}\\,dx$.",
+  "kind": "maths",
+  "answer": "Substituting $u=\\frac{\\pi}{2}-x$ gives $I=\\int_0^{\\pi/2}\\frac{\\cos u}{\\cos u+\\sin u}\\,du$. Adding the two expressions for $I$, the integrand becomes 1, so $2I=\\frac{\\pi}{2}$ and $I=\\frac{\\pi}{4}$.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p41"
+ },
+ {
+  "q": "Evaluate $\\int_0^{\\pi/2}\\frac{dx}{1+\\tan^{\\sqrt{2}}x}$.",
+  "kind": "maths",
+  "answer": "$\\frac{\\pi}{4}$, by the same substitution trick.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p41"
+ },
+ {
+  "q": "Find $\\lim_{n\\to\\infty}\\sum_{k=1}^{n}\\frac{n}{n^2+k^2}$.",
+  "kind": "maths",
+  "answer": "$\\sum_{k=1}^{n}\\frac{n}{n^2+k^2}=\\frac{1}{n}\\sum_{k=1}^{n}\\frac{1}{1+(k/n)^2}$ is a Riemann sum for $\\int_0^1\\frac{dx}{1+x^2}=\\left[\\arctan x\\right]_0^1=\\frac{\\pi}{4}$. So the limit is $\\frac{\\pi}{4}$.",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p41"
+ },
+ {
+  "q": "Show geometrically that $\\sin x<x<\\tan x$ for $0<x<\\frac{\\pi}{2}$, and deduce that $\\frac{\\sin x}{x}\\to 1$ as $x\\to 0$.",
+  "kind": "maths",
+  "answer": "In the unit circle, the triangle $OAP$ lies inside the sector $OAP$, which lies inside the triangle $OAT$. So $\\frac{1}{2}\\sin x<\\frac{1}{2}x<\\frac{1}{2}\\tan x$. Dividing by $\\frac{1}{2}\\sin x>0$ and inverting gives $\\cos x<\\frac{\\sin x}{x}<1$. As $x\\to 0^+$, $\\cos x\\to 1$, and the squeeze gives the limit. Both sides are even in $x$, so the limit holds from both sides. Using L'H\u00f4pital's rule here would be circular, because the standard proof of the derivative of $\\sin x$ relies on this limit.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p41"
+ },
+ {
+  "q": "Show that $\\int_0^1\\frac{x^4(1-x)^4}{1+x^2}\\,dx=\\frac{22}{7}-\\pi$, and deduce that $\\pi<\\frac{22}{7}$.",
+  "kind": "maths",
+  "answer": "Polynomial division gives $\\frac{x^4(1-x)^4}{1+x^2}=x^6-4x^5+5x^4-4x^2+4-\\frac{4}{1+x^2}$. Integrating from 0 to 1 gives $\\frac{1}{7}-\\frac{4}{6}+1-\\frac{4}{3}+4-4\\cdot\\frac{\\pi}{4}=\\frac{22}{7}-\\pi$. The integrand is positive on $(0,1)$, so the integral is positive and $\\pi<\\frac{22}{7}$.",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p41"
+ },
+ {
+  "q": "Show that $\\int_0^1\\frac{x^4(1-x)^4}{1+x^2}\\,dx$ is less than $\\frac{1}{256}$, since $x(1-x)\\le\\frac{1}{4}$. What bounds on $\\pi$ does this give?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jaymin/Jaymin Interview (1).pdf#p41"
+ },
+ {
+  "q": "Show that $\\int_0^\\infty x^n e^{-x}\\,dx=n!$ for every integer $n\\ge 0$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jaymin/Jaymin Interview (1).pdf#p41"
+ }
+]

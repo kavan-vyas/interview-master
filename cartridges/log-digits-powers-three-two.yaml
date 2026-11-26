@@ -1,0 +1,142 @@
+id: log-digits-powers-three-two
+title: Leading digits of large powers via logarithms
+topics:
+- logarithms
+- estimation
+- leading digit
+- fractional part of a logarithm
+- powers
+warmup: false
+answer_source: pdf
+statement: 'To nine decimal places, $\log_{10}2=0.301029996$ and $\log_{10}3=0.477121255$. (i) Calculate
+  $\log_{10}5$ and $\log_{10}6$ to three decimal places. By taking logs, or otherwise, show that $5\times10^{47}<3^{100}<6\times10^{47}$.
+  Hence write down the first digit of $3^{100}$. (ii) Find the first digit of each of the following numbers:
+  $2^{1000}$; $2^{10000}$; and $2^{100000}$.'
+stages:
+- goal: Compute $\log_{10}5$ and $\log_{10}6$ to three decimal places from the given values.
+  expected: $\log_{10}5\approx0.699$ and $\log_{10}6\approx0.778$.
+  solution: $\log_{10}5=\log_{10}(10/2)=1-\log_{10}2=0.698970004$, which rounds to $0.699$. $\log_{10}6=\log_{10}2+\log_{10}3=0.778151251$,
+    which rounds to $0.778$.
+  common_errors:
+  - Computing $\log_{10}5$ as $\log_{10}2\cdot\log_{10}3$ or as $\log_{10}2+\log_{10}3$.
+  - Rounding $0.778151$ down to $0.777$.
+  - Confusing the rounding of the last digit.
+  hints:
+    rephrase: Write $5$ and $6$ in terms of $2$, $3$ and $10$, then use the logarithm laws.
+    smaller_case: Use $\log_{10}4=2\log_{10}2\approx0.602$ to check that your method for $\log_{10}5$
+      is consistent.
+    key_idea: Use $\log_{10}(10/2)=1-\log_{10}2$ and $\log_{10}(ab)=\log_{10}a+\log_{10}b$.
+  check: (round(1 - 0.301029996, 3) == 0.699) and (round(0.301029996 + 0.477121255, 3) == 0.778)
+  check_ok: false
+- goal: Use logarithms to show that $5\times10^{47}<3^{100}<6\times10^{47}$.
+  expected: $\log_{10}(5\times10^{47})\approx47.699$, $\log_{10}(6\times10^{47})\approx47.778$, and $100\log_{10}3=47.7121255$,
+    which lies strictly between them. Hence $5\times10^{47}<3^{100}<6\times10^{47}$.
+  solution: $\log_{10}(5\times10^{47})=47+\log_{10}5\approx47.699$ and $\log_{10}(6\times10^{47})=47+\log_{10}6\approx47.778$.
+    Also $\log_{10}3^{100}=100\log_{10}3=47.7121255$. Since $47.699<47.7121255<47.778$, taking the inverse
+    of $\log_{10}$ gives the stated inequalities. The rounded values are enough because $47.699<47.7121$
+    and $47.7121<47.778$ are both strict.
+  common_errors:
+  - Forgetting the factor $100$ when computing $\log_{10}3^{100}$.
+  - Adding $47$ incorrectly to $\log_{10}5$ or $\log_{10}6$.
+  - Comparing with $\log_{10}$ values of the wrong magnitude, such as $\log_{10}(5\times10^{46})$.
+  hints:
+    rephrase: Take $\log_{10}$ of each of the three quantities in the inequality, and compare the results.
+    smaller_case: Check the method on $3^{2}=9$, which lies between $5\times10^{0}$ and $6\times10^{0}$?
+      Compare $\log_{10}9$ with $\log_{10}5$ and $\log_{10}6$ and decide which holds.
+    key_idea: Since $\log_{10}$ is increasing, an inequality between numbers holds if and only if the
+      same inequality holds between their logarithms. Write the powers of $10$ as integer parts of the
+      logarithms.
+  check: 47.699 < 100*0.477121255 < 47.778
+  check_ok: true
+- goal: Write down the first digit of $3^{100}$.
+  expected: The first digit of $3^{100}$ is $5$.
+  solution: By the previous stage, $3^{100}$ lies between $5\times10^{47}$ and $6\times10^{47}$. So its
+    leading digit is $5$.
+  common_errors:
+  - Giving the first digit as $4$ or $6$ by rounding the value of $3^{100}$ instead of using the bounds.
+  - Writing a digit that does not match the power of $10$.
+  hints:
+    rephrase: Use the bounds from the previous stage to decide which digit the number must start with.
+    smaller_case: For $3^{2}=9$, the leading digit is clear. Check which single digit the number $3^{2}$
+      starts with.
+    key_idea: A number between $d\times10^{k}$ and $(d+1)\times10^{k}$ has leading digit $d$.
+  check: null
+- goal: Find the first digits of $2^{1000}$ and $2^{10000}$ by finding the fractional parts of their logarithms.
+  expected: $\log_{10}2^{1000}=301.029996\ldots$, with fractional part $0.029996$, which lies in $[0,\log_{10}2)$,
+    so the first digit is $1$. $\log_{10}2^{10000}=3010.29996\ldots$, with fractional part $0.29996$,
+    which lies in $[0,\log_{10}2)$, so the first digit is $1$.
+  solution: $\log_{10}2^{1000}=1000\cdot0.301029996=301.029996$, whose fractional part is $0.029996$.
+    Since $0\leq0.029996<\log_{10}2$, the leading digit is $1$. Similarly $\log_{10}2^{10000}=3010.29996$,
+    whose fractional part is $0.29996$. Since $0\leq0.29996<\log_{10}2=0.301029996$, the leading digit
+    is $1$.
+  common_errors:
+  - Using the integer part of the logarithm as the leading digit.
+  - Comparing the fractional part with $\log_{10}9$ instead of $\log_{10}2$.
+  - Rounding the fractional part so that it crosses $\log_{10}2$.
+  hints:
+    rephrase: Multiply $\log_{10}2$ by the exponent, then look at the fractional part and decide which
+      interval $[\log_{10}d,\log_{10}(d+1))$ it lies in.
+    smaller_case: Try $2^{4}=16$. Compute $\log_{10}16$ and check that its fractional part gives the leading
+      digit $1$.
+    key_idea: A number $N$ has leading digit $d$ exactly when the fractional part of $\log_{10}N$ lies
+      in $[\log_{10}d,\log_{10}(d+1))$.
+  check: 0 <= 1000*0.301029996 - 301 < 0.301029996 and 0 <= 10000*0.301029996 - 3010 < 0.301029996
+  check_ok: true
+- goal: Find the first digit of $2^{100000}$.
+  expected: $\log_{10}2^{100000}=30102.9996\ldots$, with fractional part $0.9996$. This lies in $[\log_{10}9,1)$,
+    where $\log_{10}9\approx0.9542$, so the first digit is $9$.
+  solution: $\log_{10}2^{100000}=100000\cdot0.301029996=30102.9996$, whose fractional part is $0.9996$.
+    Since $\log_{10}9\approx0.9542\leq0.9996<1$, the leading digit is $9$.
+  common_errors:
+  - Rounding the fractional part to $1.0$ and concluding a leading digit of $1$.
+  - Using $\log_{10}2$ instead of $\log_{10}9$ as the lower boundary.
+  - Forgetting that the rounding error in $\log_{10}2$ is multiplied by $100000$.
+  hints:
+    rephrase: Find the fractional part of the logarithm, then check which interval $[\log_{10}d,\log_{10}(d+1))$
+      contains it.
+    smaller_case: For $2^{10000}$ you found the fractional part from $10000\log_{10}2$. Repeat the same
+      step with $100000$ and check the size of the fractional part.
+    key_idea: The error in $\log_{10}2$ is about $5\times10^{-10}$, which is multiplied by the exponent.
+      Check that the fractional part is far enough from every boundary to be decisive.
+  check: 0.9542 < 100000*0.301029996 - 30102 < 1
+  check_ok: true
+extensions:
+  '3':
+  - Use $\log_{10}7\approx0.845098$ to find the first digit of $7^{100}$.
+  '4':
+  - How many digits does $2^{100000}$ have?
+  '5':
+  - Explain why the leading digit of $2^n$ takes each value from $1$ to $9$ for infinitely many $n$.
+spoken_vocab:
+- log base ten of two
+- log base ten of three
+- log base ten of five
+- log base ten of six
+- three to the power of one hundred
+- two to the power of one thousand
+- two to the power of ten thousand
+- two to the power of one hundred thousand
+- five times ten to the forty seven
+- six times ten to the forty seven
+- first digit
+- integer part
+- fractional part
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#12
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 4
+  minutes: 15
+  flags: []
+  tagline: Leading-digit reasoning via fractional parts of logs, with a good multi-stage ladder.
+  priority: 83
+  rank: 174
+  tier: B
+  category: siklos
+  d10: 5.0
+  real: 5.0
+  by: haiku
+tags:
+- exponentials_and_logarithms
+- number_theory

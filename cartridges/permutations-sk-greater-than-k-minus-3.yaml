@@ -1,0 +1,107 @@
+id: permutations-sk-greater-than-k-minus-3
+title: Permutations with s_k > k-3
+topics:
+- permutations
+- counting
+- combinatorics
+- constraints
+warmup: false
+answer_source: generated
+statement: There are $n!$ permutations $(s_1,s_2,s_3,\ldots,s_n)$ of $(1,2,3,\ldots,n)$. How many of them
+  satisfy $s_k>k-3$ for $k=1,2,3,\ldots,n$?
+stages:
+- goal: Find which constraints actually restrict the permutation.
+  expected: For k = 1, 2, 3 the constraint is automatically true. For k >= 4, s_k must not be in {1, ...,
+    k-3}. In particular s_4 != 1 and s_5 is not 1 or 2.
+  solution: The condition is s_k >= k-2. For k = 1, 2, 3 the bound is at most 1, and every s_k is at least
+    1, so these hold automatically. For k >= 4 the bound k-2 is at least 2, so the values 1, ..., k-3
+    are forbidden at position k. For n = 4 the only forbidden case is s_4 = 1, which removes 3! = 6 of
+    the 24 permutations, leaving 18.
+  common_errors:
+  - Treating the constraint as s_k >= k-3 rather than s_k > k-3.
+  - Forgetting that s_k >= 1 always holds, so small k give no restriction.
+  - Counting forbidden permutations incorrectly when several positions are constrained.
+  hints:
+    rephrase: Write the inequality as the set of values allowed at each position, and see which positions
+      have a set smaller than all of 1..n.
+    smaller_case: Take n = 4 and list which values are forbidden at position 4. Count how many permutations
+      have that value in that position.
+    key_idea: Only positions 4 onward restrict the values, and each one forbids a growing initial segment
+      of 1, 2, 3, ...
+  check: (sp.factorial(4) - sp.factorial(3)) - 18
+  check_ok: null
+- goal: Count the assignments by filling positions from k = n down to k = 3.
+  expected: Each position k from 3 to n has exactly 3 choices once the later positions are filled, giving
+    3^(n-2) ways for positions 3 to n. Positions 1 and 2 then take the 2 remaining values in 2 ways.
+  solution: Position k allows the values {k-2, ..., n}, which has n-k+3 elements. The later positions
+    k+1, ..., n have already used n-k values, all from inside this set because the sets are nested. That
+    leaves (n-k+3) - (n-k) = 3 choices. There are n-2 such positions, giving 3^(n-2). Two values remain
+    for positions 1 and 2, which can be arranged in 2! = 2 ways, and those positions have no restriction.
+  common_errors:
+  - Processing positions in the wrong order, so the nested-set argument breaks.
+  - Counting the choices at position k without subtracting the values already used by later positions.
+  - Forgetting the 2! arrangement of the first two positions.
+  hints:
+    rephrase: Fill the most restricted position first, and count how many values remain available for
+      it.
+    smaller_case: Take n = 5. Count the choices for position 5 first, then position 4, then position 3.
+    key_idea: The allowed sets are nested, so each new position has a fixed number of choices after the
+      later positions are placed.
+  check: 3**(5-2) - 27
+  check_ok: true
+- goal: Give the total number of permutations for general n.
+  expected: 2 * 3^(n-2) for n >= 2.
+  solution: 'Multiply the count for positions 3 to n, which is 3^(n-2), by the 2 arrangements of the first
+    two positions. This gives 2 * 3^(n-2). Checks: n = 3 gives 6, which matches the count of all permutations
+    because no constraint bites. n = 4 gives 18. n = 5 gives 54, which matches the direct count of 3 *
+    (4! - 3!) = 54.'
+  common_errors:
+  - Writing 3^(n-1) or 2 * 3^(n-1) instead of 2 * 3^(n-2).
+  - Getting the formula right but failing to check it against n = 3 or n = 4.
+  - Stating the answer for n = 1, where the formula does not apply.
+  hints:
+    rephrase: Combine the count for the constrained positions with the count for the free positions.
+    smaller_case: Check your formula at n = 4 by counting the permutations with s_4 != 1 directly.
+    key_idea: Multiply the choices for the constrained positions by the arrangements of the unconstrained
+      ones.
+  check: 2*3**(5-2) - 54
+  check_ok: true
+extensions:
+  '3':
+  - Count the permutations with s_k >= k-1 for all k.
+  '4':
+  - Count the derangements, the permutations with s_k != k for all k.
+  '5':
+  - Generalise to s_k > k-m for a general integer m, and find a pattern for the count.
+spoken_vocab:
+- permutations
+- n factorial
+- s sub k
+- greater than
+- k minus three
+- ellipsis
+- one to n
+- how many
+- nested
+- positions
+- choices
+- two times three to the n minus two
+- derangement
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Constraints collapse to 3 choices per position, giving 6·3^(n−3); good scaffolding.
+  priority: 71
+  rank: 332
+  tier: B
+  category: tbo
+  d10: 4.5
+  real: 6.0
+  by: haiku
+tags:
+- combinatorics

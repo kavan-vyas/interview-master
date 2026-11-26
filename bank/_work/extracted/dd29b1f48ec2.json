@@ -1,0 +1,9 @@
+[
+ {
+  "q": "A twin prime is a prime number that is either 2 less or 2 more than another prime number. For example, $11$ and $13$. Show that the only triple prime (i.e. three primes that are 2 less or 2 more than each other) is $3, 5, 7$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "nextstepmaths/NextStepMaths Interview Questions/interview-question-11.pdf#0"
+ }
+]

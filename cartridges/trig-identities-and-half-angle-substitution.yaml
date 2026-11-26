@@ -1,0 +1,120 @@
+id: trig-identities-and-half-angle-substitution
+title: Trigonometric identities and the t = tan(theta/2) substitution
+topics:
+- trigonometric identities
+- cosecant and secant
+- half-angle formulae
+- proof
+- substitution
+warmup: false
+answer_source: generated
+statement: 'Prove the following identities: (i) $\tan\theta+\cot\theta=\sec\theta\,\mathrm{cosec}\,\theta$;
+  (ii) $(\cot\theta+\mathrm{cosec}\,\theta)^2=\frac{1+\cos\theta}{1-\cos\theta}$; (iii) where $t=\tan\frac{1}{2}\theta$:
+  $\cos\theta=\frac{1-t^2}{1+t^2}$, $\sin\theta=\frac{2t}{1+t^2}$, $\tan\theta=\frac{2t}{1-t^2}$.'
+stages:
+- goal: Prove tan(theta) + cot(theta) = sec(theta) cosec(theta).
+  expected: tan theta + cot theta = 1/(sin theta cos theta) = sec theta cosec theta
+  solution: Write tan theta + cot theta = sin theta/cos theta + cos theta/sin theta = (sin^2 theta + cos^2
+    theta)/(sin theta cos theta) = 1/(sin theta cos theta). Since sec theta = 1/cos theta and cosec theta
+    = 1/sin theta, this equals sec theta cosec theta.
+  common_errors:
+  - Forgetting to combine the fractions over a common denominator
+  - Not using sin^2 + cos^2 = 1 at the right moment
+  - Confusing sec with cosec
+  hints:
+    rephrase: Write tan and cot in terms of sin and cos, then put the sum over a common denominator.
+    smaller_case: Check the identity at theta = pi/4, where tan and cot are both 1.
+    key_idea: Combine over the common denominator sin theta cos theta and use sin^2 theta + cos^2 theta
+      = 1.
+  check: simplify(tan(x)+cot(x)-sec(x)*csc(x))
+  check_ok: false
+- goal: Prove (cot theta + cosec theta)^2 = (1 + cos theta)/(1 - cos theta).
+  expected: (cot theta + cosec theta)^2 = (1 + cos theta)^2/sin^2 theta = (1 + cos theta)/(1 - cos theta),
+    valid for cos theta != 1 and sin theta != 0.
+  solution: cot theta + cosec theta = (cos theta + 1)/sin theta, so its square is (1 + cos theta)^2/sin^2
+    theta. Using sin^2 theta = 1 - cos^2 theta = (1 - cos theta)(1 + cos theta), this becomes (1 + cos
+    theta)^2/((1 - cos theta)(1 + cos theta)) = (1 + cos theta)/(1 - cos theta), after cancelling the
+    factor (1 + cos theta).
+  common_errors:
+  - Squaring only one term when expanding the bracket
+  - Failing to factorise sin^2 theta as (1 - cos theta)(1 + cos theta)
+  - Cancelling (1 + cos theta) without noting that cos theta != -1
+  hints:
+    rephrase: Write cot and cosec over the common denominator sin theta, then square. How can you rewrite
+      sin^2 theta?
+    smaller_case: Substitute theta = pi/2, where cos = 0 and sin = 1. Do both sides agree?
+    key_idea: Use sin^2 theta = 1 - cos^2 theta to factorise the denominator, then cancel the common factor.
+  check: simplify((((1+cos(x))/sin(x))**2 - (1+cos(x))/(1-cos(x))).subs(sin(x), sqrt(1-cos(x)**2)))
+  check_ok: true
+- goal: With t = tan(theta/2), prove cos theta = (1 - t^2)/(1 + t^2) and sin theta = 2t/(1 + t^2).
+  expected: cos theta = (1 - t^2)/(1 + t^2) and sin theta = 2t/(1 + t^2), valid when cos(theta/2) != 0.
+  solution: Using double angle formulae with half-angle, cos theta = cos^2(theta/2) - sin^2(theta/2) and
+    sin theta = 2 sin(theta/2) cos(theta/2). Divide the numerator and denominator of each by cos^2(theta/2)
+    and use tan(theta/2) = t and 1 + t^2 = sec^2(theta/2). This gives cos theta = (1 - t^2)/(1 + t^2)
+    and sin theta = 2t/(1 + t^2). These need cos(theta/2) != 0, i.e. theta != pi + 2n pi.
+  common_errors:
+  - Dividing only the numerator by cos^2(theta/2)
+  - Using cos theta = 1 - 2 sin^2(theta/2) and then forgetting the (1 + t^2) denominator
+  - Not stating the restriction cos(theta/2) != 0
+  hints:
+    rephrase: Express cos theta and sin theta with half-angle formulae, then write each as a ratio. What
+      common denominator appears?
+    smaller_case: At theta = 0, what is t, and does your formula for cos theta give 1?
+    key_idea: Use the double angle formulae in theta/2, then divide top and bottom by cos^2(theta/2) and
+      use 1 + tan^2 = sec^2.
+  check: simplify(expand_trig(cos(2*atan(t))) - (1-t**2)/(1+t**2))
+  check_ok: true
+- goal: Deduce tan theta = 2t/(1 - t^2) with t = tan(theta/2).
+  expected: tan theta = 2t/(1 - t^2), valid for t^2 != 1 (theta != pi/2 + n pi).
+  solution: tan theta = sin theta/cos theta = (2t/(1 + t^2))/((1 - t^2)/(1 + t^2)). The common factor
+    1 + t^2 cancels, leaving 2t/(1 - t^2). This needs t^2 != 1, which matches theta != pi/2 + n pi where
+    tan theta is undefined.
+  common_errors:
+  - Failing to cancel the common factor (1 + t^2)
+  - Writing tan theta = 2t/(1 + t^2)
+  - Not stating the restriction t^2 != 1
+  hints:
+    rephrase: Divide the sine expression by the cosine expression. What cancels?
+    smaller_case: At theta = pi/2, what is t, and what should happen to tan theta?
+    key_idea: Use tan = sin/cos with the two formulae from the previous stage, and cancel the common denominator.
+  check: simplify(expand_trig(tan(2*atan(t))) - 2*t/(1-t**2))
+  check_ok: true
+extensions:
+  '3':
+  - Use the t-formulae to solve cos theta + sin theta = 1 for 0 <= theta < 2 pi, and check excluded values
+    carefully.
+  '4':
+  - Prove 1 + cos theta = 2 cos^2(theta/2) and 1 - cos theta = 2 sin^2(theta/2), then use them to re-derive
+    part (ii).
+  '5':
+  - Show that under t = tan(theta/2), d(theta)/(1 + cos theta) = dt, using the t-formulae for cos theta
+    and d(theta)/dt.
+spoken_vocab:
+- tangent theta plus cotangent theta
+- secant theta cosecant theta
+- cotangent theta plus cosecant theta squared
+- one plus cosine theta over one minus cosine theta
+- t equals tangent of a half theta
+- half-angle formula
+- cosine theta equals one minus t squared over one plus t squared
+- sine theta equals two t over one plus t squared
+- tangent theta equals two t over one minus t squared
+- identity
+source: step-workbook/Cambridge STEP Short Workbook.pdf#0
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 4
+  minutes: 15
+  flags: []
+  tagline: Classic half-angle substitution; the identities themselves are routine.
+  priority: 52
+  rank: 510
+  tier: C
+  category: step-workbook
+  d10: 2.0
+  real: 3.0
+  by: haiku
+tags:
+- trigonometry

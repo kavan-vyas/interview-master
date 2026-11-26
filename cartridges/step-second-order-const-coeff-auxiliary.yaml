@@ -1,0 +1,177 @@
+id: step-second-order-const-coeff-auxiliary
+title: 'Second-order linear ODE with constant coefficients: auxiliary equation, superposition, and reduction
+  to first order'
+topics:
+- second-order linear ODE
+- constant coefficients
+- auxiliary equation
+- superposition principle
+- reduction to first order
+- complex exponentials
+warmup: false
+answer_source: pdf
+statement: (i) Show, by substituting $y=e^{mx}$ into $a\frac{d^2y}{dx^2}+b\frac{dy}{dx}+cy=0$, that there
+  are two values of $m$ for which $e^{mx}$ satisfies the equation. (ii) Show that if $y_1$ and $y_2$ satisfy
+  the equation, then so also does $y=Ay_1+By_2$, where $A$ and $B$ are constants. (iii) Find the two values
+  of $m$ for which $e^{mx}$ satisfies $\frac{d^2y}{dx^2}+3\frac{dy}{dx}+2y=0$ and write down a solution
+  that contains two arbitrary constants. Then let $z=y'+2y$, show that $z'+z=0$, solve for $z$ and then
+  solve the resulting first-order differential equation for $y$, thereby proving that the solution found
+  is the most general. (iv) Show by substitution that $e^{px}\sin qx$ satisfies $\frac{d^2y}{dx^2}-2p\frac{dy}{dx}+(p^2+q^2)y=0$.
+  Find the general solution by the method outlined in the second paragraph of (iii).
+stages:
+- goal: Substitute y = e^{mx} into a y'' + b y' + c y = 0 and find the condition on m. Show that there
+    are two values of m.
+  expected: Since e^{mx} is never zero, the equation reduces to a m^2 + b m + c = 0. This quadratic in
+    m has two roots (counting multiplicity, possibly complex) when a is nonzero.
+  solution: With y = e^{mx}, y' = m e^{mx} and y'' = m^2 e^{mx}. Substituting gives (a m^2 + b m + c)
+    e^{mx} = 0. Because e^{mx} is never zero, a m^2 + b m + c = 0. A quadratic with a nonzero leading
+    coefficient has two roots by the quadratic formula, counted with multiplicity and possibly complex.
+  common_errors:
+  - Not noticing that e^{mx} can be cancelled because it is never zero
+  - Claiming two roots without noting that a must be nonzero
+  - Making a differentiation error, for example taking the second derivative as m e^{mx}
+  hints:
+    rephrase: Work out the first and second derivatives of e^{mx}, substitute them, and look at what is
+      left after factoring out a common term.
+    smaller_case: Take a = 1, b = 0, c = -1 and see how many values of m make e^{mx} a solution of y''
+      + 0 y' - y = 0.
+    key_idea: The exponential factors out of every term, so the condition on m is purely algebraic.
+  check: simplify(a*diff(exp(m*x),x,2)+b*diff(exp(m*x),x)+c*exp(m*x)-exp(m*x)*(a*m**2+b*m+c))
+  check_ok: true
+- goal: Show that if y1 and y2 satisfy the equation, then y = A y1 + B y2 also satisfies it, for constants
+    A and B.
+  expected: Let L[y] = a y'' + b y' + c y. Differentiation is linear, so L[A y1 + B y2] = A L[y1] + B
+    L[y2] = 0.
+  solution: Write L[y] = a y'' + b y' + c y. Then L[A y1 + B y2] = a(A y1'' + B y2'') + b(A y1' + B y2')
+    + c(A y1 + B y2). Regrouping the A and B terms gives A(a y1'' + b y1' + c y1) + B(a y2'' + b y2' +
+    c y2) = A·0 + B·0 = 0.
+  common_errors:
+  - Treating A and B as functions of x
+  - Checking only the first derivative and not the second
+  - Forgetting to use that y1 and y2 each satisfy the equation
+  hints:
+    rephrase: Write the left-hand side with y replaced by A y1 + B y2 and then separate the terms that
+      involve y1 from those that involve y2.
+    smaller_case: Take a = 1, b = 0, c = 0 so the equation is y'' = 0. Test whether y1 = 1 and y2 = x
+      combined with constants A and B still satisfy it.
+    key_idea: Linearity of differentiation means the operator distributes over sums and constant multiples.
+  check: simplify(a*diff(A*y1(x)+B*y2(x),x,2)+b*diff(A*y1(x)+B*y2(x),x)+c*(A*y1(x)+B*y2(x))-(A*(a*diff(y1(x),x,2)+b*diff(y1(x),x)+c*y1(x))+B*(a*diff(y2(x),x,2)+b*diff(y2(x),x)+c*y2(x))))
+  check_ok: true
+- goal: For y'' + 3y' + 2y = 0, find the two values of m for which e^{mx} is a solution, and write down
+    a solution with two arbitrary constants.
+  expected: The auxiliary equation is m^2 + 3m + 2 = 0, so m = -1 and m = -2. A two-constant solution
+    is y = A e^{-x} + B e^{-2x}.
+  solution: Substituting y = e^{mx} gives m^2 + 3m + 2 = 0, which factorises as (m + 1)(m + 2) = 0. So
+    m = -1 or m = -2. Each gives a solution e^{-x} or e^{-2x}, and by part (ii) any combination A e^{-x}
+    + B e^{-2x} is also a solution.
+  common_errors:
+  - Sign errors in the roots, for example giving m = 1 and m = 2
+  - Writing only one exponential solution instead of a two-constant family
+  - Using the wrong coefficients from the auxiliary equation
+  hints:
+    rephrase: Substitute the given coefficients into the auxiliary equation from part (i), then solve
+      the resulting quadratic in m.
+    smaller_case: Start with the simpler equation y'' - y = 0 and find its auxiliary roots first.
+    key_idea: Factorise the quadratic. Each root gives one exponential solution, and part (ii) lets you
+      combine them.
+  check: set(sympy.solve(m**2+3*m+2, m)) == {-1, -2}
+  check_ok: null
+- goal: Let z = y' + 2y. Show that z' + z = 0, solve for z, then solve for y and conclude that the solution
+    found is the most general.
+  expected: z' + z = 0 follows from the ODE. Solving gives z = C e^{-x}. Then y' + 2y = C e^{-x} gives
+    y = C e^{-x} + D e^{-2x}, which has two arbitrary constants and so is the general solution.
+  solution: With z = y' + 2y, we have z' = y'' + 2y', so z' + z = y'' + 3y' + 2y = 0. Hence z' = -z, so
+    z = C e^{-x}. Then y' + 2y = C e^{-x}. Multiply by the integrating factor e^{2x} to get (y e^{2x})'
+    = C e^{x}, so y e^{2x} = C e^{x} + D. Thus y = C e^{-x} + D e^{-2x}. This is a second-order solution
+    with two arbitrary constants, so it is the general solution.
+  common_errors:
+  - Computing z' incorrectly, for example forgetting the 2y' term
+  - Dropping the constant of integration when solving the first-order equation
+  - Using the wrong integrating factor for y' + 2y = f(x)
+  - Failing to argue that two arbitrary constants make the solution general
+  hints:
+    rephrase: Differentiate z = y' + 2y and combine it with the original equation. Then solve the first-order
+      linear ODE for z, and use an integrating factor for the first-order ODE in y.
+    smaller_case: Write z = y' + 2y and check that z' + z simplifies to the original left-hand side. Then
+      solve z' + z = 0 by separating variables.
+    key_idea: Reduce the second-order equation to a first-order one in z, then reduce that to a first-order
+      equation in y. Counting the constants shows the family is complete.
+  check: simplify(diff(C*exp(-x),x)+C*exp(-x))
+  check_ok: true
+- goal: Show that e^{px} sin qx satisfies y'' - 2p y' + (p^2 + q^2) y = 0, then find the general solution
+    using the method of part (iii).
+  expected: e^{px} sin qx satisfies the ODE. Setting z = y' - (p + iq) y gives z' - (p - iq) z = 0, so
+    z = K e^{(p-iq)x}. The general real solution is y = e^{px}(A cos qx + B sin qx).
+  solution: Let y = e^{px} sin qx. Then y' = e^{px}(p sin qx + q cos qx) and y'' = e^{px}((p^2 - q^2)
+    sin qx + 2pq cos qx). So y'' - 2p y' + (p^2 + q^2) y = e^{px}[(p^2 - q^2 - 2p^2 + p^2 + q^2) sin qx
+    + (2pq - 2pq) cos qx] = 0. For the general solution, let z = y' - (p + iq) y. Then z' - (p - iq) z
+    = y'' - 2p y' + (p^2 + q^2) y = 0, so z = K e^{(p-iq)x}. Next, (y e^{-(p+iq)x})' = z e^{-(p+iq)x}
+    = K e^{-2iqx}, which integrates to y = L e^{(p+iq)x} + M e^{(p-iq)x}. Taking real constants and real-valued
+    y gives y = e^{px}(A cos qx + B sin qx).
+  common_errors:
+  - Errors in differentiating e^{px} sin qx, especially the cross terms
+  - Using z = y' - (p - iq) y, which does not give the first-order equation in the right form
+  - Leaving the solution complex without converting to real A and B
+  - Forgetting the integrating factor e^{-(p+iq)x}
+  hints:
+    rephrase: Compute y' and y'' using the product rule with e^{px}, then collect the sin and cos terms
+      separately. For the general solution, define z = y' - (p + iq) y and find the first-order equation
+      that z satisfies.
+    smaller_case: Set p = 0 and q = 1. Check that sin x satisfies y'' + y = 0, then look at how the general
+      case differs.
+    key_idea: Factorise the operator as (D - (p + iq))(D - (p - iq)). Solving the first-order factor first
+      gives the general solution.
+  check: simplify(diff(exp(p*x)*(A*cos(q*x)+B*sin(q*x)),x,2)-2*p*diff(exp(p*x)*(A*cos(q*x)+B*sin(q*x)),x)+(p**2+q**2)*exp(p*x)*(A*cos(q*x)+B*sin(q*x)))
+  check_ok: true
+extensions:
+  '3':
+  - Find the general solution when the auxiliary equation has a repeated root m. Show that y = (A + Bx)
+    e^{mx} satisfies the ODE.
+  - Show that e^{m1 x} and e^{m2 x} are linearly independent when m1 is not equal to m2, using the Wronskian.
+  '4':
+  - Write the general solution of y'' + 4y' + 13y = 0 in real form, using the complex roots of the auxiliary
+    equation.
+  - Explain why the method of part (iii) gives the general solution for complex roots as well as real
+    roots.
+  '5':
+  - Use the reduction-to-first-order method on y'' + p(x) y' + q(x) y = 0 with variable coefficients,
+    given one known solution y1. Show that the second solution is y1 times the integral of e^{-∫p dx}
+    divided by y1 squared.
+  - Show that the general solution of y'' - 2p y' + (p^2 + q^2) y = 0 has exactly two free constants,
+    and identify the conditions that make a solution with those constants unique.
+spoken_vocab:
+- d y by d x
+- d squared y by d x squared
+- e to the m x
+- a m squared plus b m plus c equals zero
+- superposition
+- A y one plus B y two
+- auxiliary equation
+- m equals minus one and m equals minus two
+- y equals A e to the minus x plus B e to the minus two x
+- z equals y dash plus two y
+- z dash plus z equals zero
+- integrating factor
+- e to the p x sine q x
+- p plus i q
+- p minus i q
+- z equals y dash minus p plus i q times y
+- A cosine q x plus B sine q x
+source: step-workbook/Cambridge STEP Short Workbook.pdf#1
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 4
+  minutes: 25
+  flags: []
+  tagline: Standard auxiliary-equation work, with a reduction-of-order proof of generality.
+  priority: 73
+  rank: 292
+  tier: B
+  category: step-workbook
+  d10: 4.0
+  real: 3.0
+  by: haiku
+tags:
+- differential_equations

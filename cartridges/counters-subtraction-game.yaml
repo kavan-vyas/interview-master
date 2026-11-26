@@ -1,0 +1,126 @@
+id: counters-subtraction-game
+title: Subtraction game with counters
+topics:
+- combinatorial games
+- strategy
+- modular arithmetic
+- induction
+warmup: false
+answer_source: pdf
+statement: There is a pile of $n$ counters. Two players take turns to remove 1, 2 or 3 counters from the
+  pile. The player who takes the last counter wins. (i) For which values of $n\le 8$ does the first player
+  have a winning strategy? (ii) Conjecture a general rule, and prove it. (iii) Now change the rules so
+  that the player who takes the last counter loses. For which $n$ does the first player lose? (iv) Return
+  to the original winning rule, but now a player may remove 1, 3 or 4 counters. For which $n$ does the
+  second player have a winning strategy?
+stages:
+- goal: Find which $n\le 8$ give the first player a winning strategy in the original game.
+  expected: The first player wins for $n=1,2,3,5,6,7$ and loses for $n=4,8$.
+  solution: 'Positions $n=1,2,3$: the first player takes everything and wins. Position $4$: whatever the
+    first player removes leaves 1, 2 or 3, all of which let the second player take everything, so the
+    first player loses. Position $5,6,7$: the first player removes 1, 2 or 3 to leave 4, and wins. Position
+    $8$: any removal leaves 5, 6 or 7, from which the second player moves to 4, so the first player loses.'
+  common_errors:
+  - Forgetting that a player may remove fewer than the maximum
+  - Confusing which player takes the last counter
+  hints:
+    rephrase: For each pile size, ask whether some move leaves the opponent in a losing position.
+    smaller_case: Work out the result for $n=1$ and $n=2$ first.
+    key_idea: A position is losing if every move leaves the opponent a winning position.
+  check: Mod(4,4)
+  check_ok: true
+- goal: State and prove the general rule for the original game.
+  expected: The first player loses exactly when $n$ is a multiple of 4. Otherwise the first player wins.
+  solution: If $n$ is not a multiple of 4, the first player removes $r\in\{1,2,3\}$ to leave a multiple
+    of 4. Then, whenever the opponent removes $k$, the first player removes $4-k$, so each round removes
+    4 counters. The second player is thus left with a multiple of 4 each time, and eventually the first
+    player takes the last counter. If $n=4m$, every move $k$ by the first player leaves $4m-k$ counters,
+    which is not a multiple of 4, and the second player answers with $4-k$, returning to a multiple of
+    4 each time. The second player therefore takes the last counter. Both claims are proved by strong
+    induction on $n$.
+  common_errors:
+  - Describing the strategy without checking that the reply $4-k$ is always legal
+  - Stating the rule without proof
+  hints:
+    rephrase: Look for positions from which the opponent's move can always be matched.
+    smaller_case: Consider $n=4$ and $n=8$ and what happens after each possible first move.
+    key_idea: Find a number so that whatever the opponent removes, you can remove an amount that keeps
+      every round at a fixed total.
+  check: Mod(12,4)
+  check_ok: true
+- goal: Find the losing values of $n$ when the player who takes the last counter loses.
+  expected: The first player loses exactly when $n\equiv 1 \pmod 4$.
+  solution: For $n=1$ the first player must take the last counter and loses. The losing positions are
+    $1,5,9,\dots$. The first player leaves $4m+1$ for the second player, who answers each removal $k$
+    with $4-k$. This keeps the pile at $4m+1$ for the first player at the start of each round. When $m=0$
+    the first player is forced to take the last counter and loses. The positions $4m+2$, $4m+3$, $4m+4$
+    are winning for the first player, since he can move to $4m+1$.
+  common_errors:
+  - Reusing the answer from the original game without re-checking the rule
+  - Forgetting that a forced final move loses in this version
+  hints:
+    rephrase: Think about which pile sizes force a player to take the last counter.
+    smaller_case: Check $n=1$, $n=2$ and $n=3$ under the new rule.
+    key_idea: Work out which positions are losing for the player to move, as before, but with the new
+      ending condition.
+  check: Mod(9,4) - 1
+  check_ok: true
+- goal: With moves $\{1,3,4\}$ and the original winning rule, find the values of $n$ for which the second
+    player wins.
+  expected: The second player wins exactly when $n\equiv 0$ or $2 \pmod 7$.
+  solution: 'Let $P$ denote a losing position for the player to move. Position $0$ is losing. From residues
+    $0$ and $2$ mod 7, every legal move leads to a residue not in $\{0,2\}$: from residue $0$ the moves
+    lead to residues $6,4,3$; from residue $2$ the moves lead to residues $1,6,5$. From each other residue
+    $r\in\{1,3,4,5,6\}$ there is a move to residue $0$ or $2$: from 1 remove 1 (to 0), from 3 remove 1
+    (to 2), from 4 remove 4 (to 0), from 5 remove 3 (to 2), from 6 remove 4 (to 2). By strong induction
+    on $n$, the losing positions are exactly $n\equiv 0$ or $2 \pmod 7$.'
+  common_errors:
+  - Using the original rule's answer, which is multiples of 4, instead of the new move set
+  - Checking the moves for residue 2 incorrectly when $n$ is small
+  hints:
+    rephrase: Build a table of winning and losing positions for $n=0$ to $14$ with the new moves.
+    smaller_case: Work out $n=0,1,2,3$ with moves 1, 3 and 4 first.
+    key_idea: Look for a pattern in the losing positions, then prove it by checking that each move from
+      a losing position leads to a winning position.
+  check: Mod(16,7) - 2
+  check_ok: true
+extensions:
+  '3':
+  - 'Original rules with moves 1 to 4: for which $n$ does the first player lose?'
+  '4':
+  - 'Original rules with moves 1 and 2 only: for which $n$ does the first player lose?'
+  '5':
+  - 'Original rules with moves 1 to 3, and $1\le n\le 100$: for how many values of $n$ does the first
+    player lose?'
+spoken_vocab:
+- pile of counters
+- subtraction game
+- winning strategy
+- multiple of four
+- modulo four
+- modulo seven
+- take the last counter
+- second player
+- first player
+- induction
+- moves one three four
+source: jaymin/Jaymin Interview (1).pdf#p73
+verified: false
+rating:
+  quality: 7
+  difficulty: 4
+  parts: 4
+  minutes: 20
+  flags: []
+  tagline: Progressive variants from winning pattern to misère and new move sets invite discussion.
+  priority: 97
+  rank: 53
+  tier: A
+  category: jaymin
+  d10: 6.0
+  real: 8.0
+  by: deepseek-v4.1-flash-free
+tags:
+- combinatorics
+- number_theory
+- proof

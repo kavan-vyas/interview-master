@@ -1,0 +1,116 @@
+id: grid-average-constant
+title: Grid numbers at least the average of their neighbours
+topics:
+- analysis on lattices
+- random walks
+- recurrence
+- counterexamples
+- infinite sets
+warmup: false
+answer_source: generated
+statement: In an infinite two-dimensional grid, the number in each box is greater than or equal to the
+  average of the numbers in its four neighbouring boxes. Show that all the numbers in the grid are the
+  same.
+stages:
+- goal: Decide whether the claim holds as stated on the infinite grid, with no extra assumption. If it
+    fails, give a counterexample.
+  expected: No. The claim is false without an extra assumption. Take f(x,y) = x. Each box equals the average
+    of its four neighbours, so the inequality holds, yet the numbers are not all equal.
+  solution: For f(x,y) = x, the four neighbours have values x+1, x-1, x, x. Their average is (x+1 + x-1
+    + x + x)/4 = x = f(x,y). So f(x,y) >= average holds with equality everywhere, but f takes infinitely
+    many different values. The claim therefore needs an extra hypothesis. The natural one is that the
+    numbers are bounded below (for example, all non-negative), which is the hypothesis used in stage 2.
+  common_errors:
+  - Assuming a largest number exists on the infinite grid so that a maximum principle applies. An infinite
+    grid need not attain a maximum.
+  - Believing that bounded above is enough. f(x,y) = -(x^2) satisfies the inequality, is bounded above
+    by 0, and is not constant.
+  - Concluding the claim is true because a finite board argument works, without checking the infinite
+    case.
+  hints:
+    rephrase: Test whether the condition can hold with equality everywhere for some simple formula in
+      x and y that is not constant.
+    smaller_case: Consider a single row of numbers, where each number is at least the average of its two
+      neighbours. Which simple sequences have equality everywhere?
+    key_idea: Look for functions that equal the average of their neighbours exactly. Ask which simple
+      expressions in the coordinates have this property, and whether the infinite domain allows them to
+      be non-constant.
+  check: sympy.simplify((x+1 + (x-1) + x + x)/4 - x) == 0
+  check_ok: null
+- goal: Assume the numbers are bounded below by some m. Prove that all the numbers are equal.
+  expected: 'Under the assumption that the numbers are bounded below, every box has the same number. Proof
+    idea: let g = f - m >= 0, which still satisfies the averaging inequality. Use a simple random walk
+    on the grid, which moves to a uniformly chosen neighbour. Show g(p) = g(q) for any two boxes p and
+    q by optional stopping, using recurrence of the 2D walk.'
+  solution: Let m be a lower bound for the numbers and set g = f - m >= 0. Then g(p) >= average of g over
+    the four neighbours of p, so g(X_k) is a non-negative supermartingale for a simple random walk X_k
+    started at p. Let q be another box and let tau be the first time the walk hits q. Optional stopping
+    for the bounded stopping time tau ∧ n gives g(p) >= E[g(X_{tau∧n})] >= g(q) P_p(tau <= n), using g
+    >= 0. Let n tend to infinity. The 2D simple random walk is recurrent, so P_p(tau < infinity) = 1,
+    giving g(p) >= g(q). Exchanging p and q gives g(q) >= g(p). So g is constant, and hence f is constant.
+  common_errors:
+  - Using a maximum argument. The grid has no guaranteed maximum, so the finite-board argument does not
+    transfer.
+  - Forgetting that the walk must be recurrent. In three or more dimensions the walk is transient and
+    the argument fails (see the extensions).
+  - Applying optional stopping to an unbounded stopping time without justification, or dropping the non-negativity
+    needed to bound the expectation from below.
+  hints:
+    rephrase: Suppose the numbers are bounded below. Subtract the lower bound and look at the new numbers,
+      which are all non-negative.
+    smaller_case: Consider a one-dimensional row of non-negative numbers, each at least the average of
+      its two neighbours. Think of a walk that steps left or right at random. What does the walk do to
+      the values, on average?
+    key_idea: Interpret the averaging inequality as saying that the values along a random walk are a non-increasing
+      process in expectation. Then consider the walk hitting a given box, and note that a 2D random walk
+      hits every box with probability 1.
+  check: null
+extensions:
+  '3':
+  - Does the bounded-below result still hold on the three-dimensional cubic lattice? Explain why the random
+    walk argument breaks down there, and find a non-constant non-negative function with the averaging
+    inequality.
+  '4':
+  - Explain why no maximum or minimum principle works directly on the infinite grid. Give an example of
+    a bounded function with no attained maximum on the grid.
+  '5':
+  - Prove that a function on Z^2 with the averaging inequality and bounded below must be constant, without
+    using probability. A possible route is to compare with discrete harmonic functions on large boxes.
+spoken_vocab:
+- grid
+- infinite grid
+- neighbouring boxes
+- four neighbours
+- average
+- greater than or equal to
+- bounded below
+- non-negative
+- simple random walk
+- recurrent
+- transient
+- supermartingale
+- optional stopping
+- counterexample
+- x
+- y
+- f of x comma y
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 3 (anonymous).pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 2
+  minutes: 15
+  flags:
+  - missing_info
+  tagline: 'Hidden flaw: linear counterexample shows the boundedness assumption is essential.'
+  priority: 77
+  rank: 261
+  tier: B
+  category: past-interviews
+  d10: 7.0
+  real: 6.5
+  by: deepseek-v4.1-flash-free
+tags:
+- proof
+- inequalities

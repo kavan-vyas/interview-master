@@ -1,0 +1,144 @@
+id: vector-angles-projections-plane
+title: 'Vectors: magnitudes, angles, projections and a plane'
+topics:
+- vectors
+- scalar product
+- magnitude
+- angle between vectors
+- projection
+- plane equation
+- normal vector
+- unit vector
+warmup: false
+answer_source: pdf
+statement: The three vectors $\mathbf A$, $\mathbf B$ and $\mathbf C$ are defined by $\mathbf A=(1,3,4)$,
+  $\mathbf B=(2,1,3)$, $\mathbf C=(3,3,2)$. (i) Order the vectors by magnitude. (ii) Use the scalar product
+  to find the angles between the pairs of vectors (a) $\mathbf A$ and $\mathbf B$, (b) $\mathbf B$ and
+  $\mathbf C$, leaving your answer in the form of an inverse cosine. (iii) Find the lengths of the projections
+  of the vectors (a) $\mathbf A$ onto $\mathbf B$, (b) $\mathbf B$ onto $\mathbf A$. (iv) Find an equation
+  of the plane, in the form $\mathbf r=\mathbf a+\lambda\mathbf b+\mu\mathbf c$, through the points with
+  position vectors $\mathbf A$, $\mathbf B$ and $\mathbf C$. Show that the normal to this plane is $(1,0,1)$
+  and find an equation of the plane in the form $\mathbf r\cdot\mathbf n=p$, where $\mathbf n$ is a unit
+  vector.
+stages:
+- goal: Order A, B and C by magnitude.
+  expected: '|A| = √26, |C| = √22, |B| = √14, so |A| > |C| > |B|.'
+  solution: '|A|² = 1+9+16 = 26; |B|² = 4+1+9 = 14; |C|² = 9+9+4 = 22. Since squares preserve order, |A|
+    > |C| > |B|.'
+  common_errors:
+  - Comparing components instead of magnitudes
+  - Adding components without squaring them
+  - Arithmetic error in one squared sum
+  hints:
+    rephrase: Compute the squared length of each vector and compare those numbers.
+    smaller_case: Compare the squared lengths of two vectors with components (1,0,0) and (0,2,0).
+    key_idea: Squaring does not change the order of non-negative numbers, so you can compare squared magnitudes.
+  check: (sqrt(26) > sqrt(22)) and (sqrt(22) > sqrt(14))
+  check_ok: true
+- goal: Find the angles between A and B, and between B and C, as inverse cosines.
+  expected: (a) cos θ = A·B/(|A||B|) = 17/(√26·√14) = 17/(2√91), so θ = cos⁻¹(17/(2√91)). (b) cos θ =
+    B·C/(|B||C|) = 15/(√14·√22) = 15/(2√77), so θ = cos⁻¹(15/(2√77)).
+  solution: A·B = 2+3+12 = 17. √26·√14 = √364 = 2√91. B·C = 6+3+6 = 15. √14·√22 = √308 = 2√77.
+  common_errors:
+  - Forgetting to divide by both magnitudes
+  - Simplifying √364 incorrectly
+  - Using a dot product with a sign error
+  hints:
+    rephrase: Use the scalar product formula that links the dot product to the two magnitudes and the
+      angle.
+    smaller_case: Compute the angle between (1,0) and (1,1) using the same formula.
+    key_idea: Angle = inverse cosine of (dot product divided by the product of magnitudes).
+  check: simplify(Matrix([1,3,4]).dot(Matrix([2,1,3]))/(sqrt(26)*sqrt(14)) - 17/(2*sqrt(91))) == 0
+  check_ok: true
+- goal: Find the lengths of the projections of A onto B and of B onto A.
+  expected: '(a) Projection of A onto B: A·B/|B| = 17/√14. (b) Projection of B onto A: A·B/|A| = 17/√26.'
+  solution: A·B = 17. Length of projection of A on B is A·B/|B| = 17/√14. Length of projection of B on
+    A is A·B/|A| = 17/√26.
+  common_errors:
+  - Dividing by the wrong magnitude for each part
+  - Giving a vector instead of a length
+  - Computing B·A and A·B differently
+  hints:
+    rephrase: Picture dropping a perpendicular from the tip of one vector onto the other; the length is
+      the signed distance along the second vector.
+    smaller_case: Find the projection length of (3,0) onto (1,0).
+    key_idea: The projection length of X onto Y is the dot product X·Y divided by the magnitude of Y.
+  check: simplify(Matrix([1,3,4]).dot(Matrix([2,1,3]))/sqrt(14) - 17/sqrt(14)) == 0
+  check_ok: true
+- goal: Find a vector equation of the plane through A, B and C.
+  expected: r = (1,3,4) + λ(1,-2,-1) + μ(2,0,-2).
+  solution: Take a = A = (1,3,4). Direction vectors in the plane are B - A = (1,-2,-1) and C - A = (2,0,-2).
+  common_errors:
+  - Using B and C as direction vectors without subtracting A
+  - Choosing direction vectors that are parallel
+  - Mixing up the roles of λ and μ
+  hints:
+    rephrase: Choose one of the points as the base and form two direction vectors from differences of
+      points in the plane.
+    smaller_case: Find the vector equation of the line through (0,0,0) and (1,2,3).
+    key_idea: A plane needs a base point and two non-parallel direction vectors lying in it.
+  check: Matrix([1,3,4]) + Matrix([1,-2,-1]) - Matrix([2,1,3]) == Matrix([0,0,0])
+  check_ok: true
+- goal: Show the normal is (1,0,1) and find the unit normal form r·n = p.
+  expected: The normal is b × c = (4,0,4), a multiple of (1,0,1). The unit normal is n = (1/√2, 0, 1/√2),
+    and p = A·n = 5/√2, so r·n = 5/√2.
+  solution: b × c = (1,-2,-1) × (2,0,-2) = ((-2)(-2) - (-1)(0), (-1)(2) - (1)(-2), (1)(0) - (-2)(2)) =
+    (4,0,4) = 4(1,0,1). Dividing (1,0,1) by its length √2 gives n. Then p = A·n = (1+0+4)/√2 = 5/√2.
+  common_errors:
+  - Computing the cross product with a sign error
+  - Forgetting to normalise n
+  - Using the wrong point to compute p, which gives a different constant
+  hints:
+    rephrase: The normal is perpendicular to both direction vectors; compute a vector perpendicular to
+      both, then scale it to unit length.
+    smaller_case: Find a vector perpendicular to both (1,0,0) and (0,1,0).
+    key_idea: Use the cross product of the two direction vectors, then take p as the dot product of the
+      normal with any point on the plane.
+  check: simplify(Matrix([1,3,4]).dot(Matrix([1,0,1])/sqrt(2)) - 5/sqrt(2)) == 0
+  check_ok: true
+extensions:
+  '3':
+  - Find the angle between A and C, leaving your answer as an inverse cosine.
+  '4':
+  - Find the vector component of A parallel to B.
+  '5':
+  - Find the perpendicular distance from the point (0,0,1) to the plane through A, B and C.
+spoken_vocab:
+- A
+- B
+- C
+- magnitude
+- modulus
+- scalar product
+- dot product
+- inverse cosine
+- projection
+- onto
+- plane
+- position vector
+- lambda
+- mu
+- normal
+- unit vector
+- r dot n equals p
+- root
+- cross product
+source: step-workbook/Cambridge STEP Short Workbook.pdf#1
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 5
+  minutes: 15
+  flags: []
+  tagline: Clean multi-stage vector computation with verifiable answers; limited discussion.
+  priority: 53
+  rank: 496
+  tier: C
+  category: step-workbook
+  d10: 3.5
+  real: 3.0
+  by: haiku
+tags:
+- vectors
+- geometry

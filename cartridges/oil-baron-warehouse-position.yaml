@@ -1,0 +1,100 @@
+id: oil-baron-warehouse-position
+title: Oil Baron and the Warehouse on a Line
+topics:
+- optimisation
+- absolute value
+- median
+- piecewise linear functions
+warmup: false
+answer_source: generated
+statement: I am an oil baron in the desert and I need to deliver oil to four different towns which happen
+  to lie on a straight line. In order to deliver the correct amounts to each town, I must visit each town
+  in turn, returning to my warehouse in between each visit. Where should I position my warehouse in order
+  to drive the shortest distance possible? Roads are no problem since I have a friend who is a sheikh
+  and will build me as many roads as I like for free.
+stages:
+- goal: Write the total distance travelled as a function of the warehouse position.
+  expected: Put the towns at a < b < c < d on the line and the warehouse at x. The total distance is D(x)
+    = 2(|x-a| + |x-b| + |x-c| + |x-d|).
+  solution: 'Each visit is a round trip from the warehouse to the town and back, so each town contributes
+    2|x - t| where t is the town''s position. Summing over the four towns gives D(x) = 2(|x-a| + |x-b|
+    + |x-c| + |x-d|). Check with a=0, b=1, c=3, d=4 and x=2: D = 2(2+1+1+2) = 12.'
+  common_errors:
+  - Forgetting the factor of 2 for the return trip.
+  - Using (x - t) instead of |x - t|, so distances can go negative.
+  - Assuming the towns must be visited in a particular order when the question says they are visited in
+    turn.
+  hints:
+    rephrase: For one town, how far do you drive in total if you go out and come back?
+    smaller_case: Suppose there is only one town. What is the total distance as a function of the warehouse
+      position?
+    key_idea: Distances on a line are absolute values, and each town contributes its own round trip.
+  check: 2*(Abs(2-0)+Abs(2-1)+Abs(2-3)+Abs(2-4)) - 12
+  check_ok: true
+- goal: Find all warehouse positions that minimise D(x), and the minimum distance.
+  expected: Any x with b <= x <= c, that is, anywhere on the segment between the second and third towns,
+    inclusive. The minimum total distance is 2(c + d - a - b).
+  solution: 'Look at how D changes as x moves. For x between b and c, two towns lie to the left of x and
+    two to the right, so the slopes of the absolute value terms cancel and the sum is constant: (x-a)
+    + (x-b) + (c-x) + (d-x) = c + d - a - b. For x < a or a < x < b, more towns lie to the right, so D
+    increases as x moves left. For x > c or c < x < d, more towns lie to the left, so D increases as x
+    moves right. So the minimum is attained exactly on [b, c] and equals 2(c + d - a - b). Example: with
+    a=0, b=1, c=3, d=4, the minimum is 12, attained for 1 <= x <= 3.'
+  common_errors:
+  - Choosing the mean of the four towns, which is not in general a minimiser of a sum of absolute values.
+  - Choosing the midpoint of the whole interval from a to d.
+  - Stating a single point when the minimiser is an interval.
+  - Forgetting that the factor of 2 doubles the minimum value.
+  hints:
+    rephrase: If you slide the warehouse one step to the right, what happens to the number of towns it
+      is closer to versus farther from?
+    smaller_case: Try two towns only. Where should the warehouse go, and is the answer unique?
+    key_idea: The sum of distances to points on a line is minimised at a median. With an even number of
+      points, the minimiser is a whole interval.
+  check: 2*((x-a)+(x-b)+(c-x)+(d-x)) - 2*(c+d-a-b)
+  check_ok: true
+extensions:
+  '3':
+  - 'Three towns on a line: where should the warehouse go, and what is the minimum total distance?'
+  '4':
+  - Suppose you may visit all towns in order and return to the warehouse only once at the end. Where should
+    the warehouse go, and what is the shortest total distance?
+  '5':
+  - Towns are now scattered in the plane. Where should the warehouse go to minimise the sum of distances,
+    and why is there no simple closed form in general (the Fermat-Weber point)?
+spoken_vocab:
+- oil baron
+- warehouse
+- four towns
+- straight line
+- shortest distance
+- absolute value
+- median
+- x
+- a less than b less than c less than d
+- two times
+- round trip
+- minimum
+- interval
+- between the second and third town
+- Fermat point
+- Weber point
+source: oxbridge-random/Random TXT File of Oxbridge Interview Questions.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 4
+  parts: 2
+  minutes: 15
+  flags: []
+  tagline: Median-minimisation with a surprising interval answer and natural extensions.
+  priority: 75
+  rank: 271
+  tier: B
+  category: oxbridge-random
+  d10: 3.5
+  real: 8.5
+  by: haiku
+tags:
+- algebra_and_functions
+- inequalities

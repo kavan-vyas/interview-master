@@ -1,0 +1,131 @@
+id: sketch-sin-and-cos-of-one-over-x
+title: Sketch y = sin(1/x) and y = cos(1/x)
+topics:
+- curve sketching
+- trigonometric functions
+- limits
+- oscillation
+- chain rule
+warmup: false
+answer_source: generated
+statement: 'Sketch the graphs of: (a) $y = \sin\frac{1}{x}$ (b) $y = \cos\frac{1}{x}$.'
+stages:
+- goal: Find the domain, the range, and the behaviour as |x| tends to infinity for both curves.
+  expected: 'Domain: x != 0 for both. Range: -1 <= y <= 1 for both. As |x| tends to infinity, 1/x tends
+    to 0, so sin(1/x) tends to 0 and cos(1/x) tends to 1.'
+  solution: 1/x is undefined at x = 0, so both functions have domain x != 0 and nothing is plotted at
+    x = 0. Sine and cosine lie in [-1,1] for every real argument, so both curves stay in the strip -1
+    <= y <= 1. As x tends to +infinity or -infinity, 1/x tends to 0. Sine is continuous with sin(0)=0
+    and cosine is continuous with cos(0)=1, so sin(1/x) tends to 0 and cos(1/x) tends to 1. The curves
+    approach y=0 and y=1 respectively as |x| grows.
+  common_errors:
+  - Saying the graph has a value at x = 0, e.g. sin(1/0) = 0.
+  - Claiming cos(1/x) tends to 0 at infinity; cos(0) = 1.
+  - Forgetting that the range is restricted to [-1,1].
+  hints:
+    rephrase: For which x is 1/x defined? What does 1/x get close to when x becomes very large?
+    smaller_case: Substitute a very large x into 1/x and ask what sine and cosine return for an argument
+      close to 0.
+    key_idea: Sine and cosine are bounded. A continuous outer function can be evaluated at the limit of
+      its inner function.
+- goal: Determine the parity of each curve and find where each curve meets the x-axis.
+  expected: sin(1/x) is odd, so its graph is symmetric about the origin. cos(1/x) is even, so its graph
+    is symmetric about the y-axis. sin(1/x) = 0 exactly when x = 1/(n*pi) for nonzero integers n. cos(1/x)
+    = 0 exactly when x = 2/((2n+1)*pi) for integers n.
+  solution: 'Replacing x by -x: sin(1/(-x)) = -sin(1/x), so (a) is odd. cos(1/(-x)) = cos(1/x), so (b)
+    is even. For (a): sin t = 0 iff t = n*pi, so 1/x = n*pi, giving x = 1/(n*pi) with n a nonzero integer
+    (n = 0 would need 1/x = 0, which is impossible). For (b): cos t = 0 iff t = (2k+1)*pi/2, so 1/x =
+    (2k+1)*pi/2, giving x = 2/((2k+1)*pi) for any integer k. Both families of zeros crowd toward the origin
+    from both sides.'
+  common_errors:
+  - Saying sin(1/x) is even.
+  - Writing the zeros of cos(1/x) as 1/(n*pi); those are its turning points, not its zeros.
+  - Forgetting the negative-x zeros.
+  hints:
+    rephrase: What happens to the function value when you replace x by -x?
+    smaller_case: Compare the value of sin(1/x) at x = 2 and at x = -2.
+    key_idea: Sine vanishes at multiples of pi and cosine vanishes at odd multiples of pi/2. Set the argument
+      1/x equal to these and solve for x.
+  check: sp.simplify(sp.sin(1/(-x)) + sp.sin(1/x))
+  check_ok: null
+- goal: Describe the behaviour near x = 0 and locate the turning points of both curves.
+  expected: 'Near x = 0 both curves oscillate between -1 and 1 infinitely often, with no limit as x tends
+    to 0, so the origin cannot be filled in. Turning points of sin(1/x): x = 2/((2k+1)*pi) with y = (-1)^k.
+    Turning points of cos(1/x): x = 1/(m*pi) for nonzero integers m with y = (-1)^m. These turning points
+    crowd toward the origin.'
+  solution: Let t = 1/x. As x tends to 0, t grows without bound and sin t and cos t keep cycling through
+    their full range from -1 to 1, so no limit exists at 0. Turning points occur where the derivative
+    vanishes. For sin(1/x) the derivative is -cos(1/x)/x^2, which vanishes when cos(1/x) = 0, i.e. 1/x
+    = pi/2 + k*pi, giving y = sin(pi/2 + k*pi) = (-1)^k. For cos(1/x) the derivative is sin(1/x)/x^2,
+    which vanishes when 1/x = m*pi, giving y = cos(m*pi) = (-1)^m. The two families of extrema alternate
+    between y=1 and y=-1 as x approaches 0.
+  common_errors:
+  - Drawing the curve tending to a definite value at x = 0.
+  - Swapping which curve has turning points at 2/((2k+1)*pi) and which at 1/(m*pi).
+  - Forgetting that the turning values alternate in sign.
+  hints:
+    rephrase: What does 1/x do as x shrinks toward 0 through the values 1, 1/2, 1/3, and so on?
+    smaller_case: Track t = 1/x for x = 1, 1/2, 1/3 and note which values sine and cosine take.
+    key_idea: Turning points are where the derivative is zero. Differentiate first, then find where the
+      derivative vanishes.
+- goal: Differentiate both functions and comment on the slope near 0.
+  expected: d/dx sin(1/x) = -cos(1/x)/x^2. d/dx cos(1/x) = sin(1/x)/x^2. The slopes are unbounded near
+    0, so the curves become increasingly steep there.
+  solution: 'Use the chain rule with inner function u = 1/x, whose derivative is -1/x^2. For sin(1/x):
+    cos(1/x) * (-1/x^2) = -cos(1/x)/x^2. For cos(1/x): -sin(1/x) * (-1/x^2) = sin(1/x)/x^2. Since |cos|
+    and |sin| are at most 1 while 1/x^2 grows without bound as x tends to 0, the slopes are unbounded
+    near the origin.'
+  common_errors:
+  - Dropping the minus sign in d/dx sin(1/x).
+  - Dropping the 1/x^2 factor.
+  - Writing d/dx (1/x) = 1/x instead of -1/x^2.
+  hints:
+    rephrase: Write the outer function and the inner function 1/x separately.
+    smaller_case: Differentiate x^(-1) using the power rule.
+    key_idea: 'Chain rule: the outer derivative evaluated at the inner function, times the derivative
+      of the inner function.'
+  check: sp.simplify(sp.diff(sp.sin(1/x),x) + sp.cos(1/x)/x**2)
+  check_ok: null
+extensions:
+  '3':
+  - Explain, using the derivative, why the curves look increasingly steep as x approaches 0.
+  '4':
+  - Find all x such that sin(1/x) = 1/2 and state how these solutions are arranged along the x-axis.
+  '5':
+  - Let f(x) = x^2 sin(1/x) for x != 0 and f(0) = 0. Show that f is differentiable at 0 but f' is not
+    continuous at 0.
+spoken_vocab:
+- sine of one over x
+- cosine of one over x
+- x not equal to zero
+- pi
+- n times pi
+- odd multiple of pi over two
+- chain rule
+- derivative of sine of one over x
+- minus cosine of one over x over x squared
+- limit as x tends to zero
+- oscillation
+- turning point
+- vertical tangent
+source: waleed/Curve Sketching Questions - Waleed.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 4
+  minutes: 15
+  flags:
+  - needs_diagram
+  tagline: Infinite oscillation near zero and unbounded slope make strong discussion.
+  priority: 74
+  rank: 286
+  tier: B
+  category: waleed
+  d10: 5.0
+  real: 6.0
+  by: haiku
+tags:
+- curve_sketching
+- limits_and_approximation
+- differentiation

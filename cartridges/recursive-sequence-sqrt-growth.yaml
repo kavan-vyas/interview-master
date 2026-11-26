@@ -1,0 +1,114 @@
+id: recursive-sequence-sqrt-growth
+title: Growth of a_{n+1} = a_n + 1/a_n
+topics:
+- sequences
+- monotone convergence
+- limits
+- asymptotics
+- Cesaro averaging
+warmup: false
+answer_source: generated
+statement: Define a sequence by $a_1=1$ and $a_{n+1}=a_n+\frac{1}{a_n}$. (a) Show that $a_n\to\infty$.
+  (b) Show that $a_n^2\approx 2n$ for large $n$. (c) What is $\lim_{n\to\infty} \frac{a_n}{\sqrt{n}}$?
+stages:
+- goal: Show that all terms are positive and the sequence is increasing.
+  expected: a_n >= 1 for all n, and a_{n+1} > a_n for all n.
+  solution: 'Induction: $a_1=1>0$. If $a_n>0$ then $a_{n+1}=a_n+1/a_n>0$, so every term is well defined
+    and positive. Since $1/a_n>0$, we have $a_{n+1}-a_n = 1/a_n > 0$, so the sequence is strictly increasing
+    and $a_n\ge a_1 = 1$.'
+  common_errors:
+  - Using 1/a_n without establishing that a_n is positive
+  - Assuming the recurrence sign is irrelevant to monotonicity
+  hints:
+    rephrase: What is the sign of the difference a_{n+1} - a_n, and why?
+    smaller_case: Compute a_2 and a_3 from a_1 = 1 and check whether the terms increase.
+    key_idea: Induction keeps every term positive, which keeps every increment positive.
+- goal: Show that a_n tends to infinity rather than to a finite limit.
+  expected: No finite limit is possible, so a_n -> infinity.
+  solution: An increasing sequence either converges to a finite limit or tends to infinity. Suppose $a_n\to
+    L$ with $L$ finite. Then $L\ge 1$, and passing to the limit in the recurrence gives $L = L + 1/L$,
+    so $1/L = 0$, which is impossible. Hence $a_n\to\infty$.
+  common_errors:
+  - Concluding divergence from monotonicity alone, without ruling out convergence
+  - Solving L = L + 1/L incorrectly, for example by treating L = 1 as a solution
+  hints:
+    rephrase: If the terms settled to a finite number L, what equation would L have to satisfy?
+    smaller_case: Take the limit of both sides of the recurrence and simplify. What do you get?
+    key_idea: An increasing sequence either converges or tends to infinity. Rule out convergence using
+      the limit form of the recurrence.
+  check: len(sp.solve(sp.Eq(L, L + 1/L), L))
+  check_ok: null
+- goal: Find an exact identity for a_{n+1}^2 - a_n^2 and deduce a lower bound on a_n^2.
+  expected: a_{n+1}^2 - a_n^2 = 2 + 1/a_n^2, hence a_n^2 >= 2n - 1.
+  solution: 'Squaring the recurrence: $a_{n+1}^2 = (a_n + 1/a_n)^2 = a_n^2 + 2 + 1/a_n^2$. Summing from
+    $k=1$ to $n-1$ and using $a_1^2 = 1$ gives $a_n^2 = 1 + \sum_{k=1}^{n-1}\left(2 + 1/a_k^2\right) \ge
+    1 + 2(n-1) = 2n-1$.'
+  common_errors:
+  - Dropping the 1/a_n^2 term, which makes the identity wrong
+  - Treating a_n^2 - 2n as a constant
+  - Sign or constant errors in the telescoping sum
+  hints:
+    rephrase: Square a + 1/a and see what the cross term becomes.
+    smaller_case: Compute a_2^2 directly and compare it with 2*2 - 1.
+    key_idea: Squaring a + 1/a gives a^2 + 2 + 1/a^2. The cross term is the constant 2, and the extra
+      term is positive.
+  check: sp.simplify((a + 1/a)**2 - a**2 - 2 - 1/a**2)
+  check_ok: null
+- goal: Show that a_n^2/n tends to 2, and conclude the asymptotic statements in parts (b) and (c).
+  expected: a_n^2/n -> 2, so a_n^2 ~ 2n, and a_n/sqrt(n) -> sqrt(2).
+  solution: From the identity, $a_n^2 = 2n-1 + \sum_{k=1}^{n-1} 1/a_k^2$. Since $a_k\to\infty$, $1/a_k^2\to
+    0$, and by Cesaro averaging $\frac{1}{n}\sum_{k=1}^{n-1} 1/a_k^2 \to 0$. Therefore $a_n^2/n \to 2$,
+    which gives $a_n^2 \approx 2n$. Taking square roots, which is continuous on positive reals, $a_n/\sqrt{n}
+    \to \sqrt{2}$.
+  common_errors:
+  - 'Claiming the error sum is bounded, which is false: it grows like (1/2) log n'
+  - Forgetting that the square-root step needs a_n^2/n to converge to a positive limit
+  - Answering 1/sqrt(2) by inverting the limit
+  hints:
+    rephrase: Write a_n^2 as 2n plus a sum. What do the terms of that sum do as k grows?
+    smaller_case: Check the formula a_n^2 >= 2n - 1 at n = 2 and n = 3, then ask how the leftover sum
+      behaves.
+    key_idea: The terms of the leftover sum tend to zero, so their average also tends to zero. Averaging
+      then fixes the limit of a_n^2/n.
+  check: sp.simplify(sp.sqrt(2)**2 - 2)
+  check_ok: null
+extensions:
+  '3':
+  - Is a_n^2 - 2n bounded? Justify your answer.
+  '4':
+  - Show that b_n = a_n^2 - 2n is increasing and tends to infinity.
+  '5':
+  - Show that a_n^2 - 2n is asymptotically (1/2) log n.
+spoken_vocab:
+- a sub n
+- a sub n plus one
+- a sub one equals one
+- a sub n squared
+- limit as n tends to infinity
+- square root of n
+- square root of two
+- natural log of n
+- recurrence
+- monotone
+- Cesaro averaging
+- tends to infinity
+- one over a sub n
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 7
+  parts: 3
+  minutes: 20
+  flags: []
+  tagline: Telescoping squares reveal a_n²≈2n, with a half-log correction for extension.
+  priority: 92
+  rank: 79
+  tier: A
+  category: juan
+  d10: 6.5
+  real: 6.0
+  by: haiku
+tags:
+- sequences_and_series
+- limits_and_approximation

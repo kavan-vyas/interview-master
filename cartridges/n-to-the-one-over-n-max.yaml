@@ -1,0 +1,104 @@
+id: n-to-the-one-over-n-max
+title: Maximising x^(1/x) and the largest n^(1/n) over integers
+topics:
+- calculus
+- logarithmic differentiation
+- graph sketching
+- inequalities
+- integers
+warmup: false
+answer_source: pdf
+statement: Sketch $y=x^{1/x}$ and deduce the largest value of $n^{1/n}$ over positive integers $n$.
+stages:
+- goal: Differentiate x^(1/x) and find its maximum.
+  expected: The derivative is (x^(1/x))(1-ln x)/x^2, so the stationary point is at x=e. The maximum value
+    is e^(1/e), approximately 1.445.
+  solution: Let y=x^(1/x)=exp((ln x)/x). Then y'=y*d/dx((ln x)/x)=y*(1-ln x)/x^2. The derivative is zero
+    when ln x=1, so x=e. Since the sign of y' changes from positive to negative at e, this is a maximum,
+    with y(e)=e^(1/e).
+  common_errors:
+  - Differentiating x^(1/x) as (1/x)x^(1/x-1).
+  - Forgetting the factor of y in the chain rule.
+  - Using the wrong sign for ln x in the numerator of the derivative.
+  hints:
+    rephrase: Take logarithms before differentiating.
+    smaller_case: Check the sign of the derivative at x=2 and at x=3.
+    key_idea: 'Logarithmic differentiation: d/dx of ln y is the easiest way to differentiate a power function.'
+  check: simplify(diff(x**(1/x),x)-x**(1/x)*(1-log(x))/x**2)
+  check_ok: true
+- goal: Sketch y=x^(1/x) and identify its key features.
+  expected: The curve tends to 0 as x tends to 0+, rises through (1,1), reaches its maximum at (e, e^(1/e)),
+    and then decreases towards the horizontal asymptote y=1, approaching from above for x>1.
+  solution: For 0<x<1 we have 1/x>1 and x<1, so the base is below 1 and the value is less than 1. For
+    x>1, x^(1/x)>1 because the exponent is positive. As x tends to infinity, (ln x)/x tends to 0, so x^(1/x)
+    tends to 1. The maximum at x=e comes from part (i).
+  common_errors:
+  - Placing the maximum at x=2 or x=3 instead of e.
+  - Forgetting the horizontal asymptote y=1.
+  - Drawing the curve tending to 1 from below for large x.
+  hints:
+    rephrase: Check the sign of ln x and what happens to the exponent 1/x as x grows.
+    smaller_case: Evaluate y at x=1 and at x=2.
+    key_idea: Use the limit of (ln x)/x as x tends to infinity to find the asymptote, and use the stationary
+      point to find the maximum.
+  check: (x**(1/x)).subs(x,1)-1
+  check_ok: true
+- goal: Deduce the largest value of n^(1/n) over positive integers n, with justification.
+  expected: The largest value is 3^(1/3), attained at n=3. Since 3>e and f is decreasing on [e,infinity),
+    all integers n>=3 give f(n)<=f(3). For n=1 and n=2, the values are 1 and sqrt(2). Also 3^(1/3)>sqrt(2)
+    because 3^2>2^3, i.e. 9>8.
+  solution: f(x)=x^(1/x) is decreasing on [e,infinity) and 3>e, so n^(1/n)<=3^(1/3) for n>=3. Among n=1,2,3
+    the values are 1, sqrt(2) approximately 1.414 and 3^(1/3) approximately 1.442. Comparing 3^(1/3) with
+    sqrt(2) by raising both to the sixth power gives 9 and 8, so 3^(1/3) is larger. Hence the maximum
+    over the integers is 3^(1/3).
+  common_errors:
+  - Choosing n=e or n=2.718 as the answer, since e is not an integer.
+  - Choosing n=2 because it is closer to e.
+  - Comparing the values without a rigorous inequality.
+  hints:
+    rephrase: Compare integers using a common power, such as raising both sides to the sixth power.
+    smaller_case: Compare sqrt(2) and 3^(1/3) by raising both to the sixth power.
+    key_idea: Use monotonicity of x^(1/x) on [e,infinity) to show only small integers can be the maximum.
+  check: 3**Rational(1,3) > 2**Rational(1,2)
+  check_ok: true
+extensions:
+  '3':
+  - Show that x^(1/x) is decreasing for x>e.
+  '4':
+  - For positive integers m<n, determine when m^(1/m) > n^(1/n), in terms of comparing m^n and n^m.
+  '5':
+  - Prove that n^(1/n) tends to 1 as n tends to infinity.
+spoken_vocab:
+- x to the power one over x
+- y equals x to the one over x
+- maximum
+- e
+- n to the power one over n
+- positive integers
+- three to the power one third
+- root two
+- one over e
+- natural log
+- sixth power
+- asymptote
+- decreasing
+source: jaymin/Jaymin Interview (1).pdf#p57
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 3
+  minutes: 15
+  flags:
+  - needs_diagram
+  tagline: Calculus maximum plus a discrete integer check; good for justification.
+  priority: 88
+  rank: 142
+  tier: A
+  category: jaymin
+  d10: 4.5
+  real: 8.5
+  by: haiku
+tags:
+- differentiation
+- curve_sketching

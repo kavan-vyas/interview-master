@@ -1,0 +1,175 @@
+id: gamblers-ruin-roulette
+title: 'Gambler''s Ruin: Fair and Biased Cases, Roulette, Expected Duration'
+topics:
+- gambler's ruin
+- recurrence relations
+- first-step analysis
+- difference equations
+- expectation
+- roulette probability
+warmup: false
+answer_source: pdf
+statement: 'A gambler starts with £$k$ and repeatedly bets £1, winning each bet (independently) with probability
+  $p$ and losing with probability $q=1-p$. She stops on reaching £$N$ or £$0$, where $0<k<N$ are integers.
+  Let $p_k$ be the probability that she reaches £$N$.
+
+
+  (i) Show that $p_k = p\,p_{k+1} + q\,p_{k-1}$ for $0<k<N$, with $p_0=0$ and $p_N=1$.
+
+
+  (ii) For a fair game ($p=\frac{1}{2}$), show that $p_k=\frac{k}{N}$.
+
+
+  (iii) For $p\neq\frac{1}{2}$, show that $p_k=\frac{1-r^k}{1-r^N}$, where $r=\frac{q}{p}$.
+
+
+  (iv) In roulette, a bet on red wins with probability $\frac{18}{38}$. Estimate the probability of turning
+  £10 into £20 by betting £1 at a time.
+
+
+  (v) For the fair game, show that the expected number of bets is $k(N-k)$.'
+stages:
+- goal: Derive the recurrence for the success probability and its boundary conditions (part i).
+  expected: 'Condition on the first bet: $p_k = p\,p_{k+1} + q\,p_{k-1}$ for $0<k<N$, with $p_0=0$ and
+    $p_N=1$, justified by the fresh start from the new fortune.'
+  solution: 'After the first bet the gambler has £$(k+1)$ with probability $p$ or £$(k-1)$ with probability
+    $q$. Bets are independent, so from either new position the game restarts afresh with the same rules,
+    and the chance of reaching £$N$ is $p_{k+1}$ or $p_{k-1}$ respectively. By the law of total probability,
+    $p_k = p\,p_{k+1} + q\,p_{k-1}$. For the boundaries: starting at £$0$ she has already stopped without
+    reaching $N$, so $p_0=0$; starting at £$N$ she has already succeeded, so $p_N=1$.'
+  common_errors:
+  - Swapping $p$ and $q$ (attaching $p$ to $p_{k-1}$).
+  - Forgetting the boundary conditions, or taking $p_0=1$.
+  - Not justifying why the game restarts afresh after one bet (independence of bets).
+  hints:
+    rephrase: After her first bet, where can she be, and with what probabilities? From there, what is
+      her chance of reaching £$N$?
+    smaller_case: Take $N=2$ and $k=1$. Write $p_1$ in terms of $p_0$ and $p_2$.
+    key_idea: 'First-step analysis: condition on the outcome of the first bet and use the law of total
+      probability.'
+- goal: Solve the recurrence for the fair game (part ii).
+  expected: $p_k=\frac{k}{N}$, obtained by showing the differences $p_{k+1}-p_k$ are constant and using
+    $p_0=0$, $p_N=1$.
+  solution: With $p=q=\frac12$ the recurrence gives $2p_k=p_{k+1}+p_{k-1}$, i.e. $p_{k+1}-p_k=p_k-p_{k-1}$.
+    So all differences equal a constant $d=p_1-p_0=p_1$, and $p_k=kd$. Then $p_N=1$ gives $Nd=1$, so $d=\frac1N$
+    and $p_k=\frac{k}{N}$.
+  common_errors:
+  - Not explaining why constant differences give a linear sequence.
+  - Using the boundary conditions with wrong indices, e.g. $p_N=Nd$ but then solving for $k$ instead of
+    $d$.
+  - Assuming the answer $k/N$ and not deriving it.
+  hints:
+    rephrase: What kind of sequence has equal gaps between consecutive terms?
+    smaller_case: Take $N=3$ and write $p_1$ and $p_2$ in terms of $p_0$ and $p_3$.
+    key_idea: Rearrange the fair recurrence into $p_{k+1}-p_k=p_k-p_{k-1}$, so the sequence is arithmetic.
+  check: simplify(ans - k/N)
+  check_ok: null
+- goal: Solve the recurrence for the biased game (part iii).
+  expected: General solution $p_k=A+Br^k$ from the characteristic equation with roots $1$ and $r=\frac
+    qp\neq1$, then boundary conditions give $p_k=\frac{1-r^k}{1-r^N}$.
+  solution: 'Try $p_k=\lambda^k$. Since $p+q=1$ the recurrence $p\lambda^{k+1}-\lambda^k+q\lambda^{k-1}=0$
+    reduces to $p\lambda^2-\lambda+q=0$, which factorises as $(\lambda-1)(p\lambda-q)=0$. The roots are
+    $1$ and $r=\frac qp$, distinct because $p\neq\frac12$. So $p_k=A+Br^k$. From $p_0=0$: $B=-A$. From
+    $p_N=1$: $A(1-r^N)=1$, so $A=\frac{1}{1-r^N}$. Hence $p_k=\frac{1-r^k}{1-r^N}$. This is the only solution,
+    since the recurrence together with the boundary conditions determines $p_1,\dots,p_{N-1}$ uniquely.'
+  common_errors:
+  - Using $r=p/q$ instead of $q/p$.
+  - Forgetting that the root $\lambda=1$ gives a constant solution, so the general form is $A+Br^k$.
+  - Not checking that $r\neq1$ (needed for distinct roots and for $1-r^N\neq0$).
+  hints:
+    rephrase: Try a solution of the form $\lambda^k$ and find which values of $\lambda$ work.
+    smaller_case: Substitute $p_k=\lambda^k$ into the recurrence and divide by $\lambda^{k-1}$. Use $p+q=1$
+      to factorise the quadratic.
+    key_idea: Two roots give a two-parameter family; the two boundary conditions $p_0=0$, $p_N=1$ fix
+      the constants.
+  check: simplify(ans - (1 - (q/p)**k)/(1 - (q/p)**N))
+  check_ok: null
+- goal: Estimate the probability of doubling £10 to £20 on red bets (part iv).
+  expected: $p_{10}=\frac{1}{1+r^{10}}$ with $r=\frac{10}{9}$, so $p_{10}\approx0.26$, well below $0.5$.
+  solution: 'Here $p=\frac{18}{38}$, $q=\frac{20}{38}$, so $r=\frac qp=\frac{10}{9}\neq1$. With $k=10$,
+    $N=20$: $p_{10}=\frac{1-r^{10}}{1-r^{20}}=\frac{1-r^{10}}{(1-r^{10})(1+r^{10})}=\frac{1}{1+r^{10}}$.
+    Now $r^{10}=(10/9)^{10}=e^{10\ln(10/9)}\approx e^{1.054}\approx2.87$, so $p_{10}\approx\frac{1}{3.87}\approx0.26$.
+    The small house edge per bet compounds over many bets.'
+  common_errors:
+  - Using $r=\frac pq$, which reverses the direction of the bias and gives about $0.74$.
+  - Using $0.5$ from the fair game instead of the biased formula.
+  - Miscalculating $(10/9)^{10}$ by a large margin, e.g. treating it as about $1.1$ or $10$.
+  hints:
+    rephrase: Which ratio enters the formula, and what are $k$ and $N$ here?
+    smaller_case: 'Try $k=1$, $N=2$ with $r=\frac{10}{9}$: the formula gives $\frac{1}{1+r}=\frac{9}{19}$,
+      just under a half. What happens as the gap grows?'
+    key_idea: Use the biased formula, factor $1-r^{20}=(1-r^{10})(1+r^{10})$, then estimate $(10/9)^{10}$
+      via logarithms or repeated squaring.
+  check: Abs(ans - 1/(1+Rational(10,9)**10)) < Rational(1,200)
+  check_ok: null
+- goal: Show that the expected number of bets in the fair game is $k(N-k)$ (part v).
+  expected: First-step equation $E_k=1+\frac12(E_{k-1}+E_{k+1})$ with $E_0=E_N=0$, solved to give $E_k=k(N-k)$.
+  solution: 'Let $E_k$ be the expected number of bets from £$k$ (finite, as the game ends with probability
+    1). Conditioning on the first bet: $E_k=1+\frac12E_{k+1}+\frac12E_{k-1}$, with $E_0=E_N=0$. Rearranged,
+    $E_{k+1}-2E_k+E_{k-1}=-2$. A particular solution is $-k^2$ (since $-(k+1)^2+2k^2-(k-1)^2=-2$), and
+    the homogeneous solutions are $A+Bk$, so $E_k=-k^2+Bk+A$. $E_0=0$ gives $A=0$, and $E_N=0$ gives $B=N$.
+    Hence $E_k=k(N-k)$. (Alternatively, verify directly: $(k-1)(N-k+1)+(k+1)(N-k-1)=2k(N-k)-2$, so the
+    right side is $1+k(N-k)-1=k(N-k)$; the boundary values are $0$, and the system determines $E_k$ uniquely.)'
+  common_errors:
+  - Forgetting the $+1$ for the bet just made.
+  - Checking the recurrence but not the boundary values $E_0=E_N=0$.
+  - Using the particular solution $+k^2$ instead of $-k^2$ (sign error).
+  hints:
+    rephrase: Let $E_k$ be the expected number of bets from £$k$. Write one equation relating $E_k$ to
+      $E_{k-1}$ and $E_{k+1}$.
+    smaller_case: 'Take $N=2$, $k=1$: she always finishes after exactly one bet. Check that $E_1=1\cdot1=1$
+      fits your equation.'
+    key_idea: 'First-step analysis for expectations: add $1$ for the bet made, then average the expectations
+      from the two new positions.'
+  check: simplify(ans - k*(N - k))
+  check_ok: null
+extensions:
+  '3':
+  - What is the probability of ruin if $p=0.6$, $k=5$ and $N=10$?
+  - In the fair game, how does $p_k$ change if she bets £2 at a time instead of £1 (with $k$ and $N$ even)?
+  '4':
+  - Let $N\to\infty$ in the biased formula. What happens to the probability of ever reaching $N$ when
+    $p<\frac12$, and to the ruin probability when $p>\frac12$?
+  - Roughly how many bets does the roulette gambler expect to place when going from £10 to £20 or £0?
+    Estimate from the biased duration formula or by a drift argument.
+  '5':
+  - Show that for $p\neq\frac12$ the expected duration is $D_k=\frac{k}{q-p}-\frac{N}{q-p}\cdot\frac{1-r^k}{1-r^N}$
+    by solving $D_k=1+pD_{k+1}+qD_{k-1}$.
+  - Explain why the fair-game duration $k(N-k)$ is the limit of the biased formula as $p\to\frac12$.
+spoken_vocab:
+- gambler
+- starts with pounds k
+- bets one pound
+- win probability p
+- lose probability q
+- reaches N
+- ruin
+- recurrence
+- fair game
+- r equals q over p
+- roulette
+- red
+- eighteen thirty-eighths
+- probability
+- expected number of bets
+- k times N minus k
+source: jaymin/Jaymin Interview (1).pdf#p41
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 5
+  minutes: 25
+  flags: []
+  tagline: 'Full ruin arc: recurrence, fair and biased cases, roulette estimate, expected duration.'
+  priority: 111
+  rank: 19
+  tier: S
+  category: jaymin
+  d10: 6.5
+  real: 4.5
+  by: deepseek-v4.1-flash-free
+refined: true
+tags:
+- probability
+- sequences_and_series

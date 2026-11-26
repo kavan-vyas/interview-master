@@ -1,0 +1,184 @@
+id: wedge-smooth-slide-particle-km
+title: Smooth wedge released with particle of mass kM sliding down its face
+topics:
+- mechanics
+- conservation of momentum
+- conservation of energy
+- relative velocity
+- smooth wedge on smooth surface
+warmup: false
+answer_source: generated
+statement: A wedge of mass $M$ rests on a smooth horizontal surface. The face of the wedge is a smooth
+  plane inclined at an angle $\alpha$ to the horizontal. A particle of mass $kM$ slides down the face
+  of the wedge, starting from rest. At a later time $t$, the speed $V$ of the wedge, the speed $v$ of
+  the particle and the angle $\beta$ of the velocity of the particle below the horizontal are as shown
+  in the diagram. Let $y$ be the vertical distance descended by the particle. Find $\tan\beta$ in terms
+  of $k$ and $\alpha$, and find $v^2$ in terms of $g$, $y$, $k$ and $\alpha$.
+stages:
+- goal: Use conservation of horizontal momentum to relate the particle's horizontal velocity (measured
+    from the ground) to $V$.
+  expected: The horizontal component of the particle's velocity has magnitude $V/k$ and is opposite in
+    direction to the wedge's velocity, so $v\cos\beta = V/k$.
+  solution: No external horizontal force acts on the system (wedge plus particle), and the total horizontal
+    momentum starts at zero. Let the wedge move with velocity $V$ in the $+x$ direction. Then $MV + kM\,v_x
+    = 0$, where $v_x$ is the particle's horizontal velocity relative to the ground. So $v_x = -V/k$. Its
+    magnitude is $|v_x| = v\cos\beta = V/k$.
+  common_errors:
+  - Using the particle's velocity relative to the wedge as its ground horizontal velocity.
+  - Forgetting the sign, so the momentum equation becomes $MV = kMv_x$ instead of $MV = -kMv_x$.
+  - Writing $v\cos\beta = kV$ instead of $V/k$.
+  hints:
+    rephrase: Ask what the total horizontal momentum of the wedge-plus-particle system is at the start,
+      and whether any external horizontal force acts on it.
+    smaller_case: Consider a very light particle (small $k$). What must the wedge do to keep the total
+      horizontal momentum at zero?
+    key_idea: No external horizontal force acts, so the total horizontal momentum stays zero. Use the
+      particle's absolute velocity, not its velocity relative to the wedge.
+  check: V/k - v*cos(beta)
+  check_ok: null
+- goal: Find $\tan\beta$ by combining the particle's vertical and horizontal velocity components with
+    the momentum relation.
+  expected: $\tan\beta = (1+k)\tan\alpha$
+  solution: Let $u$ be the particle's speed relative to the wedge, which acts along the slope. Its vertical
+    component is $u\sin\alpha$. Its absolute horizontal component is $-V/k$, from stage 1. Relative velocity
+    gives the horizontal ground velocity as $V - u\cos\alpha$, so $V - u\cos\alpha = -V/k$ and $V = \frac{k
+    u\cos\alpha}{1+k}$. Then $\tan\beta = \frac{u\sin\alpha}{V/k} = \frac{k u\sin\alpha}{V} = \frac{k
+    u\sin\alpha(1+k)}{k u\cos\alpha} = (1+k)\tan\alpha$.
+  common_errors:
+  - Writing $\tan\beta = \tan\alpha$ because the particle moves along the slope. The absolute velocity
+    differs from the relative velocity.
+  - Using the relative speed $u$ in place of the absolute horizontal speed $V/k$ when forming the ratio.
+  - Dropping the $k$ or $(1+k)$ factor when combining the two momentum relations.
+  hints:
+    rephrase: Write the particle's absolute velocity as the wedge velocity plus the velocity relative
+      to the wedge, then take the ratio of its vertical and horizontal components.
+    smaller_case: If the incline were horizontal ($\alpha=0$), what would $\beta$ be? Does your formula
+      agree?
+    key_idea: The particle's velocity relative to the wedge points down the slope. Adding the wedge's
+      velocity gives the absolute velocity. Use the horizontal momentum relation to eliminate the relative
+      speed.
+  check: tan(beta) - (1+k)*tan(alpha)
+  check_ok: null
+- goal: Apply conservation of energy and use $\beta$ to express the result in terms of $v$, $\beta$, $k$,
+    $g$ and $y$.
+  expected: $2gy = v^2(1+k\cos^2\beta)$
+  solution: The surfaces are smooth, so no energy is lost. Energy conservation gives $kMgy = \tfrac12
+    MV^2 + \tfrac12 kMv^2$. Divide by $M$ and multiply by 2 to get $2kgy = V^2 + kv^2$. From stage 1,
+    $V = kv\cos\beta$, so $V^2 = k^2v^2\cos^2\beta$. Then $2kgy = k^2v^2\cos^2\beta + kv^2$. Dividing
+    by $k$ gives $2gy = v^2(1+k\cos^2\beta)$.
+  common_errors:
+  - Using $\tfrac12 Mv^2$ for the particle's kinetic energy instead of $\tfrac12 kMv^2$.
+  - Omitting the wedge's kinetic energy $\tfrac12 MV^2$, which is needed because the wedge moves.
+  - Taking the potential energy change as $Mgy$ instead of $kMgy$.
+  hints:
+    rephrase: 'List every energy term: the particle''s loss of potential energy, and the kinetic energies
+      of both bodies. Which masses multiply each term?'
+    smaller_case: Consider a very heavy wedge with a very light particle. Would the wedge's kinetic energy
+      be significant?
+    key_idea: Energy is conserved because the contact is smooth. Use stage 1 to replace $V$ by a function
+      of $v$ and $\beta$.
+  check: 2*g*y - v**2*(1+k*cos(beta)**2)
+  check_ok: null
+- goal: Eliminate $\beta$ to find $v^2$ in terms of $g$, $y$, $k$ and $\alpha$.
+  expected: $v^2 = \dfrac{2gy\,(1+(1+k)^2\tan^2\alpha)}{(1+k)\,(1+(1+k)\tan^2\alpha)}$
+  solution: From $\tan\beta = (1+k)\tan\alpha$, $\cos^2\beta = \frac{1}{1+\tan^2\beta} = \frac{1}{1+(1+k)^2\tan^2\alpha}$.
+    Let $T=(1+k)\tan\alpha$. Then $1+k\cos^2\beta = \frac{1+k+T^2}{1+T^2}$, and $1+k+T^2 = (1+k)(1+(1+k)\tan^2\alpha)$.
+    Substituting into $2gy = v^2(1+k\cos^2\beta)$ gives $v^2 = \frac{2gy(1+T^2)}{(1+k)(1+(1+k)\tan^2\alpha)}$,
+    which is the stated result.
+  common_errors:
+  - Making an algebra slip when simplifying $1+k\cos^2\beta$.
+  - Writing $\cos^2\beta = 1+\tan^2\beta$ instead of its reciprocal.
+  - Forgetting the factor $(1+k)$ in the denominator.
+  hints:
+    rephrase: Express $\cos^2\beta$ using $\tan\beta$, then put it into the energy relation from the previous
+      stage and simplify.
+    smaller_case: Check the limit $k\to 0$ (a massless particle on a fixed wedge). Does your $v^2$ reduce
+      to $2gy$?
+    key_idea: Use $\sec^2\beta = 1+\tan^2\beta$ together with $\tan\beta = (1+k)\tan\alpha$ from stage
+      2.
+  check: v**2 - 2*g*y*(1+(1+k)**2*tan(alpha)**2)/((1+k)*(1+(1+k)*tan(alpha)**2))
+  check_ok: false
+- goal: Find the wedge's speed $V$ in terms of $g$, $y$, $k$ and $\alpha$.
+  expected: $V^2 = \dfrac{2k^2gy}{(1+k)\,(1+(1+k)\tan^2\alpha)}$
+  solution: From stage 1, $V = kv\cos\beta$, so $V^2 = k^2v^2\cos^2\beta$. Use $v^2 = \frac{2gy(1+T^2)}{(1+k)(1+(1+k)\tan^2\alpha)}$
+    and $\cos^2\beta = \frac{1}{1+T^2}$, where $T=(1+k)\tan\alpha$. Then $V^2 = \frac{k^2\cdot 2gy}{(1+k)(1+(1+k)\tan^2\alpha)}$.
+  common_errors:
+  - Forgetting the factor $k^2$, which comes from $V = kv\cos\beta$.
+  - Using $\cos\beta$ instead of $\cos^2\beta$ when squaring.
+  - Confusing $V$ with the particle's horizontal speed $V/k$.
+  hints:
+    rephrase: Start from the relation $V = kv\cos\beta$ and square both sides.
+    smaller_case: Set $k=1$ (equal masses) and check that the result is symmetric in the way you expect
+      from the momentum argument.
+    key_idea: Combine $V = kv\cos\beta$ with the expression for $v^2$ and the identity $\cos^2\beta =
+      1/(1+\tan^2\beta)$.
+  check: V**2 - 2*k**2*g*y/((1+k)*(1+(1+k)*tan(alpha)**2))
+  check_ok: false
+extensions:
+  '3':
+  - 'Find the normal reaction $N$ between the particle and the wedge in terms of $k$, $M$, $g$ and $\alpha$.
+    (Answer: $N = \dfrac{kMg\cos\alpha}{1+k\sin^2\alpha}$.)'
+  - 'Find the wedge''s acceleration in terms of $g$, $k$ and $\alpha$. (Answer: $\dfrac{kg\sin\alpha\cos\alpha}{1+k\sin^2\alpha}$.)'
+  '4':
+  - 'Find the particle''s acceleration relative to the wedge, along the slope, in terms of $g$, $k$ and
+    $\alpha$. (Answer: $\dfrac{(1+k)g\sin\alpha}{1+k\sin^2\alpha}$.)'
+  - Discuss the limits $k\to 0$ and $k\to\infty$ for $v^2$ and $V^2$, and interpret them physically.
+  '5':
+  - Find the time taken for the particle to descend a vertical height $h$ in terms of $g$, $h$, $k$ and
+    $\alpha$, using the relative acceleration from extension 4.
+  - Generalise the problem to include friction between the particle and the wedge, and state which conservation
+    laws still apply.
+spoken_vocab:
+- kM
+- k M
+- capital M
+- wedge
+- mass capital M
+- particle
+- alpha
+- beta
+- theta
+- speed capital V
+- speed lowercase v
+- vertical distance y
+- tan beta
+- tan alpha
+- one plus k
+- cos beta
+- sin alpha
+- cos alpha
+- v squared
+- two g y
+- g
+- k
+- smooth surface
+- smooth plane
+- momentum
+- kinetic energy
+- potential energy
+- relative velocity
+- horizontal component
+- vertical component
+- divide by k
+- capital V squared
+- two k squared g y
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#18
+verified: false
+rating:
+  quality: 5
+  difficulty: 7
+  parts: 3
+  minutes: 20
+  flags:
+  - missing_info
+  - needs_diagram
+  tagline: Good elimination of β, but refers to a diagram that is not provided.
+  priority: 47
+  rank: 536
+  tier: C
+  category: siklos
+  d10: 6.0
+  real: 2.5
+  by: haiku
+tags:
+- mechanics

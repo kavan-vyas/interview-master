@@ -1,0 +1,76 @@
+id: letter-arrangements-ten-letters
+title: Arranging letters A to J, then 5 A's and 5 B's
+topics:
+- counting
+- permutations
+- multinomial coefficients
+warmup: true
+answer_source: pdf
+statement: Say you have the letters $A$ to $J$. How many different ways are there of arranging them? What
+  if we swapped them with 5 A's and 5 B's?
+stages:
+- goal: Count the arrangements of the ten distinct letters A to J.
+  expected: $10! = 3628800$
+  solution: There are 10 choices for the first position, 9 for the second, and so on down to 1 for the
+    last. Multiplying gives $10! = 3628800$.
+  common_errors:
+  - Using $10^{10}$, which allows repeated letters
+  - Counting combinations $\binom{10}{k}$ instead of ordered arrangements
+  - Forgetting that every letter must be used once
+  hints:
+    rephrase: How many letters could go in the first slot, and how many are left for the second slot?
+    smaller_case: Take three letters A, B, C. List every arrangement and count them.
+    key_idea: For distinct objects, the number of choices multiplies from one position to the next.
+  check: factorial(10) - 3628800
+  check_ok: true
+- goal: Count the arrangements of 5 A's and 5 B's (identical letters within each type).
+  expected: $\frac{10!}{5!\,5!} = 252$
+  solution: Choose which 5 of the 10 positions hold A's; the B's fill the rest. This gives $\binom{10}{5}
+    = \frac{10!}{5!\,5!} = 252$.
+  common_errors:
+  - Giving $10! = 3628800$ unchanged, so identical letters are treated as distinct
+  - Dividing by only one of the two $5!$ factors
+  - Arithmetic slips such as writing 210 or 126 for $\binom{10}{5}$
+  hints:
+    rephrase: If all the A's were identical, what would happen to the count from the first part?
+    smaller_case: Arrange two A's and two B's. List the distinct words you can make.
+    key_idea: Swapping identical letters produces the same word, so the overcounting has to be divided
+      out.
+  check: factorial(10)/(factorial(5)*factorial(5)) - 252
+  check_ok: true
+extensions:
+  '3':
+  - How many arrangements of the letters A to J have A and B next to each other?
+  '4':
+  - How many arrangements of 5 A's and 5 B's have no two A's next to each other?
+  '5':
+  - Generalise to arrangements of $n$ objects with $n_1,\dots,n_k$ identical copies of each type, where
+    $n_1+\dots+n_k=n$.
+spoken_vocab:
+- ten factorial
+- five factorial
+- A to J
+- ten choose five
+- binomial
+- A's
+- B's
+- arrangements
+- permutations
+source: past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2009.doc
+verified: false
+rating:
+  quality: 3
+  difficulty: 2
+  parts: 2
+  minutes: 5
+  flags: []
+  tagline: Permutations with and without identical items; a clean warm-up with a useful contrast.
+  priority: 35
+  rank: 602
+  tier: D
+  category: past-interviews
+  d10: 1.5
+  real: 7.0
+  by: haiku
+tags:
+- combinatorics

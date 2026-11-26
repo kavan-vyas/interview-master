@@ -1,0 +1,118 @@
+id: tan-one-degree-irrational
+title: Is tan(1°) irrational?
+topics:
+- number theory
+- trigonometry
+- cyclotomic fields
+- irrationality
+- roots of unity
+warmup: false
+answer_source: generated
+statement: Is $\tan(1^\circ)$ irrational?
+stages:
+- goal: Express $e^{2i^\circ}$ in terms of $t=\tan(1^\circ)$ so that rationality of $t$ becomes a statement
+    about a root of unity.
+  expected: $e^{2i^\circ}=\dfrac{1+it}{1-it}$ where $t=\tan(1^\circ)$.
+  solution: 'Let $\theta=1^\circ$ and $t=\tan\theta$. Divide numerator and denominator by $\cos\theta$:
+    $\dfrac{1+i\tan\theta}{1-i\tan\theta}=\dfrac{\cos\theta+i\sin\theta}{\cos\theta-i\sin\theta}$. Since
+    $\cos\theta-i\sin\theta=\overline{e^{i\theta}}=e^{-i\theta}$, the quotient is $\dfrac{e^{i\theta}}{e^{-i\theta}}=e^{2i\theta}=e^{2i^\circ}$.'
+  common_errors:
+  - Sign slip giving $\frac{1-it}{1+it}$ instead, which is $e^{-2i^\circ}$; both are fine but the stated
+    identity must match.
+  - Trying to use $\tan 2\theta$ double-angle formula and losing the complex structure.
+  - Dropping the denominator $\cos\theta$ and not noticing the ratio is unchanged.
+  hints:
+    rephrase: Write $\tan$ as $\sin$ over $\cos$ and clear denominators. Then compare the result with
+      $(\cos\theta+i\sin\theta)^2$.
+    smaller_case: Try the same identity with $\theta=45^\circ$ and see what $\frac{1+i\tan 45^\circ}{1-i\tan
+      45^\circ}$ equals.
+    key_idea: The ratio $\frac{1+it}{1-it}$ has modulus 1 for real $t$, so it is an exponential $e^{i\phi}$
+      for some angle $\phi$. Identify $\phi$.
+  check: sp.simplify(((1+sp.I*sp.tan(sp.pi/180))/(1-sp.I*sp.tan(sp.pi/180))).rewrite(sp.exp) - sp.exp(2*sp.I*sp.pi/180))
+    == 0
+  check_ok: null
+- goal: Determine the order of $\zeta=e^{2i^\circ}$ as a root of unity and the degree $[\mathbb{Q}(\zeta):\mathbb{Q}]$.
+  expected: $\zeta$ is a primitive 180th root of unity and $[\mathbb{Q}(\zeta):\mathbb{Q}]=\varphi(180)=48$.
+  solution: $e^{2i^\circ}=e^{2\pi i/180}$. We have $\zeta^k=1$ iff $180\mid k$, so the order is exactly
+    180. The minimal polynomial of a primitive $n$th root of unity over $\mathbb{Q}$ is the cyclotomic
+    polynomial $\Phi_n$, of degree $\varphi(n)$. Hence $[\mathbb{Q}(\zeta):\mathbb{Q}]=\varphi(180)=\varphi(4)\varphi(9)\varphi(5)=2\cdot6\cdot4=48$.
+  common_errors:
+  - Miscomputing $\varphi(180)$, for example as 60 or 90, by forgetting the multiplicativity over prime
+    powers.
+  - Confusing the angle $2^\circ$ with order 360 or order 90.
+  - Claiming the degree equals the order rather than $\varphi$ of the order.
+  hints:
+    rephrase: Write $2^\circ$ as a fraction of a full turn. Find the smallest positive $k$ with $\zeta^k=1$,
+      then recall the degree of the cyclotomic polynomial for that order.
+    smaller_case: For $e^{i\pi/2}=i$ (order 4), compare its degree over $\mathbb{Q}$ with $\varphi(4)$.
+    key_idea: The degree of $\mathbb{Q}(\zeta_n)$ over $\mathbb{Q}$ is Euler's totient $\varphi(n)$, which
+      is multiplicative over coprime factors.
+  check: sp.totient(180) - 48 == 0
+  check_ok: null
+- goal: Conclude whether $\tan(1^\circ)$ can be rational, using the field $\mathbb{Q}(i)$ and the degree
+    from the previous stage.
+  expected: $\tan(1^\circ)$ is irrational.
+  solution: Suppose $t=\tan 1^\circ\in\mathbb{Q}$. Then $\zeta=\frac{1+it}{1-it}$ lies in $\mathbb{Q}(i)$,
+    since it is a quotient of Gaussian rationals with nonzero denominator (note $1-it\neq0$). So $\mathbb{Q}(\zeta)\subseteq\mathbb{Q}(i)$,
+    giving $[\mathbb{Q}(\zeta):\mathbb{Q}]\le[\mathbb{Q}(i):\mathbb{Q}]=2$. But this degree is 48, a contradiction.
+    Therefore $\tan 1^\circ$ is irrational.
+  common_errors:
+  - Arguing that $\zeta$ must equal $\pm i$ or $\pm1$ without justifying it through the degree argument.
+  - Stating that $\tan 1^\circ$ is irrational because its decimal expansion looks non-repeating, which
+    is not a proof.
+  - Forgetting to check that $1-it\neq 0$ so the quotient is defined.
+  - Concluding that rational angles always give irrational tangents, which fails at $45^\circ$.
+  hints:
+    rephrase: Assume the tangent is rational and see which number field the root of unity from stage 1
+      would then live in.
+    smaller_case: If $\tan\theta$ were rational for $\theta=45^\circ$, the root of unity would be $i$,
+      which lives in $\mathbb{Q}(i)$. Why does that case not contradict anything?
+    key_idea: Compare the degree of $\mathbb{Q}(\zeta)$ with the degree of the field it would be forced
+      into, which is at most 2.
+  check: sp.totient(180) > 2
+  check_ok: null
+extensions:
+  '3':
+  - Show that $\tan(3^\circ)$ is irrational using the same method.
+  - Explain precisely why the argument fails for $\tan(45^\circ)=1$.
+  '4':
+  - Prove that $\tan(n^\circ)$ is irrational for every integer $n$ that is not a multiple of $45$.
+  '5':
+  - 'Show that $\cos(1^\circ)$ is irrational. Hint: $2\cos(1^\circ)=\zeta+\zeta^{-1}$ is an algebraic
+    integer, and a rational algebraic integer is an integer.'
+spoken_vocab:
+- tan one degree
+- irrational
+- rational
+- zeta
+- e to the two i degrees
+- primitive 180th root of unity
+- root of unity
+- cyclotomic polynomial
+- Euler totient
+- phi of 180
+- degree of a field extension
+- Q of i
+- Gaussian rationals
+- minimal polynomial
+- subfield
+- contradiction
+source: nextstepmaths/NextStepMaths Interview Questions/interview-question-22.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 9
+  parts: 3
+  minutes: 20
+  flags: []
+  tagline: Elegant root-of-unity argument; cyclotomic degree gives scope for extension.
+  priority: 81
+  rank: 207
+  tier: B
+  category: nextstepmaths
+  d10: 9.0
+  real: 6.0
+  by: haiku
+tags:
+- complex_numbers
+- roots_of_polynomials

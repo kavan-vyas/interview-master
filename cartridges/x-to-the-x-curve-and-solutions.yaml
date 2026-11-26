@@ -1,0 +1,176 @@
+id: x-to-the-x-curve-and-solutions
+title: 'The function x^x: limit, minimum, sketch, and counting solutions'
+topics:
+- limits
+- differentiation
+- stationary points
+- graph sketching
+- logarithms
+- counting solutions
+warmup: false
+answer_source: pdf
+statement: 'Let $f(x)=x^x$ for $x>0$.
+
+
+  (i) By writing $x^x=e^{x\ln x}$, find the limit of $f(x)$ as $x\to0^+$, justifying your answer.
+
+
+  (ii) Find $f''(x)$, and find the coordinates and nature of the stationary point of $f$.
+
+
+  (iii) Sketch the graph of $y=f(x)$.
+
+
+  (iv) For each real number $k$, find the number of positive solutions of $x^x=k$.
+
+
+  (v) Show that $x=\frac14$ and $x=\frac12$ both satisfy $x^x=\frac{1}{\sqrt2}$, and explain how this
+  is consistent with your answer to (iv).'
+stages:
+- goal: Find $\lim_{x\to0^+}x^x$ with justification.
+  expected: The limit is $1$. Write $x^x=e^{x\ln x}$. Then $x\ln x\to0$ as $x\to0^+$, because $\frac{\ln
+    x}{1/x}\to0$ by L'Hopital's rule (or by substituting $x=e^{-t}$ so that $x\ln x=-te^{-t}\to0$ as $t\to\infty$).
+    Since $\exp$ is continuous, $f(x)\to e^0=1$.
+  solution: $x^x=e^{x\ln x}$. Write $g(x)=x\ln x=\frac{\ln x}{1/x}$. As $x\to0^+$, $\ln x\to-\infty$ and
+    $1/x\to\infty$, so L'Hopital gives $g(x)\sim\frac{1/x}{-1/x^2}=-x\to0$. By continuity of $\exp$, $f(x)=e^{g(x)}\to
+    e^0=1$.
+  common_errors:
+  - Saying $x^x\to0$ because the base tends to $0$.
+  - Treating $0^0$ as $0$ (or as undefined) without taking the limit from the right.
+  - Applying L'Hopital directly to $x\ln x$ without first rewriting it as a quotient.
+  - Concluding the limit of $x\ln x$ is $-\infty$ because $\ln x\to-\infty$, ignoring the factor $x\to0$.
+  hints:
+    rephrase: 'Take logs first: what does $x\ln x$ do as $x$ shrinks towards $0$?'
+    smaller_case: Compute $x\ln x$ at $x=0.01$ and at $x=0.0001$. What is it approaching?
+    key_idea: '$x\ln x$ is a $0\times\infty$ form: rewrite it as a quotient so L''Hopital applies, then
+      use continuity of $\exp$.'
+  check: Limit(x**x,x,0,dir='+')-1
+  check_ok: true
+- goal: Find $f'(x)$, and the coordinates and nature of the stationary point.
+  expected: $f'(x)=x^x(\ln x+1)$. The only stationary point is at $x=1/e$, with $f(1/e)=e^{-1/e}$, i.e.
+    approximately $(0.368,\,0.692)$. It is a minimum since $f''(1/e)=e^{1-1/e}>0$ (or since $f'$ changes
+    from negative to positive).
+  solution: Write $f=e^{x\ln x}$. By the chain and product rules $f'=f\cdot(\ln x+1)$, so $f'(x)=x^x(\ln
+    x+1)$. Since $x^x>0$, $f'=0$ iff $\ln x=-1$, i.e. $x=1/e$. Then $f(1/e)=(1/e)^{1/e}=e^{-1/e}$. Differentiating
+    again, $f''=x^x\left[(\ln x+1)^2+\frac1x\right]$, and at $x=1/e$ this is $e^{-1/e}\cdot e=e^{1-1/e}>0$,
+    so the point is a minimum.
+  common_errors:
+  - Differentiating as $x\cdot x^{x-1}$ (power rule) and missing the $\ln x$ term.
+  - Giving only $x=1/e$ and forgetting the $y$-coordinate.
+  - Calling the stationary point a maximum, or misplacing it at $x=1$.
+  - Dropping the factor $x^x$ in $f'$ and differentiating $x\ln x$ alone.
+  hints:
+    rephrase: Differentiate $e^{x\ln x}$ with the chain rule, then find where the derivative vanishes.
+    smaller_case: Evaluate $f'$ at $x=1$ and at $x=0.1$ and compare the signs.
+    key_idea: $\frac{d}{dx}(x\ln x)=\ln x+1$, which changes sign exactly once, and $x^x>0$ never vanishes.
+  check: simplify(diff(x**x,x).subs(x,1/E))
+  check_ok: true
+- goal: Sketch $y=f(x)$ and identify its key features.
+  expected: The curve starts just below height $1$ near $x=0$ (open end at $(0,1)$, not included), with
+    $f'\to-\infty$ so it falls steeply, reaches the minimum at $(1/e,\,e^{-1/e})\approx(0.37,\,0.69)$,
+    then rises through $(1,1)$ and $(2,4)$ and grows very rapidly (faster than any polynomial or exponential
+    $c^x$).
+  solution: 'From (i), $f(x)\to1$ as $x\to0^+$, and for $0<x<1$ we have $x\ln x<0$, so $f(x)<1$: the curve
+    approaches $(0,1)$ from below. From (ii), $f''<0$ on $(0,1/e)$ and $f''>0$ on $(1/e,\infty)$, so $f$
+    decreases to the minimum and then increases. Also $f(1)=1$, $f(2)=4$, and $f(x)\to\infty$ as $x\to\infty$.'
+  common_errors:
+  - Drawing the curve approaching $(0,1)$ from above, or starting at the origin.
+  - Putting the minimum at $x=1$ or at $x=0$.
+  - Including the point $(0,1)$ as a solid point on the graph.
+  - Forgetting that $f$ is increasing and above $1$ for all $x>1$.
+  hints:
+    rephrase: Combine the limit at $0$, the sign of $f'$ either side of $1/e$, and a few easy values.
+    smaller_case: Evaluate $f(1/2)$ and decide whether it lies above or below $1$.
+    key_idea: $f$ decreases on $(0,1/e)$ and increases on $(1/e,\infty)$; the left end tends to $1$ but
+      is not attained.
+  check: And(sqrt(Rational(1,2)) < 1, exp(-1/E) < 1)
+  check_ok: true
+- goal: For each real $k$, count the positive solutions of $x^x=k$.
+  expected: '$k<e^{-1/e}$ (including all $k\le0$): no solutions. $k=e^{-1/e}$: one solution, $x=1/e$.
+    $e^{-1/e}<k<1$: two solutions, one on each side of $1/e$. $k=1$: exactly one solution, $x=1$ (the
+    value $1$ is approached as $x\to0^+$ but never attained). $k>1$: exactly one solution, with $x>1$.'
+  solution: 'On $(0,1/e]$, $f$ decreases strictly from $1$ (not attained) to $e^{-1/e}$; on $[1/e,\infty)$
+    it increases strictly from $e^{-1/e}$ to $\infty$. So the line $y=k$ meets the graph: never if $k<e^{-1/e}$;
+    once, at the minimum, if $k=e^{-1/e}$; twice if $e^{-1/e}<k<1$ (once in $(0,1/e)$, once in $(1/e,1)$);
+    once at $x=1$ if $k=1$, since the left branch takes only values below $1$; and once with $x>1$ if
+    $k>1$. The threshold is $e^{-1/e}\approx0.692$.'
+  common_errors:
+  - Giving two solutions for $k=1$ (the value $1$ is not attained on the left branch).
+  - Giving two solutions for all $k>1$.
+  - Forgetting $k\le0$ and negative $k$ have no solutions.
+  - Using $1/\sqrt2$ or another number instead of $e^{-1/e}$ as the threshold.
+  hints:
+    rephrase: Draw horizontal lines $y=k$ at different heights and count crossings with your sketch.
+    smaller_case: Take $k=0.8$, then $k=1$, then $k=3$, and count crossings for each.
+    key_idea: Use the minimum value, strict monotonicity on each side of $1/e$, and the fact that the
+      left branch approaches $1$ without reaching it.
+  check: And(exp(-1/E) > Rational(69,100), exp(-1/E) < Rational(7,10))
+  check_ok: true
+- goal: Show $\frac14$ and $\frac12$ both satisfy $x^x=\frac1{\sqrt2}$, and explain consistency with (iv).
+  expected: $(1/4)^{1/4}=(2^{-2})^{1/4}=2^{-1/2}=1/\sqrt2$ and $(1/2)^{1/2}=1/\sqrt2$. Since $e^{-1/e}\approx0.692<1/\sqrt2\approx0.707<1$,
+    part (iv) predicts exactly two solutions, one on each side of $1/e\approx0.368$, and indeed $\frac14<\frac1e<\frac12$.
+  solution: $(1/4)^{1/4}=(2^{-2})^{1/4}=2^{-1/2}=\frac1{\sqrt2}$, and $(1/2)^{1/2}=\frac1{\sqrt2}$. Now
+    $e^{-1/e}<\frac1{\sqrt2}<1$, so by (iv) there are exactly two positive solutions, one in $(0,1/e)$
+    and one in $(1/e,1)$. Since $\frac14<\frac1e<\frac12$ (as $2<e<4$), $\frac14$ and $\frac12$ are precisely
+    these two solutions.
+  common_errors:
+  - Only checking the equality numerically with no exact algebra.
+  - Not checking that $1/\sqrt2$ lies strictly between $e^{-1/e}$ and $1$.
+  - Claiming both solutions lie on the same side of $1/e$.
+  - Not justifying $\frac14<\frac1e<\frac12$ (it follows from $2<e<4$).
+  hints:
+    rephrase: Write $\frac14$ and $\frac12$ as powers of $2$ and simplify the roots.
+    smaller_case: Compare $\frac14$, $\frac1e$ and $\frac12$ numerically.
+    key_idea: Part (iv) says there are exactly two solutions, one each side of $1/e$; you have found two,
+      one on each side, so they are them.
+  check: simplify(Rational(1,4)**Rational(1,4)-1/sqrt(2))+simplify(Rational(1,2)**Rational(1,2)-1/sqrt(2))
+  check_ok: true
+extensions:
+  '3':
+  - Without a calculator, show that $e^{-1/e}<\frac1{\sqrt2}$.
+  - Sketch $y=x^x$ and $y=x$ on the same axes. How many times do they meet?
+  '4':
+  - Show that $f''(x)>0$ for all $x>0$. What does this say about the shape of the graph?
+  - For which $k$ does $x^x=k$ have exactly two positive solutions? Find $k$ such that one solution is
+    $x=\frac1{16}$ and say where the other lies.
+  '5':
+  - Show that $x^y=y^x$ has solutions with $x\neq y$ and $x,y>1$, and use part (ii) to describe them.
+  - Find the limit as $x\to0^+$ of $x^{x^x}$, or explain why it behaves differently from $x^x$.
+spoken_vocab:
+- x to the power x
+- e to the x log x
+- natural log
+- limit as x tends to zero from the right
+- one over e
+- e to the minus one over e
+- stationary point
+- minimum
+- one quarter
+- one half
+- root two
+- one over root two
+- k
+- positive solutions
+- L'Hopital's rule
+source: jaymin/Jaymin Interview (1).pdf#p57
+verified: false
+rating:
+  quality: 9
+  difficulty: 6
+  parts: 5
+  minutes: 25
+  flags:
+  - needs_diagram
+  tagline: Limit, minimum, sketch, case analysis, and a consistency check at 1/√2.
+  priority: 113
+  rank: 10
+  tier: S
+  category: jaymin
+  d10: 5.5
+  real: 6.5
+  by: haiku
+refined: true
+tags:
+- curve_sketching
+- differentiation
+- limits_and_approximation

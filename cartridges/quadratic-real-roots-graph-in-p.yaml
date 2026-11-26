@@ -1,0 +1,111 @@
+id: quadratic-real-roots-graph-in-p
+title: Real roots of x^2 + 2px + 1 = 0 and the graph of x against p
+topics:
+- quadratics
+- discriminant
+- quadratic formula
+- graph sketching
+- limits
+warmup: false
+answer_source: pdf
+statement: 'Here are three cards: $x^2 + 2px + 1 = 0$. For what value of $p$ does $x$ have real values?
+  Find an expression for $x$ in terms of $p$. Draw $x$ against $p$.'
+stages:
+- goal: Find all values of p for which the equation has real roots.
+  expected: The discriminant (2p)^2 - 4(1)(1) = 4p^2 - 4 must be non-negative, so p^2 >= 1, i.e. p <=
+    -1 or p >= 1.
+  solution: 'Real roots require the discriminant b^2 - 4ac >= 0. Here b = 2p, a = 1, c = 1, so 4p^2 -
+    4 >= 0, giving p^2 >= 1, i.e. |p| >= 1: p <= -1 or p >= 1. At p = 1 the equation is (x+1)^2 = 0 with
+    repeated root x = -1; at p = -1 the repeated root is x = 1.'
+  common_errors:
+  - Giving only p >= 1 and forgetting the branch p <= -1.
+  - Writing the condition as p^2 > 1 and dropping the equality case p = +/-1.
+  - Squaring incorrectly, e.g. writing (2p)^2 as 2p^2.
+  hints:
+    rephrase: Real roots of a quadratic depend on one quantity. Which quantity must be non-negative, and
+      what does that say about p?
+    smaller_case: Substitute p = 0 and p = 2 into the equation. Does a real x exist in each case?
+    key_idea: Compare the discriminant b^2 - 4ac with zero.
+  check: (2*p)**2 - 4*1*1 - (4*p**2 - 4)
+  check_ok: true
+- goal: Find an expression for x in terms of p.
+  expected: x = -p +/- sqrt(p^2 - 1), valid for |p| >= 1.
+  solution: 'By the quadratic formula, x = (-2p +/- sqrt(4p^2 - 4)) / 2 = -p +/- sqrt(p^2 - 1). Check:
+    with s = sqrt(p^2 - 1), (x + p - s)(x + p + s) = (x + p)^2 - s^2 = x^2 + 2px + p^2 - (p^2 - 1) = x^2
+    + 2px + 1.'
+  common_errors:
+  - Forgetting to divide the square-root term by 2 as well as the -2p term.
+  - Writing sqrt(p^2 + 1) instead of sqrt(p^2 - 1).
+  - Dropping the plus-or-minus and giving only one root.
+  hints:
+    rephrase: Apply the general formula for a x^2 + b x + c = 0 with a = 1, b = 2p, c = 1.
+    smaller_case: Solve x^2 + 4x + 1 = 0 with the quadratic formula first, then redo it with b = 2p.
+    key_idea: The roots of a x^2 + b x + c = 0 are x = (-b +/- sqrt(b^2 - 4ac)) / (2a).
+  check: simplify(expand((x + p - sqrt(p**2 - 1))*(x + p + sqrt(p**2 - 1)) - (x**2 + 2*p*x + 1)))
+  check_ok: true
+- goal: Draw x against p. Describe the branches and their behaviour as p tends to plus or minus infinity.
+  expected: Two branches x = -p +/- sqrt(p^2 - 1), defined only for |p| >= 1, with no points for -1 <
+    p < 1. They meet at (1, -1) and (-1, 1). For p >= 1, one branch tends to 0 from below as p tends to
+    infinity, and the other behaves like x = -2p and tends to -infinity. The graph is symmetric under
+    (p, x) -> (-p, -x), so for p <= -1 one branch tends to 0 from above and the other behaves like x =
+    -2p and tends to +infinity.
+  solution: Each p with |p| >= 1 gives two x-values, so the graph has two branches. At p = 1, x_+ = x_-
+    = -1; at p = -1, both are 1. For large p, sqrt(p^2 - 1) is approximately p, so x_+ = -p + sqrt(p^2
+    - 1) = -1/(p + sqrt(p^2 - 1)) tends to 0 from below, and x_- = -p - sqrt(p^2 - 1) is approximately
+    -2p. Replacing (p, x) by (-p, -x) leaves the equation unchanged, which gives the point symmetry about
+    the origin.
+  common_errors:
+  - Drawing a continuous curve through the region -1 < p < 1.
+  - Treating the relation as a single-valued function of p.
+  - Missing the behaviour x approximately -2p, which gives an unbounded branch.
+  - Failing to notice the symmetry (p, x) -> (-p, -x).
+  hints:
+    rephrase: For each p, how many x-values exist, and for which p do they exist at all?
+    smaller_case: Work out the two x-values at p = 1, p = 2 and p = 10. What happens to each one as p
+      grows?
+    key_idea: Rewrite -p - sqrt(p^2 - 1) and -p + sqrt(p^2 - 1) by rationalising the second, then consider
+      large p.
+  check: null
+extensions:
+  '3':
+  - For what values of p is one root of x^2 + 2px + 1 = 0 exactly twice the other?
+  '4':
+  - Show that the product of the two roots is always 1 and use this to explain the symmetry of the graph.
+  '5':
+  - Replace the constant 1 by a general c. For which pairs (p, c) are there real roots, and how does the
+    graph change?
+spoken_vocab:
+- x squared plus two p x plus one equals zero
+- p
+- x
+- discriminant
+- b squared minus four a c
+- plus or minus
+- square root
+- p squared minus one
+- modulus of p
+- greater than or equal to
+- tends to infinity
+- minus two p
+- point symmetry
+- origin
+source: past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2009.doc
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 3
+  minutes: 12
+  flags:
+  - needs_diagram
+  tagline: Two branches split at |p|=1, with asymptotic behaviour as p grows.
+  priority: 63
+  rank: 414
+  tier: C
+  category: past-interviews
+  d10: 2.5
+  real: 4.0
+  by: haiku
+tags:
+- curve_sketching
+- algebra_and_functions

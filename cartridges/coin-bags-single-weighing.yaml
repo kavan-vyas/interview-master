@@ -1,0 +1,117 @@
+id: coin-bags-single-weighing
+title: Five bags of coins, one weighing
+topics:
+- pigeonhole and counting
+- balanced ternary
+- integer representations
+- algorithmic reasoning
+warmup: false
+answer_source: pdf
+statement: There are $5$ bags with $100$ coins in each bag. A coin can weigh $9$ grams, $10$ grams or
+  $11$ grams. Each bag contains coins of equal weight, but we do not know what type of coins each bag
+  contains. We have a digital scale (the kind that tells the exact weight). How many coins do you need
+  to use the scale to determine which type of coin each bag contains?
+stages:
+- goal: Find the minimum number of weighings needed.
+  expected: One weighing.
+  solution: A single reading of the scale can distinguish all types, as shown in the later stages, so
+    one weighing suffices. Zero weighings are clearly insufficient because no information about the coins
+    is available.
+  common_errors:
+  - Assuming several weighings are needed, one per bag, without checking whether one reading can encode
+    all bags at once.
+  hints:
+    rephrase: Could one reading of the scale carry enough information to separate all the possibilities?
+    smaller_case: With only two bags, can one reading tell apart all the combinations of two coin types?
+    key_idea: Use different numbers of coins from each bag, so that each bag's contribution to the total
+      is distinguishable.
+  check: sympy.Integer(1) - 1
+  check_ok: null
+- goal: Choose how many coins to take from each bag for the single weighing, and give the total number
+    of coins used.
+  expected: Take $1,3,9,27,81$ coins from bags $1$ to $5$. This is $1+3+9+27+81=121$ coins in total.
+  solution: 'Write $c_i\in\{-1,0,1\}$ for bag $i$, where $c_i=$ (coin weight $-10$). Taking $n_i=3^{i-1}$
+    coins from bag $i$ gives total weight $10\cdot121+D$ with $D=\sum_{i=1}^5 c_i3^{i-1}$. Each $n_i\le100$,
+    so this is possible. Total coins used: $1+3+9+27+81=121$. This is also the minimum for any single
+    weighing: $D$ lies in $[-N,N]$ where $N$ is the total number of coins, so $2N+1\ge 3^5=243$ forces
+    $N\ge121$.'
+  common_errors:
+  - Taking powers of two, $1,2,4,8,16$. Then deviations collide, for example $1\cdot1+2\cdot(-1)+4\cdot
+    1=3$ and $1\cdot1+2\cdot1+4\cdot 0=3$... more simply, $(c_1,c_2)=(1,-1)$ and $(c_1,c_2)=(0,0)$ can
+    give the same deviation.
+  - Taking one coin per bag. Then $(+1,-1)$ and $(0,0)$ both give deviation $0$, so the reading is ambiguous.
+  hints:
+    rephrase: Each bag has three possible types. How many distinct total deviations does a single reading
+      need to produce?
+    smaller_case: Take $1$ coin from one bag and $3$ coins from another. List the $9$ possible deviations
+      and check whether they are all distinct.
+    key_idea: Choose coin counts that grow fast enough that a larger count can never be cancelled by the
+      smaller ones. Think about base three.
+  check: sympy.Integer(1+3+9+27+81) - 121
+  check_ok: null
+- goal: Explain why the single reading determines the type of every bag.
+  expected: The $3^5=243$ choices of $(c_1,\dots,c_5)$ give $243$ distinct values of $\sum c_i3^{i-1}$,
+    because these are balanced ternary numerals. So the reading identifies every $c_i$, and hence each
+    bag's coin type.
+  solution: Every integer from $-121$ to $121$ (243 integers in total) has a unique representation $\sum_{i=1}^5
+    c_i3^{i-1}$ with $c_i\in\{-1,0,1\}$. Since there are exactly $243$ combinations, the map from combinations
+    to deviations is a bijection. The scale reading gives $D$, so $(c_1,\dots,c_5)$ and hence each bag's
+    coin weight are determined.
+  common_errors:
+  - Assuming that the $243$ sums must be distinct without checking the range of values, which is the key
+    counting fact.
+  - Forgetting to convert the total weight back to the coin weights by subtracting $10$ from each coin.
+  hints:
+    rephrase: Count the number of possible total deviations and the number of possible combinations. Do
+      they match?
+    smaller_case: Check that the deviations from two bags with $1$ and $3$ coins are all distinct.
+    key_idea: Think of the deviation as a number written in base three using only the digits $-1,0,1$.
+  check: sympy.Integer(3)**5 - 243
+  check_ok: null
+extensions:
+  '3':
+  - Five bags have $100$ coins each with weights $9$, $10$ or $11$ grams. If the scale only reports whether
+    the total is above or below $1210$ grams, can it still identify every bag?
+  '4':
+  - Four bags, each with $100$ coins of weight $9$, $10$ or $11$ grams. How many coins are needed for
+    one weighing that identifies every bag's type?
+  '5':
+  - Prove that any single weighing needs at least $121$ coins to distinguish all $243$ possible combinations
+    of coin types.
+spoken_vocab:
+- five bags
+- one hundred coins
+- nine grams
+- ten grams
+- eleven grams
+- digital scale
+- one weighing
+- powers of three
+- balanced ternary
+- one
+- three
+- nine
+- twenty seven
+- eighty one
+- one hundred twenty one
+- deviation
+source: zhou-quant/zhou-quant-guide.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Clever base-3 weighing design with a natural, discussable minimality question.
+  priority: 81
+  rank: 247
+  tier: B
+  category: zhou-quant
+  d10: 6.0
+  real: 8.0
+  by: deepseek-v4.1-flash-free
+tags:
+- number_theory
+- combinatorics
+- proof

@@ -1,0 +1,115 @@
+id: triple-prime-3-5-7
+title: 'Triple primes: only 3, 5, 7'
+topics:
+- number theory
+- primes
+- modular arithmetic
+- divisibility
+warmup: true
+answer_source: pdf
+statement: A twin prime is a prime number that is either $2$ less or $2$ more than another prime number.
+  For example, $11$ and $13$. Show that the only triple prime (i.e. three primes that are $2$ less or
+  $2$ more than each other) is $3, 5, 7$.
+stages:
+- goal: Show that for every integer $p$, at least one of $p$, $p+2$, $p+4$ is divisible by $3$.
+  expected: Every integer is congruent to $0$, $1$ or $2$ modulo $3$. If $p \equiv 0 \pmod{3}$, then $3
+    \mid p$. If $p \equiv 1 \pmod{3}$, then $p+2 \equiv 0 \pmod{3}$. If $p \equiv 2 \pmod{3}$, then $p+4
+    \equiv 6 \equiv 0 \pmod{3}$. So one of the three numbers is always divisible by $3$.
+  solution: 'Split into the three residue classes of $p$ modulo $3$. Case $p\equiv 0$: $3\mid p$. Case
+    $p\equiv 1$: $p+2\equiv 3\equiv 0$, so $3\mid p+2$. Case $p\equiv 2$: $p+4\equiv 6\equiv 0$, so $3\mid
+    p+4$. These cases cover all integers, so the claim holds.'
+  common_errors:
+  - Checking only one residue class, or only the case $p\equiv 0$.
+  - Confusing $p+2$ and $p+4$ when reducing modulo $3$.
+  - Assuming the divisible number must be $p$ itself.
+  hints:
+    rephrase: Think about what remainder $p$ leaves when divided by $3$, and what remainders the other
+      two numbers then leave.
+    smaller_case: Take $p=5$ and list $p$, $p+2$, $p+4$. Which of them is divisible by $3$, and what is
+      the remainder of $5$ on division by $3$?
+    key_idea: Any three consecutive integers of the form $p, p+2, p+4$ cover all three residues modulo
+      $3$, so one of them must hit residue $0$.
+  check: sympy.expand((3*k + 1 + 2) - 3*(k + 1)) + sympy.expand((3*k + 2 + 4) - 3*(k + 2))
+  check_ok: false
+- goal: Use primality to show that the number divisible by $3$ must equal $3$, and deduce the possible
+    values of $p$.
+  expected: The number divisible by $3$ is prime, and its only prime multiple of $3$ is $3$ itself, so
+    it equals $3$. If $p=3$ the triple is $3,5,7$. If $p+2=3$ then $p=1$, which is not prime. If $p+4=3$
+    then $p=-1$, which is not prime. Hence $p=3$.
+  solution: 'Let $q$ be the member of $\{p, p+2, p+4\}$ divisible by $3$. Since $q$ is prime and $3\mid
+    q$, we have $q=3$. Check the three possibilities: $p=3$ gives $\{3,5,7\}$. $p+2=3$ gives $p=1$, not
+    prime. $p+4=3$ gives $p=-1$, not prime. So $p=3$ is forced.'
+  common_errors:
+  - Forgetting that $p=1$ and $p=-1$ are excluded because they are not prime.
+  - Treating the divisible-by-$3$ number as arbitrary instead of concluding it is exactly $3$.
+  - Only considering $p=3$ and not ruling out the other two cases.
+  hints:
+    rephrase: Once you know which member is divisible by $3$, ask which prime could that member possibly
+      be.
+    smaller_case: If $p+2$ were the multiple of $3$, what would $p$ have to be, and is that a prime?
+    key_idea: Primality forces the multiple of $3$ to be the prime $3$ itself, which then pins down $p$
+      in each of the three positions.
+- goal: State the triple and verify that all three numbers are prime.
+  expected: The only triple is $3, 5, 7$. Indeed $3$, $5$ and $7$ are all prime, and each pair of consecutive
+    members differs by $2$.
+  solution: From stage two, $p=3$, so the triple is $3, 5, 7$. Each of $3$, $5$, $7$ has no divisors other
+    than $1$ and itself, so all three are prime. Thus $3,5,7$ is a triple prime, and it is the only one.
+  common_errors:
+  - Stating the triple without checking that each member is actually prime.
+  - Claiming there are other triples such as $5,7,9$ without checking that $9$ is not prime.
+  hints:
+    rephrase: Check that each of the candidate numbers has no divisors other than $1$ and itself.
+    smaller_case: Would the set $5, 7, 9$ work? Which member fails the primality test?
+    key_idea: The triple must satisfy both the spacing condition and primality, and the earlier stages
+      show the spacing forces a unique starting value.
+extensions:
+  '3':
+  - Show that if $p$ and $p+2$ are both prime and $p>3$, then $6$ divides $p+1$.
+  '4':
+  - Show that $p^2-1$ is divisible by $24$ for every prime $p>3$.
+  '5':
+  - Show that $n^3-n$ is divisible by $6$ for every integer $n \ge 1$.
+spoken_vocab:
+- prime
+- triple prime
+- twin prime
+- p
+- p plus two
+- p plus four
+- divisible by three
+- three divides
+- modulo three
+- congruent to zero modulo three
+- congruent to one modulo three
+- congruent to two modulo three
+- remainder
+- integer
+- three
+- five
+- seven
+- eleven
+- thirteen
+- nine
+- one
+- minus one
+- equal to
+- not prime
+source: nextstepmaths/NextStepMaths Interview Questions/interview-question-11.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 3
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: Elegant mod-3 pigeonhole argument; great warm-up with a clean answer.
+  priority: 61
+  rank: 433
+  tier: C
+  category: nextstepmaths
+  d10: 2.0
+  real: 6.5
+  by: haiku
+tags:
+- number_theory
+- proof

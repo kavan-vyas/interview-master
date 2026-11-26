@@ -1,0 +1,87 @@
+id: functional-equation-x2-f1-minus-x
+title: Functional Equation x^2 F(x) + F(1-x) = 2x - x^4
+topics:
+- functional equations
+- simultaneous equations
+- polynomial algebra
+- substitution
+warmup: false
+answer_source: generated
+statement: Determine the function $F(x)$ which satisfies the functional equation $x^2F(x)+F(1-x)=2x-x^4$.
+stages:
+- goal: Replace x by 1-x in the equation to get a second equation involving F(x) and F(1-x).
+  expected: (1-x)^2 F(1-x) + F(x) = 2(1-x) - (1-x)^4.
+  solution: Substituting x -> 1-x in x^2F(x) + F(1-x) = 2x - x^4 gives (1-x)^2 F(1-x) + F(1-(1-x)) = 2(1-x)
+    - (1-x)^4. Since 1-(1-x) = x, the second term is F(x).
+  common_errors:
+  - Forgetting to substitute 1-x into the coefficient x^2, giving the wrong (1-x)^2 factor.
+  - Replacing F(1-(1-x)) with F(1-x) instead of F(x).
+  - Expanding the right-hand side incorrectly.
+  hints:
+    rephrase: Substitute 1-x for every x in the original equation, including inside F and in the coefficient.
+    smaller_case: Take x = 0. Write the original equation at x = 0 and the substituted equation at x =
+      0, and check they link F(0) and F(1).
+    key_idea: Replacing x by 1-x turns F(x) into F(1-x) and vice versa, so you get two equations in the
+      same two unknowns.
+  check: sp.simplify(((x**2*F(x) + F(1-x)) - (2*x - x**4)).subs(x, 1 - x) - ((1-x)**2*F(1-x) + F(x) -
+    (2*(1-x) - (1-x)**4)))
+  check_ok: null
+- goal: Eliminate F(1-x) to solve for F(x).
+  expected: F(x) = 1 - x^2.
+  solution: 'From the original equation, F(1-x) = 2x - x^4 - x^2 F(x). Substitute into the second equation:
+    F(x)(1 - x^2(1-x)^2) = 2(1-x) - (1-x)^4 - (1-x)^2(2x - x^4). The right side expands to 1 - 2x^2 +
+    2x^3 - 2x^5 + x^6, which equals (1 - x^2)(1 - x^2(1-x)^2). Dividing gives F(x) = 1 - x^2. Check: x^2(1-x^2)
+    + (1 - (1-x)^2) = x^2 - x^4 + 2x - x^2 = 2x - x^4.'
+  common_errors:
+  - Guessing F(x) and not showing it is the unique solution.
+  - Making an arithmetic error when expanding (1-x)^4 or (1-x)^2(2x - x^4).
+  - Dividing by 1 - x^2(1-x)^2 without checking it is nonzero for the x values used.
+  hints:
+    rephrase: Treat F(x) and F(1-x) as two unknowns. You now have two linear equations in them, so solve
+      them like simultaneous equations.
+    smaller_case: Try a polynomial F of degree 2 and compare coefficients on both sides of the original
+      equation.
+    key_idea: Use the first equation to express F(1-x) in terms of F(x), then substitute into the second
+      equation to get a single equation for F(x).
+  check: sp.simplify(x**2*(1 - x**2) + (1 - (1 - x)**2) - (2*x - x**4))
+  check_ok: null
+extensions:
+  '3':
+  - Solve F(x) + F(1-x) = x for F.
+  '4':
+  - For the general equation a(x)F(x) + b(x)F(1-x) = g(x), find the condition on a and b for a unique
+    solution.
+  '5':
+  - Find all functions F, not only polynomials, that satisfy x^2F(x) + F(1-x) = 2x - x^4.
+spoken_vocab:
+- F of x
+- F of one minus x
+- functional equation
+- x squared
+- two x
+- x to the fourth
+- one minus x
+- substitute
+- simultaneous
+- polynomial
+- eliminate
+- determine
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 2
+  minutes: 6
+  flags: []
+  tagline: Clean elimination to 1-x²; hidden uniqueness failure at two points invites discussion.
+  priority: 55
+  rank: 479
+  tier: C
+  category: tbo
+  d10: 5.0
+  real: 4.0
+  by: deepseek-v4.1-flash-free
+tags:
+- functional_equations
+- algebra_and_functions

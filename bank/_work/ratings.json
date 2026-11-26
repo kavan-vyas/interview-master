@@ -1,0 +1,6234 @@
+{
+ "999999-divided-by-27": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 1,
+  "minutes": 2,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Multiple-choice arithmetic via 999999 = 999\u00d71001; mostly recall."
+ },
+ "a-b-equals-b-a-natural": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Classic a^b=b^a via y=ln x/x; natural solutions 2,4 emerge."
+ },
+ "abs-diamond-square-warmup": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Diamond, square, and rotated square: |x\u2212y|+|x+y|=2max(|x|,|y|)."
+ },
+ "abs-modulus-conic-lines": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Case-splitting modulus gives a circle x\u00b2+y\u00b2=8 plus lines x=\u00b1\u221a2."
+ },
+ "abs-value-sketch": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Piecewise sketch of |x|\u2212|x\u22122| then solve equals 1; single-step payoff."
+ },
+ "abs-x2-minus-1-and-root-derivatives": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Non-differentiable points: kinks, vertical tangent, and a cusp compared."
+ },
+ "absolute-value-curves-limit-shape": {
+  "quality": 9,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 15,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Power-p superellipses tend to a square; open-ended justification and extension."
+ },
+ "absolute-value-integrals-xe-x-and-polynomial-and-sine": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Sign-splitting integrals; mostly mechanical, with a useful sine-shift step."
+ },
+ "area-regular-polygon-inscribed-circle": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [],
+  "tagline": "Classic triangle decomposition; leads to limit \u03c0R\u00b2 discussion."
+ },
+ "arithmetic-series-reversal-trick": {
+  "quality": 6,
+  "difficulty": 3,
+  "parts": 5,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Five-part reversal-trick series ending in a no-solution argument."
+ },
+ "arsinh-as-logarithm": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Quadratic in e^y with root choice; domain and inverse discussion."
+ },
+ "astroid-graph-intercepts": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 2,
+  "minutes": 10,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Astroid sketch via intercepts, symmetry and cusp behaviour."
+ },
+ "average-speed-halves": {
+  "quality": 5,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [],
+  "tagline": "Classic harmonic-mean trap; extends to equal times versus distances."
+ },
+ "base-b-10201-composite": {
+  "quality": 6,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Elegant perfect-square factorisation; base-validity subtlety invites extension."
+ },
+ "basel-bound-telescoping": {
+  "quality": 8,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Telescoping bound leads to strengthened induction and Basel extension."
+ },
+ "battery-guarantee-memoryless": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Memoryless-property counterclaim; contract value versus expected lifetime debate."
+ },
+ "alternating-coin-game-win-probability": {
+  "quality": 5,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Clean first-step conditioning giving 1/(2-p), with natural sanity checks."
+ },
+ "alternating-dice-game-bias": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 4,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Turn-based equation, then fairness condition and interpretation discussion."
+ },
+ "alternating-square-sums": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [],
+  "tagline": "Telescoping pattern with a quick numeric check; warm-up level only."
+ },
+ "am-gm-from-exp-inequality": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 2,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Classic exp-inequality route to AM-GM; well-structured proof with hint."
+ },
+ "am-gm-product-sum-reciprocals": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Expansion plus pairwise AM-GM; equality analysis gives good follow-up."
+ },
+ "amgm-open-box-volume": {
+  "quality": 8,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Real optimisation scenario chaining AM-GM steps; strong extension via open box."
+ },
+ "amgm-product-inequality-abc": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Standard multiply-three-AM-GM proof; straightforward with clear equality case."
+ },
+ "anagrams-gauss-ramanujan": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Routine multiset counting; recall-level, useful only as a warm-up."
+ },
+ "angle-in-semicircle": {
+  "quality": 4,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Classic warm-up; proof via isosceles triangles invites discussion."
+ },
+ "ant-on-cube-shortest-surface-path": {
+  "quality": 5,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [
+   "wrong_or_unclear_solution"
+  ],
+  "tagline": "Unfolding classic; but stages contradict on the number of faces."
+ },
+ "ants-collisions-line-625": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Ghost-passing trick turns collisions into a 625-pair count."
+ },
+ "ants-glass-pigeonhole": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 2,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Tight 5x5 grid: half-diagonal just beats the glass radius."
+ },
+ "ants-on-rope-fall-off": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Ghost trick gives a clean one-second bound with simple structure."
+ },
+ "apples-pears-simultaneous": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 3,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Routine simultaneous equations; little discussion scope."
+ },
+ "arcsin-positive-root-sketch": {
+  "quality": 4,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [
+   "garbled"
+  ],
+  "tagline": "Good conceptual check of arcsin's range; stage 3 sketch is garbled."
+ },
+ "area-abs-sum-triple": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 2,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Reveals hexagon via max-of-absolute-values identity; area is 3."
+ },
+ "bayes-repeated-positive-tests": {
+  "quality": 8,
+  "difficulty": 4,
+  "parts": 5,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Classic Bayes ladder: odds form, repeated tests, and independence critique."
+ },
+ "bell-curve-and-its-derivative-relation": {
+  "quality": 5,
+  "difficulty": 3,
+  "parts": 4,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Simple sketch, turning points, asymptotes; the f\u2013g link is open-ended."
+ },
+ "bell-curve-function": {
+  "quality": 6,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Open-ended design task; good for probing even functions and width scaling."
+ },
+ "bernoulli-inequality-integer-n": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Standard induction; the key step is multiplying by 1+x positively."
+ },
+ "biased-coin-binomial-mle": {
+  "quality": 5,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Classic MLE with a good intuition-check question at the end."
+ },
+ "biased-coin-game-expectation": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Geometric expectation computed two ways, linking to first-step conditioning."
+ },
+ "biased-coins-odd-heads": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Parity via (-1)^N trick; product telescopes to a clean closed form."
+ },
+ "binary-chains-parity": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Counting via binomial sums; too direct for deep discussion."
+ },
+ "binomial-coefficient-recurrence": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 3,
+  "minutes": 5,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Routine factorial manipulation and Pascal's rule; little room for discussion."
+ },
+ "binomial-expansions": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Four varied expansion techniques, though mostly routine practice."
+ },
+ "binomial-identities-double-counting": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 5,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Combinatorial proofs, an involution, and an integration twist; excellent discussion."
+ },
+ "binomial-sqrt2-cuberoot2-approx": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Chains binomial series with a clever choice of N for cube roots."
+ },
+ "binomial-sum-x-one-minus-x": {
+  "quality": 3,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Binomial theorem gives the answer at once; limited depth beyond recall."
+ },
+ "birthday-all-months-25-people": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Surjection counting by inclusion-exclusion with a substantial numerical answer."
+ },
+ "birthday-problem-estimate": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Classic estimate with a clear approximation path and good extension questions."
+ },
+ "bisector-triangle-angles": {
+  "quality": 5,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Standard angle chase that generalises neatly to a proof."
+ },
+ "blackboard-difference-one": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Parity invariant: total sum 500500 is even, so 1 is unreachable."
+ },
+ "board-parity-invariant-odd": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Same parity idea as problem one, with a cleaner multi-step structure."
+ },
+ "boat-upstream-downstream-speed": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Relative-speed equation yielding a clean quadratic with integer root."
+ },
+ "bouncing-ball-total-time": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Geometric series over bounces; energy-versus-height ambiguity invites productive discussion."
+ },
+ "bounds-on-pi-3-less-than-pi-less-than-4": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Classic inscribed and circumscribed polygon bounds; extensible to Archimedes."
+ },
+ "box-first-red-expected-draws": {
+  "quality": 8,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Expected-value calculation whose n\u21920 limit exposes a discontinuity worth probing."
+ },
+ "boys-girls-ratio-club": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 2,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Simple ratio arithmetic with a multiple-choice answer; little discussion."
+ },
+ "bracelets-eleven-beads-three-colours": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Burnside's lemma on rotations; the colour condition is a red herring."
+ },
+ "chocolate-bar-breaks": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [],
+  "tagline": "Classic piece-counting invariant gives the answer quickly, with little room to extend."
+ },
+ "chocolate-bar-splitting": {
+  "quality": 8,
+  "difficulty": 5,
+  "parts": 2,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Move-count invariant leads to a parity-based winning strategy game on 5\u00d77."
+ },
+ "circle-chord-regions": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Counting regions builds to Moser's formula, with rich extension via interior crossings."
+ },
+ "circle-triangle-centre": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Semicircle argument gives 1/4; generalises well to n points and invites discussion."
+ },
+ "circles-rays-triangle-inequality": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 5,
+  "minutes": 15,
+  "flags": [
+   "wrong_or_unclear_solution"
+  ],
+  "tagline": "Mostly bookwork; part (ii) wrongly says 'line segment' for what is a ray."
+ },
+ "cissoid-of-diocles-sketch": {
+  "quality": 7,
+  "difficulty": 7,
+  "parts": 4,
+  "minutes": 20,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Polar conversion, asymptote and origin analysis combine into a rich curve sketch."
+ },
+ "coin-bags-single-weighing": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Clever base-3 weighing design with a natural, discussable minimality question."
+ },
+ "coin-first-head-pattern-waiting-times": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 5,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Waiting times for HH vs HT reveal a surprising, well-motivated winner."
+ },
+ "cauchy-schwarz-integral-bound": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 2,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Proves Cauchy\u2013Schwarz via a quadratic discriminant, then applies it to a real integral bound"
+ },
+ "chain-recurrence-guess-x-n": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Guess-and-induct pattern with a clean closed form"
+ },
+ "chameleons-three-colours-mod-3": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 2,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Classic mod-3 invariant argument with a clean impossibility proof"
+ },
+ "chebyshev-cos-n-theta-recurrence": {
+  "quality": 5,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 18,
+  "flags": [
+   "missing_info"
+  ],
+  "tagline": "Derives Chebyshev polynomials via product-to-sum identity and induction, though base cases are unstated"
+ },
+ "chessboard-adjacent-difference": {
+  "quality": 6,
+  "difficulty": 6,
+  "parts": 2,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "King-move route and a pigeonhole-style bound on total change"
+ },
+ "chessboard-domino-colouring": {
+  "quality": 5,
+  "difficulty": 2,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Classic colour-count parity argument with a crisp yes/no answer"
+ },
+ "chicken-crossing-cars": {
+  "quality": 8,
+  "difficulty": 7,
+  "parts": 3,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Relative-motion safety condition, then optimisation over angle and speed, rich follow-ups"
+ },
+ "chocolate-bar-breaks-2": {
+  "quality": 3,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 6,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Each break adds one piece, so the answer is fixed at 47"
+ },
+ "broken-stick-triangle": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Classic geometric probability with clean 1/4 answer; symmetry discussion possible."
+ },
+ "buffon-needle-and-wire-length": {
+  "quality": 9,
+  "difficulty": 7,
+  "parts": 4,
+  "minutes": 25,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Buffon's needle to bent-wire expectation by linearity; rich extension to estimating \u03c0."
+ },
+ "bump-mirror-operations": {
+  "quality": 8,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Hidden parity invariant decides the odd-operations question; playful, well-structured."
+ },
+ "card-front-back-probability": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 3,
+  "minutes": 4,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Trivial complement counting; generalisation to n cards is immediate."
+ },
+ "cash-dispenser-police": {
+  "quality": 7,
+  "difficulty": 7,
+  "parts": 4,
+  "minutes": 25,
+  "flags": [
+   "wrong_or_unclear_solution"
+  ],
+  "tagline": "Plan A sum is clean; stated Plan B value is wrong, a strong probe."
+ },
+ "catalan-integrality": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Neat rewrite as a binomial difference gives the integrality proof."
+ },
+ "cauchy-additive-continuous": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Classic Cauchy equation; continuity step and counterexample discussion add depth."
+ },
+ "cauchy-additive-function": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Rational-to-real progression with monotonicity; builds a complete rigorous argument."
+ },
+ "coin-hth-vs-htt": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Penney-style pattern race; answer 1/2 tempts intuition-testing comparisons."
+ },
+ "coin-patterns-waiting-times": {
+  "quality": 6,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Clean expected-waiting-time contrast; HH versus HT reveals overlap effects."
+ },
+ "coin-pile-splitting-sum": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Elegant invariant proof: each pair of coins multiplies exactly once."
+ },
+ "coin-row-heads-tails": {
+  "quality": 6,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Parity invariant argument; good for discussing which n work."
+ },
+ "coin-streak-stopping-game": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [
+   "missing_info"
+  ],
+  "tagline": "Expected-value setup, but stopping criterion is undefined and conversational."
+ },
+ "commuter-late-train": {
+  "quality": 7,
+  "difficulty": 7,
+  "parts": 4,
+  "minutes": 25,
+  "flags": [
+   "garbled"
+  ],
+  "tagline": "Rich multi-stage modelling with normal approximations and inference; text truncated."
+ },
+ "compare-31-11-with-17-14": {
+  "quality": 5,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [],
+  "tagline": "Neat power-of-two bounding trick; short but clean."
+ },
+ "compare-e-pi-pi-e": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 2,
+  "minutes": 7,
+  "flags": [],
+  "tagline": "Classic ln x/x monotonicity trick with generalisation to a^b vs b^a."
+ },
+ "consecutive-product-square-no-solutions": {
+  "quality": 8,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Coprime-factor argument forces consecutive squares, a clean contradiction, with natural extension to higher powers."
+ },
+ "consecutive-sums-of-45": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Enumerate consecutive-sum representations, then link the count to odd divisors; the link is checkable."
+ },
+ "convex-polygon-diagonals-crossings": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 2,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Diagonal count is easy, but seeing crossings as four-vertex choices is a good insight."
+ },
+ "coprime-x2-y2-3z2": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 2,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "A mod 3 argument rules out coprime solutions, leading naturally to descent discussion."
+ },
+ "corners-and-sides-of-n-dimensional-cube": {
+  "quality": 4,
+  "difficulty": 2,
+  "parts": 4,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Pattern-spotting from squares and cubes to n dimensions, mostly recall-driven with little depth."
+ },
+ "correlation-vectors-three-variables": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 2,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Geometric vector view gives sharp bounds 0.28 and 1, with rich discussion of positive semidefiniteness."
+ },
+ "cos-line-two-roots-sin-solvable": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 2,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Monotonicity via the derivative forces |\u03b1|\u22641, elegantly linking two roots to sin's range."
+ },
+ "cos-of-x-plus-abs-x": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 6,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Simplifying x+|x| turns the sketch into a piecewise task, but the content is shallow."
+ },
+ "compare-power-integrals-area": {
+  "quality": 8,
+  "difficulty": 7,
+  "parts": 2,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Reflection-of-area swap shows the integrals are equal, not ordered."
+ },
+ "compare-powers-2-30-3-20": {
+  "quality": 4,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [],
+  "tagline": "Classic exponent trick: rewrite both as tenth powers."
+ },
+ "complex-arithmetic-modulus-argument": {
+  "quality": 3,
+  "difficulty": 4,
+  "parts": 5,
+  "minutes": 20,
+  "flags": [
+   "wrong_or_unclear_solution"
+  ],
+  "tagline": "Textbook complex proofs; example points break stated argument assumptions."
+ },
+ "cone-cut-volume-ratio": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Similar-cone scaling gives a 1:7 ratio and cube-root bisection."
+ },
+ "cone-funnel-water-height-graph": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [
+   "missing_info",
+   "needs_diagram"
+  ],
+  "tagline": "Good V\u221dh\u00b3 insight, but the graph options are absent."
+ },
+ "cone-water-filling-rate": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Inverted-cone related rates with a physical explanation of decreasing rate."
+ },
+ "consecutive-odd-squares": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 5,
+  "flags": [],
+  "tagline": "Routine quadratic warm-up; fine as a gentle opener."
+ },
+ "consecutive-product-1716": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Estimating the middle value near the cube root is a good nudge."
+ },
+ "cosh-sinh-definitions-and-intercepts": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 3,
+  "minutes": 5,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Recall-level definitions and graph facts with almost no multi-step reasoning."
+ },
+ "count-not-divisible-2-5-3-7": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Inclusion-exclusion plus periodic residues make the averages a satisfying extension."
+ },
+ "count-squares-cubes-fifth-powers-to-1e30": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Clean inclusion-exclusion over powers with a tidy closed form."
+ },
+ "counter-game-multiples-of-five": {
+  "quality": 5,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Familiar losing-positions game; good warm-up with a clear strategy argument."
+ },
+ "counter-race-odd-even": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Parity invariant and gap-based strategy give rich, multi-step discussion with extensions."
+ },
+ "counters-red-even-odd-8x8": {
+  "quality": 5,
+  "difficulty": 5,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Signed-count trick gives a neat answer, but the problem is short and single-idea."
+ },
+ "counters-subtraction-game": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 4,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Progressive variants from winning pattern to mis\u00e8re and new move sets invite discussion."
+ },
+ "coupon-collector-dice": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Classic phase decomposition that generalises cleanly from six faces to n."
+ },
+ "cubic-gp-ap-roots": {
+  "quality": 5,
+  "difficulty": 7,
+  "parts": 3,
+  "minutes": 25,
+  "flags": [
+   "garbled"
+  ],
+  "tagline": "Vieta characterisations of GP and AP roots; rich, but part (iii) is truncated."
+ },
+ "cubic-inequality-x3-less-2x2-3x": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Factor and sign-check; a routine warm-up with little to discuss."
+ },
+ "cubic-inverse-existence": {
+  "quality": 5,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Derivative-based monotonicity; the a=-3 counterexample invites injectivity discussion."
+ },
+ "cubic-iterates-count-solutions": {
+  "quality": 9,
+  "difficulty": 8,
+  "parts": 2,
+  "minutes": 30,
+  "flags": [],
+  "tagline": "Counting preimages of iterated cubics via Chebyshev substitution; deep and extendable."
+ },
+ "cubic-no-integer-solutions-descent": {
+  "quality": 8,
+  "difficulty": 7,
+  "parts": 3,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Parity and infinite descent over three linked cubic equations; elegant and structured."
+ },
+ "cubic-roots-geometric-progression": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Roots 1, 3, 9 from product and Vieta; tidy but fairly closed."
+ },
+ "cubic-sum-unique-root": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Unique real root, then the surprise that the curve has no turning points."
+ },
+ "cubic-turning-points-inflection": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Discriminant condition, then the inflection at the midpoint of the turning points."
+ },
+ "derangement-secret-santa-limit": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [
+   "missing_info"
+  ],
+  "tagline": "Classic derangement limit to 1/e, plus recurrence proof and D_5 check."
+ },
+ "derivative-log-power": {
+  "quality": 3,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [],
+  "tagline": "Single-technique logarithmic differentiation; quick warm-up with little discussion."
+ },
+ "derivative-power-towers-x-to-the-x": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Power-tower derivatives leading to an open-ended recurrence for T_n."
+ },
+ "derivative-x-wrt-x-squared": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 3,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Chain-rule trick; mostly a quick recall check."
+ },
+ "derive-arcsin-derivative": {
+  "quality": 4,
+  "difficulty": 4,
+  "parts": 4,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Standard inverse-function derivation with useful range and sign discussion."
+ },
+ "dice-two-of-each-and-increasing-rolls": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Two counting problems with clean combinatorial reasoning and extension potential."
+ },
+ "die-all-faces-appear": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Inclusion-exclusion route to Stirling numbers; strong follow-up discussion."
+ },
+ "die-min-max-expectation": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Min and max distributions with a neat expectation-via-tail-sum approach."
+ },
+ "cubic-x3-plus-ax2-plus-b-sketch": {
+  "quality": 5,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Sign cases test turning-point reasoning and root counting in a clean sketch."
+ },
+ "cuboid-volume-area-perimeter": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Elegant monotonicity argument forcing a=b=c, then a clean contradiction."
+ },
+ "curve-sketch-x-pow-n-exp-minus-x": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Edge cases at n=1 and origin reward careful classification; rich sketch discussion."
+ },
+ "cycle-stream-average-speed": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Routine time-distance arithmetic with a clear, single numerical answer."
+ },
+ "cyclic-reciprocal-recurrence-equal": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Elegant cyclic recurrence leading to golden ratio; strong proof structure."
+ },
+ "cylinder-in-sphere-max-volume-and-area": {
+  "quality": 8,
+  "difficulty": 7,
+  "parts": 5,
+  "minutes": 25,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Max volume and max area give different shapes, inviting rich comparison and proof."
+ },
+ "cylinder-jug-tank-depth": {
+  "quality": 2,
+  "difficulty": 1,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Single-step volume arithmetic with no real reasoning depth."
+ },
+ "denest-surd-difference-warmup": {
+  "quality": 4,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Second root denests neatly; first doesn't, creating a useful trap."
+ },
+ "die-race-first-six": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Geometric series with a clean limit; invites discussion of unfair dice and who moves first."
+ },
+ "difference-of-squares-105": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Factor-pair enumeration that generalises to divisor counting and an even-N parity case."
+ },
+ "difference-of-squares": {
+  "quality": 5,
+  "difficulty": 3,
+  "parts": 5,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Scaffolded factorisation exercises; useful warm-up but largely routine, with a mod-4 idea at the end."
+ },
+ "differentiate-log-power-inverse-trig": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Mixed differentiation covering log, exponential, power and inverse trig; checklist-like but solid."
+ },
+ "differentiate-simple-trig": {
+  "quality": 1,
+  "difficulty": 1,
+  "parts": 3,
+  "minutes": 2,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Routine recall of standard trig derivatives with no reasoning or extension."
+ },
+ "differentiate-x-to-the-x-and-sketch-2": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Logarithmic differentiation leading to a stationary minimum and a full sketch analysis."
+ },
+ "differentiate-x-to-the-x-and-sketch": {
+  "quality": 5,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Near-duplicate of the x^x sketch problem; same content, vaguer final stage."
+ },
+ "digit-sums-alternating-sums-divisibility-99": {
+  "quality": 8,
+  "difficulty": 7,
+  "parts": 5,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Modular arithmetic across 9, 11, 7, 13 with a genuine search for a minimal 0/1 multiple of 99."
+ },
+ "digits-of-100-factorial": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Log estimation of 100! invites discussion of accuracy and Stirling's formula."
+ },
+ "digits-of-square-and-power": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Digit-count bounds for squares and powers lead naturally to a logarithm formula."
+ },
+ "distance-origin-to-plane": {
+  "quality": 3,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Direct formula application with little room for discussion or extension."
+ },
+ "distances-point-line-two-curves": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Quartic minimisation, then a symmetry insight about perpendicular bisection between parabolas."
+ },
+ "divisibility-by-6-quadratic": {
+  "quality": 3,
+  "difficulty": 2,
+  "parts": 3,
+  "minutes": 5,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Scripted factorise-and-parity argument with little depth for discussion."
+ },
+ "divisibility-by-nine-rule": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Open-ended rule-finding via 10\u22611 mod 9, extending naturally to divisibility by 11."
+ },
+ "divisibility-n-plus-one-divides-n-squared-plus-seven": {
+  "quality": 6,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Neat factor trick reduces the problem to listing the divisors of 8."
+ },
+ "divisibility-n-squared-n-fifth": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Chained modular factorisation; the 30 part needs Fermat, not just the previous result."
+ },
+ "coupon-collector-die": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Coupon-collector phases combined by linearity; generalises cleanly to n faces."
+ },
+ "cube-diagonal-angles-2": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Routine dot-product angles; overlaps heavily with cube-diagonal-angles."
+ },
+ "cube-diagonal-angles": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Coordinates give arccos(sqrt(2/3)) and 60\u00b0; asking why they differ invites discussion."
+ },
+ "cube-ends-in-11-probability": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 2,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Cubing is bijective on units mod 100, giving one residue and probability 1/100."
+ },
+ "cube-root-product-abc": {
+  "quality": 6,
+  "difficulty": 6,
+  "parts": 2,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Rationalise using 1/(\u221b2\u22121); abc=512, and uniqueness of the representation is debatable."
+ },
+ "cube-three-red-faces": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Two rotation orbits among the 20 colourings; extends naturally to Burnside's lemma."
+ },
+ "cube-vertex-face-sums": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [
+   "missing_info",
+   "needs_diagram"
+  ],
+  "tagline": "Face relations force opposite parallel edges to equal sums; opposite corners need not sum to 9."
+ },
+ "cubic-cosine-substitution-triple-angle": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Triple-angle identity turns the cubic into cos3\u03b8=1/2, giving three real roots."
+ },
+ "doctors-waiting-room-seating": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Three linked counts: permutations, block arrangements, and adjacency probability with a clear model."
+ },
+ "domino-tilings-2xn-3xn": {
+  "quality": 6,
+  "difficulty": 6,
+  "parts": 2,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Good recurrence work on 2xn, extending to a harder 3xn structure. The '3\u00d71 dominoes' label is a misnomer for trominoes."
+ },
+ "domino-tilings-2xn": {
+  "quality": 3,
+  "difficulty": 2,
+  "parts": 1,
+  "minutes": 5,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Standard Fibonacci recurrence with a single numeric answer; little discussion scope."
+ },
+ "e-irrational-factorial-tail": {
+  "quality": 8,
+  "difficulty": 7,
+  "parts": 4,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Classic irrationality proof with clear staged structure and strong discussion of the contradiction."
+ },
+ "e-pi-vs-pi-e-2": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 1,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Log reduction and monotonicity of ln x/x give a clean, well-scaffolded comparison."
+ },
+ "e-pi-vs-pi-e": {
+  "quality": 5,
+  "difficulty": 5,
+  "parts": 1,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Same comparison with less scaffolding; the final inequality step is vague."
+ },
+ "egyptian-reciprocal-sum-one": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 1,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Bounding argument with ordered-triple enumeration; good for checking systematic reasoning."
+ },
+ "elastic-band-cylinder-equilibrium": {
+  "quality": 8,
+  "difficulty": 7,
+  "parts": 2,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Geometry, energy and equilibrium combined, with two linked parts and rich discussion of modelling."
+ },
+ "elliptic-curve-y2-x3-minus-x-sketch": {
+  "quality": 8,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Factorising reveals roots, symmetry, vertical tangents and two components to sketch."
+ },
+ "enlargement-area-scale-factor": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 3,
+  "flags": [
+   "missing_info",
+   "needs_diagram",
+   "trivial"
+  ],
+  "tagline": "Multiple-choice recall with the referenced grid shape missing from the statement."
+ },
+ "envelope-of-gaussian-family": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 20,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Maximising over the parameter gives a hyperbolic envelope, rich for discussion."
+ },
+ "equilateral-five-points-pigeonhole": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Classic pigeonhole proof via splitting the triangle into four small triangles."
+ },
+ "equilateral-triangle-on-cubic": {
+  "quality": 4,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [
+   "wrong_or_unclear_solution"
+  ],
+  "tagline": "Premise is false: reflections through the origin give collinear points, not an equilateral triangle."
+ },
+ "euler-e-irrational": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Tail bound drives both the irrationality proof and a justified three-decimal approximation."
+ },
+ "euler-formula-platonic-solids": {
+  "quality": 5,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Checking V\u2212E+F across the Platonic solids leads to Euler's formula naturally."
+ },
+ "euler-trails-double-dominoes": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Degree parity decides both the double-six ring and the double-five line, with proof sketches."
+ },
+ "exp-cubic-root-count-arctan": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 2,
+  "minutes": 20,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Monotone-function root counting with a hidden arctan case split"
+ },
+ "exp-definition-and-sketches": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 20,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Two sketches with removable singularity and asymptotes; good sketch practice"
+ },
+ "exp-eq-five-four-three": {
+  "quality": 8,
+  "difficulty": 5,
+  "parts": 2,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Guess x=2, then prove uniqueness by dividing by 5^x"
+ },
+ "exp-equals-square-real-roots": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Clean monotonicity argument locating a negative root between -1 and 0"
+ },
+ "exp-log-from-series": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 5,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Derives log and exponent laws from series; structured but mostly bookwork"
+ },
+ "exp-one-over-x-gradient": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Quick limit computation; too short to probe much"
+ },
+ "exp-rational-sketch-tanh-like": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Rewriting to a + b/(e^{2x}+1) drives asymptotes and sketch"
+ },
+ "exp-reciprocal-sketch": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Full sketch with asymptotes, monotonic behaviour, and an inflection point"
+ },
+ "expected-loops-random-rope-ends": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Clean recurrence from one probability; odd-harmonic closed form payoff."
+ },
+ "exponential-equation-monotone-uniqueness": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Divide by 5^x and exploit strict monotonicity to prove uniqueness."
+ },
+ "exponential-form-cube-roots-unity": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Mostly bookwork, but the Euler-to-roots-of-unity chain is useful."
+ },
+ "exponential-functional-equation": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Cauchy-style proof: f(0)=1, positivity, then integers and rationals."
+ },
+ "exponential-growth-to-logistic": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Qualitative logistic analysis: equilibria, stability, concavity and inflection without solving."
+ },
+ "face-card-more-likely": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [],
+  "tagline": "Counterintuitive result: at least one face card exceeds 55%."
+ },
+ "factor-trick-123123-div-143": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 2,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Multiple-choice arithmetic shortcut; little discussion scope."
+ },
+ "factorial-sum-mod-7": {
+  "quality": 5,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Key insight: n! vanishes mod 7 from n=7 onward."
+ },
+ "factorise-polynomials-warmup": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 5,
+  "minutes": 8,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Routine factorisation ladder; mostly recall-level, with a quartic needing root-finding."
+ },
+ "fair-coin-three-way-choice": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Classic fair-coin simulation; invites rejection sampling, optimality, Knuth-Yao discussion."
+ },
+ "fermat-little-theorem-binomial-primes": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 5,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Chains binomial lemma to Fermat and 2730 divisibility; excellent multi-step structure."
+ },
+ "fermat-numbers-product-induction": {
+  "quality": 5,
+  "difficulty": 3,
+  "parts": 4,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Clean induction with a satisfying product identity; well-trodden but tidy."
+ },
+ "fibonacci-binet-cassini": {
+  "quality": 9,
+  "difficulty": 6,
+  "parts": 5,
+  "minutes": 30,
+  "flags": [],
+  "tagline": "Binet, rounding, ratio limit, Cassini, then explaining the 8x8 paradox."
+ },
+ "fibonacci-coprime-and-gcd": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Coprimality proof leads to a genuine gcd conjecture; strong discussion potential."
+ },
+ "fibonacci-partial-sums": {
+  "quality": 3,
+  "difficulty": 2,
+  "parts": 4,
+  "minutes": 8,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Pleasant warm-up; the sum identity is quick but has little extension."
+ },
+ "fibonacci-ratio-limit": {
+  "quality": 4,
+  "difficulty": 2,
+  "parts": 1,
+  "minutes": 4,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "One-line limit trick; good prompt to probe whether the limit exists."
+ },
+ "fixed-point-ivt-applications": {
+  "quality": 8,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Four IVT classics, from fixed points to a runner's 30-minute stretch."
+ },
+ "fixed-points-shuffle": {
+  "quality": 5,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Expectation via indicators; a famous answer with rich follow-up discussion."
+ },
+ "floor-integral-factorial-bound": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Clean integral-to-factorial bound linking floor functions to Stirling-type estimates."
+ },
+ "floor-integral-generalisation": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Generalisable floor integrals with open-ended extension; partly overlaps the factorial problem."
+ },
+ "floor-of-floor-nx-over-n": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Crisp floor-function proof with a natural generalisation to floor(x/n)."
+ },
+ "floor-square-over-four-sum": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Staircase sum closes to floor(n\u00b2/4); parity argument gives the difference identity."
+ },
+ "folium-parametric-curve": {
+  "quality": 9,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 30,
+  "flags": [],
+  "tagline": "Folium of Descartes: parametrisation, symmetry, and a slant asymptote x+y=-1."
+ },
+ "four-balls-two-boxes": {
+  "quality": 3,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [],
+  "tagline": "Simple binomial counting; quick warm-up with little scope for extension."
+ },
+ "fibonacci-sum-to-50": {
+  "quality": 8,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Greedy Zeckendorf representation; natural path to general proof."
+ },
+ "fifth-powers-sum-divisible-by-five": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Pairing with odd exponent; neat warm-up, little extension."
+ },
+ "fifty-one-of-1000": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 5,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Five avoidance constructions; parity and coprimality ideas, part (v) harder."
+ },
+ "first-digit-product-between": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 2,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Mantissa-bound argument gives a surprising no; rich justification."
+ },
+ "first-integer-sin-leq-root2-over-2": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 3,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Direct numeric check; trivial with little discussion value."
+ },
+ "first-order-linear-ode-gaussian": {
+  "quality": 2,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Routine separable ODE with initial condition; minimal discussion."
+ },
+ "first-order-odes-set-b": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 6,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Six standard ODE types; variety good, but mostly routine recall."
+ },
+ "five-digit-counting-warmup": {
+  "quality": 5,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Leading-zero trap in part (c) gives good discussion; warm-up level."
+ },
+ "fraction-inequality-rearrangement": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [],
+  "tagline": "Neat factoring trick to (x-y)(a-b)/ab, but very short and one-step."
+ },
+ "ft-two-thirds-average-competition": {
+  "quality": 9,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Iterated elimination to a Nash equilibrium, with rich discussion of rationality and common knowledge."
+ },
+ "ftc-leibniz-variable-limits": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Standard FTC plus chain rule warm-up with little room for discussion."
+ },
+ "functional-equation-x-and-one-minus-x": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [],
+  "tagline": "Clean substitute-and-solve pair; a solid warm-up with limited extension."
+ },
+ "functional-equation-x2-f1-minus-x": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Clean elimination to 1-x\u00b2; hidden uniqueness failure at two points invites discussion."
+ },
+ "gambler-half-bets-coin": {
+  "quality": 6,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Counterintuitive order-independent 0.75^n decay; invites expected-value discussion."
+ },
+ "gamblers-ruin-fair-game": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Classic ruin result a/(a+b) with clear structure and natural biased-game extension."
+ },
+ "gamblers-ruin-roulette": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 5,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Full ruin arc: recurrence, fair and biased cases, roulette estimate, expected duration."
+ },
+ "gamma-half-factorial": {
+  "quality": 5,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Elegant link between factorials and Gaussian integral via substitution."
+ },
+ "gamma-integral-factorial": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Standard induction via integration by parts; mostly recall."
+ },
+ "gas-can-circular-track": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Classic gas-station proof: induction, merging cans, surprising yes answer."
+ },
+ "gaussian-difference-sketch": {
+  "quality": 7,
+  "difficulty": 7,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Sketch with symmetry, stationary points and a surprising ln3 maximum."
+ },
+ "gaussian-integral-polar": {
+  "quality": 6,
+  "difficulty": 6,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Classic squaring trick; discussion of polar coordinates and root choice."
+ },
+ "geometric-sticks-constraints": {
+  "quality": 3,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Simple constraints; discussion of triangle version could add depth."
+ },
+ "glass-two-frustums-constant-inflow": {
+  "quality": 2,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [
+   "missing_info",
+   "needs_diagram"
+  ],
+  "tagline": "Concept of varying cross-section; options missing, so unusable as written."
+ },
+ "golden-ratio-continued-fraction": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Self-similar equation, root choice, and discussion of convergence and Fibonacci links."
+ },
+ "gordon-brown-causation": {
+  "quality": 6,
+  "difficulty": 2,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Correlation versus causation: classic, open-ended, invites discussion of experimental design."
+ },
+ "gossip-rumour-tree": {
+  "quality": 6,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Tree-diagram probability with a clear target answer, though the knowledge rules are loosely worded."
+ },
+ "grains-of-sand-estimate": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Open Fermi estimate with clear structure and order-of-magnitude discussion."
+ },
+ "graph-colouring-cycles-regions": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 30,
+  "flags": [],
+  "tagline": "Four linked proofs covering odd cycles, greedy bounds, bipartiteness and line arrangements."
+ },
+ "graph-colourings-star": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 5,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Star-graph counting that escalates to chromatic-polynomial reasoning and a surprising f(n) flaw."
+ },
+ "grid-average-constant": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 2,
+  "minutes": 15,
+  "flags": [
+   "missing_info"
+  ],
+  "tagline": "Hidden flaw: linear counterexample shows the boundedness assumption is essential."
+ },
+ "grid-shortest-routes-new-york": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [
+   "missing_info",
+   "needs_diagram",
+   "trivial"
+  ],
+  "tagline": "Standard lattice-path counting, but the referenced map is absent."
+ },
+ "handshakes-no-crossing-10": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Non-crossing pairings give Catalan numbers, yielding an elegant probability answer."
+ },
+ "hyperbolic-functions-identities": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Sketches plus proofs linking hyperbolic and circular functions via complex exponentials."
+ },
+ "hyperbolic-functions-quick-fire": {
+  "quality": 3,
+  "difficulty": 2,
+  "parts": 4,
+  "minutes": 6,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Mostly recall-level hyperbolic questions with little room for discussion."
+ },
+ "hyperbolic-identities-and-derivatives": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Chains identities and derivatives to derive the logarithmic form of inverse sinh."
+ },
+ "hypercube-vertices-edges": {
+  "quality": 8,
+  "difficulty": 4,
+  "parts": 4,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Pattern conjecture from lower dimensions, then tesseract coordinates and diameter generalising."
+ },
+ "identify-function-from-graph": {
+  "quality": 4,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [
+   "needs_diagram",
+   "missing_info"
+  ],
+  "tagline": "Reconstructing a function from asymptotes, but the graph itself is missing."
+ },
+ "imaginary-power-i-to-i": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Surprising real answer invites discussion of principal branches and multivalued logarithms."
+ },
+ "improper-integral-sin-over-x-tail": {
+  "quality": 5,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [
+   "garbled"
+  ],
+  "tagline": "Good comparison trap, since 1/x fails as a bound, but the lower limit was garbled."
+ },
+ "improper-integrals-power-law": {
+  "quality": 6,
+  "difficulty": 3,
+  "parts": 4,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Classic p-test progression from concrete cases to the general exponent n."
+ },
+ "hat-colours-three-modulo-strategy": {
+  "quality": 4,
+  "difficulty": 6,
+  "parts": 2,
+  "minutes": 12,
+  "flags": [
+   "missing_info"
+  ],
+  "tagline": "Ambiguous 'as before' setup; modulo-3 idea is classic but underspecified."
+ },
+ "hat-puzzle-100-prisoners": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Classic hat puzzle with elegant parity strategy and a sharp follow-up."
+ },
+ "hcf-of-squared-difference-of-odds": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 3,
+  "minutes": 5,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Mechanical divisibility argument; the answer is simply 4."
+ },
+ "height-of-triangular-prism": {
+  "quality": 2,
+  "difficulty": 1,
+  "parts": 2,
+  "minutes": 3,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Single-step formula substitution; pure arithmetic recall."
+ },
+ "heron-13-14-15-inradius-circumradius": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Four connected parts linking area, inradius, circumradius and Euler's formula."
+ },
+ "highest-common-factor-36838-38972": {
+  "quality": 2,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Mechanical Euclidean algorithm with no conceptual scope."
+ },
+ "hiv-test-bayes": {
+  "quality": 8,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Counterintuitive: a positive test gives exactly a 50% chance of disease."
+ },
+ "hunter-sloth-free-fall": {
+  "quality": 8,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Open-ended modelling; relative motion makes the answer surprising and assumption-rich."
+ },
+ "inclusion-exclusion-and-derangements": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Classic inclusion-exclusion, then derangements with extension to asymptotics."
+ },
+ "indefinite-integrals-three-parts": {
+  "quality": 5,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Three varied techniques: rational trig, parts, hyperbolic-style substitution."
+ },
+ "index-comparison-sqrt-towers": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 1,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Neat exponent-rule trick; answer hinges on comparing 2^1.5 and 3."
+ },
+ "induction-geometric-and-cubes": {
+  "quality": 3,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Clean two-part induction warm-up for checking method fluency."
+ },
+ "infinite-chessboard-mean-integers": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 1,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Extremal principle on a minimum; leads naturally to harmonic-function discussion."
+ },
+ "infinite-product-one-minus-one-over-n-squared": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 1,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Elegant telescoping product; quick but limited follow-up."
+ },
+ "infinitely-many-primes-2": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 1,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Euclid's classic proof; well known, so mainly tests clarity."
+ },
+ "infinitely-many-primes-4k-plus-3": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 2,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Mod-4 twist with genuine insight; part (a) probes why it fails for 4k+1."
+ },
+ "infinitely-many-primes": {
+  "quality": 5,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Classic Euclid proof that invites discussion of variants and other arguments."
+ },
+ "inradius-of-9-12-15-triangle": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Clean inradius formula warm-up with limited room for extension."
+ },
+ "integer-polynomial-always-prime": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Euler's x\u00b2+x+41 counterexample is nice, but the first part is trivial."
+ },
+ "integer-power-equation-a-b-b-a": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 2,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Analysing ln x / x yields a complete, surprising answer with clear structure."
+ },
+ "integral-bounds-sign-ratio": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 2,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Sign reasoning on f, then part (ii) changes the bounds meaningfully."
+ },
+ "integral-equation-f-equals-3f-plus-k": {
+  "quality": 4,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Routine differentiate-and-solve task with a neat initial-condition check."
+ },
+ "integral-sin-over-sin-plus-cos-symmetry": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Elegant symmetry trick, but essentially a single-idea problem."
+ },
+ "integral-x-n-ln-x-on-0-1": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Multi-stage integral with a rich shape-based sense-check at the end."
+ },
+ "hanks-gold-mine-bucket-cycles": {
+  "quality": 6,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 20,
+  "flags": [
+   "garbled"
+  ],
+  "tagline": "Two-stage pulley motion feeding a genuine optimisation; statement truncated mid-sentence."
+ },
+ "happy-numbers-digit-square-sum": {
+  "quality": 6,
+  "difficulty": 3,
+  "parts": 5,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Clean orbit computations; part (e) has a neat zero-insertion invariance insight."
+ },
+ "harmonic-divergence": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Classic Oresme-style block grouping; clean, standard, good warm-up proof."
+ },
+ "harmonic-log-series-convergence": {
+  "quality": 5,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 15,
+  "flags": [
+   "wrong_or_unclear_solution"
+  ],
+  "tagline": "Log-divergence boundary invites p-test probing; stage 2 comparison is misleading."
+ },
+ "harmonic-sum-divergence-log-bounds": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 5,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Full elementary proof of harmonic divergence with explicit numerical bound; rich extension."
+ },
+ "harmonic-sum-not-integer": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Elegant 2-adic argument; multiple approaches, strong probing of lcm and parity."
+ },
+ "harmonic-vs-inverse-square-series": {
+  "quality": 5,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Standard integral-comparison warm-up; sketches give a clear interpretation."
+ },
+ "harry-calculating-horse": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 20,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Geometric probability yielding \u03c0/16; open question invites statistical reasoning."
+ },
+ "integrate-arctan": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 4,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Routine parts setup; the constant and test-point check add some discussion."
+ },
+ "integration-by-parts-first-principles": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Derives product rule from first principles, then builds and applies integration by parts."
+ },
+ "inverse-function-fixed-points": {
+  "quality": 9,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Proves f(x)=f\u207b\u00b9(x) reduces to f(x)=x, then exposes the decreasing-function counterexample."
+ },
+ "inverse-hyperbolic-explicit-forms": {
+  "quality": 4,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Mechanical exponential algebra; little beyond the routine method to discuss."
+ },
+ "invisible-rabbit-catch": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Dovetailing over countably many (start, jump) pairs; a classic countability argument."
+ },
+ "isosceles-parallel-angles": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [
+   "needs_diagram",
+   "missing_info"
+  ],
+  "tagline": "Angle chase depends on a diagram and the position of D, which aren't given."
+ },
+ "isosceles-right-angle-from-equal-segments": {
+  "quality": 3,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Nice angle chase, but multiple choice undercuts the discussion."
+ },
+ "iterate-x-squared-minus-one": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Denominator-squaring argument proves rational orbits never periodic; clean number theory."
+ },
+ "keys-on-ring-first-success": {
+  "quality": 8,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Three sampling schemes compare; the surprising equal 1/k result invites discussion."
+ },
+ "kn-euler-walks": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Degree parity gives closed case; open case has a subtle n=2 twist."
+ },
+ "knockout-matches-count": {
+  "quality": 5,
+  "difficulty": 2,
+  "parts": 3,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "One-loser-per-match invariant gives a neat, quick counting argument."
+ },
+ "ladder-around-corner": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Classic optimisation with a famous closed-form answer and rich extension."
+ },
+ "ladder-middle-rung-locus": {
+  "quality": 4,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [
+   "missing_info"
+  ],
+  "tagline": "Trap question, but rung width and whether it is a point are unclear."
+ },
+ "ladder-midpoint-locus": {
+  "quality": 6,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Clean locus with a neat right-angle reason for constant distance."
+ },
+ "ladder-quarter-ellipse": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Section-point locus gives an ellipse; interesting but fairly standard."
+ },
+ "larger-root-sum-normal-approx": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Multi-stage: probability, moments, and normal approximation in one flow."
+ },
+ "iterated-log-domain-range": {
+  "quality": 8,
+  "difficulty": 4,
+  "parts": 4,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Nested-log domains build into a tower; range stays all reals, generalising to n."
+ },
+ "kclms-specimen-2-q1-divisible-by-6-or-15-not-both": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 4,
+  "minutes": 4,
+  "flags": [],
+  "tagline": "Routine inclusion-exclusion MCQ; the 133 distractor is the only real trap."
+ },
+ "kclms-specimen-2-q2-units-digit-7-2026-plus-3-2026": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 4,
+  "minutes": 4,
+  "flags": [],
+  "tagline": "Cyclic units digits with modular exponent reduction; a standard MCQ drill."
+ },
+ "kclms-specimen-2-q3-external-common-tangent": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 6,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Classic tangent construction; good for discussing internal versus external tangents."
+ },
+ "kclms-specimen-2-q4-three-dice-sum-ten": {
+  "quality": 5,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 7,
+  "flags": [],
+  "tagline": "Complementary counting with stars and bars; the method is worth discussing."
+ },
+ "kclms-specimen-q1-boys-girls-ratio": {
+  "quality": 3,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 3,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Two-line linear equation word problem with little room for extension."
+ },
+ "kclms-specimen-q2-equal-area-rectangles": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [
+   "needs_diagram",
+   "trivial"
+  ],
+  "tagline": "Simple area equation, but relies on a figure the statement does not supply."
+ },
+ "kclms-specimen-q3-linear-systems-method": {
+  "quality": 8,
+  "difficulty": 4,
+  "parts": 5,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Sum-and-subtract method probes dependence and inconsistency; excellent discussion."
+ },
+ "last-digit": {
+  "quality": 2,
+  "difficulty": 1,
+  "parts": 2,
+  "minutes": 3,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Cycle of 7's last digits is short; a routine warm-up with little depth."
+ },
+ "last-two-digits-7-pow-2026": {
+  "quality": 4,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [],
+  "tagline": "Spotting 7^4 \u2261 1 mod 100 turns it into a short, neat calculation."
+ },
+ "lattice-paths-catalan-reflection": {
+  "quality": 9,
+  "difficulty": 7,
+  "parts": 4,
+  "minutes": 35,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Links binomial identities, a reflection argument and Catalan numbers across four stages."
+ },
+ "lattice-points-concentric-circles": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Irrationality of \u221a2 separates rational and irrational parts, forcing both coordinates to match."
+ },
+ "lawn-path-width": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Standard area-equation exercise with one quadratic and a physical root check."
+ },
+ "leeds-house-prices-two-period-growth": {
+  "quality": 3,
+  "difficulty": 2,
+  "parts": 3,
+  "minutes": 5,
+  "flags": [],
+  "tagline": "Compounding percentages across periods; a common trap, but a short routine calculation."
+ },
+ "leibniz-variable-limit-and-integrand": {
+  "quality": 6,
+  "difficulty": 6,
+  "parts": 2,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Variable limit and parameter in the integrand; substitution gives scope for alternative methods."
+ },
+ "letter-arrangements-ten-letters": {
+  "quality": 3,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [],
+  "tagline": "Permutations with and without identical items; a clean warm-up with a useful contrast."
+ },
+ "lift-stop-cycle": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 5,
+  "flags": [],
+  "tagline": "Periodic counting task; clean but shallow, mostly arithmetic."
+ },
+ "light-bulbs-100-people": {
+  "quality": 8,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Classic divisor-parity insight with rich proof and extensions."
+ },
+ "lim-sum-n-over-n2-plus-k2": {
+  "quality": 5,
+  "difficulty": 6,
+  "parts": 2,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Neat Riemann-sum-to-integral trick, but a single idea."
+ },
+ "limit-sum-of-squares-over-n-cubed": {
+  "quality": 4,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Sum-of-squares formula and limit; routine but clearly staged."
+ },
+ "limits-exp-over-square-and-x2-ln-x": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [],
+  "tagline": "Two standard L'H\u00f4pital limits; recall-heavy, little depth."
+ },
+ "line-through-three-points": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 5,
+  "flags": [],
+  "tagline": "Clear collinearity check and two line forms; routine technique."
+ },
+ "linear-system-product-of-xyz": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Substitute products as unknowns; elegant with a clean solution set."
+ },
+ "lines-and-circles-regions": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Lines versus circles exposes why circles can't make Venn diagrams beyond three."
+ },
+ "log-families-and-limit-e": {
+  "quality": 8,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 15,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Log families and log_x e lead naturally to deriving the limit e via a derivative."
+ },
+ "log-integrals-mobius-substitution": {
+  "quality": 6,
+  "difficulty": 7,
+  "parts": 5,
+  "minutes": 25,
+  "flags": [
+   "missing_info"
+  ],
+  "tagline": "M\u00f6bius substitutions turn messy log integrals into tidy, checkable evaluations, though the statement is truncated."
+ },
+ "log-line-intersections-and-exp-tangent": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Graphical solutions x=1 and x=e, but the link to e^x\u2212xe is vague."
+ },
+ "log-pi-inequalities": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Base-change identities collapse a sum of reciprocals into a single bounded logarithm."
+ },
+ "log-product-base-3-and-13": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "A neat base-change routine with a tidy answer, but little room for discussion."
+ },
+ "log-ratio-x-over-y": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Domain checking rejects one root, leaving a single clean ratio answer."
+ },
+ "log2-3-irrational": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "A classic parity proof that extends to when log_a b is rational."
+ },
+ "longevity-chain-length": {
+  "quality": 5,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "A digit-sum mod 9 argument gives a crisp bound, though the construction is trivial."
+ },
+ "lines-in-plane-intersections": {
+  "quality": 4,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [],
+  "tagline": "Classic counting warm-up; the fewest-points follow-up adds a sharp twist."
+ },
+ "lines-intersection-triangle-area-x-axis": {
+  "quality": 3,
+  "difficulty": 2,
+  "parts": 3,
+  "minutes": 5,
+  "flags": [],
+  "tagline": "Clean coordinate-geometry steps, but mostly routine computation with little discussion."
+ },
+ "ln-inequality-agm-e-limit": {
+  "quality": 8,
+  "difficulty": 7,
+  "parts": 4,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Builds ln inequality into AM-GM and the limit defining e, with rich proof structure."
+ },
+ "ln-sin-integral-symmetry": {
+  "quality": 7,
+  "difficulty": 7,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Elegant symmetry and double-angle trick yielding a surprising closed form."
+ },
+ "ln2-series-rearrangement": {
+  "quality": 9,
+  "difficulty": 8,
+  "parts": 4,
+  "minutes": 30,
+  "flags": [],
+  "tagline": "Geometric identity, integral bounds, then a rearrangement giving half ln 2; excellent extension."
+ },
+ "lockers-divisor-parity": {
+  "quality": 6,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Classic divisor-parity puzzle that leads naturally to the perfect-squares insight."
+ },
+ "log-base-product": {
+  "quality": 2,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 2,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "One change-of-base step gives the answer immediately, with little to discuss."
+ },
+ "log-digits-powers-three-two": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Leading-digit reasoning via fractional parts of logs, with a good multi-stage ladder."
+ },
+ "lorry-tipping-incline": {
+  "quality": 8,
+  "difficulty": 7,
+  "parts": 2,
+  "minutes": 18,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Moments and tipping conditions give a satisfying inequality with real physical meaning."
+ },
+ "lottery-syndicate-poisson": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Poisson expectation of 1/(1+X) gives a clean interpretable loss; rich discussion."
+ },
+ "lp-unit-balls-and-p-infinity": {
+  "quality": 6,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Geometry and limit intuition; p<1 non-convex shapes invite discussion."
+ },
+ "lucas-every-other-golden-ratio": {
+  "quality": 5,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Connects golden ratio algebra to Lucas numbers; recurrence explanation is pleasing."
+ },
+ "magic-square-3x3": {
+  "quality": 4,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Simple total via averages; centre argument from summing three lines is neat."
+ },
+ "married-adults-fraction": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "One-step proportion warm-up; implicit pairing assumption, little discussion."
+ },
+ "mat-2013-q1-ten-part-multiple-choice": {
+  "quality": 2,
+  "difficulty": 5,
+  "parts": 10,
+  "minutes": 20,
+  "flags": [
+   "garbled",
+   "missing_info"
+  ],
+  "tagline": "Truncated text and missing sketches; MCQ format poor for interviews."
+ },
+ "mat-2013-q2-functional-equation": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Functional equation with antisymmetry condition; elegant contradiction in part (a)."
+ },
+ "meera-compound-interest": {
+  "quality": 2,
+  "difficulty": 1,
+  "parts": 2,
+  "minutes": 2,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Routine compound-interest arithmetic with little scope for discussion."
+ },
+ "mersenne-and-fermat-primes": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Classic prime-structure proofs with natural follow-up on Fermat primes."
+ },
+ "mersenne-gcd-euclid": {
+  "quality": 9,
+  "difficulty": 7,
+  "parts": 4,
+  "minutes": 35,
+  "flags": [],
+  "tagline": "Euclid's algorithm on Mersenne gcds; rich, self-contained, well-sequenced multi-step proof."
+ },
+ "min-area-triangle-parabola": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Minimise a quadratic signed area; the wording 'points on a triangle' needs tidying."
+ },
+ "min-sq-dist-on-line": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Open-ended: algebra, Cauchy-Schwarz and geometry give three methods to compare."
+ },
+ "min-sum-abs-four-points": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Median argument; the minimum is attained on an interval, not a single point."
+ },
+ "minimum-values-set": {
+  "quality": 5,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Three routine minimisation tasks, each with a different technique."
+ },
+ "minimum-x2-plus-y2-plus-reciprocal": {
+  "quality": 6,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "AM-GM in disguise; the minimising points form a circle, not one point."
+ },
+ "mod-100-eleven-power-ten": {
+  "quality": 3,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Binomial expansion of (1+10)^10 makes divisibility by 100 immediate; a short warm-up."
+ },
+ "monty-hall-100-doors": {
+  "quality": 8,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Classic counterintuitive probability; invites justification, generalisation, and conditional-probability discussion."
+ },
+ "mother-daughter-ratio": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 4,
+  "flags": [],
+  "tagline": "Routine ratio-equation word problem with a checkable answer and little room for extension."
+ },
+ "multiples-of-2013-with-2013-factors": {
+  "quality": 7,
+  "difficulty": 7,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Divisor-count constraints force careful exponent case analysis; rich, clearly stated counting problem."
+ },
+ "multiples-of-4-and-6": {
+  "quality": 5,
+  "difficulty": 2,
+  "parts": 4,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Sure/might/not reasoning with counterexamples tests logical precision well."
+ },
+ "multiplication-sign-origin": {
+  "quality": 2,
+  "difficulty": 1,
+  "parts": 2,
+  "minutes": 3,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Pure historical recall of notation; involves almost no mathematical reasoning."
+ },
+ "museum-tickets-cheapest-group": {
+  "quality": 5,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 7,
+  "flags": [],
+  "tagline": "Practical cost-minimisation casework; under-3s and partial family tickets add useful traps."
+ },
+ "n-cubed-minus-n-div-3": {
+  "quality": 3,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Factorising into three consecutive integers is standard; useful only as a warm-up."
+ },
+ "mat-2013-q3-shaded-area-cubic-f-k": {
+  "quality": 7,
+  "difficulty": 7,
+  "parts": 5,
+  "minutes": 22,
+  "flags": [
+   "needs_diagram",
+   "garbled"
+  ],
+  "tagline": "Sign-split integrals, polynomial degree, symmetry of cubic about x=1"
+ },
+ "mat-2013-q4-ratio-and-half-disc": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 20,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Half-disc area via sin\u03b8cos\u03b8, then maximal ratio at \u03b8=\u03c0/4"
+ },
+ "mat13-q5-digit-sum-counting": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 6,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Digit-sum counting with stars-and-bars and inclusion-exclusion; clean totals"
+ },
+ "mat13-q7-ab-words-rewriting": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Rewriting rules generate words; invariant-based structure, reversal rule, completeness"
+ },
+ "matrix-products-inverse-determinant": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 5,
+  "minutes": 10,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Routine matrix arithmetic checks; little discussion beyond computation"
+ },
+ "max-area-min-right-triangle-perimeter": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 2,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Fixed-perimeter max area, then a non-attained infimum for right triangles"
+ },
+ "max-min-and-bounds-for-x6-over-x2-plus-1-to-4": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Derivative-identity trick bounding an integral with clean constants"
+ },
+ "max-min-uniform-expectations": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 5,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Max/min expectations culminating in German tank unbiased estimator"
+ },
+ "n-cubed-minus-n-divisible-by-6": {
+  "quality": 4,
+  "difficulty": 2,
+  "parts": 5,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Heavily scaffolded but clean; good warm-up on factorising and divisibility."
+ },
+ "n-particles-line-impacts-restitution": {
+  "quality": 8,
+  "difficulty": 7,
+  "parts": 4,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Momentum and restitution chain with rich algebra and energy-loss discussion."
+ },
+ "n-seventh-minus-n-div-42": {
+  "quality": 3,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Short two-step combination; mostly restates the 6 and 7 divisibilities."
+ },
+ "n-to-the-one-over-n-max": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Calculus maximum plus a discrete integer check; good for justification."
+ },
+ "n2-n2-1-n2-4-divisible-by-360": {
+  "quality": 6,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Prime-power splitting of consecutive integers; good modular case-work practice."
+ },
+ "n5-minus-n-div-30": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 4,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Standard factorise-and-case-check; solid fluency practice, little extension."
+ },
+ "nearest-throw-mutual-pair": {
+  "quality": 6,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Elegant extremal-pair argument; discussion of why distinct distances matters."
+ },
+ "necklaces-burnside-prime": {
+  "quality": 9,
+  "difficulty": 7,
+  "parts": 4,
+  "minutes": 35,
+  "flags": [],
+  "tagline": "Burnside-style counting leading to Fermat, with a non-prime counterexample."
+ },
+ "nested-composition-f-g": {
+  "quality": 3,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 5,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Mechanical nesting with little reasoning; the closed form becomes unwieldy."
+ },
+ "nested-equilateral-triangles-incircle": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Circumradius-to-inradius ratio gives a geometric series; clean and extendable to other polygons."
+ },
+ "newton-raphson-geometric-proof": {
+  "quality": 8,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Geometric derivation, cycling counterexample, and open-ended monotone-function question."
+ },
+ "newton-sqrt2-convergence": {
+  "quality": 8,
+  "difficulty": 5,
+  "parts": 5,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Newton's sqrt2 with AM-GM, error recursion, fractions, and geometric tangent view."
+ },
+ "nim-and-chomp": {
+  "quality": 6,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 20,
+  "flags": [
+   "garbled"
+  ],
+  "tagline": "Nim-sum proof plus non-constructive Chomp strategy-stealing; excellent interview depth."
+ },
+ "nine-coins-heavy-one": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Ternary-outcome balance argument; clean bound with natural extension questions."
+ },
+ "nine-plus-five-equals-two": {
+  "quality": 3,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 3,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Short divisibility exercise; recall-level with little discussion scope."
+ },
+ "nine-point-circle-vectors": {
+  "quality": 9,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Full nine-point circle via vectors; elegant, multi-step, rich extension to Euler line."
+ },
+ "no-odd-degree-terms-symmetric-product": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Substituting -x reveals the product is even; elegant symmetry insight with a clean proof."
+ },
+ "no-prime-14n-plus-11": {
+  "quality": 2,
+  "difficulty": 1,
+  "parts": 2,
+  "minutes": 2,
+  "flags": [
+   "trivial",
+   "wrong_or_unclear_solution"
+  ],
+  "tagline": "The claim is false (n=0 gives 11, n=3 gives 53); only a counterexample check."
+ },
+ "non-crossing-red-blue-matching": {
+  "quality": 9,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Minimal-length matching argument is a classic with rich extensions and discussion."
+ },
+ "number-plus-reciprocal-quadratic": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 3,
+  "minutes": 3,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Routine quadratic from x + 1/x; answers 3 and 1/3 with little depth."
+ },
+ "odd-coefficients-no-rational-roots": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Clean parity argument on coprime p, q; good structure with a classic proof idea."
+ },
+ "odd-even-piecewise-integral": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [
+   "needs_diagram",
+   "garbled"
+  ],
+  "tagline": "Odd-function symmetry over a symmetric interval, but the statement is disjointed."
+ },
+ "odd-reciprocal-squares-sum": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Even/odd split of the zeta series gives \u03c0\u00b2/8; neat, with room to extend."
+ },
+ "odd-sum-geometric-trig-tearing": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Broad mix ending in a Fermi estimate; trig series needs a convergence condition."
+ },
+ "ode-blowup-nonuniqueness-euler": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Finite-time blow-up, non-uniqueness and Euler's limit linked in one problem"
+ },
+ "ode-complex-roots-homogeneous": {
+  "quality": 2,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Routine characteristic-equation recall with little room for discussion."
+ },
+ "ode-nonhomogeneous-undetermined-coefficients": {
+  "quality": 4,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Standard undetermined-coefficients practice; the linear forcing adds a small twist."
+ },
+ "oil-baron-warehouse-position": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Median-minimisation with a surprising interval answer and natural extensions."
+ },
+ "one-plus-one-equals-two-invented": {
+  "quality": 6,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Philosophical discussion anchored by a short, checkable Peano derivation."
+ },
+ "order-surds-logs-and-x-to-the-one-over-x": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Ordering exercise feeds a neat x^(1/x) maximum argument for e^pi versus pi^e."
+ },
+ "p-series-harmonic-euler-gamma": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 5,
+  "minutes": 35,
+  "flags": [],
+  "tagline": "Coherent five-step chain from integral test to Euler's constant estimate."
+ },
+ "parabola-3-4-5-similar-triangle": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Perpendicularity gives ac=-1, leaving a neat cube-root ratio condition."
+ },
+ "parabola-as-focus-directrix-locus": {
+  "quality": 5,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Clean focus-directrix derivation extended to a general line and a degenerate limit."
+ },
+ "parabola-ellipse-hyperbola-loci": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Unifies parabola, ellipse and hyperbola via eccentricity, then reaches rectangular hyperbola."
+ },
+ "parabola-equilateral-triangle": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Neat symmetry argument forces a=-c, then equilateral condition gives c=\u221a3."
+ },
+ "parabola-normals-count": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Normals reduce to a cubic; discriminant governs count, with a triple-root special case."
+ },
+ "parabola-triangles-beyond-equilateral": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Open-ended triangle classification; angle at B changes type as c varies."
+ },
+ "parametric-conics": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 4,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Routine elimination of parameters, but the 'explain why conic' step is thin."
+ },
+ "parametric-curves-sketch": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Parabola, circle and decaying spiral test direction of traversal and asymptotic behaviour."
+ },
+ "parametric-second-derivative": {
+  "quality": 3,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Short chain-rule exercise with a sign check; little scope for discussion."
+ },
+ "penney-game-hhtthh": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 2,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Surprising THH-beats-HHT result; equal waiting times contrast with first-appearance."
+ },
+ "pens-profit-percentage": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 3,
+  "minutes": 3,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Straightforward cost-revenue arithmetic with little room for discussion."
+ },
+ "pentagon-equilateral-outside-angles": {
+  "quality": 5,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Classic geometry: outside equilateral gives reflex-free 168\u00b0 apex and 6\u00b0 base angles."
+ },
+ "pentagon-right-angles-slope": {
+  "quality": 2,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [
+   "missing_info",
+   "needs_diagram"
+  ],
+  "tagline": "Refers to a diagram that is absent, so the geometry cannot be fixed from text."
+ },
+ "perfect-numbers-number-theory": {
+  "quality": 6,
+  "difficulty": 6,
+  "parts": 5,
+  "minutes": 30,
+  "flags": [
+   "garbled",
+   "wrong_or_unclear_solution"
+  ],
+  "tagline": "Rich multi-part arc, but garbled parenthetical and wrong proper-divisor reciprocal sum."
+ },
+ "permutations-sk-greater-than-k-minus-3": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Constraints collapse to 3 choices per position, giving 6\u00b73^(n\u22123); good scaffolding."
+ },
+ "phone-plan-march-april": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Pure arithmetic with no conceptual depth or extension."
+ },
+ "pi-bound-from-integral-22-over-7": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Famous Dalzell identity with clear proof structure and natural extensions."
+ },
+ "partial-fractions-set": {
+  "quality": 4,
+  "difficulty": 4,
+  "parts": 4,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Mechanical but varied: repeated factor, sum of cubes, improper fraction."
+ },
+ "particles-resistance-max-height": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Counterintuitive: resistance needs more launch speed yet still peaks sooner."
+ },
+ "party-friends-same-degree": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Classic handshake-lemma pigeonhole; excluding the extremes is the crux."
+ },
+ "party-handshakes-pigeonhole": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Formal pigeonhole proof; the 0 and n-1 exclusion drives the argument."
+ },
+ "pascal-subsets-two-identities": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Clean combinatorial proofs of Pascal-type identities, open to generalisation."
+ },
+ "pell-type-2a2-minus-b2-equals-1": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Parity-driven number theory leading to an infinite Pell-type solution family."
+ },
+ "pencil-rope-square-frame-shaded-area": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 18,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Steiner-style area with a case split; boundary check adds rigour."
+ },
+ "pendulum-timing-ten-thousand": {
+  "quality": 6,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Estimation that shifts from reaction time to damping as the real limit."
+ },
+ "pi-bounds-from-integral-bound": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Classic integral-bounding trick yielding rigorous two-sided bounds on pi"
+ },
+ "pi-club-pi-irrational": {
+  "quality": 2,
+  "difficulty": 1,
+  "parts": 3,
+  "minutes": 2,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Recall-based definitions with little mathematical reasoning or discussion scope"
+ },
+ "pizza-cuts-max-pieces": {
+  "quality": 6,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Lazy caterer formula, with good discussion of general-position assumptions"
+ },
+ "planar-graph-bounds": {
+  "quality": 9,
+  "difficulty": 6,
+  "parts": 5,
+  "minutes": 30,
+  "flags": [],
+  "tagline": "Euler's formula leads through edge bounds to K5 and K3,3 non-planarity"
+ },
+ "poisson-plates-mathematician": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Poisson splitting gives a binomial; a short, clean conditional probability"
+ },
+ "polar-conics": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 5,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Polar-to-Cartesian conversions unify lines, circles, hyperbolas and all conics"
+ },
+ "polynomial-with-root-sqrt2-plus-sqrt3": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [],
+  "tagline": "Standard radical elimination, but a fairly routine single-technique exercise"
+ },
+ "polynomials-p-x2-equals-p-x-squared": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Functional equation forcing monic monomials, with rich follow-up discussion"
+ },
+ "power-function-x-to-the-x-minimum": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Logarithmic differentiation gives a clean critical point and a surprising minimum value."
+ },
+ "power-n4-plus-a-composite": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Sophie Germain factorisation; a=4 fails at n=1, so the student must find a valid b."
+ },
+ "power-set-cardinality": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Standard 2^n and 2^(n-1) recall with little room for discussion."
+ },
+ "power-sums-no-sequence": {
+  "quality": 7,
+  "difficulty": 7,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Maximum-term and convergence argument leads to a contradiction for large m."
+ },
+ "powers-of-sin-cos-substitution": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 7,
+  "flags": [],
+  "tagline": "Odd cosine power unlocks substitution; the general criterion invites discussion of even powers."
+ },
+ "presents-surjections-inclusion-exclusion": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 5,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Five-part progression from counting to inclusion-exclusion, ending in a surjection formula."
+ },
+ "price-up-then-down-by-same-percent": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Classic percentage trap; answer x=20 but little depth."
+ },
+ "prime-divides-square-implies-divides-base": {
+  "quality": 5,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [],
+  "tagline": "Short Bezout proof with a classic extension to irrationality of square roots."
+ },
+ "prime-greater-than-three-always-true": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Multiple-choice format, but the 6k\u00b11 and mod-24 proof is useful."
+ },
+ "prime-power-factor-counting": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Clean factor-counting chain ending in a neat smallest-value search."
+ },
+ "prime-two-to-the-n-minus-one-implies-prime-exponent": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 4,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Classic factorisation proof with a sharp counterexample for the converse."
+ },
+ "primes-2p-minus-1-and-2p-plus-1": {
+  "quality": 6,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Mod-3 argument on 2p\u22121, 2p, 2p+1 rules out all primes above 3."
+ },
+ "primes-p-with-p-squared-plus-two-prime": {
+  "quality": 5,
+  "difficulty": 3,
+  "parts": 4,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Mod-3 trick gives a short, clean answer, though it repeats the same idea."
+ },
+ "primes-six-m-plus-five": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Euclid-style infinitude proof adapted to residues mod 6."
+ },
+ "primitive-pythagorean-triples": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Full parametrisation proof, then a concrete search for c=65."
+ },
+ "product-million-no-trailing-zero": {
+  "quality": 3,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Quick warm-up; the prime-splitting explanation adds a little depth."
+ },
+ "product-of-three-consecutive-divisible-by-six": {
+  "quality": 4,
+  "difficulty": 2,
+  "parts": 3,
+  "minutes": 5,
+  "flags": [],
+  "tagline": "Classic warm-up; extends naturally to n consecutive integers and n!."
+ },
+ "product-of-two-odds-is-odd": {
+  "quality": 2,
+  "difficulty": 1,
+  "parts": 2,
+  "minutes": 2,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Pure algebra recall; too short to probe anything."
+ },
+ "product-rule-x-sin-2x": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 3,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Routine chain and product rule; recall-level, no depth."
+ },
+ "projectile-latest-second-launch": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Multi-stage projectile problem with a messy but clean latest-time answer."
+ },
+ "projection-formula": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Strong multi-proof structure; diagram helps, extends to right-angled case."
+ },
+ "prove-101-prime-pattern": {
+  "quality": 3,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [
+   "wrong_or_unclear_solution"
+  ],
+  "tagline": "Premise is false: 101 is prime, so the problem misleads."
+ },
+ "pythagoras-two-proofs": {
+  "quality": 7,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Famous rearrangement plus similar-triangles proof; rich discussion of proof styles."
+ },
+ "quadratic-and-exponential-inequalities": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Substitution trap: exponential becomes quadratic that's always positive."
+ },
+ "quadratic-form-x2-ny2": {
+  "quality": 5,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Rational vs irrational n: infinite family for 9, none for 10."
+ },
+ "quadratic-in-beta-squared-impact-distance": {
+  "quality": 4,
+  "difficulty": 7,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [
+   "garbled",
+   "missing_info"
+  ],
+  "tagline": "Vieta-driven distance derivation, but the stem is truncated and must be reconstructed."
+ },
+ "quadratic-k-roots": {
+  "quality": 8,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Four-part ladder ending in neat (a-1)(b-1)=4 integer factoring trick."
+ },
+ "quadratic-real-roots-graph-in-p": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Two branches split at |p|=1, with asymptotic behaviour as p grows."
+ },
+ "quartic-ap-roots": {
+  "quality": 6,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Symmetry forces roots \u00b1a, \u00b13a; a unique integer m emerges."
+ },
+ "quartic-collinear-points-average-x": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Elegant: the line intersection makes the x\u00b3 coefficient fix the average."
+ },
+ "quartic-no-real-roots": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [],
+  "tagline": "Spot the perfect square; the discriminant of x\u00b2+x+1 settles it."
+ },
+ "quartic-palindromic-substitution": {
+  "quality": 5,
+  "difficulty": 5,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Reciprocal quartic with clean surd roots 2\u00b1\u221a3 and 3\u00b12\u221a2."
+ },
+ "rational-root-of-monic-cubic": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Rational root theorem rediscovered; builds to a yes/no existence question."
+ },
+ "rearrange-rational-subject-x": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [],
+  "tagline": "Routine rearrangement; a clean check of algebraic manipulation."
+ },
+ "rearrange-v-squared-formula": {
+  "quality": 3,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [],
+  "tagline": "Standard SUVAT rearrangement with clean numerical answer; limited discussion."
+ },
+ "recipe-scale-butter-cream": {
+  "quality": 2,
+  "difficulty": 1,
+  "parts": 2,
+  "minutes": 2,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Proportional scaling MCQ; too simple for interview value."
+ },
+ "reciprocal-power-sums-x-plus-inverse-three": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Recurrence via power-sum identities; solve without ever finding x explicitly."
+ },
+ "reciprocal-product-subset-sum": {
+  "quality": 8,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Elegant closed form S_n=n; rich conjecture-and-induction path."
+ },
+ "reciprocal-sum-three-denominators": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Bounding argument yields a single unique solution; clear staged structure."
+ },
+ "reciprocal-sum-zero-real-no-solution": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Symmetric-function trick gives a clean contradiction; elegant and extendable."
+ },
+ "reciprocal-x-n-plus-x": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Clever split 1/(x(x^{n-1}+1)); n=1 case gives a different log."
+ },
+ "rectangle-length-width-percent-area": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 1,
+  "minutes": 2,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Classic percentage trap; answer is a 4% decrease, not zero."
+ },
+ "rectangle-perimeter-diagonal-area": {
+  "quality": 5,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Recover area from sum and Pythagorean diagonal; sides are 5 and 12."
+ },
+ "rectangle-triangle-equal-area": {
+  "quality": 1,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 3,
+  "flags": [
+   "trivial",
+   "wrong_or_unclear_solution"
+  ],
+  "tagline": "Algebra is simple; correct answer 15/17 absent from options."
+ },
+ "rectangles-and-squares-on-chessboard": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Choose two of nine gridlines per direction; generalise to m\u00d7n boards."
+ },
+ "recursive-sequence-sqrt-growth": {
+  "quality": 8,
+  "difficulty": 7,
+  "parts": 3,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Telescoping squares reveal a_n\u00b2\u22482n, with a half-log correction for extension."
+ },
+ "red-blue-points-collinear": {
+  "quality": 8,
+  "difficulty": 7,
+  "parts": 1,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Minimal-area triangle forces a smaller triangle; clean extremal-principle proof."
+ },
+ "regular-octagon-corners": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Exact corners (\u00b1(1+\u221a2)/2, \u00b11/2) and permutations; good trig-to-coordinates bridge."
+ },
+ "rainbow-color-prisoners": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 2,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Modular-sum strategy guarantees one; the real question is whether two is possible."
+ },
+ "random-point-closer-to-centre": {
+  "quality": 8,
+  "difficulty": 7,
+  "parts": 5,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Parabolic boundary, symmetry reduction, exact answer (4\u221a2\u22125)/3 \u2248 0.219."
+ },
+ "ratio-of-power-sums-limit": {
+  "quality": 6,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Looks like a simple limit, but the tail sum gives e/(e\u22121), not 1."
+ },
+ "ratio-sharing-cat-ana": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 3,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Pure ratio arithmetic; answer \u00a3280 with no real depth."
+ },
+ "rational-equation-substitution": {
+  "quality": 3,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Reciprocal substitution is nice, but MCQ format leaves little to discuss."
+ },
+ "rational-function-range-and-iterate": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 5,
+  "minutes": 25,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Range via discriminant, calculus check, reciprocal sketch, iterated range [\u22122/5, 2/5]."
+ },
+ "rational-quartic-sketch": {
+  "quality": 5,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 20,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Double-pole sketch with asymptote crossing and turning points at x=0, \u00b1\u221a(10/3)."
+ },
+ "rational-root-nth-root-irrational": {
+  "quality": 6,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Rational root theorem proof gives integer-or-irrational dichotomy for nth roots."
+ },
+ "round-table-distance-probability": {
+  "quality": 5,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Clean symmetry argument; the k=n/2 case adds a satisfying twist."
+ },
+ "round-table-tags": {
+  "quality": 8,
+  "difficulty": 8,
+  "parts": 3,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Deep modular reasoning with parity; a genuinely demanding, rewarding proof."
+ },
+ "runners-circular-track-catch-up": {
+  "quality": 2,
+  "difficulty": 1,
+  "parts": 2,
+  "minutes": 2,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Relative speed recall; far too routine to test reasoning."
+ },
+ "sale-price-percentage-voucher": {
+  "quality": 3,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Reverse percentage with one voucher step; routine arithmetic."
+ },
+ "secant-integral-zero-to-pi-over-six": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Standard antiderivative recall; evaluation is mechanical."
+ },
+ "secretary-problem-threshold-strategy": {
+  "quality": 9,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 30,
+  "flags": [],
+  "tagline": "Classic secretary problem: derivation, approximation, and optimisation all connect."
+ },
+ "series-trig-exp-log": {
+  "quality": 4,
+  "difficulty": 4,
+  "parts": 5,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Routine series manipulation across five parts; mostly mechanical."
+ },
+ "seven-prisoners-hats": {
+  "quality": 5,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [
+   "garbled"
+  ],
+  "tagline": "Classic hat puzzle with modular elegance; final stage is truncated."
+ },
+ "repunit-product-plus-one-square": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Closed forms collapse to (10^m+2)^2/9; integrality via 10^m mod 3."
+ },
+ "right-angle-from-string": {
+  "quality": 5,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Classic 3-4-5 rope construction; discussion of why it works."
+ },
+ "right-triangle-area-equals-perimeter": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Inradius forced to 2, leading to an open family of triangles."
+ },
+ "right-triangle-perimeter-equals-area": {
+  "quality": 8,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Key trick p+q-r=4 yields exactly (5,12,13) and (6,8,10)."
+ },
+ "rod-against-wall-centre-of-mass-friction": {
+  "quality": 6,
+  "difficulty": 7,
+  "parts": 4,
+  "minutes": 25,
+  "flags": [
+   "missing_info"
+  ],
+  "tagline": "Rich friction and moments problem, but the final question is truncated."
+ },
+ "root-finding-newton-bisection-secant": {
+  "quality": 6,
+  "difficulty": 3,
+  "parts": 4,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Open-ended survey of three root-finders with convergence comparison."
+ },
+ "roots-of-unity-product-identities": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 5,
+  "minutes": 30,
+  "flags": [],
+  "tagline": "Linked stages build from roots of unity to the sine product identity."
+ },
+ "rotation-about-point-90-anticlockwise": {
+  "quality": 3,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Mechanical translate-rotate-translate with little room for discussion."
+ },
+ "sin-tan-cubic-limits": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Clean limits; relating tan\u2212sin to sin\u2212x and tan\u2212x is elegant."
+ },
+ "sin-x-over-x-sketch": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 6,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Standard sketch: even symmetry, limit 1 at zero, decaying oscillation."
+ },
+ "sin-x-over-x-squeeze": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Classic area proof of sin x < x < tan x, with squeeze and sign handling."
+ },
+ "sin2-cos2-plane-locus": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 2,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Reduces to sin\u00b2x = sin\u00b2y, giving a lattice of slope \u00b11 lines."
+ },
+ "sinc-and-shifted-sinc-sketch": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 4,
+  "minutes": 15,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Compares two sinc-type curves; the 'asymptotes' request is a good trap."
+ },
+ "sinc-xlnx-and-x-to-the-x-graph": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Links x ln x limit to x^x via logs; the axis-intersection answer is subtle."
+ },
+ "sine-series-solutions": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [],
+  "tagline": "Divergence trick question; answer depends on summation convention, which is discussable."
+ },
+ "sine-x-squared-vs-sine-squared-x": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Taylor comparison at x\u2074 plus periodicity versus non-periodic oscillation."
+ },
+ "sinh-cosh-curves-graph": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Squaring reveals y=\u00b1cosh x and y=\u00b1sinh x; the domain and no-intersection points are the discussion."
+ },
+ "six-die-strictly-increasing": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Strict increase forces the unique sequence 1 to 6, a neat counting insight with little depth."
+ },
+ "six-digit-permutations-1-to-6": {
+  "quality": 5,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 15,
+  "flags": [
+   "missing_info"
+  ],
+  "tagline": "Varied counting techniques, but the final part's repetition scope is never stated."
+ },
+ "six-people-friends-or-strangers": {
+  "quality": 8,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Classic Ramsey R(3,3)=6 proof, with natural extensions to the pentagon lower bound."
+ },
+ "sketch-abs-cube-root-and-power-curves-with-derivatives": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 5,
+  "minutes": 20,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Five curves linking sketching, cusps, corners and derivative behaviour, though heavy on sketching."
+ },
+ "sketch-abs-linear-forms": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Diamond, hyperbolic V-pieces and parallel lines; quick sketches with limited discussion."
+ },
+ "sketch-absolute-value-regions": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 15,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Four regions where the case analysis of absolute values gives good shape-building discussion."
+ },
+ "sketch-cubic-over-quadratic-rational-function": {
+  "quality": 5,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [
+   "missing_info",
+   "needs_diagram"
+  ],
+  "tagline": "Oblique asymptote and sign analysis, but degenerate cases such as common roots are unaddressed."
+ },
+ "sketch-exp-x-and-exp-one-over-x": {
+  "quality": 5,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 6,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Intersections at x=\u00b11 and the asymptote behaviour at 0 give good discussion."
+ },
+ "sketch-five-curves-with-asymptotes-and-turning-points": {
+  "quality": 8,
+  "difficulty": 8,
+  "parts": 6,
+  "minutes": 30,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Six varied curves test parity, asymptotes, and identities; too long live."
+ },
+ "sketch-one-over-x-squared-plus-a": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Three-case parameter sketch shows how a changes the curve's topology."
+ },
+ "sketch-quintic-curve": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [
+   "missing_info"
+  ],
+  "tagline": "Open-ended prompt; stages supply factorisation, turning-point count, and odd symmetry."
+ },
+ "sketch-reciprocal-quadratic": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Clean partial-fractions sketch with a turning point between two asymptotes."
+ },
+ "sketch-sin-and-cos-of-one-over-x": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 15,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Infinite oscillation near zero and unbounded slope make strong discussion."
+ },
+ "sketch-sin-x-plus-cos-2x-symmetries": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 12,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Double-angle rewrite reveals hidden reflection symmetry; neither even nor odd."
+ },
+ "sketch-x-ln-x": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Boundary limit at 0, minimum at 1/e, and convexity make a clean sketch."
+ },
+ "seven-reals-tangent-gap": {
+  "quality": 8,
+  "difficulty": 7,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Elegant tangent-subtraction reparametrisation plus pigeonhole; a clean proof with strict inequality."
+ },
+ "seventeenth-roots-of-unity": {
+  "quality": 5,
+  "difficulty": 3,
+  "parts": 4,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Standard roots-of-unity counting with a natural extension to explicit construction methods."
+ },
+ "shaded-area-three-unit-circles-equilateral": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 4,
+  "minutes": 6,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Routine geometry: equilateral side length, sector angles, and subtracting areas; a warm-up."
+ },
+ "shell-fired-from-centre-rotating-target": {
+  "quality": 8,
+  "difficulty": 7,
+  "parts": 4,
+  "minutes": 25,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Projectile\u2013target elimination gives a quartic and a sharp existence condition."
+ },
+ "significance-of-primes": {
+  "quality": 3,
+  "difficulty": 2,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Open conceptual question, but the stages are routine recall; limited depth."
+ },
+ "simultaneous-and-inequality": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Routine linear simultaneous equations and inequality; pure procedure with no discussion scope."
+ },
+ "simultaneous-circles-towns-sun-earth": {
+  "quality": 8,
+  "difficulty": 5,
+  "parts": 5,
+  "minutes": 20,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Geometric intersection of circles extends to spheres; rich discussion of solution sets."
+ },
+ "sin-cos-ratio-integrals": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Neat trick: add and subtract the integrals, then solve the linear system."
+ },
+ "sketch-x-plus-sin-over-x-minus-sin": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Layered sketch: domain, parity, asymptotics, and a hidden y=1 intersection at n\u03c0."
+ },
+ "sketch-xe-minus-x-curve": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 5,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Standard curve sketch, with a useful transfer question to x\u00b2e^(-x)."
+ },
+ "sketch-y-squared-equals-x-squared-x-plus-one": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 4,
+  "minutes": 12,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Implicit curve with symmetry, existence domain, and a node at origin."
+ },
+ "small-circle-touching-three-unit-circles": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 6,
+  "flags": [
+   "missing_info",
+   "needs_diagram"
+  ],
+  "tagline": "Nice centroid geometry, but depends on an unseen 'previous' configuration."
+ },
+ "smallest-a-sine-exp-inequality": {
+  "quality": 8,
+  "difficulty": 7,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Monotonicity of (a+sin t)e^t gives a=\u221a2; rich justification and discussion."
+ },
+ "smallest-twelve-factors": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Short factor-counting puzzle with a fixed answer; mostly recall."
+ },
+ "smoothie-juice-proportion": {
+  "quality": 2,
+  "difficulty": 1,
+  "parts": 3,
+  "minutes": 3,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Two fraction comparisons; no real mathematical depth."
+ },
+ "snow-plow-start-time": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Modelling snowfall as ln-distance gives a transcendental equation; rich discussion."
+ },
+ "spider-random-walk-hitting": {
+  "quality": 8,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 15,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Escalating Markov hitting-time parts, with open triangle and path extension."
+ },
+ "sqrt-cubic-and-its-relation": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 15,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Sketch-led calculus with domain, loop maximum, tangent, and relation symmetry."
+ },
+ "sqrt-two-irrational": {
+  "quality": 2,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 5,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Standard contradiction proof; mostly recall of a memorised template."
+ },
+ "sqrt2-irrational": {
+  "quality": 2,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 5,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Duplicate of the root-two proof; recall of a standard template."
+ },
+ "sqrt2-plus-sqrt3-minimal-poly": {
+  "quality": 6,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Repeated squaring to x^4-10x^2+1, then conjugate-root verification and extension."
+ },
+ "square-2to1-rectangles": {
+  "quality": 9,
+  "difficulty": 8,
+  "parts": 5,
+  "minutes": 30,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Open tiling problem with construction, impossibility arguments, and general answer."
+ },
+ "square-digits-counterexample": {
+  "quality": 5,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Pattern from 33...3 squares, proof of digit count, explicit counterexample."
+ },
+ "square-midpoints-triangle-area": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 3,
+  "minutes": 3,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Multiple-choice coordinate area calculation with a single routine step."
+ },
+ "square-number-check": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [],
+  "tagline": "Modular checks (mod 4, mod 9) rule out both numbers quickly."
+ },
+ "square-parallelogram-slide-perimeter": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 3,
+  "flags": [
+   "needs_diagram",
+   "missing_info"
+  ],
+  "tagline": "Depends on a diagram not provided; answer ambiguous from text alone."
+ },
+ "square-point-closer-to-centre": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Parabolic boundary, symmetry reduction, and a nontrivial area integral."
+ },
+ "square-root-37-three-digits": {
+  "quality": 3,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "One Newton step gives 6.0833; rounding justification needs error bound."
+ },
+ "square-side-two-nine-points-area": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Pigeonhole plus unit-square triangle bound; strictness question adds subtlety."
+ },
+ "squared-additive-functional-equation": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Reduces to Cauchy's equation; nonnegativity forces the only solution zero."
+ },
+ "squares-mod-4-identity-and-primes-3-mod-4": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Four linked parts: mod arithmetic, identity, factorisation, Euclid-style infinitude."
+ },
+ "standard-integrals-set-a": {
+  "quality": 3,
+  "difficulty": 4,
+  "parts": 10,
+  "minutes": 18,
+  "flags": [],
+  "tagline": "Mostly recall and mechanical; a few reductions give some substance."
+ },
+ "solve-linear-and-rational-equations": {
+  "quality": 3,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 3,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Quadratic terms cancel on cross-multiplying; a clean warm-up."
+ },
+ "solve-quadratic-and-linear-equations": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 3,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Routine factorising and clearing fractions; minimal discussion scope."
+ },
+ "solve-sin-2x-equals-cos-x": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Classic trap: don't divide by cos x; two families of solutions."
+ },
+ "solve-trig-equations-and-cot-pi-over-twelve": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Sum-to-product, factorising cos sums, and a cot double-angle deduction."
+ },
+ "sphere-five-points-hemisphere": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 2,
+  "minutes": 10,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Rotating a great circle through two points gives a clean argument."
+ },
+ "sphere-step-friction": {
+  "quality": 7,
+  "difficulty": 8,
+  "parts": 4,
+  "minutes": 20,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Multi-stage statics with a friction-bound proof; fiddly geometry."
+ },
+ "spherical-loaf-crust-volume-ratio": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 18,
+  "flags": [],
+  "tagline": "Archimedes' zone area plus a cap-volume maximisation; neat 8/3 bound."
+ },
+ "spherical-loaf-slice-va": {
+  "quality": 4,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Repeats the loaf-cap maximisation; mostly redundant with its sibling."
+ },
+ "standard-normal-conditional-mean-positive": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 1,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Classic half-normal mean: clean integration, nice conditional-expectation sanity check."
+ },
+ "star-operation-algebra": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 6,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Structured algebra sequence building from definition to identity to telescoping evaluation."
+ },
+ "stationary-points-and-surfaces": {
+  "quality": 6,
+  "difficulty": 2,
+  "parts": 4,
+  "minutes": 15,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Non-differentiable stationary points and saddle surfaces; good conceptual probing."
+ },
+ "stationary-points-x-over-x2-plus-a2": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 4,
+  "minutes": 12,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Parametric stationary points and a clean sketch with asymptote behaviour."
+ },
+ "step-cosmology-decreasing-hubble-function": {
+  "quality": 1,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [
+   "garbled",
+   "missing_info",
+   "trivial"
+  ],
+  "tagline": "Source truncated and H undefined; reduces to a one-line concavity argument."
+ },
+ "step-cube-coefficient-binomial": {
+  "quality": 4,
+  "difficulty": 5,
+  "parts": 2,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Series coefficient extraction; recognising (1+x)^-2 truncation rewards insight, but arithmetic-heavy."
+ },
+ "step-cubic-roots-gp-ap": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Vieta on a/k, a, ak links cubic coefficients to progressions; AP condition is rich."
+ },
+ "step-cubic-turning-points-discriminant": {
+  "quality": 8,
+  "difficulty": 7,
+  "parts": 4,
+  "minutes": 25,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Discriminant link from cubic to quadratic, with a sufficiency counterexample."
+ },
+ "step-curve-stationary-point-sketch": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Derivative numerator simplifies to a\u2212x, so a>1 gives one stationary point."
+ },
+ "step-double-and-quadruple-root-conditions": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Multiplicity-derivative link yields a=\u22122, then k and m by matching."
+ },
+ "step-factorise-regions-xy": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Factorised wedge regions must share a witness point, which students must find."
+ },
+ "step-fermat-numbers-infinitely-many-primes": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 5,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Fermat product identity gives coprimality, then infinitely many primes."
+ },
+ "step-int-cos-over-sin-plus-cos": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 5,
+  "minutes": 22,
+  "flags": [],
+  "tagline": "I+J and I\u2212J symmetry trick, then parametric and quotient integrals."
+ },
+ "step-integral-tangent-half-angle-substitution": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 18,
+  "flags": [],
+  "tagline": "Half-angle substitution gives \u03b1/sin\u03b1, then a symmetry-based variant."
+ },
+ "step-log-substitution-integral": {
+  "quality": 2,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 6,
+  "flags": [
+   "garbled",
+   "missing_info"
+  ],
+  "tagline": "Substitution works, but limits are missing and the stated value is unsupported."
+ },
+ "step-modulus-piecewise-equation": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Piecewise modulus equation: isolated root plus an entire solution ray."
+ },
+ "straight-line-angle-y-in-terms-of-x": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 3,
+  "flags": [
+   "needs_diagram",
+   "missing_info"
+  ],
+  "tagline": "Trivial angle chase that depends entirely on an absent diagram."
+ },
+ "subset-sum-divisible-by-n": {
+  "quality": 8,
+  "difficulty": 5,
+  "parts": 2,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Classic prefix-sum pigeonhole proof with rich extension discussion."
+ },
+ "subset-sums-pigeonhole": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Exponential subsets versus linear sums: strong conceptual pigeonhole discussion."
+ },
+ "successive-percentage-coat": {
+  "quality": 3,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 3,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Routine successive-percentage calculation with little room for discussion."
+ },
+ "sum-and-double-angle-derivations": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 5,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Five-part derivation chain; mostly standard, limited open discussion."
+ },
+ "sum-cos-squared-degrees": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Complementary-angle pairing gives a neat, memorable trick."
+ },
+ "sum-four-consecutive-not-multiple-of-four": {
+  "quality": 2,
+  "difficulty": 1,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Simple algebra with a neat remainder; too short for discussion."
+ },
+ "sum-k-times-k-factorial-2": {
+  "quality": 7,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Conjecture-then-telescope with a clean identity and natural extensions."
+ },
+ "step-quartic-factorisation-resolvent-cubic": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Resolvent cubic emerges from factorisation; shift-to-solve closes it neatly with exact roots."
+ },
+ "step-quartic-roots-coefficient-inequalities": {
+  "quality": 8,
+  "difficulty": 7,
+  "parts": 3,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Vieta plus AM-GM chains through f, f' and f'' to prove c>d, b>c, a>b."
+ },
+ "step-quotient-derivative-nonneg": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 1,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Discriminant 9-8a explains exactly why the 9/8 threshold appears."
+ },
+ "step-second-order-const-coeff-auxiliary": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 4,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Standard auxiliary-equation work, with a reduction-of-order proof of generality."
+ },
+ "step-second-order-sinh-sin-reduction": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 2,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Sinh form misses solutions like e^{kx}, a strong general-solution discussion point."
+ },
+ "step-solve-rational-and-surd-inequalities": {
+  "quality": 4,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Routine sign-pattern and squaring work; the squaring condition x>-1 is the only subtlety."
+ },
+ "step-telescoping-series-recurrence": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Partial fractions telescope, and the recurrence sum reuses the series to give exactly 1."
+ },
+ "step-telescoping-sine-sum-and-weighted-squares": {
+  "quality": 8,
+  "difficulty": 7,
+  "parts": 3,
+  "minutes": 30,
+  "flags": [],
+  "tagline": "Closed-form sine sum, cot identity, then differentiation for a weighted squared-sine sum."
+ },
+ "sum-k-times-k-factorial": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Pattern hunt leads to telescoping via k\u00b7k! = (k+1)! \u2212 k!."
+ },
+ "sum-of-coefficients-product": {
+  "quality": 2,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "One substitution at x=1; recall-level with little room for discussion."
+ },
+ "sum-of-cubes": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Classic pattern-to-proof, with triangular-number insight and geometric extensions."
+ },
+ "sum-of-equal-powers-of-three": {
+  "quality": 1,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 2,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Pure index arithmetic with no reasoning or discussion beyond evaluation."
+ },
+ "sum-of-powers-telescoping": {
+  "quality": 8,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Telescoping builds power sums, with two independent routes to one answer."
+ },
+ "sum-of-semicircles-sqrt": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Sketch via domain, symmetry, and vertical tangents at the endpoints."
+ },
+ "sum-of-squares-and-cubes-real-roots": {
+  "quality": 4,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [
+   "wrong_or_unclear_solution"
+  ],
+  "tagline": "Good real-root contrast, but the no-roots claim fails when a=b."
+ },
+ "sum-of-squares-no-real-roots": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Quick complex-roots question that largely duplicates the real-roots item."
+ },
+ "step-unit-fraction-two-term-decompositions": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 15,
+  "flags": [
+   "missing_info",
+   "garbled"
+  ],
+  "tagline": "Elegant prime-based uniqueness; the 2/N case needs positivity to be unique."
+ },
+ "step-vector-line-angle-and-circle-locus": {
+  "quality": 7,
+  "difficulty": 7,
+  "parts": 4,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Hidden constant norm and plane intersection yield a clean circle; rich vector geometry."
+ },
+ "stepp-cricket-catch-tan-theta": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 2,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Physical modelling: a fielder's moving eye keeps tan \u03b8's rate constant."
+ },
+ "stick-break-ratio": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Two-case ratio distribution leading to log-valued mean and variance."
+ },
+ "stm-circle-through-ellipse-intersections": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Pencil of ellipses producing a circle family; elegant coefficient-matching argument."
+ },
+ "stm-curve-tangent-area-volume-bounds": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "One tangent inequality doubles as the bound for both area and volume."
+ },
+ "stm-power-exp-maxima-minima": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 4,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Clean log-derivative structure with sign analysis of f'' for nature."
+ },
+ "stm-r-tangent-growth": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Concavity tangent argument plus model consistency checks under growth conditions."
+ },
+ "sum-pairwise-products-bound-three-variables": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 4,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Classic squares-and-equality bound that generalises cleanly to n variables"
+ },
+ "sum-reciprocal-three-consecutive-products": {
+  "quality": 3,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Routine telescoping identity; clean, but little room for extension."
+ },
+ "sum-squares-equals-2xyz-only-zero": {
+  "quality": 8,
+  "difficulty": 7,
+  "parts": 3,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Descent-style parity argument; a satisfying non-obvious integer contradiction proof."
+ },
+ "sum-squares-from-sum-product": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 3,
+  "minutes": 2,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Pure identity-and-arithmetic MCQ; one line of working."
+ },
+ "sum-two-squares-2015-and-x2-33y2": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Clean prime-factor and mod 4 contrast; second part is one line."
+ },
+ "sums-of-two-squares-characterisation": {
+  "quality": 7,
+  "difficulty": 7,
+  "parts": 4,
+  "minutes": 25,
+  "flags": [
+   "missing_info"
+  ],
+  "tagline": "Full characterisation of sums of two squares; depends on unseen part (ii)."
+ },
+ "sun-planet-moon-orbits": {
+  "quality": 4,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [
+   "missing_info",
+   "needs_diagram"
+  ],
+  "tagline": "Rich epicycle idea, but the stated questions are ill-posed without setup."
+ },
+ "superellipse-family-sketch": {
+  "quality": 6,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Excellent sketching-and-limit intuition; diagonal point gives the n-to-infinity shape."
+ },
+ "superellipse-x2n-y2n-limit": {
+  "quality": 8,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Superellipse limit: symmetry, diagonal crossings, and convergence to the square."
+ },
+ "surd-and-fractional-index-evaluation": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 3,
+  "minutes": 2,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Routine index-law arithmetic with no depth or extension."
+ },
+ "surd-sum-sqrt5-minus-3sqrt2": {
+  "quality": 2,
+  "difficulty": 1,
+  "parts": 2,
+  "minutes": 2,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Essentially a calculator task; the simplification question is vague."
+ },
+ "sweets-pile-halving-game": {
+  "quality": 8,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Combinatorial game with a clear pattern and an induction proof."
+ },
+ "symmetric-antisymmetric-k": {
+  "quality": 5,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Applying the relation twice gives k\u00b2=1; short but clean."
+ },
+ "symmetric-polynomial-double-factor": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Antisymmetric quotient argument reveals a hidden double factor."
+ },
+ "symmetry-substitution-definite-integral": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Reflection identity proved, then applied to two integrals with neat pairing."
+ },
+ "symmetry-trig-integral": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 2,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Classic reflection trick giving a closed form; a clean two-part integral."
+ },
+ "taylor-delta-approximation": {
+  "quality": 6,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [
+   "garbled"
+  ],
+  "tagline": "Taylor bound leads to the delta-sequence limit; statement has errors to fix"
+ },
+ "tbo-abc-one-equals-one-reciprocal-sums": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Clean factorisation argument forces a=b=c=1; extends to n variables"
+ },
+ "tbo-absolute-value-zero-sum-trig": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Sums of absolute values vanish only when each term does; quick checks"
+ },
+ "tbo-consecutive-integers-factorial-divisor": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Standard binomial-coefficient proof; good for combinatorial discussion"
+ },
+ "tbo-lattice-points-absolute-value-diamond": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Counting diamond lattice points by layers; closed form 2N^2+2N+1"
+ },
+ "tbo-n-powers-sum-equals-power": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Divisibility argument forces x=y and unique base 2; rich extensions"
+ },
+ "tbo-quartic-perfect-square-no-real-roots": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 5,
+  "flags": [],
+  "tagline": "Recognise (x^2+x+1)^2 for a quick no-real-roots conclusion"
+ },
+ "tbo-rod-triangle-probability": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 2,
+  "minutes": 20,
+  "flags": [
+   "missing_info"
+  ],
+  "tagline": "Classic geometric probability; model of random break must be specified"
+ },
+ "tbo-triangle-geometric-sides-ratio-bounds": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Triangle inequalities on GP sides give golden-ratio bounds; clean multi-step proof."
+ },
+ "ten-and-twenty-pence-coin-counting": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Systematic coin enumeration with a neat extension; mechanical but clearly stated."
+ },
+ "tennis-ball-spin-magnus": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 20,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Open-ended Magnus-effect estimation; rich discussion, Bernoulli link, requires assumptions."
+ },
+ "tennis-pairings-double-factorial": {
+  "quality": 7,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Perfect matchings giving (2n-1)!!; recursion, factorial form, and succinct expression."
+ },
+ "tessellations-platonic-euler": {
+  "quality": 8,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Classic chain: tessellations to Platonic solids via Euler; rich extension, multi-part."
+ },
+ "tetrahedron-spin-two-points": {
+  "quality": 6,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Spatial symmetry puzzle: regular tetrahedron's 180\u00b0 axis through opposite edge midpoints."
+ },
+ "three-circles-enclosed-area": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 4,
+  "minutes": 10,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Equilateral triangle minus three 60\u00b0 sectors; clean, visual, routine multi-step."
+ },
+ "three-dice-at-least-one-six": {
+  "quality": 2,
+  "difficulty": 1,
+  "parts": 2,
+  "minutes": 3,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Single complement trick; too trivial to probe much beyond recall."
+ },
+ "tower-growth-comparison": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Log-of-log reduction makes an elegant, rigorous growth comparison."
+ },
+ "tower-of-hanoi-moves": {
+  "quality": 8,
+  "difficulty": 4,
+  "parts": 4,
+  "minutes": 30,
+  "flags": [],
+  "tagline": "Classic recursion, adjacent-peg variant, and Hamiltonian-path insight."
+ },
+ "trailing-zeros-25-factorial": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 3,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Standard factor-of-5 count; too familiar to probe deeply."
+ },
+ "trailing-zeros-365-factorial": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 4,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Routine Legendre-style count; mostly a quick computation check."
+ },
+ "train-tunnel-speed": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Clever relative-timing twist; answer hinges on the time difference."
+ },
+ "trapezium-area-6-8-10": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 6,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Offset-difference trick yields clean height; setup needs care."
+ },
+ "trapezium-base-length": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 3,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "One-line area equation; no real discussion or extension."
+ },
+ "trees-leaves-edges-cayley": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 35,
+  "flags": [],
+  "tagline": "Proofs building to Cayley's formula, conjectured from small counts."
+ },
+ "t-tetromino-tiling-even-odd-rectangles": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Parity-of-sides invariant plus explicit 4x4 construction; crisp two-part tiling argument."
+ },
+ "tan-cot-cubic-trig-equations": {
+  "quality": 3,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 20,
+  "flags": [
+   "wrong_or_unclear_solution"
+  ],
+  "tagline": "Hidden false show-that claim, then genuine tan/cot equation discussion."
+ },
+ "tan-one-degree-irrational": {
+  "quality": 7,
+  "difficulty": 9,
+  "parts": 3,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Elegant root-of-unity argument; cyclotomic degree gives scope for extension."
+ },
+ "tan-pi-eighth-and-trig-substitution": {
+  "quality": 6,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Clean substitution-and-identity integral, but heavily scaffolded, limiting discussion."
+ },
+ "tan-triple-angle-arccos-inverse": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Triple-angle formula, arccos link, and multiple solutions in inverse trig."
+ },
+ "tangent-circle-angle-ctb": {
+  "quality": 2,
+  "difficulty": 3,
+  "parts": 4,
+  "minutes": 5,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Standard tangent-chord angle chase with MCQ answer; little discussion value."
+ },
+ "tangential-polygon-alternate-sides": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 2,
+  "minutes": 15,
+  "flags": [
+   "missing_info",
+   "needs_diagram"
+  ],
+  "tagline": "Tangent-length telescoping proof for even polygons; figure absent from statement."
+ },
+ "tanh-half-x-sketch-inequality": {
+  "quality": 4,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Monotonicity argument via derivative; conclusion follows almost immediately."
+ },
+ "trig-identities-and-half-angle-substitution": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 4,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Classic half-angle substitution; the identities themselves are routine."
+ },
+ "triple-prime-3-5-7": {
+  "quality": 5,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Elegant mod-3 pigeonhole argument; great warm-up with a clean answer."
+ },
+ "twelve-coins-three-weighings": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Classic with information-counting proof; natural extension to other coin counts."
+ },
+ "twin-prime-720-divisibility": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 5,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Clean modular decomposition into prime powers with a satisfying combined conclusion."
+ },
+ "two-bell-curves-stationary-points": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 4,
+  "minutes": 25,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Integration then integrand comparison bounds k without computing it."
+ },
+ "two-buses-catch-probability": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Surprising deduction from a clean modular-arrival probability model."
+ },
+ "two-children-at-least-one-daughter": {
+  "quality": 6,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Famous paradox; the two parts sharply expose assumption sensitivity."
+ },
+ "two-counters-different-colours": {
+  "quality": 2,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 3,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Routine MCQ; only tests two-stage without-replacement counting."
+ },
+ "three-digit-minimal-difference": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Hundreds-digit choice drives a non-obvious optimisation with a checkable answer."
+ },
+ "three-digit-numbers-with-digit-product-12": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [],
+  "tagline": "Enumerate digit multisets then count permutations; a gentle warm-up."
+ },
+ "tictactoe-4x4x4-lines": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Structured count of lines by orientation; generalises to n-dimensional cubes."
+ },
+ "tiles-sum-nine-guarantee": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Classic pigeonhole argument; strong on justifying the lower bound."
+ },
+ "token-game-5x5-grid": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Win/lose analysis with a generalisation to m\u00d7n; rich discussion potential."
+ },
+ "tortoise-hare-patch": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Multi-part meeting-point modelling with consistency checks and a quadratic root."
+ },
+ "tournament-hamiltonian-path": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Classic induction proof with a case split; rewards clear, rigorous structure."
+ },
+ "tower-exponentials-compare-n-infinity": {
+  "quality": 3,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Quick growth-rate comparison; mainly a warm-up with little extension."
+ },
+ "two-cylinders-intersection-volume": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 2,
+  "minutes": 15,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Classic Steinmetz solid; square cross-sections and natural extensions to discuss."
+ },
+ "two-decks-matching-cards": {
+  "quality": 8,
+  "difficulty": 7,
+  "parts": 5,
+  "minutes": 25,
+  "flags": [],
+  "tagline": "Rencontres-style matching; part (ii) is a trap and general k invites discussion."
+ },
+ "two-dice-parity-score-rule": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 5,
+  "flags": [],
+  "tagline": "Multiple-choice enumeration; limited scope beyond counting outcomes."
+ },
+ "two-digit-reverse-prime-difference": {
+  "quality": 3,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Neat factor-of-9 observation, but the answer is nearly immediate."
+ },
+ "two-pipes-one-drain-fill-time": {
+  "quality": 2,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 5,
+  "flags": [],
+  "tagline": "Routine rate-combining exercise in multiple-choice form."
+ },
+ "two-squares-diagonal-distance": {
+  "quality": 3,
+  "difficulty": 2,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Pleasant 5-12-13 triangle, but a short, single-idea problem."
+ },
+ "uniform-random-root-larger-root-incomplete": {
+  "quality": 1,
+  "difficulty": 4,
+  "parts": 1,
+  "minutes": 2,
+  "flags": [
+   "garbled",
+   "missing_info"
+  ],
+  "tagline": "Truncated statement; unusable until the constant and question are restored."
+ },
+ "unit-circle-modulus-bounds": {
+  "quality": 6,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Factorising z(1+2cos\u03b8) turns the modulus into a clean range question."
+ },
+ "unit-circle-vs-power-curves": {
+  "quality": 8,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Nested power curves, diagonal comparison, and FLT on rational points."
+ },
+ "unit-fraction-decomposition": {
+  "quality": 8,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 20,
+  "flags": [],
+  "tagline": "Guess-and-prove unit fraction decomposition leading to a uniqueness argument for primes."
+ },
+ "unit-fraction-pairs-divisor-count": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Factorising to count solutions via divisors of n squared; clean generalisation."
+ },
+ "unit-fraction-pairs": {
+  "quality": 4,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Routine factorisation of 36 yields four solutions; limited extension."
+ },
+ "unit-square-five-points": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Classic pigeonhole with a clean generalisation to n\u00b2+1 points."
+ },
+ "unit-square-ten-points": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 10,
+  "flags": [],
+  "tagline": "Pigeonhole with nine boxes; near-duplicate of the five-point problem."
+ },
+ "upside-down-cone-half-full": {
+  "quality": 6,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Surprising 1/8 volume fraction and clear scaling discussion."
+ },
+ "vector-angles-projections-plane": {
+  "quality": 4,
+  "difficulty": 3,
+  "parts": 5,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Clean multi-stage vector computation with verifiable answers; limited discussion."
+ },
+ "x2-sin-one-over-x": {
+  "quality": 8,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Rich envelope sketch leading to discontinuous derivative discussion at origin"
+ },
+ "zero-point-nine-recurring": {
+  "quality": 2,
+  "difficulty": 1,
+  "parts": 2,
+  "minutes": 3,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Recall-level geometric series exercise; little discussion or extension."
+ },
+ "zeta-bounds-integral-comparison": {
+  "quality": 7,
+  "difficulty": 6,
+  "parts": 2,
+  "minutes": 12,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Elegant integral comparison bounding zeta; natural extensions to s\u21921 and asymptotics."
+ },
+ "venn-diagram-clubs": {
+  "quality": 3,
+  "difficulty": 2,
+  "parts": 3,
+  "minutes": 5,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Simple set-counting; reliable warm-up but little depth or extension."
+ },
+ "vertical-projection-energy-air-resistance": {
+  "quality": 5,
+  "difficulty": 7,
+  "parts": 4,
+  "minutes": 15,
+  "flags": [
+   "wrong_or_unclear_solution"
+  ],
+  "tagline": "Rich energy and mechanics chain, but the force and energy definitions are unclear."
+ },
+ "vieta-power-sums-cubic": {
+  "quality": 7,
+  "difficulty": 5,
+  "parts": 4,
+  "minutes": 12,
+  "flags": [],
+  "tagline": "Coherent Vieta and Newton-identity chain ending in a discriminant-style real-root argument."
+ },
+ "vole-capture-recapture": {
+  "quality": 6,
+  "difficulty": 7,
+  "parts": 4,
+  "minutes": 25,
+  "flags": [
+   "garbled"
+  ],
+  "tagline": "Excellent hypergeometric MLE, but the final binomial identity is truncated."
+ },
+ "wallis-cos-powers-0-pi": {
+  "quality": 3,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 4,
+  "flags": [
+   "trivial"
+  ],
+  "tagline": "Quick even-versus-odd power contrast; too short for deep discussion."
+ },
+ "wallis-integrals": {
+  "quality": 8,
+  "difficulty": 7,
+  "parts": 5,
+  "minutes": 30,
+  "flags": [],
+  "tagline": "Classic multi-step Wallis chain with squeeze and limit; strong discussion scope."
+ },
+ "warehouse-three-towns-line": {
+  "quality": 5,
+  "difficulty": 3,
+  "parts": 2,
+  "minutes": 6,
+  "flags": [],
+  "tagline": "Median-point intuition; answer independent of distances, good for probing reasoning."
+ },
+ "watch-hands-overlap-after-midnight": {
+  "quality": 5,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Relative angular speed gives 1:05 5/11; clean, with easy extensions."
+ },
+ "wedge-particle-smooth-slide": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 5,
+  "minutes": 20,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Classic wedge chain: momentum, geometry, energy, then a clean ODE result."
+ },
+ "wedge-smooth-slide-particle-km": {
+  "quality": 5,
+  "difficulty": 7,
+  "parts": 3,
+  "minutes": 20,
+  "flags": [
+   "missing_info",
+   "needs_diagram"
+  ],
+  "tagline": "Good elimination of \u03b2, but refers to a diagram that is not provided."
+ },
+ "weekday-3-april-1905": {
+  "quality": 3,
+  "difficulty": 4,
+  "parts": 2,
+  "minutes": 8,
+  "flags": [],
+  "tagline": "Mechanical calendar counting; the leap-year trap is the only discussion point."
+ },
+ "weigh-your-own-head": {
+  "quality": 8,
+  "difficulty": 3,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Open Fermi estimate inviting method, assumptions, and sanity-check discussion."
+ },
+ "x-to-the-x-and-x-to-one-over-x": {
+  "quality": 6,
+  "difficulty": 5,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Standard log-differentiation sketches; solid but overlaps the x^x curve problem."
+ },
+ "x-to-the-x-curve-and-solutions": {
+  "quality": 9,
+  "difficulty": 6,
+  "parts": 5,
+  "minutes": 25,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Limit, minimum, sketch, case analysis, and a consistency check at 1/\u221a2."
+ },
+ "x2-minus-x4-and-lemniscate-of-gerono": {
+  "quality": 5,
+  "difficulty": 4,
+  "parts": 3,
+  "minutes": 12,
+  "flags": [
+   "needs_diagram"
+  ],
+  "tagline": "Nice double point at the origin, but the 'derivative at origin' wording is vague."
+ },
+ "x2-plus-y2-eq-3z2": {
+  "quality": 8,
+  "difficulty": 6,
+  "parts": 3,
+  "minutes": 15,
+  "flags": [],
+  "tagline": "Classic infinite descent via squares mod 3, prompting discussion of modular method."
+ }
+}

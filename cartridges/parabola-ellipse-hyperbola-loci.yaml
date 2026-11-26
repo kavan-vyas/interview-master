@@ -1,0 +1,123 @@
+id: parabola-ellipse-hyperbola-loci
+title: Conic loci from focus and directrix
+topics:
+- conic sections
+- loci
+- coordinate geometry
+warmup: false
+answer_source: generated
+statement: (i) The point $(x,y)$ has the property that its distance from the point $(a,0)$ is equal to
+  its distance from the line $x=-a$. Sketch the locus of the point using this information. Show that $y^2=4ax$.
+  (ii) The point $(x,y)$ has the property that its distance from the point $(ae,0)$ is $e$ times its distance
+  from the line $x=ae^{-1}$. Sketch the locus of the point for $0<e<1$ and for $e>1$. Show that $\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$
+  if $0<e<1$ and that $\frac{x^2}{a^2}-\frac{y^2}{b^2}=1$ if $e>1$, where $b=a\sqrt{|1-e^2|}$. (iii) Show
+  that the hyperbola $\frac{x^2}{a^2}-\frac{y^2}{b^2}=1$ becomes the rectangular hyperbola $XY=1$ in the
+  new coordinates given by $x=\frac{a(X+Y)}{2}$, $y=\frac{b(X-Y)}{2}$.
+stages:
+- goal: Derive the Cartesian equation of the locus in part (i) and sketch it.
+  expected: $(x-a)^2+y^2=(x+a)^2$, hence $y^2=4ax$. The locus is a parabola with vertex at the origin,
+    focus $(a,0)$, directrix $x=-a$, opening along the positive $x$-axis.
+  solution: The distance to $(a,0)$ is $\sqrt{(x-a)^2+y^2}$ and the distance to $x=-a$ is $|x+a|$. Equating
+    and squaring gives $(x-a)^2+y^2=(x+a)^2$. Expanding, $x^2-2ax+a^2+y^2=x^2+2ax+a^2$, so $y^2=4ax$.
+    The curve is symmetric about the $x$-axis, passes through the origin, and lies in $x \geq 0$ for $a>0$,
+    so it opens to the right.
+  common_errors:
+  - Forgetting to square the distance to the line, or mishandling the absolute value $|x+a|$.
+  - Sketching the parabola opening to the left when $a>0$.
+  - Concluding $y^2=-4ax$ through a sign slip in the expansion.
+  hints:
+    rephrase: Write both distances as expressions in $x$, $y$ and $a$ before equating them.
+    smaller_case: Check whether the origin satisfies the distance condition, and decide which direction
+      the curve must open.
+    key_idea: Square both sides to remove the square root and the absolute value, then expand and collect
+      terms.
+  check: expand((x-a)**2 + y**2 - (x+a)**2 - (y**2 - 4*a*x))
+  check_ok: true
+- goal: Derive the Cartesian equation for the locus in part (ii) for general $e$.
+  expected: $(1-e^2)x^2+y^2=a^2(1-e^2)$.
+  solution: The distance to $(ae,0)$ is $\sqrt{(x-ae)^2+y^2}$ and the distance to $x=a/e$ is $|x-a/e|$.
+    The condition is $\sqrt{(x-ae)^2+y^2}=e\,|x-a/e|$. Squaring gives $(x-ae)^2+y^2=e^2(x-a/e)^2=e^2x^2-2aex+a^2$.
+    The left side is $x^2-2aex+a^2e^2+y^2$. Subtracting, $(1-e^2)x^2+y^2=a^2-a^2e^2=a^2(1-e^2)$.
+  common_errors:
+  - Forgetting to square the factor $e$, giving $e x^2$ instead of $e^2x^2$.
+  - Writing the distance to the focus as $x+ae$.
+  - Dropping the $a^2$ term from $(a/e)^2 e^2$.
+  hints:
+    rephrase: Set up the distance equation using the point, the focus and the directrix, then square both
+      sides.
+    smaller_case: Set $a=1$ and $e=\tfrac{1}{2}$, and check your algebra at $x=0$.
+    key_idea: After squaring, move all terms to one side and group the $x^2$ and $y^2$ terms.
+  check: expand((x-a*e)**2 + y**2 - e**2*(x-a/e)**2 - ((1-e**2)*x**2 + y**2 - a**2*(1-e**2)))
+  check_ok: true
+- goal: Obtain the standard forms for $0<e<1$ and for $e>1$, and sketch both loci.
+  expected: For $0<e<1$, $b^2=a^2(1-e^2)$ and dividing by $a^2(1-e^2)$ gives $\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$,
+    an ellipse with foci $(\pm ae,0)$. For $e>1$, $b^2=a^2(e^2-1)$ and multiplying by $-1$ then dividing
+    by $a^2(e^2-1)$ gives $\frac{x^2}{a^2}-\frac{y^2}{b^2}=1$, a hyperbola with foci $(\pm ae,0)$ and
+    vertices $(\pm a,0)$.
+  solution: 'Case $0<e<1$: $1-e^2>0$, so dividing $(1-e^2)x^2+y^2=a^2(1-e^2)$ by $a^2(1-e^2)$ gives $\frac{x^2}{a^2}+\frac{y^2}{a^2(1-e^2)}=1$,
+    i.e. $\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$. Case $e>1$: $1-e^2<0$, so multiply by $-1$ to get $(e^2-1)x^2-y^2=a^2(e^2-1)$,
+    then divide by $a^2(e^2-1)$ to get $\frac{x^2}{a^2}-\frac{y^2}{a^2(e^2-1)}=1$, i.e. $\frac{x^2}{a^2}-\frac{y^2}{b^2}=1$.'
+  common_errors:
+  - Using $b^2=a^2(e^2-1)$ for $0<e<1$.
+  - Losing the sign when dividing by a negative quantity.
+  - Sketching the hyperbola as an ellipse-like closed curve.
+  hints:
+    rephrase: Look at the sign of $1-e^2$ in the equation you obtained and divide with care.
+    smaller_case: 'Take $e=\tfrac{1}{2}$ and then $e=2$: what is the sign of $1-e^2$ in each case?'
+    key_idea: Divide by $a^2|1-e^2|$ and track which term picks up the minus sign.
+  check: simplify((x**2/a**2 - y**2/(a**2*(e**2-1)) - 1) - ((1-e**2)*x**2 + y**2 - a**2*(1-e**2))/(-a**2*(e**2-1)))
+  check_ok: true
+- goal: Show that the hyperbola $\frac{x^2}{a^2}-\frac{y^2}{b^2}=1$ becomes $XY=1$ under the given substitution.
+  expected: $XY=1$.
+  solution: Substituting, $\frac{x^2}{a^2}=\frac{(X+Y)^2}{4}$ and $\frac{y^2}{b^2}=\frac{(X-Y)^2}{4}$.
+    So $\frac{(X+Y)^2-(X-Y)^2}{4}=1$, i.e. $\frac{4XY}{4}=1$, giving $XY=1$.
+  common_errors:
+  - Forgetting the factor $\frac{1}{4}$ when squaring $\frac{X+Y}{2}$.
+  - Getting $XY=-1$ from a sign error in $(X-Y)^2$.
+  - Not expanding $(X+Y)^2-(X-Y)^2$ correctly.
+  hints:
+    rephrase: Substitute the expressions for $x$ and $y$ into $\frac{x^2}{a^2}-\frac{y^2}{b^2}$ and simplify.
+    smaller_case: 'Test $X=2$, $Y=1$: what are $x$ and $y$, and does the equation hold for the product
+      $XY$?'
+    key_idea: Use the difference of squares $(X+Y)^2-(X-Y)^2$ to simplify.
+  check: expand(((X+Y)/2)**2 - ((X-Y)/2)**2 - X*Y)
+  check_ok: true
+extensions:
+  '3':
+  - Find the equation of the tangent at a general point of $y^2=4ax$.
+  '4':
+  - Show that the point $(ae,0)$ is a focus of $\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$ when $b^2=a^2(1-e^2)$.
+  '5':
+  - Show that the rectangular hyperbola $XY=c^2$ has asymptotes along the coordinate axes.
+spoken_vocab:
+- distance from the point a comma zero
+- distance from the line x equals minus a
+- y squared equals four a x
+- focus
+- directrix
+- eccentricity e
+- x squared over a squared plus y squared over b squared equals one
+- x squared over a squared minus y squared over b squared equals one
+- b equals a times the square root of the absolute value of one minus e squared
+- rectangular hyperbola
+- X Y equals one
+source: step-workbook/Cambridge STEP Short Workbook.pdf#1
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 3
+  minutes: 25
+  flags: []
+  tagline: Unifies parabola, ellipse and hyperbola via eccentricity, then reaches rectangular hyperbola.
+  priority: 92
+  rank: 80
+  tier: A
+  category: step-workbook
+  d10: 5.0
+  real: 4.0
+  by: haiku
+tags:
+- curve_sketching
+- coordinate_geometry
+- geometry

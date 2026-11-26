@@ -1,0 +1,126 @@
+id: ants-collisions-line-625
+title: 'Ants on a Line: Counting Collisions'
+topics:
+- combinatorics
+- counting
+- relabelling argument
+- relative motion
+warmup: false
+answer_source: generated
+statement: There are $50$ ants on a $10$ m line. The $25$ left-most ants move right, and the $25$ right-most
+  ants move left. When two ants collide, they both reverse direction. How many collisions have occurred
+  in total once all ants have fallen off the end of the line?
+stages:
+- goal: Decide which pairs of ants can ever collide.
+  expected: Only a right-moving ant and a left-moving ant, where the right-moving ant starts to the left
+    of the left-moving ant. Two ants moving in the same direction never meet.
+  solution: Assume all ants move at the same speed. Two ants moving the same way keep a constant separation,
+    so they never meet. Two ants moving toward each other close the gap. Initially every right-mover is
+    to the left of every left-mover, so each such (right-mover, left-mover) pair approaches and meets.
+    Reversal at a collision changes only the directions of those two ants, and the argument applies again
+    after each reversal.
+  common_errors:
+  - Thinking two ants moving in the same direction will eventually collide.
+  - Thinking a right-mover can collide with a left-mover that starts to its left.
+  - Assuming ants must collide with every other ant on the line.
+  hints:
+    rephrase: Ask which pairs of ants close the distance between them and which pairs keep the same distance.
+    smaller_case: Take just two ants, one moving right on the left and one moving left on the right. What
+      happens to the distance between them?
+    key_idea: Compare how the separation between two ants changes when they move the same way versus opposite
+      ways.
+- goal: Replace the reversing collisions with ghosts that pass through each other, and relate collisions
+    to ghost crossings.
+  expected: Each collision is equivalent to two ghosts passing through one another. Each collision corresponds
+    to exactly one crossing of a right-moving ghost with a left-moving ghost. Every such pair crosses
+    exactly once, so the number of collisions equals the number of (right-moving, left-moving) pairs.
+  solution: When two ants bounce, the set of positions and directions at every instant is the same as
+    if they had passed through each other, with their labels swapped. Ghosts move independently at constant
+    speed and never change direction. A right-moving ghost and a left-moving ghost start in the order
+    right-then-left and end in the order left-then-right once both have left the line, so they cross exactly
+    once. Ghosts moving the same way never cross. Hence the number of collisions equals the number of
+    crossings, which is the number of right-moving/left-moving ghost pairs.
+  common_errors:
+  - Counting each collision twice, once for each ant.
+  - Counting crossings between ghosts moving in the same direction.
+  - Forgetting that ants falling off the end still count while they are on the line.
+  hints:
+    rephrase: If colliding ants passed through each other instead of bouncing, what would the set of positions
+      look like at each moment?
+    smaller_case: With one right-moving ant and one left-moving ant, how many times do their ghosts cross?
+    key_idea: Swapping labels at a collision means the collisions can be recast as ghosts crossing; count
+      those crossings.
+- goal: Compute the total number of collisions.
+  expected: '625'
+  solution: There are 25 right-moving ghosts and 25 left-moving ghosts. Each right-moving ghost crosses
+    each left-moving ghost exactly once, and no other pairs cross. So the total is $25 \times 25 = 625$
+    collisions.
+  common_errors:
+  - Using the number of all pairs of ants, $\binom{50}{2} = 1225$.
+  - Adding the group sizes, $25 + 25 = 50$, instead of multiplying.
+  - Using $\binom{25}{2}$ or $\binom{25}{2} \times 2$ by counting same-direction pairs.
+  - Forgetting that every right-mover meets every left-mover, not only the nearest one.
+  hints:
+    rephrase: Count only the pairs formed by one ant from each group, since only those approach each other.
+    smaller_case: With 2 right-moving ants and 2 left-moving ants, list every ghost crossing and count
+      them.
+    key_idea: Each pair with one member from each group crosses exactly once, so count the choices of
+      one member from each group.
+  check: collisions - 625
+  check_ok: false
+extensions:
+  '3':
+  - Generalise to a right-moving ants on the left and b left-moving ants on the right, and give the total
+    number of collisions as a function of a and b.
+  - Does the answer change if the ants start at unevenly spaced positions, as long as all right-movers
+    are left of all left-movers? Justify with the ghost argument.
+  '4':
+  - Suppose the two groups move at different speeds. Does the total number of collisions change? Justify
+    using the crossing count.
+  '5':
+  - Explain why every ant eventually falls off the end of the line, so the process terminates. Use the
+    ghost picture to argue this.
+spoken_vocab:
+- ants
+- ant
+- collision
+- collisions
+- line
+- left-most
+- right-most
+- move right
+- move left
+- reverse direction
+- fall off
+- ghost
+- ghosts
+- pass through
+- cross
+- twenty-five
+- fifty
+- six hundred and twenty-five
+- ten metres
+- twenty-five times twenty-five
+- choose
+- right-moving
+- left-moving
+- separation
+source: screenshots/Screenshot 2026-11-19 at 14.37.58.png
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Ghost-passing trick turns collisions into a 625-pair count.
+  priority: 81
+  rank: 252
+  tier: B
+  category: screenshots
+  d10: 4.5
+  real: 8.5
+  by: deepseek-v4.1-flash-free
+tags:
+- combinatorics
+- proof

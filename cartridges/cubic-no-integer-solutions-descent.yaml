@@ -1,0 +1,134 @@
+id: cubic-no-integer-solutions-descent
+title: No integer solutions to a family of cubic equations
+topics:
+- number theory
+- parity
+- divisibility
+- factorisation
+- infinite descent
+- algebraic manipulation
+warmup: false
+answer_source: pdf
+statement: (i) Show that, if $m$ is an integer such that $(m-3)^3+m^3=(m+3)^3$ $(\ast)$, then $m^2$ is
+  a factor of $54$. Deduce that there is no integer $m$ which satisfies the equation $(\ast)$. (ii) Show
+  that, if $n$ is an integer such that $(n-6)^3+n^3=(n+6)^3$ $(\ast\ast)$, then $n$ is even. By writing
+  $n=2m$, deduce that there is no integer $n$ which satisfies the equation $(\ast\ast)$. (iii) Show that,
+  if $n$ is an integer such that $(n-a)^3+n^3=(n+a)^3$ $(\ast\ast\ast)$, where $a$ is a non-zero integer,
+  then $n$ is even and $a$ is even. Deduce that there is no integer $n$ which satisfies the equation $(\ast\ast\ast)$.
+stages:
+- goal: Expand part (i) and rearrange to a form showing m^2 divides 54.
+  expected: $m^3-18m^2-54=0$, i.e. $m^2(m-18)=54$, so $m^2$ is a factor of 54.
+  solution: 'Left side minus right side: $(m^3-9m^2+27m-27)+m^3-(m^3+9m^2+27m+27)=m^3-18m^2-54$. Setting
+    this to zero gives $m^2(m-18)=54$. Since m-18 is an integer, m^2 divides 54.'
+  common_errors:
+  - Sign error when expanding (m-3)^3 or (m+3)^3
+  - Cancelling the m^3 terms incorrectly
+  - Dividing by m^2 without noting m=0 is excluded
+  hints:
+    rephrase: Expand both cubes, bring every term to one side, and see what the m^3 and m^2 terms combine
+      into.
+    smaller_case: Expand (m-3)^3 alone and check your coefficients.
+    key_idea: After expanding, the equation factorises as a square times a linear factor equal to a constant.
+  check: expand((m-3)**3 + m**3 - (m+3)**3 - (m**2*(m-18) - 54))
+  check_ok: true
+- goal: Show there is no integer m satisfying (*), using the square factor.
+  expected: The only squares dividing 54 are 1 and 9, so m is ±1 or ±3. None of these satisfies $m^2(m-18)=54$,
+    so there is no integer solution.
+  solution: '54 = 2·3^3, so the square divisors are 1 and 9, giving m∈{±1,±3}. Substituting: m=1 gives
+    -17, m=-1 gives -19, m=3 gives -135, m=-3 gives -189. None equals 54. Also m=0 gives 0≠54.'
+  common_errors:
+  - Forgetting the negative values of m
+  - Claiming m must divide 54 rather than m^2
+  - Stopping after checking only m=1 and m=3
+  hints:
+    rephrase: Which integers have squares dividing 54? List them and test each one in the rearranged equation.
+    smaller_case: Factor 54 into primes and find every square factor.
+    key_idea: A square dividing a fixed number is very restrictive, so the candidate list is short.
+  check: null
+- goal: 'Part (ii): show n is even and reduce (**) to the equation in part (i).'
+  expected: If n is odd, the left side is even and the right side odd, so n is even. Writing n=2m, the
+    equation becomes $(m-3)^3+m^3=(m+3)^3$, which has no integer solution by part (i).
+  solution: If n is odd then n-6 is odd, so the left side is odd+odd=even, while (n+6)^3 is odd. So n
+    is even. With n=2m each cube is 8 times the corresponding cube in m, so dividing by 8 gives $(m-3)^3+m^3=(m+3)^3$.
+  common_errors:
+  - Using the wrong parity for n-6
+  - Dividing by 2 instead of 8 when scaling
+  - Forgetting to conclude from part (i)
+  hints:
+    rephrase: Look at the parity of each of the three cubes when n is odd. Then, when n is even, see how
+      the equation scales.
+    smaller_case: Test the parity of the terms with n=3 and n=4.
+    key_idea: Parity rules out odd n; scaling by 2 turns the equation into the one already solved.
+  check: expand((2*m-6)**3 + (2*m)**3 - (2*m+6)**3 - 8*((m-3)**3 + m**3 - (m+3)**3))
+  check_ok: true
+- goal: 'Part (iii): reduce (***) to a single equation in n and a.'
+  expected: $n^2(n-6a)=2a^3$
+  solution: 'Expanding both sides: left is 2n^3-3an^2+3a^2n-a^3 and right is n^3+3an^2+3a^2n+a^3. Subtracting
+    gives $n^3-6an^2-2a^3=0$, i.e. $n^2(n-6a)=2a^3$.'
+  common_errors:
+  - Mis-expanding (n-a)^3 so the a^2 n terms do not cancel
+  - Arithmetic slip giving 6an^2 with the wrong coefficient
+  hints:
+    rephrase: Expand as in part (i), but keep a as a symbol and look for the terms that survive.
+    smaller_case: Set a=1 and expand the cubes numerically.
+    key_idea: The a^2 n terms cancel, leaving one equation with a factor n^2.
+  check: expand((n-a)**3 + n**3 - (n+a)**3 - (n**2*(n-6*a) - 2*a**3))
+  check_ok: true
+- goal: 'Part (iii): show n and a are both even, then use descent to deduce there is no solution.'
+  expected: If n is odd, n^2(n-6a) is odd while 2a^3 is even, so n is even. Then 4 divides n^2(n-6a),
+    so 4 divides 2a^3, so a is even. Setting n=2m, a=2b gives the same form $m^2(m-6b)=2b^3$, with b nonzero.
+    Repeating gives an infinite descent in |a|, which is impossible for a nonzero integer, so there is
+    no solution.
+  solution: 'Odd n: n^2(n-6a) odd, 2a^3 even, contradiction. Even n: n^2 is divisible by 4, so 2a^3 is
+    divisible by 4, so a^3 is even, so a is even. Substituting n=2m, a=2b: $8m^2(m-6b)=16b^3$, i.e. $m^2(m-6b)=2b^3$,
+    the same equation. Since a≠0, each step halves |a|, which cannot continue forever.'
+  common_errors:
+  - Concluding a is odd or even without using the factor 4
+  - Stopping the descent without explaining why it must terminate
+  - Forgetting that a≠0 is needed for the descent to be a contradiction
+  hints:
+    rephrase: Consider the parity of n first, then look at what the equation says modulo 4 when n is even.
+    smaller_case: Take n=2 and see what 2a^3 must equal.
+    key_idea: If (n,a) is a solution with a even, then (n/2, a/2) is also a solution, so a nonzero solution
+      would produce an infinite chain of smaller ones.
+  check: expand((2*m)**2*(2*m-6*(2*b)) - 2*(2*b)**3 - 8*(m**2*(m-6*b) - 2*b**3))
+  check_ok: true
+extensions:
+  '3':
+  - Explain why a parity argument alone cannot finish part (iii) and the descent is needed.
+  '4':
+  - Using only parity, show there is no integer solution to $(n-a)^3+n^3=(n+a)^3$ when a is odd.
+  '5':
+  - Explain exactly where the hypothesis a≠0 is used, and what happens if a=0 is allowed.
+spoken_vocab:
+- m squared divides fifty four
+- m cubed
+- n minus six cubed
+- n plus six cubed
+- n equals two m
+- a equals two b
+- n squared times n minus six a
+- two a cubed
+- parity
+- modulo four
+- infinite descent
+- non-zero integer
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#10
+verified: false
+rating:
+  quality: 8
+  difficulty: 7
+  parts: 3
+  minutes: 25
+  flags: []
+  tagline: Parity and infinite descent over three linked cubic equations; elegant and structured.
+  priority: 93
+  rank: 71
+  tier: A
+  category: siklos
+  d10: 8.0
+  real: 5.0
+  by: deepseek-v4.1-flash-free
+tags:
+- number_theory
+- proof

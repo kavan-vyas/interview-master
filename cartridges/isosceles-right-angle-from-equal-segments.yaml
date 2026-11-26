@@ -1,0 +1,105 @@
+id: isosceles-right-angle-from-equal-segments
+title: Angle from equal segments in an isosceles triangle
+topics:
+- geometry
+- triangles
+- circles
+- angle chasing
+warmup: true
+answer_source: pdf
+statement: In the diagram, $AB=AC$, and the point $D$ lies on $BC$ such that $AD=BD=DC$. What is angle
+  $\theta$? a) $60^\circ$ b) $72^\circ$ c) $90^\circ$ d) $108^\circ$ e) $120^\circ$
+stages:
+- goal: Show that $\angle ADB=90^\circ$.
+  expected: $\angle ADB=90^\circ$, because $AD$ is perpendicular to $BC$.
+  solution: Triangles ABD and ACD share side AD, have BD=DC (D is the midpoint of BC) and AB=AC. By SSS
+    they are congruent, so $\angle ADB=\angle ADC$. These two angles sum to $180^\circ$, so each is $90^\circ$.
+  common_errors:
+  - Assuming $\angle ADB=60^\circ$ because the triangle looks equilateral.
+  - Claiming D is the midpoint without using BD=DC.
+  hints:
+    rephrase: Two triangles share the segment AD. What do you know about their other sides?
+    smaller_case: Look at the two triangles formed by AD, and what equal sides they have.
+    key_idea: Congruent triangles give equal angles, and angles on a straight line sum to a fixed total.
+  check: (180/2) - 90
+  check_ok: true
+- goal: Find $\angle ABD$.
+  expected: $\angle ABD=45^\circ$
+  solution: Triangle ABD has AD=BD, so its base angles at A and B are equal. Since $\angle ADB=90^\circ$,
+    the base angles are each $(180^\circ-90^\circ)/2=45^\circ$. So $\angle ABD=45^\circ$.
+  common_errors:
+  - Dividing 180 by 2 without subtracting the right angle first, giving 90.
+  - Using the wrong pair of equal sides as the base.
+  hints:
+    rephrase: Triangle ABD has two equal sides. Which angles are equal, and what do they add up to?
+    smaller_case: Use the fact that angles in a triangle sum to 180 degrees.
+    key_idea: Isosceles triangles have equal base angles.
+  check: (180-90)/2 - 45
+  check_ok: true
+- goal: Find $\theta=\angle BAC$.
+  expected: $\theta=90^\circ$
+  solution: Triangle ABC has AB=AC, so $\angle B=\angle C=\angle ABD=45^\circ$. Then $\angle BAC=180^\circ-45^\circ-45^\circ=90^\circ$.
+  common_errors:
+  - Taking $\theta$ to be $\angle ABC$ instead of $\angle BAC$.
+  - Forgetting that $\angle C$ equals $\angle B$ because AB=AC.
+  hints:
+    rephrase: Which angle is the one at A, and how can you get it from the angles at B and C?
+    smaller_case: Find the angles at B and C first, then use the angle sum of triangle ABC.
+    key_idea: Angle sum in a triangle, with equal base angles from AB=AC.
+  check: 180 - 2*45 - 90
+  check_ok: true
+extensions:
+  '3':
+  - Prove without using a circle that $\angle BAC=90^\circ$ when $AD=BD=DC$.
+  - Explain why D must be the foot of the perpendicular from A to BC.
+  '4':
+  - Given $AD=BD=DC$, find $\angle ABC$.
+  - If $AD=BD=DC$ and $\angle BAD=30^\circ$, find $\angle DAC$.
+  '5':
+  - Show that A, B and C lie on a circle with centre D, and state what this implies about BC.
+  - 'Generalise: if $AD=BD=DC$ with $D$ on $BC$, find $\angle BAC$ using only the circle theorems.'
+spoken_vocab:
+- A
+- B
+- C
+- D
+- theta
+- AB equals AC
+- AD equals BD equals DC
+- point D lies on BC
+- angle theta
+- angle ADB
+- angle ABD
+- angle BAC
+- degrees
+- sixty degrees
+- seventy two degrees
+- ninety degrees
+- one hundred and eight degrees
+- one hundred and twenty degrees
+- triangle
+- isosceles
+- congruent
+- SSS
+- perpendicular
+- circle
+- centre
+- diameter
+source: kclms/kclms-specimen-mcq-2.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 5
+  parts: 3
+  minutes: 6
+  flags: []
+  tagline: Nice angle chase, but multiple choice undercuts the discussion.
+  priority: 41
+  rank: 578
+  tier: D
+  category: kclms
+  d10: 3.5
+  real: 3.0
+  by: haiku
+tags:
+- geometry

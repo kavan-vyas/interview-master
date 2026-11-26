@@ -1,0 +1,92 @@
+id: quadratic-and-exponential-inequalities
+title: Solving polynomial and exponential inequalities
+topics:
+- inequalities
+- quadratics
+- exponentials
+- substitution
+- sign analysis
+warmup: true
+answer_source: pdf
+statement: Solve the inequality $x^2-3x+2\ge 0$. Now solve $x^2-5x+6\ge 0$. Consider also $25^x+25\cdot
+  5^{x-1}+6\ge 0$.
+stages:
+- goal: Solve x^2 - 3x + 2 >= 0.
+  expected: x <= 1 or x >= 2
+  solution: 'Factor: (x-1)(x-2) >= 0. The parabola opens upwards, so the expression is negative strictly
+    between the roots 1 and 2 and non-negative outside them, including at the roots. Solution set: (-infinity,
+    1] union [2, infinity).'
+  check: solve_univariate_inequality(x**2-3*x+2>=0, x, relational=False) == Union(Interval(-oo,1), Interval(2,oo))
+  common_errors:
+  - Giving 1 <= x <= 2 (sign reversed)
+  - Leaving out the endpoints where the expression equals zero
+  hints:
+    rephrase: Factor the quadratic first.
+    smaller_case: Test one point between the roots and one point outside them.
+    key_idea: The sign of a product of factors changes only at its roots, and an upward parabola is negative
+      between its roots.
+  check_ok: true
+- goal: Solve x^2 - 5x + 6 >= 0.
+  expected: x <= 2 or x >= 3
+  solution: 'Factor: (x-2)(x-3) >= 0. The roots are 2 and 3 and the parabola opens upwards, so the expression
+    is non-negative outside the roots, including at them. Solution set: (-infinity, 2] union [3, infinity).'
+  check: solve_univariate_inequality(x**2-5*x+6>=0, x, relational=False) == Union(Interval(-oo,2), Interval(3,oo))
+  common_errors:
+  - Reusing the previous answer x <= 1 or x >= 2
+  - Giving 2 <= x <= 3 (sign reversed)
+  hints:
+    rephrase: Factor again and find the roots.
+    smaller_case: Substitute x = 2.5 into the expression and note the sign.
+    key_idea: 'Compare with the first inequality: the roots have moved, but the shape of the parabola
+      has not.'
+  check_ok: true
+- goal: Solve 25^x + 25*5^(x-1) + 6 >= 0.
+  expected: Every real x satisfies the inequality, so the solution set is all real numbers.
+  solution: Write 25^x = (5^x)^2 and 25*5^(x-1) = 5*5^x. Let u = 5^x > 0. The inequality becomes u^2 +
+    5u + 6 = (u+2)(u+3) >= 0. For u > 0 both factors are positive, so the product is positive for every
+    admissible x. Hence the inequality holds for all real x.
+  common_errors:
+  - Factoring correctly then solving u <= -2 or u >= -3 and concluding there is no solution
+  - Treating it as a quadratic in x rather than in 5^x
+  - Forgetting that 5^x > 0 for every real x
+  hints:
+    rephrase: Rewrite every term as a power of 5.
+    smaller_case: Substitute x = 0 and x = 1 and check the sign of the whole expression.
+    key_idea: Let u = 5^x and ask what values u can take for real x.
+extensions:
+  '3':
+  - Solve x^2 - 5x + 6 <= 0.
+  '4':
+  - Solve 4^x - 2^(x+1) - 8 >= 0.
+  '5':
+  - Solve |x-1| + |x-3| >= 4.
+spoken_vocab:
+- x squared minus three x plus two
+- x squared minus five x plus six
+- greater than or equal to zero
+- twenty five to the power x
+- five to the power x minus one
+- substitute u equals five to the x
+- solve
+- inequality
+- union
+- all real numbers
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 6 (anonymous).pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: 'Substitution trap: exponential becomes quadratic that''s always positive.'
+  priority: 61
+  rank: 441
+  tier: C
+  category: past-interviews
+  d10: 2.5
+  real: 5.5
+  by: haiku
+tags:
+- inequalities
+- exponentials_and_logarithms

@@ -1,0 +1,106 @@
+id: superellipse-x2n-y2n-limit
+title: Sketch x^{2n} + y^{2n} = 1 and its limit as n tends to infinity
+topics:
+- curve sketching
+- symmetry
+- limits
+- powers
+warmup: false
+answer_source: generated
+statement: Sketch $x^{2n}+y^{2n}=1$ for $n=2$ and $4$. Explain what happens to the graph as $n\to\infty$.
+stages:
+- goal: Determine the symmetries and axis intercepts of x^4 + y^4 = 1 (n = 2), and describe the general
+    shape.
+  expected: Symmetric about both axes and about the line y = x. Intercepts at (±1, 0) and (0, ±1). The
+    curve lies outside the unit circle and inside the square |x| ≤ 1, |y| ≤ 1, giving a rounded square.
+  solution: Replacing x by -x, or y by -y, or swapping x and y, leaves the equation unchanged, so the
+    curve has these symmetries. Setting y = 0 gives x^4 = 1, so x = ±1; similarly for x = 0. On the curve,
+    x^4 ≤ 1 so |x| ≤ 1, and similarly |y| ≤ 1. Since x^4 ≤ x^2 and y^4 ≤ y^2 when |x|, |y| ≤ 1, we get
+    x^4 + y^4 ≤ x^2 + y^2, so the curve lies on or outside the unit circle.
+  common_errors:
+  - Thinking the n = 2 curve is the unit circle
+  - Forgetting the symmetry in the line y = x
+  - Placing the curve through (1, 1)
+  hints:
+    rephrase: Try substituting zero for one of the variables and solving for the other.
+    smaller_case: What does the curve look like when n = 1?
+    key_idea: Check what happens to the equation under x -> -x, y -> -y, and x <-> y.
+  check: (x**4+y**4-1).subs({x:1, y:0})
+  check_ok: true
+- goal: Find where each curve crosses the diagonal y = x, for n = 2 and n = 4.
+  expected: 'For n = 2: (±2^{-1/4}, ±2^{-1/4}), about ±0.841. For n = 4: (±2^{-1/8}, ±2^{-1/8}), about
+    ±0.917.'
+  solution: On y = x the equation becomes 2x^{2n} = 1, so x^{2n} = 1/2 and x = ±2^{-1/(2n)}. For n = 2
+    this gives 2^{-1/4} ≈ 0.841, and for n = 4 it gives 2^{-1/8} ≈ 0.917. Both points lie inside the square
+    and closer to the corner (1, 1) as n grows.
+  common_errors:
+  - Solving x^{2n} = 1 instead of 2x^{2n} = 1
+  - Writing 2^{-1/n} instead of 2^{-1/(2n)}
+  - Forgetting to use both signs
+  hints:
+    rephrase: Set y equal to x in the equation and simplify.
+    smaller_case: What does x^4 + x^4 = 1 simplify to?
+    key_idea: When y = x the two terms are equal, so the equation reduces to a single power of x.
+  check: 2*(2**Rational(-1,4))**4 - 1 + 2*(2**Rational(-1,8))**8 - 1
+  check_ok: true
+- goal: Describe what happens to the curve as n tends to infinity.
+  expected: The curve tends to the square with vertices (±1, ±1), i.e. the boundary of the region |x|
+    ≤ 1, |y| ≤ 1. The diagonal crossing points tend to the corners (±1, ±1).
+  solution: For points with |x| < 1 and |y| < 1, both x^{2n} and y^{2n} tend to 0, so these points do
+    not remain on the limiting curve. On the lines |x| = 1, the equation forces |y| ≤ 1, and similarly
+    on |y| = 1. So the limit is the boundary of the square with sides x = ±1 and y = ±1. The curve becomes
+    more and more squarelike as n increases.
+  common_errors:
+  - Saying the limit is the unit circle
+  - Saying the limit is the empty set
+  - Forgetting that the corners tend to (±1, ±1)
+  hints:
+    rephrase: Think about what a very large power does to a number between 0 and 1.
+    smaller_case: Compare the curve for n = 2 and n = 4. Which one is closer to a square?
+    key_idea: Split the plane into points inside the square and points on its boundary, and see what each
+      does to the terms x^{2n} and y^{2n}.
+  check: limit(2**(-1/(2*n)), n, oo) - 1
+  check_ok: true
+extensions:
+  '3':
+  - Show that for any n ≥ 2 the curve lies outside the unit circle x^2 + y^2 = 1 and inside the square
+    |x| ≤ 1, |y| ≤ 1.
+  '4':
+  - Describe the curve for n = 1 and explain why it is a special case.
+  '5':
+  - Show that the enclosed area is 4Γ(1 + 1/(2n))^2 / Γ(1 + 1/n), and deduce that it tends to 4 as n tends
+    to infinity.
+spoken_vocab:
+- x to the power two n
+- y to the power two n
+- equals one
+- n equals two
+- n equals four
+- n tends to infinity
+- square root
+- two to the power minus one over four
+- diagonal y equals x
+- unit circle
+- limit
+- rounded square
+- superellipse
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 8
+  difficulty: 5
+  parts: 3
+  minutes: 15
+  flags:
+  - needs_diagram
+  tagline: 'Superellipse limit: symmetry, diagonal crossings, and convergence to the square.'
+  priority: 83
+  rank: 170
+  tier: B
+  category: tbo
+  d10: 3.0
+  real: 6.5
+  by: haiku
+tags:
+- curve_sketching
+- limits_and_approximation

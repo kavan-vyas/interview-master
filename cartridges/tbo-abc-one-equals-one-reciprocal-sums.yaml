@@ -1,0 +1,97 @@
+id: tbo-abc-one-equals-one-reciprocal-sums
+title: Positive reals with abc = 1 and a+b+c = 1/a+1/b+1/c = 3
+topics:
+- symmetric functions
+- Vieta's formulas
+- factorisation
+- AM-GM
+- positive reals
+warmup: false
+answer_source: pdf
+statement: 'If three positive real numbers $a, b, c$ satisfy the following equations show that at least
+  one of them must be 1 and hence deduce all solutions: $abc = 1$ and $a+b+c = 3 = \frac{1}{a}+\frac{1}{b}+\frac{1}{c}$.'
+stages:
+- goal: Rewrite 1/a + 1/b + 1/c in terms of ab + bc + ca using abc = 1.
+  expected: 1/a + 1/b + 1/c = ab + bc + ca, so ab + bc + ca = 3.
+  solution: 1/a = bc/(abc) = bc, and similarly 1/b = ca and 1/c = ab, since abc = 1. So 1/a + 1/b + 1/c
+    = ab + bc + ca = 3.
+  common_errors:
+  - Trying to clear denominators with the wrong common denominator.
+  - Writing 1/a = bc without using abc = 1.
+  check: (1/a+1/b+1/c-(a*b+b*c+c*a)).subs(c,1/(a*b))
+  hints:
+    rephrase: Multiply the numerator and denominator of 1/a by bc. What does the product become?
+    smaller_case: Take a = 2, b = 1, c = 1/2 (so abc = 1). Compute 1/a + 1/b + 1/c and ab + bc + ca and
+      compare.
+    key_idea: Use abc = 1 to replace each reciprocal by a product of the other two variables.
+  check_ok: true
+- goal: Show that (a-1)(b-1)(c-1) = 0, so at least one of a, b, c equals 1.
+  expected: Expanding gives (a-1)(b-1)(c-1) = abc - (ab+bc+ca) + (a+b+c) - 1 = 1 - 3 + 3 - 1 = 0. Hence
+    one of a, b, c equals 1.
+  solution: Expand (a-1)(b-1)(c-1) = abc - (ab+bc+ca) + (a+b+c) - 1. Substitute abc = 1, ab+bc+ca = 3,
+    a+b+c = 3 to get 1 - 3 + 3 - 1 = 0. A product of real numbers is zero only if a factor is zero, so
+    one of a-1, b-1, c-1 is zero.
+  common_errors:
+  - Expanding the product with a sign error on the middle terms.
+  - Concluding that a = b = c = 1 from this step alone, when this step only shows one variable is 1.
+  - Forgetting to substitute all three given values.
+  check: (a-1)*(b-1)*(c-1)-(a*b*c-(a*b+b*c+c*a)+(a+b+c)-1)
+  hints:
+    rephrase: Expand (a-1)(b-1)(c-1) and look for abc, the pairwise products, and the sum.
+    smaller_case: Expand (x-1)(y-1) first. Which terms correspond to the sum and product of x and y?
+    key_idea: A product is zero exactly when one of its factors is zero.
+  check_ok: true
+- goal: Deduce all solutions by showing a, b, c are roots of (t-1)^3.
+  expected: a = b = c = 1, which is the only solution (up to ordering, and ordering is irrelevant since
+    all three are equal).
+  solution: 'By Vieta, a, b, c are the roots of t^3 - (a+b+c)t^2 + (ab+bc+ca)t - abc = t^3 - 3t^2 + 3t
+    - 1 = (t-1)^3. So a, b, c are all 1. Check: 1·1·1 = 1, 1+1+1 = 3 = 1+1+1.'
+  common_errors:
+  - Concluding only that one variable is 1 and leaving the others free.
+  - Forgetting that the cubic with a triple root forces all three roots to coincide.
+  - Not verifying (1,1,1) in the original equations.
+  check: (a-1)**2+(b-1)**2+(c-1)**2
+  hints:
+    rephrase: Form the cubic whose roots are a, b, c, using the three symmetric sums you already know.
+    smaller_case: Check the cubic t^3 - 3t^2 + 3t - 1 at t = 1. What do you see?
+    key_idea: Vieta's formulas turn the three symmetric sums into a cubic whose roots are a, b, c.
+  check_ok: false
+extensions:
+  '3':
+  - If abc = 1 and a+b+c = 1/a+1/b+1/c, must one of a, b, c equal 1? Prove or give a counterexample.
+  '4':
+  - Consider four positive reals a, b, c, d with abcd = 1. Investigate what the analogous sum conditions
+    force.
+  '5':
+  - Use AM-GM to show that for positive reals with abc = 1, a+b+c ≥ 3, with equality only when a = b =
+    c = 1.
+spoken_vocab:
+- a b c equals one
+- a plus b plus c equals three
+- one over a plus one over b plus one over c
+- a b plus b c plus c a
+- a minus one times b minus one times c minus one
+- Vieta's formulas
+- cubic
+- triple root
+- AM-GM
+- positive real numbers
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Clean factorisation argument forces a=b=c=1; extends to n variables
+  priority: 71
+  rank: 321
+  tier: B
+  category: tbo
+  d10: 3.5
+  real: 7.0
+  by: haiku
+tags:
+- algebra_and_functions
+- proof

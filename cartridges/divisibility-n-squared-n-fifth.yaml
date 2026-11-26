@@ -1,0 +1,100 @@
+id: divisibility-n-squared-n-fifth
+title: Divisibility of n^2-1 and n^5-n
+topics:
+- divisibility
+- factorisation
+- modular arithmetic
+- proof
+warmup: true
+answer_source: generated
+statement: Prove that $n^2-1$ is divisible by 8 when $n$ is odd. Prove that $n^5-n$ is divisible by 6
+  whenever $n$ is a natural number. Prove that $n^5-n$ is divisible by 30 whenever $n$ is a natural number.
+stages:
+- goal: Prove that 8 divides n^2-1 whenever n is odd.
+  expected: Write n = 2k+1. Then n^2-1 = 4k(k+1), and k(k+1) is even, so 8 divides 4k(k+1).
+  solution: With n = 2k+1, n^2 - 1 = (n-1)(n+1) = (2k)(2k+2) = 4k(k+1). Among k and k+1 one is even, so
+    k(k+1) = 2m for some integer m, giving n^2 - 1 = 8m.
+  common_errors:
+  - Checking a few odd values and claiming the result is proved
+  - Forgetting that k(k+1) must be even
+  - Writing n^2-1 = (n-1)(n+1) and then saying only that both factors are even, without showing the factor
+    4
+  hints:
+    rephrase: Write an odd number in the form 2k+1 and see what n^2-1 becomes.
+    smaller_case: Compute n^2-1 for n = 3, 5, 7 and look at the factors you get.
+    key_idea: n^2-1 factors as (n-1)(n+1), which is a product of two consecutive even numbers.
+  check: expand((2*k+1)**2 - 1 - 4*k*(k+1))
+  check_ok: true
+- goal: Prove that 6 divides n^5-n for every natural number n.
+  expected: n^5-n = n(n-1)(n+1)(n^2+1). The product n(n-1)(n+1) is three consecutive integers, so it is
+    divisible by 2 and by 3, hence by 6.
+  solution: Factor n^5 - n = n(n^4 - 1) = n(n^2-1)(n^2+1) = n(n-1)(n+1)(n^2+1). Three consecutive integers
+    have a multiple of 2 and a multiple of 3, so their product is divisible by 6. Multiplying by n^2+1
+    keeps this divisibility.
+  common_errors:
+  - Factoring incorrectly, e.g. dropping the factor n^2+1
+  - Claiming that three consecutive integers are divisible by 6 without saying why
+  - Checking only small n and generalising
+  hints:
+    rephrase: Factor n^5 - n as far as you can, and look for three consecutive integers in the factorisation.
+    smaller_case: 'Check n = 2, 3, 4 directly: is n^5 - n divisible by 6 in each case?'
+    key_idea: Among three consecutive integers, one is divisible by 3 and at least one is even.
+  check: expand(n*(n-1)*(n+1)*(n**2+1) - (n**5-n))
+  check_ok: true
+- goal: Prove that 30 divides n^5-n for every natural number n, using the previous part.
+  expected: '6 divides n^5-n by the previous part. For 5: n^5-n = n(n-1)(n+1)(n^2+1). Checking n mod 5
+    shows one factor is always divisible by 5. Since gcd(5,6)=1, 30 divides n^5-n.'
+  solution: Consider n mod 5. If n is 0, 1 or 4 mod 5, then n, n-1 or n+1 is divisible by 5. If n is 2
+    or 3 mod 5, then n^2+1 is divisible by 5 (for n = 2 mod 5, n^2+1 = 5 mod 5 = 0; for n = 3 mod 5, n^2+1
+    = 10 mod 5 = 0). So 5 divides n^5-n. Since 5 and 6 are coprime and both divide n^5-n, their product
+    30 does too.
+  common_errors:
+  - Showing 5 divides n^5-n only for some residues
+  - Multiplying 5 and 6 without using that they are coprime
+  - Checking only small n
+  hints:
+    rephrase: Show that 5 divides the product by checking each possible remainder of n when divided by
+      5.
+    smaller_case: Compute n^5 - n modulo 5 for n = 0, 1, 2, 3, 4.
+    key_idea: Each residue class mod 5 makes some factor of n(n-1)(n+1)(n^2+1) divisible by 5. Combine
+      that with the result for 6.
+extensions:
+  '3':
+  - Prove that 42 divides n^7 - n for every natural number n.
+  '4':
+  - Prove that 24 divides n^2 - 1 whenever n is coprime to 6.
+  '5':
+  - Prove that 7 divides 8^n - 1 for every natural number n.
+spoken_vocab:
+- n squared minus one
+- divisible by
+- eight
+- n odd
+- two k plus one
+- n to the fifth minus n
+- six
+- thirty
+- consecutive integers
+- factorise
+- modulo five
+- coprime
+- natural number
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Chained modular factorisation; the 30 part needs Fermat, not just the previous result.
+  priority: 71
+  rank: 351
+  tier: B
+  category: tbo
+  d10: 4.8
+  real: 5.0
+  by: deepseek-v4.1-flash-free
+tags:
+- number_theory
+- proof

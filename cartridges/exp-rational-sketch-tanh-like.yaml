@@ -1,0 +1,106 @@
+id: exp-rational-sketch-tanh-like
+title: Rewrite (3e^x − e^−x)/(e^x + e^−x) and sketch
+topics:
+- algebra
+- exponentials
+- asymptotes
+- sketching
+warmup: false
+answer_source: generated
+statement: Write $\dfrac{3e^x-e^{-x}}{e^x+e^{-x}}$ in the form $a+\dfrac{b}{e^{2x}+1}$ and hence sketch
+  $y=\dfrac{3e^x-e^{-x}}{e^x+e^{-x}}$.
+stages:
+- goal: Rewrite the function in the form a + b/(e^{2x}+1).
+  expected: a = 3, b = -4, so y = 3 - 4/(e^{2x}+1).
+  solution: Multiply numerator and denominator by e^x to get (3e^{2x}-1)/(e^{2x}+1). Write 3e^{2x}-1 =
+    3(e^{2x}+1) - 4, so y = 3 - 4/(e^{2x}+1).
+  common_errors:
+  - Multiplying only the numerator by e^x
+  - Splitting into two fractions and forgetting to simplify the e^{-x} term
+  - Sign slip giving b = +4
+  hints:
+    rephrase: Get rid of the negative powers of e first, then treat the result like a polynomial division.
+    smaller_case: Substitute x = 0 into both the original and your rewritten form. Do they agree?
+    key_idea: Multiply top and bottom by the same power of e, then split the numerator as a multiple of
+      the denominator plus a remainder.
+  check: simplify((3*exp(x)-exp(-x))/(exp(x)+exp(-x)) - (3 - 4/(exp(2*x)+1)))
+  check_ok: true
+- goal: Find the horizontal asymptotes and the behaviour as x tends to minus or plus infinity.
+  expected: As x tends to -infinity, y tends to -1. As x tends to +infinity, y tends to 3. Horizontal
+    asymptotes are y = -1 and y = 3. No vertical asymptotes.
+  solution: As x tends to -infinity, e^{2x} tends to 0, so y tends to 3 - 4 = -1. As x tends to +infinity,
+    e^{2x} tends to infinity, so 4/(e^{2x}+1) tends to 0 and y tends to 3. The denominator e^{2x}+1 is
+    never zero, so there are no vertical asymptotes.
+  common_errors:
+  - Swapping the two asymptote values
+  - Claiming y = 0 is an asymptote
+  - Looking for a vertical asymptote where none exists
+  hints:
+    rephrase: What does e^{2x} do at each end of the real line?
+    smaller_case: Think about the size of the term 4/(e^{2x}+1) when e^{2x} is very small, and when it
+      is very large.
+    key_idea: Only the term 4/(e^{2x}+1) changes with x, so the limits come from its behaviour at the
+      two ends.
+  check: limit(3-4/(exp(2*x)+1), x, -oo) + 1
+  check_ok: true
+- goal: Find the intercepts and determine whether y is increasing or decreasing.
+  expected: y-intercept (0, 1). x-intercept x = -(ln 3)/2. dy/dx = 8e^{2x}/(e^{2x}+1)^2 > 0 for all x,
+    so y is strictly increasing with no turning points.
+  solution: At x = 0, y = 3 - 4/2 = 1. Setting y = 0 gives 4/(e^{2x}+1) = 3, so e^{2x} = 1/3 and x = -(1/2)ln
+    3. Differentiating, dy/dx = 8e^{2x}/(e^{2x}+1)^2, which is positive for every x. The curve rises from
+    y = -1 to y = 3, crossing the axes at the points found above.
+  common_errors:
+  - Sign error giving x = +(1/2)ln 3
+  - Forgetting to justify monotonicity with the derivative
+  - Claiming there is a stationary point
+  hints:
+    rephrase: To find the x-intercept, set the whole function equal to zero and solve for e^{2x}.
+    smaller_case: Find y at x = 0 first. Then ask which direction the function moves as x increases.
+    key_idea: Differentiate the form a + b/(e^{2x}+1) and look at the sign of the derivative.
+  check: ((3*exp(x)-exp(-x))/(exp(x)+exp(-x))).subs(x, -log(3)/2)
+  check_ok: true
+extensions:
+  '3':
+  - State the range of the function and justify why the curve never reaches y = -1 or y = 3.
+  '4':
+  - Show that (0, 1) is a point of inflection and find where the curve is concave up.
+  '5':
+  - Show that the curve has point symmetry about (0, 1), i.e. f(x) + f(-x) = 2.
+spoken_vocab:
+- e to the x
+- e to the minus x
+- e to the two x
+- three e to the x minus e to the minus x
+- over
+- a plus b over e to the two x plus one
+- y equals
+- x tends to minus infinity
+- x tends to infinity
+- horizontal asymptote
+- y intercept
+- x intercept
+- natural logarithm
+- ln three over two
+- derivative
+- inflection point
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 3
+  minutes: 12
+  flags:
+  - needs_diagram
+  tagline: Rewriting to a + b/(e^{2x}+1) drives asymptotes and sketch
+  priority: 63
+  rank: 417
+  tier: C
+  category: tbo
+  d10: 5.0
+  real: 5.0
+  by: deepseek-v4.1-flash-free
+tags:
+- exponentials_and_logarithms
+- curve_sketching
+- algebra_and_functions

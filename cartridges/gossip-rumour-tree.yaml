@@ -1,0 +1,115 @@
+id: gossip-rumour-tree
+title: Gossip Rumour Tree
+topics:
+- probability
+- tree diagrams
+- conditional probability
+warmup: false
+answer_source: pdf
+statement: Four students, Arthur, Bertha, Chandra and Delilah, exchange gossip. When Arthur hears a rumour,
+  he tells it to one of the other three without saying who told it to him. He decides whom to tell by
+  choosing at random amongst the other three, omitting the ones that he knows have already heard the rumour.
+  When Bertha, Chandra or Delilah hear a rumour, they behave in exactly the same way (even if they have
+  already heard it themselves). The rumour stops being passed round when it is heard by a student who
+  knows that the other three already have heard it. Arthur starts a rumour and tells it to Chandra. By
+  means of a tree diagram, or otherwise, show that the probability that Arthur rehears it is $\frac{3}{4}$.
+  Find also the probability that Bertha hears it twice and the probability that Chandra hears it twice.
+stages:
+- goal: Use a tree diagram to show that the probability Arthur rehears the rumour is $\frac{3}{4}$.
+  expected: $\frac{3}{4}$
+  solution: Draw the tree from Chandra's first hearing onwards, with each branch labelled by who is told
+    and its probability. Following every path to its end (the rumour stops when a hearer knows the other
+    three have heard it) gives 8 equally likely outcomes, each of probability $\frac{1}{8}$. Arthur hears
+    the rumour again in 6 of these outcomes, so $P(\text{Arthur rehears})=\frac{6}{8}=\frac{3}{4}$.
+  common_errors:
+  - Forgetting that a student may pass the rumour back to someone who already heard it when they are not
+    the one who knows the others have heard it.
+  - Stopping a branch too early or too late, so the leaves do not match the stopping rule.
+  - Adding branch probabilities instead of multiplying them along each path.
+  hints:
+    rephrase: At each step, ask who currently holds the rumour, who they could pass it to, and whether
+      the stopping rule has been triggered.
+    smaller_case: Follow only the first two passes from Arthur and list which students hold the rumour
+      after each pass.
+    key_idea: Probabilities multiply along a path through the tree, and the probability of an event is
+      the total of the path probabilities in which it occurs.
+  check: Rational(6,8)-Rational(3,4)
+  check_ok: true
+- goal: Find the probability that Bertha hears the rumour twice.
+  expected: $\frac{1}{4}$
+  solution: Bertha hears the rumour twice in 2 of the 8 equally likely outcomes, so $P=\frac{2}{8}=\frac{1}{4}$.
+  common_errors:
+  - Counting the number of times Bertha passes the rumour on rather than the number of times she hears
+    it.
+  - Dividing by the wrong number of outcomes, such as the number of leaves that stop early.
+  hints:
+    rephrase: Count, across the leaves of your tree, how many times Bertha appears as a hearer on each
+      path.
+    smaller_case: Pick one path and count the hearings of Bertha on it before considering all paths.
+    key_idea: Count the favourable leaves and divide by the total number of equally likely leaves.
+  check: Rational(2,8)-Rational(1,4)
+  check_ok: true
+- goal: Find the probability that Chandra hears the rumour twice.
+  expected: $\frac{1}{2}$
+  solution: Chandra hears the rumour twice in 4 of the 8 equally likely outcomes, so $P=\frac{4}{8}=\frac{1}{2}$.
+  common_errors:
+  - Including the first hearing of Chandra (from Arthur) as part of the count, giving three hearings.
+  - Confusing Chandra's second hearing with the number of times she passes it on.
+  hints:
+    rephrase: Mark Chandra's hearings on each path, starting with the one from Arthur, and see which paths
+      have a second one.
+    smaller_case: Trace only the paths in which the first pass from Chandra goes straight back to Arthur.
+    key_idea: 'Use the same leaf-counting method as for Bertha: favourable leaves over total leaves.'
+  check: Rational(4,8)-Rational(1,2)
+  check_ok: true
+extensions:
+  '3':
+  - Using the same tree, find the probability that Delilah hears the rumour at least once.
+  - Explain why the stopping rule matters for the total number of leaves in the tree.
+  '4':
+  - Find the probability that the rumour is heard exactly three times in total, including Chandra's first
+    hearing.
+  - Argue whether the probabilities would change if Arthur did not omit students he knows have heard the
+    rumour.
+  '5':
+  - Find the expected total number of hearings of the rumour before it stops, using your tree.
+  - Generalise the problem to n students and find the probability that the first student hears the rumour
+    twice.
+spoken_vocab:
+- Arthur
+- Bertha
+- Chandra
+- Delilah
+- rumour
+- rehears
+- tree diagram
+- probability
+- three quarters
+- one quarter
+- one half
+- eight equally likely outcomes
+- six of eight
+- two of eight
+- four of eight
+- branch
+- leaf
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#20
+verified: false
+rating:
+  quality: 6
+  difficulty: 6
+  parts: 3
+  minutes: 20
+  flags: []
+  tagline: Tree-diagram probability with a clear target answer, though the knowledge rules are loosely
+    worded.
+  priority: 71
+  rank: 344
+  tier: B
+  category: siklos
+  d10: 6.5
+  real: 5.0
+  by: deepseek-v4.1-flash-free
+tags:
+- probability
+- combinatorics

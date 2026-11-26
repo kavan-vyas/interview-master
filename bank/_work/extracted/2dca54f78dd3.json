@@ -1,0 +1,37 @@
+[
+ {
+  "q": "A spherical loaf of radius $a$ metres is sliced evenly from one end. A cut is made at distance $t$ from the end $x=a$. Find the surface area $A$ and remaining volume $V$ after the cut, and find the condition on $a$ for which $V/A<1$. (Question statement not in the source; wording inferred from the solution.)",
+  "kind": "maths",
+  "answer": "Model the loaf as $x^2+y^2=a^2$ rotated about the x-axis. Remaining surface area is $A=2\\pi a t$, which is proportional to the number of slices remaining. Remaining volume is $V=\\pi(at^2-t^3/3)$. So $V/A=(3at-t^2)/(6a)$, a quadratic with zeros at $t=0$ and $t=3a$, maximum at $t=3a/2$ where $V/A=3a/8$. Requiring $V/A<1$ gives $a<8/3$ metres.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#16"
+ },
+ {
+  "q": "A tortoise and a hare race to a vegetable patch a distance $X$ km from the starting post and back. The tortoise sets off immediately at a steady $v$ km/h. The hare sleeps for half an hour, then sets off at a steady $V$ km/h. The hare overtakes the tortoise half a kilometre from the starting post, sleeps half an hour at the patch, then returns at pace $V$. One and a quarter kilometres from the patch she passes the tortoise, still heading to the patch. (i) Show that $V=\\dfrac{10}{4X-9}$ and find $v$ in terms of $X$. (ii) Find $X$ if the hare arrives back at the starting post one and a half hours after the start. (iii) How long does the tortoise take to reach the vegetable patch?",
+  "kind": "maths",
+  "answer": "Let the meeting times be $T_1$ and $T_2$. Then $vT_1=\\tfrac12$, $V(T_1-\\tfrac12)=\\tfrac12$, $vT_2=X-\\tfrac54$, $V(T_2-1)=X+\\tfrac54$. Eliminating $v$ gives $V=\\dfrac{10}{4X-9}$ and $v=\\dfrac{10}{4X+1}$. The hare travels $2X$ in half an hour, so $2X(4X-9)=5$, i.e. $8X^2-18X-5=0$, with roots $-\\tfrac14$ and $\\tfrac52$. Taking $X=\\tfrac52$ gives $v=\\tfrac{10}{11}$, so the tortoise takes $\\tfrac{11}{4}$ hours to reach the patch.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#16"
+ },
+ {
+  "q": "A single stream of cars, each of width $a$ and exactly in line, passes along a straight road of breadth $b$ at speed $V$. The distance between successive cars (back of one to front of the next) is $c$. A chicken crosses the road safely at constant speed $u$ in a straight line at angle $\\theta$ to the direction of traffic. (i) Show that $u\\geqslant \\dfrac{aV}{c\\sin\\theta+a\\cos\\theta}$. (ii) Show that if the chicken chooses $\\theta$ and $u$ to cross at the least possible constant speed, the crossing time is $\\dfrac{b}{V}\\left(\\dfrac{c}{a}+\\dfrac{a}{c}\\right)$.",
+  "kind": "maths",
+  "answer": "Let $t$ be the time to cross the at-risk width $a$, so $a=ut\\sin\\theta$. Safety requires $ut\\cos\\theta\\geqslant Vt-c$. Eliminating $t$ gives $u(c\\sin\\theta+a\\cos\\theta)\\geqslant aV$. The least speed occurs when $c\\sin\\theta+a\\cos\\theta$ is largest, namely $\\sqrt{a^2+c^2}$ at $\\tan\\theta=c/a$. The crossing time is $\\dfrac{b}{u\\sin\\theta}=\\dfrac{b(c\\sin\\theta+a\\cos\\theta)}{aV\\sin\\theta}=\\dfrac{b}{V}\\left(\\dfrac{c}{a}+\\dfrac{a}{c}\\right)$.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#16"
+ },
+ {
+  "q": "A lorry of weight $W$ stands on a plane inclined at angle $\\alpha$ to the horizontal. Its wheels are a distance $2d$ apart, and its centre of gravity $G$ is at height $h$ above the plane, halfway between its sides. A horizontal force $P$ acts on the lorry through $G$. (i) If the normal reactions on the lower and higher wheels are equal, show that the sum of the frictional forces between the wheels and the ground is zero. (ii) If the lorry does not tip over, show that $W\\tan(\\alpha-\\beta)\\leqslant P\\leqslant W\\tan(\\alpha+\\beta)$, where $\\tan\\beta=d/h$.",
+  "kind": "maths",
+  "answer": "(i) Moments about $G$ give $(N_1-N_2)d=(F_1+F_2)h$, so $N_1=N_2$ implies $F_1+F_2=0$. (ii) Resolving perpendicular and parallel to the plane and taking moments gives $2dN_1=W(h\\sin\\alpha+d\\cos\\alpha)+P(-h\\cos\\alpha+d\\sin\\alpha)\\geqslant 0$ and $2dN_2=W(-h\\sin\\alpha+d\\cos\\alpha)+P(h\\cos\\alpha+d\\sin\\alpha)\\geqslant 0$. Dividing by the appropriate cosines (noting $\\cos(\\alpha-\\beta)>0$, and $\\cos(\\alpha+\\beta)$ may be negative) gives the stated bounds.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#16"
+ },
+ {
+  "q": "In a game of cricket, a fielder is perfectly placed to catch a ball and takes it just in front of her eye. The angle between the horizontal and her line of sight at time $t$ after the ball is struck is $\\theta$. (i) Show that $\\dfrac{d}{dt}(\\tan\\theta)$ is constant during the flight. (ii) The next ball is struck towards the fielder at a different velocity. The fielder runs at constant speed towards the batsman to remain perfectly placed. Assuming horizontal ground, show that $\\dfrac{d}{dt}(\\tan\\theta)$ is again constant during the flight.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#16"
+ }
+]

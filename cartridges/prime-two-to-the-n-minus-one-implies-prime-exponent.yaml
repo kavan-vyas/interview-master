@@ -1,0 +1,108 @@
+id: prime-two-to-the-n-minus-one-implies-prime-exponent
+title: If 2^n-1 is prime then n is prime; is the converse true?
+topics:
+- number theory
+- proof
+- contrapositive
+- factorisation
+warmup: false
+answer_source: pdf
+statement: Prove that if $2^n-1$ is prime then $n$ is prime. Is the converse true?
+stages:
+- goal: State the contrapositive of the claim.
+  expected: If $n$ is composite, then $2^n-1$ is composite.
+  solution: 'The claim is $P\Rightarrow Q$ with $P$: $2^n-1$ is prime, $Q$: $n$ is prime. Its contrapositive
+    is: if $n$ is not prime, then $2^n-1$ is not prime. For $n\ge 2$, not prime means composite, so we
+    must show: $n$ composite implies $2^n-1$ composite.'
+  common_errors:
+  - Stating the converse (if $n$ is prime then $2^n-1$ is prime)
+  - Forgetting that $n=1$ is neither prime nor composite
+  hints:
+    rephrase: Proving $P\Rightarrow Q$ is the same as proving 'not $Q$ implies not $P$'. What are $P$
+      and $Q$ here?
+    smaller_case: 'Take $n=6$: what does the contrapositive say about $2^6-1$?'
+    key_idea: Think about what it means for $n$ to fail to be prime, and what that gives you to work with.
+- goal: Factor $2^n-1$ when $n=ab$ with $1<a,b<n$.
+  expected: $2^n-1=(2^a-1)(2^{a(b-1)}+2^{a(b-2)}+\cdots+2^{a}+1)$
+  solution: Let $x=2^a$, so $2^n=2^{ab}=x^b$. Using $x^b-1=(x-1)(x^{b-1}+x^{b-2}+\cdots+x+1)$ and substituting
+    $x=2^a$ gives the factorisation.
+  common_errors:
+  - Using $x^b-1=(x-1)^b$
+  - Getting the number of terms in the second bracket wrong
+  - Substituting $x=2^b$ instead of $x=2^a$
+  hints:
+    rephrase: Can you write $2^n$ as a power of $2^a$?
+    smaller_case: 'With $n=4$, $a=2$, $b=2$: how does $2^4-1$ factor as (something) minus 1 in terms of
+      $x=2^2$?'
+    key_idea: The difference $x^b-1$ always has the factor $x-1$.
+- goal: Show that $2^n-1$ is composite, by showing both factors exceed $1$.
+  expected: 'Both factors are greater than $1$: $2^a-1\ge 3$ because $a\ge 2$, and the second factor is
+    at least $2^a+1\ge 5$ because $b\ge 2$. So $2^n-1$ is a product of two integers greater than $1$,
+    hence composite.'
+  solution: Since $1<a<n$, we have $a\ge 2$, so $2^a-1\ge 3>1$. Since $b\ge 2$, the second bracket contains
+    at least the terms $2^a$ and $1$, so it is at least $2^a+1\ge 5>1$. Hence $2^n-1$ has a factorisation
+    into two integers each greater than $1$.
+  common_errors:
+  - Claiming $2^a-1$ could equal $1$
+  - Not checking that the second factor is greater than $1$
+  - Failing to check that the factors are strictly smaller than $2^n-1$
+  hints:
+    rephrase: A number is composite if it is a product of two integers each greater than $1$. Which two
+      factors do you have?
+    smaller_case: For $n=4$ with $a=2$, is $2^a-1$ bigger than $1$?
+    key_idea: Use the smallest allowed values of $a$ and $b$ to bound each factor from below.
+- goal: Show the converse is false with a counterexample.
+  expected: '$n=11$: $11$ is prime, but $2^{11}-1=2047=23\times 89$ is composite.'
+  solution: $2^{11}-1=2048-1=2047$ and $23\cdot 89=2047$. So $n=11$ is prime while $2^{11}-1$ is composite,
+    which disproves the converse.
+  common_errors:
+  - Choosing $n$ where $2^n-1$ is prime, which does not disprove the converse
+  - Arithmetic error in computing $2^{11}-1$
+  - Failing to verify that $2047$ is actually composite
+  hints:
+    rephrase: 'The converse says: if $n$ is prime then $2^n-1$ is prime. What kind of example would disprove
+      it?'
+    smaller_case: Compute $2^n-1$ for a few prime $n$ in increasing order and test each result for primality.
+    key_idea: You need a prime exponent whose number $2^n-1$ fails to be prime.
+  check: isprime(11) and not isprime(2**11-1)
+  check_ok: true
+extensions:
+  '3':
+  - Prove that if $2^n+1$ is prime then $n$ is a power of $2$.
+  '4':
+  - 'Give a counterexample to the statement: if $2^n+1$ is prime then $n$ is prime.'
+  '5':
+  - Prove that if $a^n-1$ is prime for integers $a\ge 2$ and $n\ge 2$, then $a=2$ and $n$ is prime.
+spoken_vocab:
+- two to the n minus one is prime
+- n is prime
+- contrapositive
+- composite
+- n equals a times b
+- geometric sum
+- x to the b minus one
+- x minus one
+- counterexample
+- two to the eleven minus one
+- two thousand forty seven
+- twenty three times eighty nine
+- converse
+source: jaymin/Jaymin Interview (1).pdf#p1
+verified: false
+rating:
+  quality: 7
+  difficulty: 4
+  parts: 4
+  minutes: 12
+  flags: []
+  tagline: Classic factorisation proof with a sharp counterexample for the converse.
+  priority: 97
+  rank: 52
+  tier: A
+  category: jaymin
+  d10: 4.5
+  real: 7.5
+  by: haiku
+tags:
+- number_theory
+- proof

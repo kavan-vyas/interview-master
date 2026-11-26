@@ -1,0 +1,102 @@
+id: abs-diamond-square-warmup
+title: 'Absolute-value loci: diamond, square, and a 45-degree rotation'
+topics:
+- absolute value
+- loci in the plane
+- sketching
+- symmetry
+warmup: true
+answer_source: pdf
+statement: Sketch the sets of points satisfying (a) $|x|+|y|=1$, (b) $\max(|x|,|y|)=1$, and (c) $|x-y|+|x+y|=2$.
+stages:
+- goal: Sketch set (a) and describe it fully.
+  expected: A diamond (a square rotated 45 degrees) with vertices (1,0), (-1,0), (0,1), (0,-1). In the
+    first quadrant it is the segment x+y=1 with x,y>=0, and symmetry in both axes gives the other three
+    edges.
+  solution: In the first quadrant |x|=x and |y|=y, so the set is x+y=1 with x,y>=0, a segment from (1,0)
+    to (0,1). Reflecting in both axes gives the four edges of the diamond with vertices (1,0),(-1,0),(0,1),(0,-1).
+  common_errors:
+  - Dropping the absolute values, so only the first-quadrant segment is drawn.
+  - Drawing a circle, or a square with vertices at (+-1,+-1).
+  hints:
+    rephrase: Ask what the equation looks like when x and y are both nonnegative, then how the signs of
+      x and y change it.
+    smaller_case: Take y=0 and find all x that satisfy the equation.
+    key_idea: Absolute-value equations are piecewise linear. Split into quadrants and use symmetry under
+      x to -x and y to -y.
+  check: Abs(1)+Abs(0)-1
+  check_ok: true
+- goal: Sketch set (b) and describe it fully.
+  expected: A square with vertices (1,1), (-1,1), (-1,-1), (1,-1), with sides x=+-1 for |y|<=1 and y=+-1
+    for |x|<=1.
+  solution: max(|x|,|y|)=1 means the larger of |x| and |y| equals 1. So either |x|=1 with |y|<=1, or |y|=1
+    with |x|<=1. These are the four sides of the square with corners (+-1,+-1).
+  common_errors:
+  - Confusing max with sum and drawing the diamond from part (a).
+  - Forgetting the corners, which satisfy both conditions.
+  hints:
+    rephrase: 'Read max(|x|,|y|)=1 as: at least one of the two quantities is 1 and neither exceeds 1.'
+    smaller_case: Find all points on the line x=1 that satisfy the equation.
+    key_idea: Work out the boundary of the region where both |x| and |y| are at most 1.
+  check: Max(Abs(1),Abs(1))-1
+  check_ok: true
+- goal: Relate set (c) to set (b) and state the shape of (c).
+  expected: Use |a+b|+|a-b|=2*max(|a|,|b|) with a=x and b=y. So (c) is |x|,|y| with max(|x|,|y|)=1, which
+    is exactly the square from (b). Equivalently, (c) is the diamond (a) rotated 45 degrees and scaled
+    by sqrt(2).
+  solution: Let M=max(|a|,|b|) and m=min(|a|,|b|). Then max(|a+b|,|a-b|)=|a|+|b| and min(|a+b|,|a-b|)=||a|-|b||.
+    Adding gives |a+b|+|a-b|=|a|+|b|+||a|-|b||=2M. With a=x and b=y, the condition |x-y|+|x+y|=2 becomes
+    max(|x|,|y|)=1, the same as (b).
+  common_errors:
+  - Assuming (c) is a rotated diamond and forgetting the factor sqrt(2) scaling.
+  - Testing only one point and concluding the identity holds.
+  hints:
+    rephrase: Set u=x+y and v=x-y, then compare the absolute values of u and v with the absolute values
+      of x and y.
+    smaller_case: Evaluate the left side at (x,y)=(3,-1) and compare with twice the larger of |x| and
+      |y|.
+    key_idea: For two numbers a and b, the larger of |a+b| and |a-b| equals |a|+|b|, and the smaller equals
+      the difference of their absolute values.
+  check: (Abs(x-y)+Abs(x+y)-2*Max(Abs(x),Abs(y))).subs({x:3,y:-1})
+  check_ok: true
+extensions:
+  '3':
+  - Sketch |x|+|y|=|x+y| and explain why it is a pair of closed quadrant regions.
+  '4':
+  - Sketch the region between the diamond from (a) and the square from (b). Describe its boundary.
+  '5':
+  - Find the area of the region between the diamond in (a) and the square in (b).
+spoken_vocab:
+- absolute value of x plus absolute value of y equals one
+- max of absolute x and absolute y equals one
+- absolute x minus y plus absolute x plus y equals two
+- diamond
+- square
+- rotated forty-five degrees
+- root two
+- vertices
+- first quadrant
+- minus one
+- x plus y
+- x minus y
+source: jaymin/Jaymin Interview (1).pdf#p57
+verified: false
+rating:
+  quality: 7
+  difficulty: 4
+  parts: 3
+  minutes: 8
+  flags:
+  - needs_diagram
+  tagline: 'Diamond, square, and rotated square: |x−y|+|x+y|=2max(|x|,|y|).'
+  priority: 88
+  rank: 144
+  tier: B
+  category: jaymin
+  d10: 3.5
+  real: 6.5
+  by: deepseek-v4.1-flash-free
+tags:
+- coordinate_geometry
+- curve_sketching
+- geometry

@@ -1,0 +1,87 @@
+id: tbo-absolute-value-zero-sum-trig
+title: Sums of absolute values equal to zero
+topics:
+- absolute value
+- quadratics
+- trigonometry
+- solution counting
+warmup: true
+answer_source: pdf
+statement: How many solutions are there to the equation $|x|+|x-1|=0$? How many solutions are there to
+  the equation $|27x^2-48|+|6x^2-5x-4|=0$? What are the solutions of the equation $|\sin(2x)|+|\cos(0.5x)|=0$?
+stages:
+- goal: Count solutions of |x| + |x - 1| = 0.
+  expected: No solutions.
+  solution: Both terms are non-negative, so the sum is 0 only if |x| = 0 and |x-1| = 0. That needs x =
+    0 and x = 1 at once, which is impossible. So there are 0 solutions.
+  common_errors:
+  - Solving |x| + |x-1| = 0 as x = 0 or x = 1 by treating it as a product.
+  - Answering 1 because x = 0 is a 'near' solution.
+  hints:
+    rephrase: What is the smallest value an absolute value can take?
+    smaller_case: Plug in x = 0 and x = 1 separately. Does each make the whole sum zero?
+    key_idea: A sum of non-negative terms is zero only when every term is zero.
+- goal: Count and find solutions of |27x^2 - 48| + |6x^2 - 5x - 4| = 0.
+  expected: Exactly one solution, x = 4/3.
+  solution: 'Both terms must vanish: 27x^2 = 48 gives x^2 = 16/9, so x = ±4/3. Test 6x^2 - 5x - 4: at
+    x = 4/3 it is 32/3 - 20/3 - 4 = 0, which works. At x = -4/3 it is 32/3 + 20/3 - 4 = 52/3 - 4 ≠ 0,
+    which fails. So x = 4/3 is the only solution.'
+  common_errors:
+  - Answering two solutions by taking x = ±4/3 from the first term alone.
+  - Making an arithmetic slip when evaluating 6x^2 - 5x - 4 at x = -4/3.
+  - Forgetting that both conditions must hold at the same x.
+  check: ((27*x**2-48)**2+(6*x**2-5*x-4)**2).subs(x, Rational(4,3))
+  hints:
+    rephrase: Each absolute value must be zero. Solve the first one, then test the candidates in the second.
+    smaller_case: Find the values of x making 27x^2 - 48 zero, then check each in 6x^2 - 5x - 4.
+    key_idea: Both absolute values must vanish at the same x, so take the intersection of the two solution
+      sets.
+  check_ok: true
+- goal: Find all solutions of |sin(2x)| + |cos(0.5x)| = 0.
+  expected: x = (2k+1)π for every integer k.
+  solution: 'Both terms must be zero: cos(x/2) = 0 gives x/2 = π/2 + kπ, so x = (2k+1)π. Check: sin(2(2k+1)π)
+    = sin((4k+2)π) = 0, so the first term is also zero. Hence the solutions are x = (2k+1)π, k ∈ ℤ.'
+  common_errors:
+  - Writing x = kπ, which includes even multiples where cos(x/2) = ±1 ≠ 0.
+  - Writing x = 2kπ, which makes cos(x/2) = ±1, not zero.
+  - Solving only sin(2x) = 0 and forgetting cos(x/2) = 0 is also needed.
+  hints:
+    rephrase: Both trig terms must vanish at the same x. Which one is more restrictive?
+    smaller_case: Try x = π and x = 2π. Which one makes cos(x/2) zero?
+    key_idea: Solve cos(x/2) = 0 first, then check the sine condition for those values.
+extensions:
+  '3':
+  - Solve |x^2 - 4| + |x - 2| = 0.
+  '4':
+  - Solve |x - 1| + |x - 3| + |x - 5| = 0.
+  '5':
+  - Find all real x with |sin x| + |cos x| = 0 and explain why.
+spoken_vocab:
+- absolute value of x plus absolute value of x minus one equals zero
+- absolute value of twenty seven x squared minus forty eight
+- six x squared minus five x minus four
+- sine of two x
+- cosine of point five x
+- no solutions
+- exactly one solution
+- integer k
+- pi
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 3
+  minutes: 10
+  flags: []
+  tagline: Sums of absolute values vanish only when each term does; quick checks
+  priority: 51
+  rank: 520
+  tier: C
+  category: tbo
+  d10: 3.0
+  real: 6.0
+  by: haiku
+tags:
+- algebra_and_functions
+- trigonometry

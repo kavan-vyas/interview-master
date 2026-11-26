@@ -1,0 +1,89 @@
+id: penney-game-hhtthh
+title: 'Penney''s Game: HHT versus THH'
+topics:
+- probability
+- Markov chains
+- pattern matching
+- expectation
+warmup: true
+answer_source: pdf
+statement: 'Penney''s game with patterns $HHT$ and $THH$: which pattern appears first in a sequence of
+  fair tosses, and with what probability?'
+stages:
+- goal: Decide which pattern appears first and find the probability that it is $THH$.
+  expected: $THH$ appears first, with probability $\frac{3}{4}$.
+  solution: 'Track the longest suffix of the tosses so far that is a prefix of $HHT$ or $THH$. The states
+    are start, $H$, $HH$, $T$, $TH$. Let $f(s)$ be the probability that $HHT$ appears first from state
+    $s$. From $HH$, a T completes $HHT$ and an H keeps us at $HH$, so $f(HH)=1$. From $T$ and $TH$: $f(TH)=\frac{1}{2}\cdot
+    0+\frac{1}{2}f(T)$ and $f(T)=\frac{1}{2}f(TH)+\frac{1}{2}f(T)$, so $f(T)=f(TH)=0$. From $H$: $f(H)=\frac{1}{2}f(HH)+\frac{1}{2}f(T)=\frac{1}{2}$.
+    From start: $f(\text{start})=\frac{1}{2}f(H)+\frac{1}{2}f(T)=\frac{1}{4}$. So $HHT$ wins with probability
+    $\frac{1}{4}$, and $THH$ with probability $\frac{3}{4}$.'
+  common_errors:
+  - Assuming that equal expected waiting times mean a 50/50 split.
+  - Treating the patterns as independent races rather than tracking overlaps.
+  - Mixing up which pattern wins from each state.
+  hints:
+    rephrase: Does the first pattern to complete depend on what came just before the first letter of each
+      pattern?
+    smaller_case: Look at what each pattern does after a single T, and after a single H.
+    key_idea: Track the longest suffix of the tosses so far that matches the start of either pattern.
+  check: x - Rational(3, 4)
+  check_ok: false
+- goal: Explain why the two patterns have the same expected waiting time, and state it.
+  expected: Both patterns have expected waiting time 8 tosses. Neither has a self-overlap, so each has
+    expected waiting time $2^3 = 8$.
+  solution: For a pattern of length $n$ with no self-overlap (no proper prefix equal to a proper suffix),
+    the expected waiting time is $2^n$. $HHT$ has suffixes $T$ and $HT$, neither matching a prefix $H$
+    or $HH$. $THH$ has suffixes $H$ and $HH$, neither matching a prefix $T$ or $TH$. So both equal $2^3
+    = 8$.
+  common_errors:
+  - Thinking the waiting time depends on the order of letters rather than on overlaps.
+  - Confusing the expected waiting time with the probability of winning.
+  hints:
+    rephrase: Does either pattern begin with the same letters that it ends with?
+    smaller_case: Check the overlap for a length-2 pattern such as HH, and compare it with HT.
+    key_idea: Overlap structure determines the waiting time, and the same structure does not determine
+      who wins.
+  check: x - 8
+  check_ok: false
+extensions:
+  '3':
+  - Is there a length-3 pattern that appears first against every other length-3 pattern?
+  '4':
+  - Given the first player's pattern, can the second player always choose a pattern that beats it? With
+    what minimum probability?
+  '5':
+  - For patterns of length n, when does a pattern with no self-overlap always win against a given pattern?
+spoken_vocab:
+- Penney's game
+- HHT
+- THH
+- heads
+- tails
+- fair coin
+- pattern
+- appears first
+- probability
+- three quarters
+- expected waiting time
+- overlap
+- suffix
+- prefix
+source: jaymin/Jaymin Interview (1).pdf#p41
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 2
+  minutes: 15
+  flags: []
+  tagline: Surprising THH-beats-HHT result; equal waiting times contrast with first-appearance.
+  priority: 100
+  rank: 47
+  tier: A
+  category: jaymin
+  d10: 5.5
+  real: 7.0
+  by: haiku
+tags:
+- probability

@@ -1,0 +1,94 @@
+id: alternating-coin-game-win-probability
+title: 'Alternating biased-coin game: probability that A wins'
+topics:
+- probability
+- conditional probability
+- geometric series
+- recurrence
+warmup: false
+answer_source: generated
+statement: Players $A$ and $B$ play a game by flipping a biased coin with probability of heads $p$. A
+  player wins if they get a head. If player $A$ gets a tail, then it is player $B$'s turn to flip the
+  coin. If player $B$ gets a tail, then it goes back to player $A$'s turn. Player $A$ starts the game.
+  Find the probability that player $A$ wins.
+stages:
+- goal: Let $w$ be the probability that A wins. Set up an equation for $w$ by conditioning on A's first
+    flip, then solve it for $w$.
+  expected: w = p + (1-p)^2 w, which gives w = 1/(2-p).
+  solution: If A's first flip is a head (probability p), A wins. If it is a tail (probability 1-p), B
+    flips. B's head ends the game with A losing. B's tail (probability 1-p) returns the turn to A with
+    the same game state, so A wins with probability w. Hence w = p + (1-p)^2 w, so w(1-(1-p)^2) = p. Since
+    1-(1-p)^2 = 2p - p^2 = p(2-p), w = 1/(2-p).
+  common_errors:
+  - Forgetting that B's tail returns the game to A, so the win probability does not simply stop after
+    one round.
+  - Using p instead of 1-p for the probability of a tail.
+  - Forgetting that B can win on B's head, which gives A no win.
+  hints:
+    rephrase: Split the situation by what happens on A's very first flip.
+    smaller_case: 'Ask first: if A''s first flip is a head, who wins?'
+    key_idea: 'Self-similarity: once both players flip tails, the game restarts with exactly the same
+      rules, so the win probability is the same as before.'
+  check: simplify(solve(Eq(w, p + (1-p)**2*w), w)[0] - 1/(2-p))
+  check_ok: true
+- goal: Give the closed form for the probability that A wins and sanity-check it at p = 1/2 and as p tends
+    to 1.
+  expected: P(A wins) = 1/(2-p). At p = 1/2 this is 2/3, and at p = 1 it is 1.
+  solution: 'P(A wins) = p + (1-p)^2 p + (1-p)^4 p + ... = p / (1 - (1-p)^2) = p / (p(2-p)) = 1/(2-p).
+    Check: at p = 1/2, 1/(3/2) = 2/3. At p = 1, A wins on the first flip, so the answer is 1, matching
+    1/(2-1) = 1.'
+  common_errors:
+  - Writing the geometric series with ratio (1-p) instead of (1-p)^2, since a full round takes two flips.
+  - Forgetting the leading factor p on the first term.
+  - Cancelling p incorrectly when simplifying p / (p(2-p)).
+  hints:
+    rephrase: Think about the chance that A wins on round 1, round 2, round 3, and so on. What happens
+      between consecutive rounds?
+    smaller_case: Set p = 1/2 and consider only the first two rounds of flips.
+    key_idea: Both players flip tails in one full round with probability (1-p)^2, and that resets the
+      game to A.
+  check: simplify(solve(Eq(w, p + (1-p)**2*w), w)[0].subs(p, Rational(1,2)) - Rational(2,3))
+  check_ok: true
+extensions:
+  '3':
+  - Three players A, B, C flip in a cycle (A, then B, then C, then A, and so on), each with heads probability
+    p. Find the probability that A wins.
+  '4':
+  - Generalise to n players flipping in a cycle, each with heads probability p. Find the probability that
+    player 1 wins.
+  '5':
+  - A and B now have different heads probabilities p_A and p_B. A starts. Find the probability that A
+    wins.
+spoken_vocab:
+- probability
+- p
+- heads
+- tails
+- player A
+- player B
+- biased coin
+- one minus p
+- one minus p squared
+- geometric series
+- two minus p
+- closed form
+- self-consistency equation
+source: past-interviews/Actual Past Interview Questions/B1.pdf#p1
+verified: false
+rating:
+  quality: 5
+  difficulty: 3
+  parts: 2
+  minutes: 6
+  flags: []
+  tagline: Clean first-step conditioning giving 1/(2-p), with natural sanity checks.
+  priority: 55
+  rank: 488
+  tier: C
+  category: past-interviews
+  d10: 4.0
+  real: 7.0
+  by: deepseek-v4.1-flash-free
+tags:
+- probability
+- sequences_and_series

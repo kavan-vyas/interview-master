@@ -1,0 +1,96 @@
+id: unit-fraction-pairs
+title: Positive integer solutions of 1/a + 1/b = 1/6
+topics:
+- algebra
+- factorisation
+- number theory
+- Simon's favourite factoring trick
+warmup: true
+answer_source: pdf
+statement: Find all pairs of different positive whole numbers a and b, with a < b, such that $\frac{1}{a}
+  + \frac{1}{b} = \frac{1}{6}$.
+stages:
+- goal: Clear the fractions and rearrange the equation into a product form.
+  expected: (a-6)(b-6)=36
+  solution: Multiply both sides by 6ab to get 6b + 6a = ab. Rearranging gives ab - 6a - 6b = 0. Adding
+    36 to both sides gives (a-6)(b-6) = 36.
+  common_errors:
+  - Forgetting to add 36 when factorising
+  - Getting the sign wrong and writing (a+6)(b+6)
+  - Multiplying only one term by the common denominator
+  hints:
+    rephrase: Multiply through by the common denominator, then rearrange so the terms can be grouped into
+      a product.
+    smaller_case: Take the equation 1/x + 1/y = 1/2 and clear fractions. Which constant completes the
+      product form?
+    key_idea: Adding the right constant to both sides turns ab - 6a - 6b into a product of two brackets.
+  check: simplify(((a-6)*(b-6)-36)-(a*b-6*a-6*b))
+  check_ok: true
+- goal: List the factor pairs of 36 that give a valid, distinct pair (a, b) with a < b.
+  expected: (d,e) = (1,36), (2,18), (3,12), (4,9)
+  solution: Let d = a - 6 and e = b - 6, so de = 36 and d < e. Both must be positive, since if a, b <
+    6 then 1/a + 1/b > 1/3, which is too large. The factor pair d = e = 6 gives a = b = 12, which is excluded
+    because a < b. So the valid factor pairs are (1,36), (2,18), (3,12), (4,9).
+  common_errors:
+  - Including (6,6), which gives a = b = 12
+  - Missing one factor pair, such as (4,9)
+  - Ignoring the requirement that a < b
+  hints:
+    rephrase: Which pairs of positive whole numbers multiply to 36, with the first smaller than the second?
+    smaller_case: Find all pairs (d, e) with d < e and de = 12.
+    key_idea: Enumerate divisors d of 36 with d less than 6, and set e = 36/d.
+  check: (1*36-36)+(2*18-36)+(3*12-36)+(4*9-36)
+  check_ok: true
+- goal: Convert each factor pair back to (a, b) and state all solutions.
+  expected: (a, b) = (7,42), (8,24), (9,18), (10,15)
+  solution: 'Set a = d + 6 and b = e + 6 for each pair: (1,36) gives (7,42); (2,18) gives (8,24); (3,12)
+    gives (9,18); (4,9) gives (10,15). Each satisfies 1/a + 1/b = 1/6, for example 1/7 + 1/42 = 7/42 =
+    1/6.'
+  common_errors:
+  - Subtracting 6 instead of adding 6 when converting back
+  - Reversing the order so that a > b
+  - Listing (12,12) as a solution
+  hints:
+    rephrase: Each factor is a number minus 6. How do you recover the original numbers from the factors?
+    smaller_case: Pick one factor pair you found and test the resulting numbers directly in the original
+      equation.
+    key_idea: Substitute back a = d + 6 and b = e + 6, then check 1/a + 1/b = 1/6.
+  check: (Rational(1,7)+Rational(1,42)-Rational(1,6))+(Rational(1,8)+Rational(1,24)-Rational(1,6))+(Rational(1,9)+Rational(1,18)-Rational(1,6))+(Rational(1,10)+Rational(1,15)-Rational(1,6))
+  check_ok: true
+extensions:
+  '3':
+  - How many solutions with a < b does 1/a + 1/b = 1/n have, in terms of the divisors of n squared?
+  '4':
+  - Find all pairs with a < b satisfying 1/a + 1/b = 1/12.
+  '5':
+  - Explain why a = b = 12 is a solution of this equation and why it must be excluded here.
+spoken_vocab:
+- one over a plus one over b equals one over six
+- a less than b
+- a minus six
+- b minus six
+- a b minus six a minus six b
+- thirty six
+- factor pairs
+- open bracket
+- close bracket
+- Simon's favourite factoring trick
+source: kclms/kclms-specimen-questions-2.pdf#0
+verified: false
+rating:
+  quality: 4
+  difficulty: 4
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: Routine factorisation of 36 yields four solutions; limited extension.
+  priority: 51
+  rank: 518
+  tier: C
+  category: kclms
+  d10: 2.5
+  real: 4.5
+  by: haiku
+tags:
+- number_theory
+- algebra_and_functions

@@ -1,0 +1,126 @@
+id: sums-of-two-squares-characterisation
+title: Which integers are sums of two squares
+topics:
+- sums of two squares
+- Fermat's theorem on primes 1 mod 4
+- prime factorisation
+- descent
+- modular arithmetic
+warmup: false
+answer_source: generated
+statement: Fermat proved that every prime $p\equiv 1 \pmod 4$ is a sum of two squares. Combined with (ii)
+  of Problem 10, which integers are sums of two squares?
+stages:
+- goal: Prove that if a prime $q\equiv 3 \pmod 4$ divides $x^2+y^2$, then $q$ divides both $x$ and $y$.
+  expected: If $q\nmid y$, then $z=xy^{-1}$ satisfies $z^2\equiv -1 \pmod q$, and $z^{q-1}\equiv 1$ forces
+    $(-1)^{(q-1)/2}\equiv 1$, contradicting $(q-1)/2$ odd. So $q\mid y$, hence $q\mid x^2$, hence $q\mid
+    x$.
+  solution: Suppose $q\nmid y$. Then $y$ is invertible mod $q$; let $z\equiv xy^{-1}$, so $z^2\equiv -1
+    \pmod q$. By Fermat's little theorem $z^{q-1}\equiv 1$. But $z^{q-1}=(z^2)^{(q-1)/2}\equiv (-1)^{(q-1)/2}=-1$,
+    since $q\equiv 3 \pmod 4$ makes $(q-1)/2$ odd. So $1\equiv -1 \pmod q$, impossible for odd $q$. Hence
+    $q\mid y$, so $q\mid x^2$, so $q\mid x$.
+  common_errors:
+  - Claiming $-1$ is a square mod every prime
+  - Concluding only that $q\mid x$ without treating $y$
+  - Skipping the Fermat's little theorem step
+  hints:
+    rephrase: Suppose $q$ does not divide $y$ and consider $x$ divided by $y$ modulo $q$.
+    smaller_case: 'Test $q=3$: list the squares mod $3$ and check whether $-1$ is among them.'
+    key_idea: Compute $z^{q-1}$ in two ways, using that $(q-1)/2$ is odd when $q\equiv 3 \pmod 4$.
+- goal: Deduce that every prime $q\equiv 3 \pmod 4$ divides $n$ to an even power whenever $n=x^2+y^2$.
+  expected: If $q^k$ exactly divides $n=x^2+y^2$, then $k$ is even. Because $q\mid n$ forces $q^2\mid
+    n$, and $n/q^2=(x/q)^2+(y/q)^2$ has exponent $k-2$.
+  solution: Induct on the exponent $k$ of $q$ in $n$. If $k=0$, it is even. If $k=1$, then $q\mid n$ gives
+    $q\mid x$ and $q\mid y$ by the lemma, so $q^2\mid n$, contradiction. If $k\ge 2$, then $q\mid x$ and
+    $q\mid y$ give $q^2\mid n$, and $n/q^2=(x/q)^2+(y/q)^2$ is a sum of two squares whose $q$-exponent
+    is $k-2$. By induction $k-2$ is even, so $k$ is even.
+  common_errors:
+  - Forgetting that $k=1$ is impossible
+  - Dividing by $q$ instead of $q^2$
+  - Not checking that $x/q$ and $y/q$ are integers
+  hints:
+    rephrase: Use the lemma to show that $q$ divides $x$ and $y$, then divide by $q^2$ and repeat.
+    smaller_case: Test $n=9=3^2+0^2$ and see how the exponent of $3$ behaves.
+    key_idea: Each use of the lemma removes two factors of $q$, so only the parity of $k$ matters.
+- goal: 'Prove the converse: if every prime $q\equiv 3 \pmod 4$ divides $n$ to an even power, then $n$
+    is a sum of two squares. Conclude the characterisation.'
+  expected: Write $n=2^e\prod p_i^{a_i}\prod q_j^{2b_j}$ with $p_i\equiv 1 \pmod 4$. Each factor is a
+    sum of two squares ($2=1^2+1^2$, Fermat for $p_i$ and its powers, $q_j^{2b_j}=(q_j^{b_j})^2+0^2$),
+    and the product of sums of two squares is a sum of two squares by (ii). So a positive integer $n$
+    is a sum of two squares if and only if every prime $\equiv 3 \pmod 4$ divides $n$ to an even power.
+  solution: Factor $n$ and group primes into $2$, primes $p\equiv 1 \pmod 4$, and primes $q\equiv 3 \pmod
+    4$. We have $2=1^2+1^2$. Each $p\equiv 1 \pmod 4$ is a sum of two squares by Fermat, and so is each
+    power $p^a$, by repeated use of (ii). Each $q^{2b}=(q^b)^2+0^2$. Multiplying these using (ii) gives
+    $n$ as a sum of two squares. Together with the necessity result in the previous stage, this characterises
+    the integers.
+  common_errors:
+  - Forgetting the prime $2$
+  - Treating $p^a$ as needing separate proof instead of using (ii) repeatedly
+  - Stating the condition as 'no prime $\equiv 3 \pmod 4$ divides $n$'
+  hints:
+    rephrase: Factor $n$, handle each kind of prime separately, then combine the pieces using (ii).
+    smaller_case: Check whether $2$, $9$, and $2\cdot 9$ are sums of two squares, and explain why.
+    key_idea: Use (ii) from Problem 10 to combine two sums of two squares into one.
+- goal: Decide which of $350$ and $450$ are sums of two squares, and give an explicit representation where
+    one is.
+  expected: '$350=2\cdot 5^2\cdot 7$ has $7$ to an odd power, so it is not a sum of two squares. $450=2\cdot
+    3^2\cdot 5^2$ has $3$ to an even power, so it is: $450=15^2+15^2$.'
+  solution: '$350=2\cdot 5^2\cdot 7$. The prime $7\equiv 3 \pmod 4$ appears to power $1$, which is odd,
+    so $350$ is not a sum of two squares. $450=2\cdot 3^2\cdot 5^2$. The prime $3\equiv 3 \pmod 4$ appears
+    to power $2$, which is even, and $2$ and $5$ are fine, so $450$ is a sum of two squares: $450=15^2+15^2$.'
+  check: 15**2+15**2-450 == 0
+  common_errors:
+  - Saying $450$ fails because $3$ divides it
+  - Forgetting that the prime $2$ is unrestricted
+  - Mis-factoring $350$ or $450$
+  hints:
+    rephrase: Factor each number and look at the exponents of the primes that are $3 \pmod 4$.
+    smaller_case: Factor $350$ by $2$, then by $5$ twice, and inspect what remains.
+    key_idea: Primes $\equiv 1 \pmod 4$ and the prime $2$ never obstruct; only primes $\equiv 3 \pmod
+      4$ with odd exponent do.
+  check_ok: true
+extensions:
+  '3':
+  - Show that $3$ is not a sum of two squares, using the parity argument from the previous problem.
+  - Find the smallest positive integer that has two different representations as a sum of two squares,
+    up to order and sign.
+  '4':
+  - Explain why a prime $q\equiv 3 \pmod 4$ cannot be a sum of two squares, while $q^2$ can.
+  - Show that if $n$ is a sum of two squares then so is $n^2$, and say which characterisation this confirms.
+  '5':
+  - Explain the descent argument in the necessity direction and why it terminates.
+  - Relate the characterisation to the factorisation of $x^2+y^2$ in the Gaussian integers.
+spoken_vocab:
+- Fermat's theorem
+- sum of two squares
+- prime congruent to one mod four
+- prime congruent to three mod four
+- even exponent
+- odd exponent
+- Fermat's little theorem
+- inverse modulo q
+- three hundred and fifty
+- four hundred and fifty
+- fifteen squared
+- descent
+- two squares identity
+source: jaymin/Jaymin Interview (1).pdf#p9
+verified: false
+rating:
+  quality: 7
+  difficulty: 7
+  parts: 4
+  minutes: 25
+  flags:
+  - missing_info
+  tagline: Full characterisation of sums of two squares; depends on unseen part (ii).
+  priority: 89
+  rank: 138
+  tier: A
+  category: jaymin
+  d10: 7.0
+  real: 6.0
+  by: haiku
+tags:
+- number_theory
+- proof

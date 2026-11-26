@@ -1,0 +1,76 @@
+id: highest-common-factor-36838-38972
+title: Highest common factor of 36838 and 38972
+topics:
+- number theory
+- Euclidean algorithm
+- highest common factor
+warmup: true
+answer_source: generated
+statement: Find the highest common factor of $36838$ and $38972$.
+stages:
+- goal: Apply the Euclidean algorithm until the remainder is zero.
+  expected: 'The remainder chain ends with last nonzero remainder 2: 38972 − 36838 = 2134; 36838 = 17·2134
+    + 560; 2134 = 3·560 + 454; 560 = 454 + 106; 454 = 4·106 + 30; 106 = 3·30 + 16; 30 = 16 + 14; 16 =
+    14 + 2; 14 = 7·2 + 0.'
+  solution: 'Using gcd(a,b) = gcd(b, a mod b) repeatedly: gcd(38972, 36838) = gcd(36838, 2134) = gcd(2134,
+    560) = gcd(560, 454) = gcd(454, 106) = gcd(106, 30) = gcd(30, 16) = gcd(16, 14) = gcd(14, 2) = 2.'
+  common_errors:
+  - Stopping at a non-zero remainder and reporting it as the answer.
+  - Arithmetic slips in the division steps, such as 17 × 2134 = 36278 being miscomputed.
+  hints:
+    rephrase: Replace the pair of numbers by the smaller number and the remainder, and repeat.
+    smaller_case: Find gcd(48, 18) using the same repeated remainder steps.
+    key_idea: The highest common factor equals the last nonzero remainder in the Euclidean algorithm.
+- goal: State the highest common factor.
+  expected: '2'
+  solution: The last nonzero remainder is 2, and 36838 and 38972 are both even while 18419 and 19486 are
+    coprime, so the HCF is 2.
+  common_errors:
+  - Answering 14 or 16, which are intermediate remainders.
+  - Confusing the highest common factor with the lowest common multiple.
+  hints:
+    rephrase: Which number was the last nonzero remainder in your chain?
+    smaller_case: In the chain for 48 and 18, what was the last nonzero remainder?
+    key_idea: The last nonzero remainder of the Euclidean algorithm is the highest common factor.
+  check: candidate - sympy.gcd(36838, 38972)
+  check_ok: null
+extensions:
+  '3':
+  - Find the lowest common multiple of 36838 and 38972 using the HCF you found.
+  - Show that gcd(a, b) = gcd(a − b, b) for positive integers a > b.
+  '4':
+  - Write 2 as an integer combination of 36838 and 38972 (Bézout's identity), using back-substitution.
+  - Explain why the Euclidean algorithm always terminates.
+  '5':
+  - Prove that the number of steps in the Euclidean algorithm is at most logarithmic in the smaller input
+    (Lamé's theorem), and estimate the bound for these inputs.
+  - Find all integer pairs (x, y) with 36838x + 38972y = 2.
+spoken_vocab:
+- highest common factor
+- Euclidean algorithm
+- remainder
+- thirty-six thousand eight hundred and thirty-eight
+- thirty-eight thousand nine hundred and seventy-two
+- divide
+- subtract
+- last nonzero remainder
+- gcd
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 2 (anonymous).pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 3
+  parts: 2
+  minutes: 4
+  flags:
+  - trivial
+  tagline: Mechanical Euclidean algorithm with no conceptual scope.
+  priority: 17
+  rank: 690
+  tier: D
+  category: past-interviews
+  d10: 2.6
+  real: 2.5
+  by: deepseek-v4.1-flash-free
+tags:
+- number_theory

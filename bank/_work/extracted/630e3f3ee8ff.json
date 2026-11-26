@@ -1,0 +1,30 @@
+[
+ {
+  "q": "Consider the set of prime numbers. Is this set infinite? Outline a proof that there are infinitely many prime numbers.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 5 (anonymous).pdf#0"
+ },
+ {
+  "q": "Now consider prime numbers of the form $6m+5$, where $m\\in\\mathbb{Z}$. Is this set of primes infinite? Prove that it is.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 5 (anonymous).pdf#0"
+ },
+ {
+  "q": "Consider the set $\\{1,2,3,6\\}$. Notice that there are distinct subsets having the same sum; for example, $\\{1,2\\}$ and $\\{3\\}$, and $\\{1,2,3\\}$ and $\\{6\\}$. Now consider a set of ten elements $\\{x_1, x_2, \\ldots, x_{10}\\}$, where $0<x_i<100$. Would you expect a similar property to occur? What would affect the likelihood of two distinct subsets having the same sum: the range of possible values, or the total number of elements?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 5 (anonymous).pdf#0"
+ },
+ {
+  "q": "Sketch the graph $y=\\frac{1}{(x+1)(x+2)}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 5 (anonymous).pdf#0"
+ }
+]

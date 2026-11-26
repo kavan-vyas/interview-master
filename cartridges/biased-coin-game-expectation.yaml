@@ -1,0 +1,103 @@
+id: biased-coin-game-expectation
+title: 'Biased coin game: expected winnings'
+topics:
+- probability
+- expectation
+- geometric distribution
+- conditional expectation
+- first-step analysis
+warmup: false
+answer_source: generated
+statement: You play a game with a biased coin (let $p$ be the probability of heads, $0<p<1$). If you get
+  a head, you get a pound and the game continues; if you get a tails, the game ends (you keep your money
+  from any past heads). What is the expected value? Can you do it with conditional expectation?
+stages:
+- goal: Identify the distribution of the total winnings $X$.
+  expected: $X$ equals the number of heads before the first tail, so $P(X=k)=p^k(1-p)$ for $k=0,1,2,\dots$,
+    a geometric distribution.
+  solution: The game ends at the first tail. $X=k$ exactly when the first $k$ tosses are heads and the
+    $(k+1)$-st toss is a tail, which has probability $p^k(1-p)$.
+  common_errors:
+  - Using $k(1-p)^k$ or swapping $p$ and $1-p$.
+  - Confusing the number of tosses ($X+1$ when the tail is counted) with the number of heads $X$.
+  - Forgetting that $k=0$ is possible (first toss is tails).
+  hints:
+    rephrase: Describe the event $\{X=k\}$ in terms of the sequence of tosses, then assign it a probability.
+    smaller_case: What is the probability the total winnings are $0$? What about exactly $1$?
+    key_idea: Winnings are determined by the run of heads before the first tail, which is a geometric
+      count.
+  check: null
+- goal: Compute $\mathbb{E}[X]$ directly by summing over $k$.
+  expected: $\mathbb{E}[X]=\sum_{k\ge 0} k\,p^k(1-p)=\dfrac{p}{1-p}$.
+  solution: Using $\sum_{k\ge0} k p^k = \frac{p}{(1-p)^2}$ for $0\le p<1$, we get $\mathbb{E}[X]=(1-p)\cdot\frac{p}{(1-p)^2}=\frac{p}{1-p}$.
+  common_errors:
+  - Forgetting the factor $(1-p)$ in front of the series.
+  - Using the formula $\sum k p^k = \frac{1}{(1-p)}$ instead of $\frac{p}{(1-p)^2}$.
+  - Ignoring convergence (the series needs $0\le p<1$).
+  hints:
+    rephrase: Write the expectation as a series and differentiate a geometric series term by term.
+    smaller_case: For $p=\tfrac12$, approximate the first few terms of the series and see whether they
+      settle near a value.
+    key_idea: Differentiate $\sum p^k$ with respect to $p$ to get $\sum k p^{k-1}$.
+  check: null
+- goal: Repeat the calculation using conditional expectation, conditioning on the first toss.
+  expected: 'Let $E=\mathbb{E}[X]$. Conditioning on the first toss: $E=p(1+E)+(1-p)\cdot 0$, so $E=\dfrac{p}{1-p}$.'
+  solution: If the first toss is a head (probability $p$), you have won $1$ pound and the game restarts,
+    so your expected further winnings are $E$. If the first toss is a tail (probability $1-p$), the game
+    ends with winnings $0$. Hence $E=p(1+E)$, which solves to $E=\frac{p}{1-p}$.
+  common_errors:
+  - Writing $E=p\cdot E+(1-p)\cdot 0$ and forgetting the pound won on the first head.
+  - Solving $E=p(1+E)$ incorrectly as $E=p+1$ or similar algebra slips.
+  - Assuming the restarted game has a different expectation from $E$.
+  hints:
+    rephrase: Split on the first toss. What are the expected winnings after heads, and after tails?
+    smaller_case: If $p=\tfrac12$, what does your equation predict, and does it agree with the series
+      answer?
+    key_idea: After a head you have one pound plus a fresh copy of the same game, so the expected total
+      satisfies a self-referential equation.
+  check: solve(Eq(E, p*(1+E)), E)[0] - p/(1-p)
+  check_ok: true
+extensions:
+  '3':
+  - Compute the variance of the total winnings $X$.
+  - Show that $\mathbb{E}[X^2]$ can be found by conditioning on the first toss as well.
+  '4':
+  - Redo the calculation if the player stops after the first head instead of continuing.
+  - Redo the calculation if the player must stop after three consecutive heads.
+  '5':
+  - Generalise to a game where the $k$-th head pays $k$ pounds. Find the expected winnings.
+  - Find the expected number of tosses until the game ends, and compare it with the expected winnings.
+spoken_vocab:
+- biased coin
+- probability of heads
+- p
+- one minus p
+- head
+- tails
+- pound
+- expected value
+- conditional expectation
+- geometric distribution
+- first toss
+- sum over k
+- p over one minus p
+- first-step analysis
+source: screenshots/Screenshot 2026-11-19 at 14.38.02.png
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 3
+  minutes: 10
+  flags: []
+  tagline: Geometric expectation computed two ways, linking to first-step conditioning.
+  priority: 71
+  rank: 360
+  tier: C
+  category: screenshots
+  d10: 5.0
+  real: 7.0
+  by: deepseek-v4.1-flash-free
+tags:
+- probability
+- sequences_and_series

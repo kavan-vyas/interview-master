@@ -1,0 +1,126 @@
+id: hat-puzzle-100-prisoners
+title: 100 prisoners and hat colours
+topics:
+- parity
+- strategy and information
+- combinatorial argument
+- probability
+warmup: true
+answer_source: pdf
+statement: One hundred prisoners are given the chance to be set free tomorrow. Each is given a red or
+  blue hat to wear. Each prisoner can see everyone else's hat but not his own. The hat colours are assigned
+  randomly and once the hats are placed on the prisoners' heads they cannot communicate in any form, or
+  else they are immediately executed. The prisoners will be called out in random order and each called-out
+  prisoner will guess the colour of his hat. Each prisoner declares the colour of his hat so that everyone
+  else can hear it. If a prisoner guesses correctly the colour of his hat, he is set free immediately;
+  otherwise he is executed. They are given the night to come up with a strategy among themselves to save
+  as many prisoners as possible. What is the best strategy they can adopt and how many prisoners can they
+  guarantee to save?
+stages:
+- goal: Find the number of prisoners the group can guarantee to save.
+  expected: $99$ prisoners.
+  solution: At least $99$ can be saved with the parity strategy below. Every prisoner after the first
+    is saved in every outcome, and the first called prisoner survives with probability $\frac12$. So $99$
+    is guaranteed.
+  common_errors:
+  - Answering $100$ because the parity trick seems to work for everyone.
+  - Answering $50$ by confusing the guarantee with an expected value.
+  hints:
+    rephrase: Think about what the first called prisoner can know when he speaks, and how many others
+      can then work out their colour.
+    smaller_case: With $2$ prisoners, can the first say something that lets the second deduce his colour?
+    key_idea: Use one prisoner's declaration to send a parity message about the total number of red hats.
+  check: sympy.Integer(99) - (100 - 1)
+  check_ok: null
+- goal: 'Give the strategy: the first called prisoner''s declaration and how each later prisoner decodes
+    his own hat.'
+  expected: The first called prisoner declares red if the number of red hats he sees among the other $99$
+    is odd, and blue otherwise. Each later prisoner combines that parity with the first prisoner's hat
+    (which he can see) to get the parity of all $100$ hats, subtracts the red hats he sees, and deduces
+    his own colour.
+  solution: Let $O$ be the number of red hats among the $99$ others seen by the first prisoner. He declares
+    red iff $O$ is odd, so the declaration gives the parity of $O$. For any later prisoner $k$, the total
+    number $T$ of red hats satisfies $T\equiv O+c_1\pmod 2$, where $c_1=1$ for red and $0$ for blue. Prisoner
+    $k$ knows $O\bmod 2$ from the declaration and knows $c_1$, so he knows $T\bmod 2$. He sees every hat
+    except his own, so his own red bit is $(T-S_k)\bmod 2$, where $S_k$ is the number of red hats he sees.
+    The check uses $p=1$ and $S_k=2$, giving own bit $(1-2)\bmod2=1$, which is red.
+  common_errors:
+  - Forgetting that the first prisoner's own hat contributes to the total parity, so the decoder must
+    add $c_1$.
+  - Taking the parity of all red hats including the first prisoner's hat when designing the declaration.
+    The first prisoner cannot see his own hat.
+  - Mixing up odd and even when mapping the declaration to a colour.
+  hints:
+    rephrase: The first prisoner's message is a single bit. What total quantity can later prisoners work
+      out from it together with what they can see?
+    smaller_case: With two prisoners, the first says the parity of the other's hat. How does the second
+      use this?
+    key_idea: Treat red as $1$ and blue as $0$. Compare the parity of the whole group with the parity
+      of the hats you can see.
+  check: sympy.Mod(1 - 2, 2) - 1
+  check_ok: null
+- goal: Argue whether all $100$ prisoners can be guaranteed to survive.
+  expected: No. The first called prisoner has no information, so his guess is a fixed function of the
+    $99$ hats he sees. Flipping only his own hat turns a correct guess into a wrong one. So in some configuration
+    he is executed, and at most $99$ can be guaranteed.
+  solution: Group the $2^{100}$ hat configurations into $2^{99}$ pairs that differ only in the first called
+    prisoner's hat. His guess depends only on the other $99$ hats, so it is the same in both configurations
+    of a pair. It is correct in at most one of the two. So for any strategy there is a configuration in
+    which he is executed, and not all $100$ can be guaranteed to survive.
+  common_errors:
+  - Thinking the first called prisoner's guess can depend on information from the others, when nothing
+    has been said yet.
+  - Arguing only about the average over random hats, not the guaranteed number that holds in every configuration.
+  hints:
+    rephrase: What information does the first called prisoner have when he speaks? Can a fixed rule be
+      right in every case?
+    smaller_case: With one prisoner who knows nothing, can any rule guess his hat colour correctly in
+      every case?
+    key_idea: Compare the two configurations that differ only in the first called prisoner's own hat.
+  check: sympy.Integer(2)**100 - 2*sympy.Integer(2)**99
+  check_ok: null
+extensions:
+  '3':
+  - Suppose each hat can be one of three colours. Can a similar parity idea work with modular arithmetic?
+    How many can be guaranteed to survive?
+  '4':
+  - What changes if each prisoner can see only the hats of the prisoners in front of him, not everyone
+    else?
+  '5':
+  - Prove that any strategy that saves $99$ prisoners in every configuration must have the first called
+    prisoner's guess depend only on the other $99$ hats.
+spoken_vocab:
+- one hundred prisoners
+- red
+- blue
+- hat
+- parity
+- odd
+- even
+- first prisoner
+- execute
+- random order
+- guarantee
+- ninety nine
+- strategy
+- declare
+- survive
+source: zhou-quant/zhou-quant-guide.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 3
+  minutes: 15
+  flags: []
+  tagline: Classic hat puzzle with elegant parity strategy and a sharp follow-up.
+  priority: 81
+  rank: 232
+  tier: B
+  category: zhou-quant
+  d10: 5.5
+  real: 8.5
+  by: deepseek-v4.1-flash-free
+tags:
+- combinatorics
+- proof

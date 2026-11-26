@@ -1,0 +1,103 @@
+id: primes-p-with-p-squared-plus-two-prime
+title: Primes p with p^2+2 also prime
+topics:
+- number theory
+- modular arithmetic
+- primes
+warmup: true
+answer_source: pdf
+statement: Find all primes $p$ such that $p^2+2$ is also prime.
+stages:
+- goal: Test small primes to get a feel for the problem.
+  expected: $p=2$ gives $6$ (not prime); $p=3$ gives $11$ (prime); $p=5$ gives $27$ (not prime).
+  solution: Compute $2^2+2=6$, $3^2+2=11$, and $5^2+2=27=3\cdot 9$. Only $p=3$ gives a prime so far.
+  common_errors:
+  - Miscomputing $5^2+2$
+  - Assuming $p=2$ works because $2$ is prime
+  hints:
+    rephrase: Substitute each small prime into $p^2+2$ and test the result for primality.
+    smaller_case: Start with $p=2$. What is $2^2+2$?
+    key_idea: Small cases can reveal a pattern, such as a fixed divisor, that you can then prove in general.
+  check: isprime(3**2+2) and not isprime(2**2+2) and not isprime(5**2+2)
+  check_ok: true
+- goal: For a prime $p\neq 3$, find $p^2+2$ modulo $3$.
+  expected: $p^2\equiv 1\pmod{3}$, so $p^2+2\equiv 0\pmod{3}$.
+  solution: Since $3$ is prime and $p\neq 3$, we have $3\nmid p$, so $p\equiv 1$ or $2\pmod{3}$. In both
+    cases $p^2\equiv 1\pmod{3}$, hence $p^2+2\equiv 1+2\equiv 0\pmod{3}$.
+  common_errors:
+  - Claiming $p^2\equiv 0\pmod{3}$
+  - Testing a few primes and generalising without a proof
+  - Forgetting the case $p\equiv 2\pmod{3}$
+  hints:
+    rephrase: Look at $p$ modulo $3$. Since $p\neq 3$, which nonzero remainders can $p$ leave?
+    smaller_case: Compute $p^2+2$ for $p=5$ and check whether it is divisible by $3$.
+    key_idea: Consider the two nonzero residues modulo $3$ and square each one.
+  check: '[(p**2+2)%3 for p in [2,5,7,11,13]] == [0,0,0,0,0]'
+  check_ok: null
+- goal: Explain why $p^2+2$ is composite for every prime $p\neq 3$.
+  expected: $3$ divides $p^2+2$, and $p^2+2\ge 6>3$ since $p\ge 2$. So $p^2+2$ is a multiple of $3$ larger
+    than $3$, hence composite.
+  solution: From the previous step $3\mid p^2+2$. Also $p\ge 2$ gives $p^2+2\ge 6$, which is strictly
+    greater than $3$. A multiple of $3$ greater than $3$ has a divisor other than $1$ and itself, so it
+    is not prime.
+  common_errors:
+  - Forgetting to check that $p^2+2$ is strictly bigger than $3$
+  - Concluding primality because $3$ divides the number
+  hints:
+    rephrase: When is a number divisible by $3$ but still prime?
+    smaller_case: For $p=2$, what is $p^2+2$, and is it bigger than $3$?
+    key_idea: A prime divisible by $3$ must equal $3$ itself.
+- goal: State all primes $p$ for which $p^2+2$ is prime, with the corresponding value.
+  expected: $p=3$ only, giving $11$.
+  solution: For $p\neq 3$, $p^2+2$ is composite. For $p=3$, $p^2+2=11$, which is prime. So $p=3$ is the
+    only solution.
+  common_errors:
+  - Including $p=2$ by mistake
+  - Omitting the value $11$ when stating the answer
+  hints:
+    rephrase: Which candidates from your first test survived the argument about divisibility by $3$?
+    smaller_case: Check whether $p=2$ survives the argument from the previous stage.
+    key_idea: Combine the case $p\neq 3$ (always composite) with the single remaining case.
+  check: isprime(3**2+2) and (3**2+2)==11
+  check_ok: true
+extensions:
+  '3':
+  - Find all primes $p$ such that $p^2+8$ is prime.
+  - 'Answer to check: $p=3$, giving $17$.'
+  '4':
+  - Find all primes $p$ such that $p^4+2$ is prime.
+  - 'Answer to check: $p=3$, giving $83$.'
+  '5':
+  - Find all primes $p$ such that $p^2+14$ is prime.
+  - 'Answer to check: $p=3$, giving $23$.'
+spoken_vocab:
+- p squared plus two is prime
+- prime p
+- modulo three
+- congruent to one modulo three
+- divisible by three
+- composite
+- three squared plus two equals eleven
+- p not equal to three
+- p is two
+- p is five
+- nonzero residues
+source: jaymin/Jaymin Interview (1).pdf#p1
+verified: false
+rating:
+  quality: 5
+  difficulty: 3
+  parts: 4
+  minutes: 10
+  flags: []
+  tagline: Mod-3 trick gives a short, clean answer, though it repeats the same idea.
+  priority: 77
+  rank: 260
+  tier: B
+  category: jaymin
+  d10: 2.5
+  real: 6.5
+  by: haiku
+tags:
+- number_theory
+- proof

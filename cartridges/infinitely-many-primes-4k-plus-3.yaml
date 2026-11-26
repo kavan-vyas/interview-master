@@ -1,0 +1,117 @@
+id: infinitely-many-primes-4k-plus-3
+title: Infinitely many primes of the form 4k+3
+topics:
+- number theory
+- primes
+- proof by contradiction
+- modular arithmetic
+warmup: false
+answer_source: generated
+statement: Prove that there are infinitely many primes of the form $4k+3$. (a) Where does your argument
+  break down if you try to adapt it to primes of the form $4k+1$?
+stages:
+- goal: Assume there are only finitely many primes of the form 4k+3, list them as $p_1,\dots,p_r$, and
+    construct a suitable number N.
+  expected: $N = 4p_1p_2\cdots p_r - 1$ (with the empty product equal to 1 when r=0, so N=3).
+  solution: Each $p_i \equiv 3 \pmod 4$. Let $P=p_1\cdots p_r$ and $N=4P-1$. Then $N \equiv -1 \equiv
+    3 \pmod 4$, and $N \ge 3$. N is odd, and N is not divisible by any $p_i$, because that would force
+    $p_i \mid 1$.
+  common_errors:
+  - Using $N=P+1$, which is not guaranteed to be 3 mod 4.
+  - Forgetting that the construction must also work when the list is empty.
+  - Forgetting to check that N is odd.
+  hints:
+    rephrase: Build a number from the list that is guaranteed to leave remainder 3 when divided by 4.
+    smaller_case: Suppose 3 were the only prime of the form 4k+3. Build a number from it with remainder
+      3 mod 4.
+    key_idea: Look for a multiple of 4 minus a small constant, so that residues mod 4 can be tracked.
+  check: simplify(answer - (4*P - 1))
+  check_ok: false
+- goal: Show that N has a prime factor q with $q \equiv 3 \pmod 4$.
+  expected: Factor N into primes. If every prime factor were congruent to 1 mod 4, their product would
+    be congruent to 1 mod 4. But N is 3 mod 4. So at least one prime factor q satisfies $q \equiv 3 \pmod
+    4$.
+  solution: N is at least 3, so it has at least one prime factor. N is odd, so 2 is not a factor. Each
+    prime factor is 1 or 3 mod 4. A product of factors all equal to 1 mod 4 is 1 mod 4. Since N is 3 mod
+    4, some factor must be 3 mod 4.
+  common_errors:
+  - Claiming a product of primes that are 3 mod 4 is always 3 mod 4.
+  - Forgetting to rule out the prime 2 as a factor.
+  hints:
+    rephrase: What residues mod 4 can the prime factors of N have, given the residue of N?
+    smaller_case: Look at 3·3 and 3·7 and their residues mod 4. What pattern do you see?
+    key_idea: Track residues mod 4 under multiplication.
+  check: null
+- goal: Derive a contradiction with the assumption that the list was complete.
+  expected: Let q be a prime factor of N with $q\equiv 3 \pmod 4$. If q were some $p_i$, then q would
+    divide $4P$ and $N$, so q would divide their difference, which is 1. That is impossible. So q is a
+    new prime of the form 4k+3, which contradicts the completeness of the list. Hence there are infinitely
+    many such primes.
+  solution: q divides N = 4P - 1. If $q=p_i$ then $q \mid 4P$, so $q \mid 4P-N = 1$, which is impossible.
+    So q is not in the list, contradicting that the list contained all primes of the form 4k+3.
+  common_errors:
+  - Concluding without showing that q is new.
+  - Writing 'q divides N' without justifying why q cannot divide 4P.
+  hints:
+    rephrase: Could q be one of the primes already on the list?
+    smaller_case: Suppose q equals 3. Does 3 divide N?
+    key_idea: If q is on the list, what must it divide, and what does that force?
+  check: null
+- goal: (a) Explain where the argument breaks down for primes of the form 4k+1.
+  expected: The construction $N=4P+1$ is 1 mod 4. Its prime factors need not be 1 mod 4, because two factors
+    that are 3 mod 4 multiply to a number that is 1 mod 4. For example $4\cdot 5+1=21=3\cdot 7$, and both
+    factors are 3 mod 4. So the argument gives no contradiction. The infinitude of primes 1 mod 4 needs
+    a different construction, such as $N=(n!)^2+1$.
+  solution: The key step used that N is 3 mod 4, which forces some prime factor to be 3 mod 4. For N that
+    is 1 mod 4, no such factor is forced, since 1 mod 4 is consistent with an even number of 3 mod 4 factors.
+    The standard fix uses $(n!)^2+1$, whose prime factors are all 1 mod 4, since $-1$ is a square modulo
+    each of its prime factors.
+  common_errors:
+  - Saying the proof works for 4k+1 by replacing 3 with 1 in the construction.
+  - Missing that two 3 mod 4 factors can multiply to 1 mod 4.
+  hints:
+    rephrase: Which residue class does 4P+1 fall in, and must its prime factors fall in that same class?
+    smaller_case: Take the list {5} and compute 4·5+1 and its factorisation.
+    key_idea: Ask whether the residue of N forces a prime factor into the residue class you want.
+  check: null
+extensions:
+  '3':
+  - Prove there are infinitely many primes of the form 6k+5.
+  '4':
+  - Prove there are infinitely many primes of the form 4k+1 using $N=(n!)^2+1$.
+  '5':
+  - State Dirichlet's theorem on primes in arithmetic progressions, and explain why it is much harder
+    than the 4k+3 case.
+spoken_vocab:
+- prime
+- 4k plus 3
+- 4k plus 1
+- infinitely many
+- contradiction
+- product
+- P
+- N
+- modulo 4
+- residue
+- prime factor
+- n factorial squared plus one
+- Dirichlet
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 2
+  minutes: 20
+  flags: []
+  tagline: Mod-4 twist with genuine insight; part (a) probes why it fails for 4k+1.
+  priority: 92
+  rank: 84
+  tier: A
+  category: juan
+  d10: 6.0
+  real: 8.0
+  by: big-pickle
+tags:
+- number_theory
+- proof

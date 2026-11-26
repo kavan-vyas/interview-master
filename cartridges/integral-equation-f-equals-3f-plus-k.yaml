@@ -1,0 +1,96 @@
+id: integral-equation-f-equals-3f-plus-k
+title: Integral equation with constant of integration
+topics:
+- calculus
+- integration
+- first-order differential equations
+- exponential functions
+warmup: true
+answer_source: generated
+statement: Find $f(x)$ if $\int_0^x f(t)\,dt=3f(x)+k$, where $k$ is a constant.
+stages:
+- goal: Use $x=0$ to relate $f(0)$ to $k$.
+  expected: $f(0)=-\frac{k}{3}$
+  solution: At $x=0$ the integral $\int_0^0 f(t)\,dt$ is zero, so $0=3f(0)+k$, giving $f(0)=-\frac{k}{3}$.
+  common_errors:
+  - Setting $f(0)=k/3$ and losing the sign.
+  - Assuming $\int_0^0 f(t)\,dt$ is not zero, or trying to evaluate it with $f$ unknown.
+  - Treating $k$ as zero, which removes the constant information.
+  hints:
+    rephrase: What is the value of the integral when the upper limit equals the lower limit?
+    smaller_case: Substitute $x=0$ into both sides of the equation and compare them.
+    key_idea: An integral with equal limits is zero, so the equation at a single point gives a value that
+      fixes the constant.
+  check: sp.simplify(3*(-k/3)+k)
+  check_ok: null
+- goal: Differentiate both sides with respect to $x$ to obtain a differential equation for $f$.
+  expected: $f'(x)=\frac{1}{3}f(x)$
+  solution: Differentiating the left side with the Fundamental Theorem of Calculus gives $f(x)$. Differentiating
+    the right side gives $3f'(x)$, since $k$ is constant. So $f(x)=3f'(x)$, which rearranges to $f'(x)=\frac{1}{3}f(x)$.
+    Solutions of this equation are $f(x)=Ae^{x/3}$.
+  common_errors:
+  - Differentiating the right side as $3f(x)$ and forgetting the derivative of $f$.
+  - Differentiating $k$ to get a nonzero term.
+  - Solving $f'=f/3$ and writing $f=e^{x/3}$ without the constant $A$.
+  hints:
+    rephrase: Differentiate both sides of the original equation. What does the left side become?
+    smaller_case: If $f$ were a constant $c$, what would the equation say about $c$ and $k$?
+    key_idea: The Fundamental Theorem of Calculus turns the integral into $f(x)$, which produces a first-order
+      differential equation.
+  check: sp.simplify(sp.diff(sp.exp(x/3),x)-sp.exp(x/3)/3)
+  check_ok: null
+- goal: Solve the differential equation and use the value $f(0)=-\frac{k}{3}$ to find $f(x)$.
+  expected: $f(x)=-\frac{k}{3}e^{x/3}$
+  solution: 'The general solution is $f(x)=Ae^{x/3}$. Using $f(0)=-\frac{k}{3}$ gives $A=-\frac{k}{3}$,
+    so $f(x)=-\frac{k}{3}e^{x/3}$. Check: $\int_0^x -\frac{k}{3}e^{t/3}\,dt=-k(e^{x/3}-1)$, and $3f(x)+k=-ke^{x/3}+k$,
+    which agree.'
+  common_errors:
+  - Using a different constant for $A$ and not applying the condition $f(0)=-k/3$.
+  - Forgetting to check the original integral equation, which can hide sign errors.
+  - Making an error in the integral $\int_0^x e^{t/3}\,dt$, which equals $3(e^{x/3}-1)$.
+  hints:
+    rephrase: Find the general solution of the differential equation first, then use the value you found
+      at $x=0$.
+    smaller_case: Set $k=0$ and ask which function satisfies $f(x)=3f'(x)$.
+    key_idea: A function equal to a constant multiple of its own derivative is an exponential, and the
+      constant is fixed by the initial value.
+  check: sp.simplify(sp.integrate(-k/3*sp.exp(t/3),(t,0,x))-(3*(-k/3*sp.exp(x/3))+k))
+  check_ok: null
+extensions:
+  '3':
+  - Solve $\int_0^x f(t)\,dt=af(x)+k$ for a general nonzero constant $a$.
+  - Solve $\int_0^x f(t)\,dt=f(x)$ with $f(0)=1$.
+  '4':
+  - Solve $\int_0^x f(t)\,dt=f(x)^2$ with $f(0)=0$ and explain why $f\equiv 0$ is a solution.
+  '5':
+  - Show that if $f$ is continuous and $\int_0^x f(t)\,dt=\lambda f(x)+k$ for all $x$, then $f$ is smooth,
+    and classify all solutions by $\lambda$.
+spoken_vocab:
+- integral from zero to x of f of t d t
+- equals three f of x plus k
+- f of zero equals minus k over three
+- f prime of x equals one third f of x
+- f of x equals minus k over three times e to the x over three
+- e to the x over three
+- Fundamental Theorem of Calculus
+- differential equation
+- constant of integration
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 4
+  difficulty: 4
+  parts: 3
+  minutes: 6
+  flags: []
+  tagline: Routine differentiate-and-solve task with a neat initial-condition check.
+  priority: 51
+  rank: 530
+  tier: C
+  category: tbo
+  d10: 2.5
+  real: 4.5
+  by: haiku
+tags:
+- differential_equations
+- integration

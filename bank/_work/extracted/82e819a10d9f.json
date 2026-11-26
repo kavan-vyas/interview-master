@@ -1,0 +1,9 @@
+[
+ {
+  "q": "What is larger as $n \\to \\infty$, $2^{2^{2n}}$ or $100^{100^n}$?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "nextstepmaths/NextStepMaths Interview Questions/interview-question-17.pdf#0"
+ }
+]

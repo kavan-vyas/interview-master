@@ -1,0 +1,96 @@
+id: log-pi-inequalities
+title: Logarithm inequalities involving pi
+topics:
+- logarithms
+- change of base
+- inequalities
+- AM-GM
+warmup: false
+answer_source: generated
+statement: Given that $8<\pi^2<10$, show that $\frac{1}{\log_2 \pi}+\frac{1}{\log_5 \pi} > 2$ and $\frac{1}{\log_2
+  \pi}+\frac{1}{\log_\pi 2} > 2$.
+stages:
+- goal: Simplify $\frac{1}{\log_2 \pi}+\frac{1}{\log_5 \pi}$ to a single logarithm.
+  expected: $\log_\pi 10$
+  solution: By change of base, $\frac{1}{\log_b \pi} = \log_\pi b$. So the sum is $\log_\pi 2 + \log_\pi
+    5 = \log_\pi (2\cdot 5) = \log_\pi 10$.
+  common_errors:
+  - Writing $1/\log_2 \pi$ as $\log_2(1/\pi)$.
+  - Adding logs by adding their arguments, giving $\log_\pi 7$.
+  - Confusing a reciprocal with an inverse function.
+  hints:
+    rephrase: Rewrite each reciprocal as a logarithm with base $\pi$.
+    smaller_case: 'Test the rule on a simple case: is $1/\log_2 4$ equal to $\log_4 2$?'
+    key_idea: Use change of base, $\log_b a = \ln a / \ln b$, and the rule $\log_\pi b + \log_\pi c =
+      \log_\pi(bc)$.
+  check: abs(N(1/log(pi,2) + 1/log(pi,5) - log(10,pi), 30)) < 10**-20
+  check_ok: true
+- goal: Show $\log_\pi 10 > 2$ using $\pi^2 < 10$.
+  expected: Since $\pi > 1$, $\log_\pi$ is increasing. Also $2 = \log_\pi(\pi^2)$, and $\pi^2 < 10$ gives
+    $\log_\pi 10 > \log_\pi(\pi^2) = 2$.
+  solution: Because $\pi > 1$, the function $x \mapsto \log_\pi x$ is strictly increasing. Since $\log_\pi(\pi^2)
+    = 2$ and $10 > \pi^2$, we get $\log_\pi 10 > 2$.
+  common_errors:
+  - Reversing the inequality direction when taking logs.
+  - Forgetting that the base $\pi$ must exceed 1 for the log to be increasing.
+  - Using $8 < \pi^2$ in the wrong direction.
+  - Writing $\log_\pi 10 > 2$ as $10 > 2^\pi$.
+  hints:
+    rephrase: Write the number 2 as a logarithm with base $\pi$.
+    smaller_case: Compare $\log_3 10$ with $\log_3 9$ to see which direction the inequality goes.
+    key_idea: Since the base $\pi$ is greater than 1, $\log_\pi$ is increasing, and $2 = \log_\pi(\pi^2)$.
+  check: N(log(10,pi)-2) > 0
+  check_ok: true
+- goal: Show $\frac{1}{\log_2 \pi}+\frac{1}{\log_\pi 2} > 2$.
+  expected: Let $t=\log_2 \pi > 0$, $t \neq 1$ since $\pi \neq 2$. The sum is $t+1/t$, and $t+1/t-2 =
+    (t-1)^2/t > 0$.
+  solution: $1/\log_\pi 2 = \log_2 \pi = t$ and $1/\log_2 \pi = 1/t$. Since $t>0$, $t+1/t-2 = (t-1)^2/t$.
+    This is strictly positive because $t \neq 1$ (as $\pi \neq 2$). Hence $t+1/t > 2$.
+  common_errors:
+  - Concluding only $\geq 2$ and forgetting the strict inequality.
+  - Claiming $t=1$ is possible, which would contradict $\pi \neq 2$.
+  - Forgetting that $t>0$ is needed for the algebra to hold.
+  - Using the hypothesis $8<\pi^2<10$ here when it is not needed.
+  hints:
+    rephrase: Let $t = \log_2 \pi$. Express both terms of the sum in terms of $t$.
+    smaller_case: 'Check the pattern with $t=2$ and $t=1/2$: what does $t+1/t$ give?'
+    key_idea: For $x>0$, $x+1/x-2 = (x-1)^2/x$. When is this zero?
+  check: N(1/log(pi,2) + log(pi,2) - 2) > 0
+  check_ok: true
+extensions:
+  '3':
+  - Prove $\log_2\pi+\log_\pi 2>2$ without using AM-GM.
+  '4':
+  - For which bases $b>1$ does $\log_b\pi+\log_\pi b>2$ hold?
+  '5':
+  - For which $x>0$, $x\neq 1$ is $\frac{1}{\log_2 x}+\frac{1}{\log_x 2}>2$?
+spoken_vocab:
+- log base two of pi
+- log base five of pi
+- log base pi of two
+- one over
+- pi squared
+- less than ten
+- greater than two
+- change of base
+- AM-GM
+- inequality
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 2
+  minutes: 8
+  flags: []
+  tagline: Base-change identities collapse a sum of reciprocals into a single bounded logarithm.
+  priority: 71
+  rank: 342
+  tier: B
+  category: tbo
+  d10: 4.0
+  real: 5.0
+  by: haiku
+tags:
+- exponentials_and_logarithms
+- inequalities

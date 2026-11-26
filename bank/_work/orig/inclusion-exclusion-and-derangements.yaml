@@ -1,0 +1,96 @@
+id: inclusion-exclusion-and-derangements
+title: Coprime counting and derangements
+topics:
+- inclusion-exclusion
+- derangements
+- counting
+- permutations
+warmup: false
+answer_source: generated
+statement: (i) How many of the integers $1, 2, \ldots, 1000$ are divisible by none of $2$, $3$ and $5$?
+  (ii) A derangement of $\{1, \ldots, n\}$ is a permutation with no fixed point. Show that the number
+  of derangements is $D_n = n!\sum_{k=0}^{n} \frac{(-1)^k}{k!}$. (iii) Compute $D_4$ and $D_5$.
+stages:
+- goal: (i) Count the integers from $1$ to $1000$ not divisible by $2$, $3$, or $5$.
+  expected: $266$ integers.
+  solution: By inclusion-exclusion, the number divisible by at least one of $2,3,5$ is $\lfloor 1000/2\rfloor
+    + \lfloor 1000/3\rfloor + \lfloor 1000/5\rfloor - \lfloor 1000/6\rfloor - \lfloor 1000/10\rfloor -
+    \lfloor 1000/15\rfloor + \lfloor 1000/30\rfloor = 500+333+200-166-100-66+33 = 734$. So $1000-734=266$
+    are divisible by none of them.
+  common_errors:
+  - Using $\lfloor 1000/3 \rfloor = 334$ instead of $333$
+  - Forgetting the triple-intersection term $\lfloor 1000/30 \rfloor = 33$
+  - Using $1000 \cdot \frac{1}{2}\cdot\frac{2}{3}\cdot\frac{4}{5} \approx 266.67$ and rounding without
+    justification
+  hints:
+    rephrase: Count the multiples of $2$, of $3$, and of $5$ separately, then correct for numbers counted
+      more than once.
+    smaller_case: In the integers $1$ to $30$, how many are divisible by none of $2$, $3$, $5$? Count
+      them directly.
+    key_idea: Use inclusion-exclusion over the sets of multiples of $2$, $3$, $5$, and their intersections.
+  check: 1000 - (500+333+200) + (166+100+66) - 33 - 266
+  check_ok: true
+- goal: (ii) Show that the number of derangements of $\{1,\ldots,n\}$ is $D_n = n!\sum_{k=0}^{n}\frac{(-1)^k}{k!}$.
+  expected: $D_n = \sum_{k=0}^{n}(-1)^k\binom{n}{k}(n-k)! = n!\sum_{k=0}^{n}\frac{(-1)^k}{k!}$.
+  solution: Let $A_i$ be the set of permutations fixing $i$. A derangement avoids all $A_i$. For any set
+    $S$ of $k$ specified points, the permutations fixing all of them number $(n-k)!$. Inclusion-exclusion
+    gives $D_n = \sum_{k=0}^{n} (-1)^k \binom{n}{k}(n-k)!$. Since $\binom{n}{k}(n-k)! = \frac{n!}{k!}$,
+    this equals $n!\sum_{k=0}^{n}\frac{(-1)^k}{k!}$.
+  common_errors:
+  - Dropping the alternating sign, so the sum has no $(-1)^k$
+  - Using $(n-k)$ instead of $(n-k)!$ for the number of permutations fixing $k$ points
+  - Forgetting that a set of $k$ fixed points leaves $(n-k)!$ permutations, not $n-k$
+  hints:
+    rephrase: Count all permutations, then subtract those that fix at least one point, using inclusion-exclusion.
+    smaller_case: For $n=2$, list the permutations of $\{1,2\}$ and identify the derangements.
+    key_idea: 'Inclusion-exclusion over sets of fixed points: a set of $k$ prescribed fixed points leaves
+      $(n-k)!$ permutations.'
+  check: (factorial(4)*Sum((-1)**k/factorial(k),(k,0,4))).doit() - 9
+  check_ok: true
+- goal: (iii) Compute $D_4$ and $D_5$ using the formula from part (ii).
+  expected: $D_4 = 9$ and $D_5 = 44$.
+  solution: $D_4 = 24\left(1-1+\frac{1}{2}-\frac{1}{6}+\frac{1}{24}\right) = 24\cdot\frac{9}{24}=9$. $D_5
+    = 120\left(1-1+\frac{1}{2}-\frac{1}{6}+\frac{1}{24}-\frac{1}{120}\right) = 120\cdot\frac{44}{120}=44$.
+    These agree with the recurrence $D_n=(n-1)(D_{n-1}+D_{n-2})$ using $D_2=1$, $D_3=2$.
+  common_errors:
+  - Arithmetic slip in the alternating fractions, such as getting $D_4=8$
+  - Omitting the $k=n$ term of the sum
+  hints:
+    rephrase: Substitute $n=4$ and $n=5$ into the formula, then multiply by $n!$ at the end.
+    smaller_case: Use the formula to compute $D_3$, and check it against a direct listing of the permutations
+      of $\{1,2,3\}$ with no fixed point.
+    key_idea: Evaluate the finite alternating sum carefully term by term, then multiply by $n!$.
+  check: (factorial(4)*Sum((-1)**k/factorial(k),(k,0,4))).doit() - 9 + (factorial(5)*Sum((-1)**k/factorial(k),(k,0,5))).doit()
+    - 44
+  check_ok: true
+extensions:
+  '3':
+  - Show that $D_n/n! \to 1/e$ as $n \to \infty$.
+  '4':
+  - Show that $D_n = (n-1)(D_{n-1}+D_{n-2})$ for $n \ge 3$, using the formula from part (ii).
+  '5':
+  - Show that the number of permutations of $\{1,\ldots,n\}$ with exactly one fixed point is $n\,D_{n-1}$.
+spoken_vocab:
+- integers one to one thousand
+- divisible by two three and five
+- inclusion exclusion
+- derangement
+- permutation with no fixed point
+- D sub n
+- factorial
+- alternating sum
+- k from zero to n
+- D four
+- D five
+source: jaymin/Jaymin Interview (1).pdf#p25
+verified: false
+rating:
+  score: 9
+  difficulty: 3
+  parts: 3
+  minutes: 20
+  flags: []
+  tagline: 'Inclusion-exclusion twice: coprime count, then derangement formula proof.'
+  priority: 130
+  rank: 19
+  tier: S

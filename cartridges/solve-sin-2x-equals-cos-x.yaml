@@ -1,0 +1,91 @@
+id: solve-sin-2x-equals-cos-x
+title: Solve sin(2x) = cos x for all real x
+topics:
+- trigonometry
+- double angle formula
+- trigonometric equations
+- general solutions
+warmup: true
+answer_source: pdf
+statement: Solve $\sin(2x)=\cos x$ for all real numbers $x$.
+stages:
+- goal: Use the double angle formula to rewrite $\sin(2x)$.
+  expected: $2\sin x\cos x = \cos x$
+  solution: $\sin(2x)=2\sin x\cos x$, so the equation becomes $2\sin x\cos x=\cos x$.
+  common_errors:
+  - Writing $\sin(2x)=2\sin x$, which drops the $\cos x$ factor.
+  - Using $\sin(2x)=\sin^2 x-\cos^2 x$ (the cosine double angle formula) by mistake.
+  hints:
+    rephrase: Which identity expresses $\sin$ of a doubled angle in terms of $\sin x$ and $\cos x$?
+    smaller_case: 'Test your identity at $x=\pi/4$: is $\sin(\pi/2)$ equal to the expression you wrote?'
+    key_idea: Use the sine double angle identity.
+  check: simplify(sin(2*x) - cos(x) - (2*sin(x)*cos(x) - cos(x)))
+  check_ok: true
+- goal: Factorise the equation and identify the two cases.
+  expected: $\cos x\,(2\sin x - 1)=0$, so $\cos x=0$ or $\sin x=\tfrac12$.
+  solution: 'Move everything to one side: $2\sin x\cos x-\cos x=0$. Factor out $\cos x$: $\cos x(2\sin
+    x-1)=0$. So either $\cos x=0$ or $\sin x=\frac12$.'
+  common_errors:
+  - Dividing both sides by $\cos x$, which loses the solutions where $\cos x=0$.
+  - Factoring incorrectly, for example as $\cos x(2\sin x+1)$.
+  hints:
+    rephrase: Both sides contain $\cos x$. What happens if you bring everything to one side and factor?
+    smaller_case: Solve $a\cdot b = 0$ when $a=\cos x$. What must be true?
+    key_idea: Never divide by a factor that may be zero. Factor and set each factor to zero.
+  check: simplify(2*sin(x)*cos(x) - cos(x) - cos(x)*(2*sin(x) - 1))
+  check_ok: true
+- goal: Give the general solution of $\cos x=0$ and $\sin x=\tfrac12$ for all real $x$.
+  expected: $x=\frac{\pi}{2}+k\pi$, or $x=\frac{\pi}{6}+2k\pi$, or $x=\frac{5\pi}{6}+2k\pi$, for $k\in\mathbb{Z}$.
+  solution: $\cos x=0$ gives $x=\frac{\pi}{2}+k\pi$. $\sin x=\frac12$ gives $x=\frac{\pi}{6}+2k\pi$ and
+    $x=\frac{5\pi}{6}+2k\pi$ for $k\in\mathbb{Z}$, since sine is $\frac12$ in the first and second quadrants.
+  common_errors:
+  - Giving only the principal solutions $\pi/6$ and $\pi/2$, with no general $+2k\pi$ or $+k\pi$.
+  - Writing $x=\frac{\pi}{2}+2k\pi$ for $\cos x=0$, which misses the solutions at $\frac{3\pi}{2}$ and
+    so on.
+  - Missing the second solution $\frac{5\pi}{6}$ for $\sin x=\frac12$.
+  hints:
+    rephrase: For each equation, list every angle in one full period. Then add the period to get the general
+      form.
+    smaller_case: Solve $\cos x=0$ for $0\le x<2\pi$. How many solutions are there?
+    key_idea: The period of $\cos x$ is $2\pi$, but its zeros repeat every $\pi$. The sine equation has
+      two solutions in each period.
+  check: simplify(sin(2*(pi/2 + k*pi)) - cos(pi/2 + k*pi)) + simplify(sin(2*(pi/6 + 2*k*pi)) - cos(pi/6
+    + 2*k*pi)) + simplify(sin(2*(5*pi/6 + 2*k*pi)) - cos(5*pi/6 + 2*k*pi))
+  check_ok: false
+extensions:
+  '3':
+  - Solve $\cos(2x)=\sin x$ for all real $x$.
+  '4':
+  - Solve $\sin x+\cos x=1$ for all real $x$.
+  '5':
+  - Find all $x\in[0,2\pi)$ with $\sin(2x)=\sqrt{3}\cos x$.
+spoken_vocab:
+- sine of 2x
+- cosine of x
+- double angle
+- factorise
+- pi over two
+- pi over six
+- five pi over six
+- plus k pi
+- plus 2 k pi
+- k is an integer
+- general solution
+source: past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2012.docx
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 3
+  minutes: 6
+  flags: []
+  tagline: 'Classic trap: don''t divide by cos x; two families of solutions.'
+  priority: 61
+  rank: 437
+  tier: C
+  category: past-interviews
+  d10: 2.5
+  real: 3.0
+  by: haiku
+tags:
+- trigonometry

@@ -1,0 +1,139 @@
+id: step-cubic-turning-points-discriminant
+title: 'Cubic with three real roots: turning-point discriminant and a sufficient-but-not-necessary condition'
+topics:
+- cubic functions
+- turning points
+- discriminant of quadratics
+- factorisation
+- sufficient and necessary conditions
+warmup: false
+answer_source: pdf
+statement: Sketch, without calculating the stationary points, the graph of the function $f(x) = (x - p)(x
+  - q)(x - r)$, where $p < q < r$. By considering the quadratic equation $f'(x) = 0$, or otherwise, show
+  that $(p + q + r)^2 > 3(qr + rp + pq)$. By considering $(x^2 + gx + h)(x - k)$, or otherwise, show that
+  $g^2 > 4h$ is a sufficient condition but not a necessary condition for the inequality $(g - k)^2 > 3(h
+  - gk)$ to hold.
+stages:
+- goal: Sketch the cubic and explain why $f'(x) = 0$ has two distinct real roots.
+  expected: The cubic has positive leading coefficient and crosses the axis at $p$, $q$, $r$. It is negative
+    for $x<p$, positive on $(p,q)$, negative on $(q,r)$, and positive for $x>r$. It has two distinct turning
+    points, a local maximum between $p$ and $q$ and a local minimum between $q$ and $r$.
+  solution: Since $f(x) \to -\infty$ as $x \to -\infty$ and $f(x) \to +\infty$ as $x \to +\infty$, the
+    sign pattern follows from the three simple roots. Between consecutive roots the cubic must turn, giving
+    one turning point in each of $(p,q)$ and $(q,r)$. So $f'(x)=0$ has two distinct real roots, which
+    makes its discriminant positive.
+  common_errors:
+  - Sketching a local maximum at the wrong position, for example between $q$ and $r$ rather than between
+    $p$ and $q$.
+  - Assuming the turning points are obvious without justifying why there are exactly two.
+  - Mixing up the sign pattern because the leading coefficient was not considered.
+  hints:
+    rephrase: Look at the sign of $f$ between the three roots and decide where it must turn.
+    smaller_case: Sketch the case $p=-1$, $q=0$, $r=1$ and compare its sign pattern with the general case.
+    key_idea: Each sign change between consecutive roots forces a turning point.
+  check: None
+  check_ok: null
+- goal: Show that $(p+q+r)^2 > 3(qr+rp+pq)$ by considering the discriminant of $f'(x) = 0$.
+  expected: Expanding $f$ gives $f'(x) = 3x^2 - 2(p+q+r)x + (qr+rp+pq)$, and its discriminant is $4(p+q+r)^2
+    - 12(qr+rp+pq)$. This is positive, so $(p+q+r)^2 > 3(qr+rp+pq)$.
+  solution: $f(x) = x^3 - (p+q+r)x^2 + (pq+qr+rp)x - pqr$, so $f'(x) = 3x^2 - 2(p+q+r)x + (pq+qr+rp)$.
+    Its discriminant is $[2(p+q+r)]^2 - 4\cdot 3\cdot(pq+qr+rp) = 4[(p+q+r)^2 - 3(pq+qr+rp)]$. Since $f'(x)
+    = 0$ has two distinct real roots, this discriminant is positive.
+  common_errors:
+  - Using the wrong sign on the middle coefficient when expanding $f$.
+  - Forgetting the factor 4 when comparing discriminants, though it does not change the sign.
+  - Stating $\geqslant$ rather than strict inequality, although there are two distinct roots.
+  hints:
+    rephrase: Expand the product of three linear factors and find the coefficients of $x^2$ and $x$ in
+      $f$.
+    smaller_case: Take $p=0$, $q=1$, $r=2$ and check the discriminant numerically.
+    key_idea: The discriminant of $ax^2+bx+c$ is $b^2-4ac$; apply it to $f'$ and simplify.
+  check: expand(discriminant(3*x**2 - 2*(p + q + r)*x + (q*r + r*p + p*q), x) - 4*((p + q + r)**2 - 3*(q*r
+    + r*p + p*q))) == 0
+  check_ok: true
+- goal: Expand $(x^2+gx+h)(x-k)$ and show that the inequality $(g-k)^2 > 3(h-gk)$ is the same discriminant
+    condition for the cubic.
+  expected: $(x^2+gx+h)(x-k) = x^3 + (g-k)x^2 + (h-gk)x - hk$. Comparing with the form in part (b) gives
+    $(g-k)^2 > 3(h-gk)$ as the condition for two distinct turning points.
+  solution: Expanding gives $x^3 + (g-k)x^2 + (h-gk)x - hk$. In the cubic $x^3 - sx^2 + ex - d$ we have
+    $s = k-g$ and $e = h - gk$, so the condition $s^2 > 3e$ becomes $(k-g)^2 > 3(h-gk)$, which equals
+    $(g-k)^2 > 3(h-gk)$.
+  common_errors:
+  - Getting the sign of $g$ or $k$ wrong in the $x^2$ coefficient.
+  - Writing $(h - gk)$ as $(h + gk)$.
+  - Forgetting that $(g-k)^2 = (k-g)^2$.
+  hints:
+    rephrase: Multiply out the product and compare the coefficients of $x^2$ and $x$ with the general
+      cubic.
+    smaller_case: Take $g=1$, $h=2$, $k=3$ and expand numerically.
+    key_idea: The condition from part (b) depends only on the coefficients, so match them.
+  check: expand((x**2 + g*x + h)*(x - k) - (x**3 + (g - k)*x**2 + (h - g*k)*x - h*k)) == 0
+  check_ok: true
+- goal: Show that $g^2 > 4h$ is sufficient, and give a counterexample showing it is not necessary.
+  expected: 'Write $(g-k)^2 - 3(h-gk) = k^2 + gk + g^2 - 3h$. Its discriminant in $k$ is $-3(g^2-4h)$,
+    which is negative when $g^2>4h$, so the expression is positive for all $k$. The condition is not necessary:
+    $g=0$, $h=0$, $k=1$ gives $(0-1)^2 - 0 = 1 > 0$ although $g^2 = 0 \not> 0$.'
+  solution: 'Expand $(g-k)^2 - 3(h-gk) = g^2 - 2gk + k^2 - 3h + 3gk = k^2 + gk + g^2 - 3h$. As a quadratic
+    in $k$ its discriminant is $g^2 - 4(g^2-3h) = -3(g^2-4h)$. If $g^2 > 4h$ this is negative, so the
+    quadratic in $k$ is always positive, and the inequality holds for every $k$. This shows sufficiency.
+    For necessity, take $g=0$, $h=0$, $k=1$: the inequality holds, but $g^2 > 4h$ is false.'
+  common_errors:
+  - Claiming that real roots of $x^2+gx+h$ automatically give two turning points of the cubic without
+    checking the discriminant condition.
+  - Concluding necessity from sufficiency.
+  - Choosing a counterexample where the inequality also fails.
+  hints:
+    rephrase: Write the inequality as a quadratic in $k$ and ask when it is always positive.
+    smaller_case: Set $g=0$ and $h=0$, then check the inequality for a few values of $k$.
+    key_idea: A quadratic in $k$ is positive for all $k$ exactly when its discriminant is negative.
+  check: ((0 - 1)**2 - 3*(0 - 0*1) > 0) and (not (0**2 > 4*0))
+  check_ok: true
+extensions:
+  '3':
+  - Find the condition on $g$, $h$, $k$ for $(x^2+gx+h)(x-k)$ to have exactly one real stationary point.
+  - Explain why $f'(x)=0$ must have a root in $(p,q)$ without using the discriminant.
+  '4':
+  - Show that $(g-k)^2 > 3(h-gk)$ is equivalent to a condition on the three roots of the cubic.
+  - Find all $(g, h)$ with $g^2 = 4h$ for which the inequality holds for every $k$.
+  '5':
+  - Prove that $g^2 > 4h$ and $(g-k)^2 > 3(h-gk)$ coincide when $k = 0$, and describe the set of $k$ values
+    for which the second holds when $g^2 \leqslant 4h$.
+  - Generalise to a quartic and state which discriminant conditions would be needed for it to have three
+    turning points.
+spoken_vocab:
+- f of x equals open bracket x minus p close bracket open bracket x minus q close bracket open bracket
+  x minus r close bracket
+- p less than q less than r
+- f dash of x equals zero
+- discriminant
+- p plus q plus r all squared
+- three times q r plus r p plus p q
+- x squared plus g x plus h
+- x minus k
+- g squared greater than four h
+- sufficient but not necessary
+- local maximum
+- local minimum
+- stationary point
+- counterexample
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#7
+verified: false
+rating:
+  quality: 8
+  difficulty: 7
+  parts: 4
+  minutes: 25
+  flags:
+  - needs_diagram
+  tagline: Discriminant link from cubic to quadratic, with a sufficiency counterexample.
+  priority: 84
+  rank: 162
+  tier: B
+  category: siklos
+  d10: 6.0
+  real: 5.5
+  by: haiku
+tags:
+- roots_of_polynomials
+- inequalities
+- differentiation

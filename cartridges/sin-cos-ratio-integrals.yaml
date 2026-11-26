@@ -1,0 +1,92 @@
+id: sin-cos-ratio-integrals
+title: Integrals of sin/(sin+cos) and cos/(sin+cos)
+topics:
+- integration
+- trigonometric integrals
+- logarithmic integrals
+- simultaneous equations
+warmup: false
+answer_source: generated
+statement: Let $A=\int\dfrac{\sin(x)}{\sin(x)+\cos(x)}\,dx$ and $B=\int\dfrac{\cos(x)}{\sin(x)+\cos(x)}\,dx$,
+  find $A$ and $B$.
+stages:
+- goal: Find A + B.
+  expected: A + B = x + C
+  solution: Adding the integrands gives (sin x + cos x)/(sin x + cos x) = 1, so A + B = integral of 1
+    dx = x + C.
+  common_errors:
+  - Trying to integrate the sum directly as a complicated trigonometric expression instead of simplifying
+    first.
+  - Forgetting the constant of integration.
+  hints:
+    rephrase: What happens when you add the two integrands together before integrating?
+    smaller_case: Add the two fractions at x = pi/4 and see what the sum equals.
+    key_idea: Two fractions with the same denominator add to a single fraction over that denominator.
+  check: simplify(sin(x)/(sin(x)+cos(x)) + cos(x)/(sin(x)+cos(x)) - 1)
+  check_ok: true
+- goal: Find A - B.
+  expected: A - B = -ln|sin x + cos x| + C
+  solution: A - B = integral of (sin x - cos x)/(sin x + cos x) dx. Since d/dx (sin x + cos x) = cos x
+    - sin x, the integrand equals -(d/dx) ln|sin x + cos x|. So A - B = -ln|sin x + cos x| + C.
+  common_errors:
+  - Getting the sign wrong and writing +ln|sin x + cos x|.
+  - Forgetting the absolute value inside the logarithm.
+  - Failing to recognise that the numerator is minus the derivative of the denominator.
+  hints:
+    rephrase: Compare the numerator sin x - cos x with the derivative of the denominator sin x + cos x.
+    smaller_case: Differentiate ln(sin x + cos x) and see what fraction appears.
+    key_idea: A fraction whose numerator is the derivative of its denominator integrates to a logarithm
+      of the denominator.
+  check: simplify(diff(-log(sin(x) + cos(x)), x) - (sin(x) - cos(x))/(sin(x) + cos(x)))
+  check_ok: true
+- goal: Solve the two equations for A and B.
+  expected: A = (1/2)(x - ln|sin x + cos x|) + C and B = (1/2)(x + ln|sin x + cos x|) + C
+  solution: From A + B = x + C1 and A - B = -ln|sin x + cos x| + C2, we get A = ((A+B) + (A-B))/2 and
+    B = ((A+B) - (A-B))/2. Combining the constants into C gives the result above.
+  common_errors:
+  - Making an arithmetic error when combining the two equations, usually by a sign.
+  - Attaching the wrong constant, or forgetting that the two constants combine into one.
+  hints:
+    rephrase: You have two equations involving A and B. How could you combine them to isolate each one?
+    smaller_case: If you knew only A + B = 10 and A - B = 4, how would you find A?
+    key_idea: Adding and subtracting two equations isolates each unknown.
+  check: simplify(diff((x - log(sin(x) + cos(x)))/2, x) - sin(x)/(sin(x) + cos(x)))
+  check_ok: true
+extensions:
+  '3':
+  - Find the integral of (a sin x + b cos x)/(sin x + cos x) dx for constants a and b, by writing a sin
+    x + b cos x as p(sin x + cos x) + q(cos x - sin x).
+  '4':
+  - Evaluate the definite integral of sin x/(sin x + cos x) from 0 to pi/2.
+  '5':
+  - Explain, without integrating, why the definite integral of sin x/(sin x + cos x) from 0 to pi/2 equals
+    the definite integral of cos x/(sin x + cos x) from 0 to pi/2.
+spoken_vocab:
+- A
+- B
+- integral of sine x over sine x plus cosine x
+- integral of cosine x over sine x plus cosine x
+- sine x plus cosine x
+- natural log of the absolute value
+- plus C
+- pi over two
+- x minus log
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: 'Neat trick: add and subtract the integrals, then solve the linear system.'
+  priority: 71
+  rank: 326
+  tier: B
+  category: tbo
+  d10: 4.0
+  real: 4.0
+  by: haiku
+tags:
+- integration
+- algebra_and_functions

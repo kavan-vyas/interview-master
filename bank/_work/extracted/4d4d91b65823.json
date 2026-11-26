@@ -1,0 +1,58 @@
+[
+ {
+  "q": "A normal to a curve at a point is the line through that point which is perpendicular to the tangent there. Consider the parabola $y=x^2$. A point $(h, k)$ in the plane can lie on more than one normal to the parabola. For which points $(h, k)$ do exactly one, exactly two, or exactly three distinct normals to $y=x^2$ pass through $(h, k)$?",
+  "kind": "maths",
+  "answer": "The normal at $(t,t^2)$ is $y-t^2=-\\frac{1}{2t}(x-t)$. It passes through $(h,k)$ iff $2t^3+(1-2k)t-h=0$, and each real root $t$ gives a distinct normal. Three normals when $27h^2<2(2k-1)^3$; two normals on the curve $27h^2=2(2k-1)^3$ except at $(0,\\frac12)$; one normal everywhere else. The boundary is a semicubical parabola, the evolute of $y=x^2$.",
+  "short": false,
+  "source": "jzmaths/JZMaths Interview Questions from the website trial.pdf#0"
+ },
+ {
+  "q": "The points $1,2,\\ldots,30$ lie in a row. Player A has a counter on point 1 and player B has a counter on point 30. The players take turns, and on each turn a player must move their own counter 1, 2 or 3 places towards the other counter. A counter may not land on, or jump over, the other counter. The game ends as soon as the two counters are on neighbouring points, and the player whose counter is then on an odd-numbered point wins. Who wins with best play, and does it matter who moves first?",
+  "kind": "maths",
+  "answer": "B wins, whoever moves first. A ends on an odd point exactly when A's total distance is even. The counters close a gap of 28, so the two totals add to 28 and have the same parity. Let $g$ be the number of empty points between the counters. With A to move, a position is safe for B if A is on an odd point and $g\\equiv1$ or $4 \\pmod 8$, or A is on an even point and $g\\equiv0$ or $5 \\pmod 8$. B's strategy: if A moves 1 or 3, B makes the round total 4; if A moves 2, B replies 1 and 3 alternately. From any safe position this returns to a safe position, so the game ends with A on an even point. If A moves first, $g=28\\equiv4$ with A on 1, which is safe. If B moves first, B moves 3, giving $g=25\\equiv1$ with A odd, which is safe.",
+  "short": false,
+  "source": "jzmaths/JZMaths Interview Questions from the website trial.pdf#0"
+ },
+ {
+  "q": "$N$ people sit around a round table, numbered $0,1,\\ldots,N-1$ clockwise, and the tag belonging to person $k$ is called 'tag $k$'. One tag is put in front of each person, but a tag need not be in front of its owner. Every second, everyone passes the tag in front of them to the next person clockwise, so all the tags move one place round the table together. For which values of $N$ can the tags be arranged so that, at every second, at least one person has their own tag in front of them?",
+  "kind": "maths",
+  "answer": "Exactly the odd values of $N$. If tag $k$ starts in front of person $p_k$, it is in front of its owner at time $d_k\\equiv k-p_k \\pmod N$. Each tag meets its owner once per $N$ seconds, and every second needs a match, so the $d_k$ are $0,1,\\ldots,N-1$ in some order. For $N$ odd, put tag $k$ in front of person $-k$; then $d_k\\equiv 2k$, which are all different because 2 is invertible mod $N$. For $N=2m$ even, summing gives $\\sum d_k\\equiv 0 \\pmod N$, but $0+1+\\cdots+(N-1)=\\frac{N(N-1)}{2}\\equiv m\\not\\equiv 0 \\pmod{2m}$. Contradiction.",
+  "short": false,
+  "source": "jzmaths/JZMaths Interview Questions from the website trial.pdf#0"
+ },
+ {
+  "q": "A spider starts at a corner $S$ of a square and walks along the edges. At each corner it chooses one of the edges there uniformly at random and walks along it to the next corner. a) Find the expected number of steps until the spider first reaches the corner $T$ opposite $S$. b) Repeat for a cube, where $T$ is the vertex diagonally opposite $S$. c) On the cube, find the expected number of steps until the spider first returns to $S$. What about a triangle, or three points $S$\u2013$A$\u2013$B$ in a line?",
+  "kind": "maths",
+  "answer": "a) Let $E_n$ be the expected steps from a corner $n$ edges away from $T$. $E_2=1+E_1$ and $E_1=1+\\frac12\\cdot0+\\frac12E_2$, so $E_2=4$. b) $E_1=1+\\frac23E_2$, $E_2=1+\\frac23E_1+\\frac13E_3$, $E_3=1+E_2$, giving $E_1=7$, $E_2=9$, $E_3=10$. Check: each two-step attempt from distance 2 reaches $T$ with probability $\\frac23\\cdot\\frac13=\\frac29$, so the answer is $1+2\\cdot\\frac92=10$. c) The first step from $S$ is forced to a neighbour, whose expected time back to $S$ is $E_1=7$, so the return time is $1+7=8$. Triangle: 3. Square: 4. Path $S$\u2013$A$\u2013$B$: from $A$, $E=1+\\frac12\\cdot0+\\frac12(1+E)$ gives $E=3$, so the return time is 4. In general the expected return time to $S$ is $\\frac{2\\times(\\text{number of edges})}{\\deg(S)}$, which equals the number of corners when every corner has the same degree.",
+  "short": false,
+  "source": "jzmaths/JZMaths Interview Questions from the website trial.pdf#0"
+ },
+ {
+  "q": "Ten people sit around a round table. They pair up at random, and each person shakes hands with their partner, all at the same moment. Think of each handshake as a straight line across the table joining the two people. What is the probability that no arms cross?",
+  "kind": "maths",
+  "answer": "$\\frac{2}{45}$. All pairings: $9\\cdot7\\cdot5\\cdot3\\cdot1=945$. Non-crossing pairings $H_n$ for $2n$ people satisfy $H_n=\\sum_{k=0}^{n-1}H_kH_{n-1-k}$ with $H_0=1$, since person 1's handshake splits the rest into two independently paired sides. This gives $1,1,2,5,14,42$ (Catalan numbers), so $H_5=42$. Hence $P(\\text{no arms cross})=\\frac{42}{945}=\\frac{2}{45}$.",
+  "short": false,
+  "source": "jzmaths/JZMaths Interview Questions from the website trial.pdf#0"
+ },
+ {
+  "q": "A point $P$ is chosen uniformly at random inside a square of side 1, whose centre is $C$. The distance from $P$ to an edge means the shortest distance from $P$ to any point on that edge. What is the probability that $P$ is closer to $C$ than to the nearest edge of the square?",
+  "kind": "maths",
+  "answer": "$\\frac{4\\sqrt{2}-5}{3}\\approx0.219$. Put $C$ at the origin. By symmetry, work in the triangle $0\\le y\\le x\\le\\frac12$, where the nearest edge is $x=\\frac12$. The condition $\\sqrt{x^2+y^2}<\\frac12-x$ is equivalent to $x<\\frac14-y^2$, a parabola with focus $C$ and directrix the edge. It meets $y=x$ at $y=\\alpha=\\frac{\\sqrt2-1}{2}$. The favourable area in the triangle is $\\int_0^\\alpha(\\frac14-y^2-y)\\,dy$, and multiplying by 8 gives $\\frac{4\\sqrt2-5}{3}$. Extensions: equilateral triangle $\\frac{5}{27}$; regular hexagon $\\approx0.238$; tends to $\\frac14$ for a circle.",
+  "short": false,
+  "source": "jzmaths/JZMaths Interview Questions from the website trial.pdf#0"
+ },
+ {
+  "q": "Let $f(x)=x^3-3x$. Starting from a real number $x$, apply $f$ again and again: $f^1(x)=f(x)$, $f^2(x)=f(f(x))$, $f^{n+1}(x)=f(f^n(x))$. a) How many distinct real solutions does $f^3(x)=2$ have? b) For every positive integer $n$ and every real number $t$, how many distinct real solutions does $f^n(x)=t$ have? Give a reason that works for every $n$.",
+  "kind": "maths",
+  "answer": "a) 14. Put $u=f^2(x)$, so we need $f(u)=2$, i.e. $u^3-3u-2=(u+1)^2(u-2)=0$, giving $u=-1$ or $u=2$. Then $f^2(x)=-1$ has 9 solutions and $f^2(x)=2$ has 5, and no $x$ is counted twice, so the total is $9+5=14$. b) Substitute $x=2\\cos\\theta$ with $\\theta\\in[0,\\pi]$. Since $4\\cos^3\\theta-3\\cos\\theta=\\cos3\\theta$, we get $f(2\\cos\\theta)=2\\cos3\\theta$, so $f^n(2\\cos\\theta)=2\\cos(3^n\\theta)$. If $|t|<2$: $\\cos(3^n\\theta)=\\frac t2$ has exactly $3^n$ solutions with $\\theta\\in(0,\\pi)$, giving $3^n$ distinct $x$ in $(-2,2)$, and none with $|x|>2$. If $|t|=2$: $\\cos(3^n\\theta)=\\pm1$ has $\\frac{3^n+1}{2}$ solutions in $[0,\\pi]$. Check: $n=3$ gives 14. If $|t|>2$: every solution has $|x|>2$, where $f$ is strictly increasing and keeps $|x|>2$, so $f^n$ is strictly increasing there and onto, giving exactly 1 solution.",
+  "short": false,
+  "source": "jzmaths/JZMaths Interview Questions from the website trial.pdf#0"
+ },
+ {
+  "q": "Let $p$ be a polynomial with real coefficients such that $p(x^2)=\\big(p(x)\\big)^2$ for every real number $x$. Find every polynomial $p$ with this property.",
+  "kind": "maths",
+  "answer": "$p(x)=0$, or $p(x)=x^n$ for some integer $n\\ge0$ (this includes $p=1$). These all work, since $(x^2)^n=(x^n)^2$. Conversely, suppose $p\\ne0$ has degree $n$ and leading coefficient $a$. Comparing the $x^{2n}$ terms gives $a=a^2$, so $a=1$. Suppose $p(x)=x^n+cx^k+\\text{(lower terms)}$ with $c\\ne0$ and $k<n$, where $cx^k$ is the next non-zero term. Then $p(x)^2=x^{2n}+2cx^{n+k}+\\cdots$ and $p(x^2)=x^{2n}+cx^{2k}+\\cdots$. Since $2k<n+k<2n$, the coefficient of $x^{n+k}$ is $2c\\ne0$ on the left but $0$ on the right. Contradiction, so there is no such term and $p(x)=x^n$.",
+  "short": false,
+  "source": "jzmaths/JZMaths Interview Questions from the website trial.pdf#0"
+ }
+]

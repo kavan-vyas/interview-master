@@ -1,0 +1,102 @@
+id: kclms-specimen-2-q2-units-digit-7-2026-plus-3-2026
+title: Units digit of 7^2026 + 3^2026
+topics:
+- modular arithmetic
+- powers
+- cycles
+- units digit
+warmup: true
+answer_source: pdf
+statement: What is the units digit of $7^{2026}+3^{2026}$? a) 0 b) 2 c) 4 d) 6 e) 8
+stages:
+- goal: Find the period of the units digits of powers of 7.
+  expected: '4'
+  solution: The units digits of 7^1, 7^2, 7^3, 7^4, 7^5 are 7, 9, 3, 1, 7, so the pattern repeats with
+    period 4.
+  common_errors:
+  - Assuming the period is 10 because the base is mod 10.
+  - Stopping after 7^2 and guessing the pattern.
+  hints:
+    rephrase: Write out the units digits of the first few powers of 7 and look for a repetition.
+    smaller_case: What are the units digits of 2^1, 2^2, 2^3, 2^4, 2^5?
+    key_idea: The units digit of a power depends only on the base mod 10, and it cycles with some period.
+  check: Integer(4) - 4
+  check_ok: true
+- goal: Reduce the exponent 2026 modulo the period.
+  expected: '2'
+  solution: 2026 = 4 * 506 + 2, so 2026 mod 4 = 2. Hence 7^2026 has the same units digit as 7^2, which
+    is 9.
+  common_errors:
+  - Computing 2026 mod 4 as 0.
+  - Using 2026 mod 10 instead of the period.
+  hints:
+    rephrase: What is the remainder when 2026 is divided by the period you just found?
+    smaller_case: What is 10 mod 4? What is 11 mod 4?
+    key_idea: Exponents matter only modulo the cycle length.
+  check: Mod(Integer(2026),4) - 2
+  check_ok: true
+- goal: Find the units digit of 7^2026.
+  expected: '9'
+  solution: Since 2026 mod 4 = 2, the units digit of 7^2026 equals that of 7^2 = 49, which is 9.
+  common_errors:
+  - Reading the units digit of 7^2026 as 7 or 1.
+  - Miscomputing 7^2 as 42.
+  hints:
+    rephrase: Use the cycle position that the exponent lands on.
+    smaller_case: What is the units digit of 7^6?
+    key_idea: Replace the huge exponent by its equivalent smaller exponent in the cycle.
+  check: Mod(Integer(7)**2026,10) - 9
+  check_ok: true
+- goal: Find the units digit of 3^2026 and then of the sum.
+  expected: '8'
+  solution: The units digits of 3^n cycle as 3, 9, 7, 1 with period 4. Since 2026 mod 4 = 2, 3^2026 ends
+    in 9. So 7^2026 + 3^2026 ends in 9 + 9 = 18, whose units digit is 8. This is option e.
+  common_errors:
+  - Adding the full numbers and taking the wrong last digit.
+  - Taking the units digit of 3^2026 as 3 by assuming it equals 3^2026 mod 10 without cycling.
+  - Adding 9 + 9 and reporting the tens digit 1 instead of the units digit 8.
+  hints:
+    rephrase: Find the units digit of each term, add them, then keep only the units digit of the result.
+    smaller_case: What is the units digit of 3^2 + 7^2?
+    key_idea: Units digit of a sum = units digit of the sum of the units digits.
+  check: Mod(Mod(Integer(7)**2026,10)+Mod(Integer(3)**2026,10),10) - 8
+  check_ok: true
+extensions:
+  '3':
+  - What is the units digit of 2^2026 + 3^2026?
+  - What is the units digit of 7^n for general n?
+  '4':
+  - What are the last two digits of 7^2026? Use mod 100.
+  - Why must the last-digit pattern of any base be eventually periodic?
+  '5':
+  - Prove that n^5 and n always share the same units digit.
+  - Find the period of the units digits of powers of any base coprime to 10.
+spoken_vocab:
+- units digit
+- seven to the power two thousand and twenty six
+- three to the power two thousand and twenty six
+- plus
+- modulo four
+- modulo ten
+- cycle
+- period
+- remainder
+- option e
+source: kclms/kclms-specimen-mcq-2.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 3
+  parts: 4
+  minutes: 4
+  flags: []
+  tagline: Cyclic units digits with modular exponent reduction; a standard MCQ drill.
+  priority: 42
+  rank: 565
+  tier: C
+  category: kclms
+  d10: 2.0
+  real: 3.0
+  by: haiku
+tags:
+- number_theory

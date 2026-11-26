@@ -1,0 +1,136 @@
+id: sketch-xe-minus-x-curve
+title: Sketching y = x e^(-x) and y = x^2 e^(-x)
+topics:
+- curve sketching
+- product rule
+- stationary points
+- points of inflection
+- limits at infinity
+warmup: false
+answer_source: generated
+statement: Sketch the curve $y=xe^{-x}$. (a) Find all turning points and points of inflection, and describe
+  the behaviour as $x\to\pm\infty$. (b) Now sketch $y=x^2e^{-x}$ on a fresh set of axes. What features
+  carry over?
+stages:
+- goal: Find the turning point of y = x e^(-x).
+  expected: dy/dx = e^(-x)(1 - x) = 0 gives x = 1. Since dy/dx is positive for x < 1 and negative for
+    x > 1, this is a maximum at (1, 1/e).
+  solution: 'Product rule: dy/dx = e^(-x) + x(-e^(-x)) = e^(-x)(1 - x). The only stationary point is x
+    = 1, with y = e^(-1) = 1/e. The sign change from + to - confirms a maximum.'
+  common_errors:
+  - Dropping the minus sign from the derivative of e^(-x) and getting x = -1.
+  - Calling the stationary point a minimum without checking the sign of dy/dx.
+  hints:
+    rephrase: Write y as a product of two functions and use the product rule.
+    smaller_case: Check the sign of dy/dx at x = 0 and at x = 2 to see which way the curve turns.
+    key_idea: Stationary points are where the derivative is zero; classify them by the sign change.
+  check: simplify(x_t - 1)
+  check_ok: false
+- goal: Find the point of inflection of y = x e^(-x).
+  expected: d2y/dx2 = e^(-x)(x - 2) = 0 gives x = 2. The second derivative changes sign there, so (2,
+    2/e^2) is a point of inflection.
+  solution: 'Differentiate e^(-x)(1 - x): the second derivative is -e^(-x)(1 - x) - e^(-x) = e^(-x)(x
+    - 2). This changes sign at x = 2, so the concavity changes there, giving the inflection point (2,
+    2 e^(-2)).'
+  common_errors:
+  - Forgetting to check the second derivative changes sign, not just that it is zero.
+  - Using the wrong y-value, for example writing 2/e instead of 2/e^2.
+  hints:
+    rephrase: An inflection point needs a change in concavity, not just a zero of the second derivative.
+    smaller_case: Check whether the second derivative is positive just below and just above a candidate
+      point.
+    key_idea: Differentiate the first derivative, which is already a product of an exponential and a linear
+      term.
+  check: simplify(x_i - 2)
+  check_ok: false
+- goal: Describe the behaviour as x tends to plus and minus infinity.
+  expected: As x tends to +infinity, y tends to 0 from above, so y = 0 is a horizontal asymptote. As x
+    tends to -infinity, y tends to -infinity.
+  solution: For large positive x, e^(-x) decays faster than x grows, so the product tends to 0. For large
+    negative x, e^(-x) grows without bound and x is negative, so y tends to -infinity.
+  common_errors:
+  - Saying y tends to 0 as x tends to -infinity.
+  - Confusing which tail of the curve is positive.
+  hints:
+    rephrase: Consider separately what e^(-x) does for x going to plus and minus infinity.
+    smaller_case: Evaluate the function at x = -5 and x = 5 to see the sign and size.
+    key_idea: Exponential decay beats polynomial growth as x grows to plus infinity.
+  check: limit(x*exp(-x), x, oo) == 0 and limit(x*exp(-x), x, -oo) == -oo
+  check_ok: true
+- goal: Find the turning points of y = x^2 e^(-x).
+  expected: dy/dx = x e^(-x)(2 - x) = 0 gives x = 0 (a minimum at (0, 0)) and x = 2 (a maximum at (2,
+    4/e^2)).
+  solution: 'Product rule: dy/dx = 2x e^(-x) - x^2 e^(-x) = x e^(-x)(2 - x). Sign analysis: dy/dx changes
+    from - to + at x = 0 (minimum) and from + to - at x = 2 (maximum).'
+  common_errors:
+  - Missing the stationary point at the origin.
+  - Reversing the nature of the two stationary points.
+  hints:
+    rephrase: Factorise the derivative completely before solving for zeros.
+    smaller_case: Check the sign of dy/dx just left and right of x = 0.
+    key_idea: Factor out the common term x e^(-x) to find all zeros at once.
+  check: simplify(diff(x**2*exp(-x), x).subs(x, 2))
+  check_ok: true
+- goal: Find the points of inflection of y = x^2 e^(-x) and say which features carry over.
+  expected: 'd2y/dx2 = e^(-x)(x^2 - 4x + 2) = 0 gives x = 2 - sqrt(2) and x = 2 + sqrt(2). Features that
+    carry over: y = 0 is a horizontal asymptote as x tends to +infinity, the curve has a stationary point
+    at the origin, and it is concave at a maximum near x = 2. The left-hand tail changes: y tends to +infinity
+    as x tends to -infinity, not -infinity.'
+  solution: 'Differentiate x(2 - x)e^(-x): y'''' = e^(-x)(x^2 - 4x + 2). The roots are 2 pm sqrt(2), and
+    concavity changes at both. The right tail still decays to 0, and the curve still has one maximum.
+    The left tail now grows to +infinity because x^2 is positive for large negative x.'
+  common_errors:
+  - Using the discriminant wrongly and missing one root.
+  - Assuming the left tail behaves the same as in part (a).
+  hints:
+    rephrase: Find the second derivative first, then solve the resulting quadratic.
+    smaller_case: Check the second derivative at x = 0 and x = 1 to see the sign pattern.
+    key_idea: 'Compare the two curves tail by tail: one changes sign on the left, the other does not.'
+  check: simplify((2-sqrt(2))**2 - 4*(2-sqrt(2)) + 2)
+  check_ok: true
+extensions:
+  '3':
+  - Sketch y = x^n e^(-x) for n = 3 and say how the turning points depend on n.
+  - Find the area between y = x e^(-x) and the x-axis for x >= 0.
+  '4':
+  - Show that the maximum of x^n e^(-x) occurs at x = n for each positive integer n.
+  - Explain why the inflection points of x e^(-x) and x^2 e^(-x) are not related by a simple transformation.
+  '5':
+  - Find the total area enclosed by y = x^2 e^(-x) and the x-axis on the positive side.
+  - Discuss how the sketch of y = x e^(-x) changes if the exponent is replaced by e^(-x^2).
+spoken_vocab:
+- y equals x e to the minus x
+- y equals x squared e to the minus x
+- turning point
+- stationary point
+- point of inflection
+- second derivative
+- product rule
+- e to the minus x
+- tends to infinity
+- horizontal asymptote
+- root two
+- two minus root two
+- two plus root two
+- maximum
+- minimum
+- concave
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 5
+  minutes: 12
+  flags: []
+  tagline: Standard curve sketch, with a useful transfer question to x²e^(-x).
+  priority: 73
+  rank: 293
+  tier: B
+  category: juan
+  d10: 4.0
+  real: 4.0
+  by: haiku
+tags:
+- curve_sketching
+- differentiation

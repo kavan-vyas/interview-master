@@ -1,0 +1,119 @@
+id: counter-game-multiples-of-five
+title: 'Taking counters: forcing a win'
+topics:
+- combinatorial games
+- invariants
+- strategy
+- modular arithmetic
+- proof
+warmup: false
+answer_source: pdf
+statement: Two players take turns to remove counters from a pile of $33$ counters. On each turn a player
+  must remove $1$, $2$, $3$ or $4$ counters. The player who removes the last counter wins. (a) Show that
+  if it is your turn and there are $5$ counters left, you cannot force a win, however you play. (b) Show
+  that the player who goes first can always force a win, and describe how. (c) Which player can always
+  force a win if the game starts with $40$ counters? Explain your answer.
+stages:
+- goal: Show that with 5 counters left, the player to move cannot force a win.
+  expected: Any move of 1 to 4 leaves 4 to 1 counters for the opponent, who removes them all and wins.
+    So the player to move always loses.
+  solution: From 5 counters, the mover removes k where k is 1, 2, 3 or 4. This leaves 5 − k, which is
+    between 1 and 4. The opponent can take all remaining counters, because the limit is 4, and wins. Every
+    possible move loses.
+  common_errors:
+  - Forgetting the opponent can always take the whole remaining pile when it has 4 or fewer
+  - Only checking one or two possible moves rather than all four
+  - Claiming a win exists by picking a particular move
+  hints:
+    rephrase: Consider each allowed move from 5 counters in turn. What is the position you hand to your
+      opponent each time?
+    smaller_case: Ask who wins if there is just 1 counter left, then 2, then 3, then 4 on your turn.
+    key_idea: Work out which positions are wins and losses for the player to move, starting from small
+      piles and building up.
+  check: Mod(5, 5)
+  check_ok: true
+- goal: Describe a winning strategy for the first player starting from 33 counters.
+  expected: The first player takes 3, leaving 30. Then, whatever the opponent takes (k counters), the
+    first player takes 5 − k. Each round removes 5, so the opponent always faces a multiple of 5.
+  solution: After taking 3, the pile is 30, a multiple of 5. Whenever the opponent removes k, where k
+    is 1 to 4, the first player removes 5 − k, which is also allowed. Each round removes exactly 5 counters,
+    so the pile always stays a multiple of 5 when the opponent is to move. Eventually the opponent faces
+    5 counters and must lose, as shown in part (a). The first player takes the last counter.
+  common_errors:
+  - Taking a different first move, such as 1 or 2, which leaves a non-multiple of 5 for the opponent
+  - Replying with a number that makes the round total something other than 5
+  - Stopping the strategy before the end of the game
+  hints:
+    rephrase: The first player wants to leave the opponent in a losing position. Which pile sizes have
+      you already shown to be losing for the player to move?
+    smaller_case: Imagine the pile is 8 counters on your turn. Which number would you leave, and how would
+      you reply to each move?
+    key_idea: Find a target number of counters you want to leave after each of your turns, and a reply
+      that keeps the game heading to it.
+  check: Mod(33 - 3, 5)
+  check_ok: true
+- goal: Decide which player can force a win from 40 counters and explain why.
+  expected: The second player can always force a win. Whatever the first player takes, the second player
+    replies to make each round total 5. Since 40 is a multiple of 5, the first player always faces a multiple
+    of 5.
+  solution: The pile of 40 is a multiple of 5, so the first player is in a losing position. The second
+    player answers each move k with 5 − k. Each round removes 5, so after each of the second player's
+    replies the pile is a multiple of 5 again. The second player takes the last counter.
+  common_errors:
+  - Saying the first player wins because they move first
+  - Failing to note that 40 is a multiple of 5
+  - Giving the strategy without explaining why it works
+  hints:
+    rephrase: Who is the player facing a multiple of 5 on their turn, and what does that mean for them?
+    smaller_case: Take a pile of 10 counters. Who wins if both players play sensibly?
+    key_idea: Relate the starting size to the losing pile sizes you found in part (a) and part (b).
+  check: Mod(40, 5)
+  check_ok: true
+extensions:
+  '3':
+  - If players may remove 1, 2, 3 or 5 counters, which starting pile sizes up to 20 are losing for the
+    player to move?
+  '4':
+  - If each turn you may remove 1 to 4 counters, but the player who removes the last counter loses, who
+    wins from 33 counters?
+  - 'Generalise: each turn remove between 1 and 4 counters. For which starting numbers does the first
+    player win?'
+  '5':
+  - 'Prove a general result for games where each turn removes between 1 and k counters: characterise the
+    losing positions for the player to move.'
+spoken_vocab:
+- counters
+- pile
+- thirty-three counters
+- forty counters
+- one, two, three or four
+- take away
+- multiple of five
+- modulo five
+- remainder
+- win
+- lose
+- first player
+- second player
+- strategy
+- round
+source: kclms/kclms-specimen-questions-2.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 3
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: Familiar losing-positions game; good warm-up with a clear strategy argument.
+  priority: 61
+  rank: 457
+  tier: C
+  category: kclms
+  d10: 3.5
+  real: 8.0
+  by: deepseek-v4.1-flash-free
+tags:
+- combinatorics
+- number_theory
+- proof

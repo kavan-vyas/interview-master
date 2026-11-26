@@ -1,0 +1,9 @@
+[
+ {
+  "q": "I have eight tiles numbered 1 to 8 inclusive. How many tiles must I select to guarantee that the sum of any two of the selected tiles will equal 9?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "nextstepmaths/NextStepMaths Interview Questions/interview-question-27.pdf#0"
+ }
+]

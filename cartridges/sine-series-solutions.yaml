@@ -1,0 +1,80 @@
+id: sine-series-solutions
+title: Sum of sines equals 2
+topics:
+- infinite series
+- convergence
+- trigonometry
+- summation conventions
+warmup: true
+answer_source: generated
+statement: 'How many solutions does the equation $2 = \sin x + \sin 2x + \sin 3x + \sin 4x + \cdots$ have?
+  Options: 0, 1, 2, or 3.'
+stages:
+- goal: Decide whether the infinite sum of $\sin(kx)$ can converge to 2 for any real $x$.
+  expected: It cannot. If $\sin x=0$, every term is 0 and the sum is 0. Otherwise the terms do not tend
+    to 0, so the series diverges.
+  solution: If $\sin x=0$ then $x=m\pi$, so every term is zero and the sum is $0\ne 2$. If $\sin x\ne0$
+    and the series converged, then $\sin(kx)\to0$. Use $\sin((k+1)x)=\sin(kx)\cos x+\cos(kx)\sin x$. Since
+    $\sin(kx)\to0$ and $\sin((k+1)x)\to0$, we get $\cos(kx)\sin x\to0$, so $\cos(kx)\to0$. Then $\sin^2(kx)+\cos^2(kx)\to0$,
+    which contradicts $\sin^2+\cos^2=1$. So the series diverges for every $x$ with $\sin x\ne0$.
+  common_errors:
+  - Summing the partial-sum formula and wrongly concluding it equals 2 for some $x$
+  - Assuming the series converges because the partial sums are bounded
+  - Forgetting the case $\sin x=0$
+  hints:
+    rephrase: What must happen to the individual terms if an infinite series converges?
+    smaller_case: Take $x=\pi/2$ and write out the first few terms. What happens to them as $k$ grows?
+    key_idea: A convergent series has terms tending to zero. Test whether $\sin(kx)$ can do that.
+  check: null
+- goal: State the number of solutions of the equation under the ordinary meaning of an infinite sum.
+  expected: 0 solutions.
+  solution: 'By stage 1, no real $x$ gives a convergent series with sum 2, so there are 0 solutions. Caveat:
+    under Cesàro or Abel summation, the sum equals $\tfrac12\cot(x/2)$ where it is defined, and this equals
+    2 when $x=2\operatorname{arccot}4+2\pi k$. That gives infinitely many solutions, so the intended answer
+    relies on the ordinary convergence convention.'
+  common_errors:
+  - Answering 1 by reasoning from a symmetry of the sine function
+  - Ignoring the question of how an infinite sum is interpreted
+  - Stating the Abel-sum answer without saying which convention is being used
+  hints:
+    rephrase: Does the question specify how an infinite sum is to be interpreted?
+    smaller_case: From stage 1, can any single value of $x$ make the ordinary sum equal to 2?
+    key_idea: The count depends on combining stage 1 with the summation convention being used.
+  check: null
+extensions:
+  '3':
+  - Show that the Cesàro means of $\sin kx$ tend to $\tfrac12\cot(x/2)$ for $\sin x\ne0$.
+  '4':
+  - Explain why $\sum \cos(kx)$ also fails to converge in the ordinary sense for every $x$.
+  '5':
+  - Find the value of $x$ in $(0,\pi)$ satisfying $\sum_{k\ge1} r^k\sin(kx)\to 2$ as $r\to1^-$.
+spoken_vocab:
+- sine x plus sine two x plus sine three x
+- sum to infinity
+- convergence
+- partial sums
+- sine of x equals zero
+- solutions
+- Cesàro summation
+- Abel summation
+- cotangent of x over two
+- two pi k
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 3 (anonymous).pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 2
+  minutes: 5
+  flags: []
+  tagline: Divergence trick question; answer depends on summation convention, which is discussable.
+  priority: 55
+  rank: 473
+  tier: C
+  category: past-interviews
+  d10: 2.0
+  real: 4.0
+  by: haiku
+tags:
+- sequences_and_series
+- trigonometry

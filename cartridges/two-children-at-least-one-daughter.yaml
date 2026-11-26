@@ -1,0 +1,82 @@
+id: two-children-at-least-one-daughter
+title: Two children, at least one daughter
+topics:
+- probability
+- conditional probability
+- sample space
+warmup: true
+answer_source: generated
+statement: I have two children, at least one of them is a daughter. What is the probability that I have
+  at least one son?
+stages:
+- goal: Find the probability of at least one son, given at least one daughter.
+  expected: $\frac{2}{3}$.
+  solution: Assume the four families $BB, BG, GB, GG$ (B = boy, G = girl, order by age) are equally likely.
+    Given at least one daughter, the possibilities are $BG, GB, GG$. Of these, $BG$ and $GB$ have a son,
+    so the probability is $\frac{2}{3}$.
+  common_errors:
+  - Answering $\frac{1}{2}$, treating the second child as independent of the information.
+  - Forgetting that $BB$ is excluded by the information.
+  - Counting $BG$ and $GB$ as the same outcome.
+  hints:
+    rephrase: List all families with two children, then remove those that do not match the information.
+    smaller_case: Ignore the second child. Given the first child is a daughter, what is the chance the
+      first child is a son?
+    key_idea: Count equally likely outcomes, then restrict to those consistent with the given information.
+  check: sp.simplify(ans - sp.Rational(2,3)) == 0
+  check_ok: null
+- goal: Now suppose I tell you the elder child is a daughter. What is the probability the younger is a
+    son?
+  expected: $\frac{1}{2}$.
+  solution: With the elder a daughter, the outcomes are $GB$ and $GG$, which are equally likely. The younger
+    is a son in one of the two cases, so the probability is $\frac{1}{2}$.
+  common_errors:
+  - Answering $\frac{2}{3}$ by reusing the previous answer, which was for a different condition.
+  - Answering $\frac{1}{3}$ by miscounting outcomes.
+  hints:
+    rephrase: The information is now about a specific child. Which families remain?
+    smaller_case: Suppose the elder child is a daughter and list only the outcomes starting with G.
+    key_idea: Different conditioning information gives a different conditional sample space.
+  check: sp.simplify(ans - sp.Rational(1,2)) == 0
+  check_ok: null
+extensions:
+  '3':
+  - I have three children, at least one of them is a daughter. What is the probability I have at least
+    one son?
+  '4':
+  - I have two children, at least one is a son. What is the probability both are sons?
+  '5':
+  - I have two children, at least one is a boy born on a Tuesday. What is the probability both are boys?
+spoken_vocab:
+- two children
+- at least one
+- daughter
+- son
+- probability
+- sample space
+- equally likely
+- elder
+- younger
+- two thirds
+- one half
+- conditional probability
+- boy
+- Tuesday
+source: past-interviews/Actual Past Interview Questions/Maths Trinity Hall Cambridge 2005.doc
+verified: false
+rating:
+  quality: 6
+  difficulty: 3
+  parts: 2
+  minutes: 10
+  flags: []
+  tagline: Famous paradox; the two parts sharply expose assumption sensitivity.
+  priority: 65
+  rank: 374
+  tier: C
+  category: past-interviews
+  d10: 2.5
+  real: 8.0
+  by: haiku
+tags:
+- probability

@@ -1,0 +1,84 @@
+id: fraction-inequality-rearrangement
+title: Fraction inequality via swapping denominators
+topics:
+- inequalities
+- algebra
+- rearrangement
+warmup: false
+answer_source: generated
+statement: Let $x \geq y > 0$ and $a \geq b > 0$. Show that $\frac{x}{b} + \frac{y}{a} \geq \frac{x}{a}
+  + \frac{y}{b}$.
+stages:
+- goal: Form the difference of the two sides and factor it.
+  expected: $\frac{x}{b}+\frac{y}{a}-\frac{x}{a}-\frac{y}{b} = \frac{(x-y)(a-b)}{ab}$.
+  solution: 'Group the terms: $\frac{x}{b}-\frac{x}{a}+\frac{y}{a}-\frac{y}{b} = x\left(\frac1b-\frac1a\right)+y\left(\frac1a-\frac1b\right)
+    = (x-y)\left(\frac1b-\frac1a\right)$. Since $\frac1b-\frac1a = \frac{a-b}{ab}$, the difference is
+    $\frac{(x-y)(a-b)}{ab}$.'
+  common_errors:
+  - Sign errors when grouping $x$ and $y$ terms
+  - Writing $\frac1b-\frac1a=\frac{b-a}{ab}$
+  - Forgetting to combine into a single fraction over $ab$
+  hints:
+    rephrase: Move everything to one side and group the x terms together and the y terms together.
+    smaller_case: Try x = 2, y = 1, a = 2, b = 1 and compare the two sides numerically.
+    key_idea: Factor out x and y from their own pairs of fractions, then combine over the common denominator
+      ab.
+  check: x/b + y/a - x/a - y/b - (x-y)*(a-b)/(a*b)
+  check_ok: true
+- goal: Conclude that the difference is nonnegative.
+  expected: $x-y\ge 0$, $a-b\ge 0$, and $ab>0$, so $\frac{(x-y)(a-b)}{ab}\ge 0$. Hence $\frac{x}{b}+\frac{y}{a}\ge\frac{x}{a}+\frac{y}{b}$.
+  solution: Given $x\ge y$ we have $x-y\ge 0$. Given $a\ge b$ we have $a-b\ge 0$. Since $a,b>0$, $ab>0$.
+    A nonnegative numerator over a positive denominator is nonnegative, so the difference is $\ge 0$,
+    giving the inequality.
+  common_errors:
+  - Using $x>y$ strictly when only $x\ge y$ is given
+  - Dividing by $ab$ without checking its sign
+  - Claiming the inequality reverses
+  hints:
+    rephrase: What are the signs of x - y, a - b, and ab?
+    smaller_case: If x = y, what does the difference become?
+    key_idea: A product of nonnegative quantities over a positive denominator is nonnegative.
+extensions:
+  '3':
+  - Let $x\ge y\ge z>0$ and $a\ge b\ge c>0$. Place $a,b,c$ as denominators under $x,y,z$ to make $\frac{x}{\square}+\frac{y}{\square}+\frac{z}{\square}$
+    as large as possible. Which assignment achieves the maximum? Prove it by showing a swap of two denominators
+    never decreases the sum.
+  '4':
+  - 'Justify your assignment using the rearrangement inequality: state it for three terms and explain
+    how it applies to $\frac1a,\frac1b,\frac1c$.'
+  '5':
+  - Extend the maximising assignment to $n$ numerators and $n$ denominators, and prove it by an exchange
+    (swapping) argument.
+spoken_vocab:
+- x greater than or equal to y greater than zero
+- a greater than or equal to b greater than zero
+- x over b plus y over a
+- greater than or equal to
+- x over a plus y over b
+- x minus y
+- a minus b
+- a b
+- rearrangement
+- swap the denominators
+- three variables
+- largest sum
+source: past-interviews/Actual Past Interview Questions/G1.jpg
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 2
+  minutes: 4
+  flags: []
+  tagline: Neat factoring trick to (x-y)(a-b)/ab, but very short and one-step.
+  priority: 45
+  rank: 550
+  tier: C
+  category: past-interviews
+  d10: 3.0
+  real: 5.0
+  by: deepseek-v4.1-flash-free
+tags:
+- inequalities
+- algebra_and_functions
+- proof

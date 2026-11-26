@@ -1,0 +1,58 @@
+[
+ {
+  "q": "Among any six people, show that there are three who all know each other, or three who are all strangers to each other.",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p41"
+ },
+ {
+  "q": "How many rectangles (of any size) are there on an $8 \\times 8$ chessboard? How many squares?",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p41"
+ },
+ {
+  "q": "A path goes from $(0,0)$ to $(n,n)$ in unit steps, each step being either $R$ (right, $(1,0)$) or $U$ (up, $(0,1)$). (i) Show that there are $\\binom{2n}{n}$ paths. (ii) By considering where a path meets the line $x+y=n$, prove that $\\sum_{k=0}^{n}\\binom{n}{k}^2=\\binom{2n}{n}$. (iii) Call a path bad if it visits some point strictly above the line $y=x$. By reflecting part of a bad path in the line $y=x+1$, show that the number of bad paths is $\\binom{2n}{n-1}$. (iv) Deduce that the number of paths that never go above $y=x$ is $\\frac{1}{n+1}\\binom{2n}{n}$, and check your answer for $n=3$ by listing the paths.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p41"
+ },
+ {
+  "q": "(i) How many of the integers $1,2,\\ldots,1000$ are divisible by none of $2$, $3$ and $5$? (ii) A derangement of $\\{1,\\ldots,n\\}$ is a permutation with no fixed point. Show that the number of derangements is $D_n = n!\\sum_{k=0}^{n}\\frac{(-1)^k}{k!}$. (iii) Compute $D_4$ and $D_5$. (iv) At a Secret Santa, $n$ people draw names at random. Find the limit, as $n\\to\\infty$, of the probability that nobody draws their own name. (v) Prove that $D_n=(n-1)(D_{n-1}+D_{n-2})$ for $n\\ge 3$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p41"
+ },
+ {
+  "q": "Prove each identity by counting something in two ways, where possible. (i) $\\sum_{k=0}^{n}\\binom{n}{k}=2^n$. (ii) $\\sum_{k=0}^{n}k\\binom{n}{k}=n2^{n-1}$. (iii) $\\sum_{k=0}^{n}(-1)^k\\binom{n}{k}=0$ for $n\\ge 1$. Deduce that a set of size $n\\ge 1$ has equally many subsets of even and odd size. (iv) $\\sum_{k=0}^{n}k^2\\binom{n}{k}=n(n+1)2^{n-2}$. (v) By integrating $(1+x)^n$, evaluate $\\sum_{k=0}^{n}\\frac{1}{k+1}\\binom{n}{k}$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p41"
+ },
+ {
+  "q": "There are $m$ different presents and $n$ children. (i) In how many ways can the presents be given out (with no restrictions)? (ii) If $m\\le n$, in how many ways can they be given out so that no child gets more than one? (iii) In how many ways can 4 presents be given to 3 children so that every child gets at least one? Answer this directly, and by inclusion-exclusion. (iv) Show that the number of ways to give out $m$ presents so every child gets at least one is $\\sum_{k=0}^{n}(-1)^k\\binom{n}{k}(n-k)^m$. (v) Deduce that $\\sum_{k=0}^{n}(-1)^k\\binom{n}{k}(n-k)^n=n!$, and that the same sum with exponent $m<n$ is $0$.",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p41"
+ },
+ {
+  "q": "A necklace has beads at the vertices of a regular polygon, each coloured with one of $n$ colours. Two necklaces are the same if one is a rotation of the other. (i) How many ways are there to colour the corners of a square with 2 colours, if the square is fixed in place? How many different necklaces are there? (ii) Let $p$ be prime. Show that a colouring of a $p$-bead necklace that is not all one colour has exactly $p$ different rotations. (iii) Deduce that there are $n+\\frac{n^p-n}{p}$ different $p$-bead necklaces, and hence that $p$ divides $n^p-n$. (iv) Find the number of different 6-bead necklaces with 2 colours. Why does the formula in (iii) not apply?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p41"
+ },
+ {
+  "q": "A stick of length 1 is broken at two points, chosen independently and uniformly at random along its length. What is the probability that the three pieces can be arranged to form a triangle?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "jshah-workbook/interview_qs_jshah_questions_workbook.pdf#p41"
+ }
+]

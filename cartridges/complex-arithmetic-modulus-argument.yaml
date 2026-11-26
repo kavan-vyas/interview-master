@@ -1,0 +1,145 @@
+id: complex-arithmetic-modulus-argument
+title: 'Complex arithmetic: product, modulus, inverse, argument'
+topics:
+- complex numbers
+- Argand diagram
+- modulus
+- argument
+- complex conjugate
+warmup: false
+answer_source: generated
+statement: Using $z_1=x_1+iy_1$ and $z_2=x_2+iy_2$, show that (i) $z_1z_2=(x_1x_2-y_1y_2)+i(x_1y_2+y_1x_2)$;
+  (ii) $|z|^2=z\bar{z}$; (iii) $z^{-1}=\frac{\bar{z}}{|z|^2}$; (iv) $|z_1z_2|=|z_1||z_2|$; (v) $\arg(z_1z_2)=\arg
+  z_1+\arg z_2$ (assume $0<\arg z_1\le\pi/4$ and $0<\arg z_2\le\pi/4$). Also sketch the points $z_1=1-i$
+  and $z_2=-\sqrt3+i$ on the Argand diagram and verify results (iii), (iv) and (v) for these numbers.
+stages:
+- goal: Show the product formula $z_1z_2=(x_1x_2-y_1y_2)+i(x_1y_2+y_1x_2)$ (part i).
+  expected: $z_1z_2=(x_1x_2-y_1y_2)+i(x_1y_2+y_1x_2)$
+  solution: Expand $(x_1+iy_1)(x_2+iy_2)=x_1x_2+ix_1y_2+iy_1x_2+i^2y_1y_2$. Using $i^2=-1$ gives $(x_1x_2-y_1y_2)+i(x_1y_2+y_1x_2)$.
+  common_errors:
+  - Treating $i^2$ as $+1$, so the $y_1y_2$ term has the wrong sign
+  - Dropping one of the cross terms $ix_1y_2$ or $iy_1x_2$
+  hints:
+    rephrase: Multiply the two brackets term by term, just as you would with real polynomials.
+    smaller_case: Take $z_1=z_2=i$ and work out what the product must equal.
+    key_idea: After multiplying out, every power of $i$ must be simplified using $i^2=-1$, then collect
+      real and imaginary parts.
+  check: expand((x1+I*y1)*(x2+I*y2) - ((x1*x2-y1*y2) + I*(x1*y2+y1*x2)))
+  check_ok: true
+- goal: Show $|z|^2=z\bar z$ for $z=x+iy$ (part ii).
+  expected: $z\bar z=(x+iy)(x-iy)=x^2+y^2=|z|^2$
+  solution: $(x+iy)(x-iy)=x^2-i^2y^2=x^2+y^2$. Since $|z|=\sqrt{x^2+y^2}$, this equals $|z|^2$.
+  common_errors:
+  - Getting $x^2-y^2$ by treating $i^2$ as $+1$
+  - Using the wrong conjugate, such as $-x+iy$
+  hints:
+    rephrase: What is the complex conjugate of $x+iy$, and what do you get when you multiply it by $x+iy$?
+    smaller_case: Compute $z\bar z$ for $z=3+4i$ and compare with $|z|^2$.
+    key_idea: Multiplying a complex number by its conjugate gives a real number; watch the sign from $i^2$.
+  check: expand((x+I*y)*(x-I*y) - (x**2+y**2))
+  check_ok: true
+- goal: Show that $z^{-1}=\bar z/|z|^2$ for $z\ne 0$ (part iii).
+  expected: $z^{-1}=\frac{\bar z}{|z|^2}$, because $z\cdot\frac{\bar z}{|z|^2}=\frac{|z|^2}{|z|^2}=1$.
+  solution: Multiply $z$ by the candidate $\bar z/|z|^2$. The numerator is $z\bar z=|z|^2$ by part (ii),
+    so the product is $1$. Since $z\ne0$, $|z|^2>0$ and the candidate is well defined.
+  common_errors:
+  - Attempting to divide by $z$ directly instead of exhibiting a multiplicative inverse
+  - Forgetting that the result needs $z\ne 0$
+  hints:
+    rephrase: You need a number $w$ with $zw=1$. Try to find one by multiplying top and bottom of $1/z$
+      by something suitable.
+    smaller_case: Find $(1+i)^{-1}$ by making the denominator real.
+    key_idea: 'Use the result of part (ii): the product $z\bar z$ is real and positive.'
+  check: simplify((x+I*y)*((x-I*y)/(x**2+y**2)) - 1)
+  check_ok: true
+- goal: Show $|z_1z_2|=|z_1||z_2|$ (part iv).
+  expected: $|z_1z_2|^2=(x_1x_2-y_1y_2)^2+(x_1y_2+y_1x_2)^2=(x_1^2+y_1^2)(x_2^2+y_2^2)=|z_1|^2|z_2|^2$,
+    and taking non-negative square roots gives $|z_1z_2|=|z_1||z_2|$.
+  solution: Use part (i) and the definition of modulus. Expanding $(x_1x_2-y_1y_2)^2+(x_1y_2+y_1x_2)^2$,
+    the cross terms $\mp 2x_1x_2y_1y_2$ cancel, leaving $x_1^2x_2^2+y_1^2y_2^2+x_1^2y_2^2+y_1^2x_2^2=(x_1^2+y_1^2)(x_2^2+y_2^2)$.
+    Both sides are non-negative, so the square roots agree.
+  common_errors:
+  - Trying to show the identity by adding moduli rather than squaring
+  - Failing to show the cross terms cancel
+  hints:
+    rephrase: Square both sides and use the formula from part (i).
+    smaller_case: Take $z_1=1+i$ and $z_2=1-i$ and compare $|z_1z_2|$ with $|z_1||z_2|$.
+    key_idea: Work with squared moduli, which are polynomials in the real parts and imaginary parts, so
+      you can expand and compare.
+  check: expand((x1*x2-y1*y2)**2 + (x1*y2+y1*x2)**2 - (x1**2+y1**2)*(x2**2+y2**2))
+  check_ok: true
+- goal: Prove $\arg(z_1z_2)=\arg z_1+\arg z_2$ under the stated assumptions (part v), and check the numbers
+    $z_1=1-i$, $z_2=-\sqrt3+i$.
+  expected: $\arg(z_1z_2)=\arg z_1+\arg z_2$, because $\theta_1+\theta_2\in(0,\pi/2]$ lies in the principal
+    range $(-\pi,\pi]$. For the given numbers, $z_1z_2=(1-\sqrt3)+i(1+\sqrt3)$ has modulus $2\sqrt2$ and
+    argument $7\pi/12=-\pi/4+5\pi/6$.
+  solution: 'Write $z_k=r_k(\cos\theta_k+i\sin\theta_k)$ with $r_k=|z_k|$ and $\theta_k=\arg z_k$. Multiplying
+    and using the addition formulae gives $z_1z_2=r_1r_2(\cos(\theta_1+\theta_2)+i\sin(\theta_1+\theta_2))$.
+    Since $\theta_1+\theta_2\in(0,\pi/2]$, this is the principal argument, so $\arg(z_1z_2)=\theta_1+\theta_2$.
+    For the numbers: $|z_1|=\sqrt2$, $\arg z_1=-\pi/4$; $|z_2|=2$, $\arg z_2=5\pi/6$. The product has
+    modulus $2\sqrt2=|z_1||z_2|$ and argument $7\pi/12$, which equals the sum. Note that $z_1=1-i$ has
+    argument $-\pi/4$, outside the stated range $(0,\pi/4]$, so this numerical check is a sanity check
+    rather than a case covered by the proof.'
+  common_errors:
+  - Forgetting to check that the sum of arguments lies in the principal range $(-\pi,\pi]$
+  - Taking $\arctan(y/x)$ without checking the quadrant of the product
+  - Assuming the numerical example satisfies the stated hypothesis when it does not
+  hints:
+    rephrase: Write each number in modulus-argument form. What does multiplying two such numbers do to
+      their moduli and their arguments?
+    smaller_case: Take $z_1=z_2=i$ and find the argument of the product from the modulus-argument form.
+    key_idea: In polar form, multiplication multiplies moduli and adds arguments, via the angle addition
+      formulae.
+extensions:
+  '3':
+  - Verify (iii) numerically for $z_1=1-i$ by computing $z_1^{-1}$ directly and comparing with $\bar z_1/|z_1|^2$.
+  '4':
+  - Show that $\arg(z_1/z_2)=\arg z_1-\arg z_2$ when $\arg z_1-\arg z_2$ lies in $(-\pi,\pi]$.
+  '5':
+  - Explain why the argument rule can fail when $\arg z_1+\arg z_2>\pi$, using $z_1=z_2=-1+i$.
+spoken_vocab:
+- z one
+- z two
+- x one
+- x two
+- y one
+- y two
+- i
+- modulus of z
+- modulus squared
+- conjugate of z
+- z bar
+- z inverse
+- argument of z
+- arg z one
+- arg z two
+- Argand diagram
+- minus i
+- minus root three
+- root three
+- principal argument
+- pi over four
+- five pi over six
+- seven pi over twelve
+- two root two
+- angle addition
+source: step-workbook/Cambridge STEP Short Workbook.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 4
+  parts: 5
+  minutes: 20
+  flags:
+  - wrong_or_unclear_solution
+  tagline: Textbook complex proofs; example points break stated argument assumptions.
+  priority: 35
+  rank: 607
+  tier: D
+  category: step-workbook
+  d10: 4.0
+  real: 3.5
+  by: deepseek-v4.1-flash-free
+tags:
+- complex_numbers
+- proof

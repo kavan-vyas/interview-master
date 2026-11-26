@@ -1,0 +1,99 @@
+id: small-circle-touching-three-unit-circles
+title: Radius of the small circle touching three unit circles
+topics:
+- geometry
+- circles
+- tangency
+- centroid
+- equilateral triangle
+warmup: false
+answer_source: pdf
+statement: Using the same configuration as before (three pairwise tangent unit circles with centres at
+  the corners of an equilateral triangle), a smaller circle lies in the shaded region and touches each
+  of the three unit circles. Find the radius of the small circle.
+stages:
+- goal: Locate the centre of the small circle and its distance to each unit-circle centre.
+  expected: The centre is the centroid of the triangle, at distance 2/\sqrt{3} = 2\sqrt{3}/3 from each
+    of the three centres.
+  solution: By symmetry the small circle's centre is equidistant from the three corners, so it is the
+    centroid, which is also the circumcentre. For side s = 2, the circumradius is s/\sqrt{3} = 2/\sqrt{3}
+    = 2\sqrt{3}/3.
+  common_errors:
+  - Using the inradius 1/\sqrt{3} as the distance to the corners
+  - Placing the centre at the midpoint of a side
+  hints:
+    rephrase: Which point is equally far from all three corners of the triangle?
+    smaller_case: Find the distance from the centre of an equilateral triangle of side 2 to one of its
+      corners.
+    key_idea: Symmetry places the centre of the small circle at the point equidistant from all three corners.
+  check: 2/sqrt(3) - 2*sqrt(3)/3
+  check_ok: true
+- goal: Write the tangency condition for the small circle.
+  expected: d = 1 + r, so 2/\sqrt{3} = 1 + r.
+  solution: 'The small circle is externally tangent to each unit circle, so the distance between centres
+    equals the sum of the radii: d = 1 + r, where d = 2/\sqrt{3}.'
+  common_errors:
+  - Writing d = 1 - r or d = r, which describes internal tangency or a different configuration
+  - Using the diameter instead of the radius of the unit circles
+  hints:
+    rephrase: When two circles touch from outside, how do their radii relate to the distance between their
+      centres?
+    smaller_case: Consider two circles of radii 1 and r that touch externally, and find the distance between
+      their centres.
+    key_idea: For external tangency, the centre distance is the sum of the two radii.
+  check: 2/sqrt(3) - (1 + (2/sqrt(3) - 1))
+  check_ok: true
+- goal: Find the radius r of the small circle.
+  expected: r = \frac{2}{\sqrt{3}} - 1 = \frac{2\sqrt{3}-3}{3} \approx 0.155.
+  solution: 'From 2/\sqrt{3} = 1 + r, r = 2/\sqrt{3} - 1 = (2\sqrt{3} - 3)/3 \approx 0.155. Note: the
+    source answer 2\sqrt{3}/3 is the distance d from the centre to each unit-circle centre, not the radius;
+    the radius is d - 1.'
+  common_errors:
+  - Giving 2\sqrt{3}/3, which is the centre-to-centre distance, as the radius
+  - Forgetting to subtract the unit radius from the centre distance
+  hints:
+    rephrase: Take the distance from the centre to a unit-circle centre and remove the part that belongs
+      to the unit circle.
+    smaller_case: Substitute a simple value for the centre distance (for example d = 2) and see what r
+      becomes.
+    key_idea: The small circle's radius is the centre distance minus the unit radius.
+  check: 2/sqrt(3) - 1 - (2*sqrt(3) - 3)/3
+  check_ok: true
+extensions:
+  '3':
+  - Check numerically that the small circle's radius is about 0.155.
+  '4':
+  - Repeat for unit-radius circles replaced by circles of radius R whose centres form an equilateral triangle
+    with pairwise tangency, and find the small circle's radius in terms of R.
+  '5':
+  - Show that the small circle lies inside the triangle by comparing its radius with the distance from
+    the centroid to a side.
+spoken_vocab:
+- centroid
+- tangent
+- radius
+- centre
+- square root of three
+- two over square root of three
+- distance
+- unit circle
+source: past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2012.docx
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 3
+  minutes: 6
+  flags:
+  - missing_info
+  - needs_diagram
+  tagline: Nice centroid geometry, but depends on an unseen 'previous' configuration.
+  priority: 35
+  rank: 595
+  tier: D
+  category: past-interviews
+  d10: 3.0
+  real: 4.0
+  by: haiku
+tags:
+- geometry

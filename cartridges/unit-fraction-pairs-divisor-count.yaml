@@ -1,0 +1,101 @@
+id: unit-fraction-pairs-divisor-count
+title: Solutions of 1/x + 1/y = 1/n via divisors of n squared
+topics:
+- number theory
+- Diophantine equations
+- divisor function
+- factorisation
+- algebra
+warmup: false
+answer_source: generated
+statement: For a fixed positive integer $n$, find the number of pairs of positive integers $(x, y)$ satisfying
+  $\frac{1}{x}+\frac{1}{y}=\frac{1}{n}$. (a) Work out the answer explicitly for $n=6$. (b) Express the
+  general answer in terms of the number of divisors of $n^2$.
+stages:
+- goal: Rewrite the equation in a factorised form.
+  expected: Multiplying through by $nxy$ gives $xy=n(x+y)$, which rearranges to $(x-n)(y-n)=n^2$.
+  solution: Multiply $\frac{1}{x}+\frac{1}{y}=\frac{1}{n}$ by $nxy$ to get $n(x+y)=xy$, so $xy-nx-ny=0$.
+    Adding $n^2$ to both sides gives $(x-n)(y-n)=n^2$.
+  common_errors:
+  - Dropping the $n^2$ when completing the product.
+  - Expanding incorrectly so that the factors come out as $(x+n)(y+n)$.
+  hints:
+    rephrase: Clear the denominators, then try to add a constant to both sides so the expression factorises.
+    smaller_case: 'Try $n=1$: what does the rearranged equation look like?'
+    key_idea: Rearrange $xy-nx-ny=0$ so that it becomes a product of two linear factors in $x$ and $y$.
+  check: expand((x-n)*(y-n) - n**2) - expand(x*y - n*x - n*y)
+  check_ok: true
+- goal: Count the positive integer solutions for $n=6$.
+  expected: 9 ordered pairs.
+  solution: For $n=6$, $(x-6)(y-6)=36$. Each positive divisor $d$ of 36 gives $x=6+d$, $y=6+36/d$. The
+    divisors are $1,2,3,4,6,9,12,18,36$, giving $(7,42),(8,24),(9,18),(10,15),(12,12),(15,10),(18,9),(24,8),(42,7)$.
+    That is 9 ordered pairs.
+  common_errors:
+  - Counting only unordered pairs, giving 5.
+  - Including negative divisors, which would give $x$ or $y$ less than $n$ and hence non-positive values
+    of $1/x$ or $1/y$ outside the allowed range.
+  hints:
+    rephrase: Use the factorised form. Each factor $x-n$ must be a positive divisor of $n^2$. How many
+      divisors does 36 have?
+    smaller_case: For $n=2$, list the solutions of $(x-2)(y-2)=4$.
+    key_idea: Each choice of a positive divisor of $n^2$ for $x-n$ determines $y-n$ uniquely.
+  check: divisor_count(36) - 9
+  check_ok: true
+- goal: State the general count in terms of divisors of $n^2$.
+  expected: The number of ordered positive pairs is $\tau(n^2)$, the number of positive divisors of $n^2$.
+  solution: Positive solutions require $x-n>0$ and $y-n>0$, so $(x-n,y-n)$ is a pair of positive integers
+    whose product is $n^2$. Each positive divisor $d$ of $n^2$ gives exactly one solution $x=n+d$, $y=n+n^2/d$,
+    so the count is $\tau(n^2)$. For $n=6$ this gives $\tau(36)=9$.
+  common_errors:
+  - Using $\tau(n)$ instead of $\tau(n^2)$.
+  - Answering $\tau(n^2)/2$, which is only correct for unordered pairs and fails when $n$ is a perfect
+    square.
+  hints:
+    rephrase: Once you have $(x-n)(y-n)=n^2$, how many ways can you write $n^2$ as a product of two positive
+      integers?
+    smaller_case: For $n=2$, how many ordered factorisations of $4$ into two positive integers are there?
+    key_idea: Count ordered factorisations of $n^2$ into two positive integers, and relate that count
+      to the divisor function.
+  check: all(sum(1 for x in range(n+1, n*n+n+1) if (n*x) % (x-n) == 0) == divisor_count(n**2) for n in
+    range(1, 15))
+  check_ok: null
+extensions:
+  '3':
+  - Find the number of solutions with $x \le y$ and explain why it equals $\frac{\tau(n^2)+1}{2}$.
+  '4':
+  - Generalise to $\frac{1}{x}+\frac{1}{y}=\frac{a}{n}$ for a fixed positive integer $a$.
+  '5':
+  - Characterise all positive integers $n$ for which there are exactly 9 ordered positive solutions.
+spoken_vocab:
+- one over x plus one over y equals one over n
+- x
+- y
+- n
+- n squared
+- tau of n squared
+- number of divisors
+- factorise
+- ordered pairs
+- unordered pairs
+- divisor
+- x minus n
+- y minus n
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 5
+  difficulty: 4
+  parts: 2
+  minutes: 10
+  flags: []
+  tagline: Factorising to count solutions via divisors of n squared; clean generalisation.
+  priority: 61
+  rank: 432
+  tier: C
+  category: juan
+  d10: 4.0
+  real: 6.5
+  by: haiku
+tags:
+- number_theory
+- algebra_and_functions

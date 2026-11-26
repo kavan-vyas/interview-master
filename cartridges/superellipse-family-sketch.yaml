@@ -1,0 +1,109 @@
+id: superellipse-family-sketch
+title: Sketch |x|^n + |y|^n = 1 for n = 2, 1, 5 and then 100
+topics:
+- curve sketching
+- symmetry
+- limits of curves
+- powers and absolute values
+warmup: false
+answer_source: pdf
+statement: '(a) Sketch the graphs of: i. $|x|^2 + |y|^2 = 1$  ii. $|x| + |y| = 1$  iii. $|x|^5 + |y|^5
+  = 1$. (b) Hence sketch the graph of $|x|^{100} + |y|^{100} = 1$.'
+stages:
+- goal: Identify and sketch the curves $|x|^2+|y|^2=1$ and $|x|+|y|=1$, using symmetry.
+  expected: $|x|^2+|y|^2=1$ is the circle $x^2+y^2=1$ of radius 1 centred at the origin. $|x|+|y|=1$ is
+    a square (diamond) with vertices $(\pm1,0)$ and $(0,\pm1)$, with edges $x+y=1$, $x-y=1$, $-x+y=1$,
+    $-x-y=1$ in the respective quadrants. Both are symmetric in both axes, so one quadrant determines
+    the whole graph.
+  solution: Since $|x|^2=x^2$ and $|y|^2=y^2$, the first equation is $x^2+y^2=1$, a circle. For the second,
+    in the first quadrant $x+y=1$, which meets the axes at $(1,0)$ and $(0,1)$. Reflecting in both axes
+    gives a diamond with vertices $(\pm1,0)$, $(0,\pm1)$.
+  common_errors:
+  - Treating $|x|+|y|=1$ as a circle or forgetting the diamond has corners on the axes.
+  - Forgetting that $|x|$ forces symmetry in both axes, so only the first quadrant needs working.
+  - Sketching only the first-quadrant piece and not reflecting it.
+  hints:
+    rephrase: What does the equation become when $x \geq 0$ and $y \geq 0$? Where does that line meet
+      the axes?
+    smaller_case: Look at the points where $y=0$ on each curve, then where $x=0$.
+    key_idea: Absolute values remove sign issues, so each curve is determined by its first-quadrant arc
+      and then reflected.
+  check: null
+- goal: Sketch $|x|^5+|y|^5=1$. State where it meets the axes and where it sits relative to the diamond
+    and the circle.
+  expected: The curve meets the axes at $(\pm1,0)$ and $(0,\pm1)$. On the diagonal, $x=y$ gives $x=2^{-1/5}\approx0.871$.
+    It lies outside the diamond (since $x^5+y^5\le x+y$ for $0\le x,y\le1$) and outside the circle, and
+    its shape is squarer than the circle, sitting between the circle and the square.
+  solution: In the first quadrant, $x^5+y^5=1$. Setting $y=0$ gives $x=1$, and similarly $y=1$ when $x=0$.
+    On $x=y$, $2x^5=1$, so $x=2^{-1/5}\approx0.871$, which is larger than $1/\sqrt2\approx0.707$ (the
+    circle) and $1/2$ (the diamond). This places the curve between the circle and the square $\max(|x|,|y|)=1$.
+  common_errors:
+  - Thinking the fifth-power curve is inside the circle or diamond.
+  - Assuming the curve has straight edges like the diamond.
+  - Getting the diagonal point wrong by using $x=y=1/2$ or $1/\sqrt2$.
+  hints:
+    rephrase: For $0<x<1$, how does $x^5$ compare with $x$ and with $x^2$?
+    smaller_case: Compare the diagonal points of the three curves $x=y$ on each.
+    key_idea: Higher powers push the curve towards the axes and corners, so it moves outward from the
+      circle towards a square.
+  check: 2*(2**(-Rational(1,5)))**5 - 1
+  check_ok: true
+- goal: Deduce the shape of $|x|^{100}+|y|^{100}=1$ and justify it with its diagonal point.
+  expected: The curve is almost the square with sides $x=\pm1$ and $y=\pm1$. It meets the axes at $(\pm1,0)$
+    and $(0,\pm1)$, and on the diagonal $x=y=2^{-1/100}\approx0.993$. As $n\to\infty$, $|x|^n+|y|^n=1$
+    tends to $\max(|x|,|y|)=1$.
+  solution: For large $n$, $|x|^n$ is tiny for $|x|<1$ and close to 1 only when $|x|$ is close to 1. So
+    the curve hugs the square $\max(|x|,|y|)=1$. On $x=y$, $2x^{100}=1$, so $x=2^{-1/100}\approx0.993$,
+    which lies just inside the corner $(1,1)$. The corners are slightly rounded but nearly sharp.
+  common_errors:
+  - Predicting the limit is the diamond instead of the square.
+  - Claiming the corners are exactly at $(\pm1,\pm1)$, when the curve passes through $(0.993,0.993)$.
+  - Drawing it as a circle with a bit more bulge.
+  hints:
+    rephrase: What happens to $t^{n}$ for $0<t<1$ as $n$ grows? What happens for $t=1$?
+    smaller_case: Use the answer from part (a)(iii) and push the exponent further.
+    key_idea: Compare the diagonal point with the corner $(1,1)$ to see how far the curve sits from the
+      corner.
+  check: 2*(2**(-Rational(1,100)))**100 - 1
+  check_ok: true
+extensions:
+  '3':
+  - Sketch $|x|^3+|y|^3=1$ and find where it meets the line $y=x$.
+  '4':
+  - Show that the area enclosed by $|x|^n+|y|^n=1$ tends to 4 as $n\to\infty$.
+  '5':
+  - For which $n\geq1$ is the curve $|x|^n+|y|^n=1$ convex in the first quadrant? Justify with the second
+    derivative.
+spoken_vocab:
+- mod x squared plus mod y squared equals one
+- mod x plus mod y equals one
+- mod x to the power of five plus mod y to the power of five equals one
+- mod x to the power of one hundred
+- two to the power of minus one over one hundred
+- circle
+- diamond
+- square
+- superellipse
+- diagonal
+- vertices
+- asymptote
+source: waleed/Curve Sketching Questions - Waleed.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 3
+  parts: 3
+  minutes: 12
+  flags:
+  - needs_diagram
+  tagline: Excellent sketching-and-limit intuition; diagonal point gives the n-to-infinity shape.
+  priority: 63
+  rank: 410
+  tier: C
+  category: waleed
+  d10: 4.0
+  real: 6.5
+  by: haiku
+tags:
+- curve_sketching
+- limits_and_approximation

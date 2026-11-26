@@ -1,0 +1,109 @@
+id: integral-x-n-ln-x-on-0-1
+title: Integral of x^n ln x on (0,1) and its limit as n goes to infinity
+topics:
+- integration by parts
+- improper integrals
+- limits
+- sequences of functions
+warmup: false
+answer_source: generated
+statement: Evaluate $\int_0^1 x\ln x\,dx$. (a) Generalise to find $\int_0^1 x^n\ln x\,dx$ for a positive
+  integer $n$. (b) What happens to your answer as $n\to\infty$? Does that make sense given the shape of
+  $x^n\ln x$ on $(0,1)$?
+stages:
+- goal: Evaluate the integral for n = 1.
+  expected: The integral equals -1/4.
+  solution: Integrate by parts with u = ln x and dv = x dx, so v = x^2/2. The boundary term [x^2 ln x
+    / 2] from 0 to 1 is 0, since at x = 1 ln x = 0 and at x = 0 the term x^2 ln x tends to 0. The remaining
+    integral is -(1/2) int_0^1 x dx = -(1/2)(1/2) = -1/4.
+  common_errors:
+  - Forgetting the boundary term at x = 0 must vanish, or evaluating ln 0 directly.
+  - Using u = x and dv = ln x dx without finding an antiderivative of ln x first.
+  hints:
+    rephrase: Choose the part to differentiate so the logarithm becomes simpler.
+    smaller_case: Start with the integral of x ln x over a small interval [a, 1] and let a tend to 0.
+    key_idea: Integration by parts with u = ln x removes the logarithm after one step.
+  check: simplify(I1 + Rational(1,4))
+  check_ok: false
+- goal: Find the general formula for n a positive integer.
+  expected: int_0^1 x^n ln x dx = -1/(n+1)^2.
+  solution: By parts with u = ln x and dv = x^n dx, v = x^(n+1)/(n+1). The boundary term vanishes at both
+    ends, leaving -(1/(n+1)) int_0^1 x^n dx = -1/(n+1)^2. For n = 1 this gives -1/4, matching stage 1.
+  common_errors:
+  - Writing the power as (n-1) instead of (n+1) after integrating x^n.
+  - Dropping the minus sign that comes from the integration by parts.
+  hints:
+    rephrase: Use the same integration by parts as before but with a general power of x.
+    smaller_case: Check the formula for n = 2 by a direct calculation.
+    key_idea: Integrating x^n gives x^(n+1)/(n+1), and the remaining integral is simple.
+  check: simplify(I_n + 1/(n+1)**2)
+  check_ok: false
+- goal: Find the limit of the answer as n tends to infinity.
+  expected: lim as n tends to infinity of -1/(n+1)^2 is 0.
+  solution: Since (n+1)^2 tends to infinity, the fraction tends to 0.
+  common_errors:
+  - Saying the limit is -infinity because the expression is negative.
+  - Confusing the limit of the integral with the limit of the integrand.
+  hints:
+    rephrase: Look at the magnitude of the denominator as n grows.
+    smaller_case: Evaluate -1/(n+1)^2 for n = 10 and n = 100.
+    key_idea: A growing denominator forces the fraction towards zero.
+  check: limit(-1/(n+1)**2, n, oo) == 0
+  check_ok: true
+- goal: Explain whether the limit 0 makes sense given the shape of x^n ln x on (0,1).
+  expected: Yes. On (0,1) ln x is negative, so x^n ln x is non-positive and the integral is negative for
+    every n. As n grows, x^n is close to 0 except near x = 1, where ln x is close to 0, so the negative
+    area shrinks to 0.
+  solution: For 0 < x < 1, x^n is between 0 and 1 and ln x < 0, so the integrand is negative. Near x =
+    1, ln x is approximately x - 1, which is small. The mass of x^n concentrates near x = 1 as n grows,
+    but there the factor ln x is also small, so the integral tends to 0. This matches -1/(n+1)^2 -> 0.
+  common_errors:
+  - Thinking the integral should tend to a positive number because x^n tends to 0 pointwise on (0,1).
+  - Expecting the integral to diverge since the integrand is unbounded near 0 for small n.
+  hints:
+    rephrase: Ask what the sign of the integrand is on (0,1), and where most of the area sits as n grows.
+    smaller_case: Sketch x^10 ln x on (0,1) and see where it is non-negligible.
+    key_idea: Both the size of x^n and the size of ln x matter near x = 1.
+  check: limit(-1/(n+1)**2, n, oo) == 0 and (-1/(n+1)**2).subs(n, 1) < 0
+  check_ok: true
+extensions:
+  '3':
+  - 'Find int_0^1 x^n (ln x)^2 dx for a positive integer n (answer: 2/(n+1)^3).'
+  - Show that int_0^1 x^a ln x dx = -1/(a+1)^2 for any real a > -1.
+  '4':
+  - Prove by induction that int_0^1 x^n (ln x)^k dx = (-1)^k k!/(n+1)^(k+1) for integers k, n >= 0.
+  - Find the value of int_0^1 x^n ln(1/x) dx and explain why it is positive.
+  '5':
+  - Use the series expansion of 1/(1-x) to compute int_0^1 (ln x)/(1-x) dx and relate it to zeta(2).
+  - Discuss the convergence of int_0^1 x^(-1/2) ln x dx.
+spoken_vocab:
+- integral from zero to one
+- x ln x
+- x to the n ln x
+- integration by parts
+- u equals ln x
+- dv equals x to the n dx
+- minus one over n plus one squared
+- tends to zero as n tends to infinity
+- integrand
+- non-positive
+- area shrinks
+source: juan/Mathematics Interview Questions - Juan.pdf#0
+verified: false
+rating:
+  quality: 7
+  difficulty: 5
+  parts: 4
+  minutes: 12
+  flags: []
+  tagline: Multi-stage integral with a rich shape-based sense-check at the end.
+  priority: 82
+  rank: 197
+  tier: B
+  category: juan
+  d10: 3.5
+  real: 5.5
+  by: haiku
+tags:
+- integration
+- limits_and_approximation

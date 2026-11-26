@@ -1,0 +1,72 @@
+id: uniform-random-root-larger-root-incomplete
+title: Larger root of a quadratic with uniform random coefficient (INCOMPLETE SOURCE)
+topics:
+- probability
+- quadratic equations
+- random variables
+warmup: false
+answer_source: generated
+statement: 'An experiment produces a random number $T$ uniformly distributed on $[0,1]$. Let $X$ be the
+  larger root of the equation $x^2+2x+ [QUESTION TEXT TRUNCATED IN SOURCE: the constant term and the requested
+  quantity are missing]'
+stages:
+- goal: Clarify the truncated question before attempting it.
+  expected: The full equation (including the constant term, which should depend on $T$) and the quantity
+    to be found or proved about $X$.
+  solution: Cannot be solved from the supplied text. The equation is cut off after $x^2+2x+$, so the constant
+    term and the requested quantity are unknown. Obtain the full statement from siklos/Advanced Problems
+    in Core Mathematics (STEP).pdf, page 21, and regenerate this cartridge.
+  common_errors:
+  - Guessing the missing constant term and solving a different problem
+  - Assuming the requested quantity (for example, the distribution or expectation of $X$) without checking
+    the source
+  hints:
+    rephrase: Which part of the equation is missing, and what exactly is the question asking you to find
+      about $X$?
+    smaller_case: Take a simpler quadratic $x^2+2x+c$ with a fixed numerical $c$ and find its larger root.
+      Then ask how that root would change as $c$ varies.
+    key_idea: Work out how the random input $T$ enters the equation, then describe the distribution of
+      $X$ from the distribution of $T$.
+extensions:
+  '3':
+  - Requires the full question text from page 21 of the source PDF.
+  '4':
+  - Requires the full question text from page 21 of the source PDF.
+  '5':
+  - Requires the full question text from page 21 of the source PDF.
+spoken_vocab:
+- random number
+- T
+- uniformly distributed
+- interval from zero to one
+- X
+- larger root
+- quadratic equation
+- x squared plus two x plus
+- constant term
+- root
+- distribution
+- expectation
+- probability density function
+- cumulative distribution function
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#21
+verified: false
+rating:
+  quality: 1
+  difficulty: 4
+  parts: 1
+  minutes: 2
+  flags:
+  - garbled
+  - missing_info
+  tagline: Truncated statement; unusable until the constant and question are restored.
+  priority: -5
+  rank: 715
+  tier: D
+  category: siklos
+  d10: 1.0
+  real: 1.0
+  by: haiku
+tags:
+- probability
+- roots_of_polynomials

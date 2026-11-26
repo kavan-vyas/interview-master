@@ -1,0 +1,113 @@
+id: ladder-middle-rung-locus
+title: 'Ladder falling: path of the middle rung'
+topics:
+- coordinate geometry
+- locus
+- Pythagoras' theorem
+- circles
+warmup: true
+answer_source: generated
+statement: A ladder of length $L$ leans against a vertical wall. Its top rests against the wall and its
+  feet stand on the horizontal ground. The middle rung is painted yellow on its side, so it is visible
+  when the ladder is viewed side on. As the ladder slides and falls to the ground, what shape does the
+  middle rung trace out?
+stages:
+- goal: Find the Cartesian equation of the path traced by the midpoint of the ladder, which is where the
+    middle rung sits.
+  expected: $x^2+y^2=\frac{L^2}{4}$, a circle of radius $L/2$ centred at the origin, where the origin
+    is the corner where the wall meets the ground.
+  solution: Put the corner where the wall meets the ground at the origin, with the wall along the positive
+    $y$-axis and the ground along the positive $x$-axis. At any moment the top of the ladder is $(0,a)$
+    and the foot is $(b,0)$, so $a^2+b^2=L^2$ by Pythagoras. The middle rung is at the midpoint of the
+    ladder, $(x,y)=(b/2,\,a/2)$. Therefore $b=2x$ and $a=2y$, so $(2x)^2+(2y)^2=L^2$, which simplifies
+    to $x^2+y^2=L^2/4$.
+  common_errors:
+  - Treating the path as a straight line, for example by assuming the midpoint slides straight down.
+  - Using radius $L$ instead of $L/2$, which forgets that the midpoint is halfway along the ladder.
+  - Forgetting that the midpoint coordinates are half of the top and foot coordinates, so the squared
+    sum gives $L^2/4$, not $L^2$.
+  hints:
+    rephrase: Where exactly is the middle rung on the ladder, and how do its coordinates relate to the
+      top and the foot of the ladder?
+    smaller_case: Pick one position of the ladder, such as the ladder standing upright against the wall.
+      Where is its middle rung, and how far is it from the corner?
+    key_idea: Write the coordinates of the midpoint in terms of the top and foot coordinates, then use
+      Pythagoras on the ladder itself.
+  check: x**2 + y**2 - L**2/4
+  check_ok: false
+- goal: Describe the full shape traced out, including which part of the curve is actually covered.
+  expected: A quarter circle of radius $L/2$, centred at the corner where the wall meets the ground, running
+    from $(0,L/2)$ on the wall to $(L/2,0)$ on the ground. It sweeps through an angle of $\pi/2$.
+  solution: The top of the ladder stays on the wall, so $x=b/2\ge 0$ and $y=a/2\ge 0$. The midpoint is
+    therefore restricted to the first quadrant. When the ladder stands upright, $b=0$ and the midpoint
+    is $(0,L/2)$. When it lies flat on the ground, $a=0$ and the midpoint is $(L/2,0)$. The midpoint moves
+    continuously between these two points along the arc, so it traces a quarter of the circle, which is
+    an angle of $\pi/2$.
+  common_errors:
+  - Saying the rung traces a full circle, which ignores the wall and ground constraints.
+  - Giving the endpoints wrongly, for example $(0,L)$ or $(L,0)$ instead of $(0,L/2)$ and $(L/2,0)$.
+  - Describing the shape as an ellipse, which mixes up the midpoint with a general point along the ladder.
+  hints:
+    rephrase: 'Think about the extreme positions of the ladder: upright against the wall and lying flat
+      on the ground. Where is the middle rung in each case?'
+    smaller_case: Check the midpoint's position when the ladder is almost upright, with the foot very
+      close to the wall. Does it stay within a particular quadrant?
+    key_idea: The coordinates of the midpoint are never negative, so think about which portion of the
+      full circle the physical constraints allow.
+  check: pi/2 - theta_swept
+  check_ok: false
+extensions:
+  '3':
+  - What curve does a point a fraction $t$ of the way along the ladder from the foot trace? Show that
+    it is a quarter ellipse with semi-axes $(1-t)L$ and $tL$, and check that $t=1/2$ gives the circle
+    from the main question.
+  - If the rung is painted one third of the way up from the foot, what are its path's semi-axes?
+  '4':
+  - If the foot slides away from the wall at constant speed $v$, find the speed of the midpoint in terms
+    of $v$, $L$ and the current height $a$ of the top of the ladder.
+  - Show that the midpoint's speed is $\frac{vL}{2a}$, and explain what happens to this speed as the ladder
+    approaches the ground.
+  '5':
+  - What curve is the envelope of all the positions of the ladder as it slides? Give its Cartesian equation.
+  - Show that the envelope is the astroid $x^{2/3}+y^{2/3}=L^{2/3}$, and explain how it is related to
+    the circle traced by the midpoint.
+spoken_vocab:
+- ladder
+- middle rung
+- wall
+- ground
+- length L
+- top of the ladder
+- foot of the ladder
+- midpoint
+- origin
+- x squared plus y squared equals L squared over 4
+- L over 2
+- quarter circle
+- radius L over 2
+- pi over 2
+- Pythagoras
+- first quadrant
+- ellipse
+- astroid
+- envelope
+source: nextstepmaths/NextStepMaths Interview Questions/interview-question-15.pdf#0
+verified: false
+rating:
+  quality: 4
+  difficulty: 4
+  parts: 2
+  minutes: 8
+  flags:
+  - missing_info
+  tagline: Trap question, but rung width and whether it is a point are unclear.
+  priority: 37
+  rank: 585
+  tier: D
+  category: nextstepmaths
+  d10: 2.0
+  real: 5.0
+  by: haiku
+tags:
+- coordinate_geometry
+- geometry

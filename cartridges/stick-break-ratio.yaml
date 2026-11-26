@@ -1,0 +1,133 @@
+id: stick-break-ratio
+title: 'Breaking a stick: distribution and moments of the shorter-to-longer ratio'
+topics:
+- continuous uniform distribution
+- cumulative distribution functions
+- probability density functions
+- expectation and variance
+- integration by substitution
+warmup: false
+answer_source: pdf
+statement: A stick is broken at a point, chosen at random, along its length. Find the probability that
+  the ratio, $R$, of the length of the shorter piece to the length of the longer piece is less than $r$,
+  where $r$ is a given positive number. Find the probability density function for $R$, and calculate the
+  mean and variance of $R$.
+stages:
+- goal: Find $P(R<r)$.
+  expected: $P(R<r)=\frac{2r}{1+r}$ for $0<r<1$, and $P(R<r)=1$ for $r\ge1$.
+  solution: Scale the stick to length 1 and let the break point $X$ be uniform on $(0,1)$. If $X<\frac12$,
+    the shorter piece is $X$ and $R=\frac{X}{1-X}$. Then $R<r$ iff $X<\frac{r}{1+r}$. If $X>\frac12$,
+    $R=\frac{1-X}{X}<r$ iff $X>\frac{1}{1+r}$. For $0<r<1$ these two intervals have lengths $\frac{r}{1+r}$
+    and $\frac{r}{1+r}$, so $P(R<r)=\frac{2r}{1+r}$. For $r\ge1$ the ratio is always at most 1, so the
+    probability is 1.
+  common_errors:
+  - Only counting one side of the midpoint and forgetting the symmetry.
+  - Taking the ratio of the shorter piece to the whole stick instead of to the longer piece.
+  - Ignoring that the formula holds only for $0<r<1$.
+  hints:
+    rephrase: Let the break point be X, uniform on (0,1). Split into two cases according to which piece
+      is shorter, and write R<r as an inequality in X in each case.
+    smaller_case: Take $r=\frac12$ and find the set of break points in (0,1) that give a ratio less than
+      one half.
+    key_idea: Each side of the midpoint gives a linear inequality in X, and by symmetry the two intervals
+      have the same length.
+  check: Rational(2)*Rational(1,2)/(1+Rational(1,2)) - Rational(2,3)
+  check_ok: null
+- goal: Find the probability density function of R.
+  expected: $f(r)=\frac{2}{(1+r)^2}$ for $0<r<1$, and $f(r)=0$ otherwise.
+  solution: 'Differentiate the distribution function: $f(r)=\frac{d}{dr}\frac{2r}{1+r}=\frac{2(1+r)-2r}{(1+r)^2}=\frac{2}{(1+r)^2}$
+    for $0<r<1$. Check: $\int_0^1\frac{2}{(1+r)^2}\,dr=2\left[-\frac{1}{1+r}\right]_0^1=1$.'
+  common_errors:
+  - Forgetting to differentiate and giving the CDF as the density.
+  - Using the wrong support, such as $r>1$.
+  - Failing to check that the density integrates to 1.
+  hints:
+    rephrase: The density is the derivative of the distribution function. Differentiate the result from
+      the previous stage.
+    smaller_case: Differentiate $\frac{2r}{1+r}$ at $r=\frac12$ numerically, and compare with a formula
+      you propose.
+    key_idea: Use the quotient rule on $\frac{2r}{1+r}$ and check that the result integrates to 1 over
+      the support.
+  check: Integral(2/(1+r)**2,(r,0,1)).doit() - 1
+  check_ok: null
+- goal: Find the mean $E(R)$.
+  expected: $E(R)=2\ln 2-1$.
+  solution: '$E(R)=\int_0^1 r\cdot\frac{2}{(1+r)^2}\,dr$. Substitute $u=1+r$: $E(R)=2\int_1^2\left(\frac1u-\frac1{u^2}\right)du=2\left[\ln
+    u+\frac1u\right]_1^2=2\left(\ln2+\frac12-1\right)=2\ln2-1$.'
+  common_errors:
+  - Dropping the $-\frac1{u^2}$ term after splitting the integrand.
+  - Using the wrong limits after the substitution.
+  - Evaluating $\ln u$ and $\frac1u$ at the wrong endpoints.
+  hints:
+    rephrase: The mean is the integral of r times the density. Choose a substitution that makes the denominator
+      simple, then split the numerator.
+    smaller_case: Rewrite $\frac{r}{(1+r)^2}$ as a sum of simpler fractions in $1+r$ and check the decomposition
+      at $r=1$.
+    key_idea: Substitute $u=1+r$ so the denominator becomes $u^2$, and write $r=u-1$ to split the integrand
+      into terms with easy antiderivatives.
+  check: Integral(r*2/(1+r)**2,(r,0,1)).doit() - (2*log(2)-1)
+  check_ok: null
+- goal: Find the variance of R.
+  expected: $E(R^2)=3-4\ln2$, so $\mathrm{Var}(R)=2-4(\ln2)^2$.
+  solution: $E(R^2)=\int_0^1 r^2\cdot\frac{2}{(1+r)^2}\,dr$. With $u=1+r$, $r^2=(u-1)^2$ and $E(R^2)=2\int_1^2\left(1-\frac2u+\frac1{u^2}\right)du=2\left[u-2\ln
+    u-\frac1u\right]_1^2=3-4\ln2$. Then $\mathrm{Var}(R)=E(R^2)-(E(R))^2=3-4\ln2-(2\ln2-1)^2=2-4(\ln2)^2$.
+  common_errors:
+  - Forgetting to subtract the square of the mean.
+  - Expanding $(2\ln2-1)^2$ incorrectly, for example as $4(\ln2)^2-1$.
+  - Using $E(R)$ in place of $E(R^2)$ inside the integral.
+  hints:
+    rephrase: Variance is E(R^2) minus the square of the mean. Compute E(R^2) with the same density, then
+      subtract.
+    smaller_case: Compute $E(R^2)$ for the same density but with the integrand replaced by $r$, and check
+      that you recover the mean from the previous stage.
+    key_idea: Use the same substitution $u=1+r$. Write $r^2=(u-1)^2$ and split the integrand into terms
+      with simple antiderivatives.
+  check: simplify(Integral(2*r**2/(1+r)**2,(r,0,1)).doit() - (Integral(2*r/(1+r)**2,(r,0,1)).doit())**2
+    - (2-4*log(2)**2))
+  check_ok: null
+extensions:
+  '3':
+  - Find the probability that the shorter piece is at least half the length of the longer piece.
+  '4':
+  - Find the median of R.
+  '5':
+  - Show that E(1/R) is infinite, and explain what this says about the ratio of the longer piece to the
+    shorter piece.
+spoken_vocab:
+- R
+- r
+- probability density function
+- distribution function
+- uniform on zero to one
+- break point
+- shorter piece
+- longer piece
+- ratio
+- mean
+- expected value
+- variance
+- one plus r squared
+- natural log of two
+- two ln two minus one
+- three minus four ln two
+- two minus four ln two squared
+- integral from zero to one
+source: siklos/Advanced Problems in Core Mathematics (STEP).pdf#21
+verified: false
+rating:
+  quality: 7
+  difficulty: 6
+  parts: 4
+  minutes: 20
+  flags: []
+  tagline: Two-case ratio distribution leading to log-valued mean and variance.
+  priority: 82
+  rank: 185
+  tier: B
+  category: siklos
+  d10: 5.0
+  real: 6.5
+  by: haiku
+tags:
+- probability
+- integration

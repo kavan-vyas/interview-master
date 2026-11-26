@@ -1,0 +1,106 @@
+id: tangential-polygon-alternate-sides
+title: Alternate sides of an even-sided polygon with an incircle
+topics:
+- geometry
+- tangents to a circle
+- equal tangent lengths
+- proof
+- induction-free general argument
+warmup: false
+answer_source: generated
+statement: Prove that for every even-sided polygon with a circle inscribed inside it, the sum of the alternate
+  sides are equal. For this hexagon (not necessarily regular), prove the sum of the red sides equals the
+  sum of the blue sides. Now prove it for all even-sided shapes.
+stages:
+- goal: For the hexagon with an incircle, show that the red sides (alternate sides, coloured red in the
+    figure) sum to the same length as the blue sides.
+  expected: Let the tangent lengths from the six vertices be t1, ..., t6. Each side equals the sum of
+    the tangent lengths at its two ends. The three red sides sum to t1 + t2 + t3 + t4 + t5 + t6, and so
+    do the three blue sides, so they are equal.
+  solution: 'Let vertex V_i have tangent length t_i, meaning the two tangent segments from V_i to the
+    circle both have length t_i. Two tangent segments from an external point to a circle are equal, because
+    the two right triangles formed with the radii are congruent (RHS). The side V_i V_{i+1} is split by
+    its point of tangency into a piece of length t_i and a piece of length t_{i+1}, so its length is t_i
+    + t_{i+1}. Label the sides s_i = V_i V_{i+1} (indices mod 6). Odd sides: s1 + s3 + s5 = (t1+t2) +
+    (t3+t4) + (t5+t6). Even sides: s2 + s4 + s6 = (t2+t3) + (t4+t5) + (t6+t1). Both sums equal t1 + ...
+    + t6, so they are equal.'
+  common_errors:
+  - Assuming the hexagon is regular, which the question excludes.
+  - Using tangent lengths without justifying that the two tangents from one vertex are equal.
+  - Double-counting a tangent length or leaving one out in the sums.
+  - Writing the side length as t_i - t_{i+1} instead of t_i + t_{i+1}.
+  hints:
+    rephrase: Look at one vertex. Which two segments leaving it have equal length, and how do the sides
+      relate to those segments?
+    smaller_case: Take a square with an incircle. Which lengths from each corner are equal to each other?
+    key_idea: Two tangent segments drawn from one external point to a circle have equal length.
+  check: ((t1+t2)+(t3+t4)+(t5+t6)) - ((t2+t3)+(t4+t5)+(t6+t1))
+  check_ok: true
+- goal: Prove the result for every polygon with an even number n of sides that has an inscribed circle.
+  expected: Label the vertices V_1, ..., V_n with tangent lengths t_1, ..., t_n. Side s_i = V_i V_{i+1}
+    has length t_i + t_{i+1} (indices mod n). The odd sides sum to t_1 + ... + t_n and the even sides
+    also sum to t_1 + ... + t_n, so they are equal. Evenness of n is what makes the sides alternate consistently
+    around the polygon.
+  solution: Each vertex V_i lies on exactly two sides, s_{i-1} and s_i, which have opposite parity because
+    n is even. So each t_i appears once in the sum of the odd sides and once in the sum of the even sides,
+    and both sums equal T = t_1 + ... + t_n. For odd n the sides would not alternate consistently around
+    the cycle, and the argument fails.
+  common_errors:
+  - Proving the result only for the hexagon and then asserting it generalises.
+  - Forgetting the wrap-around term t_n + t_1.
+  - Not explaining why n must be even.
+  hints:
+    rephrase: Label the vertices and sides generally. How many sides does each tangent length appear in,
+      and in which parity?
+    smaller_case: Do the labelling for an octagon with vertices V_1 to V_8. Which sides contain V_8?
+    key_idea: Each vertex belongs to exactly two adjacent sides, and adjacent sides have opposite parity.
+  check: ((t1+t2)+(t3+t4)+(t5+t6)+(t7+t8)) - ((t2+t3)+(t4+t5)+(t6+t7)+(t8+t1))
+  check_ok: true
+extensions:
+  '3':
+  - 'Prove the converse for convex quadrilaterals: if a + c = b + d for the side lengths a, b, c, d, then
+    the quadrilateral has an inscribed circle.'
+  '4':
+  - Show that the area of a polygon with an incircle of radius r and semiperimeter s is r times s.
+  '5':
+  - Explain exactly where the proof breaks for an odd-sided polygon, and what this says about an incircled
+    triangle.
+spoken_vocab:
+- hexagon
+- incircle
+- inscribed circle
+- tangent
+- tangent length
+- alternate sides
+- red sides
+- blue sides
+- even-sided polygon
+- vertex
+- congruent right triangles
+- right angle
+- radius
+- modulo n
+- semiperimeter
+- convex quadrilateral
+- converse
+source: past-interviews/Actual Past Interview Questions/Maths St Catherine_s Oxford 2009.doc
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 2
+  minutes: 15
+  flags:
+  - missing_info
+  - needs_diagram
+  tagline: Tangent-length telescoping proof for even polygons; figure absent from statement.
+  priority: 49
+  rank: 535
+  tier: C
+  category: past-interviews
+  d10: 4.0
+  real: 6.5
+  by: haiku
+tags:
+- geometry
+- proof

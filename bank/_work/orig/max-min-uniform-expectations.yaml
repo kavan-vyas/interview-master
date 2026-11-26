@@ -1,0 +1,129 @@
+id: max-min-uniform-expectations
+title: Expected max, min and gap of two uniforms, then the German tank estimator
+topics:
+- probability
+- order statistics
+- expectation
+- estimation
+warmup: false
+answer_source: pdf
+statement: Let $X$ and $Y$ be independent and uniform on $[0,1]$. (i) Show that $P(\max(X,Y)\le t)=t^2$
+  for $0\le t\le 1$, and hence find $E[\max(X,Y)]$. (ii) Find $E[\min(X,Y)]$. (iii) Find $E|X-Y|$. (iv)
+  If $X_1,\dots,X_n$ are independent and uniform on $[0,1]$, show that $E[\max_i X_i]=\frac{n}{n+1}$.
+  (v) Serial numbers are uniform on $[0,\theta]$ for an unknown $\theta$. You observe $n$ of them, with
+  maximum $m$. Explain why $\frac{n+1}{n}m$ is a sensible estimate of $\theta$.
+stages:
+- goal: Show P(max(X,Y) <= t) = t^2 and use it to compute E[max(X,Y)].
+  expected: P(max<=t)=P(X<=t)P(Y<=t)=t*t=t^2 by independence. The density is the derivative, 2t on [0,1].
+    Then E[max]=integral from 0 to 1 of t*2t dt = 2/3.
+  solution: Both events {X<=t} and {Y<=t} must hold, so P(max<=t)=P(X<=t)P(Y<=t)=t^2. Differentiating
+    gives density 2t on [0,1]. E[max]=integral_0^1 t*2t dt=2/3.
+  common_errors:
+  - Adding the two probabilities instead of multiplying them
+  - Forgetting to differentiate the CDF to get the density
+  - Integrating t instead of t times the density
+  hints:
+    rephrase: The maximum is at most t exactly when both variables are at most t.
+    smaller_case: 'Start with one uniform variable: what is P(X<=t)?'
+    key_idea: Independence lets you multiply probabilities; then differentiate the CDF to get the density
+      and integrate t times the density.
+  check: Rational(2,3) - integrate(t*2*t,(t,0,1))
+  check_ok: true
+- goal: Find E[min(X,Y)].
+  expected: Use P(min>t)=(1-t)^2, so density is 2(1-t) and E[min]=1/3. Equivalently max+min=X+Y gives
+    E[min]=1-2/3=1/3.
+  solution: 'P(min>t)=P(X>t)P(Y>t)=(1-t)^2, so P(min<=t)=1-(1-t)^2, density 2(1-t). E[min]=integral_0^1
+    t*2(1-t) dt=1/3. Check: max+min=X+Y, expectation 1, so E[min]=1-2/3=1/3.'
+  common_errors:
+  - Using the density of the max for the min
+  - Mixing up P(min>t) with P(min<=t)
+  - Integrating the wrong weight
+  hints:
+    rephrase: Look at the event that the minimum exceeds t instead.
+    smaller_case: For a single uniform variable, what is P(X>t)?
+    key_idea: Use the identity max+min=X+Y together with part (i).
+  check: Rational(1,3) - integrate(t*2*(1-t),(t,0,1))
+  check_ok: true
+- goal: Find E|X-Y|.
+  expected: '|X-Y|=max-min, so E|X-Y|=E[max]-E[min]=2/3-1/3=1/3.'
+  solution: 'Since |X-Y| = max(X,Y)-min(X,Y), linearity gives E|X-Y| = 2/3 - 1/3 = 1/3. Cross-check: 2
+    times the integral over x>y of (x-y) equals 1/3.'
+  common_errors:
+  - Treating |X-Y| as X-Y and getting 0
+  - Forgetting the factor 2 when integrating over the full square
+  - Computing the integral over only one triangle and not doubling
+  hints:
+    rephrase: Write the absolute value in terms of the larger and smaller of X and Y.
+    smaller_case: Fix Y at a particular value and compute the expectation of |X-Y| over X alone.
+    key_idea: Use the identity relating |X-Y| to max and min, then part (i) and part (ii).
+  check: Rational(1,3) - 2*integrate(integrate(x-y,(y,0,x)),(x,0,1))
+  check_ok: true
+- goal: Show E[max of n uniforms] = n/(n+1).
+  expected: P(max<=t)=t^n, so P(max>t)=1-t^n and E[max]=integral_0^1 (1-t^n) dt = 1 - 1/(n+1) = n/(n+1).
+  solution: P(max<=t)=t^n by independence. Use E[M]=integral_0^1 P(M>t) dt = integral_0^1 (1-t^n) dt =
+    1-1/(n+1) = n/(n+1).
+  common_errors:
+  - Using t^n as the expectation rather than the tail integral
+  - Miscomputing the integral of t^n
+  - Confusing n with n-1 in the density
+  hints:
+    rephrase: Write the expectation as an integral of the tail probability P(max > t).
+    smaller_case: Redo part (i) for n=2 first by finding P(max<=t).
+    key_idea: The CDF of the maximum factorises over the independent variables.
+  check: Rational(5,6) - integrate(5*t**5,(t,0,1))
+  check_ok: true
+- goal: Show that (n+1)/n times the maximum is an unbiased estimate of theta, and explain why the raw
+    maximum underestimates theta.
+  expected: Write serial numbers as theta times uniforms, so M = theta times the max of n uniforms. Then
+    E[M] = n theta/(n+1), and E[(n+1)M/n] = theta, so the estimator is unbiased. The observed maximum
+    is always at most theta and typically falls short by about theta/(n+1); the factor (n+1)/n corrects
+    this expected gap. This is the German tank problem.
+  solution: If S_i are uniform on [0,theta], then S_i/theta are uniform on [0,1]. So M/theta has expectation
+    n/(n+1) by part (iv), giving E[M]=n theta/(n+1). Multiplying by (n+1)/n gives E[(n+1)M/n]=theta. Thus
+    the estimator is unbiased, while M alone is biased low because it can never exceed theta and its expected
+    gap below theta is theta/(n+1).
+  common_errors:
+  - Forgetting to rescale the uniforms from [0,1] to [0,theta]
+  - Claiming the estimate is exact rather than unbiased on average
+  - Not explaining the direction of the bias
+  hints:
+    rephrase: Think about how the maximum changes when every serial number is multiplied by theta.
+    smaller_case: Consider a single serial number and its expected value.
+    key_idea: An unbiased estimator has expected value equal to the true parameter; scale the result from
+      part (iv) by theta.
+  check: simplify(((n+1)/n)*(n/(n+1))*theta - theta)
+  check_ok: true
+extensions:
+  '3':
+  - Find the density of the second-largest of n independent uniforms on [0,1].
+  '4':
+  - Explain why the German tank estimator would be biased if the serial numbers started at 1 instead of
+    0.
+  '5':
+  - Derive the variance of the estimator (n+1)m/n and say how it scales with n.
+spoken_vocab:
+- X
+- Y
+- max of X and Y
+- min of X and Y
+- t squared
+- n plus one over n
+- theta
+- uniform on zero to one
+- expectation
+- integral
+- independent
+- absolute value of X minus Y
+- German tank problem
+source: jaymin/Jaymin Interview (1).pdf#p41
+verified: false
+rating:
+  score: 9
+  difficulty: 3
+  parts: 5
+  minutes: 25
+  flags: []
+  tagline: Rich uniform order-statistics chain ending in a real estimator; excellent discussion.
+  priority: 130
+  rank: 16
+  tier: S

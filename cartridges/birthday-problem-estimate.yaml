@@ -1,0 +1,100 @@
+id: birthday-problem-estimate
+title: Birthday problem estimate
+topics:
+- probability
+- approximation
+- combinatorics
+warmup: true
+answer_source: pdf
+statement: Roughly how many people must be in a room for it to be more likely than not that two share
+  a birthday? Ignore leap years, and estimate without a calculator.
+stages:
+- goal: Write the probability that all $n$ people have different birthdays as a product.
+  expected: $\prod_{k=0}^{n-1}\left(1-\frac{k}{365}\right)$
+  solution: Person $k+1$ must avoid the $k$ birthdays already taken, which happens with probability $1-\frac{k}{365}$.
+    Multiply these conditional probabilities over $k=0,\dots,n-1$.
+  common_errors:
+  - Using $\left(1-\frac{1}{365}\right)^n$, which assumes independent birthdays and ignores that birthdays
+    must differ from each other.
+  - Starting the product at $k=1$, which omits the first person and gives a factor that is always $1$.
+  - Using $\frac{1}{365}$ instead of $\frac{k}{365}$ for the $k$th factor.
+  hints:
+    rephrase: Build the event person by person. When the $k$th person arrives, how many birthdays are
+      already taken?
+    smaller_case: With two people, what is the chance the second person avoids the first person's birthday?
+    key_idea: Multiply the conditional probabilities that each new person avoids all previous birthdays.
+  check: null
+- goal: Approximate the product using $\ln(1-x)\approx -x$ for small $x$, and simplify.
+  expected: $\exp\left(-\frac{n(n-1)}{730}\right)$
+  solution: Each factor is about $\exp\left(-\frac{k}{365}\right)$. Summing $k$ from $0$ to $n-1$ gives
+    $\frac{n(n-1)}{2}$, so the exponent is $-\frac{n(n-1)}{2\cdot 365}=-\frac{n(n-1)}{730}$.
+  common_errors:
+  - Summing $k$ to $n$ instead of $n-1$, giving $\frac{n(n+1)}{2}$.
+  - Dividing by $365$ instead of $730$ when simplifying the exponent.
+  - Forgetting that $\sum_{k=0}^{n-1}k=\frac{n(n-1)}{2}$.
+  hints:
+    rephrase: For small $x$, $1-x$ is close to $e^{-x}$. What happens to the exponent when you add these
+      terms over $k$?
+    smaller_case: 'Check the exponent formula with $n=2$: what should the exponent be, and does your formula
+      agree?'
+    key_idea: Turn the product into an exponential of a sum, then use the standard formula for the sum
+      of the first $n-1$ integers.
+  check: null
+- goal: Estimate the smallest $n$ for which the probability of a shared birthday exceeds $\frac12$.
+  expected: About $23$ people.
+  solution: We need $\exp\left(-\frac{n(n-1)}{730}\right)\le\frac12$, i.e. $n(n-1)\ge 730\ln 2\approx
+    506$. Since $22\times 23=506$, $n=23$ is the smallest such integer, so about $23$ people are needed.
+  common_errors:
+  - Taking $n(n-1)\approx n^2$ and getting about $27$.
+  - Using $\ln 2\approx 0.7$ and getting a value well away from $506$.
+  - Confusing the no-match probability with the match probability and inverting the threshold.
+  hints:
+    rephrase: Set the no-match probability equal to one half and solve the resulting inequality for $n(n-1)$.
+    smaller_case: 'Try a quick estimate: is $n(n-1)$ near $500$ when $n$ is around $20$, $25$, or $30$?'
+    key_idea: Compare $730\ln 2$ with consecutive products of the form $n(n-1)$.
+  check: Integer(23)*22 - 506
+  check_ok: true
+extensions:
+  '3':
+  - Roughly how many people are needed for a 50% chance that three people share a birthday?
+  - How does the answer change if birthdays are not uniformly distributed?
+  '4':
+  - Estimate how many people are needed for a 90% chance that two share a birthday, using the same approximation.
+  '5':
+  - Derive the approximation $\prod_{k=0}^{n-1}\left(1-\frac{k}{N}\right)\approx \exp\left(-\frac{n(n-1)}{2N}\right)$
+    and state when it is accurate.
+spoken_vocab:
+- birthday
+- room
+- people
+- more likely than not
+- two share
+- ignore leap years
+- estimate
+- product
+- k equals zero to n minus one
+- one minus k over three six five
+- exponential
+- n times n minus one
+- seven three zero
+- natural log of two
+- probability
+source: jaymin/Jaymin Interview (1).pdf#p33
+verified: false
+rating:
+  quality: 7
+  difficulty: 4
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Classic estimate with a clear approximation path and good extension questions.
+  priority: 96
+  rank: 61
+  tier: A
+  category: jaymin
+  d10: 4.5
+  real: 8.0
+  by: deepseek-v4.1-flash-free
+tags:
+- probability
+- limits_and_approximation

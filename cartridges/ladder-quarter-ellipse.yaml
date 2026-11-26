@@ -1,0 +1,108 @@
+id: ladder-quarter-ellipse
+title: Ladder point traces a quarter ellipse
+topics:
+- coordinate geometry
+- loci
+- Pythagoras
+- ellipses
+warmup: true
+answer_source: generated
+statement: A ladder of length $L$ has its foot on the positive $x$-axis and its top on the positive $y$-axis,
+  and it slides so that its ends stay on the axes. The point $P$ on the ladder lies a quarter of the way
+  from the foot to the top. Show that, as the ladder slides, $P$ traces out a quarter ellipse.
+stages:
+- goal: Write the coordinates of $P$ in terms of the foot $(x,0)$ and the top $(0,y)$.
+  expected: $P=\left(\tfrac34x,\ \tfrac14y\right)$
+  solution: Let $P=(X,Y)$. Since $P$ is a quarter of the way from the foot $F=(x,0)$ to the top $T=(0,y)$,
+    $P=F+\tfrac14(T-F)$. Coordinatewise, $X=x-\tfrac14x=\tfrac34x$ and $Y=\tfrac14y$.
+  common_errors:
+  - Measuring the quarter from the top, giving $(x/4,\,3y/4)$.
+  - Using the midpoint, giving $(x/2,\,y/2)$.
+  - Applying the fraction to only one coordinate.
+  hints:
+    rephrase: The point lies on the segment joining the foot and the top, a fixed fraction of the way
+      along from the foot. Describe it as a weighted average of the two ends.
+    smaller_case: First find the midpoint of the ladder in terms of $x$ and $y$, then adjust the fraction.
+    key_idea: A point a fraction $t$ of the way from $A$ to $B$ is $A+t(B-A)$, applied to each coordinate
+      separately.
+  check: simplify(X - 3*x/4)
+  check_ok: false
+- goal: Use the ladder-length constraint to eliminate $x$ and $y$, leaving an equation in $X$ and $Y$
+    only.
+  expected: $\frac{16X^2}{9L^2}+\frac{16Y^2}{L^2}=1$, i.e. $\frac{X^2}{(3L/4)^2}+\frac{Y^2}{(L/4)^2}=1$
+  solution: The ladder gives $x^2+y^2=L^2$. From stage 1, $x=\tfrac43X$ and $y=4Y$. Substituting gives
+    $\tfrac{16}{9}X^2+16Y^2=L^2$. Dividing by $L^2$ gives $\frac{16X^2}{9L^2}+\frac{16Y^2}{L^2}=1$.
+  common_errors:
+  - Writing $X^2/L^2+Y^2/L^2=1$, forgetting the scalings.
+  - Inverting the scalings, using $x=\tfrac34X$.
+  - Dropping the factors $9$ or $16$ when dividing by $L^2$.
+  hints:
+    rephrase: Write down the relationship between the two end coordinates of the ladder, then express
+      those end coordinates using $X$ and $Y$.
+    smaller_case: Place the foot at $(L,0)$ and the top at $(0,0)$. Where is $P$, and what equation does
+      it satisfy?
+    key_idea: Your stage 1 coordinates let you write $x$ and $y$ in terms of $X$ and $Y$. Substitute these
+      into the Pythagorean relation for the ladder.
+  check: simplify((lhs - rhs) - (16*X**2/(9*L**2) + 16*Y**2/L**2 - 1)), where lhs and rhs are the two
+    sides of the candidate equation
+  check_ok: null
+- goal: Identify exactly which part of the ellipse is traced.
+  expected: The arc with $X\ge0$ and $Y\ge0$ of the ellipse centred at the origin, with horizontal semi-axis
+    $3L/4$ and vertical semi-axis $L/4$, running from $(0,L/4)$ to $(3L/4,0)$.
+  solution: Since $x,y\ge0$, we have $X=\tfrac34x\in[0,\tfrac34L]$ and $Y=\tfrac14y\in[0,\tfrac14L]$,
+    so $P$ lies on the first-quadrant arc. As the ladder slides from vertical to horizontal, $P$ moves
+    continuously from $(0,L/4)$ to $(3L/4,0)$, covering the whole arc. Conversely, any point on the arc
+    comes from $x=\tfrac43X$, $y=4Y$, which satisfies $x^2+y^2=L^2$ with $x,y\ge0$.
+  common_errors:
+  - Calling the whole ellipse the answer, ignoring that only one quadrant is traced.
+  - Swapping the semi-axes, giving horizontal $L/4$ and vertical $3L/4$.
+  - Stating semi-axes $L/2$ and $L/4$.
+  hints:
+    rephrase: Think about which signs the coordinates can take, and what the ladder looks like at its
+      two extreme positions.
+    smaller_case: Imagine the ladder lying flat along the $x$-axis. Where is $P$?
+    key_idea: A locus is only the set of points actually reached. Restrict the ellipse to the range of
+      values the physical ladder allows.
+extensions:
+  '3':
+  - Repeat with $P$ a fraction $t$ of the way up the ladder from the foot. Show that $P$ traces an ellipse
+    with semi-axes $(1-t)L$ and $tL$.
+  '4':
+  - Show that the envelope of the family of ladder positions is the astroid $X^{2/3}+Y^{2/3}=L^{2/3}$.
+  '5':
+  - Find the area enclosed by the quarter ellipse and both axes, and verify that it equals $\tfrac{3\pi
+    L^2}{64}$.
+spoken_vocab:
+- ladder
+- foot of the ladder
+- top of the ladder
+- quarter of the way up
+- point P
+- coordinates
+- x squared plus y squared equals L squared
+- ellipse
+- quarter ellipse
+- semi-axes
+- three quarters
+- one quarter
+- first quadrant
+- locus
+source: jaymin/Jaymin Interview (1).pdf#p57
+verified: false
+rating:
+  quality: 6
+  difficulty: 4
+  parts: 3
+  minutes: 8
+  flags: []
+  tagline: Section-point locus gives an ellipse; interesting but fairly standard.
+  priority: 86
+  rank: 149
+  tier: B
+  category: jaymin
+  d10: 3.0
+  real: 4.5
+  by: haiku
+tags:
+- coordinate_geometry
+- geometry

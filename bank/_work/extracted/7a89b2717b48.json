@@ -1,0 +1,23 @@
+[
+ {
+  "q": "If $v$ is a number, what do you know about $v^2$'s prime factors in $x(x+1)=v^2$? Can $x$ and $x+1$ have any of the same factors? Do their prime factors come in pairs, so that this means they are square numbers as well? What about $x(x+1)=v^3$ and $x(x+1)=v^n$?",
+  "kind": "maths",
+  "answer": "$x$ and $x+1$ share no prime factors, so the prime factors of $v^2$ must split into pairs that each belong wholly to $x$ or to $x+1$. This means $x$ and $x+1$ are both square numbers. So $x(x+1)=v^2$ has no solutions, since there are no two consecutive square numbers.",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/G3.jpg"
+ },
+ {
+  "q": "$\\frac{d}{dx}\\left(\\int_0^{x}\\frac{1}{1+y^2}e^y\\,dy\\right)$ (no integrating). $\\frac{d}{dx}\\left(\\int_0^{x^2}\\frac{1}{1+y^2}e^y\\,dy\\right)$",
+  "kind": "maths",
+  "answer": "",
+  "short": true,
+  "source": "past-interviews/Actual Past Interview Questions/G3.jpg"
+ },
+ {
+  "q": "Prop. A wooden triangle-based pyramid is held at two points (an apex vertex and a point on the base). If it spins $120^\\circ$ it fills the same space. Can you find 2 points where spinning $180^\\circ$ fills the same space?",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "past-interviews/Actual Past Interview Questions/G3.jpg"
+ }
+]

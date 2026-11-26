@@ -1,0 +1,96 @@
+id: infinitely-many-primes-2
+title: Infinitely many primes
+topics:
+- number theory
+- proof by contradiction
+- factorisation
+warmup: true
+answer_source: generated
+statement: Prove that there are infinitely many primes.
+stages:
+- goal: Assume finitely many primes $p_1,\dots,p_n$ and build $N = p_1p_2\cdots p_n + 1$. Show that no
+    $p_i$ divides $N$.
+  expected: $N$ leaves remainder 1 on division by each $p_i$, so no $p_i$ divides $N$.
+  solution: 'Each $p_i$ divides the product $p_1\cdots p_n$, so $N = (p_1\cdots p_n)+1$ leaves remainder
+    1 when divided by any $p_i$. Hence no listed prime divides $N$. Example: the list 2,3,5,7,11,13 gives
+    $N = 30031$, and none of the listed primes divides it.'
+  common_errors:
+  - Using the sum $p_1+\dots+p_n+1$ instead of the product.
+  - Forgetting the $+1$.
+  - Claiming $N$ must be prime rather than having a prime factor outside the list.
+  - Thinking $N-1$ is divisible by the $p_i$, which is a different statement.
+  hints:
+    rephrase: If the list were complete, what number could you build that no listed prime divides?
+    smaller_case: Take the list 2 and 3. What number do you build from them, and what are its remainders
+      on division by 2 and by 3?
+    key_idea: The product of the list plus one leaves remainder 1 when divided by each listed prime.
+  check: all((30030+1)%p==1 for p in [2,3,5,7,11,13])
+  check_ok: null
+- goal: Show that $N$ has a prime factor outside the list, which contradicts the assumption.
+  expected: $N \geq 2$ has a prime factor $p$. Since no listed prime divides $N$, $p$ is not in the list,
+    which contradicts the assumption that the list was complete.
+  solution: Since $N > 1$, it has at least one prime divisor $p$. Each $p_i$ leaves remainder 1 when dividing
+    $N$, so $p \neq p_i$ for all $i$. So $p$ is a prime missing from the list, contradicting that the
+    list was complete. For the example, $30031 = 59 \times 509$, and 59 and 509 are not in the list.
+  common_errors:
+  - Assuming the prime factor of $N$ must be one of the $p_i$.
+  - Forgetting that $N \geq 2$ is needed for a prime factor to exist.
+  - Stating a contradiction without naming the missing prime.
+  hints:
+    rephrase: Why must a number greater than 1 have a prime factor, and where can that factor sit relative
+      to the list?
+    smaller_case: For the list 2, 3, the number is 7. Which prime divides it, and is that prime in the
+      list?
+    key_idea: Every integer greater than 1 has a prime factor. Compare that factor with the list.
+  check: set(factorint(30031).keys()).isdisjoint({2,3,5,7,11,13})
+  check_ok: null
+- goal: Conclude that there are infinitely many primes.
+  expected: The assumption of finitely many primes leads to a contradiction, so there are infinitely many
+    primes.
+  solution: Assuming finitely many primes gives a prime not in the list, which is a contradiction. Hence
+    the set of primes is infinite.
+  common_errors:
+  - Stating the conclusion without naming the contradiction.
+  - Claiming the argument shows $N$ itself is prime.
+  hints:
+    rephrase: What does the contradiction tell you about the original assumption?
+    smaller_case: Ask what would happen if the list had only 2 and 3 in it.
+    key_idea: A proof by contradiction shows the assumption is false, so its negation holds.
+  check: null
+extensions:
+  '3':
+  - Show there are infinitely many primes of the form $4k+3$.
+  '4':
+  - Show there are infinitely many primes of the form $6k-1$.
+  '5':
+  - Does the Euclid argument prove there are infinitely many primes of the form $4k+1$? Why or why not?
+spoken_vocab:
+- prime
+- infinitely many
+- assume finitely many
+- product
+- plus one
+- factor
+- contradiction
+- factorisation
+- remainder
+- divides
+source: tbo/TBO Problem Solving Booklet.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 3
+  parts: 1
+  minutes: 6
+  flags: []
+  tagline: Euclid's classic proof; well known, so mainly tests clarity.
+  priority: 41
+  rank: 579
+  tier: D
+  category: tbo
+  d10: 2.5
+  real: 5.0
+  by: big-pickle
+tags:
+- number_theory
+- proof

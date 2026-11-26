@@ -1,0 +1,92 @@
+id: floor-of-floor-nx-over-n
+title: Floor of floor(nx) divided by n equals floor(x)
+topics:
+- floor function
+- inequalities
+- real analysis basics
+warmup: false
+answer_source: generated
+statement: Prove that for any positive integer $n$ and any real number $x$, $\left\lfloor\dfrac{\lfloor
+  nx\rfloor}{n}\right\rfloor=\lfloor x\rfloor$, where $\lfloor z\rfloor$ denotes the largest integer value
+  less than or equal to $z$.
+stages:
+- goal: Set k = floor(x) and bound floor(nx) between multiples of n.
+  expected: Let $k=\lfloor x\rfloor$. Then $nk\le\lfloor nx\rfloor\le nx<n(k+1)$.
+  solution: Since $k\le x<k+1$ and $n>0$, we have $nk\le nx<n(k+1)$. Because $nk$ is an integer and $nk\le
+    nx$, we get $nk\le\lfloor nx\rfloor$. Also $\lfloor nx\rfloor\le nx$.
+  common_errors:
+  - Treating floor(nx) as equal to n*floor(x)
+  - Forgetting that nk is an integer, so nk is at most floor(nx)
+  - Multiplying the inequalities by n incorrectly
+  hints:
+    rephrase: What do the defining inequalities of floor(x) say about x, and what does multiplying by
+      n do to them?
+    smaller_case: Try n=2 and x=3.7, and compare floor(2x) with 2*floor(x).
+    key_idea: Any integer that is at most nx is at most floor(nx).
+  check: null
+- goal: Divide by n and bound floor(nx)/n.
+  expected: $k\le\dfrac{\lfloor nx\rfloor}{n}<k+1$.
+  solution: From $nk\le\lfloor nx\rfloor$, dividing by $n>0$ gives $k\le\lfloor nx\rfloor/n$. From $\lfloor
+    nx\rfloor\le nx<n(k+1)$, dividing gives $\lfloor nx\rfloor/n<k+1$.
+  common_errors:
+  - Using a strict inequality for the lower bound
+  - Using a non-strict inequality for the upper bound
+  - Dividing by n in the wrong direction
+  hints:
+    rephrase: Divide your bounds on floor(nx) by n.
+    smaller_case: With n=2 and x=3.7, check whether floor(2x)/2 lies between 3 and 4.
+    key_idea: Keep the lower bound non-strict and the upper bound strict, which matches the inequality
+      for floor(x).
+  check: null
+- goal: Conclude that the outer floor equals floor(x).
+  expected: Since $k$ is an integer and $k\le\lfloor nx\rfloor/n<k+1$, we have $\left\lfloor\dfrac{\lfloor
+    nx\rfloor}{n}\right\rfloor=k=\lfloor x\rfloor$.
+  solution: By the definition of floor, if $y$ satisfies $k\le y<k+1$ with $k$ an integer, then $\lfloor
+    y\rfloor=k$. Apply this with $y=\lfloor nx\rfloor/n$ to get $\lfloor\lfloor nx\rfloor/n\rfloor=k=\lfloor
+    x\rfloor$.
+  common_errors:
+  - Concluding from only one of the two bounds
+  - Forgetting that k must be an integer for the conclusion to hold
+  hints:
+    rephrase: If y lies in the interval from k up to k+1, with k an integer, what is floor(y)?
+    smaller_case: Take k=2 and y=2.5, then compute floor(y).
+    key_idea: The floor of a number in [k, k+1) is k when k is an integer.
+  check: null
+extensions:
+  '3':
+  - Deduce that for a positive integer n and any real x, floor(x/n) = floor(floor(x)/n).
+  '4':
+  - Prove that floor(nx) >= n*floor(x) for real x and positive integer n.
+  '5':
+  - Show that for positive integers m and n and real x, floor(floor(mx)/n) = floor(mx/n).
+spoken_vocab:
+- floor
+- floor of n x
+- floor of x
+- positive integer n
+- real number x
+- divided by n
+- less than or equal to
+- strictly less than
+- k plus one
+- largest integer
+- integer part
+source: tbo/TBO Problem Solving Booklet.pdf#1
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 3
+  minutes: 12
+  flags: []
+  tagline: Crisp floor-function proof with a natural generalisation to floor(x/n).
+  priority: 71
+  rank: 347
+  tier: B
+  category: tbo
+  d10: 3.7
+  real: 5.0
+  by: deepseek-v4.1-flash-free
+tags:
+- proof
+- algebra_and_functions

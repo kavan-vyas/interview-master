@@ -1,0 +1,88 @@
+id: solve-linear-and-rational-equations
+title: Solve a linear and a rational equation
+topics:
+- linear equations
+- algebraic fractions
+- cross-multiplication
+- expanding brackets
+warmup: true
+answer_source: pdf
+statement: Solve the equations. (a) $\frac{1}{3}x - \frac{1}{5}(x - 4) = 2$ (b) $\frac{x}{x + 1} = \frac{x
+  - 3}{x + 2}$
+stages:
+- goal: 'Solve part (a): $\frac{1}{3}x - \frac{1}{5}(x - 4) = 2$.'
+  expected: x = 9
+  solution: 'Multiply every term by 15: 5x − 3(x − 4) = 30 → 5x − 3x + 12 = 30 → 2x = 18 → x = 9.'
+  common_errors:
+  - Forgetting to multiply the −4 inside the bracket by the −3 (or by −1/5 earlier), giving the wrong
+    sign.
+  - Multiplying only some terms by 15 and not others.
+  - Arithmetic slip when moving the 12 across (e.g. 2x = 42).
+  hints:
+    rephrase: Fractions are awkward. What single number could you multiply the whole equation by to remove
+      every denominator?
+    smaller_case: Solve $\frac{x}{2} - \frac{x-1}{3} = 1$ by first removing the fractions.
+    key_idea: Multiply both sides by the lowest common multiple of all denominators, then expand brackets
+      carefully.
+  check: Rational(1,3)*9-Rational(1,5)*(9-4)-2
+  check_ok: true
+- goal: 'Solve part (b): $\frac{x}{x + 1} = \frac{x - 3}{x + 2}$.'
+  expected: x = −3/4
+  solution: 'Cross-multiply: x(x + 2) = (x − 3)(x + 1). Expand: x² + 2x = x² − 2x − 3. Then 4x = −3, so
+    x = −3/4.'
+  common_errors:
+  - Expanding (x − 3)(x + 1) incorrectly, e.g. as x² − 3x + 1 or x² − 2x + 3.
+  - Sign error when moving terms across the equals sign.
+  - Forgetting that the x² terms cancel, leaving a linear equation.
+  hints:
+    rephrase: The equation has an unknown on both sides of two fractions. How can you remove the fractions?
+    smaller_case: Solve $\frac{x}{x+1} = \frac{2}{3}$ by cross-multiplying.
+    key_idea: Cross-multiply to get a polynomial equation, expand both sides, and simplify. Watch whether
+      the quadratic terms cancel.
+  check: Rational(-3,4)/(Rational(-3,4)+1)-(Rational(-3,4)-3)/(Rational(-3,4)+2)
+  check_ok: true
+extensions:
+  '3':
+  - Solve $\frac{2}{x-1} = \frac{3}{x+1}$.
+  '4':
+  - Solve $\frac{x+2}{x-2} = 3$.
+  '5':
+  - Solve $\frac{3x+1}{x-2} = \frac{x+5}{x-2}$, stating any values that must be excluded and whether a
+    solution survives.
+spoken_vocab:
+- solve
+- x
+- over
+- x plus one
+- x minus three
+- x plus two
+- one third
+- one fifth
+- minus
+- bracket
+- equals
+- cross-multiply
+- negative three quarters
+- nine
+- multiply
+- expand
+- squared
+source: kclms/kclms-specimen-questions-2.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 2
+  parts: 2
+  minutes: 3
+  flags:
+  - trivial
+  tagline: Quadratic terms cancel on cross-multiplying; a clean warm-up.
+  priority: 27
+  rank: 626
+  tier: D
+  category: kclms
+  d10: 2.0
+  real: 2.0
+  by: haiku
+tags:
+- algebra_and_functions

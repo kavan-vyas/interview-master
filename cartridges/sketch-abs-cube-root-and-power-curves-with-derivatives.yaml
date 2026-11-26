@@ -1,0 +1,162 @@
+id: sketch-abs-cube-root-and-power-curves-with-derivatives
+title: Sketch |x^2-1|, x^(1/3), x^(2/3), x^2-x^4, y^2=x^2-x^4 and comment on derivatives
+topics:
+- curve sketching
+- absolute value
+- fractional powers
+- derivatives
+- concavity
+- implicit differentiation
+- non-differentiable points
+warmup: false
+answer_source: generated
+statement: 'Sketch the graphs of the following and comment on their derivatives: (a) $y = |x^2 - 1|$ (b)
+  $y = x^{1/3}$ (c) $y = x^{2/3}$ (d) $y = x^2 - x^4$ (e) $y^2 = x^2 - x^4$.'
+stages:
+- goal: For each part, state the domain, the symmetry, and the key points.
+  expected: (a) Domain all reals; even; equals 0 at x = +/-1; equals 1 at x = 0. (b) Domain all reals;
+    odd; passes through (0,0); strictly increasing. (c) Domain all reals; even; nonnegative; minimum 0
+    at x = 0. (d) Domain all reals; even; zeros at x = 0 and x = +/-1. (e) Domain -1 <= x <= 1; symmetric
+    about both axes; passes through (0,0) and (+/-1, 0).
+  solution: (a) |x^2-1| is defined everywhere and is even. It is 0 where x^2 = 1, i.e. x = +/-1, and equals
+    1 at x = 0. (b) x^(1/3) is the real cube root, defined for all x, with x^(1/3) = -(-x)^(1/3) so it
+    is odd. It is increasing because cube roots preserve order. (c) x^(2/3) = (x^(1/3))^2 >= 0 for all
+    x and equals |x|^(2/3), so it is even with minimum 0 at x = 0. (d) x^2 - x^4 = x^2(1 - x^2) is even
+    and vanishes at x = 0 and x = +/-1. (e) y^2 = x^2(1-x^2) requires 1 - x^2 >= 0, i.e. |x| <= 1. Replacing
+    y by -y leaves the equation unchanged, and replacing x by -x does too.
+  common_errors:
+  - Claiming (b) is undefined for negative x.
+  - Writing x^(2/3) as (x^(2/3)) without seeing it is the square of a cube root.
+  - Missing that (e) has two symmetries, not one.
+  - Stating (d) has a domain other than all reals.
+  hints:
+    rephrase: For each part, ask whether the expression is defined for negative x and whether replacing
+      x by -x changes it.
+    smaller_case: For (b), compute the cube root of 8 and of -8 and compare.
+    key_idea: Parity tests f(-x) against f(x). For y^2 = expression, the expression must be nonnegative.
+  check: sp.Abs(0**2 - 1) - 1
+  check_ok: null
+- goal: Find where each derivative exists or fails to exist, and comment on corners, cusps and vertical
+    tangents.
+  expected: (a) y' = -2x for |x| < 1 and y' = 2x for |x| > 1. At x = 1 the left derivative is -2 and the
+    right derivative is +2; similarly at x = -1 the left derivative is -2 and the right derivative is
+    +2. So there are corners at x = +/-1 and y is not differentiable there. (b) y' = (1/3) x^(-2/3) for
+    x != 0; undefined at 0, where the tangent is vertical. (c) y' = (2/3) x^(-1/3) for x != 0; undefined
+    at 0, where the slopes from the two sides are infinite with opposite signs, giving a cusp. (d) y'
+    = 2x - 4x^3, defined everywhere. (e) Implicit differentiation gives y' = (x - 2x^3)/y for y != 0;
+    at (+/-1, 0) the tangent is vertical; at (0,0) the formula does not apply.
+  solution: '(a) For x > 1 the expression is x^2 - 1 with derivative 2x; for |x| < 1 it is 1 - x^2 with
+    derivative -2x. At x = 1 the left derivative is -2 and the right derivative is 2, which is a corner.
+    (b) d/dx x^(1/3) = (1/3) x^(-2/3), which tends to infinity as x tends to 0. (c) d/dx x^(2/3) = (2/3)
+    x^(-1/3). For x > 0 it tends to +infinity and for x < 0 it tends to -infinity as x tends to 0, so
+    the graph has a cusp. (d) Direct differentiation. (e) Differentiate y^2 = x^2 - x^4 implicitly: 2y
+    y'' = 2x - 4x^3, so y'' = (x - 2x^3)/y. At y = 0 with x = +/-1 the denominator vanishes while the
+    numerator is nonzero, giving vertical tangents. At the origin the curve has two branches y = +/-x
+    approximately.'
+  common_errors:
+  - Declaring (a) differentiable at x = 1 because the function is continuous.
+  - Forgetting the sign change of the derivative of |x^2-1| across x = +/-1.
+  - Stating that (c) has a finite derivative at 0.
+  - Forgetting the minus sign in the derivative of x^(-1/3) when x < 0 for (c).
+  hints:
+    rephrase: For each part, write the derivative on each side of the point you suspect, then compare
+      the one-sided limits.
+    smaller_case: For (a), write |x^2-1| explicitly for x slightly larger and slightly smaller than 1.
+    key_idea: Differentiability needs matching one-sided derivatives. Power functions with negative fractional
+      exponents blow up at 0.
+  check: sp.diff(1 - x**2, x).subs(x, 1) + 2
+  check_ok: null
+- goal: Find the concavity and inflection points of the curves that have them, with the second derivative.
+  expected: (b) y'' = -(2/9) x^(-5/3) for x != 0; y'' > 0 for x < 0 and y'' < 0 for x > 0, so the origin
+    is an inflection point. (c) y'' = -(2/9) |x|^(-4/3) for x != 0, so the curve is concave down everywhere
+    except at the cusp. (d) y'' = 2 - 12x^2; inflection points at x = +/-1/sqrt(6). (a) y'' = -2 for |x|
+    < 1 and y'' = 2 for |x| > 1, with no inflection points in the smooth parts.
+  solution: (b) Differentiate (1/3)x^(-2/3) to get -(2/9)x^(-5/3). For x < 0 the power of a negative number
+    with odd exponent is negative, so y'' > 0 (convex), and for x > 0 it is concave. (c) Differentiate
+    (2/3)x^(-1/3) to get -(2/9)x^(-4/3) for x > 0; for x < 0 the second derivative is -(2/9)(-x)^(-4/3),
+    which is still negative. (d) Differentiate 2x - 4x^3 to get 2 - 12x^2, which changes sign at x^2 =
+    1/6. (a) Differentiate the piecewise slopes -2x and 2x.
+  common_errors:
+  - Concluding that (c) has an inflection point at 0; the cusp is not an inflection point.
+  - Getting the sign of y'' for x < 0 in (b) wrong.
+  - Solving 2 - 12x^2 = 0 as x = +/-1/sqrt(12) incorrectly, or missing the sign change.
+  hints:
+    rephrase: Differentiate the first derivative once more, then check where the second derivative changes
+      sign.
+    smaller_case: For (d), find the second derivative at x = 0 and at x = 1 and compare the signs.
+    key_idea: Concavity is the sign of the second derivative. An inflection point is where it changes
+      sign and the curve is defined there.
+  check: sp.diff(x**2 - x**4, x, 2) - (2 - 12*x**2)
+  check_ok: null
+- goal: Locate the stationary points of (d) and the tangent structure of (e) using the derivative formulas.
+  expected: (d) Stationary points where 2x - 4x^3 = 0, i.e. x = 0 and x = +/-1/sqrt(2). The point x =
+    0 is a local minimum with y = 0; the points x = +/-1/sqrt(2) are local maxima with y = 1/4. (e) Horizontal
+    tangents at (+/-1/sqrt(2), +/-1/2); vertical tangents at (+/-1, 0); at the origin the curve crosses
+    itself with tangent lines y = x and y = -x, so the origin is a node.
+  solution: '(d) Setting 2x - 4x^3 = 2x(1 - 2x^2) = 0 gives x = 0 or x^2 = 1/2. At x = 0 the second derivative
+    is 2 > 0, a local minimum with value 0. At x^2 = 1/2 the value is 1/2 - 1/4 = 1/4, and the second
+    derivative 2 - 6 = -4 < 0, a local maximum. (e) For the horizontal tangents, the numerator x - 2x^3
+    must vanish with y != 0: x = +/-1/sqrt(2) gives y^2 = 1/2 - 1/4 = 1/4, so y = +/-1/2. Near the origin
+    y^2 is about x^2, so the two branches are y about +/-x.'
+  common_errors:
+  - Claiming x = 0 is a maximum for (d).
+  - Using y = 1/2 for (d) instead of 1/4.
+  - Calling the origin of (e) a cusp or a point of vertical tangent.
+  - Forgetting the negative branches when listing tangent points of (e).
+  hints:
+    rephrase: Set the derivative to zero, factor it, and test the second derivative at each solution.
+    smaller_case: For (e), substitute x = 1/sqrt(2) into y^2 and compare with the derivative numerator.
+    key_idea: Factor the derivative. For implicit curves, the horizontal tangents are where the numerator
+      of y' vanishes while y is not zero.
+  check: sp.simplify(sp.diff(x**2 - x**4, x).subs(x, 1/sp.sqrt(2)))
+  check_ok: null
+extensions:
+  '3':
+  - Show that y = |x^2-1| is differentiable at x = 0 but not at x = +/-1.
+  '4':
+  - Find the area enclosed by the right-hand loop of y^2 = x^2 - x^4, with x in [0,1], as an integral
+    and evaluate it.
+  '5':
+  - Show that the curve y^2 = x^2 - x^4 has no points with |x| > 1, and find the maximum value of |y|
+    on the curve.
+spoken_vocab:
+- absolute value of x squared minus one
+- cube root of x
+- x to the two thirds
+- x squared minus x to the fourth
+- y squared equals x squared minus x to the fourth
+- derivative
+- second derivative
+- corner
+- cusp
+- vertical tangent
+- horizontal tangent
+- inflection point
+- node
+- even function
+- odd function
+- one half
+- one quarter
+- square root of one half
+- square root of six
+- minus two x cubed
+source: waleed/Curve Sketching Questions - Waleed.pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 5
+  minutes: 20
+  flags:
+  - needs_diagram
+  tagline: Five curves linking sketching, cusps, corners and derivative behaviour, though heavy on sketching.
+  priority: 65
+  rank: 378
+  tier: C
+  category: waleed
+  d10: 4.0
+  real: 4.0
+  by: haiku
+tags:
+- curve_sketching
+- differentiation

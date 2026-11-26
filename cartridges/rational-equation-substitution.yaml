@@ -1,0 +1,90 @@
+id: rational-equation-substitution
+title: Rational equation with reciprocal symmetry
+topics:
+- algebra
+- rational equations
+- substitution
+- quadratics
+warmup: false
+answer_source: pdf
+statement: Solve the equation $\frac{x+2}{x-1}+\frac{x-1}{x+2}=\frac{5}{2}$. What is the sum of all real
+  solutions? a) −1 b) 3 c) 0 d) 1 e) 4
+stages:
+- goal: Substitute to reduce the equation to a quadratic in a single variable.
+  expected: With $u=\frac{x+2}{x-1}$, the equation becomes $2u^2-5u+2=0$, with roots $u=2$ and $u=\frac{1}{2}$.
+  solution: 'Let $u=\frac{x+2}{x-1}$. Then $\frac{x-1}{x+2}=\frac{1}{u}$, so $u+\frac{1}{u}=\frac{5}{2}$.
+    Multiply by $2u$: $2u^2+2=5u$, i.e. $2u^2-5u+2=0$. This factors as $(2u-1)(u-2)=0$, so $u=2$ or $u=\frac{1}{2}$.'
+  common_errors:
+  - Forgetting that the reciprocal of u is the second fraction and writing it incorrectly.
+  - Solving $2u^2-5u+2=0$ with the wrong factorisation or sign.
+  hints:
+    rephrase: Notice that the second fraction is the reciprocal of the first. Can you name the first fraction
+      with a single letter?
+    smaller_case: Write a simpler equation of the form $u+\frac{1}{u}=c$ and clear the denominator.
+    key_idea: Substitute the fraction and its reciprocal, then multiply through to get a quadratic.
+  check: (2*2**2-5*2+2) + (2*Rational(1,4)-5*Rational(1,2)+2)
+  check_ok: true
+- goal: Solve for $x$ in each case and find the sum of all real solutions.
+  expected: The solutions are $x=4$ and $x=-5$, and their sum is $-1$.
+  solution: 'Case $u=2$: $x+2=2(x-1)$, so $x=4$. Case $u=\frac{1}{2}$: $2(x+2)=x-1$, so $x=-5$. Neither
+    equals 1 or -2, so both are valid. Sum $=4+(-5)=-1$.'
+  common_errors:
+  - Forgetting to check that solutions avoid $x=1$ and $x=-2$.
+  - Summing only one of the two solutions.
+  - Sign errors when solving $2(x+2)=x-1$.
+  hints:
+    rephrase: Go back from $u$ to $x$ for each value you found, then add the solutions.
+    smaller_case: Solve $\frac{x+2}{x-1}=2$ on its own, then do the same for the other value.
+    key_idea: Each value of u gives one linear equation in x. Check denominators are nonzero.
+  check: 4 + (-5) + 1
+  check_ok: true
+extensions:
+  '3':
+  - Solve $\frac{x+1}{x-2}+\frac{x-2}{x+1}=\frac{10}{3}$ and find the sum of the real solutions.
+  '4':
+  - Solve $\frac{x+a}{x-a}+\frac{x-a}{x+a}=k$ in terms of $a$ and $k$, where $k>2$.
+  - Find the product of the real solutions of $\frac{x+2}{x-1}+\frac{x-1}{x+2}=\frac{5}{2}$.
+  '5':
+  - For which real $k$ does $\frac{x+2}{x-1}+\frac{x-1}{x+2}=k$ have two distinct real solutions?
+  - Show that for any $k$ the sum of the two solutions of $\frac{x+p}{x-q}+\frac{x-q}{x+p}=k$ is independent
+    of $k$ or state when it is not.
+spoken_vocab:
+- x
+- x plus two over x minus one
+- x minus one over x plus two
+- five over two
+- sum of all real solutions
+- a
+- b
+- c
+- d
+- e
+- minus one
+- three
+- zero
+- one
+- four
+- substitute u
+- reciprocal
+- quadratic
+- factorise
+- two u squared minus five u plus two equals zero
+source: kclms/kclms-specimen-mcq-2.pdf#0
+verified: false
+rating:
+  quality: 3
+  difficulty: 4
+  parts: 2
+  minutes: 5
+  flags:
+  - trivial
+  tagline: Reciprocal substitution is nice, but MCQ format leaves little to discuss.
+  priority: 27
+  rank: 631
+  tier: D
+  category: kclms
+  d10: 3.0
+  real: 2.5
+  by: haiku
+tags:
+- algebra_and_functions

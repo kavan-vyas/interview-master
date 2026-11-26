@@ -1,0 +1,106 @@
+id: n5-minus-n-div-30
+title: n^5 - n is divisible by 30
+topics:
+- divisibility
+- factorisation
+- modular arithmetic
+- coprime divisibility
+warmup: false
+answer_source: pdf
+statement: Prove that $n^5 - n$ is divisible by $30$ for every integer $n$.
+stages:
+- goal: Factorise $n^5-n$ to expose small factors.
+  expected: $n^5-n=(n-1)\,n\,(n+1)\,(n^2+1)$
+  solution: $n^5-n=n(n^4-1)=n(n^2-1)(n^2+1)=(n-1)\,n\,(n+1)\,(n^2+1)$.
+  common_errors:
+  - Stopping at $n(n^4-1)$ without factoring further.
+  - Dropping the factor $n$, or mishandling $n^2-1=(n-1)(n+1)$.
+  hints:
+    rephrase: Pull out a common factor, then look for a difference of squares.
+    smaller_case: 'Check any candidate factorisation at $n=2$: the value should be $30$.'
+    key_idea: Apply the difference of squares repeatedly to $n^4-1$.
+  check: n**5 - n - (n - 1)*n*(n + 1)*(n**2 + 1)
+  check_ok: true
+- goal: Show $6\mid n^5-n$ using the factor $(n-1)\,n\,(n+1)$.
+  expected: $(n-1)n(n+1)$ is divisible by $2$ and by $3$, so $6\mid(n-1)n(n+1)$ and hence $6\mid n^5-n$.
+  solution: Among the three consecutive integers $n-1,n,n+1$ one is even, so $2$ divides the product.
+    Their residues mod $3$ are the three distinct classes $n-1,n,n+1$, which cover all residues, so one
+    of them is a multiple of $3$. Since $\gcd(2,3)=1$, $6$ divides the product, and therefore divides
+    $n^5-n$.
+  common_errors:
+  - Checking only a few values of $n$ instead of arguing for all $n$.
+  - Forgetting the factor-of-3 part of the argument.
+  - Assuming without justification that one of the three numbers is divisible by $6$.
+  hints:
+    rephrase: Think about the parities of $n-1,n,n+1$ and their residues mod $3$.
+    smaller_case: For $n=4$, which of $3,4,5$ is even, and which is divisible by $3$?
+    key_idea: Three consecutive integers cover all residues mod $3$.
+- goal: Show $5\mid n^5-n$ by cases on $n \bmod 5$.
+  expected: If $n\equiv0,1,4\pmod5$, one of $n-1,n,n+1$ is divisible by $5$. If $n\equiv2,3\pmod5$, then
+    $n^2+1\equiv0\pmod5$.
+  solution: For $n\equiv0$, $5\mid n$. For $n\equiv1$, $5\mid n-1$. For $n\equiv4$, $5\mid n+1$. For $n\equiv2$,
+    $n^2+1\equiv4+1=5\equiv0$. For $n\equiv3$, $n^2+1\equiv9+1=10\equiv0$. So $5$ divides $(n-1)n(n+1)(n^2+1)=n^5-n$
+    in every case.
+  common_errors:
+  - Omitting one of the five residue classes.
+  - Miscalculating $n^2+1 \bmod 5$ (for example getting $1$ for $n\equiv3$).
+  - Concluding from the first few values of $n$ alone.
+  hints:
+    rephrase: Split into five cases according to the remainder of $n$ on division by $5$.
+    smaller_case: For $n=3$, identify which factor of $(n-1)n(n+1)(n^2+1)$ is divisible by $5$.
+    key_idea: In each residue class, at least one factor of the product is congruent to $0$ mod $5$.
+- goal: Combine the three prime-power divisibilities into divisibility by $30$.
+  expected: $2$, $3$ and $5$ are pairwise coprime and each divides $n^5-n$, so $30=2\cdot3\cdot5$ divides
+    $n^5-n$.
+  solution: Since $2,3,5$ are distinct primes, they are pairwise coprime. Each divides $n^5-n$, so their
+    product $30$ divides $n^5-n$. This holds for every integer $n$.
+  common_errors:
+  - Combining divisibilities by non-coprime numbers, such as concluding $12$ divides from $2$ and $6$
+    dividing.
+  - Forgetting to state that the argument holds for all integers $n$.
+  hints:
+    rephrase: What property of $2,3,5$ lets divisibility by each combine into divisibility by the product?
+    smaller_case: Does $2$ and $6$ both dividing $N$ force $12\mid N$? What differs for $2,3,5$?
+    key_idea: Divisibility by pairwise coprime integers combines multiplicatively.
+extensions:
+  '3':
+  - Prove that $n^7-n$ is divisible by $42$ for every integer $n$.
+  '4':
+  - Prove that $n^p-n$ is divisible by $p$ for every prime $p$.
+  '5':
+  - Show that the product of any five consecutive integers is divisible by $120$.
+spoken_vocab:
+- n to the fifth minus n
+- divisible by thirty
+- divisible by six
+- divisible by five
+- modulo five
+- modulo three
+- n minus one
+- n plus one
+- n squared plus one
+- difference of squares
+- coprime
+- two times three times five
+- factorise
+- residue
+- consecutive integers
+source: jaymin/Jaymin Interview (1).pdf#p1
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 4
+  minutes: 8
+  flags: []
+  tagline: Standard factorise-and-case-check; solid fluency practice, little extension.
+  priority: 67
+  rank: 370
+  tier: C
+  category: jaymin
+  d10: 3.0
+  real: 5.5
+  by: haiku
+tags:
+- number_theory
+- proof

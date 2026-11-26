@@ -1,0 +1,30 @@
+[
+ {
+  "q": "Show that the sum $S_N$ of the first $N$ terms of the series $\\frac{1}{1.2.3} + \\frac{3}{2.3.4} + \\frac{5}{3.4.5} + \\cdots + \\frac{2n-1}{n(n+1)(n+2)} + \\cdots$ is $S_N = \\frac{1}{2}\\left(\\frac{3}{2} + \\frac{1}{N+1} - \\frac{5}{N+2}\\right)$. What is the limit of $S_N$ as $N \\to \\infty$? The numbers $a_n$ are such that $\\frac{a_n}{a_{n-1}} = \\frac{(n-1)(2n-1)}{(n+2)(2n-3)}$. Find an expression for $a_n$ in terms of $a_1$, and hence, or otherwise, evaluate $\\sum_{n=1}^{\\infty} a_n$ when $a_1 = \\frac{2}{9}$.",
+  "kind": "maths",
+  "answer": "Partial fractions: $\\frac{2n-1}{n(n+1)(n+2)} = -\\frac{1/2}{n} + \\frac{3}{n+1} - \\frac{5/2}{n+2}$. The series telescopes to the stated $S_N$, and $\\lim_{N\\to\\infty} S_N = \\frac{3}{4}$. Since $a_n/a_1 = b_n/b_1$ where $b_n = \\frac{2n-1}{n(n+1)(n+2)}$ and $b_1 = \\frac{1}{6}$, we get $a_n = 6a_1 b_n = 6a_1\\frac{2n-1}{n(n+1)(n+2)}$. With $a_1 = \\frac{2}{9}$, $\\sum_{n=1}^{\\infty} a_n = \\frac{a_1}{b_1}\\cdot\\frac{3}{4} = \\frac{2/9}{1/6}\\cdot\\frac{3}{4} = 1$.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#10"
+ },
+ {
+  "q": "(i) Show that, if $m$ is an integer such that $(m-3)^3 + m^3 = (m+3)^3$ $(\\ast)$, then $m^2$ is a factor of $54$. Deduce that there is no integer $m$ which satisfies the equation $(\\ast)$. (ii) Show that, if $n$ is an integer such that $(n-6)^3 + n^3 = (n+6)^3$ $(\\ast\\ast)$, then $n$ is even. By writing $n = 2m$, deduce that there is no integer $n$ which satisfies the equation $(\\ast\\ast)$. (iii) Show that, if $n$ is an integer such that $(n-a)^3 + n^3 = (n+a)^3$ $(\\ast\\ast\\ast)$, where $a$ is a non-zero integer, then $n$ is even and $a$ is even. Deduce that there is no integer $n$ which satisfies the equation $(\\ast\\ast\\ast)$.",
+  "kind": "maths",
+  "answer": "(i) Simplifying gives $m^2(m-18) = 54$. Both $m^2$ and $(m-18)$ must divide 54, which is impossible: the only square dividing 54 is 1 or 9, and neither $m=1$ nor $m=3$ satisfies the equation. Alternatively, $m-18 > 0$ so $m \\geq 19$ and $m^2 \\geq 361$, a contradiction. (ii) If $n$ is odd, the left side is even and the right side is odd, so $n$ is even. Setting $n = 2m$ and dividing each term by $2^3$ gives $(m-3)^3 + m^3 = (m+3)^3$, which has no integer solutions by part (i). (iii) If $n$ is odd, the parity of the three terms rules out a solution in both cases $a$ odd and $a$ even, so $n$ is even. If $n$ is even and $a$ is odd, expanding gives $n^2(n-6a) = 2a^3$; the left side is divisible by 4, so $a^3$ is even and hence $a$ is even. Setting $n = 2m$ and $a = 2b$ gives the same equation for $m$ and $b$, so they are both even too. Repeated descent gives an odd integer that must satisfy the equation, a contradiction, so there is no integer solution.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#10"
+ },
+ {
+  "q": "The function $f$ satisfies $0 \\leq f(t) \\leq K$ when $0 \\leq t \\leq 1$. Explain by means of a sketch, or otherwise, why $0 \\leq \\int_0^1 f(t)\\,dt \\leq K$. By considering $\\int_0^1 \\frac{t}{n(n-t)}\\,dt$, or otherwise, show that, if $n > 1$, $0 \\leq \\ln\\left(\\frac{n}{n-1}\\right) - \\frac{1}{n} \\leq \\frac{1}{n-1} - \\frac{1}{n}$ and deduce that $0 \\leq \\ln N - \\sum_{n=2}^{N} \\frac{1}{n} \\leq 1$. Deduce that $\\sum_{n=1}^{N} \\frac{1}{n} \\to \\infty$ as $N \\to \\infty$. Noting that $2^{10} = 1024$, show also that if $N < 10^{30}$ then $\\sum_{n=1}^{N} \\frac{1}{n} < 101$.",
+  "kind": "maths",
+  "answer": "A sketch of a curve lying between $y=0$ and $y=K$ suffices, since the area under it is at most the area of the rectangle of height $K$. Evaluating the integral with $\\frac{t}{n-t} = \\frac{n}{n-t} - 1$ gives $\\int_0^1 \\frac{t}{n(n-t)}\\,dt = \\ln\\left(\\frac{n}{n-1}\\right) - \\frac{1}{n}$. The integrand is largest at $t=1$, giving the bound $\\frac{1}{n(n-1)} = \\frac{1}{n-1} - \\frac{1}{n}$. Summing from 2 to $N$ and telescoping gives $0 \\leq \\ln N - \\sum_{n=2}^{N}\\frac{1}{n} \\leq 1 - \\frac{1}{N} < 1$. Since $\\ln N \\to \\infty$, the harmonic sum also tends to infinity. Hence $\\sum_{n=1}^{N}\\frac{1}{n} \\leq \\ln N + 1$. Setting $N = 10^{30}$ and using $2^{10} = 1024 < 10^{3}$ and $e > 2$ gives $\\sum_{n=1}^{10^{30}}\\frac{1}{n} \\leq \\ln(10^{30}) + 1 < 100\\ln 2 + 1 < 100 + 1 = 101$.",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#10"
+ },
+ {
+  "q": "Find $\\frac{dy}{dx}$ if $y = \\frac{ax+b}{cx+d}$ $(\\ast)$. By using changes of variable of the form $(\\ast)$, or otherwise, show that $\\int_0^1 \\frac{1}{(x+3)^2}\\ln\\left(\\frac{x+1}{x+3}\\right)dx = \\frac{1}{6}\\ln 3 - \\frac{1}{4}\\ln 2 - \\frac{1}{12}$, and evaluate the integrals $\\int_0^1 \\frac{1}{(x+3)^2}\\ln\\left(\\frac{x^2+3x+2}{(x+3)^2}\\right)dx$ and $\\int_0^1 \\frac{1}{(x+3)^2}\\ln\\left(\\frac{x+1}{x+2}\\right)dx$. By changing to the variable $y$ defined by $y = \\frac{2x-3}{x+1}$, evaluate the integral $\\int_2^4 \\frac{2x-3}{(x+1)^3}\\ln\\left(\\frac{2x-3}{x+1}\\right)dx$. Evaluate the inte...",
+  "kind": "maths",
+  "answer": "",
+  "short": false,
+  "source": "siklos/Advanced Problems in Core Mathematics (STEP).pdf#10"
+ }
+]

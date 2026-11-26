@@ -1,0 +1,130 @@
+id: pencil-rope-square-frame-shaded-area
+title: 'Pencil on a rope around a square frame: shaded area'
+topics:
+- geometry
+- areas
+- circles
+- case analysis
+- locus
+warmup: false
+answer_source: pdf
+statement: I have a pencil attached to a rope of length $r$, freely able to move about a pivot, which
+  is in turn free to move along the perimeter of a square frame of side length $2a$. I use the pencil
+  to shade in the area it spans. What is the area of the shaded shape? There are multiple cases based
+  on the relationship between $r$ and $a$.
+stages:
+- goal: Find the shaded area when $r \le a$.
+  expected: $\pi r^2 + 4r(4a - r) = 16ar + (\pi - 4)r^2$
+  solution: 'The pencil can reach any point within distance $r$ of the pivot, and the pivot ranges over
+    the whole perimeter, so the shaded region is the set of points within distance $r$ of the frame''s
+    perimeter. Split it into the outside and inside parts. Outside the square: the band has width $r$
+    along the four sides, giving $8a \cdot r$, and the four corners contribute quarter-discs that together
+    make one full disc, $\pi r^2$. Inside the square: the points more than $r$ from the boundary form
+    a square of side $2a - 2r$ (valid since $r \le a$), so the inner shaded area is $4a^2 - (2a - 2r)^2
+    = 8ar - 4r^2$. Total: $8ar + \pi r^2 + 8ar - 4r^2 = 16ar + (\pi - 4)r^2$, which equals $\pi r^2 +
+    4r(4a - r)$.'
+  common_errors:
+  - Treating each corner as a full square instead of quarter-discs, so the corners are counted wrongly.
+  - Forgetting the inside strip entirely and giving only the outside area.
+  - Using $8ar$ for the inside band instead of $8ar - 4r^2$, so the overlap of the inner strip at corners
+    is missed.
+  - Using the wrong side length for the inner square (writing $2a - r$ instead of $2a - 2r$).
+  hints:
+    rephrase: The pivot slides along the frame and the pencil can reach anywhere within distance $r$ of
+      the pivot. Which set of points is covered in total?
+    smaller_case: Imagine $r$ is very small compared with $a$. Picture a thin band hugging the frame on
+      both sides, then ask how the corners behave.
+    key_idea: Split the swept region into the part outside the square and the part inside it, and handle
+      the four corners together as one full circle.
+  check: simplify(16*a*r + (pi - 4)*r**2 - (pi*r**2 + 4*r*(4*a - r)))
+  check_ok: true
+- goal: Find the shaded area when $r > a$.
+  expected: $\pi r^2 + 4a(a + 2r) = \pi r^2 + 4a^2 + 8ar$
+  solution: 'When $r > a$, every interior point of the square is within distance $a < r$ of some point
+    on the perimeter. The farthest interior point from the boundary is the centre, at distance $a$. So
+    the whole interior, area $4a^2$, is shaded. The outside part is unchanged: a band of width $r$ along
+    the sides, $8ar$, plus the corner discs, $\pi r^2$. Total: $4a^2 + 8ar + \pi r^2 = \pi r^2 + 4a(a
+    + 2r)$.'
+  common_errors:
+  - Still subtracting an inner strip with formula $8ar - 4r^2$, which is only valid when $r \le a$.
+  - Forgetting that the interior is fully covered, so the inside contributes $4a^2$ and not zero.
+  - Writing the outside band as $4ar$ instead of $8ar$ (the perimeter is $8a$).
+  hints:
+    rephrase: Ask how far the furthest interior point of the square is from the perimeter, and compare
+      that with $r$.
+    smaller_case: Take $r$ slightly bigger than $a$. Does the pencil still miss any interior point near
+      the centre?
+    key_idea: Once $r$ is at least the distance from the centre to an edge, the interior is completely
+      covered, so only the outside part needs computing.
+  check: simplify(pi*r**2 + 4*a**2 + 8*a*r - (pi*r**2 + 4*a*(a + 2*r)))
+  check_ok: true
+- goal: Check that the two cases agree at the boundary $r = a$ and state which formula applies where.
+  expected: At $r = a$ both formulas give $(\pi + 12)a^2$, so the area is continuous. Use the first formula
+    for $r \le a$ and the second for $r > a$.
+  solution: 'Substitute $r = a$ into the first formula: $\pi a^2 + 4a(3a) = (\pi + 12)a^2$. Substitute
+    into the second: $\pi a^2 + 4a(a + 2a) = (\pi + 12)a^2$. They agree, so the area changes continuously
+    as the rope length passes $a$.'
+  common_errors:
+  - Assigning the formulas to the wrong ranges of $r$.
+  - Making an arithmetic slip such as $4a \cdot 3a = 12a$ rather than $12a^2$.
+  - Assuming the two cases must differ at $r = a$ and not checking.
+  hints:
+    rephrase: Substitute the boundary value of $r$ into each formula and compare the results.
+    smaller_case: Set $a = 1$ and compare the two numerical values of the area when $r = 1$.
+    key_idea: A physically continuous sweep should give a continuous area as the rope length crosses the
+      half-side length.
+  check: simplify((pi*r**2 + 4*r*(4*a - r) - (pi*r**2 + 4*a*(a + 2*r))).subs(r, a))
+  check_ok: true
+extensions:
+  '3':
+  - The frame is now a circle of radius $a$ and $r \le a$. Describe the shaded region and find its area.
+  '4':
+  - Generalise to a rectangular frame with sides $2a$ and $2b$. Find the shaded area when $r \le \min(a,
+    b)$.
+  '5':
+  - The frame is an equilateral triangle of side $s$, with $r$ small. Describe the swept region and derive
+    its area, noting where the corners overlap.
+spoken_vocab:
+- pi
+- radius
+- r
+- a
+- two a
+- pivot
+- rope
+- pencil
+- square frame
+- side length
+- perimeter
+- quarter circle
+- full circle
+- shaded area
+- pi r squared
+- four a
+- four r
+- sixteen a r
+- minus four r squared
+- for r less than or equal to a
+- for r greater than a
+- inner square
+- outer band
+source: sample-qs/Maths Interview Questions Sample.pdf#0
+verified: false
+rating:
+  quality: 8
+  difficulty: 6
+  parts: 3
+  minutes: 18
+  flags:
+  - needs_diagram
+  tagline: Steiner-style area with a case split; boundary check adds rigour.
+  priority: 83
+  rank: 172
+  tier: B
+  category: sample-qs
+  d10: 6.0
+  real: 6.0
+  by: haiku
+tags:
+- geometry
+- limits_and_approximation

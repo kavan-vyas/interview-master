@@ -1,0 +1,115 @@
+id: sketch-cubic-over-quadratic-rational-function
+title: Sketch a cubic over a quadratic
+topics:
+- rational functions
+- asymptotes
+- polynomial division
+- curve sketching
+- intercepts
+warmup: false
+answer_source: generated
+statement: Sketch $\dfrac{ax^3+bx^2+cx+d}{(cx+e)(x+f)}$.
+stages:
+- goal: Find the vertical asymptotes of the function.
+  expected: Vertical asymptotes at $x=-\dfrac{e}{c}$ and $x=-f$, assuming $c\neq0$, the two values are
+    distinct, and the numerator does not vanish at either point.
+  solution: 'Set the denominator to zero: $(cx+e)(x+f)=0$ gives $x=-e/c$ and $x=-f$. At these points the
+    numerator is generically nonzero, so the function blows up and the lines are vertical asymptotes.
+    If the numerator vanished at one of them, that factor would cancel and produce a removable hole instead.'
+  common_errors:
+  - Forgetting to check whether numerator and denominator share a root, which would create a hole instead
+    of an asymptote.
+  - Writing $x=e/c$ instead of $x=-e/c$.
+  hints:
+    rephrase: Where does the denominator become zero, and what happens to the value of the function near
+      those points?
+    smaller_case: Sketch $\dfrac{1}{(x+1)(x-2)}$ and list its vertical asymptotes.
+    key_idea: Vertical asymptotes come from zeros of the denominator that are not cancelled by zeros of
+      the numerator.
+  check: simplify((c*x+e).subs(x, -e/c)) * simplify((x+f).subs(x, -f))
+  check_ok: true
+- goal: Find the oblique (slant) asymptote, since the numerator has degree 3 and the denominator degree
+    2.
+  expected: $y=\dfrac{a}{c}x+\dfrac{bc-ae-acf}{c^{2}}$.
+  solution: 'The denominator expands to $cx^2+(e+cf)x+ef$. Divide: the leading term of the quotient is
+    $\frac{a}{c}x$. Subtracting $\frac{a}{c}x$ times the denominator leaves $\left(b-\frac{a(e+cf)}{c}\right)x^2+\cdots$.
+    The next quotient term is $\frac{1}{c}\left(b-\frac{a(e+cf)}{c}\right)=\frac{bc-ae-acf}{c^2}$. The
+    remainder has degree at most $1$, so the function minus this linear quotient tends to $0$ as $|x|\to\infty$.
+    Note that the letter $c$ appears both in the numerator and the denominator. The algebra above uses
+    the same symbol throughout, and the constant term of the quotient depends only on $a,b,e,f,c$ from
+    the denominator''s leading coefficient, so the clash does not change the result.'
+  common_errors:
+  - Concluding there is a horizontal asymptote, which is only true when the degrees are equal or the numerator
+    has lower degree.
+  - Using only the leading coefficients and dropping the constant term $\frac{bc-ae-acf}{c^2}$.
+  - Confusing the two uses of $c$ and substituting one for the other inconsistently.
+  hints:
+    rephrase: The numerator has degree one more than the denominator. What kind of end behaviour does
+      that force, and how do you find the line the graph approaches?
+    smaller_case: Take the simpler function $\dfrac{x^2+1}{x+1}$. Divide it out and see what line remains.
+    key_idea: Perform polynomial long division. The quotient, ignoring the remainder term, is the asymptote.
+  check: simplify(diff(a*x**3 + b*x**2 + c*x + d - (a/c*x + (b*c - a*e - a*c*f)/c**2)*(c*x**2 + (e + c*f)*x
+    + e*f), x, 2).subs(x, 0)/2)
+  check_ok: true
+- goal: Find the intercepts and describe the sign pattern, then assemble the sketch.
+  expected: The $y$-intercept is $\dfrac{d}{ef}$. The $x$-intercepts are the real roots of $ax^3+bx^2+cx+d=0$.
+    Combine these with the asymptotes to sketch the curve.
+  solution: At $x=0$ the function equals $\dfrac{d}{e\cdot f}$. The $x$-intercepts are the real zeros
+    of the numerator, unless they coincide with a denominator zero. Mark the vertical asymptotes, the
+    oblique asymptote, and the intercepts. Between consecutive special points, the sign of the function
+    is constant, so determine it by testing a point in each interval. Near each vertical asymptote the
+    graph goes to $\pm\infty$ on the two sides. Far to the left and right it follows the oblique asymptote.
+  common_errors:
+  - Giving the $y$-intercept as $\dfrac{d}{e}$ and forgetting the factor $f$.
+  - Trying to find closed-form $x$-intercepts of a general cubic instead of describing them as roots.
+  - Drawing the curve crossing vertical asymptotes instead of diverging near them.
+  hints:
+    rephrase: Evaluate the function at $x=0$. Then list the special $x$-values where the sign can change,
+      and test a point in each region.
+    smaller_case: For $\dfrac{x+1}{(x-1)(x+2)}$, find the $y$-intercept and sign on each interval.
+    key_idea: Intercepts and asymptotes split the real line into intervals of constant sign, and the sketch
+      follows from those signs and the end behaviour.
+  check: simplify(((a*x**3 + b*x**2 + c*x + d)/((c*x + e)*(x + f))).subs(x, 0) - d/(e*f))
+  check_ok: true
+extensions:
+  '3':
+  - Determine when the two vertical asymptotes coincide, and describe what the graph looks like in that
+    case.
+  '4':
+  - State the condition on the coefficients that makes the oblique asymptote horizontal.
+  '5':
+  - Find where the curve crosses its oblique asymptote, and determine when such a crossing can occur.
+spoken_vocab:
+- rational function
+- vertical asymptote
+- oblique asymptote
+- polynomial division
+- y intercept
+- x intercepts
+- sign chart
+- numerator
+- denominator
+- c x plus e
+- x plus f
+- a x cubed plus b x squared plus c x plus d
+source: past-interviews/Actual Past Interview Questions/B1.pdf#p1
+verified: false
+rating:
+  quality: 5
+  difficulty: 5
+  parts: 3
+  minutes: 15
+  flags:
+  - missing_info
+  - needs_diagram
+  tagline: Oblique asymptote and sign analysis, but degenerate cases such as common roots are unaddressed.
+  priority: 45
+  rank: 544
+  tier: C
+  category: past-interviews
+  d10: 3.0
+  real: 3.5
+  by: haiku
+tags:
+- curve_sketching
+- algebra_and_functions

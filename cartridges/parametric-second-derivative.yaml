@@ -1,0 +1,89 @@
+id: parametric-second-derivative
+title: Second derivative of a parametric curve
+topics:
+- calculus
+- parametric differentiation
+- concavity
+warmup: true
+answer_source: generated
+statement: Show that if $x=a\cos\theta$, $y=b\sin\theta$ then $\frac{d^2y}{dx^2}<0$ for $y>0$.
+stages:
+- goal: Find dy/dx in terms of theta.
+  expected: dy/dx = (dy/dtheta)/(dx/dtheta) = (b cos theta)/(-a sin theta) = -(b/a) cot theta. Take a,
+    b > 0.
+  solution: dy/dtheta = b cos theta and dx/dtheta = -a sin theta, so dy/dx = -(b cos theta)/(a sin theta)
+    = -(b/a) cot theta.
+  common_errors:
+  - Inverting the ratio, i.e. using (dx/dtheta)/(dy/dtheta)
+  - Dropping the minus sign from dx/dtheta = -a sin theta
+  - Writing dy/dx as dy/dtheta times dx/dtheta
+  hints:
+    rephrase: When x and y are both given in terms of a third variable, how do you get dy/dx?
+    smaller_case: Write down dx/dtheta and dy/dtheta first, then form their ratio.
+    key_idea: 'Chain rule: dy/dx = (dy/dtheta)/(dx/dtheta).'
+  check: simplify(diff(b*sin(t),t)/diff(a*cos(t),t) + (b/a)*cos(t)/sin(t))
+  check_ok: true
+- goal: Find d2y/dx2 in terms of theta.
+  expected: d2y/dx2 = -(b/a^2) cosec^3 theta.
+  solution: d/dtheta of dy/dx = -(b/a) cot theta gives (b/a) cosec^2 theta. Then d2y/dx2 = [(b/a) cosec^2
+    theta] / (-a sin theta) = -(b/a^2) cosec^3 theta.
+  common_errors:
+  - Differentiating dy/dx with respect to theta and forgetting to divide by dx/dtheta
+  - Losing the 1/a factor from dx/dtheta
+  - Sign error from dx/dtheta = -a sin theta
+  hints:
+    rephrase: d2y/dx2 is the derivative of dy/dx with respect to x. How can you convert a derivative with
+      respect to x into one with respect to theta?
+    smaller_case: Differentiate your stage 1 answer with respect to theta, then divide by dx/dtheta.
+    key_idea: d/dx = (1/(dx/dtheta)) d/dtheta.
+  check: simplify(diff(-(b/a)*cos(t)/sin(t), t)/diff(a*cos(t),t) + b/(a**2*sin(t)**3))
+  check_ok: true
+- goal: Decide the sign of d2y/dx2 when y > 0.
+  expected: Negative. y > 0 with b > 0 forces sin theta > 0, so cosec^3 theta > 0. The factor -(b/a^2)
+    is negative, so d2y/dx2 < 0.
+  solution: Since y = b sin theta > 0 and b > 0, sin theta > 0, hence cosec^3 theta > 0. Multiplying by
+    -(b/a^2) < 0 gives d2y/dx2 < 0.
+  common_errors:
+  - Forgetting that y > 0 constrains sin theta, not theta itself
+  - Assuming cosec^3 theta can be negative
+  - Not stating the assumption a, b > 0
+  hints:
+    rephrase: Which part of your answer determines the sign, and what does y > 0 tell you about that part?
+    smaller_case: Take a specific value of theta with sin theta positive and track the sign of each factor.
+    key_idea: Work out the sign of a product by tracking the sign of each factor separately.
+extensions:
+  '3':
+  - Eliminate theta to find the Cartesian equation of the curve and identify it.
+  - Explain geometrically why the curve is concave down wherever y > 0.
+  '4':
+  - Repeat for x = a sec theta, y = b tan theta and compare the sign of d2y/dx2 on each branch.
+  '5':
+  - Find the curvature of the curve at a general point and state its sign for y > 0.
+spoken_vocab:
+- x equals a cosine theta
+- y equals b sine theta
+- d y by d x
+- d squared y by d x squared
+- cosecant cubed theta
+- theta
+- a and b positive
+- concave down
+source: step-workbook/Cambridge STEP Short Workbook.pdf#1
+verified: false
+rating:
+  quality: 3
+  difficulty: 4
+  parts: 3
+  minutes: 6
+  flags: []
+  tagline: Short chain-rule exercise with a sign check; little scope for discussion.
+  priority: 41
+  rank: 571
+  tier: C
+  category: step-workbook
+  d10: 2.5
+  real: 3.5
+  by: haiku
+tags:
+- differentiation
+- trigonometry

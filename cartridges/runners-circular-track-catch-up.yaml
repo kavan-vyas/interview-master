@@ -1,0 +1,90 @@
+id: runners-circular-track-catch-up
+title: 'Two runners on a circular track: when does the faster one catch up?'
+topics:
+- relative speed
+- rates
+- circular motion
+- word problems
+warmup: true
+answer_source: pdf
+statement: Two runners start at the same point on a circular track of length $400$ m and run in the same
+  direction at constant speeds of $5$ m/s and $3$ m/s. After how many seconds does the faster runner first
+  catch up with the slower runner?
+stages:
+- goal: Find the rate at which the gap between the runners changes.
+  expected: 2 m/s
+  solution: The faster runner gains on the slower one at 5 - 3 = 2 m/s, since they run in the same direction.
+  common_errors:
+  - Adding the speeds to get 8 m/s.
+  - Using the speed of one runner alone.
+  hints:
+    rephrase: Both runners move the same way. How fast is the distance between them changing?
+    smaller_case: Suppose both runners go at the same speed. What is the gap doing then?
+    key_idea: In the same direction, the relevant speed is the difference between the two speeds.
+  check: x - 2
+  check_ok: false
+- goal: Find the time for the faster runner to first catch up.
+  expected: 200 s
+  solution: At the start they are together. The faster runner first catches up when it has gained one
+    full lap, 400 m. Time = 400 / 2 = 200 s.
+  common_errors:
+  - Using 400 / 5 = 80 s or 400 / 3 for the time.
+  - Using 400 / 8 = 50 s, which comes from adding the speeds.
+  - Taking half a lap (200 m) as the gain needed to catch up.
+  hints:
+    rephrase: At the start they are together. What gap must open up before the faster one is back level
+      with the slower one?
+    smaller_case: What if the track were 100 m long instead? What would the gain need to be?
+    key_idea: Catching up on a circular track means gaining exactly one full lap relative to the other
+      runner.
+  check: x - 200
+  check_ok: false
+extensions:
+  '3':
+  - The runners start 200 m apart on the same 400 m track, still running in the same direction at 5 m/s
+    and 3 m/s. When does the faster runner first catch the slower one?
+  - If the track is 300 m long instead of 400 m, how long does the faster runner take to first catch up?
+  '4':
+  - On the 400 m track, with speeds 5 m/s and 3 m/s and both starting from the same point, after how many
+    seconds are both runners back at the start together for the first time after t = 0?
+  - The runners now run in opposite directions from the same point. After how many seconds do they first
+    meet?
+  '5':
+  - A third runner runs at 4 m/s in the same direction on the 400 m track, starting from the same point.
+    After how many seconds are all three runners at the start together for the first time after t = 0?
+  - Two runners run at 5 m/s and 3 m/s on a 400 m track, but the faster one starts 100 m ahead. When does
+    the faster one first catch the slower one?
+spoken_vocab:
+- track
+- four hundred metres
+- five metres per second
+- three metres per second
+- faster runner
+- slower runner
+- catch up
+- same direction
+- seconds
+- lap
+- relative speed
+- minus
+- divided by
+- two metres per second
+source: kclms/kclms-specimen-mcq-4.pdf#0
+verified: false
+rating:
+  quality: 2
+  difficulty: 1
+  parts: 2
+  minutes: 2
+  flags:
+  - trivial
+  tagline: Relative speed recall; far too routine to test reasoning.
+  priority: 17
+  rank: 677
+  tier: D
+  category: kclms
+  d10: 1.5
+  real: 4.0
+  by: haiku
+tags:
+- algebra_and_functions

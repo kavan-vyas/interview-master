@@ -1,0 +1,100 @@
+id: die-min-max-expectation
+title: Smallest and largest of n die rolls
+topics:
+- probability
+- expectation
+- order statistics
+- discrete probability
+warmup: false
+answer_source: generated
+statement: A fair six-sided die, with faces numbered $1$ to $6$, is rolled $n$ times. What is the probability
+  that the smallest number rolled is exactly $3$? What is the expected value of the highest score obtained
+  after $n$ rolls?
+stages:
+- goal: Find $P(\min = 3)$ for $n$ rolls.
+  expected: $\left(\frac{2}{3}\right)^n-\left(\frac{1}{2}\right)^n$
+  solution: The minimum equals 3 exactly when every roll is at least 3 but not every roll is at least
+    4. $P(\text{all rolls}\ge 3)=\left(\frac{4}{6}\right)^n$ and $P(\text{all rolls}\ge 4)=\left(\frac{3}{6}\right)^n$.
+    Subtracting gives $\left(\frac{2}{3}\right)^n-\left(\frac{1}{2}\right)^n$. For $n=1$ this gives $\frac{1}{6}$,
+    which is correct.
+  common_errors:
+  - Answering $\left(\frac{1}{6}\right)^n$, which counts only the outcome where every roll is 3.
+  - Forgetting to subtract the case where every roll is at least 4, which gives $\left(\frac{2}{3}\right)^n$
+    alone.
+  - Using $\frac{1}{2}$ for $P(\text{roll}\ge 4)$ but $\frac{4}{6}$ for $P(\text{roll}\ge 3)$ inconsistently,
+    or using $\frac{3}{6}$ and $\frac{4}{6}$ with the wrong exponent.
+  hints:
+    rephrase: Can the event 'smallest roll is exactly 3' be written as 'all rolls are at least 3' with
+      something removed?
+    smaller_case: Work out the answer for n = 1 first, then for n = 2, and check the pattern.
+    key_idea: 'Use complementary counting: P(min ≥ 3) minus P(min ≥ 4).'
+  check: simplify(answer - (Rational(2,3)**n - Rational(1,2)**n)) == 0
+  check_ok: false
+- goal: Find the expected value of the highest score after $n$ rolls.
+  expected: $E[\max]=6-\sum_{k=1}^{5}\left(\frac{k}{6}\right)^n$
+  solution: 'For a non-negative integer-valued random variable $X$, $E[X]=\sum_{k\ge 0}P(X>k)$. Here $P(\max\le
+    k)=\left(\frac{k}{6}\right)^n$ for $k=0,\dots,6$, so $P(\max>k)=1-\left(\frac{k}{6}\right)^n$ for
+    $k=0,\dots,5$, and $P(\max>k)=0$ for $k\ge 6$. Summing: $E[\max]=\sum_{k=0}^{5}\left(1-\left(\frac{k}{6}\right)^n\right)=6-\sum_{k=1}^{5}\left(\frac{k}{6}\right)^n$,
+    since the $k=0$ term of the sum vanishes for $n\ge 1$. Check: $n=1$ gives $\frac{7}{2}$, and $n=2$
+    gives $\frac{161}{36}$.'
+  common_errors:
+  - Computing $\sum k\cdot\frac{1}{6}$ and ignoring $n$, which gives the single-die mean $\frac{7}{2}$
+    for every $n$.
+  - Using $\sum k\cdot P(\max=k)$ but writing $P(\max=k)=\frac{k}{6^n}$ instead of $\left(\frac{k}{6}\right)^n-\left(\frac{k-1}{6}\right)^n$.
+  - Summing $k$ from 0 to 6 in the tail formula, which gives an off-by-one error.
+  - Confusing the highest score with the lowest score and giving $E[\min]$.
+  hints:
+    rephrase: The highest roll is at most $k$ exactly when every roll is at most $k$. What is that probability?
+    smaller_case: Compute the expected maximum for two rolls by listing the probability that the maximum
+      equals each value.
+    key_idea: For a non-negative integer random variable, write the expectation as a sum of tail probabilities
+      $P(X>k)$.
+  check: simplify(answer - (6 - sum(Rational(k,6)**n for k in range(1,6)))) == 0
+  check_ok: null
+extensions:
+  '3':
+  - Show that $P(\max=k)=\left(\frac{k}{6}\right)^n-\left(\frac{k-1}{6}\right)^n$, and check that these
+    probabilities sum to 1.
+  - Describe what happens to $E[\max]$ as $n\to\infty$, and explain why.
+  '4':
+  - Find the expected value of the smallest number rolled in $n$ rolls, using the same tail-sum method.
+  - Find the probability that the smallest and largest numbers rolled are equal, when rolling $n$ times.
+  '5':
+  - Find the probability that all $n$ rolls show the same number.
+  - Find $P(\min=3 \text{ and } \max=5)$ for $n$ rolls, and explain why the inclusion-exclusion steps
+    are needed.
+spoken_vocab:
+- fair six sided die
+- faces numbered one to six
+- rolled n times
+- probability
+- smallest number rolled
+- exactly three
+- expected value
+- highest score
+- two thirds to the power n
+- one half to the power n
+- six minus sum from k equals one to five
+- k over six to the power n
+- complement
+- tail sum
+- order statistics
+source: past-interviews/Actual Past Interview Questions/Mathematics Interview Questions 7 (anonymous).pdf#0
+verified: false
+rating:
+  quality: 6
+  difficulty: 5
+  parts: 2
+  minutes: 8
+  flags: []
+  tagline: Min and max distributions with a neat expectation-via-tail-sum approach.
+  priority: 65
+  rank: 389
+  tier: C
+  category: past-interviews
+  d10: 5.9
+  real: 7.2
+  by: deepseek-v4.1-flash-free
+tags:
+- probability
+- combinatorics

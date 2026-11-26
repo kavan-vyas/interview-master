@@ -1,0 +1,86 @@
+id: sin-x-over-x-sketch
+title: Sketch of sin x over x
+topics:
+- limits
+- symmetry
+- removable discontinuities
+- oscillation and envelopes
+- standard limits
+warmup: true
+answer_source: pdf
+statement: Sketch the graph of $y=\frac{\sin x}{x}$ for $x\ne 0$.
+stages:
+- goal: Determine the symmetry of the graph and the value the function approaches at x=0.
+  expected: The function is even. It approaches 1 as $x\to 0$, so the graph has a removable hole at $(0,1)$.
+  solution: Replacing x by $-x$ gives $\frac{\sin(-x)}{-x}=\frac{\sin x}{x}$, so the function is even
+    and only $x>0$ needs sketching. As $x\to 0$, $\frac{\sin x}{x}\to 1$ by the standard limit. The function
+    is undefined at 0, so there is a hole at $(0,1)$. Near 0, $\frac{\sin x}{x}\approx 1-\frac{x^2}{6}$.
+  common_errors:
+  - Calling the function odd
+  - Assigning $f(0)=0$ instead of noting the limit
+  - Treating the hole as a jump discontinuity
+  hints:
+    rephrase: Replace x by $-x$ and simplify. Then look at what the function approaches as x gets close
+      to 0.
+    smaller_case: Evaluate the function at x=0.1 and x=0.01 with a calculator in radians.
+    key_idea: Compare with the standard small-angle limit of $\frac{\sin t}{t}$ as $t\to 0$.
+  check: limit(sin(x)/x,x,0)-1
+  check_ok: true
+- goal: Find the zeros of the function and describe how its amplitude behaves for large $|x|$.
+  expected: Zeros at $x=n\pi$ for every nonzero integer n. The graph lies between $\pm\frac{1}{|x|}$,
+    touching these curves where $\sin x=\pm 1$. The amplitude tends to 0 as $|x|\to\infty$.
+  solution: $\sin x=0$ exactly at multiples of $\pi$, so the zeros are $x=n\pi$ with $n\ne 0$, since $x=0$
+    is excluded. Because $|\sin x|\le 1$, we have $\left|\frac{\sin x}{x}\right|\le\frac{1}{|x|}$, with
+    equality where $\sin x=\pm 1$, i.e. $x=\frac{\pi}{2}+k\pi$. The oscillations are squeezed between
+    $\pm\frac{1}{|x|}$, which tend to 0.
+  common_errors:
+  - Listing zeros only at multiples of $2\pi$
+  - Claiming the amplitude stays at 1
+  - Including x=0 as a zero
+  hints:
+    rephrase: Where does $\sin x$ vanish? What bounds $|\sin x|$ for every x?
+    smaller_case: Compute the value of the function at $x=\frac{\pi}{2}$ and at $x=\pi$.
+    key_idea: Division by x damps the oscillation. Compare the envelope of the graph with $\pm\frac{1}{|x|}$.
+  check: limit(sin(x)/x,x,oo)
+  check_ok: true
+extensions:
+  '3':
+  - Sketch $y=x\sin\frac{1}{x}$ near $x=0$ and say whether $\lim_{x\to 0}$ exists.
+  '4':
+  - How many zeros does $\frac{\sin x}{x}$ have in the range $0<x\le 10\pi$?
+  '5':
+  - Prove that the extended function $\frac{\sin x}{x}$, with value 1 at $x=0$, is uniformly continuous
+    on $\mathbb{R}$.
+spoken_vocab:
+- y equals sine x over x
+- sine x over x
+- x not equal to zero
+- removable discontinuity
+- hole at zero one
+- even function
+- n pi
+- one over x
+- small angle approximation
+- one minus x squared over six
+- envelope
+- amplitude
+source: jaymin/Jaymin Interview (1).pdf#p49
+verified: false
+rating:
+  quality: 4
+  difficulty: 3
+  parts: 2
+  minutes: 6
+  flags:
+  - needs_diagram
+  tagline: 'Standard sketch: even symmetry, limit 1 at zero, decaying oscillation.'
+  priority: 52
+  rank: 512
+  tier: C
+  category: jaymin
+  d10: 2.5
+  real: 3.0
+  by: haiku
+tags:
+- curve_sketching
+- trigonometry
