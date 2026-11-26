@@ -4,10 +4,10 @@
 #   ci.sh stop    stop the server and every speech engine it runs
 #   ci.sh status  running or not, pid, memory
 # The server stops itself 8 s after the last Mac tab closes, or 2 min after start if no tab ever opens.
-export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+export PATH="/opt/homebrew/bin:/usr/local/bin:$HOME/.local/bin:$PATH"
 export USER="${USER:-$(id -un)}" LOGNAME="${LOGNAME:-$(id -un)}"   # Claude sign-in (keychain) needs these   # Dock/Finder launches get a bare PATH: whisper-server lives here
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-PY=/Library/Frameworks/Python.framework/Versions/3.11/bin/python3
+PY="$ROOT/.venv/bin/python"; [ -x "$PY" ] || PY=/Library/Frameworks/Python.framework/Versions/3.11/bin/python3   # setup.sh venv first
 PORT=8000
 URL="http://localhost:$PORT"
 DIR="$HOME/Library/Application Support/CollegeInterview"

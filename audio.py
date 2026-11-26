@@ -15,6 +15,8 @@ import wave
 from concurrent.futures import ThreadPoolExecutor
 
 import re
+import sys
+import tempfile
 import warnings
 
 import numpy as np
@@ -26,6 +28,8 @@ HALLU = {"thank you", "thanks", "bye", "amen", "you", "yes sir", "um", "uh", "he
          "oh okay", "i see", "thank you very much", "thanks for watching", "that", "is", "and then", "eyes"}
 
 import config as C
+
+_LOGDIR = "/tmp" if sys.platform != "win32" else tempfile.gettempdir()   # Windows has no /tmp
 
 
 def _dehallu(t):
@@ -78,7 +82,7 @@ def ensure_partial(timeout=60):
     exe, model = shutil.which("whisper-server"), C.MODELS / "ggml-small.en.bin"
     if not exe or not model.exists():
         return False
-    log = open("/tmp/im-partial.log", "w")
+    log = open(f"{_LOGDIR}/im-partial.log", "w")
     _partial["proc"] = subprocess.Popen([exe, "-m", str(model), "--host", "127.0.0.1", "--port", "8082", "-l", "en"],
                                         stdout=log, stderr=log)
     t = time.time()
@@ -122,7 +126,7 @@ def ensure_stt(timeout=180):
         return None
     if not STT_PY.exists():
         return None
-    log = open("/tmp/im-stt.log", "w")
+    log = open(f"{_LOGDIR}/im-stt.log", "w")
     proc = subprocess.Popen([str(STT_PY), str(C.ROOT / "tts" / "stt_worker.py"), "8081"], stdout=log, stderr=log)
     t = time.time()
     while time.time() - t < timeout:
@@ -229,13 +233,13 @@ def ensure_whisper(timeout=90):
     if not exe or not model.exists():
         raise RuntimeError("whisper-server or model missing: run scripts/setup.sh")
     u = urllib.parse.urlparse(C.WHISPER_URL)
-    log = open("/tmp/im-whisper.log", "w")
+    log = open(f"{_LOGDIR}/im-whisper.log", "w")
     proc = subprocess.Popen([exe, "-m", str(model), "--host", u.hostname, "--port", str(u.port), "-l", "en"],
                             stdout=log, stderr=log)
     t = time.time()
     while time.time() - t < timeout:
         if proc.poll() is not None:
-            raise RuntimeError("whisper-server exited, see /tmp/im-whisper.log")
+            raise RuntimeError(f"whisper-server exited, see {_LOGDIR}/im-whisper.log")
         if whisper_up():
             return proc
         time.sleep(0.5)
