@@ -14,3 +14,5 @@ venv/
 *.log
 .DS_Store
 .env
+# Windows: whisper.cpp binaries downloaded by scripts/setup.ps1
+tools/
