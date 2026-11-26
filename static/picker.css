@@ -125,3 +125,6 @@ body[data-motion="calm"] :is(.pk-chips, .pk-list) button.on { background: var(--
 .pk-info { position: absolute; right: 8px; bottom: 8px; width: 28px; height: 28px; display: grid; place-items: center; border-radius: 8px; border: 1px solid var(--line); background: transparent; color: inherit; opacity: .6; cursor: pointer; }
 .pk-info:hover { opacity: 1; }
 .pk-card.sel.main { outline: 2px solid var(--leaf, #7bd88f); outline-offset: -2px; }
+/* the details button sits in the footer corner: keep footer text clear of it */
+.pk-card footer { padding-right: 36px; }
+.pk-info { bottom: 6px; }
