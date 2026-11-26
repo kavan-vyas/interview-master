@@ -21,6 +21,13 @@ window.typeOut = (el, text, done, dur) => {   // dur (s): pace to the voice
       <details class="flow-solo"><summary>Solo settings · iPad QR</summary></details>`;
     go.before(f);
     const mic = $(".mic-row"); if (mic) f.querySelector(".flow-solo").before(mic);   // devices: always reachable
+    if (mic) {   // mic is closed outside interviews (battery): test it for 10 s on demand
+      const t = document.createElement("button"); t.type = "button"; t.className = "btn sm ghost mic-test"; t.textContent = "Test mic (10 s)";
+      t.onclick = () => post("mic/test").then(() => { t.disabled = true; let n = 10; t.textContent = "Listening… 10";
+        const iv = setInterval(() => { n--; t.textContent = "Listening… " + n; if (n <= 0) { clearInterval(iv); t.disabled = false; t.textContent = "Test mic (10 s)"; } }, 1000); })
+        .catch(e => toast("Mic test failed: " + e.message, "error"));
+      mic.append(t);
+    }
     const box = $(".solo-box"); if (box) f.querySelector(".flow-solo").append(box);
     $("#irlGo").onclick = () => {
       const open = B.classList.toggle("irl");

@@ -48,10 +48,22 @@ def record(o):
     return row
 
 
+def mark(cart_id, done=True):
+    """Done without an interview (looked at it, solved it on paper): tracker only, no report, no score."""
+    rows = [r for r in load() if not (r.get("manual") and r.get("cart") == cart_id)]
+    if done:
+        c = carts.load(cart_id) or {}
+        rows.append({"t": time.time(), "cart": cart_id, "title": c.get("title"), "topics": c.get("topics") or [],
+                     "manual": True, "score": None})
+    _write(rows)
+
+
 def topics():
     """topic -> {avg, n, last}; lower avg = weaker."""
     agg = {}
     for r in load():
+        if r.get("score") is None:          # marked done by hand: no score to average
+            continue
         for t in r["topics"] or ["general"]:
             a = agg.setdefault(t, {"sum": 0, "n": 0, "last": 0})
             a["sum"] += r["score"]; a["n"] += 1; a["last"] = max(a["last"], r["t"])

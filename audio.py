@@ -309,7 +309,24 @@ class Pipeline:
                 return w
         return names[0] if names else None
 
+    def close_mic(self):
+        """Battery: mic only runs during an interview (and enrolment / a 10 s test)."""
+        with self._olock:
+            self.mic_off = True
+            try:
+                self.stream.stop(); self.stream.close()
+            except Exception:
+                pass
+        print("mic closed (no interview)", flush=True)
+
+    def open_mic(self):
+        self.mic_off = False
+        self.open(getattr(self, "device_name", None))
+
     def open(self, name=None):
+        if getattr(self, "mic_off", False):       # closed on purpose: remember the choice, open it at Start
+            self.device_name = name or self.preferred()
+            return
         import sounddevice as sd
         try:
             from tts import voice
@@ -345,6 +362,9 @@ class Pipeline:
         while not self._stop.is_set():
             time.sleep(2)
             now = time.time()
+            if getattr(self, "mic_off", False):
+                tries = 0
+                continue
             dead = now - getattr(self, "last_cb", now) > 4
             flat = now - getattr(self, "last_sig", now) > 6   # callbacks still firing but pure zeros (device switch, Bluetooth hijack)
             if not (dead or flat):

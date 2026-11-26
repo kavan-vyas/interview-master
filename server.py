@@ -353,6 +353,7 @@ async def boot():
     global LOOP
     LOOP = asyncio.get_running_loop()
     asyncio.create_task(O.tick_loop())
+    asyncio.create_task(mic_gate())
     _life["boot"] = time.time()                # orphan clock starts when the server can answer
     if not (ARGS and ARGS.keep_alive):
         asyncio.create_task(life_watch())
@@ -685,14 +686,52 @@ def _keep_board(d):
 
 @app.get("/api/progress")
 async def progress_api():
-    return {"rows": progress.load()[-50:], "topics": progress.topics()}
+    rows = progress.load()
+    return {"rows": [r for r in rows if not r.get("manual")][-50:], "topics": progress.topics(),
+            "done": sorted({r["cart"] for r in rows if r.get("cart")})}
+
+
+@app.post("/api/progress/done")
+async def progress_done(body: dict):
+    if not carts.load(body.get("cart") or ""):
+        raise HTTPException(404, "no such problem")
+    progress.mark(body["cart"], bool(body.get("done", True)))
+    return {"ok": True}
+
+
+_mic = {"test_until": 0.0}
+
+
+async def mic_gate():
+    """Mic open only while an interview runs, while enrolling voices, or during a 10 s test: saves battery."""
+    while True:
+        await asyncio.sleep(0.5)
+        a = O.audio
+        if not a or O.s.get("audio") != "live":
+            continue
+        want = (O.s.get("phase") in ("personal", "warmup", "main") or bool(getattr(a, "enrol_role", None))
+                or time.time() < _mic["test_until"])
+        try:
+            if want and getattr(a, "mic_off", False):
+                await asyncio.to_thread(a.open_mic)
+            elif not want and not getattr(a, "mic_off", False):
+                await asyncio.to_thread(a.close_mic)
+        except Exception as e:
+            print("mic gate:", e, flush=True)
+
+
+@app.post("/api/mic/test")
+async def mic_test():
+    _mic["test_until"] = time.time() + 10
+    return {"ok": True, "seconds": 10}
 
 
 @app.get("/api/mic")
 async def mic_list():
     if not O.audio:
         return {"devices": [], "current": None, "audio": O.s["audio"]}
-    return {"devices": audio.Pipeline.inputs(), "current": getattr(O.audio, "device_name", None), "audio": O.s["audio"]}
+    return {"devices": audio.Pipeline.inputs(), "current": getattr(O.audio, "device_name", None), "audio": O.s["audio"],
+            "open": not getattr(O.audio, "mic_off", False)}
 
 
 def _spk(*a):

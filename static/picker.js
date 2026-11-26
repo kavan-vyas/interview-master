@@ -2,7 +2,7 @@
 (() => {
   const $p = s => document.querySelector(s);
   const ls = { get(k, d) { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch { return d; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch { } } };
-  const F0 = () => ({ real: 7, diff: [], top: [], src: [], multi: true, warm: false, undone: false, sort: "best", q: "" });
+  const F0 = () => ({ real: 7, diff: [], top: [], src: [], multi: true, warm: false, undone: false, done: false, sort: "best", q: "" });
   const F = Object.assign(F0(), ls.get("im-pick2", {}));
   F.warm = false;                      // warm-ups retired: one main problem per interview
   let PEEK = null, FULL = {};
@@ -32,7 +32,7 @@
     $p("#pkReal").querySelectorAll("button").forEach(b => b.onclick = () => { F.real = +b.dataset.v; draw(); });
     $p("#pkDiff").innerHTML = DIFF.map(([t]) => `<button data-v="${t}" class="${F.diff.includes(t) ? "on" : ""}">${t}</button>`).join("");
     $p("#pkDiff").querySelectorAll("button").forEach(b => b.onclick = () => { tog(F.diff, b.dataset.v); draw(); });
-    $p("#pkType").innerHTML = [["multi", "Multi-part"], ["undone", "Not done yet"]].map(([k, t]) => `<button data-k="${k}" class="${F[k] ? "on" : ""}"><span>${t}</span></button>`).join("");
+    $p("#pkType").innerHTML = [["multi", "Multi-part"], ["done", `Done (${(window.PROG?.done || new Set()).size})`]].map(([k, t]) => `<button data-k="${k}" class="${F[k] ? "on" : ""}"><span>${t}</span></button>`).join("");
     $p("#pkType").querySelectorAll("button").forEach(b => b.onclick = () => { F[b.dataset.k] = !F[b.dataset.k]; draw(); });
     list($p("#pkTop"), Object.keys(tc).sort((a, b) => tc[b] - tc[a]).map(k => [k, nice(k), tc[k]]), "top");
     list($p("#pkSrc"), Object.keys(sc).sort((a, b) => sc[b] - sc[a]).map(k => [k, SRC_NAME[k] || k, sc[k]]), "src");
@@ -48,8 +48,8 @@
     const q = F.q.toLowerCase(), P = window.PROG || { done: new Set() };
     const out = CARTS.filter(c =>
       (F.warm ? c.warmup : !c.warmup) &&
-      (!F.multi || F.warm || parts(c) >= 2) &&
-      (!F.undone || !P.done.has(c.id)) &&
+      (!F.multi || F.warm || F.done || parts(c) >= 2) &&
+      (F.done ? P.done.has(c.id) : !P.done.has(c.id)) &&       // done problems live in their own section
       (!F.real || RE(c) == null || RE(c) >= F.real) &&
       (!F.diff.length || D(c) == null || DIFF.some(([t, lo, hi]) => F.diff.includes(t) && D(c) >= lo && D(c) < hi)) &&
       (!F.top.length || (c.tags || []).some(t => F.top.includes(t))) &&
@@ -138,6 +138,9 @@
     if (id && !quiet) toast(kind === "main" ? "Main problem set" : "Warm-up set", "good");
   }
 
+  /* follow-up questions, in stage order */
+  const exts = f => Object.values(f.extensions || {}).flat().filter(x => typeof x === "string");
+
   /* ---------- peek drawer ---------- */
   async function peek(id, keep) {
     if (PEEK === id && !keep) { PEEK = null; $p("#pkPeek").hidden = true; return draw(); }
@@ -146,22 +149,25 @@
     const c = CARTS.find(x => x.id === id), r = R(c);
     if (!FULL[id]) { P.innerHTML = `<p class="pk-none">Loading…</p>`; FULL[id] = (await api("cartridge/" + id)).cart; }
     if (PEEK !== id) return;
-    const f = FULL[id], isMain = $p("#mainSel").value === id, isWarm = $p("#warmSel").value === id;
+    const f = FULL[id], isMain = $p("#mainSel").value === id, isWarm = $p("#warmSel").value === id, isDone = !!window.PROG?.done?.has(id);
     P.innerHTML = `
       <button class="pk-x" title="Close">${ic("x")}</button>
       <div class="pk-ph"><span class="pk-tier big t${r.tier || "x"}">${r.tier || "–"}</span><div><h3>${esc(f.title)}</h3>
         <small>difficulty ${r.d10 ?? "?"}/10 · realism ${r.real ?? "?"}/10 · ${(c.tags || []).map(t => t.replace(/_/g, " ")).join(", ")} · ${parts(c)} parts${r.minutes ? " · ~" + r.minutes + " min" : ""}${r.rank ? " · rank #" + r.rank : ""}</small></div></div>
       ${r.tagline ? `<p class="pk-why">${esc(r.tagline)}</p>` : ""}
       <div class="pk-stmt"></div>
-      <h5>Stages</h5><ol class="pk-stages">${(f.stages || []).map(s => `<li></li>`).join("")}</ol>
+      <h5>All parts</h5><ol class="pk-stages">${(f.stages || []).map(s => `<li></li>`).join("")}</ol>
+      ${exts(f).length ? `<h5>Follow-up questions</h5><ol class="pk-stages pk-ext">${exts(f).map(() => `<li></li>`).join("")}</ol>` : ""}
       ${(r.flags || []).length ? `<p class="pk-warn">${ic("triangle-alert")} ${esc(r.flags.join(", ").replace(/_/g, " "))}</p>` : ""}
       <div class="pk-acts">
         <button class="btn sm" data-a="main">${isMain ? ic("check") + " Main problem" : "Set as main"}</button>
+        <button class="btn sm ghost" data-a="done">${isDone ? ic("check") + " Done · undo" : "Mark as done"}</button>
         <button class="btn sm ghost" data-a="pb">Pre-brief this</button>
       </div>
       <small class="pk-meta">${esc(f.source || "")} · ${(f.topics || []).map(esc).join(", ")}</small>`;
     mathText(P.querySelector(".pk-stmt"), f.statement);
-    P.querySelectorAll(".pk-stages li").forEach((li, i) => mathText(li, f.stages[i].goal));
+    P.querySelectorAll(".pk-stages:not(.pk-ext) li").forEach((li, i) => mathText(li, f.stages[i].goal));
+    P.querySelectorAll(".pk-ext li").forEach((li, i) => mathText(li, exts(f)[i]));
     renderMath(P.querySelector("h3"));
     P.querySelector(".pk-x").onclick = () => peek(id);
     P.querySelectorAll("[data-a]").forEach(b => b.onclick = e => {
@@ -169,6 +175,11 @@
       const a = b.dataset.a;
       if (a === "main") set("main", isMain ? "" : id);
       if (a === "warm") set("warm", isWarm ? "" : id);
+      if (a === "done") fetch("/api/progress/done", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ cart: id, done: !isDone }) })
+        .then(r => { if (!r.ok) throw 0; window.PROG?.done?.[isDone ? "delete" : "add"](id);
+          if (!isDone && $p("#mainSel").value === id) set("main", "", true);
+          toast(isDone ? "Back in the list" : "Marked done: moved to Done", "good"); peek(id, true); window.loadProg?.(); })
+        .catch(() => toast("Could not save", "error"));
       if (a === "pb") { const s = $p("#pbSel"); s.value = id; s.dispatchEvent(new Event("change")); s.closest(".step").scrollIntoView({ behavior: "smooth", block: "center" }); }
     });
   }
@@ -184,6 +195,7 @@
     }
     draw();
   };
+  window.drawPicker = () => CARTS.length && draw();
   if (CARTS.length) draw();
 
   /* refresh when ratings / refinements land (setup screen only) */

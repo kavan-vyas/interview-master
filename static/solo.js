@@ -139,7 +139,8 @@
   const loadProg = async () => {
     try {
       const p = await get("progress");
-      window.PROG = { topics: p.topics, done: new Set(p.rows.map(r => r.cart)) };
+      window.PROG = { topics: p.topics, done: new Set(p.done || p.rows.map(r => r.cart)) };
+      window.drawPicker?.();
       const head = document.querySelector(".step.full header");
       let strip = $(".solo-prog");
       if (!strip && head) { strip = el("div", "solo-prog"); head.after(strip); }
@@ -149,7 +150,7 @@
         : `<small>Progress</small> no sessions yet. Scores per topic appear here and feed the “Weak spots” sort.`;
     } catch { }
   };
-  loadProg();
+  window.loadProg = loadProg; loadProg();
   new MutationObserver(() => { if (document.body.dataset.view === "setup") loadProg(); }).observe(document.body, { attributes: true, attributeFilter: ["data-view"] });
 })();
 
