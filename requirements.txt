@@ -1,12 +1,38 @@
+# College Interview: Python packages. Python 3.11. Installed by scripts/setup.sh (Mac) or scripts/setup.ps1 (Windows)
+# into .venv:  pip install -r requirements.txt
+
+# web server + dashboard
 fastapi
 uvicorn
+websockets                 # WebSocket support for uvicorn (live dashboard + iPad board)
 pyyaml
+qrcode[pil]                # iPad board QR code
+
+# maths + question bank
 sympy
 pypdf
-numpy
+
+# microphone, voice activity, speaker recognition
+numpy<2; sys_platform == "darwin" and platform_machine == "x86_64"
+numpy; sys_platform != "darwin" or platform_machine != "x86_64"
 sounddevice
+soundfile
 silero-vad
 speechbrain
-torch
-torchaudio
+# PyTorch stopped shipping Intel Mac builds after 2.2.2; Windows gets the CPU build from PyPI.
+torch==2.2.2; sys_platform == "darwin" and platform_machine == "x86_64"
+torchaudio==2.2.2; sys_platform == "darwin" and platform_machine == "x86_64"
+torch==2.11.0; sys_platform != "darwin" or platform_machine != "x86_64"   # tested version
+torchaudio==2.11.0; sys_platform != "darwin" or platform_machine != "x86_64"
+transformers<4.50; sys_platform == "darwin" and platform_machine == "x86_64"
+
+# the professor's voice (Kokoro TTS) + its English pronunciation model
+kokoro
+misaki[en]
+en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl
+
+# the AI: Claude through your own Claude Code sign-in
 claude-agent-sdk
+
+# optional faster speech-to-text on Apple Silicon (used by tts/stt_worker.py)
+mlx-whisper; sys_platform == "darwin" and platform_machine == "arm64"
