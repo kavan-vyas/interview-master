@@ -56,6 +56,19 @@ state = {"spans": [], "proc": None, "last": "", "busy": False, "epoch": 0}
 
 
 _out = {"speakers": True, "name": "?"}
+_HEADPHONES = ("headphone", "headset", "airpods", "earpods", "earphone", "earbud", "buds", "in-ear", "beats", "powerbeats",
+               "wh-1000", "wf-1000", "quietcomfort", "qc35", "qc45", "qc ultra", "bose nc", "momentum", "jabra", "sennheiser",
+               "pxc", "px7", "px8", "nothing ear", "soundcore life", "soundcore space", "liberty")
+_OPEN_EAR = ("shokz", "openrun", "openfit", "openmove", "aeropex", "open-ear", "openswim", "opencomm")
+
+
+def is_speaker_device(name):
+    """Default output -> does its sound reach the mic? Unknown devices (monitors, USB / Bluetooth speakers, virtual
+    devices) count as SPEAKERS: echo guard on, no barge-in. Only known headphones / earbuds count as headphones."""
+    n = (name or "").lower()
+    if any(k in n for k in _OPEN_EAR):          # bone-conduction / open-ear: leaks into mics
+        return True
+    return not any(k in n for k in _HEADPHONES)
 
 
 def _watch_output():
@@ -74,8 +87,7 @@ def _watch_output():
                         name = line.strip().rstrip(":")
                     elif "Default Output Device: Yes" in line and name:
                         _out["name"] = name
-                        n = name.lower()
-                        _out["speakers"] = (("speaker" in n or "display" in n) and "headphone" not in n) or any(k in n for k in ("shokz", "openrun", "openfit", "openmove", "aeropex", "open-ear"))   # open-ear leaks into mics
+                        _out["speakers"] = is_speaker_device(name)
                         break
             except Exception:
                 pass
@@ -119,6 +131,71 @@ def is_echo(seg):
     return sum(w in mine for w in heard) / len(heard) >= 0.6
 
 
+def _toks(t):
+    """Words with their character spans; accents folded (whisper writes 'Hopital' for 'Hôpital')."""
+    import unicodedata
+    out = []
+    for m in re.finditer(r"[^\W_]+", t or ""):
+        w = "".join(c for c in unicodedata.normalize("NFKD", m.group(0).lower()) if not unicodedata.combining(c))
+        out.append((w, m.start(), m.end()))
+    return out
+
+
+def strip_echo(seg):
+    """Remove the professor's own words picked up by the mic from a segment, keep the student's.
+    Only lines whose speech overlapped this segment (echo_blocked) are matched. Each run of >= 5 heard words that
+    lines up, in order, with one of his recent lines (>= 70% of the run matching) is cut out. Returns the cleaned
+    text ('' = it was all echo)."""
+    import difflib
+    text = seg.get("text") or ""
+    if not text or not echo_blocked(seg):
+        return text
+    heard = _toks(text)
+    if not heard:
+        return text
+    hw = [w for w, _, _ in heard]
+    cut = [False] * len(heard)
+    for t0, said in state.get("said", []):
+        if time.time() - t0 > 90:
+            continue
+        sw = [w for w, _, _ in _toks(said)]
+        if len(sw) < 3:
+            continue
+        blocks = [b for b in difflib.SequenceMatcher(None, hw, sw, autojunk=False).get_matching_blocks() if b.size]
+        runs, cur = [], None                  # merge blocks separated by small gaps (a misheard word or two)
+        for b in blocks:
+            if cur and b.a - (cur[1]) <= 2 and b.b - cur[3] <= 2:
+                cur = [cur[0], b.a + b.size, cur[2] + b.size, b.b + b.size]
+            else:
+                if cur:
+                    runs.append(cur)
+                cur = [b.a, b.a + b.size, b.size, b.b + b.size]
+        if cur:
+            runs.append(cur)
+        for a0, a1, matched, _ in runs:
+            if matched >= min(5, len(sw)) and matched / max(1, a1 - a0) >= 0.7:
+                for i in range(a0, a1):
+                    cut[i] = True
+    if not any(cut):
+        return text
+    keep, pos = [], 0                         # rebuild from the original characters of the kept words
+    i = 0
+    while i < len(heard):
+        if cut[i]:
+            j = i
+            while j + 1 < len(heard) and cut[j + 1]:
+                j += 1
+            keep.append(text[pos:heard[i][1]])
+            pos = heard[j][2]
+            pos += len(re.match(r"[\s.,;:!?'\"]*", text[pos:]).group(0))   # the echoed sentence's punctuation
+            i = j + 1
+        else:
+            i += 1
+    keep.append(text[pos:])
+    out = re.sub(r"\s{2,}", " ", "".join(keep)).strip(" ,;:")
+    return out if len(_toks(out)) >= 2 else ""
+
+
 _say_lock = asyncio.Lock()
 
 
@@ -138,7 +215,16 @@ async def shh():
         p.kill()
 
 
-async def say(text, who=None, voice_id=None):
+def stop_voice():
+    """Speaker switched off: stop the sound only. Queued and in-flight lines still arrive (as captions)."""
+    from tts import voice
+    voice.stop()
+    p = state.get("proc")
+    if p and p.returncode is None:
+        p.kill()
+
+
+async def say(text, who=None, voice_id=None, on_start=None):
     """Chatterbox/Kokoro with maths-aware reading; falls back to macOS say."""
     if not text:
         return
@@ -146,7 +232,7 @@ async def say(text, who=None, voice_id=None):
     async with _say_lock:                    # queue lines; a new line never cuts off the one playing
         if gen != state.get("say_gen", 0):
             return                           # shh'd while waiting
-        await _say(text, who, voice_id)
+        await _say(text, who, voice_id, on_start)
 
 
 async def _say(text, who=None, voice_id=None, on_start=None):
@@ -179,7 +265,7 @@ async def _say(text, who=None, voice_id=None, on_start=None):
 def reset():
     """New session: forget the last line, cancel queued turns, bump epoch so in-flight thinks are discarded."""
     state.update(last="", last_who=None, busy=False, epoch=state["epoch"] + 1)
-    for k in ("next", "speaker_off", "shh_at"):
+    for k in ("next", "queue", "speaker_off", "shh_at", "offline"):
         state.pop(k, None)                  # speaker off never leaks into the next session
     for b in (FAST, DEEP):
         b.stale = True                      # fresh conversation + image next connect (warm on next solo setup)
@@ -289,6 +375,10 @@ class Brain:
             await self._connect()
 
 
+_PLACEHOLDER = re.compile(r"[\s(\[<{]*(silent|silence|stay silent|staying silent|\(?silent\)?|nothing|none|empty|n/?a|"
+                          r"no reply|say nothing|-+|—|–|\.{2,}|…)?[\s)\]>}.]*", re.I)
+
+
 def parse(txt):
     r = {}
     for line in txt.splitlines():
@@ -296,7 +386,10 @@ def parse(txt):
         if m:
             r[m.group(1).lower()] = m.group(2).strip()
     yes = lambda k: r.get(k, "").lower().startswith("y")
-    return {"who": r.get("who", "lead"), "say": r.get("say", ""), "type": (r.get("type") or "PROBE").split("|")[0].upper(),
+    say = r.get("say", "")
+    if _PLACEHOLDER.fullmatch(say.strip().strip("*_`\"'").strip()):
+        say = ""                              # "(silent)", "SILENT", "-", "<empty>": the model meant silence
+    return {"who": r.get("who", "lead"), "say": say, "type": (r.get("type") or "PROBE").split("|")[0].upper(),
             "error": "" if r.get("error", "").lower() in ("", "none", "-", "empty", "no") else r["error"],
             "self_corrected": yes("fixed"), "stage_done": yes("done"), "escalate": yes("escalate"), "board": r.get("board", "")}
 
@@ -340,39 +433,90 @@ Decide now. Prefer staying silent unless the trigger genuinely needs you."""
 FALLBACK = {"silence": "Talk me through what you're thinking, even if it's half-formed.",
             "writing": "Talk me through what you're writing.",
             "finished": "Good. Can you push that any further?",
-            "default": "Go on."}
+            "default": "Take your time. Tell me where you've got to."}
+RUNG_IDX = {"rephrase": 0, "smaller_case": 1, "key_idea": 2}
+_PART_RE = re.compile(r"\n\s*(?=\((?:i{1,3}|iv|v|vi{1,3}|ix|x|[a-h])\)\s)")
+
+
+def part_text(cart, k):
+    """What part k asks, from the cartridge (python twin of app.js partOnly): statement part if the parts line up
+    with the stages, else the stage goal. Stage 0 also gets any shared setup text."""
+    cart = cart or {}
+    st, goals = (cart.get("statement") or "").strip(), [s.get("goal") or "" for s in cart.get("stages") or []]
+    bits = [b.strip() for b in _PART_RE.split(st) if b.strip()]
+    if len(bits) <= 1:
+        return st if k == 0 or not goals[k:k + 1] else goals[k]
+    starts_with_part = bool(re.match(r"\((?:i|a)\)\s", bits[0]))
+    setup, parts = ("", bits) if starts_with_part else (bits[0], bits[1:])
+    p = parts[k] if len(parts) == len(goals) and k < len(parts) else (goals[k] if k < len(goals) else parts[-1])
+    return (setup + "\n\n" + p).strip() if k == 0 and setup else p
+
+
+def fallback_line(o, reason, rung=None):
+    """Must-speak line when the AI is down or stayed silent: never a contentless 'Go on.'. A new part is read
+    straight from the cartridge; a hint comes from the stage's own hint list."""
+    low = reason.lower()
+    cart, k, mute = o.cart, o.s.get("stage", 0), o.s.get("mute")
+    if cart and any(x in low for x in ("new stage", "resum", "pose this")):
+        txt = part_text(cart, k)
+        if txt:
+            if k == 0:
+                return "Here's the question. " + txt + (" Work on it on the board." if mute else " Talk me through your first thoughts.")
+            return "Next part. " + txt
+    if cart and any(x in low for x in ("hint", "stuck", "help", "simpler case")):
+        hints = [h for h in ((o.stage() or {}).get("hints") or []) if isinstance(h, str) and h.strip()]
+        if hints:
+            return hints[min(RUNG_IDX.get(rung or "", 0), len(hints) - 1)]
+    if "time" in low and "minute" in low:
+        return "About five minutes left. Can you explain your whole solution clearly, as if to a first-year?"
+    k2 = next((x for x in FALLBACK if x in low), "default")
+    if k2 == "silence" and mute:
+        k2 = "default"
+    return FALLBACK[k2]
 
 
 async def repeat_last(o):
-    if state["last"]:
-        asyncio.create_task(say(state["last"], state.get("last_who")))
+    """Repeat his last line: spoken (if the speaker is on) and always shown as a caption."""
+    if not state["last"]:
+        return
+    text, who = state["last"], state.get("last_who")
+    loop = asyncio.get_running_loop()
+
+    def started(dur):
+        loop.call_soon_threadsafe(lambda: asyncio.ensure_future(
+            o.send({"type": "caption", "text": text, "who": who, "dur": round(dur, 2)})))
+    asyncio.create_task(say(text, who, on_start=started))
 
 
-async def emit(o, text, who="lead", typ="PROBE", reason=""):
+async def emit(o, text, who="lead", typ="PROBE", reason="", must=False):
     """Queue a line. When its turn comes it is DROPPED if the student spoke after it was queued (it would answer
-    old speech); captions + transcript only for lines actually spoken."""
+    old speech); captions + transcript only for lines actually spoken. A must-speak line (new part, time, a
+    guaranteed prompt) is never dropped for that, only by an explicit Shh / pause / reset."""
     t_line, gen = time.time(), state.get("say_gen", 0)
-    asyncio.create_task(_emit_voice(o, text, who, typ, reason, t_line, gen))
+    asyncio.create_task(_emit_voice(o, text, who, typ, reason, t_line, gen, must))
 
 
-async def _emit_voice(o, text, who, typ, reason, t_line, gen):
+async def _emit_voice(o, text, who, typ, reason, t_line, gen, must=False):
     async with _say_lock:
         quiet_since = time.time() - (state.get("line_end") or 0)
-        if (not o.s.get("mute") and state.get("line_at") and state.get("student_at", 0) < state["line_at"] and quiet_since < 30
+        if (not must and not o.s.get("mute") and state.get("line_at") and state.get("student_at", 0) < state["line_at"] and quiet_since < 30
                 and not any(k in reason for k in ("stage", "time", "asked", "repeat"))):
             print(f"[prof] held (no reply yet to last line): {text[:60]!r}", flush=True)   # one line per student turn
             return
         a, t_w = getattr(o, "audio", None), time.time()
-        while (a and "time" not in reason and time.time() - t_w < 12
+        while (a and not o.s.get("mute") and "time" not in reason and time.time() - t_w < 12   # mute: room noise is not the student
                and (getattr(a, "in_speech", False) or getattr(a, "pending", 0) > 0)):
             await asyncio.sleep(0.12)      # they're talking / STT still working: listen first
-        core = any(k in reason for k in ("stage", "resum", "time", "asked", "help", "stuck", "hint", "TYPED"))
+        core = must or any(k in reason for k in ("stage", "resum", "time", "asked", "help", "stuck", "hint", "TYPED"))
         if gen != state.get("say_gen", 0) or (state.get("student_at", 0) > t_line + 0.2 and not core):
             print(f"[prof] dropped stale: {text[:60]!r}", flush=True)
             return
-        if (time.time() < getattr(o, "hold_until", 0)
-                and not any(k in reason for k in ("asked", "help", "stuck", "hint", "time", "repeat"))):
+        if (time.time() < getattr(o, "hold_until", 0) and not must
+                and not any(k in reason for k in ("asked", "help", "stuck", "hint", "time", "repeat", "stage", "resum"))):
             print(f"[prof] dropped (student asked for time): {text[:60]!r}", flush=True)
+            return
+        if o.s.get("paused") or o.s.get("phase") not in ("personal", "warmup", "main", "wrapup"):
+            print(f"[prof] dropped (paused / not live): {text[:60]!r}", flush=True)
             return
         state["last"], state["last_who"] = text, who
         loop = asyncio.get_running_loop()
@@ -384,30 +528,77 @@ async def _emit_voice(o, text, who, typ, reason, t_line, gen):
         v = asyncio.create_task(_say(text, who, None, started))
         await o.send({"type": "prof", "s": "speaking"})
         o.cards, o.card_reason = [card], reason
-        o.note("cards", reason=reason, cards=[text], who=who)
+        o.note("cards", reason=reason, cards=[text], who=who, typ=typ)
         await o.send({"type": "cards", "cards": [card], "reason": "Professor: " + reason, "level": o.level})
         await o.add_segment({"speaker": "I", "text": text, "conf": 1.0, "spk_conf": 1.0, "prof": True, "who": who})
         state["line_at"] = time.time()
         await v
         state["line_end"] = time.time()
-        await o.send({"type": "prof", "s": "listening"})
+        await o.send({"type": "prof", "s": "offline" if state.get("offline") else "listening"})
 
 
 def _live(o, epoch):
     return epoch == state["epoch"] and not o.s["paused"] and o.s["phase"] in ("personal", "warmup", "main") and not o.s.get("time_up")
 
 
-async def turn(o, reason, rung=None, must_speak=False):
+def _same_error(a, b):
+    """Paraphrases of one slip count once ('sign error in the derivative' ~ 'the derivative has a sign error')."""
+    a, b = (a or "").lower().strip(), (b or "").lower().strip()
+    if not a or not b:
+        return False
+    if a[:40] == b[:40]:
+        return True
+    A = {w for w in re.findall(r"[a-z0-9]+", a) if len(w) > 2}
+    B = {w for w in re.findall(r"[a-z0-9]+", b) if len(w) > 2}
+    return bool(A and B) and len(A & B) / len(A | B) >= 0.5
+
+
+async def _offline(o, on, auth=False):
+    """Visible AI state: the status line says 'Professor offline' while Claude is failing; a background retry
+    re-connects every 20 s and clears it."""
+    was = state.get("offline")
+    state["offline"] = on
+    if on and not was:
+        await o.send({"type": "prof", "s": "offline"})
+        if not (state.get("recover") and not state["recover"].done()):
+            state["recover"] = asyncio.create_task(_recover(o, state["epoch"]))
+    elif not on and was:
+        await o.send({"type": "prof", "s": "listening"})
+        await o.send({"type": "toast", "kind": "good", "text": "Professor back online."})
+
+
+async def _recover(o, epoch):
+    for _ in range(30):
+        await asyncio.sleep(20)
+        if epoch != state["epoch"] or not state.get("offline"):
+            return
+        try:
+            await DEEP.warm()
+            if getattr(DEEP, "client", True) is not None:
+                await _offline(o, False)
+                return
+        except Exception:
+            pass
+
+
+async def turn(o, reason, rung=None, must_speak=False, t_asked=None):
     """Solo turn: stream a reply from the right brain; speak as soon as the SAY line lands.
-    A non-forced reply is dropped if the student starts talking again before it is spoken."""
+    A non-forced reply is dropped if the student starts talking again before it is spoken.
+    While a turn is in flight, must-speak turns queue in order (none is lost); only the latest other turn is kept."""
     if state["busy"]:
-        nx = state.get("next")
-        if must_speak or not (nx and nx[4]):        # keep the latest; a queued must-speak is never replaced
-            state["next"] = (reason, rung, time.time(), state["epoch"], must_speak)
+        item = (reason, rung, time.time(), state["epoch"], must_speak)
+        if must_speak:
+            q = state.setdefault("queue", [])
+            if not any(x[0] == reason and x[3] == item[3] for x in q):
+                q.append(item)
+        else:
+            state["next"] = item
         return
     state["busy"], epoch, t_req = True, state["epoch"], time.time()
+    t_asked = t_asked or t_req
     spoke = {"v": False}
     must = {"v": must_speak}
+    said_r = {}
     t0 = time.time()
     hushed = lambda: not must["v"] and state.get("shh_at", 0) > t_req   # Shh'd after this was asked
 
@@ -419,8 +610,9 @@ async def turn(o, reason, rung=None, must_speak=False):
             o.note("prof_dropped", reason=reason)      # they kept talking: never cut in
             return
         spoke["v"] = True
+        said_r.update(r)
         print(f"[prof] {round(time.time() - t0, 2)}s -> {text[:70]!r}", flush=True)
-        await emit(o, text, "second" if r.get("who") == "second" else "lead", r.get("type") or "PROBE", reason)
+        await emit(o, text, "second" if r.get("who") == "second" else "lead", r.get("type") or "PROBE", reason, must=must["v"])
 
     try:
         o.s["writer_busy"] = True
@@ -432,13 +624,19 @@ async def turn(o, reason, rung=None, must_speak=False):
         try:
             r = await brain.ask(msg, png, on_say, timeout=30)
         except Exception as e:                     # API hiccup / timeout: one fresh retry, never silent forever
-            print(f"[prof] retry after {type(e).__name__}", flush=True)
-            if not _live(o, epoch):
-                raise
-            brain = DEEP
-            r = await brain.ask(msg, png, on_say, timeout=30)
+            if spoke["v"]:                         # he already said this turn's line: a retry would speak twice
+                print(f"[prof] stream ended with {type(e).__name__} after SAY: no retry", flush=True)
+                r = dict(said_r)
+            else:
+                print(f"[prof] retry after {type(e).__name__}", flush=True)
+                if not _live(o, epoch):
+                    raise
+                brain = DEEP
+                r = await brain.ask(msg, png, on_say, timeout=30)
         if r.get("escalate") and not spoke["v"] and brain is FAST:
             r = await DEEP.ask(msg, png, on_say)
+        if state.get("offline"):
+            await _offline(o, False)
         ai.stats["writer_calls"] += 1
         ai.stats["last_writer_s"] = round(time.time() - t0, 2)
         if not _live(o, epoch):
@@ -452,51 +650,62 @@ async def turn(o, reason, rung=None, must_speak=False):
             if log:
                 log["errors"].append({"note": e["note"], "self_corrected": True})
         err = (r.get("error") or "").strip()
-        known = [x["note"].lower()[:40] for x in o.s["pending_errors"]] + [(o.s.get("flag") or "").lower()[:40]]
-        if err and not r.get("self_corrected") and not any(err.lower()[:40] == k for k in known if k):
+        log = o.s["stage_log"].get(o.key()) or {}
+        known = [x["note"] for x in o.s["pending_errors"]] + [o.s.get("flag") or ""] + [x["note"] for x in log.get("errors", [])]
+        if err and not r.get("self_corrected") and not any(_same_error(err, k) for k in known if k):
             o.s["pending_errors"].append({"note": err, "t": o.now(), "deadline": time.time() + o.s["hold_s"]})
-        said = [x for x in o.transcript if x["speaker"] == "S" and x["t"] >= (o.s["stage_log"].get(o.key()) or {}).get("start", 0)]
+        said = [x for x in o.transcript if x["speaker"] == "S" and x["t"] >= log.get("start", 0)]
         wrote = o.s.get("mute") and (board.STATE["t"] or 0) > (o.s.get("stage_started") or 0)   # mute: board work counts
-        pend = o.s.pop("done_pending", False)
+        pend = False
+        asked_at = o.s.get("done_pending")          # o.now() when he asked his last question on a finished part
+        if asked_at is not None and asked_at is not False:
+            rel_req = t_asked - (o.t0 or t_asked)
+            answered = any(x["speaker"] == "S" and x["t"] > asked_at for x in o.transcript)
+            if answered and rel_req > asked_at:      # only a turn triggered by their answer moves on
+                o.s.pop("done_pending", None)
+                pend = True
         newly_done = ((bool(r.get("stage_done")) or pend) and o.s["phase"] != "personal" and not o.s["stage_ready"]
                       and "new stage" not in reason and (len(said) >= 1 or wrote))   # never chain-skip parts
-        if newly_done and not pend and (r.get("say") or "").rstrip().endswith("?"):
-            o.s["done_pending"] = True        # he just asked something: let them answer, move on next turn
+        if newly_done and not pend and (r.get("say") or "").rstrip().endswith("?") and spoke["v"]:
+            o.s["done_pending"] = o.now()     # he just asked something: let them answer, move on after their reply
             newly_done = False
         if newly_done:
             o.s["stage_ready"] = True
+            o.s.pop("done_pending", None)
             if o.s["stage"] + 1 < len((o.cart or {}).get("stages", [])):
                 o.note("prof_stage_done", stage=o.s["stage"])
                 asyncio.create_task(o.move_on())        # next part of the cartridge = the follow-up
                 return
+            if log and log.get("end") is None:          # last part finished: it counts as done in the report
+                log["end"], log["level_end"] = o.now(), o.level
+                o.note("prof_stage_done", stage=o.s["stage"])
             must["v"], reason = True, reason + " (finished)"
         if not spoke["v"] and not must["v"] and reason.startswith("end of turn") and _live(o, epoch) and not hushed():
             await _backchannel(o)
         if must["v"] and not spoke["v"]:                 # guaranteed prompt
-            k = next((k for k in FALLBACK if k in reason), "default")
-            await emit(o, FALLBACK[k], "lead", "PROBE", reason)
+            await emit(o, fallback_line(o, reason, rung), "lead", "HINT" if "hint" in reason.lower() else "PROBE", reason, must=True)
     except Exception as e:
         print(f"[prof] FAILED {type(e).__name__}: {str(e)[:200]}", flush=True)
         auth = any(k in str(e) for k in ("authenticate", "OAuth", "login", "401"))
-        if time.time() - state.get("ai_warned", 0) > 60:      # say WHY he's silent, never fake it with "Go on."
+        await _offline(o, True, auth)
+        if time.time() - state.get("ai_warned", 0) > 60:      # say WHY his lines are canned / missing
             state["ai_warned"] = time.time()
             await o.send({"type": "toast", "kind": "error", "text":
                           "Professor offline: Claude sign-in failed. In Terminal run: claude  then /login" if auth
-                          else f"Professor's AI call failed ({type(e).__name__}). Retrying on your next line."})
-        if auth:
-            return
-        if must_speak and _live(o, epoch):
-            k = next((k for k in FALLBACK if k in reason), "default")
-            await emit(o, FALLBACK[k], "lead", "PROBE", reason)
+                          else f"Professor's AI call failed ({type(e).__name__}). Retrying in the background."})
+        if must_speak and _live(o, epoch):               # the question / hint still gets asked, from the cartridge
+            await emit(o, fallback_line(o, reason, rung), "lead", "HINT" if "hint" in reason.lower() else "PROBE", reason, must=True)
     finally:
         if epoch == state["epoch"]:         # after a reset, busy/next belong to the new session: leave them
             state["busy"] = False
             o.s["writer_busy"] = False
             await o.push_state()
-            nxt = state.pop("next", None)
-            if (nxt and nxt[3] == state["epoch"] and not (o.last_speech > nxt[2] and ("silence" in nxt[0] or nxt[0].startswith("end of turn")))
-                    and (nxt[4] or state.get("shh_at", 0) <= nxt[2])):     # they spoke since: a fresh end-of-turn follows
-                asyncio.create_task(turn(o, nxt[0], nxt[1], must_speak=nxt[4]))
+            q = state.get("queue") or []
+            nxt = q.pop(0) if q else state.pop("next", None)
+            if nxt and nxt[3] == state["epoch"] and (nxt[4] or (
+                    not (o.last_speech > nxt[2] and ("silence" in nxt[0] or nxt[0].startswith("end of turn")))
+                    and state.get("shh_at", 0) <= nxt[2])):     # they spoke since: a fresh end-of-turn follows
+                asyncio.create_task(turn(o, nxt[0], nxt[1], must_speak=nxt[4], t_asked=nxt[2]))
 
 
 ACKS = ["Mm-hm.", "Okay.", "Right.", "Mm.", "Sure.", "Okay, go on."]

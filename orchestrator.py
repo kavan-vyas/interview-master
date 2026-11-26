@@ -68,7 +68,9 @@ class Orchestrator:
             "stage_log": {}, "gate_busy": False, "writer_busy": False, "enrolled": [],
             "audio": "off", "elapsed": 0, "unverified": False, "last_note": "", "solo": False,
             "limit_s": 0, "paused": False, "pauses": 0, "paused_s": 0, "drill": None, "time_warned": False, "mute": False,
+            "report_busy": False,
         }
+        self._restored = False
 
     @property
     def level(self):
@@ -122,6 +124,45 @@ class Orchestrator:
 
     def note(self, kind, **kw):
         self.log.append({"t": self.now(), "phase": self.s["phase"], "stage": self.s["stage"], "kind": kind, **kw})
+
+    def restore(self, d):
+        """Carry on an interrupted session (sessions/<id>/live.json + transcript.jsonl) in the same folder.
+        It comes back paused at the same part with the same clock; the student presses Resume when ready."""
+        live = json.loads((d / "live.json").read_text())
+        s = live.get("s") or {}
+        tf = d / "transcript.jsonl"
+        tr = [json.loads(x) for x in tf.read_text().splitlines() if x.strip()] if tf.exists() else []
+        audio = self.s.get("audio", "off")
+        self.reset()
+        phase = s.get("phase") if s.get("phase") in LIVE else "main"
+        for k, v in s.items():
+            if k in self.s:
+                self.s[k] = v
+        self.s.update(phase=phase, paused=False, time_up=False, gate_busy=False, writer_busy=False, report_busy=False,
+                      audio=audio, flag=None)
+        for k in ("resume", "interrupted", "done_pending"):
+            self.s.pop(k, None)
+        elapsed = max([float(s.get("elapsed") or 0)] + [float(x.get("t") or 0) for x in tr])
+        self.t0 = time.time() - elapsed
+        self.transcript, self.log = tr, list(live.get("log") or [])
+        self.seq = itertools.count(max([int(x.get("id") or 0) for x in tr] + [0]) + 1)
+        cid = {"warmup": self.s.get("warmup_id"), "main": self.s.get("main_id")}.get(phase)
+        self.cart = carts.load(cid) if cid else None
+        self.report_dir = d
+        now = time.time()
+        for e in self.s["pending_errors"]:
+            e["deadline"] = now + self.s["hold_s"]
+        self.s["stage_started"] = now
+        self.last_speech = now
+        self._restored = True
+        if self.audio:
+            self.audio.solo = bool(self.s["solo"])
+        self.s["paused"], self._pause_t, self._pause_auto = True, now, True     # not the student's pause: not counted
+        self.note("restored", stage=self.s["stage"], elapsed=round(elapsed))
+        try:
+            report.autosave(self)
+        except Exception as e:
+            print("autosave failed:", e, flush=True)
 
     # ------------------------------------------------------------ setup
     async def configure(self, body):
@@ -203,6 +244,7 @@ class Orchestrator:
             self._drill_h = asyncio.get_event_loop().call_later(45, lambda: asyncio.ensure_future(_drill_hint()))
         self.s["stage_started"] = time.time()
         self.s["stage_ready"] = False
+        self.s.pop("done_pending", None)          # a question about the previous part never moves this one on
         self.last_speech = time.time()
         self.fired = set()
         self.s["stage_log"].setdefault(self.key(), {
@@ -219,7 +261,7 @@ class Orchestrator:
             return                       # mute interview: room noise / other people never reach the professor
         if self.s["phase"] not in LIVE + ("wrapup",) or self.s["paused"]:
             return  # pre-session chatter / paused speech is not recorded
-        seg = {"id": next(self.seq), "t": self.now(), **seg}
+        seg = {"id": next(self.seq), "t": self.now(), "wall": round(time.time(), 2), **seg}   # wall: replay clock
         self.transcript.append(seg)
         if not (self.s["solo"] and ("dur" in seg or seg.get("prof"))):   # mic speech: VAD timed it; typed: now
             self.last_speech = time.time()
@@ -454,8 +496,8 @@ class Orchestrator:
 
     # ------------------------------------------------------------ buttons
     async def action(self, a):
-        if self.s["phase"] not in LIVE:
-            return
+        if self.s["phase"] not in LIVE or self.s["paused"]:
+            return                                 # paused: nothing happens (and no hint is counted)
         log = self.s["stage_log"].get(self.key())
         if a == "probe":
             await self.request("interviewer wants probing questions", "PROBE", urgent=True)
@@ -498,6 +540,12 @@ class Orchestrator:
                 self.adapt(+1, "fast stage, no hints")
         self.s["pending_errors"], self.s["flag"] = [], None
         n = len((self.cart or {}).get("stages", []))
+        if self.s["solo"] and self.s["phase"] == "main" and self.s["stage"] + 1 >= n:
+            self.note("moveon_end")                # solo: past the last part = End (report), never a dead wrap-up
+            if getattr(self, "auto_end", None):
+                asyncio.create_task(self.auto_end())
+            await self.push_state()
+            return
         if self.s["phase"] != "personal" and self.s["stage"] + 1 < n:
             self.s["stage"] += 1
             await self.begin_stage()
@@ -514,13 +562,15 @@ class Orchestrator:
             self.s["adapt"], self.s["adapt_note"] = new, why
             self.note("adapt", delta=d, why=why, level=self.level)
 
-    async def pause(self, on, force=False):
+    async def pause(self, on, force=False, auto=False):
+        """auto: paused by the app (dashboard closed / restored session), not by the student: not in the report."""
         if on == self.s["paused"] or (on and self.s["phase"] not in LIVE):
             return
         if on:
-            self.s["paused"], self._pause_t = True, time.time()
-            self.s["pauses"] += 1
-            self.note("pause")
+            self.s["paused"], self._pause_t, self._pause_auto = True, time.time(), auto
+            if not auto:
+                self.s["pauses"] += 1
+            self.note("pause", auto=auto)
             await professor.shh()
         else:
             d = time.time() - self._pause_t     # paused time never counts
@@ -530,9 +580,21 @@ class Orchestrator:
                 self.s["stage_started"] += d
             for e in self.s["pending_errors"]:
                 e["deadline"] += d
-            self.s["paused"], self.s["paused_s"] = False, self.s["paused_s"] + round(d)
+            self.s["paused"] = False
+            if not getattr(self, "_pause_auto", False):
+                self.s["paused_s"] += round(d)
+            self._pause_auto = False
             self.note("resume", s=round(d))
+            if self._restored and self.s["phase"] in LIVE and not force:
+                self._restored = False
+                await self.request("resuming the SAME interview after an interruption (new stage: same part as before). "
+                                   "Say 'Let's pick up where we left off', a one-line recap of where they had got to "
+                                   "(transcript + board), then re-pose THIS part briefly")
         await self.push_state()
+        try:
+            report.autosave(self)
+        except Exception as e:
+            print("autosave failed:", e, flush=True)
 
     async def set_slider(self, v):
         self.s["slider"] = max(1, min(5, int(v)))
@@ -567,7 +629,7 @@ class Orchestrator:
         if stall >= 180 and self.s["phase"] in LIVE:
             self._mute_hint = now
             await self.hint("board unchanged for 3 min (mute interview): one gentle written hint, smallest nudge")
-        due = [e for e in self.s["pending_errors"] if e["deadline"] <= now]
+        due = [] if self.s.get("time_up") else [e for e in self.s["pending_errors"] if e["deadline"] <= now]
         if due and now - bt < 15 and now - due[0].get("t0", now) < 150:
             for e in due:                                      # still writing (maybe fixing it): look again
                 e.setdefault("t0", e["deadline"]); e["deadline"] = now + 15
@@ -595,13 +657,13 @@ class Orchestrator:
         if self.s["solo"] and self.s["limit_s"]:
             left = self.s["limit_s"] - self.now()
             if self.s["limit_s"] > 900 and left <= 300 and not self.s["time_warned"]:
-                self.s["time_warned"] = True
-                await self.request("about 5 minutes left: ask them to explain their whole solution clearly, as to a first-year", "PROBE")
+                self.s["time_warned"] = True      # must-speak ("time" + forced): delivered even mid-hold / mid-sentence
+                await self.request("time warning, about 5 minutes left: ask them to explain their whole solution clearly, as to a first-year", "PROBE")
             if left <= 0 and not self.s.get("time_up"):
                 self.s["time_up"] = True
                 last = (professor.state.get("last") or "").lower()
                 if not ("time" in last and "thank" in last):      # he already closed it: no second goodbye
-                    await professor.emit(self, "That's time. Thank you, that was very interesting.", "lead", "ACK", "time up")
+                    await professor.emit(self, "That's time. Thank you, that was very interesting.", "lead", "ACK", "time up", must=True)
                 await self.send({"type": "timeup"})
                 asyncio.create_task(self._auto_end(self.gen))
         self.s["elapsed"] = round(self.now())
@@ -635,8 +697,8 @@ class Orchestrator:
             self.fired.add(c)
             self.adapt(-1, f"stuck past {C.STUCK_S}s")
             await self.request(f"{c}s of silence: offer a simpler case", "HINT", "smaller_case", urgent=True)
-        # error hold expiry -> flag + nudge
-        due = [e for e in self.s["pending_errors"] if e["deadline"] <= now]
+        # error hold expiry -> flag + nudge (never after time is up: nothing is scored past the goodbye)
+        due = [] if self.s.get("time_up") else [e for e in self.s["pending_errors"] if e["deadline"] <= now]
         busy = (now - self.last_speech < 15 or now < getattr(self, "hold_until", 0)
                 or (self.audio and (getattr(self.audio, "in_speech", False) or getattr(self.audio, "pending", 0) > 0)))
         if due and busy:                     # still working (maybe fixing it right now): look again later

@@ -43,7 +43,9 @@ body.solo[data-view="live"] .caption { top: 46vh; bottom: auto; left: 0; right: 
   max-width: min(760px, 78vw); background: transparent !important; border: 0 !important; box-shadow: none !important; text-align: center; font-size: 24px; line-height: 1.45; }
 .flow-go .mic-row { flex-basis: 100%; justify-content: center; font-size: 13px; color: var(--mute); }
 /* solo live: current part + captions, nothing else (keyboard shortcuts still work) */
-body.solo[data-view="live"] :is(.top, #live .side, #live .actions, #problem > :not(.stmt), .toasts, #aurora) { display: none !important; }
+body.solo[data-view="live"] :is(.top, #live .side, #live .actions, #problem > :not(.stmt), #aurora) { display: none !important; }
+/* errors + warnings still pop up in solo live (flow.js filters info toasts there) */
+body.solo[data-view="live"] .toasts { z-index: 130; top: 18px; bottom: auto; max-width: min(420px, calc(100vw - 36px)); }
 body.solo[data-view="live"] #problem .stmt { font-size: 22px; line-height: 1.5; max-width: 820px; margin: 0 auto; }
 .hud { display: none; }
 body.solo[data-view="live"] .hud { display: block; position: fixed; left: 0; right: 0; bottom: 6vh; z-index: 61; text-align: center; pointer-events: none; }
