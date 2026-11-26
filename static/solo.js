@@ -154,35 +154,46 @@
   new MutationObserver(() => { if (document.body.dataset.view === "setup") loadProg(); }).observe(document.body, { attributes: true, attributeFilter: ["data-view"] });
 })();
 
-/* ===== Churchill prep: presets, countdown plan, live clock, pause, captions ===== */
+/* ===== Interview prep: presets, countdown plan, live clock, pause, captions ===== */
 (() => {
   const $ = (s, r = document) => r.querySelector(s);
   const post = (p, b = {}) => fetch("/api/" + p, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(b) })
     .then(r => r.ok ? r.json() : r.json().catch(() => ({})).then(j => Promise.reject(new Error(j.detail || r.status))));
-  const REH = "2026-12-05";
+  /* optional countdown: settings.json "interview_date" (YYYY-MM-DD[ HH:MM]) or IM_INTERVIEW_DATE; empty = no countdown */
+  let DATE = "", TIME = "";
   const today = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`; };
-  const days = () => { const [y, m, d] = today().split("-").map(Number); return Math.round((Date.UTC(2026, 11, 7) - Date.UTC(y, m - 1, d)) / 864e5); };   // local calendar days
+  const days = () => { if (!DATE) return null; const [y, m, d] = today().split("-").map(Number), [Y, M, D] = DATE.split("-").map(Number);
+    return Math.round((Date.UTC(Y, M - 1, D) - Date.UTC(y, m - 1, d)) / 864e5); };
+  const REH = () => days() === 2;                     // dress rehearsal two days out
   const plan = () => {
-    const d = days(), t = today();
+    const d = days(), at = TIME ? " at " + TIME : "";
+    if (d == null) return "Today: 5 min talk drill, then a 40 min mock, read the report, then a 10 min hint drill on the weakest skill.";
     if (d < 0) return "Interview done. Good luck with the result.";
-    if (d === 0) return "Interview day. Light 5 min talk drill only, then rest. Arrive Moller Centre by 16:45 with ID.";
+    if (d === 0) return "Interview day. Light 5 min talk drill only, then rest. Arrive early with ID.";
     if (d <= 1) return "Rest day. One 5 min talk drill max. Sleep early.";
-    if (t === REH) return "Dress rehearsal: full 40 min college interview mock at 17:15, best unseen problem, no pausing.";
+    if (REH()) return `Dress rehearsal: full 40 min mock${at}, best unseen problem, no pausing.`;
     if (new Date().getDay() === 0) return "Rest day (Sunday). Optional 5 min talk drill.";
-    return `Today: 5 min talk drill, then 40 min college interview mock at 17:15, read the report, then 10 min hint drill on the weakest skill.`;
+    return `Today: 5 min talk drill, then a 40 min mock${at}, read the report, then a 10 min hint drill on the weakest skill.`;
   };
+  const cdText = () => DATE ? `<b>${Math.max(0, days())}</b><small>days to interview · ${new Date(DATE + "T12:00").toLocaleDateString(undefined, { day: "numeric", month: "short" })}${TIME ? " · " + TIME : ""} ${ic("chevron-down", "cd-chev")}</small>`
+    : `<b>${ic("flag")}</b><small>Practice plan ${ic("chevron-down", "cd-chev")}</small>`;
 
   /* setup: preset bar above Begin */
   const go = $(".go");
   if (go) {
     const bar = document.createElement("div"); bar.className = "prep";
-    bar.innerHTML = `<div class="prep-cd"><b>${Math.max(0, days())}</b><small>days to College interview · 7 Dec · 17:15 ${ic("chevron-down","cd-chev")}</small></div>
+    bar.innerHTML = `<div class="prep-cd">${cdText()}</div>
       <p class="prep-plan">${plan()}</p>
       <div class="prep-btns"><button class="btn" id="pcMock" type="button">${ic("play")} Mock · 40 min</button>
       <button class="btn ghost" id="pcTalk" type="button">Talk drill · 5 min</button><button class="btn ghost" id="pcHint" type="button">Hint drill · 10 min</button></div>`;
+    fetch("/api/interview_date").then(r => r.json()).then(j => {
+      const m = String(j.date || "").match(/^(\d{4}-\d{2}-\d{2})(?:[ T](\d{1,2}:\d{2}))?/); if (!m) return;
+      DATE = m[1]; TIME = m[2] || "";
+      bar.querySelector(".prep-cd").innerHTML = cdText(); bar.querySelector(".prep-plan").textContent = plan();
+    }).catch(() => { });
     go.before(bar);
     const run = async (limit, drill, best) => {
-      const c = window.PICK?.next({ best: best || today() === REH }) || window.PICK?.next({ tiers: ["S", "A", "B", "C"], minParts: 1 });
+      const c = window.PICK?.next({ best: best || REH() }) || window.PICK?.next({ tiers: ["S", "A", "B", "C"], minParts: 1 });
       if (!c) return toast("No unseen problem left in tiers S–C", "warn");
       window.PICK.set("main", c.id); window.PICK.set("warm", "");
       const so = $("#soloOn"); if (so && !so.checked) { so.checked = true; so.dispatchEvent(new Event("change")); }
@@ -206,7 +217,7 @@
     nav.append(mk("rep", "<kbd>⟲</kbd>Repeat", () => post("repeat")));
     nav.append(mk("pz", "<kbd>P</kbd>Pause", () => {
       if (S.paused) return post("pause", { on: false });
-      if (confirm("There is no pause on 7 December.\n\nPause anyway? It's logged in your report and the clock stops.")) post("pause", { on: true });
+      if (confirm("There is no pause in the real interview.\n\nPause anyway? It's logged in your report and the clock stops.")) post("pause", { on: true });
     }));
   }
   const cap = document.createElement("div"); cap.className = "caption"; cap.hidden = true; document.body.append(cap);

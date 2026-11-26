@@ -720,6 +720,11 @@ async def mic_gate():
             print("mic gate:", e, flush=True)
 
 
+@app.get("/api/interview_date")
+async def interview_date():
+    return {"date": C.INTERVIEW_DATE}
+
+
 @app.post("/api/mic/test")
 async def mic_test():
     _mic["test_until"] = time.time() + 10

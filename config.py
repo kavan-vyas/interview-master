@@ -33,7 +33,16 @@ WHISPER_URL = _env("WHISPER_URL", "http://127.0.0.1:8080/inference")
 
 # optional: your own interview date (YYYY-MM-DD, optionally "YYYY-MM-DD HH:MM"); empty = no countdown shown.
 # Set it with the IM_INTERVIEW_DATE environment variable. Never commit a personal date here.
-INTERVIEW_DATE = _env("INTERVIEW_DATE", "")
+def _local_setting(k):
+    """settings.json next to this file (gitignored): per-user values that must never be pushed."""
+    try:
+        import json
+        return json.loads((Path(__file__).parent / "settings.json").read_text()).get(k, "")
+    except Exception:
+        return ""
+
+
+INTERVIEW_DATE = _env("INTERVIEW_DATE", "") or _local_setting("interview_date")
 
 # audio
 SR = 16000
