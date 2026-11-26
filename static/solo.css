@@ -136,3 +136,15 @@ body:not([data-motion="calm"]) .lo-btn.danger { color: #ff8a80 !important; }
 .liveqr img { width: 112px; height: 112px; }
 /* pause veil follows the theme (plain light / plain dark): its text uses the theme ink */
 body[data-motion="calm"] .pzveil { background: color-mix(in srgb, var(--bg) 97%, transparent); color: var(--ink); }
+
+/* live UI polish */
+.livebar { opacity: .75; }                                               /* was nearly invisible */
+.lo-row input[type=range] { accent-color: var(--acc-ui, var(--leaf)); }  /* plain mode: no dark blob */
+body:has(.liveopts:not([hidden])) .caption { margin-right: min(420px, 40vw) !important; }   /* options never hide the question */
+body:has(.livebar.open) .liveqr { display: none; }                       /* typing bar and QR card never overlap */
+body.solo[data-view="live"] .stmt { color: var(--ink); opacity: .82; }   /* problem line readable in every theme */
+.lo-row input[type=range] { -webkit-appearance: none; appearance: none; height: 4px; border-radius: 4px; background: rgba(127,127,127,.35) !important; }
+.lo-row input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: #2f6fd6; border: 2px solid #fff; cursor: pointer; }
+body[data-motion="flashy"] .lo-row input[type=range]::-webkit-slider-thumb { background: var(--leaf); border-color: #08100b; }
+.lo-row input[type=range]::-moz-range-thumb { width: 14px; height: 14px; border-radius: 50%; background: #2f6fd6; border: 2px solid #fff; }
+body[data-motion="calm"] .lo-row input[type=range] { filter: none; }
