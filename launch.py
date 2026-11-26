@@ -254,11 +254,16 @@ def doctor():
 
     setup = r"powershell -ExecutionPolicy Bypass -File scripts\setup.ps1" if WIN else "scripts/setup.sh"
     print(f"College Interview check ({ROOT})")
-    row(Path(py).exists() and Path(py) != Path(sys.executable) or ".venv" in py, f"app Python: {py}", f"run {setup}")
+    row(Path(py).exists(), f"app Python: {py}", f"run {setup}")
     code = ("import fastapi, uvicorn, websockets, yaml, sympy, pypdf, numpy, qrcode, sounddevice, soundfile, "
             "silero_vad, speechbrain, torch, kokoro, claude_agent_sdk, spacy; spacy.load('en_core_web_sm')")
     r = subprocess.run([py, "-c", code], capture_output=True, text=True, env=env)
     row(r.returncode == 0, "Python packages", (r.stderr.strip().splitlines() or ["?"])[-1] + f"  ->  run {setup}")
+    if r.returncode == 0:   # espeak-ng (used by the voice) ignores a data folder path longer than ~160 characters
+        d = subprocess.run([py, "-c", "import espeakng_loader as e; print(e.get_data_path())"], capture_output=True,
+                           text=True, env=env).stdout.strip()
+        row(len(d) < 150, f"voice data path length ({len(d)} characters)",
+            "move the project to a folder with a shorter path, e.g. your home folder, and run setup again")
     ws = whisper_server(env)
     row(bool(ws), f"whisper-server: {ws or 'not found'}",
         r"run scripts\setup.ps1 (puts it in tools\whisper)" if WIN else "brew install whisper-cpp")

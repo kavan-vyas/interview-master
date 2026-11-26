@@ -1,46 +1,187 @@
-# Interview Master
+# College Interview
 
-Local copilot for in-person Cambridge maths mock interviews (M-series Mac). Listens on one mic, works out
-where the student is, shows the interviewer three full-sentence follow-ups (PROBE / HINT / EXTEND).
-Everything free + open source except the AI: Claude via your Claude Code subscription (`claude -p`).
+A mock Cambridge maths interview that runs on your own computer. An AI professor asks you a real
+interview-style problem out loud, listens to you think, gives hints when you are stuck, and pushes you
+further when you are doing well. You work on a whiteboard (on an iPad, or in a browser window), and at the
+end you get a written report.
 
-## Run
+Everything runs locally except the AI itself, which is Claude, used through **your own Claude account**
+(Claude Code sign-in). No API keys are needed and nothing is stored in this repository.
+
+- Voice: Kokoro (open source text-to-speech, runs on your computer)
+- Listening: whisper.cpp (open source speech-to-text, runs on your computer)
+- Whiteboard: tldraw, in the browser (iPad Safari works well)
+
+## What you need
+
+| | |
+|---|---|
+| Computer | A Mac (Apple Silicon M1 or newer, or Intel) on macOS 12+, or a Windows 10/11 64-bit PC |
+| Disk space | About 6 GB free (Python packages + speech models) |
+| Memory | 8 GB RAM minimum, 16 GB recommended |
+| Microphone | Built-in is fine. **Headphones are strongly recommended**, so the microphone does not hear the professor |
+| Claude | A Claude Pro or Max plan, and Claude Code installed (the setup tells you how) |
+| Optional | An iPad on the same network, for writing on the whiteboard with a pencil |
+
+Speed: Apple Silicon Macs are the fastest. Intel Macs and Windows PCs run the speech models on the
+processor, so the professor takes a little longer to understand you.
+
+## Install on a Mac
+
+Open **Terminal** (press Cmd+Space, type Terminal, press Return) and paste:
 
 ```bash
-scripts/setup.sh          # once: whisper-cpp, ffmpeg, python deps, large-v3-turbo model
-scripts/run.sh            # whisper-server :8080 + dashboard http://localhost:8000
+git clone https://github.com/kavan-vyas/interview-master.git ~/college-interview && cd ~/college-interview && scripts/setup.sh
 ```
 
-No mic / dry run: `python3 server.py --no-audio --sim sim/demo.txt` (or type speech into the box under the transcript).
-Terminal audio test (build step 1): `python3 audio.py`.
-Import a PDF bank: `python3 import_pdf.py bank/*.pdf` → `cartridges/<id>.yaml` (`verified: false`).
+If your Mac asks to install "command line developer tools", click Install, wait for it to finish, then paste
+the line again.
 
-## Files
+If you don't have [Homebrew](https://brew.sh) yet, setup stops and shows you the one line that installs it.
+Paste that, close and reopen Terminal, then run `cd ~/college-interview && scripts/setup.sh` again.
+
+What setup does (it is safe to run again at any time; it only fills in what is missing):
+
+1. Installs whisper.cpp, ffmpeg and a small audio-output switcher with Homebrew
+2. Finds or installs Python 3.11 and creates a private environment in `.venv` (nothing is installed system-wide)
+3. Installs the Python packages from `requirements.txt`
+4. Downloads the speech models into `models/` (about 2.3 GB; an interrupted download resumes)
+5. Checks Claude Code and tells you if you need to install it or sign in
+6. Builds a **College Interview** app in `~/Applications` that you can keep in the Dock
+
+## Install on Windows
+
+> The Windows path has been written carefully but **has not yet been tested on a real Windows PC by the author**.
+> If something goes wrong, please open an issue with the message you see.
+
+1. Install **Git for Windows** (also needed by Claude Code). Open **PowerShell** (Start menu, type PowerShell) and run:
+
+   ```powershell
+   winget install -e --id Git.Git
+   ```
+
+   Close PowerShell and open it again afterwards.
+
+2. Paste this into PowerShell:
+
+   ```powershell
+   git clone https://github.com/kavan-vyas/interview-master.git $HOME\college-interview; cd $HOME\college-interview; powershell -ExecutionPolicy Bypass -File scripts\setup.ps1
+   ```
+
+What setup does (safe to run again):
+
+1. Finds Python 3.11, or installs it for your user with winget
+2. Creates a private environment in `.venv` and installs the Python packages (the CPU version of PyTorch)
+3. Downloads the official whisper.cpp Windows build into `tools\whisper`
+4. Downloads the speech models into `models\`
+5. Checks Claude Code and tells you if you need to install it or sign in
+6. Adds **College Interview** shortcuts to your Desktop and Start Menu
+
+## Sign in to Claude
+
+The professor is Claude, running through Claude Code with your own Claude plan.
+
+1. Install Claude Code if setup said it is missing:
+   - Mac: `curl -fsSL https://claude.ai/install.sh | bash`
+   - Windows (PowerShell): `irm https://claude.ai/install.ps1 | iex`
+2. Close and reopen your terminal, then sign in:
+
+   ```
+   claude auth login
+   ```
+
+   A browser window opens; sign in with your Claude account. You only need to do this once.
+3. Check it worked: `claude auth status` should show `"loggedIn": true`.
+
+## First run
+
+- **Mac:** open **College Interview** from `~/Applications` (or Launchpad). Drag it to the Dock to keep it handy.
+- **Windows:** double-click the **College Interview** shortcut on the Desktop or in the Start Menu.
+- Or from a terminal in the project folder: `.venv/bin/python launch.py open` (Mac) or
+  `.venv\Scripts\python.exe launch.py open` (Windows).
+
+The dashboard opens in your browser at http://localhost:8000. The first start takes a little longer while
+the models load. Your computer will ask for **microphone access**: click Allow.
+
+Put on headphones, pick your microphone, and start an interview. When you close the last dashboard tab the
+app stops by itself. To stop it right away:
+
+```
+python launch.py stop       (use .venv/bin/python on Mac, .venv\Scripts\python.exe on Windows)
+python launch.py status     is it running?
+python launch.py doctor     check the whole install and say what is missing
+```
+
+## Connect an iPad for the whiteboard
+
+1. Start an interview. The "Connect your iPad" screen shows QR codes.
+2. **Same Wi-Fi (home):** scan the **Home Wi-Fi** code with the iPad camera. The board opens in Safari;
+   tap the fullscreen button (or Share, Add to Home Screen).
+3. **University Wi-Fi (eduroam and similar):** these networks stop devices from seeing each other, so the
+   home code will not load. Use [Tailscale](https://tailscale.com) instead (free for personal use):
+   install Tailscale on the computer and the iPad, sign in to the same account on both, then scan the
+   **Tailscale** code.
+4. No iPad? Press "Open board on this Mac" (the same button works on Windows) and use a mouse, trackpad or
+   graphics tablet.
+
+On Windows, the first time an iPad connects, Windows Firewall may ask about Python: allow it on
+**Private** networks.
+
+## Troubleshooting
+
+Start with `python launch.py doctor` (see above). It checks Python, packages, whisper-server, the models and
+your Claude sign-in, and prints the fix for anything missing.
+
+| Problem | Fix |
+|---|---|
+| The professor can't hear me / no microphone in the list | **Mac:** System Settings, Privacy & Security, Microphone: turn on College Interview (and Terminal, if you started it from Terminal). Then stop and start the app. **Windows:** Settings, Privacy & security, Microphone: turn on "Microphone access" and "Let desktop apps access your microphone". |
+| The professor hears himself and interrupts | Use headphones. Laptop speakers leak into the microphone. |
+| "Port 8000 is already used by another program" | Another program (or an old copy) is using port 8000. Run `python launch.py stop`, or restart the computer. To use another port: set `IM_PORT=8010` before starting (Mac: `IM_PORT=8010 .venv/bin/python launch.py open`; Windows PowerShell: `$env:IM_PORT=8010; .venv\Scripts\python.exe launch.py open`). |
+| "whisper-server or model missing" | **Mac:** `brew install whisper-cpp`, then run `scripts/setup.sh` again. **Windows:** run `scripts\setup.ps1` again; it puts `whisper-server.exe` in `tools\whisper`. If whisper-server will not start on Windows, install the [Microsoft Visual C++ runtime](https://aka.ms/vs/17/release/vc_redist.x64.exe). |
+| The professor doesn't answer, or "not logged in" / "authentication" errors | Your Claude sign-in expired. Run `claude auth login` and sign in again. `claude auth status` should show `"loggedIn": true`. |
+| `claude: command not found` | Install Claude Code (see Sign in to Claude), then close and reopen the terminal. |
+| The app did not start | Read the log. **Mac:** `~/Library/Logs/CollegeInterview.log`. **Windows:** `%LOCALAPPDATA%\CollegeInterview\Logs\CollegeInterview.log`. |
+| iPad page won't load | On uni Wi-Fi use the Tailscale code. At home, check both devices are on the same Wi-Fi network (not a guest network). |
+| A model download keeps failing | Run setup again; it resumes where it stopped. |
+| No professor voice, log says "Error processing file ... espeak-ng-data/phontab" | The project folder path is too long for the voice engine. Move the folder somewhere short (like `~/college-interview` or `C:\Users\you\college-interview`), delete `.venv`, and run setup again. |
+
+## Updating
+
+```
+cd ~/college-interview
+git pull
+scripts/setup.sh                                                  (Mac)
+powershell -ExecutionPolicy Bypass -File scripts\setup.ps1        (Windows)
+```
+
+## Uninstall
+
+1. Stop the app: `python launch.py stop` (with the `.venv` Python, as above).
+2. Delete the project folder (for example `~/college-interview`). This removes the Python environment,
+   the models and **your saved interviews and reports** (in `sessions/`), so copy that folder first if you
+   want to keep them.
+3. **Mac:** delete `~/Applications/College Interview.app`, `~/Library/Application Support/CollegeInterview`
+   and `~/Library/Logs/CollegeInterview.log`. Optional: `brew uninstall whisper-cpp switchaudio-osx`.
+4. **Windows:** delete the College Interview shortcuts on the Desktop and in the Start Menu, and the folder
+   `%LOCALAPPDATA%\CollegeInterview`.
+5. Claude Code is a separate program; keep it or uninstall it as you like.
+
+## For developers
 
 | File | Job |
 |---|---|
-| `audio.py` | sounddevice → Silero VAD → whisper-server (in-memory WAV) → ECAPA speaker match |
-| `orchestrator.py` | state + every rule/timer: silence 20/45/90 s, error hold, hint ladder, auto-adapt ±1 |
-| `ai.py` | Haiku gate, Sonnet writer, pre-brief chat, report narrative |
-| `carts.py` | cartridge YAML + sympy checks (EXTEND cards failing sympy are dropped) |
-| `report.py` | `sessions/<date-time>/transcript.md`, `report.md`: only with consent |
-| `server.py` | FastAPI + WebSocket |
-| `static/` | dashboard (vanilla JS + KaTeX) |
+| `server.py` | FastAPI + WebSocket server, dashboard and board |
+| `orchestrator.py`, `professor.py` | interview state, rules, timers; the AI professor's turns |
+| `audio.py` | microphone, Silero voice activity, whisper-server, ECAPA speaker match |
+| `tts/voice.py` | Kokoro voice with maths-aware speech |
+| `ai.py` | Claude calls through the Claude Agent SDK (your Claude Code login) |
+| `report.py` | `sessions/<date-time>/` transcript and report |
+| `static/` | dashboard; `static/tl` is the prebuilt tldraw board from `board-src/` |
+| `launch.py` | cross-platform start / stop / status / doctor |
+| `scripts/setup.sh`, `scripts/setup.ps1` | installers; `scripts/fetch_models.py` downloads the models |
+| `scripts/ci.sh`, `scripts/make_app.sh` | Mac Dock app launcher and builder |
 
-Hotkeys: `1` Probe · `2` Hint · `3` Extend · `M` Move on · `R` Refresh. Click a card to mark it used; click a speaker chip to correct it.
-
-## Token + latency notes
-
-- Live loop = two warm Claude Code processes via the Agent SDK (your subscription login): Haiku gate, Sonnet writer.
-  Each is primed once per stage with that stage only, then sent just the new transcript lines + the request.
-  Sessions reset on every stage change, on cancel/error, and after 40 turns, so history never grows unbounded.
-- Measured: gate 1.1–3.9 s (was 5–11 s with `claude -p`), writer 2.4–8.5 s (was ~12 s).
-  A 10-call warm-up + main run used ~12k fresh input tokens + ~13k cache reads.
-- Sessions start with no MCP servers, plugins, hooks, tools or CLAUDE.md, from an empty `.claude_sandbox/` cwd.
-- One-off jobs (pre-brief, report, PDF import) still use `claude -p` with the same lean flags.
-  Without the SDK installed, the live loop falls back to `claude -p` automatically.
-- Silence 20 s think-aloud card is local (no AI call). Gate skipped on interviewer speech; concurrent gate calls coalesce.
-
-## Tunables
-
-`config.py`, override with env `IM_<NAME>` (e.g. `IM_HOLD_S=30`, `IM_SPK_THRESH=0.35`, `IM_GATE_MODEL=haiku`).
+- Dry run without a microphone: `.venv/bin/python server.py --no-audio --sim sim/demo.txt`
+- Tunables live in `config.py`; override with environment variables `IM_<NAME>` (e.g. `IM_HOLD_S=30`).
+- On Apple Silicon, `tts/stt_worker.py` (MLX Whisper) is an optional faster speech-to-text worker: it is used
+  when a Python with `mlx-whisper` exists at `tts/.venv/bin/python`; otherwise whisper.cpp is used.
