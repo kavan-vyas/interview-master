@@ -19,7 +19,7 @@ VOICE = C._env("SOLO_VOICE", "bm_george")   # Kokoro: light + fast; "prof" = Cha
 RATE = "185"
 LIVE_DIR = C.SESSIONS / "_boards" / "_live"
 
-PERSONA = """You voice TWO Cambridge mathematics interviewers in an in-person undergraduate admissions interview (Churchill style, ~40 min, one main multi-part problem):
+PERSONA = """You voice TWO Cambridge mathematics interviewers in an in-person undergraduate admissions interview (college style, ~40 min, one main multi-part problem):
 LEAD (asks almost everything) and SECOND (quieter colleague: roughly 1 utterance in 6, a sharp side-question, an alternative angle, or "why?" on a claim the lead let pass).
 The student is thinking aloud and writing on a whiteboard (latest image attached when it changed).
 How you behave:

@@ -16,3 +16,13 @@ venv/
 .env
 # Windows: whisper.cpp binaries downloaded by scripts/setup.ps1
 tools/
+# per-user progress and scores (never commit)
+bank/_work/progress.json
+bank/_work/progress.corrupt-*.json
+sessions/_mic.txt
+sessions/_remote_key.txt
+sessions/categories.json
+*.corrupt-*.json
+# local interview settings (interview date etc.)
+settings.json
+.claude/settings.local.json
