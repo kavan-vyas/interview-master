@@ -19,6 +19,36 @@ hunt-business-logic (UI-only gates, skipped steps), hunt-exceptional-conditions 
 dependencies), hunt-dom / hunt-csrf / hunt-cors / hunt-lfi (innerHTML sinks, Origin/Host guard, path parameters),
 hunt-llm-ai (model output reaching an eval sink), triage-validation (reproduce before reporting).
 
+## Fixes (26 Nov 2026)
+
+All 35 bugs are fixed and verified; none left open. Every fix was checked by re-running its test (or a "b" twin in
+`work/` where the original test measured the old mechanism), by `work/run_all.sh` (now syncs the project's code into
+`work/app` first), by Python compile checks and `node -e "new Function(src)"` on every edited JS file, and for UI
+bugs by a browser run against a server copy on port 8765. The owner's server on port 8000 was not touched.
+
+What changed, in short:
+- Lifecycle: a live interview is never lost. Closing the last tab pauses and saves it; the server waits 30 min
+  (IM_LIVE_GRACE_S) for a tab, then writes an "Interrupted" report and stops with the session still resumable. The start
+  screen offers Resume (same folder, part and clock) or Write report; Reports lists report-less sessions. Idle servers
+  still stop 8 s after the last tab. A second launch on a taken port exits without side effects; copies on other
+  ports use their own pidfile. PORT or IM_PORT both work, ci.sh uses the same variable and no longer kills a busy server.
+- Professor turns: must-speak lines (new part, time, fallbacks) are never dropped by holds or stale checks and queue in
+  order; fallbacks read the part or hint from the cartridge instead of "Go on."; a visible "Professor offline" state with
+  background reconnect; no double speech after a stream error; done_pending waits for the student's answer; placeholder
+  SAY text is silence; the professor's own echoed words are cut out of student speech in both audio modes; unknown
+  output devices count as speakers.
+- Report: last part and HINT-typed replies counted; no errors scored after time-up and paraphrases deduplicated; one
+  report per End; empty Claude output is an error (Retry shows); Markdown keeps maths, table pipes and board images.
+- UI: solo shows error toasts, a small time-left clock and his last line after a reload; copilot keys off in solo and
+  while paused; typing hidden while paused; QR moved off the caption; Plain-mode pause veil follows the theme; the
+  report loader stays during writing; (i)-led statements show the right part; the board never snapshots its own wipe.
+- Performance: cartridges load in a worker thread with libyaml and only changed files are re-parsed (0.4 s cold vs 3.8 s).
+- Branding: page titles and the header say "College Interview".
+
+Must still be tested by hand (no mic, speakers or devices were used): real voice echo stripping and barge-in on real
+audio, captions against real speech timing, the iPad board (Safari/Sidecar, Pencil) including resume restoring the
+board, and a full 40-minute session with tab close and Resume.
+
 ## Summary
 
 Counts: Critical 1, High 7, Medium 15, Low 12 (35 bugs, all reproduced by a test; for BUG-19, BUG-30 and BUG-34 one
@@ -43,6 +73,7 @@ The 5 worst:
 - Observed: "server exited: True after 9.3 s"; log "last tab closed: stopping"; the session's `live.json` still says phase `main`, no report.md; `GET /api/reports` on the copy did not list that session (2026-11-26_01-21-06) while listing the ones with reports (`out_l1.txt`).
 - Expected: never stop while phase is live/wrapup (or at least finish the report first); offer to resume or at least show the interrupted session.
 - Status: CONFIRMED (`work/l1_lastTab.py`, `work/out_l1.txt`).
+- Fix status (26 Nov 2026): Fixed. A closed last tab mid-interview now pauses and saves it (auto-pause, not counted as the student's pause) and the server stays up; after IM_LIVE_GRACE_S (30 min) with no tab it writes an Interrupted report, keeps the session resumable and only then stops. A server stopped any other way (ci.sh stop, Ctrl-C) saves a checklist-only report and marks it resumable. Start screen shows an Interrupted interview bar (Resume in the same folder, same part and clock, comes back paused; Write report; dismiss); Reports lists report-less sessions with their transcript. Idle servers still stop 8 s after the last tab. Verified: `work/l1b_tab_close_live.py` (12 checks, all pass) plus a browser run of the Resume bar on the 8765 copy.
 - Fix needs: gate the shutdown on phase (setup/done only) or a much longer grace while live; a resume entry point that reads `live.json`; list report-less sessions in the archive.
 
 ## High
@@ -55,6 +86,7 @@ The 5 worst:
 - Observed: `#toasts` holds "Professor's AI call failed (ProcessError). Retrying on your next line." with computed `display: none`.
 - Expected: errors and warnings visible in solo, as flow.js intends.
 - Status: CONFIRMED (browser test against the copy on port 8765; values recorded in this report).
+- Fix status (26 Nov 2026): Fixed. `.toasts` no longer hidden in solo live; errors and warnings show top-right above everything (info toasts are still filtered by flow.js). Verified in the browser on the 8765 copy (toast is the top element at its position).
 - Fix needs: exempt `.toasts` (or error/warn toasts) from the solo-live hide rule.
 
 ### BUG-03: Claude failure or an empty reply at a must-speak moment produces a canned "Go on." instead of the question
@@ -65,6 +97,7 @@ The 5 worst:
 - Observed: opening spoken = `['Go on.']`; empty SAY on opening -> `['Go on.']`; next part with AI down -> stage 1, spoken "Go on.". Browser run showed the same "Go on." caption, then "Talk me through what you're thinking..." 60 s later.
 - Expected: for a new stage, read the part from the cartridge (statement/goal) as the fallback; show an offline notice.
 - Status: CONFIRMED (`work/t01_ai_fail_opening.py`, `work/out_t01.txt`).
+- Fix status (26 Nov 2026): Fixed. Must-speak fallbacks are reason-specific: a new part (or the opening) is read from the cartridge (`professor.part_text`, same rules as the screen), a hint uses the stage's own hint for the rung, the time warning has its own line; 'Go on.' is gone. Auth errors also read the question. The status line shows 'Professor offline' and a background reconnect retries every 20 s and says 'Professor back online'. Verified: `work/t01_ai_fail_opening.py` (not reproduced), `t00_smoke.py` empty-SAY opening, browser run with CLAUDE_BIN=/usr/bin/false.
 - Fix needs: reason-specific fallbacks (stage text for new_stage), a visible offline state, and a real retry timer.
 
 ### BUG-04: The professor's own voice is transcribed as student speech
@@ -75,6 +108,7 @@ The 5 worst:
 - Observed: overlap ratio 0.51, `is_echo False`, segment kept as student speech. In that real session the same thing happened at 04:04, 10:22, 10:50, 13:11, 17:18 and 18:41 (student lines that begin with the professor's previous sentence word for word; copy in `work/evidence/2026-11-26_00-19-35/transcript.md`).
 - Expected: the echoed prefix is stripped, the student's own words kept.
 - Status: CONFIRMED (`work/t13_echo_filter.py`, `work/out_t13.txt`, owner session evidence).
+- Fix status (26 Nov 2026): Fixed. `professor.strip_echo` aligns the segment with his recent lines (accent-folded, in-order runs of 5+ words) and cuts the echoed span, keeping the student's words; a pure echo is dropped. Applied in both speaker and headphone modes. Verified: `work/t13b_echo_strip.py` with the real 00:19 texts (the original t13 checks the old whole-segment ratio and still prints CONFIRMED by design).
 - Fix needs: remove the matching leading span (sequence alignment against recent `said` lines) instead of a whole-segment ratio; apply it in both headphone and speaker modes.
 
 ### BUG-05: M on the last part leaves a solo interview stuck in "wrapup"
@@ -85,6 +119,7 @@ The 5 worst:
 - Observed: phase `wrapup`, no `report_busy`, report_md None, nothing spoken after the student's question.
 - Expected: either ignore M on the last part in solo or treat it as End (report).
 - Status: CONFIRMED (`work/t18_moveon_last_part.py`, `work/out_t18.txt`).
+- Fix status (26 Nov 2026): Fixed. In solo, M / moveon past the last part runs End (report). Copilot keys are also off in solo (BUG-10). Verified: `work/t18_moveon_last_part.py`.
 - Fix needs: in solo, route "main -> wrapup" through the same path as End, or block it.
 
 ### BUG-06: Statements that start with "(i)" show the wrong part on the live screen
@@ -95,6 +130,7 @@ The 5 worst:
 - Observed: 7 cartridges affected: digit-sums-alternating-sums-divisibility-99, euler-trails-double-dominoes, inclusion-exclusion-and-derangements, ln-inequality-agm-e-limit, ln2-series-rearrangement, ode-blowup-nonuniqueness-euler, sum-of-powers-telescoping. Example (inclusion-exclusion): stage 2 screen = "(i) How many of the integers..." + "(iii) Compute D_4 and D_5."
 - Expected: stage k shows part k only (plus any genuine setup text).
 - Status: CONFIRMED (static analysis run over the real cartridge data, `work/out_partonly.txt`).
+- Fix status (26 Nov 2026): Fixed. `partOnly` treats a statement that starts with (i)/(a) as part (i) and indexes parts from 0; when part count differs from stage count it shows the stage goal. Verified: `work/t06b_partonly_fixed.mjs` over all 715 cartridges (0 stages show more than one part; inclusion-exclusion shows (i), (ii), (iii)).
 - Fix needs: detect that chunk 0 is itself a part (starts with "(i)"/"(a)") and index parts from 0; fall back to the stage goal when part count differs from stage count.
 
 ### BUG-07: Starting a second server instance kills the first one's speech engines and pidfile
@@ -105,6 +141,7 @@ The 5 worst:
 - Observed: B exits with "[Errno 48] address already in use"; afterwards A still runs but the engine is dead and the pidfile is gone.
 - Expected: a second instance exits without touching the first one's processes or pidfile.
 - Status: CONFIRMED (`work/l2_double_launch.py`, `work/out_l2.txt`, `work/l2_B.log`).
+- Fix status (26 Nov 2026): Fixed. `server.py` test-binds the port before anything else and exits with a message if it is taken (no pidfile write, no cleanup); engines are pkilled only by an instance that ran them; a copy on another port uses its own pidfile (`server-<port>.pid`), so the app's `server.pid` is never touched. Verified: `work/l2b_double_launch.py`.
 - Fix needs: bind (or check the port / pidfile owner) before any side effect; kill only processes this instance started.
 
 ### BUG-08: After "Give me 2 min", the next part's question is silently dropped
@@ -115,6 +152,7 @@ The 5 worst:
 - Observed: stage 1, log "[prof] dropped (student asked for time): 'Good. Now differentiate x^x...'", spoken = opening only. (Path B shows that a 6+ word sentence clears the hold, so the automatic path needs short utterances.)
 - Expected: new-part lines are always delivered.
 - Status: CONFIRMED (`work/out_t02.txt`).
+- Fix status (26 Nov 2026): Fixed. Must-speak lines carry a `must` flag into `_emit_voice` and are never dropped by the hold, the 'no reply yet' hold or the stale check; 'stage'/'resum' reasons are exempt too. Verified: `work/t02_hold_drops_new_stage.py`.
 - Fix needs: add "stage" (and every must-speak reason) to the hold exemption; better, pass must_speak into `_emit_voice` and never drop must-speak lines there.
 
 ## Medium
@@ -126,6 +164,7 @@ The 5 worst:
 - Reproduce: `work/t20_done_pending_defeated.py`.
 - Observed: "How do you know it's a minimum rather than a maximum?" at 9.7 s, "Part two..." at 10.0 s, no student line in between. Same pattern in the real session at 12:43 then 12:48 (`work/evidence/2026-11-26_00-19-35`).
 - Status: CONFIRMED (`work/out_t20.txt`).
+- Fix status (26 Nov 2026): Fixed. done_pending now stores when he asked; only a turn requested after the student answered it moves on. Verified: `work/t20_done_pending_defeated.py` (no premature move) and `work/t20b_done_pending_answer.py` (the answer does move on).
 - Fix needs: consume done_pending only on a turn triggered by student speech that arrived after the question was spoken.
 
 ### BUG-10: Copilot keyboard shortcuts stay active in solo, with no visible controls
@@ -135,6 +174,7 @@ The 5 worst:
 - Reproduce: browser on the copy, solo interview, press "m".
 - Observed: stage 0 -> 1, the screen switched to part 2; report later showed level 3 -> 4 for that part.
 - Status: CONFIRMED (browser test).
+- Fix status (26 Nov 2026): Fixed. 1/2/3/M/R are ignored in solo and under the pause veil (1-to-1 keeps them). Verified in the browser (stage and hint rung unchanged after the keys).
 - Fix needs: disable copilot keys when `S.solo`, or require a modifier/confirm.
 
 ### BUG-11: Next part or hint requested while paused is lost; the hint still counts
@@ -144,6 +184,7 @@ The 5 worst:
 - Observed: stage advanced to 1, hint rung 1, stage_log hints 1, nothing spoken after resume.
 - Expected: actions blocked while paused, or replayed on resume.
 - Status: CONFIRMED (`work/out_t03.txt`).
+- Fix status (26 Nov 2026): Fixed. `Orchestrator.action` does nothing while paused, so no lost part and no hint counted. Verified: `work/t03_pause_moveon_hint.py`.
 - Fix needs: reject actions while paused, or queue the request until resume.
 
 ### BUG-12: A stream error after SAY makes the professor speak twice for one turn
@@ -153,6 +194,7 @@ The 5 worst:
 - Reproduce: `work/t04_retry_double_speech.py`.
 - Observed: "How do you know it is a minimum?" then "Why must the derivative change sign there?" for one student question.
 - Status: CONFIRMED (`work/out_t04.txt`).
+- Fix status (26 Nov 2026): Fixed. If the stream fails after SAY was spoken, there is no retry; the spoken reply is used. Verified: `work/t04_retry_double_speech.py`.
 - Fix needs: skip the retry (or its on_say) when a line was already spoken.
 
 ### BUG-13: The "5 minutes left" prompt can be dropped and is never retried
@@ -161,6 +203,7 @@ The 5 worst:
 - Reproduce: `work/t05_five_min_warning_dropped.py` (held because the student had not replied to the previous line), `work/t05b_five_min_warning_stale.py` (dropped as stale because the student was mid-sentence).
 - Observed: `time_warned: True`, warning never spoken in both cases.
 - Status: CONFIRMED (`work/out_t05.txt`, `work/out_t05b.txt`).
+- Fix status (26 Nov 2026): Fixed. The 5-minute warning is a forced, must-speak 'time warning' turn, never held or dropped as stale, with a cartridge-free fallback line. Verified: `work/t05_five_min_warning_dropped.py`, `work/t05b_five_min_warning_stale.py`.
 - Fix needs: mark it with a "time" reason (or must-speak exemption) and set time_warned only after delivery.
 
 ### BUG-14: Turning the speaker off discards the professor's queued line
@@ -170,6 +213,7 @@ The 5 worst:
 - Reproduce: `work/t06_speaker_off_drops_line.py`.
 - Observed: stage 1, captions = opening line only, log "dropped stale: 'Part two: differentiate x^x.'".
 - Status: CONFIRMED (`work/out_t06.txt`).
+- Fix status (26 Nov 2026): Fixed. Speaker off calls `professor.stop_voice()` (stops sound only); queued lines still arrive as captions. Verified: `work/t06_speaker_off_drops_line.py`.
 - Fix needs: stop playback only (voice.stop), without bumping say_gen or shh_at.
 
 ### BUG-15: A queued must-speak turn is overwritten by the next one
@@ -179,6 +223,7 @@ The 5 worst:
 - Reproduce: `work/t07_must_speak_replaced.py`.
 - Observed: stage 1, brain triggers = the two questions only, no new-stage call.
 - Status: CONFIRMED (`work/out_t07.txt`).
+- Fix status (26 Nov 2026): Fixed. Must-speak turns queue in order (deduplicated); only non-must turns share the single latest slot. Verified: `work/t07_must_speak_replaced.py`.
 - Fix needs: a small queue for must-speak turns (or merge reasons) instead of one slot.
 
 ### BUG-16: The report undercounts finished parts and hints
@@ -187,6 +232,7 @@ The 5 worst:
 - Observed: test gives "Depth 4/5 parts" after the professor marked part 5 DONE, and "Hint uptake: n/a: no hints needed" after a TYPE: HINT reply. The real 26 Nov 00:19 report says "no hints needed" and "4/5 parts" although the transcript shows several hints ("Try some numbers first...", "L'Hôpital's rule wants a fraction...") and the professor marked the final part done; progress.json scored it 3.2/10.
 - Reproduce: `work/t10_report_counts.py`.
 - Status: CONFIRMED (`work/out_t10.txt`, owner data).
+- Fix status (26 Nov 2026): Fixed. The last part's `end` is set when the professor marks it done; reply types are logged with each line and TYPE: HINT replies count as hints. Verified: `work/t10_report_counts.py`.
 - Fix needs: set `end` when the last stage is marked done; log the reply type with each "cards" note and count HINT types.
 
 ### BUG-17: Errors are flagged and scored after time is up, and paraphrases are counted separately
@@ -195,6 +241,7 @@ The 5 worst:
 - Observed: test with a 4 s limit records 2 flagged errors at 8.2 s, after time up, both scored ("0 of 2 slips caught"). The real 00:19 session logged 4 near-identical flags in the last 11 s after "That's time", each counted against the score.
 - Reproduce: `work/t09_timeup.py`.
 - Status: CONFIRMED (`work/out_t09.txt`, owner data).
+- Fix status (26 Nov 2026): Fixed. No error-hold expiry (spoken or mute) after time is up; error notes are deduplicated by word overlap against pending, flagged and already-logged errors. Verified: `work/t09_timeup.py`.
 - Fix needs: stop error-hold processing once time_up is set; fuzzy dedupe of error notes.
 
 ### BUG-18: The board wipes itself at the end, so the model solution walk reads a blank board
@@ -202,6 +249,7 @@ The 5 worst:
 - Where: `board-src/src/main.jsx:61` (wipe when the session ends) plus `main.jsx:89` (the wipe counts as an edit and is snapshotted); `professor.py:523-532` (model walk uses `board.latest_png()`).
 - Observed: browser test with the real board page: snapshot 0002 (696x496, a drawn shape) before End; after End the page posted 0003 (400x240, blank); `/api/solution_walk` wrote that blank image as `_boards/_live/board.png` (byte-identical to 0003). Board replay also ends on the blank frame.
 - Status: CONFIRMED (browser test against the copy; files in `work/app/sessions/_boards/20261126013209/`).
+- Fix status (26 Nov 2026): Fixed. The board page never snapshots its own wipe (flag during wipe, and no snapshot without a live session); board rebuilt with npm. The model walk reads the session's own last saved snapshot first. Verified in the browser with the board page on the 8765 copy: no new snapshot after End, and `_boards/_live/board.png` equals the session's last board image.
 - Fix needs: do not snapshot programmatic wipes (skip snap when SESS is null), or have the walk use the session's saved board.
 
 ### BUG-19: 3.8 s event-loop freezes during interviews, and the launcher can kill a healthy server
@@ -210,6 +258,7 @@ The 5 worst:
 - Observed: cold `load_all` 3.78 s; during a rebuild the ci.sh-style probe `curl -m 2 /api/mic` timed out (exit 28 after 2.02 s). Browser network log during a live interview: 3 `/api/cartridges` requests in 22 s. While the bank builder or rater rewrites cartridges, every poll freezes the interview loop (timers, captions, professor) for about 4 s, and clicking the Dock app at that moment would run `stop()` on a live session.
 - Reproduce: `work/l3_loop_stall.py`, `work/out_blocking.txt`.
 - Status: CONFIRMED for the freeze and the failed health probe; the resulting kill by `ci.sh open` is inferred from the script (not run, it acts on the real app).
+- Fix status (26 Nov 2026): Fixed. Cartridges load in a worker thread for /ws hello and /api/cartridges, re-parse only changed files, and use libyaml (full parse of 715 files 0.41 s instead of 3.8 s); the picker polls only on the setup view; ci.sh restarts only if the pid is dead or several 6 s probes fail. Verified: `work/l3b_loop_no_stall.py` (worst health probe 0.05 s during a full re-parse).
 - Fix needs: load cartridges in a thread, poll only on the setup view, and make ci.sh check the pid before killing.
 
 ### BUG-20: The report loader is replaced by the empty live screen while the report is written
@@ -218,6 +267,7 @@ The 5 worst:
 - Observed: message order `phase, state:wrapup, report_busy, state:wrapup, state:done, report`; in the browser, `report_busy` -> view "report", next `state(wrapup)` -> view "live". A reload during report writing also lands on the live screen.
 - Reproduce: `work/t15_state_after_report_busy.py` plus browser check.
 - Status: CONFIRMED (`work/out_t15.txt`).
+- Fix status (26 Nov 2026): Fixed. The server sets `report_busy` in state while writing (also seen by a reloading tab), and app.js maps wrapup + report busy to the report loader. Verified: `work/t15b_report_view.py` (the original t15 checks the raw message order, which is unchanged by design).
 - Fix needs: map "wrapup" to the report loader view once End was pressed (or keep REP_BUSY authoritative).
 
 ### BUG-21: Report Markdown rendering corrupts maths, tables and board images
@@ -226,6 +276,7 @@ The 5 worst:
 - Observed: `$a_1 + a_2$` -> `$a<i>1 + a</i>2$` (maths broken, following text rendered as maths); the per-stage row for "Sketch $|x|+|y|=1$" splits into 10 cells (28 cartridges have "|" in a goal); "![page 1](board/...png)" shown as raw text.
 - Reproduce: `work/t23_md_renderer.mjs` (runs md() extracted verbatim from app.js) and the browser report.
 - Status: CONFIRMED (`work/out_t23.txt`).
+- Fix status (26 Nov 2026): Fixed. md() lifts $...$ and images out before inline formatting, splits table rows only on unescaped pipes outside maths, escapes HTML; report.py escapes | in table cells; board images render through a new `/api/reports/<id>/board/<file>` route. Verified: `work/t23b_md_fixed.mjs` and the browser report (board image loads).
 - Fix needs: protect `$...$` spans before inline formatting, escape "|" in table cells, render images via `/api/board/img/...` or an endpoint for session files.
 
 ### BUG-22: The iPad QR overlay covers the opening question for the first 60 s
@@ -234,6 +285,7 @@ The 5 worst:
 - What is wrong: if the board is not yet connected when the interview starts, the QR panel sits in the middle of the screen exactly where the caption is, for 60 s, which is when the opening question is spoken.
 - Observed: at 1440x900 the caption box (643,414,153x79) lies inside the QR box (442,325,978x250); `elementFromPoint` at the caption centre returns the QR image.
 - Status: CONFIRMED (browser test).
+- Fix status (26 Nov 2026): Fixed. The live iPad QR sits in the bottom-left corner, compact, help text hidden. Verified in the browser: QR box no longer intersects the caption.
 - Fix needs: place the QR away from the caption area, or hide it while a caption is showing.
 
 ### BUG-23: Mute interview in a noisy room: every reply waits up to 12 s
@@ -242,6 +294,7 @@ The 5 worst:
 - Observed: typed question answered after 12.2 s while the fake VAD reported speech.
 - Reproduce: `work/t16_mute_noise_delay.py`.
 - Status: CONFIRMED (`work/out_t16.txt`).
+- Fix status (26 Nov 2026): Fixed. The listen-first wait is skipped in mute mode. Verified: `work/t16_mute_noise_delay.py` (0.1 s instead of 12 s). STT itself still runs in mute (its segments are dropped).
 - Fix needs: skip the listen-first wait in mute mode (and pause STT there).
 
 ## Low
@@ -251,6 +304,7 @@ The 5 worst:
 - Where: `static/solo.js:211-226` (caption only from live "caption" messages), `static/flow.css:36` (transcript hidden in solo).
 - Observed: after reload, caption hidden and empty; the last interviewer line exists only in the hidden transcript.
 - Status: CONFIRMED (browser test).
+- Fix status (26 Nov 2026): Fixed. On reload (hello) the solo screen shows his last line as the caption. Verified in the browser.
 - Fix needs: on hello, show the last interviewer line as the caption.
 
 ### BUG-25: Pause veil unreadable in Plain mode with a dark appearance
@@ -258,6 +312,7 @@ The 5 worst:
 - Where: `static/solo.css:39` (calm veil is always 92% white) while text uses the dark-theme ink.
 - Observed: veil `rgba(255,255,255,0.92)`, "Paused" text `rgb(230,229,227)`, hint text `rgb(155,154,151)`: white on white; the caption also shows through.
 - Status: CONFIRMED (browser test, Plain mode, dark colour scheme).
+- Fix status (26 Nov 2026): Fixed. In Plain mode the veil uses the theme background (97%) and theme ink. Verified in the browser in Plain + dark (and light uses white).
 - Fix needs: use the theme background variable for the veil.
 
 ### BUG-26: End twice (or End during the 15 s goodbye) generates the report twice
@@ -266,6 +321,7 @@ The 5 worst:
 - Observed: two concurrent `/api/end`: 2 narrative AI calls, 2 report_busy, 2 report messages.
 - Reproduce: `work/t08_double_end.py`.
 - Status: CONFIRMED (`work/out_t08.txt`).
+- Fix status (26 Nov 2026): Fixed. One in-flight End task; later End calls (or time-up auto-end) await the same report. Verified: `work/t08_double_end.py`.
 - Fix needs: a single in-flight report task; return it to later callers.
 
 ### BUG-27: A Claude CLI run with no output gives an empty report with no Retry button
@@ -274,6 +330,7 @@ The 5 worst:
 - Observed: `ai.claude` returned `''` with `CLAUDE_BIN=/usr/bin/false`; browser report had only the checklist and tables, Retry hidden.
 - Reproduce: `work/t22_claude_empty_output.py`.
 - Status: CONFIRMED (`work/out_t22.txt`).
+- Fix status (26 Nov 2026): Fixed. `ai.claude` raises on empty output or a non-zero exit without a result, so the report shows 'Narrative failed' and Retry. Verified: `work/t22b_claude_empty_raises.py` and the browser (Retry shown).
 - Fix needs: treat empty stdout or a non-zero exit code as an error.
 
 ### BUG-28: Typing to the interviewer while paused is silently discarded
@@ -282,6 +339,7 @@ The 5 worst:
 - Observed: `/api/inject` returns ok, input cleared, line not in the transcript.
 - Reproduce: `work/t21_typed_while_paused.py`.
 - Status: CONFIRMED (`work/out_t21.txt`).
+- Fix status (26 Nov 2026): Fixed. /api/inject returns ok:false while paused and the type field is hidden under the veil. Verified: `work/t21_typed_while_paused.py` and the browser.
 - Fix needs: hide the type bar while paused or keep the line.
 
 ### BUG-29: "Repeat last line" does nothing visible with the speaker off
@@ -290,6 +348,7 @@ The 5 worst:
 - Observed: `/api/repeat` ok, zero messages sent to the page.
 - Reproduce: `work/t17_repeat_captions_off.py`.
 - Status: CONFIRMED (`work/out_t17.txt`).
+- Fix status (26 Nov 2026): Fixed. Repeat always sends a caption (spoken too if the speaker is on). Verified: `work/t17_repeat_captions_off.py`.
 - Fix needs: send a caption on repeat.
 
 ### BUG-30: A placeholder SAY ("(silent)", "SILENT", "-") is spoken aloud
@@ -298,6 +357,7 @@ The 5 worst:
 - Observed: all four placeholders spoken, captioned and stored as interviewer lines.
 - Reproduce: `work/t14_say_silent_literal.py`.
 - Status: CONFIRMED for the code path; SUSPECTED for frequency (depends on how often the model writes a placeholder instead of an empty SAY; not seen in the surviving session data).
+- Fix status (26 Nov 2026): Fixed. parse() treats placeholder SAY text ('(silent)', 'SILENT', '-', 'none', '...') as empty. Verified: `work/t14_say_silent_literal.py`.
 - Fix needs: treat placeholder-only SAY text as empty.
 
 ### BUG-31: Board replay shifts everything said before a pause by the pause length
@@ -306,6 +366,7 @@ The 5 worst:
 - Observed: pre-pause line placed +3.0 s late after a 3 s pause; post-pause line correct.
 - Reproduce: `work/t12_replay_pause.py`.
 - Status: CONFIRMED (`work/out_t12.txt`).
+- Fix status (26 Nov 2026): Fixed. Each segment stores its wall-clock time; replay uses it. Verified: `work/t12b_replay_wall.py` (both lines within 0.01 s).
 - Fix needs: store wall-clock time per segment or the pause intervals.
 
 ### BUG-32: AI-written sympy "check" strings can run arbitrary Python
@@ -314,6 +375,7 @@ The 5 worst:
 - Observed: `Eq(globals()['op'+'en'](path,'w').write(...), 30)` contains no blocked substring and created a file.
 - Reproduce: `work/t19_sympy_sandbox.py` (writes a marker file in the work dir only).
 - Status: CONFIRMED (`work/out_t19.txt`).
+- Fix status (26 Nov 2026): Fixed. Checks are AST-validated (no private names or attributes, no string-to-code functions, strings only plain names) and parsed with parse_expr in a namespace of sympy names and safe builtins with no __builtins__. Verified: `work/t19_sympy_sandbox.py` (payload returns None, no file) and a comparison over 400 real cartridge checks (3 differences, all checks that were already wrong or unparseable).
 - Fix needs: parse with `parse_expr` and an empty builtins dict / whitelist, never sympify raw model text.
 
 ### BUG-33: The PORT variable is ignored; the port is IM_PORT, and ci.sh hard-codes 8000
@@ -321,6 +383,7 @@ The 5 worst:
 - Where: `config.py:31` (reads `IM_PORT`), `scripts/ci.sh:11`.
 - Observed: `PORT=8765` gives `config.PORT = 8000`. A second instance started that way targets the live port and triggers BUG-07.
 - Status: CONFIRMED (`work/out_port_env.txt`).
+- Fix status (26 Nov 2026): Fixed. config reads IM_PORT, else PORT, else 8000; ci.sh uses the same variable and the matching pidfile name. Verified: `work/t33b_port_env.py`.
 - Fix needs: document IM_PORT (or accept PORT) and let ci.sh read the same variable.
 
 ### BUG-34: Monitors, USB or Bluetooth speakers are treated as headphones
@@ -328,6 +391,7 @@ The 5 worst:
 - Where: `professor.py:61-83` (only names containing "speaker"/"display" or open-ear brands count as speakers).
 - Observed: classification check: "DELL U2720Q", "LG HDR 4K", "JBL Flip 5", "Creative Pebble V3" all come out as headphones (`work/out_output_detect.txt`). With those, the echo guard is off and barge-in is on, so the mic hearing the professor would make him cut himself off.
 - Status: CONFIRMED for the classification; SUSPECTED for the self-interruption (needs real audio).
+- Fix status (26 Nov 2026): Fixed. Unknown output devices count as speakers (echo guard on, no barge-in); only known headphone / earbud names count as headphones; open-ear brands stay speakers. Verified: `work/t34b_output_detect.py`. The real-audio self-interruption part still needs a hand test.
 - Fix needs: invert the default (unknown device = speakers) or let the user choose.
 
 ### BUG-35: Time remaining is never visible in solo mode
@@ -335,6 +399,7 @@ The 5 worst:
 - Where: `static/flow.css:34, 46` hide `.top`; `static/solo.js:236-240` still updates the "mm:ss left" clock and its low-time colour.
 - Observed: `.top` computed `display: none` while the clock text read "39:59 left". With BUG-02 and BUG-13 the student gets no time signal except the professor's goodbye.
 - Status: CONFIRMED (browser test).
+- Fix status (26 Nov 2026): Fixed. Solo shows a small 'mm:ss left' clock in the top-left corner (red under 5 min, 'Time's up' in wrap-up). Verified in the browser.
 - Fix needs: decide; if intended, remove the dead clock code, otherwise show a small timer.
 
 ---
