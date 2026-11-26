@@ -6,6 +6,7 @@ import io
 import os
 import re
 import signal
+import sys
 import time
 from pathlib import Path
 import webbrowser
@@ -147,6 +148,8 @@ WPROC = None
 # One owner: this process. Launcher (scripts/ci.sh) starts it; it stops itself when the last Mac tab closes
 # (8 s grace so a reload survives) or when no tab ever connects (orphan guard). Every exit runs _cleanup().
 PIDFILE = Path.home() / "Library" / "Application Support" / "CollegeInterview" / "server.pid"
+if sys.platform == "win32":    # same folder launch.py reads
+    PIDFILE = Path(os.environ.get("LOCALAPPDATA") or Path.home()) / "CollegeInterview" / "server.pid"
 GRACE_S, ORPHAN_S = 8, int(os.environ.get("IM_ORPHAN_S", 120))
 _life = {"seen": False, "empty_at": None, "boot": time.time(), "done": False}
 
@@ -171,9 +174,10 @@ def _cleanup():
             pr and pr.terminate()
         except Exception:
             pass
-    import subprocess    # engines reused from an earlier run aren't our Popen: match them by this app's model paths
-    subprocess.run(["pkill", "-f", str(C.MODELS / "ggml-")], check=False)
-    subprocess.run(["pkill", "-f", str(C.ROOT / "tts" / "stt_worker.py")], check=False)
+    if sys.platform != "win32":    # (Windows: launch.py stop kills the tree)
+        import subprocess    # engines reused from an earlier run aren't our Popen: match them by this app's model paths
+        subprocess.run(["pkill", "-f", str(C.MODELS / "ggml-")], check=False)
+        subprocess.run(["pkill", "-f", str(C.ROOT / "tts" / "stt_worker.py")], check=False)
     try:
         if PIDFILE.read_text().strip() == str(os.getpid()):
             PIDFILE.unlink()
@@ -623,7 +627,7 @@ async def mic_list():
 
 def _spk(*a):
     try:
-        return subprocess.run(["/opt/homebrew/bin/SwitchAudioSource", *a], capture_output=True, text=True, timeout=4).stdout.strip()
+        return subprocess.run([shutil.which("SwitchAudioSource") or "/opt/homebrew/bin/SwitchAudioSource", *a], capture_output=True, text=True, timeout=4).stdout.strip()
     except Exception:
         return ""
 
@@ -786,6 +790,7 @@ if __name__ == "__main__":
         threading.Timer(1.2, LOOP_OPEN).start()
     import atexit
     atexit.register(_cleanup)                  # Ctrl-C / kill: engines and mic still go
-    signal.signal(signal.SIGHUP, lambda *a: os.kill(os.getpid(), signal.SIGTERM))
+    if sys.platform != "win32":                # Windows has no SIGHUP
+        signal.signal(signal.SIGHUP, lambda *a: os.kill(os.getpid(), signal.SIGTERM))
     uvicorn.run(app, host=os.environ.get("IM_HOST", "0.0.0.0"), port=C.PORT, log_level="warning", timeout_graceful_shutdown=2)
 
