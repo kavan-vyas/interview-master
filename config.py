@@ -31,6 +31,10 @@ WRITER_TIMEOUT = _env("WRITER_TIMEOUT", 60.0, float)
 PORT = int(os.environ.get("IM_PORT") or os.environ.get("PORT") or 8000)   # IM_PORT (PORT accepted too); ci.sh uses the same
 WHISPER_URL = _env("WHISPER_URL", "http://127.0.0.1:8080/inference")
 
+# optional: your own interview date (YYYY-MM-DD, optionally "YYYY-MM-DD HH:MM"); empty = no countdown shown.
+# Set it with the IM_INTERVIEW_DATE environment variable. Never commit a personal date here.
+INTERVIEW_DATE = _env("INTERVIEW_DATE", "")
+
 # audio
 SR = 16000
 VAD_CHUNK = 512            # silero needs 512 samples @16k
