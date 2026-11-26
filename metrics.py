@@ -15,7 +15,8 @@ def compute(o):
     talk = min(1.0, words / WPS / total)
     first = next((s["t"] for s in stud if len(s["text"].split()) >= 8), None)
     hn = [e["t"] for e in log if e["kind"] == "hint"]
-    hc = [e["t"] for e in log if e["kind"] == "cards" and "hint" in (e.get("reason") or "").lower()]
+    hc = [e["t"] for e in log if e["kind"] == "cards" and ("hint" in (e.get("reason") or "").lower()
+                                                           or (e.get("typ") or "").upper() == "HINT")]   # a reply typed HINT is a hint
     hints = hn + [t for t in hc if not any(0 <= t - h <= 15 for h in hn)]   # a hint note + its card = one hint
     uptake = []
     for h in sorted(set(hints)):

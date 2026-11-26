@@ -110,7 +110,7 @@
       const r = await get("replay");
       if (!r.board.length && !r.transcript.length) { out.innerHTML = `<p class="empty">Nothing to replay.</p>`; return; }
       if (window.__rpTimer) { clearInterval(window.__rpTimer); window.__rpTimer = null; }
-      const t0 = r.t0 || (r.board.at(-1)?.t ?? 0), segs = r.transcript.map(s => ({ ...s, at: t0 + s.t }));
+      const t0 = r.t0 || (r.board.at(-1)?.t ?? 0), segs = r.transcript.map(s => ({ ...s, at: s.wall ?? t0 + s.t }));   // wall clock: pauses don't shift lines
       const tEnd = segs.length ? segs.at(-1).at + 5 : Date.now() / 1000;
       const shots = r.board.filter(b => b.t >= t0 - 60 && b.t <= tEnd + 5);     // this session only
       if (!shots.length && !segs.length) { out.innerHTML = `<p class="empty">Nothing to replay.</p>`; return; }
@@ -216,6 +216,14 @@
   let capT;
   addEventListener("im-msg", e => {
     const m = e.detail;
+    if (m.type === "hello" && document.body.classList.contains("solo") && ["personal", "warmup", "main"].includes(m.state?.phase)) {
+      const last = (m.transcript || []).filter(x => x.speaker === "I").at(-1);    // reload: his last question stays visible
+      if (last && cap.hidden) {
+        cap.innerHTML = `<small>${last.who === "second" ? "Second interviewer" : "Interviewer"}</small>`;
+        const t = document.createElement("span"); t.textContent = last.text; cap.append(t); window.renderMath?.(cap);
+        cap.hidden = false;
+      }
+    }
     if (m.type === "caption" && document.body.classList.contains("solo")) {
       cap.innerHTML = `<small>${m.who === "second" ? "Second interviewer" : "Interviewer"}</small>`;
       const t = document.createElement("span"); cap.append(t); window.typeOut(t, m.text, () => window.renderMath?.(cap), m.dur);
@@ -225,6 +233,7 @@
     if (m.type === "timeup") toast("Time's up. Writing your report…", "warn");
   });
   const clock = $("#elapsed");
+  const sclock = document.createElement("div"); sclock.className = "solo-clock"; sclock.hidden = true; document.body.append(sclock);   // solo: time left, small
   setInterval(() => {   // keep the deck in step with the server's main problem (e.g. a pinned test problem)
     if (typeof S !== "undefined" && S.main_id && S.phase === "setup" && $("#mainSel") && $("#mainSel").value !== S.main_id && window.PICK)
       window.PICK.set("main", S.main_id);
@@ -238,6 +247,11 @@
       clock.textContent = `${String(left / 60 | 0).padStart(2, "0")}:${String(left % 60).padStart(2, "0")} left`;
       clock.classList.toggle("low", left <= 300);
     }
+    const showS = !!(S.limit_s && document.body.classList.contains("solo") && document.body.dataset.view === "live" && S.phase !== "setup");
+    sclock.hidden = !showS;
+    if (showS) { const left = Math.max(0, S.limit_s - (S.elapsed || 0));
+      sclock.textContent = S.phase === "wrapup" ? "Time's up" : `${String(left / 60 | 0).padStart(2, "0")}:${String(left % 60).padStart(2, "0")} left`;
+      sclock.classList.toggle("low", left <= 300); }
   }, 500);
   addEventListener("keydown", e => { if (e.key.toLowerCase() === "p" && document.body.dataset.view === "live" && !e.target.matches("input,select,textarea") && !e.metaKey) nav?.querySelector(".pz")?.click(); });
 })();
@@ -262,7 +276,7 @@
     post("inject", { text: t, typed: true }); inp.value = ""; open(false); };
   addEventListener("keydown", e => {
     if (bar.hidden || e.metaKey || e.ctrlKey || e.target.matches("input,textarea,select")) return;
-    if (e.key === "/") { e.preventDefault(); open(true); }
+    if (e.key === "/" && !bar.classList.contains("paused")) { e.preventDefault(); open(true); }
     if (e.key.toLowerCase() === "v") spk.click();
   });
   inp.addEventListener("keydown", e => { if (e.key === "Escape") open(false); e.stopPropagation(); });
@@ -281,6 +295,8 @@
   setInterval(() => {
     const live = document.body.dataset.view === "live" && typeof S !== "undefined" && S && S.phase !== "setup";
     bar.hidden = !live;                    // every interview (solo, mute, 1-to-1)
+    const pz = !!(typeof S !== "undefined" && S && S.paused);   // paused: no typing (it would not be recorded)
+    bar.classList.toggle("paused", pz); if (pz && bar.classList.contains("open")) open(false);
     if (typeof S !== "undefined" && S) { document.body.classList.toggle("mute", !!S.mute);
       if ("speaker_on" in S && on !== S.speaker_on) window.syncSpk(S.speaker_on); }
   }, 500);

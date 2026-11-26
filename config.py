@@ -28,7 +28,7 @@ WRITER_MODEL = _env("WRITER_MODEL", "sonnet")
 GATE_TIMEOUT = _env("GATE_TIMEOUT", 25.0, float)
 WRITER_TIMEOUT = _env("WRITER_TIMEOUT", 60.0, float)
 
-PORT = _env("PORT", 8000, int)
+PORT = int(os.environ.get("IM_PORT") or os.environ.get("PORT") or 8000)   # IM_PORT (PORT accepted too); ci.sh uses the same
 WHISPER_URL = _env("WHISPER_URL", "http://127.0.0.1:8080/inference")
 
 # audio

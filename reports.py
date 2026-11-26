@@ -4,6 +4,7 @@ import re
 import time
 
 from fastapi import APIRouter, HTTPException
+from fastapi.responses import FileResponse
 
 import config as C
 
@@ -17,11 +18,17 @@ DEFAULT_CATS = [
 ]
 
 
+def _listed(d):
+    """In the archive: a report, a saved board, or a recorded transcript (interrupted session, no report yet)."""
+    return ((d / "report.md").exists() or (d / "board" / "doc.json").exists()
+            or ((d / "live.json").exists() and (d / "transcript.jsonl").exists() and (d / "transcript.jsonl").stat().st_size > 2))
+
+
 def _dir(rid):
     if not ID_RE.match(rid):
         raise HTTPException(400, "bad report id")
     d = C.SESSIONS / rid
-    if not (d / "report.md").exists() and not (d / "board" / "doc.json").exists():
+    if not _listed(d):
         raise HTTPException(404, "no such report")
     return d
 
@@ -58,12 +65,17 @@ def _summary(d):
 
 def _md(d):
     f = d / "report.md"
-    return f.read_text() if f.exists() else "# No report\n\n_This session ended without a report. Its whiteboard is saved: press **Whiteboard**._\n"
+    if f.exists():
+        return f.read_text()
+    if (d / "board" / "doc.json").exists():
+        return "# No report\n\n_This session ended without a report. Its whiteboard is saved: press **Whiteboard**._\n"
+    return ("# No report yet\n\n_This interview was interrupted before its report. Its transcript is below. "
+            "On the start screen you can resume it or write its report._\n")
 
 
 @router.get("/reports")
 async def list_reports():
-    ds = [d for d in C.SESSIONS.iterdir() if d.is_dir() and ID_RE.match(d.name) and ((d / "report.md").exists() or (d / "board" / "doc.json").exists())]
+    ds = [d for d in C.SESSIONS.iterdir() if d.is_dir() and ID_RE.match(d.name) and _listed(d)]
     return [_summary(d) for d in sorted(ds, key=lambda d: d.name, reverse=True)]
 
 
@@ -73,6 +85,18 @@ async def get_report(rid: str):
     t = d / "transcript.md"
     return {"id": rid, "report": _md(d), "transcript": t.read_text() if t.exists() else "",
             "meta": _meta(d), "summary": _summary(d)}
+
+
+@router.get("/reports/{rid}/board/{name}")
+async def report_board_img(rid: str, name: str):
+    """Board snapshot linked from a report (![page 1](board/<file>.png))."""
+    d = _dir(rid)
+    if not re.fullmatch(r"[0-9A-Za-z_-]{1,60}\.png", name):
+        raise HTTPException(400)
+    f = d / "board" / name
+    if not f.exists():
+        raise HTTPException(404)
+    return FileResponse(f, media_type="image/png")
 
 
 @router.post("/reports/{rid}/meta")

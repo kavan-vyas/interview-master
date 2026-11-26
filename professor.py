@@ -444,8 +444,8 @@ def part_text(cart, k):
     cart = cart or {}
     st, goals = (cart.get("statement") or "").strip(), [s.get("goal") or "" for s in cart.get("stages") or []]
     bits = [b.strip() for b in _PART_RE.split(st) if b.strip()]
-    if len(bits) <= 1:
-        return st if k == 0 or not goals[k:k + 1] else goals[k]
+    if len(bits) <= 1:                       # no (i)/(ii) labels: the stage goal (what the screen shows)
+        return goals[k] if len(goals) > 1 and k < len(goals) and goals[k] else st
     starts_with_part = bool(re.match(r"\((?:i|a)\)\s", bits[0]))
     setup, parts = ("", bits) if starts_with_part else (bits[0], bits[1:])
     p = parts[k] if len(parts) == len(goals) and k < len(parts) else (goals[k] if k < len(goals) else parts[-1])
@@ -729,9 +729,15 @@ async def _backchannel(o):
     await say(ack)
 
 
-def _board_file():
-    """model_walk (one-off CLI call) still reads the board from disk."""
-    png = board.latest_png()
+def _board_file(o=None):
+    """model_walk (one-off CLI call) still reads the board from disk: the session's own last saved snapshot
+    (what the student wrote), else the board page's latest."""
+    png = None
+    d = getattr(o, "report_dir", None) if o else None
+    shots = sorted((d / "board").glob("*.png"), key=lambda f: f.stat().st_mtime) if d and (d / "board").exists() else []
+    if shots:
+        png = shots[-1].read_bytes()
+    png = png or board.latest_png()
     LIVE_DIR.mkdir(parents=True, exist_ok=True)
     f = LIVE_DIR / "board.png"
     if png:
@@ -743,7 +749,7 @@ def _board_file():
 
 async def model_walk(o):
     """After the session: full model solution, compared against what the student did."""
-    has_board = _board_file()
+    has_board = _board_file(o)
     c = (carts.load(o.s["main_id"]) if o.s.get("main_id") else None) or o.cart or {}
     stages = "\n".join(f"{i+1}. {s.get('goal')}: {s.get('solution')}" for i, s in enumerate(c.get("stages", [])))
     prompt = f"""You are a Cambridge maths interviewer debriefing a student after a mock interview.

@@ -48,12 +48,14 @@ async def claude(prompt, model, timeout, tools=None, cwd=None, max_turns=1, syst
     except (asyncio.TimeoutError, asyncio.CancelledError):
         proc.kill()
         raise
+    if not out.strip():                          # crashed / signed out / no output: an error, never an empty report
+        raise AIError(f"claude exited {proc.returncode} with no output. " + (err or b"").decode()[:240])
     try:
-        data = json.loads(out.decode() or "{}")
+        data = json.loads(out.decode())
     except json.JSONDecodeError:
         raise AIError((err or out).decode()[:300])
-    if data.get("is_error"):
-        raise AIError(str(data.get("result"))[:300])
+    if data.get("is_error") or (proc.returncode and not data.get("result")):
+        raise AIError(str(data.get("result") or f"claude exited {proc.returncode}")[:300])
     return data.get("result", "")
 
 

@@ -116,7 +116,7 @@
         <small class="ar-path">sessions/${E(id)}/</small>
       </aside>`;
     const art = P.querySelector(".ar-md");
-    art.innerHTML = md(v === "report" ? d.report : d.transcript); renderMath(art);
+    art.innerHTML = md(v === "report" ? d.report : d.transcript, `/api/reports/${id}/`); renderMath(art);
     art.querySelectorAll(":scope > *").forEach((el, i) => el.style.animationDelay = Math.min(i, 30) * 30 + "ms");
     P.querySelectorAll("[data-v]").forEach(b => b.onclick = () => { VIEW[id] = b.dataset.v; drawPane(); });
     P.querySelectorAll("[data-c]").forEach(b => b.onclick = () => {

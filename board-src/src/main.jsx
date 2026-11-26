@@ -14,6 +14,7 @@ const VIEW = new URLSearchParams(location.search).get("view");   // ?view=<sessi
 const PKEY = VIEW ? undefined : "im-board";      // a past board never overwrites the live board's IndexedDB
 async function snap(editor) {
   if (VIEW) return;
+  if (!SESS) { dirty = false; return; }      // no interview running: nothing to show the professor (e.g. the end-of-session wipe)
   if (!dirty || busy) return;
   if (editor.inputs.isPointing || editor.inputs.isDragging) { timer = setTimeout(() => snap(editor), 1500); return; }  // never export mid-stroke
   busy = true;
@@ -38,14 +39,16 @@ async function snap(editor) {
 
 // ---- one board per session: new session -> blank (or the saved board when resuming) ----
 let SESS = null;
+let wiping = false;                          // programmatic clear: not the student's writing, never snapshotted
 function wipe(editor) {
   const pages = editor.getPages();
-  editor.run(() => {
+  wiping = true;
+  try { editor.run(() => {
     editor.setCurrentPage(pages[0].id);
     pages.slice(1).forEach(p => editor.deletePage(p.id));
     editor.deleteShapes([...editor.getCurrentPageShapeIds()]);
     editor.setCamera({ x: 0, y: 0, z: 1 });
-  });
+  }); } finally { wiping = false; }
 }
 const idle = document.createElement("div");
 idle.innerHTML = "<b>Waiting for the interview</b><span>A fresh board appears when the question starts.</span>";
@@ -86,7 +89,7 @@ function onMount(editor) {
     if (next.isPenMode) editor.updateInstanceState({ isPenMode: false });
   });
   editor.setCurrentTool("draw");
-  editor.store.listen(() => { dirty = true; clearTimeout(timer); timer = setTimeout(() => snap(editor), 2500); },
+  editor.store.listen(() => { if (wiping) return; dirty = true; clearTimeout(timer); timer = setTimeout(() => snap(editor), 2500); },
     { source: "user", scope: "document" });
   setInterval(() => { if (dirty && Date.now() - sentAt > 20000) snap(editor); }, 5000);
 

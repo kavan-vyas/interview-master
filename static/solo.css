@@ -123,3 +123,16 @@ body:not([data-motion="calm"]) .lo-btn.danger { color: #ff8a80 !important; }
 .lo-row i, .lo-btn i, .lo-help { color: var(--mute); opacity: 1; }
 .liveopts .lo-row > span, .liveopts .lo-row b { color: var(--ink) !important; opacity: 1 !important; font-weight: 500; }
 .liveopts { z-index: 120; } .livebar { z-index: 110; } .liveqr { z-index: 105; }
+
+/* paused: the type-to-interviewer field is gone (typing is not recorded while paused) */
+.livebar.paused :is(.lb-key, input, .lb-send) { display: none !important; }
+/* solo: time left, small and quiet in the top-left corner */
+.solo-clock { position: fixed; left: 18px; top: 16px; z-index: 62; font: 500 13px var(--f-mono, ui-monospace, monospace); letter-spacing: .04em; color: var(--mute); opacity: .8; pointer-events: none; }
+.solo-clock.low { color: var(--err); opacity: 1; }
+.solo-clock[hidden] { display: none !important; }
+/* iPad QR on the live screen: bottom-left corner, never over the question or the caption */
+.liveqr { left: 16px; right: auto; top: auto; bottom: 16px; transform: none; max-width: 300px; }
+.liveqr .solo-qr { flex-wrap: nowrap; } .liveqr .solo-qr .solo-help { display: none !important; }
+.liveqr img { width: 112px; height: 112px; }
+/* pause veil follows the theme (plain light / plain dark): its text uses the theme ink */
+body[data-motion="calm"] .pzveil { background: color-mix(in srgb, var(--bg) 97%, transparent); color: var(--ink); }

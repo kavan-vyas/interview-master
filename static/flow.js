@@ -45,6 +45,33 @@ window.typeOut = (el, text, done, dur) => {   // dur (s): pace to the voice
     };
     $("#soloGo").onclick = () => startSolo(false);
     $("#muteGo").onclick = () => startSolo(true);
+
+    /* interrupted interviews (tab closed / app stopped mid-interview): resume, or write the report */
+    const ib = document.createElement("div"); ib.className = "resume-bar"; ib.hidden = true; f.before(ib);
+    const mm = t => `${String(t / 60 | 0).padStart(2, "0")}:${String(t % 60).padStart(2, "0")}`;
+    const E = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    const loadInt = async () => {
+      if (B.dataset.view !== "setup") return;
+      let list = []; try { list = await (await fetch("/api/interrupted")).json(); } catch { }
+      const r = Array.isArray(list) && list[0];
+      ib.hidden = !r; if (!r) return;
+      ib.innerHTML = `<div><b>Interrupted interview</b><span>${E(r.title)} · ${mm(r.elapsed)}${r.limit_s ? " of " + mm(r.limit_s) : ""} · part ${r.stage + 1}${r.stages ? " of " + r.stages : ""}${r.mute ? " · mute" : ""}</span></div>
+        <div class="rb-acts"><button class="btn" type="button" data-a="resume">${ic("play")} Resume</button>
+        <button class="btn ghost" type="button" data-a="report">Write report</button>
+        <button class="btn ghost" type="button" data-a="dismiss" title="Hide (it stays in All reports)">${ic("x")}</button></div>`;
+      window.renderMath?.(ib);
+      ib.onclick = async e => {
+        const a = e.target.closest("[data-a]")?.dataset.a; if (!a) return;
+        ib.querySelectorAll("button").forEach(b => b.disabled = true);
+        try {
+          if (a === "resume") { const so = $("#soloOn"); if (r.solo && so && !so.checked) { so.checked = true; so.dispatchEvent(new Event("change")); } await post(`interrupted/${r.id}/resume`); }
+          else if (a === "report") await post(`interrupted/${r.id}/report`);
+          else { await post(`interrupted/${r.id}/dismiss`); loadInt(); }
+        } catch (err) { toast(err.message, "error"); loadInt(); }
+      };
+    };
+    loadInt();
+    new MutationObserver(loadInt).observe(B, { attributes: true, attributeFilter: ["data-view"] });
   }
 
   /* solo: connect-the-iPad page, Continue -> interview begins */
@@ -94,10 +121,10 @@ window.typeOut = (el, text, done, dur) => {   // dur (s): pace to the voice
   const bar = h.querySelector(".hud-lvl i"), txt = h.querySelector(".hud-txt");
   /* professor status: Listening / Thinking… / Speaking */
   const st = document.createElement("div"); st.className = "hud-st"; st.textContent = "Listening"; h.prepend(st);
-  let speakingNow = false;
-  const showSt = () => { const t = speakingNow ? "Speaking" : (typeof S !== "undefined" && S?.writer_busy) ? "Thinking…" : (document.body.classList.contains("mute") ? "Watching board" : "Listening");
-    if (st.textContent !== t) { st.textContent = t; st.dataset.s = t.replace("…", "").toLowerCase(); } };
-  addEventListener("im-msg", e => { if (e.detail.type === "prof") { speakingNow = e.detail.s === "speaking"; showSt(); } });
+  let speakingNow = false, offline = false;
+  const showSt = () => { const t = speakingNow ? "Speaking" : offline ? "Professor offline" : (typeof S !== "undefined" && S?.writer_busy) ? "Thinking…" : (document.body.classList.contains("mute") ? "Watching board" : "Listening");
+    if (st.textContent !== t) { st.textContent = t; st.dataset.s = t.replace("…", "").replace("Professor ", "").toLowerCase(); } };
+  addEventListener("im-msg", e => { if (e.detail.type === "prof") { speakingNow = e.detail.s === "speaking"; if (e.detail.s !== "speaking") offline = e.detail.s === "offline"; showSt(); } });
   setInterval(showSt, 250);
   const v0 = window.vu;
   if (v0) window.vu = v => { v0(v); bar.style.width = Math.min(100, Math.sqrt(Math.max(0, v)) * 260) + "%"; bar.classList.toggle("hot", v > .02); };

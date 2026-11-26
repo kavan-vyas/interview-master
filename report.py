@@ -27,17 +27,36 @@ def transcript_md(o):
     return "\n".join(lines) + "\n"
 
 
+def cell(s):
+    """Table-cell safe: a '|' (e.g. $|x|+|y|=1$) must not split the row."""
+    return str(s if s is not None else "").replace("\n", " ").replace("|", "\\|")
+
+
 def stats_md(o):
     out = ["| Stage | Time | Hints | Errors (self-corrected) | Extensions | Level |", "|---|---|---|---|---|---|"]
     for k, g in o.s["stage_log"].items():
         end = g["end"] if g["end"] is not None else o.now()
         errs = g["errors"]
         sc = sum(e["self_corrected"] for e in errs)
-        out.append(f"| {k} {g['goal']} | {mmss(end - g['start'])} | {g['hints']} | {len(errs)} ({sc}) | "
+        out.append(f"| {k} {cell(g['goal'])} | {mmss(end - g['start'])} | {g['hints']} | {len(errs)} ({sc}) | "
                    f"{g['extensions']} | {g['level_start']}→{g.get('level_end', o.level)} |")
     notes = [f"- {e['note']} ({'self-corrected' if e['self_corrected'] else 'flagged'})"
              for g in o.s["stage_log"].values() for e in g["errors"]]
     return "\n".join(out) + ("\n\n**Errors**\n" + "\n".join(notes) if notes else "")
+
+
+def _head(o, smd):
+    note = (f"_Interrupted at {mmss(o.now())}: the dashboard was closed or the app stopped mid-interview. "
+            "Resume it from the start screen to finish it; this report covers what happened so far._\n\n"
+            if o.s.get("interrupted") else "")
+    return (f"# Mock interview report\n\n{time.strftime('%d %B %Y, %H:%M')} · {mmss(o.now())} total · "
+            f"main: `{o.s['main_id']}` · warm-up: `{o.s['warmup_id'] or '-'}` · final level {o.level}/5\n\n{note}"
+            f"{metrics.md(dict(metrics.compute(o), mute=bool(o.s.get('mute'))))}\n## Per stage\n\n{smd}\n\n")
+
+
+def quick_md(o):
+    """Report without the AI narrative (app stopping now): checklist + per-stage stats."""
+    return _head(o, stats_md(o)) + "_No written feedback yet: the app stopped before it could be written. Resume the interview, or press Write report on the start screen._\n"
 
 
 async def build(o):
@@ -50,9 +69,7 @@ async def build(o):
                "Judge the written working (board notes below). Never criticise lack of talking, thinking aloud, "
                "silence or fillers.\n\n" + smd)
         tmd = tmd + "\n\nBoard notes over time:\n" + "\n".join(boards[-40:])
-    head = (f"# Mock interview report\n\n{time.strftime('%d %B %Y, %H:%M')} · {mmss(o.now())} total · "   # before the slow call:
-            f"main: `{o.s['main_id']}` · warm-up: `{o.s['warmup_id'] or '-'}` · final level {o.level}/5\n\n"   # a reset may come meanwhile
-            f"{metrics.md(dict(metrics.compute(o), mute=bool(o.s.get('mute'))))}\n## Per stage\n\n{smd}\n\n")
+    head = _head(o, smd)          # before the slow call: a reset may come meanwhile
     try:
         narrative = await ai.report_narrative(smd, tmd, o.personal["statement"] if o.s["personal_on"] else "")
     except Exception as e:

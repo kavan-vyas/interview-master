@@ -8,14 +8,17 @@ export PATH="/opt/homebrew/bin:/usr/local/bin:$HOME/.local/bin:$PATH"
 export USER="${USER:-$(id -un)}" LOGNAME="${LOGNAME:-$(id -un)}"   # Claude sign-in (keychain) needs these   # Dock/Finder launches get a bare PATH: whisper-server lives here
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 PY="$ROOT/.venv/bin/python"; [ -x "$PY" ] || PY=/Library/Frameworks/Python.framework/Versions/3.11/bin/python3   # setup.sh venv first
-PORT=8000
+PORT="${IM_PORT:-${PORT:-8000}}"           # same variable as config.py (IM_PORT; PORT accepted)
+export IM_PORT="$PORT"
 URL="http://localhost:$PORT"
 DIR="$HOME/Library/Application Support/CollegeInterview"
-PIDF="$DIR/server.pid"
+if [ "$PORT" = 8000 ]; then PIDF="$DIR/server.pid"; else PIDF="$DIR/server-$PORT.pid"; fi   # matches server.py
 LOG="$HOME/Library/Logs/CollegeInterview.log"
 mkdir -p "$DIR" "$(dirname "$LOG")"
 
 healthy() { curl -s -m 2 "$URL/api/mic" >/dev/null 2>&1; }
+# a busy but alive server (slow request, report being written) is NOT restarted: a few longer probes first
+healthy_slow() { healthy && return 0; alive || return 1; for _ in 1 2 3; do curl -s -m 6 "$URL/api/mic" >/dev/null 2>&1 && return 0; sleep 1; done; return 1; }
 pid() { cat "$PIDF" 2>/dev/null; }
 alive() { local p; p=$(pid); [ -n "$p" ] && kill -0 "$p" 2>/dev/null; }
 
@@ -33,7 +36,7 @@ stop() {
 
 case "${1:-open}" in
   open|start)
-    if ! healthy; then
+    if ! healthy_slow; then
       stop                                       # half-dead or orphaned copy: clear it first
       cd "$ROOT" && nohup "$PY" -u "$ROOT/server.py" --no-open >>"$LOG" 2>&1 &
       for _ in $(seq 120); do healthy && break; sleep 0.5; done

@@ -147,11 +147,16 @@ WPROC = None
 # ------------------------------------------------------------------ lifecycle
 # One owner: this process. Launcher (scripts/ci.sh) starts it; it stops itself when the last Mac tab closes
 # (8 s grace so a reload survives) or when no tab ever connects (orphan guard). Every exit runs _cleanup().
-PIDFILE = Path.home() / "Library" / "Application Support" / "CollegeInterview" / "server.pid"
+# Mid-interview the server never stops: a closed tab pauses the interview (saved, resumable) and the server waits
+# LIVE_GRACE_S for a tab to come back; only then it writes the report, keeps the session resumable, and stops.
+_PIDDIR = Path.home() / "Library" / "Application Support" / "CollegeInterview"
 if sys.platform == "win32":    # same folder launch.py reads
-    PIDFILE = Path(os.environ.get("LOCALAPPDATA") or Path.home()) / "CollegeInterview" / "server.pid"
+    _PIDDIR = Path(os.environ.get("LOCALAPPDATA") or Path.home()) / "CollegeInterview"
+PIDFILE = _PIDDIR / ("server.pid" if C.PORT == 8000 else f"server-{C.PORT}.pid")   # a test copy never clobbers the app's
 GRACE_S, ORPHAN_S = 8, int(os.environ.get("IM_ORPHAN_S", 120))
-_life = {"seen": False, "empty_at": None, "boot": time.time(), "done": False}
+LIVE_GRACE_S = int(os.environ.get("IM_LIVE_GRACE_S", 1800))
+LIVE_PHASES = ("personal", "warmup", "main", "wrapup")
+_life = {"seen": False, "empty_at": None, "boot": time.time(), "done": False, "engines": False}
 
 
 def _cleanup():
@@ -161,6 +166,10 @@ def _cleanup():
     _life["done"] = True
     try:
         if O.s.get("phase") not in ("setup", "done"):
+            O.s["interrupted"] = True             # resumable from the start screen
+            if not O.report_md:                   # no time for the AI narrative: checklist + stats now
+                O.report_md = report.quick_md(O)
+            report.save(O)
             report.autosave(O)
     except Exception as e:
         print("exit autosave failed:", e, flush=True)
@@ -174,8 +183,8 @@ def _cleanup():
             pr and pr.terminate()
         except Exception:
             pass
-    if sys.platform != "win32":    # (Windows: launch.py stop kills the tree)
-        import subprocess    # engines reused from an earlier run aren't our Popen: match them by this app's model paths
+    if _life["engines"] and sys.platform != "win32":     # (Windows: launch.py stop kills the tree) engines reused from an earlier run aren't our Popen: match them by this app's model paths
+        import subprocess    # (only if THIS instance ran the speech engines: a no-audio / failed second copy never does)
         subprocess.run(["pkill", "-f", str(C.MODELS / "ggml-")], check=False)
         subprocess.run(["pkill", "-f", str(C.ROOT / "tts" / "stt_worker.py")], check=False)
     try:
@@ -188,6 +197,24 @@ def _cleanup():
 
 def _mac_tabs():
     return sum(1 for w in O.clients if (w.client.host if w.client else "") in ("127.0.0.1", "::1"))
+
+
+def _busy_report():
+    t = _END.get("task")
+    return bool(t and not t.done()) or bool(O.s.get("report_busy"))
+
+
+async def _interrupted_report():
+    """No tab for LIVE_GRACE_S mid-interview: write the full report but keep the session resumable."""
+    try:
+        O.s["interrupted"] = True
+        await report.build(O)
+        d = report.save(O)
+        report.autosave(O)
+        _keep_board(d)
+        print("interrupted session saved with report:", d, flush=True)
+    except Exception as e:
+        print("interrupted report failed:", e, flush=True)
 
 
 async def life_watch():
@@ -203,13 +230,26 @@ async def life_watch():
         if not _life["seen"]:
             if O.s.get("audio") == "loading":     # engines still loading: never kill them mid-start
                 _life["boot"] = now
-            elif now - _life["boot"] > ORPHAN_S:
+            elif now - _life["boot"] > ORPHAN_S and O.s.get("phase") in ("setup", "done") and not _busy_report():
                 print("no tab opened in 2 min: stopping", flush=True)
                 break
             continue
         _life["empty_at"] = _life["empty_at"] or now
-        if now - _life["empty_at"] >= GRACE_S:
-            print("last tab closed: stopping", flush=True)
+        gone = now - _life["empty_at"]
+        if _busy_report():
+            continue                              # report being written: always let it finish
+        if O.s.get("phase") not in LIVE_PHASES:
+            if gone >= GRACE_S:
+                print("last tab closed: stopping", flush=True)
+                break
+            continue
+        if gone >= GRACE_S and O.s["phase"] != "wrapup" and not O.s.get("paused"):
+            print("last tab closed mid-interview: paused and saved, waiting for a tab", flush=True)
+            O.note("tab_closed")
+            await O.pause(True, auto=True)
+        if gone >= LIVE_GRACE_S:
+            print(f"no tab for {LIVE_GRACE_S // 60} min mid-interview: writing the report, then stopping", flush=True)
+            await _interrupted_report()
             break
     await O.send({"type": "bye"})              # open tabs show "closed" and stop reconnecting
     await asyncio.to_thread(_cleanup)
@@ -241,6 +281,12 @@ async def _seg(s):
         if O.s.get("solo"):
             if not O.barge_ok() and professor.is_echo(s) and not professor.outlasted(s):
                 return            # our own voice picked up by the mic
+            clean = professor.strip_echo(s)       # his words at the start/inside a student segment: cut, keep theirs
+            if clean != s.get("text"):
+                print(f"[echo] cut professor words: {s.get('text', '')[:60]!r} -> {clean[:60]!r}", flush=True)
+                if not clean:
+                    return
+                s["text"] = clean
             s["speaker"] = "S"
         s.pop("t_end", None)
         await O.add_segment(s)
@@ -278,6 +324,7 @@ async def start_audio():
     O.s["audio"] = "loading"
     try:
         global WPROC
+        _life["engines"] = True
         WPROC = await asyncio.to_thread(audio.ensure_whisper)
         await asyncio.to_thread(p.start)
         O.audio, O.s["audio"] = p, "live"
@@ -333,8 +380,9 @@ async def ws(sock: WebSocket):
     if O.s["phase"] == "done" and getattr(O, "report_md", None):
         d = getattr(O, "report_dir", None)
         asyncio.get_running_loop().call_later(0.3, lambda: asyncio.ensure_future(_report_msg(O.report_md, d)))
+    cs = await asyncio.to_thread(carts.load_all)     # YAML re-parse (seconds) never blocks the interview loop
     await sock.send_json({"type": "hello", "state": O.snapshot(), "cards": O.cards,
-                          "transcript": O.transcript[-200:], "carts": [carts.summary(c) for c in carts.load_all().values()]})
+                          "transcript": O.transcript[-200:], "carts": [carts.summary(c) for c in cs.values()]})
     try:
         while True:
             await sock.receive_text()
@@ -344,7 +392,7 @@ async def ws(sock: WebSocket):
 
 @app.get("/api/cartridges")
 async def list_carts():
-    return [carts.summary(c) for c in carts.load_all().values()]
+    return [carts.summary(c) for c in (await asyncio.to_thread(carts.load_all)).values()]
 
 
 @app.get("/api/cartridge/{cid}")
@@ -449,6 +497,8 @@ async def seg_speaker(sid: int, body: dict):
 
 @app.post("/api/inject")
 async def inject(body: dict):
+    if O.s.get("paused"):
+        return {"ok": False, "paused": True}      # paused: nothing is recorded (the type bar is hidden too)
     await O.add_segment({"speaker": body.get("speaker", "S"), "text": str(body["text"])[:800], "conf": 1.0, "spk_conf": 1.0,
                          "typed": bool(body.get("typed"))})
     return {"ok": True}
@@ -538,22 +588,42 @@ async def _report_msg(md, d):
     await O.send({"type": "report", "md": md, "dir": str(d.relative_to(C.ROOT)) if d else None})
 
 
+_END = {"task": None, "gen": None}
+
+
 @app.post("/api/end")
 async def end(body: dict = None):
+    """End -> one report. A second End (or time-up auto-end) while it is being written waits for the same one."""
     if O.s["phase"] == "setup":
         raise HTTPException(409, "no session running")
     if O.s["phase"] == "done":
         return {"ok": True, "saved": bool(O.report_dir)}
+    t = _END.get("task")
+    if not (t and not t.done() and _END.get("gen") == O.gen):
+        _END["task"], _END["gen"] = asyncio.ensure_future(_end()), O.gen
+        t = _END["task"]
+    return await asyncio.shield(t)
+
+
+async def _end():
     gen = O.gen                                  # a reset / new session during the slow report must not be touched
     await professor.shh()
+    O.s["report_busy"] = True                    # a reload while it is written lands on the report loader
     if O.s["phase"] != "wrapup":
         await O.enter("wrapup")
     await O.send({"type": "report_busy"})
-    md = await report.build(O)
+    try:
+        md = await report.build(O)
+    except BaseException:
+        if O.gen == gen:
+            O.s["report_busy"] = False
+        raise
     if O.gen != gen:
         return {"ok": False, "stale": True}
     d = report.save(O)
     O.s["phase"] = "done"
+    O.s["report_busy"] = False
+    O.s.pop("interrupted", None)
     try:
         report.autosave(O)                       # live.json says done: never offered as a resume
     except Exception as e:
@@ -717,7 +787,7 @@ async def spk_toggle(body: dict):
     """Speaker on/off during any interview (off = captions only)."""
     professor.state["speaker_off"] = not bool(body.get("on", True))
     if professor.state["speaker_off"]:
-        await professor.shh()
+        professor.stop_voice()                   # sound off only: queued lines still come up as captions
     await O.push_state()
     return {"ok": True, "on": not professor.state["speaker_off"]}
 
@@ -745,6 +815,76 @@ async def replay():
     sid = board.STATE["sid"]
     return {"t0": O.t0, "transcript": O.transcript, "board_sid": sid,
             "board": board._index(sid) if sid else []}
+
+
+def _interrupted_list():
+    """Sessions that stopped mid-interview (tab closed / server stopped): newest first."""
+    out, cur = [], O.report_dir if O.s["phase"] != "setup" else None
+    for d in sorted((p for p in C.SESSIONS.iterdir() if p.is_dir() and reports.ID_RE.match(p.name) and (p / "live.json").exists()), reverse=True)[:40]:
+        if cur and d == cur:
+            continue
+        try:
+            s = json.loads((d / "live.json").read_text()).get("s", {})
+        except Exception:
+            continue
+        if s.get("phase") not in LIVE_PHASES or s.get("dismissed") or not s.get("main_id"):
+            continue
+        if not s.get("interrupted") and (d / "report.md").exists():
+            continue
+        if float(s.get("elapsed") or 0) < 20:
+            continue
+        c = carts.load(s["main_id"]) or {}
+        out.append({"id": d.name, "title": c.get("title") or s["main_id"], "elapsed": int(s.get("elapsed") or 0),
+                    "limit_s": s.get("limit_s") or 0, "stage": int(s.get("stage") or 0), "stages": len(c.get("stages") or []),
+                    "mute": bool(s.get("mute")), "solo": bool(s.get("solo")), "report": (d / "report.md").exists()})
+        if len(out) >= 5:
+            break
+    return out
+
+
+def _interrupted_dir(rid):
+    if not reports.ID_RE.match(rid) or not (C.SESSIONS / rid / "live.json").exists():
+        raise HTTPException(404, "no such session")
+    if O.s["phase"] != "setup":
+        raise HTTPException(409, "end or reset the current session first")
+    return C.SESSIONS / rid
+
+
+@app.get("/api/interrupted")
+async def interrupted():
+    return await asyncio.to_thread(_interrupted_list)
+
+
+@app.post("/api/interrupted/{rid}/resume")
+async def interrupted_resume(rid: str):
+    """Carry on where it stopped: same folder, same part, same clock. Starts paused (press Resume)."""
+    d = _interrupted_dir(rid)
+    await professor.shh()
+    O.restore(d)
+    board.MODE["v"] = "restore"
+    await O.send({"type": "phase", "phase": O.s["phase"], "title": (O.cart or {}).get("title", "")})
+    await O.push_state()
+    if O.s.get("solo"):
+        asyncio.ensure_future(professor.warm_brains())
+    return {"ok": True}
+
+
+@app.post("/api/interrupted/{rid}/report")
+async def interrupted_report(rid: str):
+    """Write the full report for an interrupted session (it is then finished, no longer resumable)."""
+    d = _interrupted_dir(rid)
+    O.restore(d)
+    return await end({})
+
+
+@app.post("/api/interrupted/{rid}/dismiss")
+async def interrupted_dismiss(rid: str):
+    d = _interrupted_dir(rid)
+    f = d / "live.json"
+    j = json.loads(f.read_text())
+    j.setdefault("s", {})["dismissed"] = True
+    f.write_text(json.dumps(j, default=str))
+    return {"ok": True}
 
 
 @app.post("/api/reset")
@@ -784,6 +924,16 @@ if __name__ == "__main__":
     ap.add_argument("--no-open", action="store_true")
     ap.add_argument("--keep-alive", action="store_true", help="don't stop when the last tab closes")
     ARGS = ap.parse_args()
+    import socket as _so                       # port taken (app already running): leave without side effects -
+    _probe = _so.socket(_so.AF_INET, _so.SOCK_STREAM)   # no pidfile write, no engine cleanup, no browser tab
+    _probe.setsockopt(_so.SOL_SOCKET, _so.SO_REUSEADDR, 1)   # like uvicorn: TIME_WAIT is fine, a listener is not
+    try:
+        _probe.bind((os.environ.get("IM_HOST", "0.0.0.0"), C.PORT))
+    except OSError as e:
+        print(f"port {C.PORT} is in use ({e}): College Interview is probably already running. Not starting a second copy.", flush=True)
+        raise SystemExit(1)
+    finally:
+        _probe.close()
     if not ARGS.no_open:
         LOOP_OPEN = lambda: webbrowser.open(f"http://localhost:{C.PORT}")  # noqa: E731
         import threading

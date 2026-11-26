@@ -102,10 +102,16 @@ function tex(src) {
 }
 /* live header shows only the part being asked: shared setup line + current (i)/(ii)/... */
 function partOnly(cart, k) {
-  const st = cart.statement || "", bits = st.split(/\n\s*(?=\((?:i{1,3}|iv|v|vi{1,3}|ix|x|[a-h])\)\s)/);
-  if (bits.length > 1) { const p = bits[Math.min(k + 1, bits.length - 1)]; return bits[0].trim() + "\n\n" + p.trim(); }
-  const g = (cart.goals || [])[k];
-  return (cart.goals || []).length > 1 && g ? g : st;
+  const st = (cart.statement || "").trim(), goals = cart.goals || [];
+  const bits = st.split(/\n\s*(?=\((?:i{1,3}|iv|v|vi{1,3}|ix|x|[a-h])\)\s)/).map(b => b.trim()).filter(Boolean);
+  if (bits.length > 1) {
+    const lead = /^\((?:i|a)\)\s/.test(bits[0]);          // starts with (i): no shared setup, chunk 0 IS part (i)
+    const setup = lead ? "" : bits[0], parts = lead ? bits : bits.slice(1);
+    const p = parts.length === goals.length || !goals[k] ? parts[Math.min(k, parts.length - 1)] : goals[k];   // parts != stages: the stage goal
+    return setup ? setup + "\n\n" + p : p;
+  }
+  const g = goals[k];
+  return goals.length > 1 && g ? g : st;
 }
 
 /* inline $...$ inside statements */
@@ -187,6 +193,7 @@ function on(m) {
       CARTS = m.carts; fillCarts(); setState(m.state);
       $("#lines").textContent = ""; m.transcript.forEach(addLine);
       if (m.cards.length) renderCards(m.cards, false);
+      dispatchEvent(new CustomEvent("im-msg", { detail: { type: "hello", transcript: m.transcript, state: m.state } }));   // solo: last question back on screen
       break;
     case "state": setState(m.state); break;
     case "seg": addLine(m.seg); break;
@@ -196,7 +203,7 @@ function on(m) {
     case "toast": toast(m.text, m.kind); break;
     case "level": if (m.v < 0) enrolProg(-m.v); else vu(m.v); break;
     case "enrolled": { const b = $(`.voice[data-role="${m.role}"]`); b.classList.remove("rec"); b.classList.add("done"); $("small", b).textContent = "enrolled"; toast(`${m.role === "I" ? "Interviewer" : "Student"} voice enrolled`, "good"); break; }
-    case "report_busy": REP_BUSY = true; view("report"); break;
+    case "report_busy": REP_BUSY = true; view("report"); repLoading(); break;
     case "report": REP_BUSY = false; showReport(m); break;
     default: dispatchEvent(new CustomEvent("im-msg", { detail: m }));
   }
@@ -210,8 +217,9 @@ function view(v) { if (document.body.dataset.view !== v) document.body.dataset.v
 function setState(s) {
   const prev = S; S = s;
   if (s.phase === "setup") REP_BUSY = false;
+  if (s.report_busy && !REP_BUSY) { REP_BUSY = true; repLoading(); }   // server is writing the report (also after a reload)
   const live = ["personal", "warmup", "main", "wrapup"].includes(s.phase);
-  view(s.phase === "setup" ? "setup" : s.phase === "done" ? "report" : "live");
+  view(s.phase === "setup" ? "setup" : s.phase === "done" || (s.phase === "wrapup" && REP_BUSY) ? "report" : "live");
   pill("#phasePill", s.phase + (live && s.phase !== "wrapup" && s.phase !== "personal" ? ` · ${s.stage + 1}` : ""), live ? "on" : "");
   const busy = s.writer_busy || s.gate_busy;
   pill("#aiPill", s.writer_busy ? "writing" : s.gate_busy ? "gating" : `AI idle · ${s.ai.gate_calls}g ${s.ai.writer_calls}w`, busy ? "on" : "");
@@ -388,6 +396,7 @@ function act(a, e) {
 $$(".act[data-a]").forEach(b => b.onclick = e => act(b.dataset.a, e));
 addEventListener("keydown", e => {
   if (document.body.dataset.view !== "live" || e.target.matches("input,select,textarea") || e.metaKey || e.ctrlKey) return;
+  if (document.body.classList.contains("solo") || S.paused) return;   // copilot keys: 1-to-1 only, never under the pause veil
   const k = { "1": "probe", "2": "hint", "3": "extend", m: "moveon", r: "refresh" }[e.key.toLowerCase()];
   if (k) { e.preventDefault(); act(k); }
 });
@@ -405,11 +414,26 @@ $("#newBtn").onclick = () => (!REP_BUSY || confirm("The report is still being wr
   (REP_BUSY || S.phase !== "done" || $("#saveBtn").hidden || confirm("This report is not saved. Discard it?")) && api("reset", {}).then(() => { CARDS = []; $("#cards").innerHTML = ""; $("#lines").innerHTML = ""; $("#problem").dataset.k = ""; $("#stages").dataset.k = ""; });
 
 /* ---------------- report ---------------- */
-function md(src) {
-  const inl = s => esc(s).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>").replace(/(^|[\s(])\*([^*\s](?:[^*]*?[^*\s])?)\*(?=[\s.,;:)!?]|$)/g, "$1<i>$2</i>").replace(/`(.+?)`/g, "<code>$1</code>").replace(/_(.+?)_/g, "<i>$1</i>");
+function md(src, base = "") {
+  /* maths ($...$) and images are lifted out first, so _italics_ / **bold** / table pipes never touch them */
+  const held = [];
+  const hold = (s, re, f) => s.replace(re, m => { held.push(f ? f(m) : m); return `\u0000${held.length - 1}\u0000`; });
+  const raw = s => s.replace(/\u0000(\d+)\u0000/g, (_, i) => held[+i]);
+  const img = m => { const [, alt, u] = m.match(/^!\[([^\]]*)\]\(([^)\s]+)\)$/); const url = /^(https?:|\/)/.test(u) ? u : base ? base + u : "";
+    return url ? `<img class="md-img" loading="lazy" alt="${esc(alt)}" src="${esc(url)}">` : `<i>${esc(alt)}</i>`; };
+  const inl = s0 => {
+    let s = hold(hold(s0, MATH_RE, m => esc(m)), /!\[[^\]]*\]\([^)\s]+\)/g, img);
+    s = esc(s).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>").replace(/(^|[\s(])\*([^*\s](?:[^*]*?[^*\s])?)\*(?=[\s.,;:)!?]|$)/g, "$1<i>$2</i>").replace(/`(.+?)`/g, "<code>$1</code>").replace(/(^|[^\w\\])_(?=\S)(.+?)_(?!\w)/g, "$1<i>$2</i>");
+    return s.replace(/\u0000(\d+)\u0000/g, (_, i) => held[+i]);
+  };
   const out = []; let tbl = null, ul = false;
   for (const line of src.split("\n")) {
-    if (/^\|/.test(line)) { if (/^\|[-| ]+\|$/.test(line)) continue; const cells = line.split("|").slice(1, -1).map(c => inl(c.trim())); if (!tbl) { tbl = []; out.push("<table>"); tbl.h = 1; out.push("<tr>" + cells.map(c => `<th>${c}</th>`).join("") + "</tr>"); } else out.push("<tr>" + cells.map(c => `<td>${c}</td>`).join("") + "</tr>"); continue; }
+    if (/^\|/.test(line)) {
+      if (/^\|[-:| ]+\|$/.test(line)) continue;
+      const ln = hold(line, MATH_RE);            // a | inside $...$ is not a column break
+      const cells = ln.split(/(?<!\\)\|/).slice(1, -1).map(c => inl(raw(c).replace(/\\\|/g, "|").trim()));
+      if (!tbl) { tbl = []; out.push("<table>"); tbl.h = 1; out.push("<tr>" + cells.map(c => `<th>${c}</th>`).join("") + "</tr>"); } else out.push("<tr>" + cells.map(c => `<td>${c}</td>`).join("") + "</tr>"); continue;
+    }
     if (tbl) { out.push("</table>"); tbl = null; }
     if (/^\s*[-*] /.test(line)) { if (!ul) { out.push("<ul>"); ul = true; } out.push("<li>" + inl(line.replace(/^\s*[-*] /, "")) + "</li>"); continue; }
     if (ul) { out.push("</ul>"); ul = false; }
@@ -419,10 +443,15 @@ function md(src) {
   if (tbl) out.push("</table>"); if (ul) out.push("</ul>");
   return out.join("\n");
 }
+function repLoading() {
+  $("#repDir").textContent = "Writing your report…"; $("#repBody").innerHTML = `<div class="loader"><i></i><i></i><i></i></div>`;
+  $("#saveBtn").hidden = $("#retryBtn").hidden = true;
+}
 function showReport(m) {
   view("report");
   $("#repDir").textContent = m.dir ? `Saved to ${m.dir}/ (transcript.md, report.md). Audio was never written to disk.` : "Shown on screen only: not saved (no consent yet).";
-  $("#repBody").innerHTML = md(m.md || "");
+  const rid = (m.dir || "").split("/").pop();
+  $("#repBody").innerHTML = md(m.md || "", rid ? `/api/reports/${rid}/` : "");
   $("#saveBtn").hidden = !!m.dir;
   const sid = (m.dir || "").split("/").pop(), wb = $("#wbBtn");
   if (wb) { wb.hidden = !sid; wb.onclick = () => window.open("/board?view=" + sid, "im-board-" + sid, "popup,width=1180,height=820"); }

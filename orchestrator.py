@@ -86,7 +86,11 @@ class Orchestrator:
         return st[self.s["stage"]] if self.s["stage"] < len(st) else {}
 
     def now(self):
-        return round(time.time() - self.t0, 1) if self.t0 else 0.0
+        """Interview clock (s). Frozen while paused: paused time never counts."""
+        if not self.t0:
+            return 0.0
+        t = self._pause_t if self.s.get("paused") and getattr(self, "_pause_t", None) else time.time()
+        return round(t - self.t0, 1)
 
     def snapshot(self):
         s = dict(self.s, level=self.level, ai=ai.stats, board_age=round(time.time() - board.SEEN["t"]),

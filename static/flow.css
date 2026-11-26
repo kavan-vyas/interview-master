@@ -77,3 +77,14 @@ body.solo[data-view="live"] .hud { display: block; position: fixed; left: 0; rig
 .hud-st[data-s="thinking"]::before { background: #d29922; animation: hudp 1s infinite; }
 .hud-st[data-s="speaking"]::before { background: #58a6ff; }
 @keyframes hudp { 50% { opacity: .3; } }
+.hud-st[data-s="offline"]::before { background: var(--err, #d93025); }
+.hud-st[data-s="offline"] { color: var(--err, #d93025); }
+
+/* setup: interrupted interview, resume or report */
+.resume-bar { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; justify-content: space-between; max-width: 980px;
+  margin: 18px auto 0; padding: 14px 18px; border: 1px solid var(--line); border-left: 3px solid var(--hint, var(--leaf)); border-radius: 14px; background: var(--card); color: var(--ink); }
+.resume-bar[hidden] { display: none !important; }
+.resume-bar b { display: block; font-size: 15px; margin-bottom: 2px; }
+.resume-bar span { font-size: 13px; color: var(--mute); }
+.resume-bar .rb-acts { display: flex; gap: 8px; align-items: center; }
+.resume-bar .btn { font-size: 14px; padding: 8px 14px; }

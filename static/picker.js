@@ -189,7 +189,7 @@
   /* refresh when ratings / refinements land (setup screen only) */
   const sig = cs => cs.map(c => c.id + (c.rating?.priority ?? "") + (c.refined ? "r" : "")).join();
   setInterval(async () => {
-    if ($p("#setup")?.hidden || document.hidden) return;
+    if (document.body.dataset.view !== "setup" || document.hidden) return;   // never during an interview / report
     try { const c = await api("cartridges"); if (sig(c) !== sig(CARTS)) { CARTS = c; fillCarts(); } } catch { }
   }, 10000);
 })();

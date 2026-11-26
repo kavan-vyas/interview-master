@@ -266,6 +266,7 @@ body[data-view="live"] #live { display: grid; }
 .repwrap { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
 .md { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 30px; backdrop-filter: blur(18px); }
 .md h1, .md h2 { letter-spacing: -.03em; } .md h2 { margin-top: 1.6em; font-size: 24px; color: var(--leaf); }
+.md .md-img { display: block; max-width: 100%; max-height: 520px; margin: 12px 0; border-radius: 10px; border: 1px solid var(--line); background: #fff; }
 .md table { border-collapse: collapse; width: 100%; font-size: 13px; } .md td, .md th { border-bottom: 1px solid var(--line); padding: 8px; text-align: left; }
 .md code { font-family: var(--mono); font-size: .9em; color: var(--probe); }
 .md > * { animation: lnIn .7s var(--ease) both; }
